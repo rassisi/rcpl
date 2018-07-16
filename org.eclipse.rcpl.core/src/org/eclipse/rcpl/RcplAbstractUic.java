@@ -22,7 +22,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -267,7 +267,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 			public void handle(ActionEvent event) {
 				errorTextArea.setText("");
 				logTextArea.setText("");
-				RCPLModel.clearLog();
+				RcplModel.clearLog();
 			}
 		});
 		logPage.getChildren().addAll(returnButton, clearButton);
@@ -296,7 +296,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 			if (p != null) {
 				getSideToolBarControl().showPerspective(p, true);
 				getTopToolbarControl().show("SETTINGS");
-				showPerspective(RCPLModel.USE_CASE_CONTACTS_ID, true);
+				showPerspective(RcplModel.USE_CASE_CONTACTS_ID, true);
 			}
 		}
 	}
@@ -322,7 +322,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 				showPerspective(p.getId(), true);
 			}
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 
@@ -508,7 +508,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 		try {
 			String[] splits = id.split("/");
 			String lastSegment = splits[splits.length - 1];
-			for (IRcplAddon uc : rcplApplicationStarter.getRcplApplicationProvider().getRcplPlugins()) {
+			for (IRcplAddon uc : rcplApplicationStarter.getRcplApplicationProvider().getRcplAddons()) {
 
 				String id2 = uc.getId();
 
@@ -915,8 +915,8 @@ public abstract class RcplAbstractUic implements IRcplUic {
 
 	@Override
 	public void showErrorPage() {
-		errorTextArea.setText(RCPLModel.errorBuf.toString());
-		logTextArea.setText(RCPLModel.logBuf.toString());
+		errorTextArea.setText(RcplModel.errorBuf.toString());
+		logTextArea.setText(RcplModel.logBuf.toString());
 		setContent(logPage);
 	}
 
@@ -1076,7 +1076,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 			}.start();
 
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 
@@ -1093,7 +1093,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 			}
 			restoreTab();
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 
@@ -1133,7 +1133,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 
 	@Override
 	public INavigatorPlugin getNavigator() {
-		IRcplAddon rcplPlugin = Rcpl.rcplApplicationProvider.findRcplPlugin(INavigatorPlugin.class);
+		IRcplAddon rcplPlugin = Rcpl.rcplApplicationProvider.findRcplAddon(INavigatorPlugin.class);
 		if (rcplPlugin instanceof INavigatorPlugin) {
 			Parent parent = rcplPlugin.getNode().getParent();
 			if (parent instanceof Pane) {

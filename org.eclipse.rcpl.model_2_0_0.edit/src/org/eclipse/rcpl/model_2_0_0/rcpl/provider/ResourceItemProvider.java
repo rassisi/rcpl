@@ -12,7 +12,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 
@@ -126,15 +126,15 @@ public class ResourceItemProvider extends LayoutableItemProvider {
 		Resource resource = (Resource) object;
 		if (resource.getUri() != null) {
 			if (resource.getUri().endsWith(".docx")) {
-				return RCPLModel.resources.getSvgImage("word", 24, 24).getNode();
+				return RcplModel.resources.getSvgImage("word", 24, 24).getNode();
 			} else if (resource.getUri().endsWith(".xlsx")) {
-				return RCPLModel.resources.getSvgImage("spreadsheet", 24, 24).getNode();
+				return RcplModel.resources.getSvgImage("spreadsheet", 24, 24).getNode();
 			}
 			if (resource.getUri().endsWith(".pptx")) {
-				return RCPLModel.resources.getSvgImage("presentation", 24, 24).getNode();
+				return RcplModel.resources.getSvgImage("presentation", 24, 24).getNode();
 			}
 		}
-		return RCPLModel.resources.getSvgImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
+		return RcplModel.resources.getSvgImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
 				.getNode();
 	}
 

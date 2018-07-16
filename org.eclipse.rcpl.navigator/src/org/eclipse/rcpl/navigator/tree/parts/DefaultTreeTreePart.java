@@ -35,7 +35,7 @@ import org.eclipse.rcpl.emf.edit.ui.EAttributeCellEditHandler;
 import org.eclipse.rcpl.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
 import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
@@ -118,7 +118,7 @@ public class DefaultTreeTreePart extends RcplTool {
 
 
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 
@@ -183,7 +183,7 @@ public class DefaultTreeTreePart extends RcplTool {
 								}
 								((IOfficeUIC) Rcpl.UIC).openDocument(file);
 							} catch (Exception e) {
-								RCPLModel.logError(e);
+								RcplModel.logError(e);
 							}
 
 						} else if (uri != null && uri.length() > 0) {

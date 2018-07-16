@@ -15,7 +15,7 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.RcplVersion;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
@@ -130,7 +130,7 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 		Rcpl.progressMessage("RCPL.createMainWindow()");
 		splashMessage = "RCPL  Version " + RcplVersion.getVersion();
 		Rcpl.progressMessage("Init Use Cases");
-		for (IRcplAddon uc : applicationProvider.getRcplPlugins()) {
+		for (IRcplAddon uc : applicationProvider.getRcplAddons()) {
 			Rcpl.UIC.getTopToolBarControl().processTopBarMainGroups(uc);
 			uc.init();
 		}
@@ -175,7 +175,7 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 				public void handle(KeyEvent event) {
 					if (event.isControlDown()) {
 						if (event.getText().equals("x") && event.isShiftDown()) {
-							Rcpl.UIC.showPerspective(RCPLModel.USE_CASE_IT_ID, false);
+							Rcpl.UIC.showPerspective(RcplModel.USE_CASE_IT_ID, false);
 							event.consume();
 							return;
 						}

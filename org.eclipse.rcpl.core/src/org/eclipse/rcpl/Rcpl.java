@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.eclipse.rcpl.impl.RcplMonitor;
 import org.eclipse.rcpl.model.IResources;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -111,7 +111,7 @@ public class Rcpl {
 	public static IResources resources() {
 		if (resources == null) {
 			resources = factory.createResources();
-			RCPLModel.resources = resources;
+			RcplModel.resources = resources;
 		}
 		return resources;
 	}
@@ -645,7 +645,7 @@ public class Rcpl {
 	private static double progressIncrement;
 
 	public static void progressMessage(final String message) {
-		RCPLModel.mobileProvider.appendLog(message);
+		RcplModel.mobileProvider.appendLog(message);
 		progressMessage(message, 0);
 	}
 

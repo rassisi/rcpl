@@ -9,7 +9,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 
 /**
  * This is the item provider adapter for a
@@ -51,7 +51,7 @@ public class BuildingItemProvider extends LayoutableItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return RCPLModel.resources.getSvgImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
+		return RcplModel.resources.getSvgImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
 				.getNode();
 	}
 

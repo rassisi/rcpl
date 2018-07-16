@@ -10,7 +10,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Plugin;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
@@ -260,7 +260,7 @@ public class PluginItemProvider extends LayoutableItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return RCPLModel.resources.getSvgImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
+		return RcplModel.resources.getSvgImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
 				.getNode();
 	}
 

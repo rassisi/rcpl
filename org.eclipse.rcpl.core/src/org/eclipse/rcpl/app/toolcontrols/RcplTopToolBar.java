@@ -20,7 +20,7 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
@@ -69,7 +69,7 @@ public class RcplTopToolBar implements ITopToolbar {
 
 					IRcplAddon useCase = null;
 					if ("USECASE".equals(p.getId())) {
-						for (IRcplAddon u : Rcpl.rcplApplicationProvider.getRcplPlugins()) {
+						for (IRcplAddon u : Rcpl.rcplApplicationProvider.getRcplAddons()) {
 							if (u.getEmfModel() != null) {
 								if (u.getEmfModel().getDefaultPerspective() == p) {
 									useCase = u;
@@ -84,7 +84,7 @@ public class RcplTopToolBar implements ITopToolbar {
 				}
 			}
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 
 		processTopBarHomeGroups();
@@ -205,7 +205,7 @@ public class RcplTopToolBar implements ITopToolbar {
 			t.setImage(toolImage);
 			group.getTools().add(t);
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 
 		}
 		Node ng = Rcpl.getFactory().createRibbonGroup(group, useCase, firstGroup, false);

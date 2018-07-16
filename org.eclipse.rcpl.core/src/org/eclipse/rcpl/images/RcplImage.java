@@ -25,7 +25,7 @@ import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.eclipse.rcpl.application.DefaultMobileProvider;
 import org.eclipse.rcpl.model.IImage;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.util.JOUtil2;
 
@@ -630,7 +630,7 @@ public class RcplImage implements IImage {
 	// return wv;
 
 	public static void main(String[] args) {
-		RCPLModel.mobileProvider = new DefaultMobileProvider();
+		RcplModel.mobileProvider = new DefaultMobileProvider();
 
 		String path = "http://joffice.eu/svg/shape_parallelogram.svg";
 

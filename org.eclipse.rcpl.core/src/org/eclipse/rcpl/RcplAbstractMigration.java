@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.rcpl;
 
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Plugin;
@@ -24,7 +24,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
  * @author ramin
  *
  */
-public abstract class RcplAbstractMigration extends RCPLModel {
+public abstract class RcplAbstractMigration extends RcplModel {
 
 	protected IRcplAddon useCase;
 
@@ -107,9 +107,9 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	}
 
 	public TopToolBar getPluginTopBar(IRcplAddon useCase) {
-		Perspective perspective = RcplSession.getDefault().findPerspective(useCase.getId() + RCPLModel.PERSPECTIVE_SUFFIX);
+		Perspective perspective = RcplSession.getDefault().findPerspective(useCase.getId() + RcplModel.PERSPECTIVE_SUFFIX);
 		if (perspective == null) {
-			perspective = Rcpl.getFactory().createPerspective(useCase.getId() + RCPLModel.PERSPECTIVE_SUFFIX,
+			perspective = Rcpl.getFactory().createPerspective(useCase.getId() + RcplModel.PERSPECTIVE_SUFFIX,
 					useCase.getNode() + " Perspective", useCase.getEmfModel().getImage());
 			commit();
 
@@ -125,9 +125,9 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	}
 
 	public SideToolBar getPluginSideBar(IRcplAddon useCase) {
-		Perspective perspective = RcplSession.getDefault().findPerspective(useCase.getId() + RCPLModel.PERSPECTIVE_SUFFIX);
+		Perspective perspective = RcplSession.getDefault().findPerspective(useCase.getId() + RcplModel.PERSPECTIVE_SUFFIX);
 		if (perspective == null) {
-			perspective = Rcpl.getFactory().createPerspective(useCase.getId() + RCPLModel.PERSPECTIVE_SUFFIX,
+			perspective = Rcpl.getFactory().createPerspective(useCase.getId() + RcplModel.PERSPECTIVE_SUFFIX,
 					useCase.getEmfModel().getName() + " Perspective", useCase.getEmfModel().getImage());
 			useCase.getEmfModel().setDefaultPerspective(perspective);
 			commit();

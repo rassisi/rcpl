@@ -14,7 +14,7 @@ import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.INavigatorPlugin;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -175,7 +175,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 
 			}
 		} catch (Exception ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 

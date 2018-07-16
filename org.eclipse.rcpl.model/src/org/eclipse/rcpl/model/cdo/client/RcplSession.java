@@ -75,7 +75,7 @@ import org.eclipse.net4j.util.om.log.PrintLogHandler;
 import org.eclipse.net4j.util.om.trace.PrintTraceHandler;
 import org.eclipse.net4j.util.security.IPasswordCredentialsProvider;
 import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
@@ -1308,8 +1308,8 @@ public class RcplSession {
 
 			rs = domain.getResourceSet();
 
-			File localXMIFile = new File(RCPLModel.mobileProvider.getApplicationDir(),
-					RCPLModel.XMIName + RCPLModel.XMI_EXTENSION);
+			File localXMIFile = new File(RcplModel.mobileProvider.getApplicationDir(),
+					RcplModel.XMIName + RcplModel.XMI_EXTENSION);
 			if (FORCE_NEW_XMI) {
 				localXMIFile.delete();
 			}
@@ -1318,15 +1318,15 @@ public class RcplSession {
 
 				try {
 					copyInputStream(
-							RCPLModel.modelClass.getResourceAsStream(RCPLModel.XMIName + RCPLModel.XMI_EXTENSION),
+							RcplModel.modelClass.getResourceAsStream(RcplModel.XMIName + RcplModel.XMI_EXTENSION),
 							localXMIFile);
 				} catch (Throwable ex) {
-					RCPLModel.logError(ex);
+					RcplModel.logError(ex);
 				}
 			}
 
 			if (localXMIFile.exists()) {
-				RCPLModel.log(this, "XMI File: " + localXMIFile.getAbsolutePath() + " exists");
+				RcplModel.log(this, "XMI File: " + localXMIFile.getAbsolutePath() + " exists");
 			}
 
 			URI xmiURI = URI.createFileURI(localXMIFile.getAbsolutePath());
@@ -1343,7 +1343,7 @@ public class RcplSession {
 			if (msg.indexOf("Feature 'version' not found") != -1) {
 				return;
 			}
-			RCPLModel.logError(e);
+			RcplModel.logError(e);
 		}
 
 	}
@@ -1492,7 +1492,7 @@ public class RcplSession {
 					}
 					File localXMIFile = new File(
 							"C:/Users/ramin/Documents/wss/rcpl/org.eclipse.rcpl.model_2_0_0/src/org/eclipse/rcpl/model/"
-									+ RCPLModel.XMIName + RCPLModel.XMI_EXTENSION);
+									+ RcplModel.XMIName + RcplModel.XMI_EXTENSION);
 					// System.getProperty("user.home"), "joffice.xmi");
 					URI xmiURI = URI.createFileURI(localXMIFile.getAbsolutePath());
 					xmiLocal.setURI(xmiURI);
@@ -1592,7 +1592,7 @@ public class RcplSession {
 			}
 
 			xmiCDO = transaction
-					.getOrCreateResource("/home/" + userId + "/" + RCPLModel.XMIName + RCPLModel.XMI_EXTENSION); //$NON-NLS-1$
+					.getOrCreateResource("/home/" + userId + "/" + RcplModel.XMIName + RcplModel.XMI_EXTENSION); //$NON-NLS-1$
 
 		} catch (CDOException ex) {
 			return false;

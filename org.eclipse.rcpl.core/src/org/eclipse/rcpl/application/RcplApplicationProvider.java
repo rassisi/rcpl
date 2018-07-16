@@ -26,7 +26,7 @@ import org.eclipse.rcpl.RcplAbstractService;
 import org.eclipse.rcpl.RcplLogin;
 import org.eclipse.rcpl.impl.RcplMonitor;
 import org.eclipse.rcpl.internal.services.RcplService;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Application;
@@ -77,8 +77,8 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		// // ignore
 		// }
 
-		if (RCPLModel.mobileProvider == null) {
-			RCPLModel.mobileProvider = new DefaultMobileProvider();
+		if (RcplModel.mobileProvider == null) {
+			RcplModel.mobileProvider = new DefaultMobileProvider();
 		}
 
 		for (String arg : args) {
@@ -108,9 +108,9 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 	private StackPane progressGroup;
 
-	private List<String> rcplPluginClassNames = new ArrayList<String>();
+	private List<String> rcplAddonClassNames = new ArrayList<String>();
 
-	private HashMap<String, IRcplAddon> rcplPlugins = new HashMap<String, IRcplAddon>();
+	private HashMap<String, IRcplAddon> rcplAddons = new HashMap<String, IRcplAddon>();
 
 	private Application fxApplication;
 
@@ -126,8 +126,8 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	@Override
-	public void bindPluginsToModel() {
-		for (IRcplAddon plugin : rcplPlugins.values()) {
+	public void bindAddonsToModel() {
+		for (IRcplAddon plugin : rcplAddons.values()) {
 			try {
 				plugin.bindToModel();
 			} catch (Exception e) {
@@ -151,7 +151,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 			// first scan all custom application rcpl plugins
 
-			for (IRcplAddon plugin : rcplPlugins.values()) {
+			for (IRcplAddon plugin : rcplAddons.values()) {
 				if (plugin.isCustomApplication()) {
 					IApplicationStarter applicationStarter = plugin.createApplicationStarter(this);
 					if (applicationStarter != null) {
@@ -181,8 +181,8 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	@Override
-	public Collection<IRcplAddon> getRcplPlugins() {
-		return rcplPlugins.values();
+	public Collection<IRcplAddon> getRcplAddons() {
+		return rcplAddons.values();
 	}
 
 	@Override
@@ -248,7 +248,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	private void registerPlugins() {
-		for (String pluginClass : rcplPluginClassNames) {
+		for (String pluginClass : rcplAddonClassNames) {
 			IRcplAddon rcplPlugin = createRcplPlugin(pluginClass);
 			if (rcplPlugin != null) {
 				Rcpl.progressMessage("RcplPlugin " + rcplPlugin.getDisplayName() + " registered.");
@@ -262,22 +262,22 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			Object plugin = pluginClass.newInstance();
 			if (plugin instanceof IRcplAddon) {
 				IRcplAddon rcplPlugin = (IRcplAddon) plugin;
-				rcplPlugins.put(rcplPluginClassName, rcplPlugin);
+				rcplAddons.put(rcplPluginClassName, rcplPlugin);
 				Rcpl.progressMessage("RCPL - Plugin registered: " + rcplPlugin.getDisplayName());
 				return rcplPlugin;
 			}
 		} catch (InstantiationException e) {
-			RCPLModel.logError(e);
+			RcplModel.logError(e);
 		} catch (IllegalAccessException e) {
-			RCPLModel.logError(e);
+			RcplModel.logError(e);
 		} catch (ClassNotFoundException e) {
-			RCPLModel.logError(e);
+			RcplModel.logError(e);
 		}
 		return null;
 	}
 
 	@Override
-	public void registerRcplPluginClass(String rcplPluginClassName) {
+	public void registerRcplAddonClass(String rcplPluginClassName) {
 		String className = rcplPluginClassName;
 		if (rcplPluginClassName.endsWith(".class")) {
 			className = rcplPluginClassName.substring(0, rcplPluginClassName.length() - 6);
@@ -292,7 +292,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		
 		
 		
-		rcplPluginClassNames.add(className);
+		rcplAddonClassNames.add(className);
 	}
 
 	@Override
@@ -382,7 +382,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	private void startMobile() {
 		Rcpl.progressMessage("Start Mobile Application");
 		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-		RCPLModel.log(this, "Screen bounds: " + bounds.getWidth() + "/" + bounds.getHeight());
+		RcplModel.log(this, "Screen bounds: " + bounds.getWidth() + "/" + bounds.getHeight());
 		primaryStage.setScene(new Scene(mainStackPane, Color.YELLOW));
 		primaryStage.getScene().getStylesheets().addAll(
 				RcplApplicationProvider.class.getResource("/css/default.css").toExternalForm(),
@@ -440,13 +440,13 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	@Override
-	public IRcplAddon findRcplPlugin(String className) {
-		return rcplPlugins.get(className);
+	public IRcplAddon findRcplAddon(String className) {
+		return rcplAddons.get(className);
 	}
 
 	@Override
-	public IRcplAddon findRcplPlugin(Class<? extends IRcplAddon> pl) {
-		for (IRcplAddon p : rcplPlugins.values()) {
+	public IRcplAddon findRcplAddon(Class<? extends IRcplAddon> pl) {
+		for (IRcplAddon p : rcplAddons.values()) {
 
 			for (Class<?> inf : p.getClass().getInterfaces()) {
 				if (inf.getName().equals(pl.getName())) {

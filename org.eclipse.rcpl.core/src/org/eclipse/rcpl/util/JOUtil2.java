@@ -52,7 +52,7 @@ import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.RcplCountry;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.config.RcplConfig;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTOfficeStyleSheet;
 import org.openxmlformats.schemas.drawingml.x2006.main.ThemeDocument;
@@ -816,14 +816,14 @@ public class JOUtil2 {
 	}
 
 	public static File getUserLocalArea() {
-		return RCPLModel.mobileProvider.getApplicationDir();
+		return RcplModel.mobileProvider.getApplicationDir();
 	}
 
 	/**
 	 * @return
 	 */
 	public static File getUserLocalTempArea() {
-		File result = new File(RCPLModel.mobileProvider.getApplicationDir(), "temp");
+		File result = new File(RcplModel.mobileProvider.getApplicationDir(), "temp");
 		result.mkdirs();
 		return result;
 	}
@@ -833,8 +833,8 @@ public class JOUtil2 {
 	 */
 	public static File getUserLocalCacheDir() {
 		if (userLocalCacheDir == null) {
-			if (RCPLModel.mobileProvider != null) {
-				userLocalCacheDir = new File(RCPLModel.mobileProvider.getApplicationDir(), "cache"); //$NON-NLS-1$
+			if (RcplModel.mobileProvider != null) {
+				userLocalCacheDir = new File(RcplModel.mobileProvider.getApplicationDir(), "cache"); //$NON-NLS-1$
 			} else {
 				userLocalCacheDir = new File(System.getProperty("java.io.tmpdir"), "rcpl/cache"); //$NON-NLS-1$
 			}
@@ -2207,7 +2207,7 @@ public class JOUtil2 {
 			JOUtil2.copyInputStream(is, outFile, escapeHtml);
 
 		} catch (Throwable e) {
-			RCPLModel.logError(e);
+			RcplModel.logError(e);
 		}
 
 		return outFile;

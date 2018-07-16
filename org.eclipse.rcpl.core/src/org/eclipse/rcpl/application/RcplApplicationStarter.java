@@ -20,7 +20,7 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplLogin;
 import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.internal.config.RcplConfig;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Platform;
@@ -55,7 +55,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 		Rcpl.setToolFactory(createToolFactory());
 		Rcpl.progressMessage("Collapse All");
 		login.getController().collapseAll();
-		RCPLModel.configuration = new RcplConfig();
+		RcplModel.configuration = new RcplConfig();
 
 		Rcpl.progressMessage("Create UIC");
 		uic = createUIC(login);
@@ -68,7 +68,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 		}
 
 		Rcpl.progressMessage("Bind Plugins to Model");
-		applicationProvider.bindPluginsToModel();
+		applicationProvider.bindAddonsToModel();
 
 		Platform.runLater(new Runnable() {
 
@@ -84,7 +84,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 				}
 				uic.showOverviewPage();
 				uic.updateStartMenuButton();
-				RCPLModel.log(this, "User dir: " + RCPLModel.mobileProvider.getApplicationDir().toString());
+				RcplModel.log(this, "User dir: " + RcplModel.mobileProvider.getApplicationDir().toString());
 
 			}
 		});
