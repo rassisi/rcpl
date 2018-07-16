@@ -20,7 +20,7 @@ import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
@@ -197,7 +197,7 @@ public class JORibbonGroup extends RcplTool {
 			}
 			return lastX;
 		} catch (Throwable ex) {
-			RcplModel.logError(ex);
+			RCPLModel.logError(ex);
 			return 0;
 		}
 	}
@@ -303,7 +303,7 @@ public class JORibbonGroup extends RcplTool {
 							}
 						}
 					} catch (Exception ex) {
-						RcplModel.logError(ex);
+						RCPLModel.logError(ex);
 					}
 
 				}

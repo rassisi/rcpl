@@ -20,7 +20,7 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
@@ -84,7 +84,7 @@ public class RcplTopToolBar implements ITopToolbar {
 				}
 			}
 		} catch (Throwable ex) {
-			RcplModel.logError(ex);
+			RCPLModel.logError(ex);
 		}
 
 		processTopBarHomeGroups();
@@ -205,7 +205,7 @@ public class RcplTopToolBar implements ITopToolbar {
 			t.setImage(toolImage);
 			group.getTools().add(t);
 		} catch (Throwable ex) {
-			RcplModel.logError(ex);
+			RCPLModel.logError(ex);
 
 		}
 		Node ng = Rcpl.getFactory().createRibbonGroup(group, useCase, firstGroup, false);

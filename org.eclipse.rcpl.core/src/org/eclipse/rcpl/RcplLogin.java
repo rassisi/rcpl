@@ -13,7 +13,7 @@ package org.eclipse.rcpl;
 import java.io.IOException;
 import java.net.URL;
 
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

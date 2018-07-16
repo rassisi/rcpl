@@ -30,7 +30,7 @@ import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.internal.tools.JORibbonGroup;
 import org.eclipse.rcpl.internal.tools.UndoRedoTool;
 import org.eclipse.rcpl.model.IResources;
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
@@ -203,7 +203,7 @@ public class BasicFactory implements IRcplFactory {
 
 			return new RcplCommand(editor, commandId, layoutObject, tool, oldData, newData);
 		} catch (Exception ex) {
-			RcplModel.logError(ex);
+			RCPLModel.logError(ex);
 			return null;
 		}
 	}

@@ -1,6 +1,6 @@
 package org.eclipse.rcpl.fx.zoom;
 
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -51,7 +51,7 @@ public class ZScrollPane2 extends ScrollPane {
 		try {
 			super.layoutChildren();
 		} catch (Exception ex) {
-			RcplModel.logError(ex);
+			RCPLModel.logError(ex);
 		}
 	}
 

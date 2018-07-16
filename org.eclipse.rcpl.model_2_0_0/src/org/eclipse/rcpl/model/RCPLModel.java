@@ -9,7 +9,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
  * @author ramin
  *
  */
-public class RcplModel {
+public class RCPLModel {
 
 	public static final String USE_CASE_TOOLS_ID = "USE_CASE_TOOLS";
 	public static final String USE_CASE_IT_ID = "USE_CASE_TOGAV";
@@ -34,7 +34,7 @@ public class RcplModel {
 
 	public static String XMIName = DEFAULT_XMI_NAME;
 
-	public static Class<? extends RcplModel> modelClass = RcplModel.class;
+	public static Class<? extends RCPLModel> modelClass = RCPLModel.class;
 
 	public static AbstractTool collectObjectByClass(EObject eo, List<EObject> list, Class<?> cl) {
 		try {
@@ -47,7 +47,7 @@ public class RcplModel {
 				collectObjectByClass(g, list, cl);
 			}
 		} catch (Exception ex) {
-			RcplModel.logError(ex);
+			RCPLModel.logError(ex);
 		}
 		return null;
 	}

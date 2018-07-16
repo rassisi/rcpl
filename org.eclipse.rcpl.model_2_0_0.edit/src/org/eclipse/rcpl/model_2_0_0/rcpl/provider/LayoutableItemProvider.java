@@ -18,7 +18,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Layoutable;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
@@ -437,6 +437,6 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	protected Object getImage() {
-		return RcplModel.resources.getSvgImage("folder", 16, 16).getNode();
+		return RCPLModel.resources.getSvgImage("folder", 16, 16).getNode();
 	}
 }

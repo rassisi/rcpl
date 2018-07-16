@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.rcpl.emf.edit.ui.AdapterFactoryCellFactory;
 import org.eclipse.rcpl.emf.edit.ui.AdapterFactoryCellFactory.ICellCreationListener;
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -67,7 +67,7 @@ public class CellDragAdapter implements ICellCreationListener {
 
 					event.consume();
 				} catch (Throwable ex) {
-					RcplModel.logError(ex);
+					RCPLModel.logError(ex);
 				}
 			}
 		});

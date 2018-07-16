@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 
 /**
  * @author ramin
@@ -19,7 +19,7 @@ public class JOFileUtil {
 	 * @return
 	 */
 	public static boolean copyResourceToUserDir(Class<?> cl, String fileName) {
-		String userDir = RcplModel.mobileProvider.getApplicationDir().getAbsolutePath();
+		String userDir = RCPLModel.mobileProvider.getApplicationDir().getAbsolutePath();
 		return copyResourceToFile(cl, fileName, new File(userDir, fileName).getAbsolutePath());
 	}
 
@@ -31,7 +31,7 @@ public class JOFileUtil {
 	public static boolean copyResourceToFile(Class<?> cl, String pathToResource, String pathToFile) {
 		InputStream stream = cl.getResourceAsStream(pathToResource);
 		if (stream == null) {
-			RcplModel.log(stream, "InputStream to " + pathToResource + " is null");
+			RCPLModel.log(stream, "InputStream to " + pathToResource + " is null");
 			return false;
 		}
 		OutputStream resStreamOut = null;
@@ -45,16 +45,16 @@ public class JOFileUtil {
 				resStreamOut.write(buffer, 0, readBytes);
 			}
 		} catch (Throwable e1) {
-			RcplModel.logError(e1);
+			RCPLModel.logError(e1);
 		} finally {
 			try {
 				stream.close();
 				resStreamOut.close();
 			} catch (IOException e) {
-				RcplModel.logError(e);
+				RCPLModel.logError(e);
 				return false;
 			} catch (Throwable e) {
-				RcplModel.logError(e);
+				RCPLModel.logError(e);
 			}
 		}
 		return true;

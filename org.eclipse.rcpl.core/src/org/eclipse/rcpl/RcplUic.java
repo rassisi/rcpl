@@ -23,7 +23,7 @@ import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.model.IImage;
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -193,7 +193,7 @@ public class RcplUic extends RcplAbstractUic {
 			startMenuButton.setGraphic(onlineOfflineView);
 
 		} catch (Throwable ex) {
-			RcplModel.logError(ex);
+			RCPLModel.logError(ex);
 		}
 	}
 
@@ -365,7 +365,7 @@ public class RcplUic extends RcplAbstractUic {
 			tabPane.setTabMinHeight(h);
 
 		} catch (Throwable ex) {
-			RcplModel.logError(ex);
+			RCPLModel.logError(ex);
 		}
 		return tab;
 	}
@@ -409,7 +409,7 @@ public class RcplUic extends RcplAbstractUic {
 
 			statusText.setText("JOffice " + RcplVersion.getVersion());
 		} catch (Exception ex) {
-			RcplModel.logError(ex);
+			RCPLModel.logError(ex);
 		}
 
 		if (Rcpl.isMobile()) {

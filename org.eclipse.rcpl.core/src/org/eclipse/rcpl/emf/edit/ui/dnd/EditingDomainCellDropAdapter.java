@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.command.DragAndDropFeedback;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.emf.edit.ui.AdapterFactoryCellFactory;
 import org.eclipse.rcpl.emf.edit.ui.AdapterFactoryCellFactory.ICellCreationListener;
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Cell;
@@ -129,7 +129,7 @@ public class EditingDomainCellDropAdapter implements ICellCreationListener {
 						feedbackHandler.onFeedbackNone(node);
 					}
 				} catch (Throwable ex) {
-					RcplModel.logError(ex);
+					RCPLModel.logError(ex);
 				}
 
 			}

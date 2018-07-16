@@ -26,7 +26,7 @@ import org.eclipse.rcpl.RcplAbstractService;
 import org.eclipse.rcpl.RcplLogin;
 import org.eclipse.rcpl.impl.RcplMonitor;
 import org.eclipse.rcpl.internal.services.RcplService;
-import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Application;
@@ -77,8 +77,8 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		// // ignore
 		// }
 
-		if (RcplModel.mobileProvider == null) {
-			RcplModel.mobileProvider = new DefaultMobileProvider();
+		if (RCPLModel.mobileProvider == null) {
+			RCPLModel.mobileProvider = new DefaultMobileProvider();
 		}
 
 		for (String arg : args) {
@@ -267,11 +267,11 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 				return rcplPlugin;
 			}
 		} catch (InstantiationException e) {
-			RcplModel.logError(e);
+			RCPLModel.logError(e);
 		} catch (IllegalAccessException e) {
-			RcplModel.logError(e);
+			RCPLModel.logError(e);
 		} catch (ClassNotFoundException e) {
-			RcplModel.logError(e);
+			RCPLModel.logError(e);
 		}
 		return null;
 	}
@@ -382,7 +382,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	private void startMobile() {
 		Rcpl.progressMessage("Start Mobile Application");
 		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-		RcplModel.log(this, "Screen bounds: " + bounds.getWidth() + "/" + bounds.getHeight());
+		RCPLModel.log(this, "Screen bounds: " + bounds.getWidth() + "/" + bounds.getHeight());
 		primaryStage.setScene(new Scene(mainStackPane, Color.YELLOW));
 		primaryStage.getScene().getStylesheets().addAll(
 				RcplApplicationProvider.class.getResource("/css/default.css").toExternalForm(),
