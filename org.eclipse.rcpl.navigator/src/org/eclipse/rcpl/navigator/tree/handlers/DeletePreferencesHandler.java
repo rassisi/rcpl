@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.navigator.tree.handlers;
 
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.navigator.tree.parts.DefaultTreeTreePart;
 
@@ -27,7 +27,7 @@ public class DeletePreferencesHandler extends JOAbstractDeleteHandler<Preference
 
 	@Override
 	public boolean canExecute() {
-		if (treePart.getSelectedObject() == JOSession.getDefault().getRcpl().getAllPreferences()) {
+		if (treePart.getSelectedObject() == RcplSession.getDefault().getRcpl().getAllPreferences()) {
 			return false;
 		}
 		return true;

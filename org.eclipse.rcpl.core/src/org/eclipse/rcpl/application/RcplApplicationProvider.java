@@ -20,14 +20,14 @@ import java.util.Map;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IMonitor;
 import org.eclipse.rcpl.IRcplApplicationProvider;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplAbstractService;
 import org.eclipse.rcpl.RcplLogin;
 import org.eclipse.rcpl.impl.RcplMonitor;
 import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -86,12 +86,12 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			if (arg.startsWith("-cdo")) {
 				String[] splits = arg.split("=");
 				if (splits.length == 2) {
-					JOSession.getDefault().CDO_SERVER = splits[1].trim();
+					RcplSession.getDefault().CDO_SERVER = splits[1].trim();
 				}
 			} else if (arg.startsWith("-codebase")) {
 				String[] splits = arg.split("=");
 				if (splits.length == 2) {
-					JOSession.getDefault().codeBase = splits[1].trim();
+					RcplSession.getDefault().codeBase = splits[1].trim();
 				}
 			}
 		}
@@ -110,7 +110,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 	private List<String> rcplPluginClassNames = new ArrayList<String>();
 
-	private HashMap<String, IRcplPlugin> rcplPlugins = new HashMap<String, IRcplPlugin>();
+	private HashMap<String, IRcplAddon> rcplPlugins = new HashMap<String, IRcplAddon>();
 
 	private Application fxApplication;
 
@@ -127,7 +127,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 	@Override
 	public void bindPluginsToModel() {
-		for (IRcplPlugin plugin : rcplPlugins.values()) {
+		for (IRcplAddon plugin : rcplPlugins.values()) {
 			try {
 				plugin.bindToModel();
 			} catch (Exception e) {
@@ -151,7 +151,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 			// first scan all custom application rcpl plugins
 
-			for (IRcplPlugin plugin : rcplPlugins.values()) {
+			for (IRcplAddon plugin : rcplPlugins.values()) {
 				if (plugin.isCustomApplication()) {
 					IApplicationStarter applicationStarter = plugin.createApplicationStarter(this);
 					if (applicationStarter != null) {
@@ -181,7 +181,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	@Override
-	public Collection<IRcplPlugin> getRcplPlugins() {
+	public Collection<IRcplAddon> getRcplPlugins() {
 		return rcplPlugins.values();
 	}
 
@@ -249,19 +249,19 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 	private void registerPlugins() {
 		for (String pluginClass : rcplPluginClassNames) {
-			IRcplPlugin rcplPlugin = createRcplPlugin(pluginClass);
+			IRcplAddon rcplPlugin = createRcplPlugin(pluginClass);
 			if (rcplPlugin != null) {
 				Rcpl.progressMessage("RcplPlugin " + rcplPlugin.getDisplayName() + " registered.");
 			}
 		}
 	}
 
-	private IRcplPlugin createRcplPlugin(String rcplPluginClassName) {
+	private IRcplAddon createRcplPlugin(String rcplPluginClassName) {
 		try {
 			Class<?> pluginClass = Class.forName(rcplPluginClassName);
 			Object plugin = pluginClass.newInstance();
-			if (plugin instanceof IRcplPlugin) {
-				IRcplPlugin rcplPlugin = (IRcplPlugin) plugin;
+			if (plugin instanceof IRcplAddon) {
+				IRcplAddon rcplPlugin = (IRcplAddon) plugin;
 				rcplPlugins.put(rcplPluginClassName, rcplPlugin);
 				Rcpl.progressMessage("RCPL - Plugin registered: " + rcplPlugin.getDisplayName());
 				return rcplPlugin;
@@ -309,7 +309,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		while (!((Pane) primaryStage.getScene().getRoot()).getChildren().isEmpty()) {
 			((Pane) primaryStage.getScene().getRoot()).getChildren().remove(0);
 		}
-		JOSession.getDefault().close(true, true);
+		RcplSession.getDefault().close(true, true);
 		start(primaryStage);
 	}
 
@@ -342,7 +342,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			Map<String, String> map = fxApplication.getParameters().getNamed();
 			for (String key : map.keySet()) {
 				if ("cdo".equals(key)) {
-					JOSession.getDefault().CDO_SERVER = map.get(key);
+					RcplSession.getDefault().CDO_SERVER = map.get(key);
 					// JO.log("CDO Server: " + JOSession.CDO_SERVER);
 				}
 			}
@@ -440,13 +440,13 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	@Override
-	public IRcplPlugin findRcplPlugin(String className) {
+	public IRcplAddon findRcplPlugin(String className) {
 		return rcplPlugins.get(className);
 	}
 
 	@Override
-	public IRcplPlugin findRcplPlugin(Class<? extends IRcplPlugin> pl) {
-		for (IRcplPlugin p : rcplPlugins.values()) {
+	public IRcplAddon findRcplPlugin(Class<? extends IRcplAddon> pl) {
+		for (IRcplAddon p : rcplPlugins.values()) {
 
 			for (Class<?> inf : p.getClass().getInterfaces()) {
 				if (inf.getName().equals(pl.getName())) {

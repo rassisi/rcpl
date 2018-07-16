@@ -11,12 +11,12 @@
 
 package org.eclipse.rcpl.navigator.tree.parts;
 
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.RcplAbstractMigration;
 
 public class DefaultNavigatorMigration extends RcplAbstractMigration {
 
-	public DefaultNavigatorMigration(IRcplPlugin useCase) {
+	public DefaultNavigatorMigration(IRcplAddon useCase) {
 		super(useCase);
 	}
 

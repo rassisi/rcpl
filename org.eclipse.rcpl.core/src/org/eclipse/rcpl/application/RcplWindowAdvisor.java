@@ -11,13 +11,13 @@
 package org.eclipse.rcpl.application;
 
 import org.eclipse.rcpl.IRcplApplicationProvider;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.RcplVersion;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOKey;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplKey;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -86,8 +86,8 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 		String ys = "0";
 
 		try {
-			xs = JOSession.getDefault().getSystemPreferences().getString(JOKey.STAGE_X);
-			ys = JOSession.getDefault().getSystemPreferences().getString(JOKey.STAGE_Y);
+			xs = RcplSession.getDefault().getSystemPreferences().getString(RcplKey.STAGE_X);
+			ys = RcplSession.getDefault().getSystemPreferences().getString(RcplKey.STAGE_Y);
 		} catch (Exception ex) {
 			Rcpl.progressMessage(ex);
 		}
@@ -130,7 +130,7 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 		Rcpl.progressMessage("RCPL.createMainWindow()");
 		splashMessage = "RCPL  Version " + RcplVersion.getVersion();
 		Rcpl.progressMessage("Init Use Cases");
-		for (IRcplPlugin uc : applicationProvider.getRcplPlugins()) {
+		for (IRcplAddon uc : applicationProvider.getRcplPlugins()) {
 			Rcpl.UIC.getTopToolBarControl().processTopBarMainGroups(uc);
 			uc.init();
 		}

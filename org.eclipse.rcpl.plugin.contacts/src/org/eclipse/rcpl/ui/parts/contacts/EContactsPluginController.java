@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.rcpl.AbstractRcplPlugin;
+import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorPlugin;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.RcplLogin;
 import org.eclipse.rcpl.contacts.plugin.RcplContactsPlugin;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -156,7 +156,7 @@ public class EContactsPluginController extends EViewController {
 		return viewerBox;
 	}
 
-	public void doInit(AbstractRcplPlugin uc) {
+	public void doInit(AbstractRcplAddon uc) {
 		Node node1 = new EContactsTreePart((RcplContactsPlugin) uc).getNode();
 		getViewerBox().getChildren().add(node1);
 
@@ -229,7 +229,7 @@ public class EContactsPluginController extends EViewController {
 	}
 
 	@Override
-	public IRcplPlugin findRcplPlugins(String id) {
+	public IRcplAddon findRcplPlugins(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -277,7 +277,7 @@ public class EContactsPluginController extends EViewController {
 	}
 
 	@Override
-	public IRcplPlugin getUseCase() {
+	public IRcplAddon getUseCase() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -349,13 +349,13 @@ public class EContactsPluginController extends EViewController {
 	}
 
 	@Override
-	public void setPerspective(Perspective perspective, IRcplPlugin useCase) {
+	public void setPerspective(Perspective perspective, IRcplAddon useCase) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setUseCase(IRcplPlugin useCase) {
+	public void setUseCase(IRcplAddon useCase) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -535,7 +535,7 @@ public class EContactsPluginController extends EViewController {
 	}
 
 	@Override
-	public void init(IRcplPlugin rcplPlugin) {
+	public void init(IRcplAddon rcplPlugin) {
 		// TODO Auto-generated method stub
 		
 	}

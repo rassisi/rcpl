@@ -5,12 +5,12 @@ package org.eclipse.rcpl.model.cdo.client;
  * @author Ramin
  * 
  */
-public class JOMockData {
+public class RcplMockData {
 
 	@SuppressWarnings("unused")
-	private JOSession session;
+	private RcplSession session;
 
-	public JOMockData(JOSession session) {
+	public RcplMockData(RcplSession session) {
 		this.session = session;
 	}
 

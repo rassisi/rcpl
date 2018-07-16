@@ -21,7 +21,7 @@ import org.eclipse.rcpl.RcplLogin;
 import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.internal.config.RcplConfig;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -50,7 +50,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 	 */
 	@Override
 	public boolean start(final RcplLogin login, final Stage primaryStage) {
-		JOSession.getDefault().STANDALONE = true;
+		RcplSession.getDefault().STANDALONE = true;
 		Rcpl.setFactory(createRcplFactory());
 		Rcpl.setToolFactory(createToolFactory());
 		Rcpl.progressMessage("Collapse All");

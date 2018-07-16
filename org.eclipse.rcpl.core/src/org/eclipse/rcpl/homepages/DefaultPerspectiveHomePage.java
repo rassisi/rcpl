@@ -21,11 +21,11 @@ import javafx.scene.layout.Pane;
  * @author ramin
  * 
  */
-public class PerspectiveHomePage implements IHomePage {
+public class DefaultPerspectiveHomePage implements IHomePage {
 
 	protected IHomePage homePage;
 
-	public PerspectiveHomePage(final RcplUic uic) {
+	public DefaultPerspectiveHomePage(final RcplUic uic) {
 		uic.getHomepages().add(this);
 		homePage = Rcpl.getFactory().createDefaultHomePage(uic, "Test", null);
 		createdContent();

@@ -1,9 +1,9 @@
 package org.eclipse.rcpl.model.cdo.client;
 
 
-public class JOApplicationDataInitializer {
+public class RcplApplicationDataInitializer {
 
-	public JOApplicationDataInitializer(JOSession cdoSession) {
+	public RcplApplicationDataInitializer(RcplSession cdoSession) {
 //		Country country = (Country) cdoSession.findCountry("DE");
 //		cdoSession.getCoreData().setDefaultCountry(country);
 //		Language language = (Language) cdoSession.findLanguage("de", "DE");

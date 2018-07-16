@@ -14,14 +14,14 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 
-public class JOFactoryImpl implements JOFactory {
+public class RcplModelFactoryImpl implements RcplModelFactory {
 
-	private JOSession session;
+	private RcplSession session;
 
-	public static JOFactoryImpl INSTANCE;
+	public static RcplModelFactoryImpl INSTANCE;
 
-	public JOFactoryImpl(JOSession cdoSession) {
-		this.session = (JOSession) cdoSession;
+	public RcplModelFactoryImpl(RcplSession cdoSession) {
+		this.session = (RcplSession) cdoSession;
 		INSTANCE = this;
 	}
 

@@ -9,21 +9,21 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 
-public abstract class JOAbstractPreferences {
+public abstract class RcplAbstractPreferences {
 
-	private HashMap<JOKey, String> properties = null;
+	private HashMap<RcplKey, String> properties = null;
 
 	protected static final String USER_PREFERENCES = "USER_PREFERENCES";
 	protected static final String SYSTEM_PREFERENCES = "SYSTEM_PREFERENCES";
 
-	public JOAbstractPreferences() {
+	public RcplAbstractPreferences() {
 	}
 
 	/**
 	 * @param key
 	 * @return
 	 */
-	public boolean getBoolean(JOKey key) {
+	public boolean getBoolean(RcplKey key) {
 		String v = getString(key);
 		if (v == null) {
 			return false;
@@ -39,7 +39,7 @@ public abstract class JOAbstractPreferences {
 	 * @param key
 	 * @return
 	 */
-	public double getDouble(JOKey key) {
+	public double getDouble(RcplKey key) {
 		try {
 			return Double.valueOf((String) getProperties().get(key)).doubleValue();
 		} catch (Exception ex) {
@@ -51,7 +51,7 @@ public abstract class JOAbstractPreferences {
 	 * @param key
 	 * @return
 	 */
-	public File getFile(JOKey key) {
+	public File getFile(RcplKey key) {
 		String v = getString(key);
 		if (v == null || v.length() == 0) {
 			return null;
@@ -60,7 +60,7 @@ public abstract class JOAbstractPreferences {
 	}
 
 	public PreferenceGroup getPreferenceGroup() {
-		Preferences prefs = JOSession.getDefault().getRcpl().getAllPreferences();
+		Preferences prefs = RcplSession.getDefault().getRcpl().getAllPreferences();
 		PreferenceGroup userPreferences = null;
 		for (PreferenceGroup p : prefs.getChildren()) {
 			if (USER_PREFERENCES.equals(p.getId())) {
@@ -73,21 +73,21 @@ public abstract class JOAbstractPreferences {
 			userPreferences.setId(USER_PREFERENCES);
 			prefs.getChildren().add(userPreferences);
 
-			JOSession.getDefault().commit();
+			RcplSession.getDefault().commit();
 		}
-		PreferenceGroup ps = createPreferences(userPreferences, JOKey.PREFERENCES_HELP);
-		ps = createPreferences(userPreferences, JOKey.PREFERENCES_LANGUAGE);
+		PreferenceGroup ps = createPreferences(userPreferences, RcplKey.PREFERENCES_HELP);
+		ps = createPreferences(userPreferences, RcplKey.PREFERENCES_LANGUAGE);
 
 		if (!hasPreference(ps, null, Locale.class.getName())) {
 			Preference p = RcplFactory.eINSTANCE.createPreference();
-			p.setId(JOKey.PREFERENCES_LOCALE.getName());
+			p.setId(RcplKey.PREFERENCES_LOCALE.getName());
 			p.setType(Locale.class.getName());
 			p.setValue(Locale.getDefault().toString());
 			ps.getPreferences().add(p);
-			JOSession.getDefault().commit();
+			RcplSession.getDefault().commit();
 		}
 
-		ps = createPreferences(userPreferences, JOKey.PREFERENCES_THEME);
+		ps = createPreferences(userPreferences, RcplKey.PREFERENCES_THEME);
 		return userPreferences;
 
 	}
@@ -95,12 +95,12 @@ public abstract class JOAbstractPreferences {
 	/**
 	 * @return
 	 */
-	private HashMap<JOKey, String> getProperties() {
+	private HashMap<RcplKey, String> getProperties() {
 		if (properties == null) {
-			properties = new HashMap<JOKey, String>();
+			properties = new HashMap<RcplKey, String>();
 
 			for (Preference p : getPreferenceGroup().getPreferences()) {
-				properties.put(JOKey.valueOf(p.getKey()), p.getValue());
+				properties.put(RcplKey.valueOf(p.getKey()), p.getValue());
 			}
 
 		}
@@ -111,7 +111,7 @@ public abstract class JOAbstractPreferences {
 	 * @param key
 	 * @return
 	 */
-	public String getString(JOKey key) {
+	public String getString(RcplKey key) {
 		return (String) getProperties().get(key);
 	}
 
@@ -127,12 +127,12 @@ public abstract class JOAbstractPreferences {
 	 * @param key
 	 * @param value
 	 */
-	public void put(JOKey key, boolean value) {
+	public void put(RcplKey key, boolean value) {
 		String v = Boolean.valueOf(value).toString();
 		put(key, v);
 	}
 
-	public void put(JOKey key, double value) {
+	public void put(RcplKey key, double value) {
 		put(key, "" + value);
 	}
 
@@ -140,7 +140,7 @@ public abstract class JOAbstractPreferences {
 	 * @param key
 	 * @param value
 	 */
-	public void put(JOKey key, File value) {
+	public void put(RcplKey key, File value) {
 		String v = value.getAbsolutePath();
 		put(key, v);
 	}
@@ -149,7 +149,7 @@ public abstract class JOAbstractPreferences {
 	 * @param key
 	 * @param value
 	 */
-	public void put(JOKey key, String value) {
+	public void put(RcplKey key, String value) {
 
 		for (Preference p : getPreferenceGroup().getPreferences()) {
 			if (p.getKey().equals(key.name())) {
@@ -185,8 +185,8 @@ public abstract class JOAbstractPreferences {
 	 * @param userPreferences
 	 * @param key
 	 */
-	private PreferenceGroup createPreferences(PreferenceGroup userPreferences, JOKey key) {
-		for (PreferenceGroup ps : JOSession.getDefault().getRcpl().getAllPreferences().getChildren()) {
+	private PreferenceGroup createPreferences(PreferenceGroup userPreferences, RcplKey key) {
+		for (PreferenceGroup ps : RcplSession.getDefault().getRcpl().getAllPreferences().getChildren()) {
 			if (key.name().equals(ps.getId())) {
 				return ps;
 			}
@@ -195,8 +195,8 @@ public abstract class JOAbstractPreferences {
 		prefs.setId(key.name());
 		prefs.setName(key.getName());
 		prefs.setImage(key.getImage());
-		JOSession.getDefault().getRcpl().getAllPreferences().getChildren().add(prefs);
-		JOSession.getDefault().commit();
+		RcplSession.getDefault().getRcpl().getAllPreferences().getChildren().add(prefs);
+		RcplSession.getDefault().commit();
 		return prefs;
 	}
 }

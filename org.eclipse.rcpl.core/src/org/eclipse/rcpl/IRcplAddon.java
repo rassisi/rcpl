@@ -6,7 +6,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.Node;
 
-public interface IRcplPlugin {
+public interface IRcplAddon {
 
 	String USECASE_CONTACTS_CLASS = "org.eclipse.rcpl.ui.parts.contacts.EContactsUseCase";
 	String USECASE_TOOLS_CLASS = "org.eclipse.rcpl.client.uc.tools.parts.EToolsUseCase";

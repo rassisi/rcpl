@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.rcpl;
 
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Favorites;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 
@@ -25,7 +25,7 @@ public class RcplMigration extends RcplAbstractMigration {
 	@Override
 	protected void migrate() {
 		Rcpl.progressMessage("Migrate Model");
-		if (JOSession.getDefault().getContents() == null) {
+		if (RcplSession.getDefault().getContents() == null) {
 			Rcpl.progressMessage("Model migrated (Content == null)");
 			return;
 		}
@@ -34,9 +34,9 @@ public class RcplMigration extends RcplAbstractMigration {
 	}
 
 	protected void migrateOffice() {
-		if (JOSession.getDefault().getRcpl() != null && JOSession.getDefault().getRcpl().getAllFavorites() == null) {
+		if (RcplSession.getDefault().getRcpl() != null && RcplSession.getDefault().getRcpl().getAllFavorites() == null) {
 			Favorites favorites = RcplFactory.eINSTANCE.createFavorites();
-			JOSession.getDefault().getRcpl().setAllFavorites(favorites);
+			RcplSession.getDefault().getRcpl().setAllFavorites(favorites);
 
 			// FavoritesGroup favoritesGroup = RcplFactory.eINSTANCE
 			// .createFavoritesGroup();

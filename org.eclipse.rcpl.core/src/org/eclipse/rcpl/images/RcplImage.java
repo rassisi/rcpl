@@ -26,7 +26,7 @@ import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.eclipse.rcpl.application.DefaultMobileProvider;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.util.JOUtil2;
 
 import javafx.geometry.Rectangle2D;
@@ -221,7 +221,7 @@ public class RcplImage implements IImage {
 		} else if (getImageFromResource(resourcePath) != null) {
 			iv = new ImageView(image);
 		} else {
-			if (JOSession.getDefault().isReachable()) {
+			if (RcplSession.getDefault().isReachable()) {
 				try {
 					InputStream is = url.openStream();
 					if (svg) {
@@ -484,8 +484,8 @@ public class RcplImage implements IImage {
 		}
 
 		try {
-			url = new URL(JOSession.getDefault().getCodeBase() + "svg/" + id + ".svg");
-			pngUrl = new URL(JOSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
+			url = new URL(RcplSession.getDefault().getCodeBase() + "svg/" + id + ".svg");
+			pngUrl = new URL(RcplSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
 					+ id + ".png");
 			resourcePath = getWidth() + "_" + getHeight() + "/" + id + ".png";
 		} catch (Exception ex) {
@@ -510,7 +510,7 @@ public class RcplImage implements IImage {
 	@Override
 	public void setHeight(double height) {
 		try {
-			pngUrl = new URL(JOSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
+			pngUrl = new URL(RcplSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
 					+ id + ".png");
 		} catch (MalformedURLException e) {
 			// ignore
@@ -534,7 +534,7 @@ public class RcplImage implements IImage {
 	@Override
 	public void setWidth(double width) {
 		try {
-			pngUrl = new URL(JOSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
+			pngUrl = new URL(RcplSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
 					+ id + ".png");
 		} catch (MalformedURLException e) {
 			// ignore

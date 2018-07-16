@@ -1,12 +1,12 @@
 package org.eclipse.rcpl.ui.parts.contacts;
 
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.RcplAbstractMigration;
 import org.eclipse.rcpl.contacts.plugin.RcplContactsPlugin;
 
 public class EContactsMigration extends RcplAbstractMigration {
 
-	public EContactsMigration(IRcplPlugin useCase) {
+	public EContactsMigration(IRcplAddon useCase) {
 		super(useCase);
 	}
 

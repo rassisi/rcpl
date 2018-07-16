@@ -21,13 +21,13 @@ import org.eclipse.rcpl.IButtonListener;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.INavigatorPlugin;
 import org.eclipse.rcpl.IRcplConstants;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.tools.ColorTool;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -498,7 +498,7 @@ public class RcplSideToolBar implements ISideToolBar {
 	}
 
 	private void processPerspectiveGroups(String perspectiveId) {
-		Perspective perspective = JOSession.getDefault().findPerspective(perspectiveId);
+		Perspective perspective = RcplSession.getDefault().findPerspective(perspectiveId);
 		if (perspective != null) {
 			ToolBar groupsToolBar = new ToolBar();
 			StackPane.setMargin(groupsToolBar, new Insets(40, 0, 0, 0));
@@ -760,7 +760,7 @@ public class RcplSideToolBar implements ISideToolBar {
 		}
 	}
 
-	public void selectFirstGroup(final String perspective, IRcplPlugin useCase, EList<ToolGroup> tools,
+	public void selectFirstGroup(final String perspective, IRcplAddon useCase, EList<ToolGroup> tools,
 			boolean restoreTab) {
 		if (!tools.isEmpty()) {
 			for (ToolGroup t : tools) {
@@ -802,7 +802,7 @@ public class RcplSideToolBar implements ISideToolBar {
 	@Override
 	public void showPerspective(Perspective perspective, boolean collapse) {
 		System.out.println("Show " + perspective.getId() + " Perspective");
-		boolean isPerspectivesOverview = JOSession.PERSPECTIVE_OVERVIEW.getId().equals(perspective.getId());
+		boolean isPerspectivesOverview = RcplSession.PERSPECTIVE_OVERVIEW.getId().equals(perspective.getId());
 		Rcpl.UIC.showStartMenuButton(!isPerspectivesOverview);
 		try {
 			if (!processedList.contains(perspective.getId())) {
@@ -829,7 +829,7 @@ public class RcplSideToolBar implements ISideToolBar {
 	 */
 	@Override
 	public void showHomeTools() {
-		showPerspective(JOSession.PERSPECTIVE_OVERVIEW, true);
+		showPerspective(RcplSession.PERSPECTIVE_OVERVIEW, true);
 	}
 
 	@Override
@@ -859,7 +859,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			if (groupIdKey == null || groupIdKey.length() == 0) {
 				return false;
 			}
-			if (!JOSession.PERSPECTIVE_OVERVIEW.getId().equals(Rcpl.UIC.getPerspective().getId())) {
+			if (!RcplSession.PERSPECTIVE_OVERVIEW.getId().equals(Rcpl.UIC.getPerspective().getId())) {
 				if (restoreTab) {
 					Rcpl.UIC.showTabPane();
 					Rcpl.UIC.restoreTab();

@@ -1,12 +1,12 @@
 package org.eclipse.rcpl.model.cdo.client;
 
 
-public class JOCoreDataInitializer {
+public class RcplCoreDataInitializer {
 
 	@SuppressWarnings("unused")
-	private JOSession cdoSession;
+	private RcplSession cdoSession;
 
-	public JOCoreDataInitializer(JOSession cdoSession) {
+	public RcplCoreDataInitializer(RcplSession cdoSession) {
 		this.cdoSession = cdoSession;
 
 	}

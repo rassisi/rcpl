@@ -6,11 +6,11 @@ package org.eclipse.rcpl;
  */
 public interface ITopToolbar {
 
-	void processTopBarMainGroups(IRcplPlugin useCase);
+	void processTopBarMainGroups(IRcplAddon useCase);
 
 	void updateHeight();
 
-	void show(IRcplPlugin activeUseCase);
+	void show(IRcplAddon activeUseCase);
 
 	void show(String type);
 

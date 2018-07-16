@@ -4,13 +4,13 @@ import java.util.HashMap;
 
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
-import org.eclipse.rcpl.homepages.JOAbstractHomePage;
+import org.eclipse.rcpl.homepages.AbstractHomePage;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class DocumentHomePage extends JOAbstractHomePage {
+public class DocumentHomePage extends AbstractHomePage {
 
 	private IDocument document = null;
 

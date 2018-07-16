@@ -17,8 +17,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.rcpl.AbstractRcplPlugin;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.AbstractRcplAddon;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITopToolbar;
@@ -148,9 +148,9 @@ abstract public class EViewController implements ITreePartControler, IRcplPlugin
 		return new SimpleStringProperty("");
 	}
 
-	private AbstractRcplPlugin uc;
+	private AbstractRcplAddon uc;
 
-	public void init(AbstractRcplPlugin uc) {
+	public void init(AbstractRcplAddon uc) {
 		this.uc = uc;
 		fxmlToInternalFields();
 
@@ -158,7 +158,7 @@ abstract public class EViewController implements ITreePartControler, IRcplPlugin
 		doInit(uc);
 	}
 
-	public abstract void doInit(AbstractRcplPlugin uc);
+	public abstract void doInit(AbstractRcplAddon uc);
 
 	protected void fxmlToInternalFields() {
 
@@ -301,7 +301,7 @@ abstract public class EViewController implements ITreePartControler, IRcplPlugin
 
 	}
 
-	protected void refreshDiagram(AbstractRcplPlugin uc, Object selectedObject) {
+	protected void refreshDiagram(AbstractRcplAddon uc, Object selectedObject) {
 
 	}
 
@@ -314,7 +314,7 @@ abstract public class EViewController implements ITreePartControler, IRcplPlugin
 
 	}
 
-	public boolean registerRcplPlugin(Class<? extends IRcplPlugin> useCaseClass) {
+	public boolean registerRcplPlugin(Class<? extends IRcplAddon> useCaseClass) {
 		return false;
 	}
 

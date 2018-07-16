@@ -18,7 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.eclipse.rcpl.IJOUpload;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 
@@ -30,7 +30,7 @@ public class JOUploadClient {
 
 	public static String getURL() {
 		try {
-			URL url = new URL(JOSession.getDefault().codeBase);
+			URL url = new URL(RcplSession.getDefault().codeBase);
 			if ("localhost".equals(url.getHost())) {
 				String res = url.getHost() + ":8080";
 				return res;

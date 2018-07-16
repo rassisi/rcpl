@@ -3,7 +3,7 @@ package org.eclipse.rcpl.model.cdo.client;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 
-public interface JOFactory {
+public interface RcplModelFactory {
 
 	Perspective createPerspective(RCPL office, String id, String name);
 

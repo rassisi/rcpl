@@ -16,15 +16,15 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.rcpl.AbstractRcplPlugin;
+import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.EnCustomToolIds;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorPlugin;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplLogin;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -328,7 +328,7 @@ public class EToolsPluginController extends EViewController {
 		addToolIdListener();
 	}
 
-	public void doInit(AbstractRcplPlugin uc) {
+	public void doInit(AbstractRcplAddon uc) {
 		Node node1 = new EToolsTreePart((EToolsPlugin) uc).getNode();
 		getViewerBox().getChildren().add(node1);
 		getToolType().getItems().clear();
@@ -408,7 +408,7 @@ public class EToolsPluginController extends EViewController {
 			public void handle(ActionEvent event) {
 				Rcpl.UIC.recreateSideBar();
 				Rcpl.UIC.recreateTopBar();
-				JOSession.getDefault().commit();
+				RcplSession.getDefault().commit();
 			}
 		});
 
@@ -659,7 +659,7 @@ public class EToolsPluginController extends EViewController {
 	}
 
 	@Override
-	public IRcplPlugin findRcplPlugins(String id) {
+	public IRcplAddon findRcplPlugins(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -707,7 +707,7 @@ public class EToolsPluginController extends EViewController {
 	}
 
 	@Override
-	public IRcplPlugin getUseCase() {
+	public IRcplAddon getUseCase() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -779,13 +779,13 @@ public class EToolsPluginController extends EViewController {
 	}
 
 	@Override
-	public void setPerspective(Perspective perspective, IRcplPlugin useCase) {
+	public void setPerspective(Perspective perspective, IRcplAddon useCase) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setUseCase(IRcplPlugin useCase) {
+	public void setUseCase(IRcplAddon useCase) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -965,7 +965,7 @@ public class EToolsPluginController extends EViewController {
 	}
 
 	@Override
-	public void init(IRcplPlugin rcplPlugin) {
+	public void init(IRcplAddon rcplPlugin) {
 		// TODO Auto-generated method stub
 		
 	}

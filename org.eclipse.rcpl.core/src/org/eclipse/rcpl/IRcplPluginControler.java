@@ -9,7 +9,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  */
 public interface IRcplPluginControler {
 
-	void init(IRcplPlugin rcplPlugin);
+	void init(IRcplAddon rcplPlugin);
 
 	void updateBindings(EObject eObject, EditingDomain editingDomain);
 }

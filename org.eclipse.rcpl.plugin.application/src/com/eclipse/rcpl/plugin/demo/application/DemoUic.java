@@ -8,8 +8,8 @@ import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.application.RcplApplicationStarter;
-import org.eclipse.rcpl.model.cdo.client.JOKey;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplKey;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.util.JOUtil2;
 
 import com.rcpl.rcpl.plugin.demo.homepages.DocumentHomePage;
@@ -49,7 +49,7 @@ public class DemoUic extends RcplUic {
 		fileChooser.getExtensionFilters().add(extFilter);
 
 		try {
-			File dir = JOSession.getDefault().getSystemPreferences().getFile(JOKey.FILE_DIALOG_DIR);
+			File dir = RcplSession.getDefault().getSystemPreferences().getFile(RcplKey.FILE_DIALOG_DIR);
 			if (dir != null && dir.exists()) {
 				fileChooser.setInitialDirectory(dir);
 			}
@@ -57,12 +57,12 @@ public class DemoUic extends RcplUic {
 			// System. out.println();
 		}
 		File file = fileChooser.showOpenDialog(getStage());
-		JOSession.getDefault().commit();
+		RcplSession.getDefault().commit();
 		if (file != null) {
-			JOSession.getDefault().getSystemPreferences().put(JOKey.FILE_DIALOG_DIR, file.getParentFile());
+			RcplSession.getDefault().getSystemPreferences().put(RcplKey.FILE_DIALOG_DIR, file.getParentFile());
 			lastDocumentFile = file;
-			JOSession.getDefault().getSystemPreferences().setLastDocument(file.getAbsolutePath());
-			JOSession.getDefault().commit();
+			RcplSession.getDefault().getSystemPreferences().setLastDocument(file.getAbsolutePath());
+			RcplSession.getDefault().commit();
 			openDocument(file);
 		}
 		updateButtons(false);

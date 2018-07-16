@@ -21,15 +21,15 @@ public interface IRcplApplicationProvider {
 
 	void reStart();
 
-	Collection<IRcplPlugin> getRcplPlugins();
+	Collection<IRcplAddon> getRcplPlugins();
 
 	void bindPluginsToModel();
 
 	void registerRcplPluginClass(String rcpPluginClassName);
 
-	IRcplPlugin findRcplPlugin(String className);
+	IRcplAddon findRcplPlugin(String className);
 
-	IRcplPlugin findRcplPlugin(Class<? extends IRcplPlugin> plugin);
+	IRcplAddon findRcplPlugin(Class<? extends IRcplAddon> plugin);
 
 	void registerService(Class<? extends RcplService> serviceClass);
 

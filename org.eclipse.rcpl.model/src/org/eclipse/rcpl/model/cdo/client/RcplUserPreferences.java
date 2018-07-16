@@ -6,9 +6,9 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 
-public class JOUserPreferences extends JOAbstractPreferences {
+public class RcplUserPreferences extends RcplAbstractPreferences {
 
-	public JOUserPreferences() {
+	public RcplUserPreferences() {
 		init();
 	}
 

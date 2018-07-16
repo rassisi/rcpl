@@ -15,13 +15,13 @@ import java.util.HashMap;
 
 import org.eclipse.rcpl.app.toolcontrols.RcplSideToolBar;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
-import org.eclipse.rcpl.homepages.JOContactUsHomePage;
-import org.eclipse.rcpl.homepages.JODefaultHomePage;
-import org.eclipse.rcpl.homepages.JOHTMLHomePage;
-import org.eclipse.rcpl.homepages.JOHTMLReadOnlyHomePage;
-import org.eclipse.rcpl.homepages.JOOverviewHomePage;
-import org.eclipse.rcpl.homepages.JOPreferencesHomePage;
-import org.eclipse.rcpl.homepages.JOWebHomePage;
+import org.eclipse.rcpl.homepages.DefaultContactUsHomePage;
+import org.eclipse.rcpl.homepages.DefaultHomePage;
+import org.eclipse.rcpl.homepages.DefaultHTMLHomePage;
+import org.eclipse.rcpl.homepages.DefaultHTMLReadOnlyHomePage;
+import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
+import org.eclipse.rcpl.homepages.DefaultPreferencesHomePage;
+import org.eclipse.rcpl.homepages.DefaultWebHomePage;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.resources.JOColorProvider;
@@ -31,7 +31,7 @@ import org.eclipse.rcpl.internal.tools.JORibbonGroup;
 import org.eclipse.rcpl.internal.tools.UndoRedoTool;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -209,7 +209,7 @@ public class BasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public Node createRibbonGroup(ToolGroup group, IRcplPlugin useCase, boolean first, boolean dialogButton) {
+	public Node createRibbonGroup(ToolGroup group, IRcplAddon useCase, boolean first, boolean dialogButton) {
 		return new JORibbonGroup(group, first, dialogButton).get();
 	}
 
@@ -225,12 +225,12 @@ public class BasicFactory implements IRcplFactory {
 
 	@Override
 	public IHomePage createDefaultHomePage(IRcplUic uic, String title, String image) {
-		return new JODefaultHomePage(uic, title, image);
+		return new DefaultHomePage(uic, title, image);
 	}
 
 	@Override
 	public IHomePage createWebHomePage(IRcplUic uic, String title, String url, String image) {
-		return new JOWebHomePage(uic, title, url, image);
+		return new DefaultWebHomePage(uic, title, url, image);
 	}
 
 	@Override
@@ -248,7 +248,7 @@ public class BasicFactory implements IRcplFactory {
 	}
 
 	private RCPL getJOffice() {
-		return JOSession.getDefault().getRcpl();
+		return RcplSession.getDefault().getRcpl();
 	}
 
 	@Override
@@ -259,30 +259,30 @@ public class BasicFactory implements IRcplFactory {
 	@Override
 	public IHomePage createHTMLHomePage(IRcplUic uic, String title, String documentTemplate, String image,
 			HashMap<String, String> wordReplacements, Pane controlPane) {
-		return new JOHTMLHomePage(uic, title, documentTemplate, image, wordReplacements, controlPane);
+		return new DefaultHTMLHomePage(uic, title, documentTemplate, image, wordReplacements, controlPane);
 
 	}
 
 	@Override
 	public IHomePage createHTMLReadOnlyHomePage(IRcplUic uic, String title, String documentTemplate, String image,
 			HashMap<String, String> wordReplacements, Pane controlPane) {
-		return new JOHTMLReadOnlyHomePage(uic, title, documentTemplate, image, wordReplacements, controlPane);
+		return new DefaultHTMLReadOnlyHomePage(uic, title, documentTemplate, image, wordReplacements, controlPane);
 
 	}
 
 	@Override
 	public IHomePage createOverviewHomePage(IRcplUic uic, String title, String image) {
-		return new JOOverviewHomePage(uic, title, image);
+		return new DefaultOverviewHomePage(uic, title, image);
 	}
 
 	@Override
 	public IHomePage createPreferencesHomePage(IRcplUic uic, String title, String image) {
-		return new JOPreferencesHomePage(uic, title, image);
+		return new DefaultPreferencesHomePage(uic, title, image);
 	}
 
 	@Override
 	public IHomePage createContactUsHomePage(IRcplUic uic, String title, String image) {
-		return new JOContactUsHomePage(uic, title, image);
+		return new DefaultContactUsHomePage(uic, title, image);
 	}
 
 	@Override

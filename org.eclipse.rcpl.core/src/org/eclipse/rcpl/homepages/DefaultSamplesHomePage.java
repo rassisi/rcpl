@@ -21,11 +21,11 @@ import javafx.scene.layout.Pane;
  * @author ramin
  * 
  */
-public class JOSamplesHomePage implements IHomePage {
+public class DefaultSamplesHomePage implements IHomePage {
 
 	protected IHomePage homePage;
 
-	public JOSamplesHomePage(final RcplUic uic, String image) {
+	public DefaultSamplesHomePage(final RcplUic uic, String image) {
 		uic.getHomepages().add(this);
 		homePage = Rcpl.getFactory().createDefaultHomePage(uic, "Sample Office Documents", image);
 

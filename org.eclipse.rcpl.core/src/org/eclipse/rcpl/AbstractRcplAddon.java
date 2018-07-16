@@ -15,7 +15,7 @@ import java.net.URL;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Plugin;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -32,7 +32,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 
-public abstract class AbstractRcplPlugin implements IRcplPlugin {
+public abstract class AbstractRcplAddon implements IRcplAddon {
 
 	private BorderPane node;
 
@@ -46,7 +46,7 @@ public abstract class AbstractRcplPlugin implements IRcplPlugin {
 
 	private IRcplPluginControler controler;
 
-	public AbstractRcplPlugin() {
+	public AbstractRcplAddon() {
 		node = new BorderPane();
 	}
 
@@ -111,7 +111,7 @@ public abstract class AbstractRcplPlugin implements IRcplPlugin {
 	public void bindToModel() throws Exception {
 
 		try {
-			for (Plugin plugin : JOSession.getDefault().getRcpl().getAllPlugins().getChildren()) {
+			for (Plugin plugin : RcplSession.getDefault().getRcpl().getAllPlugins().getChildren()) {
 				String pluginId = plugin.getId();
 				if (pluginId != null && pluginId.equals(getId())) {
 					rcplPlugin = plugin;
@@ -124,8 +124,8 @@ public abstract class AbstractRcplPlugin implements IRcplPlugin {
 				if (tool != null) {
 					rcplPlugin.setId(tool.getId());
 				}
-				JOSession.getDefault().getRcpl().getAllPlugins().getChildren().add(rcplPlugin);
-				JOSession.getDefault().commit();
+				RcplSession.getDefault().getRcpl().getAllPlugins().getChildren().add(rcplPlugin);
+				RcplSession.getDefault().commit();
 			}
 			if (getMigration() != null) {
 				getMigration().migrate();
@@ -242,7 +242,7 @@ public abstract class AbstractRcplPlugin implements IRcplPlugin {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractRcplPlugin other = (AbstractRcplPlugin) obj;
+		AbstractRcplAddon other = (AbstractRcplAddon) obj;
 		if (rcplPlugin == null) {
 			if (other.rcplPlugin != null)
 				return false;

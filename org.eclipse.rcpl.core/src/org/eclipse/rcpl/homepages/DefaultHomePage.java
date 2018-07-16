@@ -13,25 +13,15 @@ package org.eclipse.rcpl.homepages;
 import org.eclipse.rcpl.IRcplUic;
 
 import javafx.scene.layout.StackPane;
-import javafx.scene.web.WebView;
 
-public class JOWebHomePage extends JOAbstractHomePage {
+public class DefaultHomePage extends AbstractHomePage {
 
-	private WebView webView;
-
-	public JOWebHomePage(IRcplUic uic, String title, String url, String image) {
+	public DefaultHomePage(IRcplUic uic, String title, String image) {
 		super(uic, title, image, null);
-		webView.getEngine().load(url);
 	}
 
 	@Override
 	protected void createContent(StackPane contentPane) {
-		webView = new WebView();
-		contentPane.getChildren().add(webView);
 	}
 
-	@Override
-	public void refresh() {
-		webView.getEngine().reload();
-	}
 }

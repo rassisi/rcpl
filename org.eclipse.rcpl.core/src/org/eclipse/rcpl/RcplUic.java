@@ -16,16 +16,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.rcpl.homepages.JOAboutHomePage;
-import org.eclipse.rcpl.homepages.JONewHomePage;
-import org.eclipse.rcpl.homepages.JOSamplesHomePage;
-import org.eclipse.rcpl.homepages.PerspectiveHomePage;
+import org.eclipse.rcpl.homepages.DefaultAboutHomePage;
+import org.eclipse.rcpl.homepages.DefaultNewHomePage;
+import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
+import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOKey;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplKey;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 
 import javafx.animation.KeyFrame;
@@ -159,14 +159,14 @@ public class RcplUic extends RcplAbstractUic {
 	public RcplUic(IApplicationStarter rcplApplicationStarter, String id) {
 		super(rcplApplicationStarter, id);
 		this.urlAddressTool = new URLAddressTool(null);
-		WELCOME_URL = JOSession.getDefault().codeBase + "joffice_welcome.html";
+		WELCOME_URL = RcplSession.getDefault().codeBase + "joffice_welcome.html";
 
 	}
 
 	@Override
 	public void updateStartMenuButton() {
 		try {
-			if (JOSession.getDefault().isOnline()) {
+			if (RcplSession.getDefault().isOnline()) {
 				// getStartMenuButton().setToolTip("Online");
 				onlineOfflineView = Rcpl.resources().getImage("start_button", 20, 20).getNode();
 				StackPane.setMargin(onlineOfflineView, new Insets(6, 0, 0, 0));
@@ -227,7 +227,7 @@ public class RcplUic extends RcplAbstractUic {
 			newPage = createNewHomePage();
 
 			whatsNewPage = Rcpl.getFactory().createWebHomePage(RcplUic.this, "What's New",
-					JOSession.getDefault().codeBase + "joffice_new_and_noteworthy.html", "office_whatsnew");
+					RcplSession.getDefault().codeBase + "joffice_new_and_noteworthy.html", "office_whatsnew");
 
 			String url = "http://85.25.100.163:8081/help/index.jsp";
 
@@ -253,19 +253,19 @@ public class RcplUic extends RcplAbstractUic {
 	}
 
 	protected IHomePage createSamplesHomePage() {
-		return new JOSamplesHomePage(RcplUic.this, "office_samples");
+		return new DefaultSamplesHomePage(RcplUic.this, "office_samples");
 	}
 
 	protected IHomePage createPerspectivePage() {
-		return new PerspectiveHomePage(RcplUic.this);
+		return new DefaultPerspectiveHomePage(RcplUic.this);
 	}
 
 	protected IHomePage createNewHomePage() {
-		return new JONewHomePage(RcplUic.this, "office_new");
+		return new DefaultNewHomePage(RcplUic.this, "office_new");
 	}
 
 	protected IHomePage createAboutHomePage() {
-		return new JOAboutHomePage(RcplUic.this, "joffice");
+		return new DefaultAboutHomePage(RcplUic.this, "joffice");
 	}
 
 	@Override
@@ -435,8 +435,8 @@ public class RcplUic extends RcplAbstractUic {
 	}
 
 	private void createTitelArea() {
-		titleText = new Text("JOffice " + RcplVersion.getVersion() + " - " + JOSession.getDefault().userId + " ("
-				+ (JOSession.getDefault().isOnline() ? "Online" : "Offline") + ")");
+		titleText = new Text("JOffice " + RcplVersion.getVersion() + " - " + RcplSession.getDefault().userId + " ("
+				+ (RcplSession.getDefault().isOnline() ? "Online" : "Offline") + ")");
 		titleText.setId("joffice_title_version");
 		titleText.setOpacity(0.8);
 		if (Rcpl.isMobile()) {
@@ -649,10 +649,10 @@ public class RcplUic extends RcplAbstractUic {
 	private void createRecentDocumentList() {
 
 		try {
-			if (JOSession.getDefault().getSystemPreferences() != null)
+			if (RcplSession.getDefault().getSystemPreferences() != null)
 
 			{
-				String lastDoc = JOSession.getDefault().getSystemPreferences().getLastDocument();
+				String lastDoc = RcplSession.getDefault().getSystemPreferences().getLastDocument();
 				if (lastDoc != null && lastDoc.trim().length() > 0) {
 					lastDocumentFile = new File(lastDoc);
 				}
@@ -738,11 +738,11 @@ public class RcplUic extends RcplAbstractUic {
 
 	@FXML
 	public void handleClose(ActionEvent event) {
-		JOSession.getDefault().getSystemPreferences().put(JOKey.STAGE_X, "" + getStage().getX());
-		JOSession.getDefault().getSystemPreferences().put(JOKey.STAGE_Y, "" + getStage().getY());
-		JOSession.getDefault().commit();
+		RcplSession.getDefault().getSystemPreferences().put(RcplKey.STAGE_X, "" + getStage().getX());
+		RcplSession.getDefault().getSystemPreferences().put(RcplKey.STAGE_Y, "" + getStage().getY());
+		RcplSession.getDefault().commit();
 
-		JOSession.getDefault().close(true, true);
+		RcplSession.getDefault().close(true, true);
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -816,7 +816,7 @@ public class RcplUic extends RcplAbstractUic {
 	@Override
 	public void preDestroy() {
 		try {
-			JOSession.getDefault().close(true, true);
+			RcplSession.getDefault().close(true, true);
 		} catch (Exception ex) {
 		} catch (Throwable ex) {
 		}
@@ -916,7 +916,7 @@ public class RcplUic extends RcplAbstractUic {
 
 				getSideToolBarControl().showHomeTools();
 
-				setPerspective(JOSession.PERSPECTIVE_OVERVIEW);
+				setPerspective(RcplSession.PERSPECTIVE_OVERVIEW);
 
 			}
 		});
@@ -1051,7 +1051,7 @@ public class RcplUic extends RcplAbstractUic {
 
 	@Override
 	public Perspective findPerspective(String id) {
-		for (Perspective p : JOSession.getDefault().getRcpl().getAllPerspectives().getChildren()) {
+		for (Perspective p : RcplSession.getDefault().getRcpl().getAllPerspectives().getChildren()) {
 			if (id.equals(p.getId())) {
 				return p;
 			}

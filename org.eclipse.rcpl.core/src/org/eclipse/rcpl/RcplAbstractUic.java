@@ -23,8 +23,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOKey;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplKey;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLDocument;
@@ -69,12 +69,12 @@ public abstract class RcplAbstractUic implements IRcplUic {
 
 	private Perspective perspective;
 
-	private IRcplPlugin activeUseCase;
+	private IRcplAddon activeUseCase;
 
 	@Override
 	public Perspective getPerspective() {
 		if (perspective == null) {
-			perspective = JOSession.PERSPECTIVE_OVERVIEW;
+			perspective = RcplSession.PERSPECTIVE_OVERVIEW;
 		}
 		return perspective;
 	}
@@ -88,7 +88,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 	}
 
 	@Override
-	public void setPerspective(Perspective activePerspective, IRcplPlugin useCase) {
+	public void setPerspective(Perspective activePerspective, IRcplAddon useCase) {
 		this.perspective = activePerspective;
 		this.activeUseCase = useCase;
 		// if (useCase != null) {
@@ -97,12 +97,12 @@ public abstract class RcplAbstractUic implements IRcplUic {
 	}
 
 	@Override
-	public IRcplPlugin getUseCase() {
+	public IRcplAddon getUseCase() {
 		return activeUseCase;
 	}
 
 	@Override
-	public void setUseCase(IRcplPlugin useCase) {
+	public void setUseCase(IRcplAddon useCase) {
 		this.activeUseCase = useCase;
 	}
 
@@ -205,7 +205,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 
 	protected HTMLEditor internalHtmlEditor;
 
-	protected IRcplPlugin internalActivePlugin;
+	protected IRcplAddon internalActivePlugin;
 
 	protected TextFlow internalTitle;
 
@@ -358,7 +358,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 									}
 								};
 
-								JOSession.getDefault().commit();
+								RcplSession.getDefault().commit();
 							}
 
 							new DelayedExecution(200) {
@@ -504,11 +504,11 @@ public abstract class RcplAbstractUic implements IRcplUic {
 	}
 
 	@Override
-	public IRcplPlugin findRcplPlugins(String id) {
+	public IRcplAddon findRcplPlugins(String id) {
 		try {
 			String[] splits = id.split("/");
 			String lastSegment = splits[splits.length - 1];
-			for (IRcplPlugin uc : rcplApplicationStarter.getRcplApplicationProvider().getRcplPlugins()) {
+			for (IRcplAddon uc : rcplApplicationStarter.getRcplApplicationProvider().getRcplPlugins()) {
 
 				String id2 = uc.getId();
 
@@ -545,7 +545,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 		return null;
 	}
 
-	protected IRcplPlugin getInternalActiveUsePlugin() {
+	protected IRcplAddon getInternalActiveUsePlugin() {
 		return internalActivePlugin;
 	}
 
@@ -748,7 +748,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 
 		Rcpl.progressMessage("Session Start");
 		try {
-			if (!JOSession.getDefault().start()) {
+			if (!RcplSession.getDefault().start()) {
 				Rcpl.progressMessage("Session Start failed");
 				return false;
 			}
@@ -757,9 +757,9 @@ public abstract class RcplAbstractUic implements IRcplUic {
 		}
 
 		double max = 0;
-		if (JOSession.getDefault() != null && JOSession.getDefault().isOnline()) {
+		if (RcplSession.getDefault() != null && RcplSession.getDefault().isOnline()) {
 			// login.getController().collapseAll();
-			max = JOSession.getDefault().getSystemPreferences().getDouble(JOKey.MAX_PROGRESS);
+			max = RcplSession.getDefault().getSystemPreferences().getDouble(RcplKey.MAX_PROGRESS);
 			if (max > 0) {
 				// Rcpl.UIC.setProgressMax(max);
 			}
@@ -771,7 +771,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 		Rcpl.progressMessage("Register Services");
 		registerServices();
 
-		JOSession.getDefault().setPassword(null);
+		RcplSession.getDefault().setPassword(null);
 
 		// new JOPointToPixelCalculator().init();
 
@@ -819,7 +819,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 
 	public void preDestroy() {
 		try {
-			JOSession.getDefault().close(true, true);
+			RcplSession.getDefault().close(true, true);
 		} catch (Exception ex) {
 		} catch (Throwable ex) {
 		}
@@ -979,7 +979,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 	 */
 	@Override
 	public boolean showPerspective(String id, boolean asEditor) {
-		IRcplPlugin uc = findRcplPlugins(id);
+		IRcplAddon uc = findRcplPlugins(id);
 		if (uc != null) {
 			if (uc.getEmfModel() != null) {
 				uc.setAsEditor(asEditor);
@@ -1013,7 +1013,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 		return false;
 	}
 
-	private void showPluginInEditor(IRcplPlugin rcplPlugin) {
+	private void showPluginInEditor(IRcplAddon rcplPlugin) {
 		final Tab newTab = createNewTab(rcplPlugin.getEmfModel().getName());
 		newTab.setGraphic(Rcpl.resources().getImage("contact", 16, 16).getNode());
 		newTab.setClosable(true);
@@ -1024,7 +1024,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 		updatePerspective(newTab);
 	}
 
-	public boolean showPluginPerspective(IRcplPlugin rcplPlugin) {
+	public boolean showPluginPerspective(IRcplAddon rcplPlugin) {
 		return showPerspective(rcplPlugin.getId(), rcplPlugin.isAsEditor());
 	}
 
@@ -1065,8 +1065,8 @@ public abstract class RcplAbstractUic implements IRcplUic {
 							} else if (o instanceof Node) {
 								setContent((Node) o);
 								setEditor(null);
-							} else if (o instanceof IRcplPlugin) {
-								setContent(((IRcplPlugin) o).getNode());
+							} else if (o instanceof IRcplAddon) {
+								setContent(((IRcplAddon) o).getNode());
 								setEditor(null);
 							}
 						}
@@ -1123,9 +1123,9 @@ public abstract class RcplAbstractUic implements IRcplUic {
 			return;
 		}
 		Object o = tab.getUserData();
-		if (o instanceof IRcplPlugin) {
-			getSideToolBarControl().showPerspective(((IRcplPlugin) o).getEmfModel().getDefaultPerspective(), true);
-			getTopToolbarControl().show((IRcplPlugin) o);
+		if (o instanceof IRcplAddon) {
+			getSideToolBarControl().showPerspective(((IRcplAddon) o).getEmfModel().getDefaultPerspective(), true);
+			getTopToolbarControl().show((IRcplAddon) o);
 			getTopToolbarControl().updateUseCaseHeight();
 		}
 
@@ -1133,7 +1133,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 
 	@Override
 	public INavigatorPlugin getNavigator() {
-		IRcplPlugin rcplPlugin = Rcpl.rcplApplicationProvider.findRcplPlugin(INavigatorPlugin.class);
+		IRcplAddon rcplPlugin = Rcpl.rcplApplicationProvider.findRcplPlugin(INavigatorPlugin.class);
 		if (rcplPlugin instanceof INavigatorPlugin) {
 			Parent parent = rcplPlugin.getNode().getParent();
 			if (parent instanceof Pane) {

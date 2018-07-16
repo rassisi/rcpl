@@ -34,9 +34,9 @@ import org.eclipse.rcpl.emf.edit.ui.AdapterFactoryTreeItem;
 import org.eclipse.rcpl.emf.edit.ui.EAttributeCellEditHandler;
 import org.eclipse.rcpl.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
-import org.eclipse.rcpl.homepages.JOOverviewHomePage;
+import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
@@ -178,7 +178,7 @@ public class DefaultTreeTreePart extends RcplTool {
 							try {
 								File file = documentRegistry.get(id);
 								if (file == null) {
-									file = new DownloadClient().download(JOSession.getDefault().userId, id);
+									file = new DownloadClient().download(RcplSession.getDefault().userId, id);
 									documentRegistry.put(id, file);
 								}
 								((IOfficeUIC) Rcpl.UIC).openDocument(file);
@@ -211,7 +211,7 @@ public class DefaultTreeTreePart extends RcplTool {
 	 */
 	protected void setDetailNode(Node node) {
 		try {
-			((JOOverviewHomePage) ((RcplUic) Rcpl.UIC).getOverviewPage()).setDetailNode(node);
+			((DefaultOverviewHomePage) ((RcplUic) Rcpl.UIC).getOverviewPage()).setDetailNode(node);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -269,8 +269,8 @@ public class DefaultTreeTreePart extends RcplTool {
 	 * 
 	 */
 	private void addCDOListener() {
-		if (JOSession.getDefault().getSession() != null) {
-			JOSession.getDefault().getSession().addListener(new IListener() {
+		if (RcplSession.getDefault().getSession() != null) {
+			RcplSession.getDefault().getSession().addListener(new IListener() {
 
 				@Override
 				public void notifyEvent(IEvent event) {
@@ -333,7 +333,7 @@ public class DefaultTreeTreePart extends RcplTool {
 
 				treeView.setCellFactory(treeCellFactory);
 
-				if (JOSession.getDefault().isDemo()) {
+				if (RcplSession.getDefault().isDemo()) {
 					treeView.setEditable(false);
 				} else {
 					treeView.setCellFactory(treeCellFactory);

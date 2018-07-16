@@ -1,9 +1,9 @@
 package org.eclipse.rcpl.application;
 
-import org.eclipse.rcpl.AbstractRcplPlugin;
+import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.RcplAbstractMigration;
 import org.eclipse.rcpl.RcplPlugin;
@@ -13,7 +13,7 @@ import org.eclipse.rcpl.RcplPlugin;
  * 
  */
 @RcplPlugin
-public class DefaultRcplPlugin extends AbstractRcplPlugin implements IRcplPlugin {
+public class DefaultRcplPlugin extends AbstractRcplAddon implements IRcplAddon {
 
 	public DefaultRcplPlugin() {
 	}

@@ -36,7 +36,7 @@ import javafx.scene.text.TextFlow;
  * @author ramin
  * 
  */
-public abstract class JOAbstractHomePage implements IHomePage {
+public abstract class AbstractHomePage implements IHomePage {
 
 	private VBox vBox;
 
@@ -50,7 +50,7 @@ public abstract class JOAbstractHomePage implements IHomePage {
 
 	private StackPane contentPane;
 
-	public JOAbstractHomePage(final IRcplUic uic, String title, String image, Pane controlPane) {
+	public AbstractHomePage(final IRcplUic uic, String title, String image, Pane controlPane) {
 		uic.getHomepages().add(this);
 		this.uic = uic;
 		this.title = title;

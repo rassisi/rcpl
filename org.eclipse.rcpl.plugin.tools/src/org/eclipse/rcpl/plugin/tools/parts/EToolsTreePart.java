@@ -17,7 +17,7 @@ import org.eclipse.fx.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.fx.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
@@ -62,10 +62,10 @@ public class EToolsTreePart {
 		this.useCase = useCase;
 		treeView = new TreeView<>();
 		treeView.setPrefHeight(1000);
-		rootGroup = JOSession.getDefault().getRcpl().getAllTools();
+		rootGroup = RcplSession.getDefault().getRcpl().getAllTools();
 
-		if (JOSession.getDefault().getSession() != null) {
-			JOSession.getDefault().getSession().addListener(new IListener() {
+		if (RcplSession.getDefault().getSession() != null) {
+			RcplSession.getDefault().getSession().addListener(new IListener() {
 
 				@Override
 				public void notifyEvent(IEvent event) {

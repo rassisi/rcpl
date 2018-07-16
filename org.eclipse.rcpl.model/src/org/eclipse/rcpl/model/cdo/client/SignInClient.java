@@ -27,7 +27,7 @@ public class SignInClient {
 
 	public static String getURL() {
 		try {
-			URL url = new URL(JOSession.getDefault().codeBase);
+			URL url = new URL(RcplSession.getDefault().codeBase);
 			if ("localhost".equals(url.getHost())) {
 				String res = url.getHost() + ":8080";
 				return res;

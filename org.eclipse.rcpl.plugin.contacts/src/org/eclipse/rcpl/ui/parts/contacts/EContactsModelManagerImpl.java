@@ -7,7 +7,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory;
 
 /**
@@ -49,7 +49,7 @@ public class EContactsModelManagerImpl implements EContactsModelManager {
 
 			try {
 				editingDomain.getResourceSet().getResources()
-						.add(JOSession.getDefault().getResource());
+						.add(RcplSession.getDefault().getResource());
 			} catch (Exception ex) {
 				// System. out.println();
 			}

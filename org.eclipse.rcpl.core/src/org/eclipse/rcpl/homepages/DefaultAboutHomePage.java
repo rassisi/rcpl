@@ -14,28 +14,25 @@ import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplUic;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 /**
  * @author ramin
  * 
  */
-public class JONewHomePage implements IHomePage {
+public class DefaultAboutHomePage implements IHomePage {
 
-	protected IHomePage homePage;
+	private IHomePage homePage;
 
-	protected RcplUic uic;
-
-	public JONewHomePage(final RcplUic uic, String image) {
+	public DefaultAboutHomePage(RcplUic uic, String image) {
 		uic.getHomepages().add(this);
-		homePage = Rcpl.getFactory().createDefaultHomePage(uic, "New Document", image);
-		this.uic = uic;
-		createContent();
-	}
-
-	protected void createContent() {
-
+		homePage = Rcpl.getFactory().createDefaultHomePage(uic, "about", image);
+		Label l = new Label("(c) Ramin Assisi 2013-2014, support@raminassisi.com");
+		l.setAlignment(Pos.CENTER);
+		homePage.getContentPane().getChildren().add(l);
 	}
 
 	@Override
@@ -45,16 +42,19 @@ public class JONewHomePage implements IHomePage {
 
 	@Override
 	public Pane getContentPane() {
-		return homePage.getContentPane();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public int getRow() {
-		return homePage.getRow();
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public void refresh() {
-		homePage.refresh();
+		// TODO Auto-generated method stub
+
 	}
 }

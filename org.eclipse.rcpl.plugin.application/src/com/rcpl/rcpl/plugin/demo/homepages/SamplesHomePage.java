@@ -1,7 +1,7 @@
 package com.rcpl.rcpl.plugin.demo.homepages;
 
 import org.eclipse.rcpl.RcplUic;
-import org.eclipse.rcpl.homepages.JONewHomePage;
+import org.eclipse.rcpl.homepages.DefaultNewHomePage;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
-public class SamplesHomePage extends JONewHomePage {
+public class SamplesHomePage extends DefaultNewHomePage {
 
 	public SamplesHomePage(RcplUic uic, String image) {
 		super(uic, image);

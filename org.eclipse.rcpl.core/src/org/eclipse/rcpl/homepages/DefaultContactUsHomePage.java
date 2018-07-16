@@ -24,7 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
-public class JOContactUsHomePage extends JOAbstractHomePage {
+public class DefaultContactUsHomePage extends AbstractHomePage {
 
 	@FXML
 	private ComboBox<String> comboBoxCategory;
@@ -36,7 +36,7 @@ public class JOContactUsHomePage extends JOAbstractHomePage {
 
 	private StackPane contentPane;
 
-	public JOContactUsHomePage(IRcplUic uic, String title, String image) {
+	public DefaultContactUsHomePage(IRcplUic uic, String title, String image) {
 		super(uic, title, image, null);
 
 		URL location = getClass().getResource("ContactUs.fxml");

@@ -23,7 +23,7 @@ import javafx.scene.media.MediaView;
  * @author ramin
  *
  */
-public class JOPreferencesHomePage extends JOAbstractHomePage {
+public class DefaultPreferencesHomePage extends AbstractHomePage {
 
 	private IDocument document = null;
 
@@ -38,7 +38,7 @@ public class JOPreferencesHomePage extends JOAbstractHomePage {
 	 * @param title
 	 * @param image
 	 */
-	public JOPreferencesHomePage(IRcplUic uic, String title, String image) {
+	public DefaultPreferencesHomePage(IRcplUic uic, String title, String image) {
 		super(uic, title, image, null);
 		
 		

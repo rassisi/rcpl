@@ -17,8 +17,8 @@ import org.eclipse.rcpl.RcplAbstractService;
 import org.eclipse.rcpl.RcplCommand;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOKey;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplKey;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 /**
@@ -43,9 +43,9 @@ public class RcplService extends RcplAbstractService implements IService {
 
 					if (id != null) {
 
-						if (id.startsWith(JOSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED)) {
+						if (id.startsWith(RcplSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED)) {
 							String persp = id.substring(
-									JOSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED.length(),
+									RcplSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED.length(),
 									id.length());
 							IService serv = getServiceBySimpleName("New" + persp.toUpperCase() + "DocumentService");
 							if (serv != null) {
@@ -79,7 +79,7 @@ public class RcplService extends RcplAbstractService implements IService {
 				// getService(JOColor).doExecute(command);
 				break;
 			case showOutline:
-				JOSession.getDefault().getSystemPreferences().put(JOKey.SHOW_OUTLINE,
+				RcplSession.getDefault().getSystemPreferences().put(RcplKey.SHOW_OUTLINE,
 						(Boolean) command.getNewData()[0]);
 				showOutLine(command, (Boolean) command.getNewData()[0]);
 				break;

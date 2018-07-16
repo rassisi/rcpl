@@ -1,6 +1,6 @@
 package org.eclipse.rcpl.model.cdo.client;
 
-public enum JOKey {
+public enum RcplKey {
 
 	FILE_DIALOG_DIR(null, null),
 
@@ -34,7 +34,7 @@ public enum JOKey {
 
 	private final String image;
 
-	JOKey(String name, String image) {
+	RcplKey(String name, String image) {
 		this.name = name;
 		this.image = image;
 	}

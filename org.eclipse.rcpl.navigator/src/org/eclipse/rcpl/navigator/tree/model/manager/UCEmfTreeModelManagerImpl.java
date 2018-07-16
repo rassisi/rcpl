@@ -18,7 +18,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory;
 import org.eclipse.rcpl.navigator.UCModelManager;
 
@@ -43,12 +43,12 @@ public class UCEmfTreeModelManagerImpl implements UCModelManager {
 
 			adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
-			editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(JOSession.getDefault().getRcpl());
+			editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(RcplSession.getDefault().getRcpl());
 
 			// editingDomain = new AdapterFactoryEditingDomain(adapterFactory,
 			// new BasicCommandStack());
 
-			Resource cdoResource = JOSession.getDefault().getResource();
+			Resource cdoResource = RcplSession.getDefault().getResource();
 
 			try {
 				editingDomain.getResourceSet().getResources().add(cdoResource);

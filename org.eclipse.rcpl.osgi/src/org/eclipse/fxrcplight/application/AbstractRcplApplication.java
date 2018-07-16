@@ -15,7 +15,7 @@ import org.eclipse.fx.osgi.util.AbstractJFXApplication;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -46,7 +46,7 @@ public abstract class AbstractRcplApplication extends AbstractJFXApplication
 	@Override
 	protected Object jfxStop() {
 		try {
-			JOSession.getDefault().close(true, true);
+			RcplSession.getDefault().close(true, true);
 		} catch (Exception ex) {
 			// TODO: ignore: Bug Fix CDO
 		}

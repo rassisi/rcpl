@@ -16,13 +16,13 @@ import java.util.List;
 
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IEditor;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.JOKey;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplKey;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -64,12 +64,12 @@ public class RcplTopToolBar implements ITopToolbar {
 		Rcpl.UIC.getMainTopStack().getChildren().clear();
 
 		try {
-			if (JOSession.getDefault().getRcpl() != null) {
-				for (Perspective p : JOSession.getDefault().getRcpl().getAllPerspectives().getChildren()) {
+			if (RcplSession.getDefault().getRcpl() != null) {
+				for (Perspective p : RcplSession.getDefault().getRcpl().getAllPerspectives().getChildren()) {
 
-					IRcplPlugin useCase = null;
+					IRcplAddon useCase = null;
 					if ("USECASE".equals(p.getId())) {
-						for (IRcplPlugin u : Rcpl.rcplApplicationProvider.getRcplPlugins()) {
+						for (IRcplAddon u : Rcpl.rcplApplicationProvider.getRcplPlugins()) {
 							if (u.getEmfModel() != null) {
 								if (u.getEmfModel().getDefaultPerspective() == p) {
 									useCase = u;
@@ -123,7 +123,7 @@ public class RcplTopToolBar implements ITopToolbar {
 		pane.setId("topBarHBox");
 		Rcpl.UIC.getMainTopStack().getChildren().add(pane);
 
-		registerToolPane(JOKey.HOME_TAB.name(), pane);
+		registerToolPane(RcplKey.HOME_TAB.name(), pane);
 
 		createCustomRibbonGroup(pane, "My Cloud", "Show Documents in the Cloud", EnCommandId.homeShowOverview.name(),
 				"internet_cloud", true, null);
@@ -182,9 +182,9 @@ public class RcplTopToolBar implements ITopToolbar {
 		});
 	}
 
-	private void processTopBarMainGroups(String type, IRcplPlugin useCase) {
+	private void processTopBarMainGroups(String type, IRcplAddon useCase) {
 		HBox pane = new HBox();
-		Perspective perspective = JOSession.getDefault().findPerspective(type);
+		Perspective perspective = RcplSession.getDefault().findPerspective(type);
 		pane.setId("topBarHBox");
 		pane.setPadding(new Insets(3, 0, 0, 7));
 		// Rcpl.UIC.getMainTopStack().getChildren().add(pane);
@@ -194,7 +194,7 @@ public class RcplTopToolBar implements ITopToolbar {
 	}
 
 	private void createCustomRibbonGroup(HBox pane, String name, String toolTip, String toolId, String toolImage,
-			boolean firstGroup, IRcplPlugin useCase) {
+			boolean firstGroup, IRcplAddon useCase) {
 		ToolGroup group = null;
 
 		try {
@@ -216,7 +216,7 @@ public class RcplTopToolBar implements ITopToolbar {
 	}
 
 	@Override
-	public void processTopBarMainGroups(IRcplPlugin useCase) {
+	public void processTopBarMainGroups(IRcplAddon useCase) {
 		if (useCase.getEmfModel() != null) {
 			// !!!
 			// if (new JOMigration().getUseCaseTopBar(useCase) != null) {
@@ -232,7 +232,7 @@ public class RcplTopToolBar implements ITopToolbar {
 		}
 	}
 
-	private void processTopBar(HBox pane, TopToolBar topToolBar, IRcplPlugin useCase) {
+	private void processTopBar(HBox pane, TopToolBar topToolBar, IRcplAddon useCase) {
 		List<ToolGroup> toolGroups = topToolBar.getToolGroups();
 
 		boolean first = true;
@@ -393,7 +393,7 @@ public class RcplTopToolBar implements ITopToolbar {
 	}
 
 	@Override
-	public void show(final IRcplPlugin rcplPlugin) {
+	public void show(final IRcplAddon rcplPlugin) {
 		// javafx.application.Platform.runLater(new Runnable() {
 		//
 		// @Override

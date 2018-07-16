@@ -5,38 +5,38 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 
-public class JOSystemPreferences extends JOAbstractPreferences {
+public class RcplSystemPreferences extends RcplAbstractPreferences {
 
-	public JOSystemPreferences() {
+	public RcplSystemPreferences() {
 		init();
 	}
 
 	public void init() {
 		if (isEmpty()) {
-			put(JOKey.TOOL_SIDEBAR_WIDTH, 250);
-			put(JOKey.TOOL_SIDEBAR_HEIGHT, 550);
+			put(RcplKey.TOOL_SIDEBAR_WIDTH, 250);
+			put(RcplKey.TOOL_SIDEBAR_HEIGHT, 550);
 		}
 	}
 
 	public double getToolSideBarWidth() {
-		return getDouble(JOKey.TOOL_SIDEBAR_WIDTH);
+		return getDouble(RcplKey.TOOL_SIDEBAR_WIDTH);
 	}
 
 	public double getToolSideBarHeight() {
-		return getDouble(JOKey.TOOL_SIDEBAR_HEIGHT);
+		return getDouble(RcplKey.TOOL_SIDEBAR_HEIGHT);
 	}
 
 	public void setLastDocument(String doc) {
-		put(JOKey.LAST_OPENED_DOCUMENT, doc);
+		put(RcplKey.LAST_OPENED_DOCUMENT, doc);
 	}
 
 	public String getLastDocument() {
-		return getString(JOKey.LAST_OPENED_DOCUMENT);
+		return getString(RcplKey.LAST_OPENED_DOCUMENT);
 	}
 
 	@Override
 	public PreferenceGroup getPreferenceGroup() {
-		Preferences prefs = JOSession.getDefault().getRcpl().getAllPreferences();
+		Preferences prefs = RcplSession.getDefault().getRcpl().getAllPreferences();
 		PreferenceGroup userPreferences = null;
 		for (PreferenceGroup g : prefs.getChildren()) {
 			if (SYSTEM_PREFERENCES.equals(g.getId())) {
@@ -46,7 +46,7 @@ public class JOSystemPreferences extends JOAbstractPreferences {
 		userPreferences = RcplFactory.eINSTANCE.createPreferenceGroup();
 		userPreferences.setId(SYSTEM_PREFERENCES);
 		prefs.getChildren().add(userPreferences);
-		JOSession.getDefault().commit();
+		RcplSession.getDefault().commit();
 		return userPreferences;
 
 	}

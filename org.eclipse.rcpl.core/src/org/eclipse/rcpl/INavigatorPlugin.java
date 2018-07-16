@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
  * @author ramin
  *
  */
-public interface INavigatorPlugin extends IRcplPlugin {
+public interface INavigatorPlugin extends IRcplAddon {
 
 	RcplTool create(Pane detailPane, Tool tool, EObject root, boolean showRoot);
 }

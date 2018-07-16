@@ -26,7 +26,7 @@ public interface IRcplFactory {
 
 	IButton createButton(ToolGroup g, boolean toggle, boolean systemButton, IButtonListener buttonListener);
 
-	Node createRibbonGroup(ToolGroup group, IRcplPlugin useCase, boolean first, boolean dialogButton);
+	Node createRibbonGroup(ToolGroup group, IRcplAddon useCase, boolean first, boolean dialogButton);
 
 	ICommand createCommand(IEditor editor, ITool tool);
 

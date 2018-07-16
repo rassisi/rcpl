@@ -1,9 +1,9 @@
 package com.eclipse.rcpl.plugin.demo.application;
 
-import org.eclipse.rcpl.AbstractRcplPlugin;
+import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.RcplAbstractMigration;
 import org.eclipse.rcpl.RcplPlugin;
 import org.eclipse.rcpl.navigator.EViewController;
@@ -13,7 +13,7 @@ import org.eclipse.rcpl.navigator.EViewController;
  * 
  */
 @RcplPlugin
-public class DemoPlugin extends AbstractRcplPlugin implements IRcplPlugin {
+public class DemoPlugin extends AbstractRcplAddon implements IRcplAddon {
 
 	public static final String ID = "DEMO_APPLICATION";
 

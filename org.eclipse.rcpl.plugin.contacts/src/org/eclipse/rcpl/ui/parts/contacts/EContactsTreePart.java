@@ -16,7 +16,7 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.rcpl.contacts.plugin.OsgiContactsPlugin;
 import org.eclipse.rcpl.contacts.plugin.RcplContactsPlugin;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Person;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Persons;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
@@ -53,11 +53,11 @@ public class EContactsTreePart {
 
 		// TreeView
 		treeView = new TreeView<>();
-		rootGroup = JOSession.getDefault().getRcpl().getAllPersons();
+		rootGroup = RcplSession.getDefault().getRcpl().getAllPersons();
 
-		if (JOSession.getDefault().getSession() != null) {
+		if (RcplSession.getDefault().getSession() != null) {
 
-			JOSession.getDefault().getSession().addListener(new IListener() {
+			RcplSession.getDefault().getSession().addListener(new IListener() {
 
 				@Override
 				public void notifyEvent(IEvent event) {
@@ -157,7 +157,7 @@ public class EContactsTreePart {
 
 	private void refresh() {
 
-		if (JOSession.getDefault().isValid()) {
+		if (RcplSession.getDefault().isValid()) {
 			try {
 				if (adapterFactory == null) {
 					adapterFactory = new AdapterFactoryTreeItem(rootGroup,

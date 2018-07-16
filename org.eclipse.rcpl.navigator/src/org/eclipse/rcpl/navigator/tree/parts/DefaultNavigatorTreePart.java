@@ -1,7 +1,7 @@
 package org.eclipse.rcpl.navigator.tree.parts;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 /**
@@ -11,7 +11,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 public class DefaultNavigatorTreePart extends DefaultTreeTreePart {
 
 	public DefaultNavigatorTreePart(Tool tool, boolean showRoot) {
-		super(null, tool, (EObject)JOSession.getDefault().getRcpl(), showRoot);
+		super(null, tool, (EObject)RcplSession.getDefault().getRcpl(), showRoot);
 	}
 
 

@@ -1,9 +1,9 @@
 package com.rcpl.rcpl.plugin.demo.homepages;
 
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplUic;
-import org.eclipse.rcpl.homepages.JONewHomePage;
+import org.eclipse.rcpl.homepages.DefaultNewHomePage;
 import org.eclipse.rcpl.model.RCPLModel;
 
 import javafx.event.ActionEvent;
@@ -14,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
-public class NewHomePage extends JONewHomePage {
+public class NewHomePage extends DefaultNewHomePage {
 
 	public NewHomePage(RcplUic uic, String image) {
 		super(uic, image);
@@ -70,7 +70,7 @@ public class NewHomePage extends JONewHomePage {
 		});
 		gridPane.add(b, 0, row++);
 
-		if (uic.findRcplPlugins(IRcplPlugin.USECASE_IT_CLASS) != null) {
+		if (uic.findRcplPlugins(IRcplAddon.USECASE_IT_CLASS) != null) {
 			b = new Button("IT");
 			b.setGraphic(Rcpl.resources().getImageView("64_48/it"));
 			b.setPrefWidth(buttonWidth);
@@ -83,7 +83,7 @@ public class NewHomePage extends JONewHomePage {
 			gridPane.add(b, 0, row++);
 		}
 
-		if (uic.findRcplPlugins(IRcplPlugin.USECASE_IT_CLASS) != null) {
+		if (uic.findRcplPlugins(IRcplAddon.USECASE_IT_CLASS) != null) {
 			b = new Button("TOOLS");
 			b.setGraphic(Rcpl.resources().getImageView("64_48/it"));
 			b.setPrefWidth(buttonWidth);

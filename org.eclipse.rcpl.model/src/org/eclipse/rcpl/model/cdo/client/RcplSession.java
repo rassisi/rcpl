@@ -96,7 +96,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory
  * @author Ramin
  * 
  */
-public class JOSession {
+public class RcplSession {
 
 	public static boolean FORCE_NEW_XMI = false;
 	public static final String USER_TEMPLATES = "templates";
@@ -137,7 +137,7 @@ public class JOSession {
 
 	public static boolean connectionFailed = false;
 
-	private static JOSession INSTANCE;
+	private static RcplSession INSTANCE;
 
 	public final static Perspective PERSPECTIVE_OVERVIEW = RcplFactory.eINSTANCE.createPerspective();
 
@@ -185,7 +185,7 @@ public class JOSession {
 
 	protected CDOTransaction transaction;
 
-	private JOFactory factory;
+	private RcplModelFactory factory;
 
 	private org.eclipse.emf.ecore.resource.Resource xmiCDO;
 
@@ -193,9 +193,9 @@ public class JOSession {
 
 	protected CDONet4jSessionConfiguration configuration;
 
-	private JOUserPreferences userPreferences;
+	private RcplUserPreferences userPreferences;
 
-	private JOSystemPreferences systemPreferences;
+	private RcplSystemPreferences systemPreferences;
 
 	public Hashtable<String, Object> coreDataTable;
 
@@ -235,18 +235,18 @@ public class JOSession {
 
 	private boolean reachable;
 
-	public static JOSession getDefault() {
+	public static RcplSession getDefault() {
 		return getDefault(codeBase);
 	}
 
-	public static JOSession getDefault(String url) {
+	public static RcplSession getDefault(String url) {
 		if (INSTANCE == null) {
-			INSTANCE = new JOSession(url);
+			INSTANCE = new RcplSession(url);
 		}
 		return INSTANCE;
 	}
 
-	public JOSession() throws SecurityException {
+	public RcplSession() throws SecurityException {
 		this(codeBase);
 	}
 
@@ -254,7 +254,7 @@ public class JOSession {
 	 * @param port
 	 * @param ePackage
 	 */
-	public JOSession(String url) throws SecurityException {
+	public RcplSession(String url) throws SecurityException {
 
 		INSTANCE = this;
 		codeBase = url;
@@ -283,7 +283,7 @@ public class JOSession {
 		this.userId = "";
 		this.password = "";
 		this.coreDataTable = new Hashtable<String, Object>();
-		this.factory = new JOFactoryImpl(this);
+		this.factory = new RcplModelFactoryImpl(this);
 		this.cdoIds = new Hashtable<String, String>();
 
 		// BasicService basicService = null;
@@ -692,7 +692,7 @@ public class JOSession {
 
 	public Folder findMyDocumentsFolder(RCPL joffice) {
 		for (Folder e : joffice.getAllResources().getChildren()) {
-			if (JOFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
+			if (RcplModelFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
 				return e;
 			}
 		}
@@ -781,7 +781,7 @@ public class JOSession {
 
 	public Folder findTemplatesFolder(RCPL joffice) {
 		for (Folder e : joffice.getAllResources().getChildren()) {
-			if (JOFactory.TEMPLATE_FOLDER.equals(e.getId())) {
+			if (RcplModelFactory.TEMPLATE_FOLDER.equals(e.getId())) {
 				return e;
 			}
 		}
@@ -923,7 +923,7 @@ public class JOSession {
 		return directory;
 	}
 
-	public JOFactory getFactory() {
+	public RcplModelFactory getFactory() {
 		return factory;
 	}
 
@@ -961,7 +961,7 @@ public class JOSession {
 	public List<Resource> getMyResources(RCPL joffice) {
 		for (Folder e : joffice.getAllResources().getChildren()) {
 			if (e instanceof Folder) {
-				if (JOFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
+				if (RcplModelFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
 					return e.getResources();
 				}
 			}
@@ -1004,12 +1004,12 @@ public class JOSession {
 	public List<Resource> getOpenedResources(RCPL joffice) {
 		for (Folder f : joffice.getAllResources().getChildren()) {
 			for (Resource e : f.getResources()) {
-				if (JOFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
+				if (RcplModelFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
 					return e.getLinkedResources();
 				}
 			}
 			for (Resource e : f.getLinkedResources()) {
-				if (JOFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
+				if (RcplModelFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
 					return e.getLinkedResources();
 				}
 			}
@@ -1091,8 +1091,8 @@ public class JOSession {
 				for (EObject eo : getResource().getContents()) {
 					if (eo instanceof RCPL) {
 						rcpl = (RCPL) eo;
-						this.systemPreferences = new JOSystemPreferences();
-						this.userPreferences = new JOUserPreferences();
+						this.systemPreferences = new RcplSystemPreferences();
+						this.userPreferences = new RcplUserPreferences();
 						break;
 					}
 				}
@@ -1176,9 +1176,9 @@ public class JOSession {
 		return spreadsheetPerspective;
 	}
 
-	public JOSystemPreferences getSystemPreferences() {
+	public RcplSystemPreferences getSystemPreferences() {
 		if (systemPreferences == null) {
-			systemPreferences = new JOSystemPreferences();
+			systemPreferences = new RcplSystemPreferences();
 		}
 		return systemPreferences;
 	}
@@ -1191,9 +1191,9 @@ public class JOSession {
 		return user;
 	}
 
-	public JOUserPreferences getUserPreferences() {
+	public RcplUserPreferences getUserPreferences() {
 		if (userPreferences == null) {
-			userPreferences = new JOUserPreferences();
+			userPreferences = new RcplUserPreferences();
 		}
 		return userPreferences;
 	}

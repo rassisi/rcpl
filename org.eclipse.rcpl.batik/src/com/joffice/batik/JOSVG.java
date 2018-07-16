@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.apache.batik.transcoder.TranscoderException;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.scene.Node;
 import javafx.scene.web.WebView;
@@ -21,7 +21,7 @@ import javafx.scene.web.WebView;
  */
 public class JOSVG {
 
-	static String errorUrl = JOSession.getDefault().getCodeBase() + "images/save.png";
+	static String errorUrl = RcplSession.getDefault().getCodeBase() + "images/save.png";
 
 	static WebView errorImage;
 
@@ -176,7 +176,7 @@ public class JOSVG {
 			URL url = new URL(svgUrl);
 			boolean localFile = "file".equals(url.getProtocol());
 			if (!localFile) {
-				if (!JOSession.getDefault().isReachable() || !existsAtUrl(svgUrl)) {
+				if (!RcplSession.getDefault().isReachable() || !existsAtUrl(svgUrl)) {
 					return wv;
 				}
 			}
@@ -261,10 +261,10 @@ public class JOSVG {
 			try {
 				URL url = new URL(URLName);
 				String host = url.getHost();
-				url = new URL(JOSession.getDefault().codeBase);
+				url = new URL(RcplSession.getDefault().codeBase);
 				String host2 = url.getHost();
 				if (host.equals(host2)) {
-					JOSession.getDefault().setReachable(false);
+					RcplSession.getDefault().setReachable(false);
 				}
 			} catch (MalformedURLException e1) {
 			}

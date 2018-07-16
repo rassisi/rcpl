@@ -1,7 +1,7 @@
 package org.eclipse.rcpl.application;
 
 import org.eclipse.rcpl.images.RcplImage;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -21,7 +21,7 @@ public class FXTest extends Application {
 	public void start(Stage stage) throws Exception {
 		final VBox st = new VBox();
 
-		JOSession.getDefault("https://github.com/rassisi/worldreservesystem/raw/master/org.worldreservesystem.doc/");
+		RcplSession.getDefault("https://github.com/rassisi/worldreservesystem/raw/master/org.worldreservesystem.doc/");
 		RcplImage img = new RcplImage("word", 300,300);
 		Node imageView = img.getNode();
 		if (imageView != null) {

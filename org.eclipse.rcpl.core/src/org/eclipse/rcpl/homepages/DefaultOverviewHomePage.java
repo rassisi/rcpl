@@ -40,7 +40,7 @@ import javafx.scene.media.MediaView;
  * @author ramin
  *
  */
-public class JOOverviewHomePage extends JOAbstractHomePage {
+public class DefaultOverviewHomePage extends AbstractHomePage {
 
 	private IDocument document = null;
 
@@ -92,7 +92,7 @@ public class JOOverviewHomePage extends JOAbstractHomePage {
 	 * @param title
 	 * @param image
 	 */
-	public JOOverviewHomePage(IRcplUic uic, String title, String image) {
+	public DefaultOverviewHomePage(IRcplUic uic, String title, String image) {
 		super(uic, title, image, null);
 	}
 

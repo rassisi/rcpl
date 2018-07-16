@@ -15,7 +15,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.rcpl.model.cdo.client.JOSession;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.navigator.tree.parts.DefaultTreeTreePart;
 
 public abstract class JOAbstractDeleteHandler<T> extends JOAbstractEmfHandler<T> {
@@ -35,7 +35,7 @@ public abstract class JOAbstractDeleteHandler<T> extends JOAbstractEmfHandler<T>
 		Command command = DeleteCommand.create(treePart.getEditingDomain(), treePart.getSelectedObject());
 		if (command != null && command.canExecute()) {
 			treePart.getEditingDomain().getCommandStack().execute(command);
-			JOSession.getDefault().commit();
+			RcplSession.getDefault().commit();
 		}
 
 	}

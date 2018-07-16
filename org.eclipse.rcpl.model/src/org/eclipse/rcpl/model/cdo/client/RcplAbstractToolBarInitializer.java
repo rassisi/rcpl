@@ -11,9 +11,9 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
  * @author Ramin
  * 
  */
-abstract public class JOAbstractToolBarInitializer {
+abstract public class RcplAbstractToolBarInitializer {
 
-	protected final JOSession session;
+	protected final RcplSession session;
 	protected final RCPL joffice;
 
 	protected double width;
@@ -21,7 +21,7 @@ abstract public class JOAbstractToolBarInitializer {
 
 	protected ToolGroup mainGroup;
 
-	public JOAbstractToolBarInitializer(JOSession session, RCPL joffice) {
+	public RcplAbstractToolBarInitializer(RcplSession session, RCPL joffice) {
 		this.session = session;
 		this.joffice = joffice;
 	}

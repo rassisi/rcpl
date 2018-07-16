@@ -44,7 +44,7 @@ public interface IRcplUic {
 
 	Perspective findPerspective(String id);
 
-	IRcplPlugin findRcplPlugins(String id);
+	IRcplAddon findRcplPlugins(String id);
 
 	WebView getBrowser();
 
@@ -78,7 +78,7 @@ public interface IRcplUic {
 
 	ITopToolbar getTopToolBarControl();
 
-	IRcplPlugin getUseCase();
+	IRcplAddon getUseCase();
 
 	void handleThemeDefault(ActionEvent event);
 
@@ -106,9 +106,9 @@ public interface IRcplUic {
 
 	void restoreTab();
 
-	void setPerspective(Perspective perspective, IRcplPlugin useCase);
+	void setPerspective(Perspective perspective, IRcplAddon useCase);
 
-	void setUseCase(IRcplPlugin useCase);
+	void setUseCase(IRcplAddon useCase);
 
 	void setContent(IEditor editor);
 

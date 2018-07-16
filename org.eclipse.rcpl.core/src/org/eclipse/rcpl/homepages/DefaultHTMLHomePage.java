@@ -10,70 +10,51 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
+import java.io.File;
 import java.util.HashMap;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+import javafx.scene.web.HTMLEditor;
 
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.util.JOUtil2;
 
-public class JOHTMLReadOnlyHomePage extends JOAbstractHomePage {
+public class DefaultHTMLHomePage extends AbstractHomePage {
 
 	private IDocument document = null;
 
 	private StackPane contentPane;
 
-	public JOHTMLReadOnlyHomePage(IRcplUic uic, String title, String documentTemplate, String image,
-			final HashMap<String, String> wordReplacements, Pane controlPane) {
+	public DefaultHTMLHomePage(IRcplUic uic, String title, String documentTemplate,
+			String image, HashMap<String, String> wordReplacements,
+			Pane controlPane) {
 		super(uic, title, image, controlPane);
 
-		final WebView webView = new WebView();
+		HTMLEditor htmlEditor = new HTMLEditor();
 
-		final WebEngine webengine = webView.getEngine();
+		File f = JOUtil2.loadTemplateDocumentToFile(documentTemplate, true);
 
-		// URL url = JOTemplates.class.getResource(documentTemplate);
-		// webengine.load(url.toExternalForm());
-
-		// String htmlText = webView.getEngine().getDocument().getTextContent();
+		// WebView w = new WebView();
+		// w.getEngine().load("file://" + f.getAbsolutePath());
+		// contentPane.getChildren().add(w);
 
 		// String htmlText = new JODocumentProvider().createHtmlDocument(
-		// documentTemplate, wordReplacements)
+		// documentTemplate, wordReplacements);
 
-		String htmlText = JOUtil2.loadTemplateHTMLDocument(documentTemplate, wordReplacements, true);
+		String htmlText = JOUtil2.loadTemplateHTMLDocument(documentTemplate,
+				wordReplacements, true);
 
-		// .replaceAll(
-		// new String(new byte[] { (byte) 63 }), "&uuml;")
-
-		;
-
-		// int pos = htmlText.indexOf("Auftrag f");
-		//
-		// if (pos != -1) {
-		// String s = htmlText.substring(pos + 9, pos + 10);
-		//
-		// byte[] bytes = s.getBytes(Charset.forName("UTF-8"));
-		// int x = s.getBytes()[0];
-		//
-		// if (x == 63) {
-		// htmlText = htmlText.substring(0, pos) + "&uuml;"
-		// + htmlText.substring(pos + 10, htmlText.length());
-		// }
-		//
-		// }
 		if (htmlText != null) {
 			for (String key : wordReplacements.keySet()) {
 				String replacement = wordReplacements.get(key);
 				htmlText = htmlText.replaceAll(key, replacement);
 			}
-			webView.getEngine().loadContent(htmlText);
+			htmlEditor.setHtmlText(htmlText);
 		}
-
-		contentPane.getChildren().add(webView);
+		contentPane.getChildren().add(htmlEditor);
 
 	}
 

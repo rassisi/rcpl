@@ -16,13 +16,13 @@ import javafx.scene.layout.StackPane;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.homepages.JOAbstractHomePage;
+import org.eclipse.rcpl.homepages.AbstractHomePage;
 
 /**
  * @author ramin
  *
  */
-public abstract class JOAbstractEmfTreeDetailsPage extends JOAbstractHomePage {
+public abstract class JOAbstractEmfTreeDetailsPage extends AbstractHomePage {
 
 	private EObject root;
 

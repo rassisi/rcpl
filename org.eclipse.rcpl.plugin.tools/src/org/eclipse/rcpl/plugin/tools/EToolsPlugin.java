@@ -1,9 +1,9 @@
 package org.eclipse.rcpl.plugin.tools;
 
-import org.eclipse.rcpl.AbstractRcplPlugin;
+import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
-import org.eclipse.rcpl.IRcplPlugin;
+import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.RcplAbstractMigration;
 import org.eclipse.rcpl.RcplPlugin;
@@ -16,7 +16,7 @@ import org.eclipse.rcpl.plugin.tools.parts.EToolsPluginController;
  * 
  */
 @RcplPlugin
-public class EToolsPlugin extends AbstractRcplPlugin implements IRcplPlugin {
+public class EToolsPlugin extends AbstractRcplAddon implements IRcplAddon {
 
 	public static final String USE_CASE_ID = "USE_CASE_TOOLS";
 
