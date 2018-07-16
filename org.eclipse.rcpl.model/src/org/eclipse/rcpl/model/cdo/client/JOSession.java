@@ -155,7 +155,9 @@ public class JOSession {
 		System.out.println(msg);
 	}
 
-	private static String BASE_URL = "http://joffice.eu/";
+//	private static String BASE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
+
+	private static String BASE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 
 	public static String codeBase = BASE_URL;
 
@@ -311,7 +313,7 @@ public class JOSession {
 	private boolean testReachable() {
 		URL url;
 		try {
-			url = new URL(this.codeBase);
+			url = new URL(codeBase);
 			InetAddress[] ia = Inet4Address.getAllByName(url.getHost());
 			reachable = ia[0].isReachable(3000);
 		} catch (MalformedURLException e) {
