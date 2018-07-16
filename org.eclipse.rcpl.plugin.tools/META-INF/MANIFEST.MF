@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Uc
-Bundle-SymbolicName: org.eclipse.rcpl.plugin.tools
+Bundle-SymbolicName: org.eclipse.rcpl.addon.tools
 Bundle-Version: 0.1.1.2
 Bundle-Activator: org.eclipse.rcpl.plugin.tools.UCToolsPlugin
 Bundle-Vendor: JOFFICE

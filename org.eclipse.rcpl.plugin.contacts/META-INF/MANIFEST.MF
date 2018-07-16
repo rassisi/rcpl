@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Uc
-Bundle-SymbolicName: org.eclipse.rcpl.plugin.contacts
+Bundle-SymbolicName: org.eclipse.rcpl.addon.contacts
 Bundle-Version: 0.1.1.2
 Bundle-Activator: org.eclipse.rcpl.contacts.plugin.OsgiContactsPlugin
 Bundle-Vendor: JOFFICE
