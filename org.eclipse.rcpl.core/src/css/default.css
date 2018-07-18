@@ -1033,7 +1033,7 @@
 }
 
 #buttonLogin {
-	-fx-font: bold 10pt "Arial";
+	-fx-font: 10pt "Arial";
 	-fx-font-size: 10.0pt;
 	-fx-background-radius: 3, 3, 2, 2;
 	-fx-padding: 3px 10px 3px 10px;
@@ -1041,7 +1041,7 @@
 }
 
 #buttonRegister {
-	-fx-font: bold 10pt "Arial";
+	-fx-font: 10pt "Arial";
 	-fx-font-size: 10.0pt;
 	-fx-background-radius: 3, 3, 2, 2;
 	-fx-padding: 3px 10px 3px 10px;
@@ -1049,12 +1049,12 @@
 }
 
 #loginLabel {
-	-fx-font: bold 10pt "Arial";
+	-fx-font: 10pt "Arial";
 	-fx-text-fill: darkslategray;
 }
 
 #loginTextField {
-	-fx-font: bold 10pt "Arial";
+	-fx-font: 10pt "Arial";
 }
 
 #mainTopArea {

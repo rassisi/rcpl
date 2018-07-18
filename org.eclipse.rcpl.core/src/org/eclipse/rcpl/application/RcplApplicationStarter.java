@@ -89,6 +89,8 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 			}
 		});
 
+		primaryStage.setResizable(true);
+
 		return true;
 	}
 

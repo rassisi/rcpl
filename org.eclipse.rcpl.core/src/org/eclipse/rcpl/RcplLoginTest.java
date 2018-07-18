@@ -11,7 +11,6 @@
 package org.eclipse.rcpl;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -30,18 +29,6 @@ public class RcplLoginTest extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-
-		RcplLogin login = new RcplLogin(null);
-
-		// Adding BorderPane to the scene and loading CSS
-		Scene scene = new Scene(login.getNode());
-		scene.getStylesheets().add(
-				getClass().getClassLoader().getResource("com/joffice/ui/internal/dialogs/login.css").toExternalForm());
-
-		primaryStage.setScene(scene);
-		primaryStage.titleProperty()
-				.bind(scene.widthProperty().asString().concat(" : ").concat(scene.heightProperty().asString()));
-		// primaryStage.setResizable(false);
-		primaryStage.show();
+		RcplLogin.start(primaryStage);
 	}
 }

@@ -37,8 +37,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -281,16 +279,14 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		if (rcplPluginClassName.endsWith(".class")) {
 			className = rcplPluginClassName.substring(0, rcplPluginClassName.length() - 6);
 		}
-		
+
 		try {
 			Class.forName(rcplPluginClassName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		rcplAddonClassNames.add(className);
 	}
 
@@ -382,7 +378,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		Rcpl.progressMessage("Start Mobile Application");
 		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
 		RCPLModel.log(this, "Screen bounds: " + bounds.getWidth() + "/" + bounds.getHeight());
-		primaryStage.setScene(new Scene(mainStackPane, Color.YELLOW));
+		primaryStage.setScene(new Scene(mainStackPane));
 		primaryStage.getScene().getStylesheets().addAll(
 				RcplApplicationProvider.class.getResource("/css/default.css").toExternalForm(),
 				RcplApplicationProvider.class.getResource("/css/msoffice.css").toExternalForm());
@@ -400,8 +396,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 		final Undecorator undecorator = new Undecorator(primaryStage, mainStackPane);
 		undecorator.getStylesheets().addAll("skin/undecorator.css", "/css/msoffice.css", "/css/default.css"); // ,
-		// ,
-		// );
+
 		Scene scene = new Scene(undecorator);
 		undecorator.installAccelerators(scene);
 		undecorator.setFadeInTransition();
@@ -414,7 +409,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			}
 		});
 
-		scene.setFill(Color.TRANSPARENT);
+//		scene.setFill(Color.TRANSPARENT);
 		try {
 			primaryStage.initStyle(StageStyle.TRANSPARENT);
 		} catch (Throwable ex) {
@@ -422,18 +417,25 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		}
 
 		primaryStage.setScene(scene);
-
-		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-
-		primaryStage.setWidth(bounds.getWidth());
-		primaryStage.setHeight(bounds.getHeight());
-		primaryStage.centerOnScreen();
+		primaryStage.setResizable(false);
 
 		double loginWidth = joLogin.getNode().getPrefWidth();
 		double loginHeight = joLogin.getNode().getPrefHeight();
-		Rectangle r = new Rectangle((bounds.getWidth() - loginWidth) / 2.0, (bounds.getHeight() - loginHeight) / 2.0,
-				loginWidth, loginHeight);
-		primaryStage.getScene().getRoot().setClip(r);
+
+		primaryStage.setWidth(loginWidth);
+		primaryStage.setHeight(loginHeight);
+		primaryStage.centerOnScreen();
+
+//		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+//		Rectangle r = new Rectangle((bounds.getWidth() - loginWidth) / 2.0, (bounds.getHeight() - loginHeight) / 2.0,
+//				loginWidth, loginHeight);
+//		primaryStage.getScene().getRoot().setClip(r);
+
+//		mainStackPane.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 10;");
+
+		undecorator.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 5;");
+		mainStackPane.setStyle("-fx-background-radius: 10;");
+
 		primaryStage.toFront();
 
 	}

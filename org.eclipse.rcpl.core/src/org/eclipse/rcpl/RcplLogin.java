@@ -13,11 +13,13 @@ package org.eclipse.rcpl;
 import java.io.IOException;
 import java.net.URL;
 
-import org.eclipse.rcpl.model.RCPLModel;
-
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * @author ramin
@@ -31,10 +33,32 @@ public class RcplLogin {
 
 	IRcplApplicationProvider applicationProvider;
 
+	public static void start(Stage stage) {
+		new RcplLogin(stage);
+	}
+
+	public static void start(IRcplApplicationProvider applicationProvider) {
+		new RcplLogin(applicationProvider);
+	}
+
+	/**
+	 * @param stage
+	 */
+	private RcplLogin(Stage stage) {
+		this(null, stage);
+	}
+
 	/**
 	 * @param applicationProvider
 	 */
 	public RcplLogin(IRcplApplicationProvider applicationProvider) {
+		this(applicationProvider, null);
+	}
+
+	/**
+	 * @param applicationProvider
+	 */
+	private RcplLogin(IRcplApplicationProvider applicationProvider, Stage stage) {
 		this.applicationProvider = applicationProvider;
 		URL location = getClass().getResource("/org/eclipse/rcpl/login.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
@@ -52,17 +76,9 @@ public class RcplLogin {
 			node.setPrefWidth(width);
 			node.setMinWidth(width);
 			node.setMaxWidth(width);
+			node.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 10;");
 
-			// IImage image = new
-			// SVGImage("https://openclipart.org/download/61741/Ladybird.svg");
-			// image.setWidth(40);
-			// image.setHeight(40);
-			//
-			// WebView wv = (WebView) image.getFx();
-			//
-			// controller.getLogoArea().getChildren().add(wv);
-
-			if (applicationProvider.isLoginDebug()) {
+			if (applicationProvider != null && applicationProvider.isLoginDebug()) {
 				Platform.runLater(new Runnable() {
 
 					@Override
@@ -71,7 +87,25 @@ public class RcplLogin {
 					}
 				});
 			}
-		} catch (IOException e) {
+
+			if (applicationProvider == null && stage.getScene() == null) {
+				Scene scene = new Scene(getNode());
+				scene.getStylesheets().addAll("/css/msoffice.css", "/css/default.css");
+				stage.setScene(scene);
+				stage.getScene().setFill(Color.TRANSPARENT);
+				try {
+					stage.initStyle(StageStyle.TRANSPARENT);
+				} catch (Throwable ex) {
+					// ignore
+				}
+
+				stage.centerOnScreen();
+				stage.show();
+			}
+
+		} catch (
+
+		IOException e) {
 			// cannot happen
 		}
 

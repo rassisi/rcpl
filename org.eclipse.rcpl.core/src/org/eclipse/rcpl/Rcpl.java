@@ -613,7 +613,7 @@ public class Rcpl {
 	}
 
 	public static String getDefaultTemplatesPath() {
-		return "/com/joffice/rcpl/plugin/office/internal/templates/";
+		return "/com/joffice/rcpl/addon/office/internal/templates/";
 	}
 
 	// private static boolean debugDely;
