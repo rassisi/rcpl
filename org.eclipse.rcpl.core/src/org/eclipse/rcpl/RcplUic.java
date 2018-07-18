@@ -159,7 +159,7 @@ public class RcplUic extends RcplAbstractUic {
 	public RcplUic(IApplicationStarter rcplApplicationStarter, String id) {
 		super(rcplApplicationStarter, id);
 		this.urlAddressTool = new URLAddressTool(null);
-		WELCOME_URL = RcplSession.getDefault().getCodeBases()[0] + "joffice_welcome.html";
+		WELCOME_URL = RcplSession.getCodeBases().get(0) + "joffice_welcome.html";
 
 	}
 
@@ -227,7 +227,7 @@ public class RcplUic extends RcplAbstractUic {
 			newPage = createNewHomePage();
 
 			whatsNewPage = Rcpl.getFactory().createWebHomePage(RcplUic.this, "What's New",
-					RcplSession.getDefault().getCodeBases()[0] + "joffice_new_and_noteworthy.html", "office_whatsnew");
+					RcplSession.getCodeBases().get(0) + "joffice_new_and_noteworthy.html", "office_whatsnew");
 
 			String url = "http://85.25.100.163:8081/help/index.jsp";
 

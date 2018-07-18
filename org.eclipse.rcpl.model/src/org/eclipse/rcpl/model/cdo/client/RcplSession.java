@@ -88,7 +88,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
-import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroups;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory;
 
@@ -157,7 +156,7 @@ public class RcplSession {
 
 	public static String BASE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 
-	public static String[] codeBases = new String[] { BASE_URL, null, null, null, null, null, null, null, null, null, null, null, null, null, null };
+	private static List<String> codeBases = new ArrayList<String>();
 
 	public String CDO_SERVER;
 
@@ -233,36 +232,27 @@ public class RcplSession {
 
 	private boolean reachable;
 
-	public static RcplSession getDefault() {
-		return getDefault(codeBases);
+	public static void addAdditionalCodebases(String additionalCodeBase) {
+		getCodeBases().add(additionalCodeBase);
 	}
 
-	public static RcplSession getDefault(String[] urls) {
+	public static RcplSession getDefault() {
 		if (INSTANCE == null) {
-			INSTANCE = new RcplSession(urls);
+			INSTANCE = new RcplSession();
 		}
 		return INSTANCE;
-	}
-
-	public RcplSession() throws SecurityException {
-		this(codeBases);
 	}
 
 	/**
 	 * @param port
 	 * @param ePackage
 	 */
-	public RcplSession(String[] urls) throws SecurityException {
+	public RcplSession() throws SecurityException {
 
 		INSTANCE = this;
-		codeBases = urls;
-		testReachable(getCodeBases()[0]);
 
+		testReachable(getCodeBases().get(0));
 
-
-		if (!isReachable()) {
-			System.out.println("Server not running!");
-		}
 		this.CDO_SERVER = null; // "85.25.100.163:80";
 		this.DEFAULT_PASSWORD = "joffice";
 		this.COMM1 = "b86645f289952e618043e5f2f70c";
@@ -881,7 +871,10 @@ public class RcplSession {
 		return eObject;
 	}
 
-	public String[] getCodeBases() {
+	public static List<String> getCodeBases() {
+		if (codeBases.isEmpty()) {
+			codeBases.add(BASE_URL);
+		}
 		return codeBases;
 	}
 

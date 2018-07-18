@@ -47,8 +47,7 @@ public class FXTest extends Application {
 	
 	
 	void test_1() {
-		RcplSession.getDefault(
-				new String[] { RcplSession.BASE_URL, "https://upload.wikimedia.org/wikipedia/commons/d/d3/" });
+		RcplSession.addAdditionalCodebases("https://upload.wikimedia.org/wikipedia/commons/d/d3/");
 		img = new RcplImage("Microsoft_Account", 300, 300);
 		imageView = img.getNode();
 	}

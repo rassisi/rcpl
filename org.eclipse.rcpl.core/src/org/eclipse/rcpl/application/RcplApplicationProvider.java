@@ -19,8 +19,8 @@ import java.util.Map;
 
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IMonitor;
-import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplAddon;
+import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplAbstractService;
 import org.eclipse.rcpl.RcplLogin;
@@ -31,7 +31,6 @@ import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -91,7 +90,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			} else if (arg.startsWith("-codebase")) {
 				String[] splits = arg.split("=");
 				if (splits.length == 2) {
-					RcplSession.getDefault().getCodeBases()[0] = splits[1].trim();
+					RcplSession.addAdditionalCodebases(splits[1].trim());
 				}
 			}
 		}
