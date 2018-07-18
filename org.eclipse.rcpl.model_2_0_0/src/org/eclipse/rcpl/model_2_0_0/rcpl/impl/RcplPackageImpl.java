@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Addons;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Address;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AddressType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Building;
@@ -42,8 +44,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Persons;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspectives;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Phone;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Plugin;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Plugins;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
@@ -153,14 +153,14 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pluginsEClass = null;
+	private EClass addonsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pluginEClass = null;
+	private EClass addonEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -435,7 +435,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link RcplPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -449,14 +449,18 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		if (isInited) return (RcplPackage)EPackage.Registry.INSTANCE.getEPackage(RcplPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RcplPackageImpl theRcplPackage = (RcplPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RcplPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RcplPackageImpl());
+		Object registeredRcplPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		RcplPackageImpl theRcplPackage = registeredRcplPackage instanceof RcplPackageImpl ? (RcplPackageImpl)registeredRcplPackage : new RcplPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		SecurityPackageImpl theSecurityPackage = (SecurityPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SecurityPackage.eNS_URI) instanceof SecurityPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SecurityPackage.eNS_URI) : SecurityPackage.eINSTANCE);
-		EtypesPackageImpl theEtypesPackage = (EtypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EtypesPackage.eNS_URI) instanceof EtypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EtypesPackage.eNS_URI) : EtypesPackage.eINSTANCE);
-		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SecurityPackage.eNS_URI);
+		SecurityPackageImpl theSecurityPackage = (SecurityPackageImpl)(registeredPackage instanceof SecurityPackageImpl ? registeredPackage : SecurityPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EtypesPackage.eNS_URI);
+		EtypesPackageImpl theEtypesPackage = (EtypesPackageImpl)(registeredPackage instanceof EtypesPackageImpl ? registeredPackage : EtypesPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
+		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(registeredPackage instanceof ExpressionsPackageImpl ? registeredPackage : ExpressionsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRcplPackage.createPackageContents();
@@ -473,7 +477,6 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		// Mark meta-data to indicate it can't be changed
 		theRcplPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(RcplPackage.eNS_URI, theRcplPackage);
 		return theRcplPackage;
@@ -619,7 +622,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRCPL_AllPlugins() {
+	public EReference getRCPL_AllAddons() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1114,8 +1117,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPlugins() {
-		return pluginsEClass;
+	public EClass getAddons() {
+		return addonsEClass;
 	}
 
 	/**
@@ -1123,8 +1126,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPlugins_Children() {
-		return (EReference)pluginsEClass.getEStructuralFeatures().get(0);
+	public EReference getAddons_Children() {
+		return (EReference)addonsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1132,8 +1135,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPlugin() {
-		return pluginEClass;
+	public EClass getAddon() {
+		return addonEClass;
 	}
 
 	/**
@@ -1141,8 +1144,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_BundleId() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(0);
+	public EAttribute getAddon_BundleId() {
+		return (EAttribute)addonEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1150,8 +1153,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_ClassName() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(1);
+	public EAttribute getAddon_ClassName() {
+		return (EAttribute)addonEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1159,8 +1162,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_Roles() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(2);
+	public EAttribute getAddon_Roles() {
+		return (EAttribute)addonEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1168,8 +1171,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_Users() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(3);
+	public EAttribute getAddon_Users() {
+		return (EAttribute)addonEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1177,8 +1180,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_Groups() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(4);
+	public EAttribute getAddon_Groups() {
+		return (EAttribute)addonEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1186,8 +1189,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_IsPerspective() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(5);
+	public EAttribute getAddon_IsPerspective() {
+		return (EAttribute)addonEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1195,8 +1198,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_ReadOnly() {
-		return (EAttribute)pluginEClass.getEStructuralFeatures().get(6);
+	public EAttribute getAddon_ReadOnly() {
+		return (EAttribute)addonEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1204,8 +1207,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPlugin_DefaultPerspective() {
-		return (EReference)pluginEClass.getEStructuralFeatures().get(7);
+	public EReference getAddon_DefaultPerspective() {
+		return (EReference)addonEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1213,8 +1216,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPlugin_Perspectives() {
-		return (EReference)pluginEClass.getEStructuralFeatures().get(8);
+	public EReference getAddon_Perspectives() {
+		return (EReference)addonEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -2152,7 +2155,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEAttribute(layoutableEClass, LAYOUTABLE__LEAF);
 
 		rcplEClass = createEClass(RCPL);
-		createEReference(rcplEClass, RCPL__ALL_PLUGINS);
+		createEReference(rcplEClass, RCPL__ALL_ADDONS);
 		createEReference(rcplEClass, RCPL__ALL_PERSPECTIVES);
 		createEReference(rcplEClass, RCPL__ALL_PREFERENCES);
 		createEReference(rcplEClass, RCPL__ALL_TOOLS);
@@ -2217,19 +2220,19 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(preferencesEClass, PREFERENCES__CHILDREN);
 		createEAttribute(preferencesEClass, PREFERENCES__SYSTEM);
 
-		pluginsEClass = createEClass(PLUGINS);
-		createEReference(pluginsEClass, PLUGINS__CHILDREN);
+		addonsEClass = createEClass(ADDONS);
+		createEReference(addonsEClass, ADDONS__CHILDREN);
 
-		pluginEClass = createEClass(PLUGIN);
-		createEAttribute(pluginEClass, PLUGIN__BUNDLE_ID);
-		createEAttribute(pluginEClass, PLUGIN__CLASS_NAME);
-		createEAttribute(pluginEClass, PLUGIN__ROLES);
-		createEAttribute(pluginEClass, PLUGIN__USERS);
-		createEAttribute(pluginEClass, PLUGIN__GROUPS);
-		createEAttribute(pluginEClass, PLUGIN__IS_PERSPECTIVE);
-		createEAttribute(pluginEClass, PLUGIN__READ_ONLY);
-		createEReference(pluginEClass, PLUGIN__DEFAULT_PERSPECTIVE);
-		createEReference(pluginEClass, PLUGIN__PERSPECTIVES);
+		addonEClass = createEClass(ADDON);
+		createEAttribute(addonEClass, ADDON__BUNDLE_ID);
+		createEAttribute(addonEClass, ADDON__CLASS_NAME);
+		createEAttribute(addonEClass, ADDON__ROLES);
+		createEAttribute(addonEClass, ADDON__USERS);
+		createEAttribute(addonEClass, ADDON__GROUPS);
+		createEAttribute(addonEClass, ADDON__IS_PERSPECTIVE);
+		createEAttribute(addonEClass, ADDON__READ_ONLY);
+		createEReference(addonEClass, ADDON__DEFAULT_PERSPECTIVE);
+		createEReference(addonEClass, ADDON__PERSPECTIVES);
 
 		abstractToolEClass = createEClass(ABSTRACT_TOOL);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__X);
@@ -2401,8 +2404,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		favoriteEClass.getESuperTypes().add(this.getLayoutable());
 		favoritesGroupEClass.getESuperTypes().add(this.getLayoutable());
 		preferencesEClass.getESuperTypes().add(this.getLayoutable());
-		pluginsEClass.getESuperTypes().add(this.getLayoutable());
-		pluginEClass.getESuperTypes().add(this.getLayoutable());
+		addonsEClass.getESuperTypes().add(this.getLayoutable());
+		addonEClass.getESuperTypes().add(this.getLayoutable());
 		abstractToolEClass.getESuperTypes().add(this.getLayoutable());
 		toolEClass.getESuperTypes().add(this.getAbstractTool());
 		toolGroupEClass.getESuperTypes().add(this.getAbstractTool());
@@ -2449,7 +2452,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEAttribute(getLayoutable_Leaf(), ecorePackage.getEBoolean(), "leaf", null, 0, 1, Layoutable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rcplEClass, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, "RCPL", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRCPL_AllPlugins(), this.getPlugins(), null, "allPlugins", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRCPL_AllAddons(), this.getAddons(), null, "allAddons", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_AllPerspectives(), this.getPerspectives(), null, "allPerspectives", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_AllPreferences(), this.getPreferences(), null, "allPreferences", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_AllTools(), this.getTools(), null, "allTools", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2514,19 +2517,19 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getPreferences_Children(), this.getPreferenceGroup(), null, "children", null, 0, -1, Preferences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPreferences_System(), ecorePackage.getEBoolean(), "system", null, 0, 1, Preferences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pluginsEClass, Plugins.class, "Plugins", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPlugins_Children(), this.getPlugin(), null, "children", null, 0, -1, Plugins.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(addonsEClass, Addons.class, "Addons", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAddons_Children(), this.getAddon(), null, "children", null, 0, -1, Addons.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(pluginEClass, Plugin.class, "Plugin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPlugin_BundleId(), ecorePackage.getEString(), "bundleId", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlugin_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlugin_Roles(), ecorePackage.getEString(), "roles", null, 0, -1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlugin_Users(), ecorePackage.getEString(), "users", null, 0, -1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlugin_Groups(), ecorePackage.getEString(), "groups", null, 0, -1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlugin_IsPerspective(), ecorePackage.getEBoolean(), "isPerspective", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlugin_ReadOnly(), ecorePackage.getEBoolean(), "readOnly", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPlugin_DefaultPerspective(), this.getPerspective(), null, "defaultPerspective", null, 1, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPlugin_Perspectives(), this.getPerspective(), null, "perspectives", null, 0, -1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(addonEClass, Addon.class, "Addon", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAddon_BundleId(), ecorePackage.getEString(), "bundleId", null, 0, 1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddon_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddon_Roles(), ecorePackage.getEString(), "roles", null, 0, -1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddon_Users(), ecorePackage.getEString(), "users", null, 0, -1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddon_Groups(), ecorePackage.getEString(), "groups", null, 0, -1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddon_IsPerspective(), ecorePackage.getEBoolean(), "isPerspective", null, 0, 1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddon_ReadOnly(), ecorePackage.getEBoolean(), "readOnly", null, 0, 1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAddon_DefaultPerspective(), this.getPerspective(), null, "defaultPerspective", null, 1, 1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAddon_Perspectives(), this.getPerspective(), null, "perspectives", null, 0, -1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractToolEClass, AbstractTool.class, "AbstractTool", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractTool_X(), ecorePackage.getEDouble(), "x", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

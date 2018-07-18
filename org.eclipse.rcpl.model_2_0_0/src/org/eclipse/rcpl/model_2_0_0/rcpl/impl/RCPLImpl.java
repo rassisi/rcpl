@@ -4,10 +4,10 @@ package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Addons;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Favorites;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Persons;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspectives;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Plugins;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
@@ -22,7 +22,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllPlugins <em>All Plugins</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllAddons <em>All Addons</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllPerspectives <em>All Perspectives</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllPreferences <em>All Preferences</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllTools <em>All Tools</em>}</li>
@@ -64,8 +64,8 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Plugins getAllPlugins() {
-		return (Plugins)eGet(RcplPackage.Literals.RCPL__ALL_PLUGINS, true);
+	public Addons getAllAddons() {
+		return (Addons)eGet(RcplPackage.Literals.RCPL__ALL_ADDONS, true);
 	}
 
 	/**
@@ -73,8 +73,8 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAllPlugins(Plugins newAllPlugins) {
-		eSet(RcplPackage.Literals.RCPL__ALL_PLUGINS, newAllPlugins);
+	public void setAllAddons(Addons newAllAddons) {
+		eSet(RcplPackage.Literals.RCPL__ALL_ADDONS, newAllAddons);
 	}
 
 	/**

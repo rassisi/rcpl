@@ -44,8 +44,7 @@ public class RcplModelFactoryImpl implements RcplModelFactory {
 	private static String byteToHexString(byte[] array) {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < array.length; ++i) {
-			sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(
-					1, 3));
+			sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
 		}
 		return sb.toString();
 	}
@@ -77,12 +76,11 @@ public class RcplModelFactoryImpl implements RcplModelFactory {
 		office.setAllTools(RcplFactory.eINSTANCE.createTools());
 		office.setAllPreferences(RcplFactory.eINSTANCE.createPreferences());
 		office.setAllPerspectives(RcplFactory.eINSTANCE.createPerspectives());
-		office.setAllPlugins(RcplFactory.eINSTANCE.createPlugins());
+		office.setAllAddons(RcplFactory.eINSTANCE.createAddons());
 
 		office.setAllFavorites(RcplFactory.eINSTANCE.createFavorites());
 		office.setAllPersons(RcplFactory.eINSTANCE.createPersons());
 		office.setAllResources(RcplFactory.eINSTANCE.createResources());
-
 
 		// preferences
 

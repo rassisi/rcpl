@@ -53,14 +53,6 @@
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//FontStyles/UNDERLINE"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//FontStyles/UNDERLINE_2"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//PerspectiveType">
-      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//PerspectiveType/WORD"/>
-      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//PerspectiveType/SPREADSHEET"/>
-      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//PerspectiveType/PRESENTATION"/>
-      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//PerspectiveType/WEB"/>
-      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//PerspectiveType/SETTINGS"/>
-      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//PerspectiveType/USECASE"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//ToolBarReplacementPolicy">
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolBarReplacementPolicy/REPLACE_ALL"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolBarReplacementPolicy/ADD"/>
@@ -86,6 +78,9 @@
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//GroupType/TITLEDPANE"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//GroupType/TOOLBAR"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//AddressType">
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//AddressType/RESIDENCE"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="rcpl.ecore#//Layoutable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/layoutX"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/layoutY"/>
@@ -96,18 +91,25 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/image"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/toolTip"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/createDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/beginDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/endDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/leaf"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//RCPL">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/editors"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/perspectives"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/preferences"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/tools"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/favorites"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allAddons"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allPerspectives"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allPreferences"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allTools"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allFavorites"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/versionMajor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/versionMinor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/versionMaintenance"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/buildNumber"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/versionDescription"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allResources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allPersons"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/linkedRcpls"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Perspectives">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspectives/children"/>
@@ -115,8 +117,8 @@
     <genClasses ecoreClass="rcpl.ecore#//Perspective">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/sideToolBar"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/topToolBar"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Perspective/perspectiveType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/quickToolBar"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/quickTools"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Preference">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Preference/key"/>
@@ -129,11 +131,13 @@
     <genClasses ecoreClass="rcpl.ecore#//Login">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Login/country"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Login/password"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Login/offices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Login/rcpl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Login/userId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Login/person"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Login/domains"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Favorites">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Favorites/favoriteSets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Favorites/children"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Favorites/defaultSetId"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Favorite">
@@ -152,34 +156,26 @@
     <genClasses ecoreClass="rcpl.ecore#//FavoritesGroup">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//FavoritesGroup/groups"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//FavoritesGroup/favorites"/>
-    </genClasses>
-    <genClasses ecoreClass="rcpl.ecore#//FavoritesSet">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//FavoritesSet/history"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//FavoritesSet/favorites"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//FavoritesSet/downloads"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//FavoritesSet/archive"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//FavoritesGroup/linkedFavorites"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Preferences">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Preferences/children"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Preferences/preferences"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Preferences/system"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="rcpl.ecore#//Editor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Editor/defaultPerspective"/>
+    <genClasses ecoreClass="rcpl.ecore#//Addons">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Addons/children"/>
     </genClasses>
-    <genClasses ecoreClass="rcpl.ecore#//Editors">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Editors/children"/>
+    <genClasses ecoreClass="rcpl.ecore#//Addon">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Addon/bundleId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Addon/className"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Addon/roles"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Addon/users"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Addon/groups"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Addon/isPerspective"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Addon/readOnly"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Addon/defaultPerspective"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Addon/perspectives"/>
     </genClasses>
-    <genClasses ecoreClass="rcpl.ecore#//UseCase">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//UseCase/bundleId"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//UseCase/className"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//UseCase/roles"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//UseCase/users"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//UseCase/groups"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//UseCase/isPerspective"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//UseCase/readOnly"/>
-    </genClasses>
-    <genClasses ecoreClass="rcpl.ecore#//Browser"/>
     <genClasses image="false" ecoreClass="rcpl.ecore#//AbstractTool">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/x"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/y"/>
@@ -199,28 +195,17 @@
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//ToolGroup">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//ToolGroup/toolGroups"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//ToolGroup/tools"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//ToolGroup/grid"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//ToolGroup/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//ToolGroup/format"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//ToolGroup/tools"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//ToolGroup/type"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Tools">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Tools/startmenuTools"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Tools/startMenuToolGroups"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Tools/toolGroups"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Tools/quickTools"/>
-    </genClasses>
-    <genClasses ecoreClass="rcpl.ecore#//StartMenuTools">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//StartMenuTools/startMenuTools"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Tools/toolgroupChildren"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Tools/toolChildren"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//QuickTools">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//QuickTools/quickTools"/>
-    </genClasses>
-    <genClasses ecoreClass="rcpl.ecore#//ToolGroups">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//ToolGroups/toolGroups"/>
-    </genClasses>
-    <genClasses ecoreClass="rcpl.ecore#//StartMenuToolGroups">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//StartMenuToolGroups/startMenuToolGroups"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//TopToolBar">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//TopToolBar/toolGroups"/>
@@ -230,6 +215,85 @@
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//QuickToolBar">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//QuickToolBar/toolGroups"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Folder">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Folder/folders"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Folder/resources"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Folder/linkedResources"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Resource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Resource/uri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Resource/template"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Resource/linkedResources"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Resource/mainPerspective"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Person">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Person/lastName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Person/middleName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Person/firstName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Person/addresses"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//PersonGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//PersonGroup/persongroups"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//PersonGroup/persons"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//PersonGroup/linkedPersons"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//PersonGroup/linkedPersongroups"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Resources">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Resources/children"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//PreferenceGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//PreferenceGroup/preferences"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//PreferenceGroup/linkedPreferences"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//PreferenceGroup/preferencegroups"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Persons">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Persons/children"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//RCPLTemplates">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPLTemplates/children"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//JPerson"/>
+    <genClasses ecoreClass="rcpl.ecore#//NPerson"/>
+    <genClasses ecoreClass="rcpl.ecore#//Address">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Address/country"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Address/city"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Address/street"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Address/housenumber"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Address/buildings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Address/addressType"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Country">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Country/cities"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Country/worldregions"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//City">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//City/streets"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Geo">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Geo/countries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Geo/worldregions"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//WorldRegion"/>
+    <genClasses ecoreClass="rcpl.ecore#//Street">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Street/housenumbers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Street/buildings"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//HouseNumber"/>
+    <genClasses ecoreClass="rcpl.ecore#//Building"/>
+    <genClasses ecoreClass="rcpl.ecore#//Contact">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Contact/phones"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Phone">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Phone/number"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Domains">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Domains/children"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Domain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Domain/host"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Domain/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Domain/resource"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Security" basePackage="org.eclipse.emf.cdo" ecorePackage="http://www.eclipse.org/emf/CDO/security/4.1.0#/">

@@ -112,22 +112,22 @@ public interface RcplFactory extends EFactory {
 	Preferences createPreferences();
 
 	/**
-	 * Returns a new object of class '<em>Plugins</em>'.
+	 * Returns a new object of class '<em>Addons</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Plugins</em>'.
+	 * @return a new object of class '<em>Addons</em>'.
 	 * @generated
 	 */
-	Plugins createPlugins();
+	Addons createAddons();
 
 	/**
-	 * Returns a new object of class '<em>Plugin</em>'.
+	 * Returns a new object of class '<em>Addon</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Plugin</em>'.
+	 * @return a new object of class '<em>Addon</em>'.
 	 * @generated
 	 */
-	Plugin createPlugin();
+	Addon createAddon();
 
 	/**
 	 * Returns a new object of class '<em>Tool</em>'.

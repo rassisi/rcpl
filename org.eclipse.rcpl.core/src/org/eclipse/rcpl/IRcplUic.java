@@ -44,7 +44,7 @@ public interface IRcplUic {
 
 	Perspective findPerspective(String id);
 
-	IRcplAddon findRcplPlugins(String id);
+	IRcplAddon findRcplAddons(String id);
 
 	WebView getBrowser();
 
@@ -64,7 +64,7 @@ public interface IRcplUic {
 
 	StackPane getMainTopStack();
 
-	INavigatorPlugin getNavigator();
+	INavigatorAddon getNavigator();
 
 	Perspective getPerspective();
 
@@ -147,7 +147,7 @@ public interface IRcplUic {
 	void showNewPage();
 
 	void showPerspectivePage();
-	
+
 	void showOverviewPage();
 
 	boolean showPerspective(String id, boolean asEditor);

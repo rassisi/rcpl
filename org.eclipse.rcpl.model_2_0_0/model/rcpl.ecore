@@ -82,8 +82,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="leaf" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RCPL" eSuperTypes="#//Layoutable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="allPlugins" lowerBound="1"
-        eType="#//Plugins" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allAddons" lowerBound="1"
+        eType="#//Addons" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allPerspectives" lowerBound="1"
         eType="#//Perspectives" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allPreferences" lowerBound="1"
@@ -167,11 +167,11 @@
         eType="#//PreferenceGroup" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="system" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Plugins" eSuperTypes="#//Layoutable">
+  <eClassifiers xsi:type="ecore:EClass" name="Addons" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
-        eType="#//Plugin" containment="true"/>
+        eType="#//Addon" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Plugin" eSuperTypes="#//Layoutable">
+  <eClassifiers xsi:type="ecore:EClass" name="Addon" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bundleId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="roles" upperBound="-1"

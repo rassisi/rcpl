@@ -198,7 +198,7 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_PLUGINS);
+			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_ADDONS);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_PERSPECTIVES);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_PREFERENCES);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_TOOLS);
@@ -262,7 +262,7 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			case RcplPackage.RCPL__VERSION_DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case RcplPackage.RCPL__ALL_PLUGINS:
+			case RcplPackage.RCPL__ALL_ADDONS:
 			case RcplPackage.RCPL__ALL_PERSPECTIVES:
 			case RcplPackage.RCPL__ALL_PREFERENCES:
 			case RcplPackage.RCPL__ALL_TOOLS:
@@ -288,8 +288,8 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RcplPackage.Literals.RCPL__ALL_PLUGINS,
-				 RcplFactory.eINSTANCE.createPlugins()));
+				(RcplPackage.Literals.RCPL__ALL_ADDONS,
+				 RcplFactory.eINSTANCE.createAddons()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -2,7 +2,7 @@ package org.eclipse.rcpl.ui.parts.contacts;
 
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.RcplAbstractMigration;
-import org.eclipse.rcpl.contacts.plugin.RcplContactsPlugin;
+import org.eclipse.rcpl.contacts.addon.RcplContactsAddon;
 
 public class EContactsMigration extends RcplAbstractMigration {
 
@@ -29,7 +29,7 @@ public class EContactsMigration extends RcplAbstractMigration {
 
 		// removeGroupFromTopBar(EContactsUseCase.ID, "addItProject");
 
-		addToolToQuickBar(RcplContactsPlugin.ID, "openContactsPerspective",
+		addToolToQuickBar(RcplContactsAddon.ID, "openContactsPerspective",
 				"Open Contacts Perspective", "contacts", 0);
 
 		// addToolToQuickBar(JOModel.USE_CASE_CONTACTS, "addContactsGroup", 0);

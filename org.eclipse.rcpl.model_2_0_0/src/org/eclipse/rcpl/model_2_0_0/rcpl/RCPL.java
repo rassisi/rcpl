@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPlugins <em>All Plugins</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllAddons <em>All Addons</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPerspectives <em>All Perspectives</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPreferences <em>All Preferences</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllTools <em>All Tools</em>}</li>
@@ -35,30 +35,30 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface RCPL extends Layoutable {
 	/**
-	 * Returns the value of the '<em><b>All Plugins</b></em>' containment reference.
+	 * Returns the value of the '<em><b>All Addons</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>All Plugins</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>All Addons</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>All Plugins</em>' containment reference.
-	 * @see #setAllPlugins(Plugins)
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllPlugins()
+	 * @return the value of the '<em>All Addons</em>' containment reference.
+	 * @see #setAllAddons(Addons)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllAddons()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	Plugins getAllPlugins();
+	Addons getAllAddons();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPlugins <em>All Plugins</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllAddons <em>All Addons</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>All Plugins</em>' containment reference.
-	 * @see #getAllPlugins()
+	 * @param value the new value of the '<em>All Addons</em>' containment reference.
+	 * @see #getAllAddons()
 	 * @generated
 	 */
-	void setAllPlugins(Plugins value);
+	void setAllAddons(Addons value);
 
 	/**
 	 * Returns the value of the '<em><b>All Perspectives</b></em>' containment reference.

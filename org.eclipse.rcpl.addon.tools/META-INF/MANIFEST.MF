@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Uc
 Bundle-SymbolicName: org.eclipse.rcpl.addon.tools
 Bundle-Version: 0.1.1.2
-Bundle-Activator: org.eclipse.rcpl.plugin.tools.UCToolsPlugin
+Bundle-Activator: org.eclipse.rcpl.tools.addon.UCToolsPlugin
 Bundle-Vendor: JOFFICE
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.rcpl.model_2_0_0,
@@ -16,5 +16,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.fx.ui.controls;bundle-version="2.1.0",
  org.eclipse.rcpl.core;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.rcpl.plugin.tools,
- org.eclipse.rcpl.plugin.tools.parts
+Export-Package: org.eclipse.rcpl.tools.addon,
+ org.eclipse.rcpl.tools.addon.parts

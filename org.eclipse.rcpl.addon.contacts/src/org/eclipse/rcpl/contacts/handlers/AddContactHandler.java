@@ -16,7 +16,7 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.rcpl.contacts.plugin.OsgiContactsPlugin;
+import org.eclipse.rcpl.contacts.addon.OsgiContactsAddon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Person;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PersonGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -34,10 +34,10 @@ public class AddContactHandler {
 			Person contact = RcplFactory.eINSTANCE.createPerson();
 			PersonGroup rootGroup = group; // JO.session.getJoffice().getContacts();
 			Command command = AddCommand.create(
-					OsgiContactsPlugin.getEditingDomain(), rootGroup,
+					OsgiContactsAddon.getEditingDomain(), rootGroup,
 					RcplPackage.Literals.PERSON_GROUP__PERSONS, contact);
 			if (command != null && command.canExecute())
-				OsgiContactsPlugin.getEditingDomain().getCommandStack()
+				OsgiContactsAddon.getEditingDomain().getCommandStack()
 						.execute(command);
 		}
 	}

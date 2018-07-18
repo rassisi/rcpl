@@ -13,32 +13,32 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.*;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static RcplFactory init() {
 		try {
-			RcplFactory theRcplFactory = (RcplFactory) EPackage.Registry.INSTANCE.getEFactory(RcplPackage.eNS_URI);
+			RcplFactory theRcplFactory = (RcplFactory)EPackage.Registry.INSTANCE.getEFactory(RcplPackage.eNS_URI);
 			if (theRcplFactory != null) {
 				return theRcplFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RcplFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RcplFactoryImpl() {
@@ -47,148 +47,103 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case RcplPackage.RCPL:
-			return createRCPL();
-		case RcplPackage.PERSPECTIVES:
-			return createPerspectives();
-		case RcplPackage.PERSPECTIVE:
-			return createPerspective();
-		case RcplPackage.PREFERENCE:
-			return createPreference();
-		case RcplPackage.LOGINS:
-			return createLogins();
-		case RcplPackage.LOGIN:
-			return createLogin();
-		case RcplPackage.FAVORITES:
-			return createFavorites();
-		case RcplPackage.FAVORITE:
-			return createFavorite();
-		case RcplPackage.FAVORITES_GROUP:
-			return createFavoritesGroup();
-		case RcplPackage.PREFERENCES:
-			return createPreferences();
-		case RcplPackage.PLUGINS:
-			return createPlugins();
-		case RcplPackage.PLUGIN:
-			return createPlugin();
-		case RcplPackage.TOOL:
-			return createTool();
-		case RcplPackage.TOOL_GROUP:
-			return createToolGroup();
-		case RcplPackage.TOOLS:
-			return createTools();
-		case RcplPackage.QUICK_TOOLS:
-			return createQuickTools();
-		case RcplPackage.TOP_TOOL_BAR:
-			return createTopToolBar();
-		case RcplPackage.SIDE_TOOL_BAR:
-			return createSideToolBar();
-		case RcplPackage.QUICK_TOOL_BAR:
-			return createQuickToolBar();
-		case RcplPackage.FOLDER:
-			return createFolder();
-		case RcplPackage.RESOURCE:
-			return createResource();
-		case RcplPackage.PERSON:
-			return createPerson();
-		case RcplPackage.PERSON_GROUP:
-			return createPersonGroup();
-		case RcplPackage.RESOURCES:
-			return createResources();
-		case RcplPackage.PREFERENCE_GROUP:
-			return createPreferenceGroup();
-		case RcplPackage.PERSONS:
-			return createPersons();
-		case RcplPackage.RCPL_TEMPLATES:
-			return createRCPLTemplates();
-		case RcplPackage.JPERSON:
-			return createJPerson();
-		case RcplPackage.NPERSON:
-			return createNPerson();
-		case RcplPackage.ADDRESS:
-			return createAddress();
-		case RcplPackage.COUNTRY:
-			return createCountry();
-		case RcplPackage.CITY:
-			return createCity();
-		case RcplPackage.GEO:
-			return createGeo();
-		case RcplPackage.WORLD_REGION:
-			return createWorldRegion();
-		case RcplPackage.STREET:
-			return createStreet();
-		case RcplPackage.HOUSE_NUMBER:
-			return createHouseNumber();
-		case RcplPackage.BUILDING:
-			return createBuilding();
-		case RcplPackage.CONTACT:
-			return createContact();
-		case RcplPackage.PHONE:
-			return createPhone();
-		case RcplPackage.DOMAINS:
-			return createDomains();
-		case RcplPackage.DOMAIN:
-			return createDomain();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case RcplPackage.RCPL: return (EObject)createRCPL();
+			case RcplPackage.PERSPECTIVES: return (EObject)createPerspectives();
+			case RcplPackage.PERSPECTIVE: return (EObject)createPerspective();
+			case RcplPackage.PREFERENCE: return (EObject)createPreference();
+			case RcplPackage.LOGINS: return (EObject)createLogins();
+			case RcplPackage.LOGIN: return (EObject)createLogin();
+			case RcplPackage.FAVORITES: return (EObject)createFavorites();
+			case RcplPackage.FAVORITE: return (EObject)createFavorite();
+			case RcplPackage.FAVORITES_GROUP: return (EObject)createFavoritesGroup();
+			case RcplPackage.PREFERENCES: return (EObject)createPreferences();
+			case RcplPackage.ADDONS: return (EObject)createAddons();
+			case RcplPackage.ADDON: return (EObject)createAddon();
+			case RcplPackage.TOOL: return (EObject)createTool();
+			case RcplPackage.TOOL_GROUP: return (EObject)createToolGroup();
+			case RcplPackage.TOOLS: return (EObject)createTools();
+			case RcplPackage.QUICK_TOOLS: return (EObject)createQuickTools();
+			case RcplPackage.TOP_TOOL_BAR: return (EObject)createTopToolBar();
+			case RcplPackage.SIDE_TOOL_BAR: return (EObject)createSideToolBar();
+			case RcplPackage.QUICK_TOOL_BAR: return (EObject)createQuickToolBar();
+			case RcplPackage.FOLDER: return (EObject)createFolder();
+			case RcplPackage.RESOURCE: return (EObject)createResource();
+			case RcplPackage.PERSON: return (EObject)createPerson();
+			case RcplPackage.PERSON_GROUP: return (EObject)createPersonGroup();
+			case RcplPackage.RESOURCES: return (EObject)createResources();
+			case RcplPackage.PREFERENCE_GROUP: return (EObject)createPreferenceGroup();
+			case RcplPackage.PERSONS: return (EObject)createPersons();
+			case RcplPackage.RCPL_TEMPLATES: return (EObject)createRCPLTemplates();
+			case RcplPackage.JPERSON: return (EObject)createJPerson();
+			case RcplPackage.NPERSON: return (EObject)createNPerson();
+			case RcplPackage.ADDRESS: return (EObject)createAddress();
+			case RcplPackage.COUNTRY: return (EObject)createCountry();
+			case RcplPackage.CITY: return (EObject)createCity();
+			case RcplPackage.GEO: return (EObject)createGeo();
+			case RcplPackage.WORLD_REGION: return (EObject)createWorldRegion();
+			case RcplPackage.STREET: return (EObject)createStreet();
+			case RcplPackage.HOUSE_NUMBER: return (EObject)createHouseNumber();
+			case RcplPackage.BUILDING: return (EObject)createBuilding();
+			case RcplPackage.CONTACT: return (EObject)createContact();
+			case RcplPackage.PHONE: return (EObject)createPhone();
+			case RcplPackage.DOMAINS: return (EObject)createDomains();
+			case RcplPackage.DOMAIN: return (EObject)createDomain();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case RcplPackage.TOOL_TYPE:
-			return createToolTypeFromString(eDataType, initialValue);
-		case RcplPackage.FONT_STYLES:
-			return createFontStylesFromString(eDataType, initialValue);
-		case RcplPackage.TOOL_BAR_REPLACEMENT_POLICY:
-			return createToolBarReplacementPolicyFromString(eDataType, initialValue);
-		case RcplPackage.GROUP_TYPE:
-			return createGroupTypeFromString(eDataType, initialValue);
-		case RcplPackage.ADDRESS_TYPE:
-			return createAddressTypeFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case RcplPackage.TOOL_TYPE:
+				return createToolTypeFromString(eDataType, initialValue);
+			case RcplPackage.FONT_STYLES:
+				return createFontStylesFromString(eDataType, initialValue);
+			case RcplPackage.TOOL_BAR_REPLACEMENT_POLICY:
+				return createToolBarReplacementPolicyFromString(eDataType, initialValue);
+			case RcplPackage.GROUP_TYPE:
+				return createGroupTypeFromString(eDataType, initialValue);
+			case RcplPackage.ADDRESS_TYPE:
+				return createAddressTypeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case RcplPackage.TOOL_TYPE:
-			return convertToolTypeToString(eDataType, instanceValue);
-		case RcplPackage.FONT_STYLES:
-			return convertFontStylesToString(eDataType, instanceValue);
-		case RcplPackage.TOOL_BAR_REPLACEMENT_POLICY:
-			return convertToolBarReplacementPolicyToString(eDataType, instanceValue);
-		case RcplPackage.GROUP_TYPE:
-			return convertGroupTypeToString(eDataType, instanceValue);
-		case RcplPackage.ADDRESS_TYPE:
-			return convertAddressTypeToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case RcplPackage.TOOL_TYPE:
+				return convertToolTypeToString(eDataType, instanceValue);
+			case RcplPackage.FONT_STYLES:
+				return convertFontStylesToString(eDataType, instanceValue);
+			case RcplPackage.TOOL_BAR_REPLACEMENT_POLICY:
+				return convertToolBarReplacementPolicyToString(eDataType, instanceValue);
+			case RcplPackage.GROUP_TYPE:
+				return convertGroupTypeToString(eDataType, instanceValue);
+			case RcplPackage.ADDRESS_TYPE:
+				return convertAddressTypeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,7 +154,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,7 +164,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -221,7 +174,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -232,7 +184,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,7 +194,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -254,7 +204,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -265,7 +214,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -276,7 +224,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -287,7 +234,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -297,25 +243,23 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Plugins createPlugins() {
-		PluginsImpl plugins = new PluginsImpl();
-		return plugins;
+	public Addons createAddons() {
+		AddonsImpl addons = new AddonsImpl();
+		return addons;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Plugin createPlugin() {
-		PluginImpl plugin = new PluginImpl();
-		return plugin;
+	public Addon createAddon() {
+		AddonImpl addon = new AddonImpl();
+		return addon;
 	}
 
 	/**
@@ -332,7 +276,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -343,7 +286,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -354,7 +296,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -365,7 +306,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -376,7 +316,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -387,7 +326,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -398,7 +336,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -409,7 +346,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -420,7 +356,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -431,7 +366,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -442,7 +376,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -453,7 +386,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -464,7 +396,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -475,7 +406,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -486,7 +416,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -497,7 +426,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -508,7 +436,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -519,7 +446,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -530,7 +456,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -541,7 +466,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -552,7 +476,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -563,7 +486,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -574,7 +496,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -585,7 +506,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -596,7 +516,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -607,7 +526,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -618,7 +536,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -629,7 +546,6 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -640,20 +556,16 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ToolType createToolTypeFromString(EDataType eDataType, String initialValue) {
 		ToolType result = ToolType.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertToolTypeToString(EDataType eDataType, Object instanceValue) {
@@ -662,20 +574,16 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FontStyles createFontStylesFromString(EDataType eDataType, String initialValue) {
 		FontStyles result = FontStyles.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertFontStylesToString(EDataType eDataType, Object instanceValue) {
@@ -684,20 +592,16 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ToolBarReplacementPolicy createToolBarReplacementPolicyFromString(EDataType eDataType, String initialValue) {
 		ToolBarReplacementPolicy result = ToolBarReplacementPolicy.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertToolBarReplacementPolicyToString(EDataType eDataType, Object instanceValue) {
@@ -706,20 +610,16 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GroupType createGroupTypeFromString(EDataType eDataType, String initialValue) {
 		GroupType result = GroupType.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertGroupTypeToString(EDataType eDataType, Object instanceValue) {
@@ -728,20 +628,16 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AddressType createAddressTypeFromString(EDataType eDataType, String initialValue) {
 		AddressType result = AddressType.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertAddressTypeToString(EDataType eDataType, Object instanceValue) {
@@ -750,17 +646,15 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public RcplPackage getRcplPackage() {
-		return (RcplPackage) getEPackage();
+		return (RcplPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -19,7 +19,7 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.CutToClipboardCommand;
-import org.eclipse.rcpl.contacts.plugin.OsgiContactsPlugin;
+import org.eclipse.rcpl.contacts.addon.OsgiContactsAddon;
 
 public class CutHandler {
 
@@ -32,7 +32,7 @@ public class CutHandler {
 	public boolean canExecute(@Optional List<?> selection) {
 		if (selection != null) {
 			command = CutToClipboardCommand.create(
-					OsgiContactsPlugin.getEditingDomain(), selection);
+					OsgiContactsAddon.getEditingDomain(), selection);
 			return command.canExecute();
 		}
 		return false;
@@ -41,7 +41,7 @@ public class CutHandler {
 	@Execute
 	public void execute() {
 		if (command != null && command.canExecute())
-			OsgiContactsPlugin.getEditingDomain().getCommandStack()
+			OsgiContactsAddon.getEditingDomain().getCommandStack()
 					.execute(command);
 	}
 

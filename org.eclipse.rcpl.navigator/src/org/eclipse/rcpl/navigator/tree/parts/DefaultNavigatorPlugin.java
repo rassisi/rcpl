@@ -14,11 +14,11 @@ package org.eclipse.rcpl.navigator.tree.parts;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IApplicationStarter;
-import org.eclipse.rcpl.INavigatorPlugin;
+import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.RcplAbstractMigration;
-import org.eclipse.rcpl.RcplPlugin;
+import org.eclipse.rcpl.RcplAddon;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -29,8 +29,8 @@ import javafx.scene.layout.Pane;
  * @author Ramin
  * 
  */
-@RcplPlugin
-public class DefaultNavigatorPlugin extends AbstractRcplAddon implements INavigatorPlugin{
+@RcplAddon
+public class DefaultNavigatorPlugin extends AbstractRcplAddon implements INavigatorAddon{
 
 	@Override
 	public void setTool(Tool tool) {

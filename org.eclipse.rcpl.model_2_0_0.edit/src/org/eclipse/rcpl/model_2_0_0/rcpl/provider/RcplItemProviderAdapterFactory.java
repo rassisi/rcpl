@@ -300,49 +300,49 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugins} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Addons} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PluginsItemProvider pluginsItemProvider;
+	protected AddonsItemProvider addonsItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugins}.
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Addons}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPluginsAdapter() {
-		if (pluginsItemProvider == null) {
-			pluginsItemProvider = new PluginsItemProvider(this);
+	public Adapter createAddonsAdapter() {
+		if (addonsItemProvider == null) {
+			addonsItemProvider = new AddonsItemProvider(this);
 		}
 
-		return pluginsItemProvider;
+		return addonsItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PluginItemProvider pluginItemProvider;
+	protected AddonItemProvider addonItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin}.
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPluginAdapter() {
-		if (pluginItemProvider == null) {
-			pluginItemProvider = new PluginItemProvider(this);
+	public Adapter createAddonAdapter() {
+		if (addonItemProvider == null) {
+			addonItemProvider = new AddonItemProvider(this);
 		}
 
-		return pluginItemProvider;
+		return addonItemProvider;
 	}
 
 	/**
@@ -1121,8 +1121,8 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 		if (favoriteItemProvider != null) favoriteItemProvider.dispose();
 		if (favoritesGroupItemProvider != null) favoritesGroupItemProvider.dispose();
 		if (preferencesItemProvider != null) preferencesItemProvider.dispose();
-		if (pluginsItemProvider != null) pluginsItemProvider.dispose();
-		if (pluginItemProvider != null) pluginItemProvider.dispose();
+		if (addonsItemProvider != null) addonsItemProvider.dispose();
+		if (addonItemProvider != null) addonItemProvider.dispose();
 		if (toolItemProvider != null) toolItemProvider.dispose();
 		if (toolGroupItemProvider != null) toolGroupItemProvider.dispose();
 		if (toolsItemProvider != null) toolsItemProvider.dispose();

@@ -11,7 +11,7 @@
 package org.eclipse.rcpl.homepages;
 
 import org.eclipse.rcpl.IDocument;
-import org.eclipse.rcpl.INavigatorPlugin;
+import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
@@ -185,7 +185,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 		SplitPane splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
 
-		INavigatorPlugin navigatorPlugin = Rcpl.UIC.getNavigator();
+		INavigatorAddon navigatorPlugin = Rcpl.UIC.getNavigator();
 
 		if (navigatorPlugin != null) {
 			Node n = navigatorPlugin.create(detailsArea, null, null, false).getNode();

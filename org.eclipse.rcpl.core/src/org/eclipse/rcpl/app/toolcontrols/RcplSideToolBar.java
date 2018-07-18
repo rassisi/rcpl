@@ -19,7 +19,7 @@ import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IButtonListener;
 import org.eclipse.rcpl.IEditor;
-import org.eclipse.rcpl.INavigatorPlugin;
+import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplConstants;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ISideToolBar;
@@ -692,7 +692,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			if (toolGroup.getTools().size() == 1 && ToolType.NAVIGATOR.equals(mainSideToolGroupType)) {
 
 				try {
-					INavigatorPlugin navigatorPlugin = Rcpl.UIC.getNavigator();
+					INavigatorAddon navigatorPlugin = Rcpl.UIC.getNavigator();
 
 					if (navigatorPlugin != null) {
 						navigatorPlugin.setTool(toolGroup.getTools().get(0));

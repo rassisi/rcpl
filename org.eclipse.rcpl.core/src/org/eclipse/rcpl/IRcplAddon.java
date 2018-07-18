@@ -1,7 +1,7 @@
 package org.eclipse.rcpl;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Plugin;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.Node;
@@ -29,7 +29,7 @@ public interface IRcplAddon {
 
 	Node getNode();
 
-	Plugin getEmfModel();
+	Addon getEmfModel();
 
 	String getDisplayName();
 

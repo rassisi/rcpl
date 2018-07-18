@@ -1,4 +1,4 @@
-@RcplPlugin
+@RcplAddon
 package org.eclipse.rcpl.navigator.tree.parts;
 
-import org.eclipse.rcpl.RcplPlugin;
+import org.eclipse.rcpl.RcplAddon;

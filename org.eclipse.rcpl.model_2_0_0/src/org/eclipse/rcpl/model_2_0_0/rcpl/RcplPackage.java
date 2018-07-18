@@ -330,13 +330,13 @@ public interface RcplPackage extends EPackage {
 	int RCPL__LEAF = LAYOUTABLE__LEAF;
 
 	/**
-	 * The feature id for the '<em><b>All Plugins</b></em>' containment reference.
+	 * The feature id for the '<em><b>All Addons</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RCPL__ALL_PLUGINS = LAYOUTABLE_FEATURE_COUNT + 0;
+	int RCPL__ALL_ADDONS = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>All Perspectives</b></em>' containment reference.
@@ -2067,14 +2067,14 @@ public interface RcplPackage extends EPackage {
 	int PREFERENCES_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PluginsImpl <em>Plugins</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonsImpl <em>Addons</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.PluginsImpl
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getPlugins()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonsImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getAddons()
 	 * @generated
 	 */
-	int PLUGINS = 11;
+	int ADDONS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
@@ -2083,7 +2083,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+	int ADDONS__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
 
 	/**
 	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
@@ -2092,7 +2092,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+	int ADDONS__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
 
 	/**
 	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
@@ -2101,7 +2101,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+	int ADDONS__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
 
 	/**
 	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
@@ -2110,7 +2110,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+	int ADDONS__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2119,7 +2119,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__NAME = LAYOUTABLE__NAME;
+	int ADDONS__NAME = LAYOUTABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2128,7 +2128,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+	int ADDONS__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2137,7 +2137,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__ID = LAYOUTABLE__ID;
+	int ADDONS__ID = LAYOUTABLE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' attribute.
@@ -2146,7 +2146,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__IMAGE = LAYOUTABLE__IMAGE;
+	int ADDONS__IMAGE = LAYOUTABLE__IMAGE;
 
 	/**
 	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
@@ -2155,7 +2155,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+	int ADDONS__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
 
 	/**
 	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
@@ -2164,7 +2164,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+	int ADDONS__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
@@ -2173,7 +2173,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+	int ADDONS__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
 
 	/**
 	 * The feature id for the '<em><b>End Date</b></em>' attribute.
@@ -2182,7 +2182,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__END_DATE = LAYOUTABLE__END_DATE;
+	int ADDONS__END_DATE = LAYOUTABLE__END_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
@@ -2191,7 +2191,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__LEAF = LAYOUTABLE__LEAF;
+	int ADDONS__LEAF = LAYOUTABLE__LEAF;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -2200,35 +2200,35 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS__CHILDREN = LAYOUTABLE_FEATURE_COUNT + 0;
+	int ADDONS__CHILDREN = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Plugins</em>' class.
+	 * The number of structural features of the '<em>Addons</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+	int ADDONS_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Plugins</em>' class.
+	 * The number of operations of the '<em>Addons</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGINS_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
+	int ADDONS_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PluginImpl <em>Plugin</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonImpl <em>Addon</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.PluginImpl
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getAddon()
 	 * @generated
 	 */
-	int PLUGIN = 12;
+	int ADDON = 12;
 
 	/**
 	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
@@ -2237,7 +2237,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+	int ADDON__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
 
 	/**
 	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
@@ -2246,7 +2246,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+	int ADDON__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
 
 	/**
 	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
@@ -2255,7 +2255,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+	int ADDON__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
 
 	/**
 	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
@@ -2264,7 +2264,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+	int ADDON__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2273,7 +2273,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__NAME = LAYOUTABLE__NAME;
+	int ADDON__NAME = LAYOUTABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2282,7 +2282,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+	int ADDON__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -2291,7 +2291,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__ID = LAYOUTABLE__ID;
+	int ADDON__ID = LAYOUTABLE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' attribute.
@@ -2300,7 +2300,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__IMAGE = LAYOUTABLE__IMAGE;
+	int ADDON__IMAGE = LAYOUTABLE__IMAGE;
 
 	/**
 	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
@@ -2309,7 +2309,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+	int ADDON__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
 
 	/**
 	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
@@ -2318,7 +2318,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+	int ADDON__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
@@ -2327,7 +2327,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+	int ADDON__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
 
 	/**
 	 * The feature id for the '<em><b>End Date</b></em>' attribute.
@@ -2336,7 +2336,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__END_DATE = LAYOUTABLE__END_DATE;
+	int ADDON__END_DATE = LAYOUTABLE__END_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
@@ -2345,7 +2345,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__LEAF = LAYOUTABLE__LEAF;
+	int ADDON__LEAF = LAYOUTABLE__LEAF;
 
 	/**
 	 * The feature id for the '<em><b>Bundle Id</b></em>' attribute.
@@ -2354,7 +2354,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__BUNDLE_ID = LAYOUTABLE_FEATURE_COUNT + 0;
+	int ADDON__BUNDLE_ID = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -2363,7 +2363,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__CLASS_NAME = LAYOUTABLE_FEATURE_COUNT + 1;
+	int ADDON__CLASS_NAME = LAYOUTABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Roles</b></em>' attribute list.
@@ -2372,7 +2372,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__ROLES = LAYOUTABLE_FEATURE_COUNT + 2;
+	int ADDON__ROLES = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Users</b></em>' attribute list.
@@ -2381,7 +2381,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__USERS = LAYOUTABLE_FEATURE_COUNT + 3;
+	int ADDON__USERS = LAYOUTABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Groups</b></em>' attribute list.
@@ -2390,7 +2390,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__GROUPS = LAYOUTABLE_FEATURE_COUNT + 4;
+	int ADDON__GROUPS = LAYOUTABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Is Perspective</b></em>' attribute.
@@ -2399,7 +2399,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__IS_PERSPECTIVE = LAYOUTABLE_FEATURE_COUNT + 5;
+	int ADDON__IS_PERSPECTIVE = LAYOUTABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Read Only</b></em>' attribute.
@@ -2408,7 +2408,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__READ_ONLY = LAYOUTABLE_FEATURE_COUNT + 6;
+	int ADDON__READ_ONLY = LAYOUTABLE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Default Perspective</b></em>' reference.
@@ -2417,7 +2417,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__DEFAULT_PERSPECTIVE = LAYOUTABLE_FEATURE_COUNT + 7;
+	int ADDON__DEFAULT_PERSPECTIVE = LAYOUTABLE_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Perspectives</b></em>' reference list.
@@ -2426,25 +2426,25 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN__PERSPECTIVES = LAYOUTABLE_FEATURE_COUNT + 8;
+	int ADDON__PERSPECTIVES = LAYOUTABLE_FEATURE_COUNT + 8;
 
 	/**
-	 * The number of structural features of the '<em>Plugin</em>' class.
+	 * The number of structural features of the '<em>Addon</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 9;
+	int ADDON_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 9;
 
 	/**
-	 * The number of operations of the '<em>Plugin</em>' class.
+	 * The number of operations of the '<em>Addon</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
+	int ADDON_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl <em>Abstract Tool</em>}' class.
@@ -7624,15 +7624,15 @@ public interface RcplPackage extends EPackage {
 	EClass getRCPL();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPlugins <em>All Plugins</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllAddons <em>All Addons</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>All Plugins</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPlugins()
+	 * @return the meta object for the containment reference '<em>All Addons</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllAddons()
 	 * @see #getRCPL()
 	 * @generated
 	 */
-	EReference getRCPL_AllPlugins();
+	EReference getRCPL_AllAddons();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPerspectives <em>All Perspectives</em>}'.
@@ -8220,134 +8220,134 @@ public interface RcplPackage extends EPackage {
 	EAttribute getPreferences_System();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugins <em>Plugins</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addons <em>Addons</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Plugins</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugins
+	 * @return the meta object for class '<em>Addons</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addons
 	 * @generated
 	 */
-	EClass getPlugins();
+	EClass getAddons();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugins#getChildren <em>Children</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addons#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Children</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugins#getChildren()
-	 * @see #getPlugins()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addons#getChildren()
+	 * @see #getAddons()
 	 * @generated
 	 */
-	EReference getPlugins_Children();
+	EReference getAddons_Children();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin <em>Plugin</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon <em>Addon</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Plugin</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin
+	 * @return the meta object for class '<em>Addon</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon
 	 * @generated
 	 */
-	EClass getPlugin();
+	EClass getAddon();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getBundleId <em>Bundle Id</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getBundleId <em>Bundle Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Bundle Id</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getBundleId()
-	 * @see #getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getBundleId()
+	 * @see #getAddon()
 	 * @generated
 	 */
-	EAttribute getPlugin_BundleId();
+	EAttribute getAddon_BundleId();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getClassName <em>Class Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getClassName <em>Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Class Name</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getClassName()
-	 * @see #getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getClassName()
+	 * @see #getAddon()
 	 * @generated
 	 */
-	EAttribute getPlugin_ClassName();
+	EAttribute getAddon_ClassName();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getRoles <em>Roles</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getRoles <em>Roles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Roles</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getRoles()
-	 * @see #getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getRoles()
+	 * @see #getAddon()
 	 * @generated
 	 */
-	EAttribute getPlugin_Roles();
+	EAttribute getAddon_Roles();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getUsers <em>Users</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getUsers <em>Users</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Users</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getUsers()
-	 * @see #getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getUsers()
+	 * @see #getAddon()
 	 * @generated
 	 */
-	EAttribute getPlugin_Users();
+	EAttribute getAddon_Users();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getGroups <em>Groups</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getGroups <em>Groups</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Groups</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getGroups()
-	 * @see #getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getGroups()
+	 * @see #getAddon()
 	 * @generated
 	 */
-	EAttribute getPlugin_Groups();
+	EAttribute getAddon_Groups();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#isIsPerspective <em>Is Perspective</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#isIsPerspective <em>Is Perspective</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Perspective</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#isIsPerspective()
-	 * @see #getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#isIsPerspective()
+	 * @see #getAddon()
 	 * @generated
 	 */
-	EAttribute getPlugin_IsPerspective();
+	EAttribute getAddon_IsPerspective();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#isReadOnly <em>Read Only</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#isReadOnly <em>Read Only</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Read Only</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#isReadOnly()
-	 * @see #getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#isReadOnly()
+	 * @see #getAddon()
 	 * @generated
 	 */
-	EAttribute getPlugin_ReadOnly();
+	EAttribute getAddon_ReadOnly();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getDefaultPerspective <em>Default Perspective</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getDefaultPerspective <em>Default Perspective</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Default Perspective</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getDefaultPerspective()
-	 * @see #getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getDefaultPerspective()
+	 * @see #getAddon()
 	 * @generated
 	 */
-	EReference getPlugin_DefaultPerspective();
+	EReference getAddon_DefaultPerspective();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getPerspectives <em>Perspectives</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getPerspectives <em>Perspectives</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Perspectives</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin#getPerspectives()
-	 * @see #getPlugin()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getPerspectives()
+	 * @see #getAddon()
 	 * @generated
 	 */
-	EReference getPlugin_Perspectives();
+	EReference getAddon_Perspectives();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool <em>Abstract Tool</em>}'.
@@ -9551,12 +9551,12 @@ public interface RcplPackage extends EPackage {
 		EClass RCPL = eINSTANCE.getRCPL();
 
 		/**
-		 * The meta object literal for the '<em><b>All Plugins</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>All Addons</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RCPL__ALL_PLUGINS = eINSTANCE.getRCPL_AllPlugins();
+		EReference RCPL__ALL_ADDONS = eINSTANCE.getRCPL_AllAddons();
 
 		/**
 		 * The meta object literal for the '<em><b>All Perspectives</b></em>' containment reference feature.
@@ -10009,14 +10009,14 @@ public interface RcplPackage extends EPackage {
 		EAttribute PREFERENCES__SYSTEM = eINSTANCE.getPreferences_System();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PluginsImpl <em>Plugins</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonsImpl <em>Addons</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.PluginsImpl
-		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getPlugins()
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonsImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getAddons()
 		 * @generated
 		 */
-		EClass PLUGINS = eINSTANCE.getPlugins();
+		EClass ADDONS = eINSTANCE.getAddons();
 
 		/**
 		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
@@ -10024,17 +10024,17 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PLUGINS__CHILDREN = eINSTANCE.getPlugins_Children();
+		EReference ADDONS__CHILDREN = eINSTANCE.getAddons_Children();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PluginImpl <em>Plugin</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonImpl <em>Addon</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.PluginImpl
-		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getPlugin()
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getAddon()
 		 * @generated
 		 */
-		EClass PLUGIN = eINSTANCE.getPlugin();
+		EClass ADDON = eINSTANCE.getAddon();
 
 		/**
 		 * The meta object literal for the '<em><b>Bundle Id</b></em>' attribute feature.
@@ -10042,7 +10042,7 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__BUNDLE_ID = eINSTANCE.getPlugin_BundleId();
+		EAttribute ADDON__BUNDLE_ID = eINSTANCE.getAddon_BundleId();
 
 		/**
 		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
@@ -10050,7 +10050,7 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__CLASS_NAME = eINSTANCE.getPlugin_ClassName();
+		EAttribute ADDON__CLASS_NAME = eINSTANCE.getAddon_ClassName();
 
 		/**
 		 * The meta object literal for the '<em><b>Roles</b></em>' attribute list feature.
@@ -10058,7 +10058,7 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__ROLES = eINSTANCE.getPlugin_Roles();
+		EAttribute ADDON__ROLES = eINSTANCE.getAddon_Roles();
 
 		/**
 		 * The meta object literal for the '<em><b>Users</b></em>' attribute list feature.
@@ -10066,7 +10066,7 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__USERS = eINSTANCE.getPlugin_Users();
+		EAttribute ADDON__USERS = eINSTANCE.getAddon_Users();
 
 		/**
 		 * The meta object literal for the '<em><b>Groups</b></em>' attribute list feature.
@@ -10074,7 +10074,7 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__GROUPS = eINSTANCE.getPlugin_Groups();
+		EAttribute ADDON__GROUPS = eINSTANCE.getAddon_Groups();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Perspective</b></em>' attribute feature.
@@ -10082,7 +10082,7 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__IS_PERSPECTIVE = eINSTANCE.getPlugin_IsPerspective();
+		EAttribute ADDON__IS_PERSPECTIVE = eINSTANCE.getAddon_IsPerspective();
 
 		/**
 		 * The meta object literal for the '<em><b>Read Only</b></em>' attribute feature.
@@ -10090,7 +10090,7 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PLUGIN__READ_ONLY = eINSTANCE.getPlugin_ReadOnly();
+		EAttribute ADDON__READ_ONLY = eINSTANCE.getAddon_ReadOnly();
 
 		/**
 		 * The meta object literal for the '<em><b>Default Perspective</b></em>' reference feature.
@@ -10098,7 +10098,7 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PLUGIN__DEFAULT_PERSPECTIVE = eINSTANCE.getPlugin_DefaultPerspective();
+		EReference ADDON__DEFAULT_PERSPECTIVE = eINSTANCE.getAddon_DefaultPerspective();
 
 		/**
 		 * The meta object literal for the '<em><b>Perspectives</b></em>' reference list feature.
@@ -10106,7 +10106,7 @@ public interface RcplPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PLUGIN__PERSPECTIVES = eINSTANCE.getPlugin_Perspectives();
+		EReference ADDON__PERSPECTIVES = eINSTANCE.getAddon_Perspectives();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl <em>Abstract Tool</em>}' class.

@@ -19,7 +19,7 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.CopyToClipboardCommand;
-import org.eclipse.rcpl.contacts.plugin.OsgiContactsPlugin;
+import org.eclipse.rcpl.contacts.addon.OsgiContactsAddon;
 
 public class CopyHandler {
 
@@ -32,7 +32,7 @@ public class CopyHandler {
 	public boolean canExecute(@Optional List<?> selection) {
 		if (selection != null) {
 			command = CopyToClipboardCommand.create(
-					OsgiContactsPlugin.getEditingDomain(), selection);
+					OsgiContactsAddon.getEditingDomain(), selection);
 			return command.canExecute();
 		}
 		return false;
@@ -41,7 +41,7 @@ public class CopyHandler {
 	@Execute
 	public void execute() {
 		if (command != null && command.canExecute())
-			OsgiContactsPlugin.getEditingDomain().getCommandStack()
+			OsgiContactsAddon.getEditingDomain().getCommandStack()
 					.execute(command);
 	}
 

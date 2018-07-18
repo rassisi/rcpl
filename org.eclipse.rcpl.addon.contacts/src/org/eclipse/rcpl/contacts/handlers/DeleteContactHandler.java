@@ -7,7 +7,7 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.rcpl.contacts.plugin.OsgiContactsPlugin;
+import org.eclipse.rcpl.contacts.addon.OsgiContactsAddon;
 
 public class DeleteContactHandler {
 
@@ -19,7 +19,7 @@ public class DeleteContactHandler {
 	@CanExecute
 	public boolean canExecute(@Optional List<?> selection) {
 		if (selection != null) {
-			command = DeleteCommand.create(OsgiContactsPlugin.getEditingDomain(),
+			command = DeleteCommand.create(OsgiContactsAddon.getEditingDomain(),
 					selection);
 			return command.canExecute();
 		}
@@ -29,7 +29,7 @@ public class DeleteContactHandler {
 	@Execute
 	public void execute() {
 		if (command != null && command.canExecute())
-			OsgiContactsPlugin.getEditingDomain().getCommandStack()
+			OsgiContactsAddon.getEditingDomain().getCommandStack()
 					.execute(command);
 	}
 

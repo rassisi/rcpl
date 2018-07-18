@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated rcpl_cdo -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.rcpl.model_2_0_0.rcpl.presentation.RcplModelWizardID"
+            name="%_UI_RcplModelWizard_label"
+            class="org.eclipse.rcpl.model_2_0_0.rcpl.presentation.RcplModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/RcplModelFile.gif">
+         <description>%_UI_RcplModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated rcpl_cdo -->
+      <editor
+            id="org.eclipse.rcpl.model_2_0_0.rcpl.presentation.RcplEditorID"
+            name="%_UI_RcplEditor_label"
+            icon="icons/full/obj16/RcplModelFile.gif"
+            extensions="rcpl"
+            class="org.eclipse.rcpl.model_2_0_0.rcpl.presentation.RcplEditor"
+            contributorClass="org.eclipse.rcpl.model_2_0_0.rcpl.presentation.RcplActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated rcpl_cdo -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.emf.cdo.security.presentation.SecurityModelWizardID"
+            name="%_UI_SecurityModelWizard_label"
+            class="org.eclipse.emf.cdo.security.presentation.SecurityModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SecurityModelFile.gif">
+         <description>%_UI_SecurityModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated rcpl_cdo -->
+      <editor
+            id="org.eclipse.emf.cdo.security.presentation.SecurityEditorID"
+            name="%_UI_SecurityEditor_label"
+            icon="icons/full/obj16/SecurityModelFile.gif"
+            extensions="security"
+            class="org.eclipse.emf.cdo.security.presentation.SecurityEditor"
+            contributorClass="org.eclipse.emf.cdo.security.presentation.SecurityActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated rcpl_cdo -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.emf.cdo.etypes.presentation.EtypesModelWizardID"
+            name="%_UI_EtypesModelWizard_label"
+            class="org.eclipse.emf.cdo.etypes.presentation.EtypesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/EtypesModelFile.gif">
+         <description>%_UI_EtypesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated rcpl_cdo -->
+      <editor
+            id="org.eclipse.emf.cdo.etypes.presentation.EtypesEditorID"
+            name="%_UI_EtypesEditor_label"
+            icon="icons/full/obj16/EtypesModelFile.gif"
+            extensions="etypes"
+            class="org.eclipse.emf.cdo.etypes.presentation.EtypesEditor"
+            contributorClass="org.eclipse.emf.cdo.etypes.presentation.EtypesActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated rcpl_cdo -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.emf.cdo.expressions.presentation.ExpressionsModelWizardID"
+            name="%_UI_ExpressionsModelWizard_label"
+            class="org.eclipse.emf.cdo.expressions.presentation.ExpressionsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ExpressionsModelFile.gif">
+         <description>%_UI_ExpressionsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated rcpl_cdo -->
+      <editor
+            id="org.eclipse.emf.cdo.expressions.presentation.ExpressionsEditorID"
+            name="%_UI_ExpressionsEditor_label"
+            icon="icons/full/obj16/ExpressionsModelFile.gif"
+            extensions="expressions"
+            class="org.eclipse.emf.cdo.expressions.presentation.ExpressionsEditor"
+            contributorClass="org.eclipse.emf.cdo.expressions.presentation.ExpressionsActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

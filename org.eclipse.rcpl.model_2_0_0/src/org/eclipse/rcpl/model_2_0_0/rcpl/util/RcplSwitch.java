@@ -140,17 +140,17 @@ public class RcplSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RcplPackage.PLUGINS: {
-				Plugins plugins = (Plugins)theEObject;
-				T result = casePlugins(plugins);
-				if (result == null) result = caseLayoutable(plugins);
+			case RcplPackage.ADDONS: {
+				Addons addons = (Addons)theEObject;
+				T result = caseAddons(addons);
+				if (result == null) result = caseLayoutable(addons);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RcplPackage.PLUGIN: {
-				Plugin plugin = (Plugin)theEObject;
-				T result = casePlugin(plugin);
-				if (result == null) result = caseLayoutable(plugin);
+			case RcplPackage.ADDON: {
+				Addon addon = (Addon)theEObject;
+				T result = caseAddon(addon);
+				if (result == null) result = caseLayoutable(addon);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -536,32 +536,32 @@ public class RcplSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Plugins</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Addons</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Plugins</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Addons</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePlugins(Plugins object) {
+	public T caseAddons(Addons object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Plugin</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Addon</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Plugin</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Addon</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePlugin(Plugin object) {
+	public T caseAddon(Addon object) {
 		return null;
 	}
 

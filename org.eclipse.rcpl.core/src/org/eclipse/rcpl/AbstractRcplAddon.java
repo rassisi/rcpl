@@ -10,33 +10,25 @@
  *******************************************************************************/
 package org.eclipse.rcpl;
 
-import java.io.IOException;
 import java.net.URL;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Plugin;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.text.Text;
 
 public abstract class AbstractRcplAddon implements IRcplAddon {
 
 	private BorderPane node;
 
-	protected Plugin rcplPlugin;
+	protected Addon rcplAddon;
 
 	private Class<? extends EObject> cl;
 
@@ -111,20 +103,20 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 	public void bindToModel() throws Exception {
 
 		try {
-			for (Plugin plugin : RcplSession.getDefault().getRcpl().getAllPlugins().getChildren()) {
+			for (Addon plugin : RcplSession.getDefault().getRcpl().getAllAddons().getChildren()) {
 				String pluginId = plugin.getId();
 				if (pluginId != null && pluginId.equals(getId())) {
-					rcplPlugin = plugin;
+					rcplAddon = plugin;
 					break;
 				}
 			}
 
-			if (rcplPlugin == null) {
-				rcplPlugin = RcplFactory.eINSTANCE.createPlugin();
+			if (rcplAddon == null) {
+				rcplAddon = RcplFactory.eINSTANCE.createAddon();
 				if (tool != null) {
-					rcplPlugin.setId(tool.getId());
+					rcplAddon.setId(tool.getId());
 				}
-				RcplSession.getDefault().getRcpl().getAllPlugins().getChildren().add(rcplPlugin);
+				RcplSession.getDefault().getRcpl().getAllAddons().getChildren().add(rcplAddon);
 				RcplSession.getDefault().commit();
 			}
 			if (getMigration() != null) {
@@ -180,8 +172,8 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 	public abstract String getDisplayName();
 
 	@Override
-	public Plugin getEmfModel() {
-		return rcplPlugin;
+	public Addon getEmfModel() {
+		return rcplAddon;
 	}
 
 	@Override
@@ -229,7 +221,7 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((rcplPlugin == null) ? 0 : rcplPlugin.hashCode());
+		result = prime * result + ((rcplAddon == null) ? 0 : rcplAddon.hashCode());
 		result = prime * result + (getId().hashCode());
 		return result;
 	}
@@ -243,10 +235,10 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 		if (getClass() != obj.getClass())
 			return false;
 		AbstractRcplAddon other = (AbstractRcplAddon) obj;
-		if (rcplPlugin == null) {
-			if (other.rcplPlugin != null)
+		if (rcplAddon == null) {
+			if (other.rcplAddon != null)
 				return false;
-		} else if (!rcplPlugin.equals(other.rcplPlugin))
+		} else if (!rcplAddon.equals(other.rcplAddon))
 			return false;
 		if (!getId().equals(other.getId()))
 			return false;

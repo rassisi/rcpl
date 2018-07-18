@@ -77,10 +77,10 @@ import org.eclipse.net4j.util.security.IPasswordCredentialsProvider;
 import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Plugin;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
@@ -969,8 +969,8 @@ public class RcplSession {
 	// return company;
 	// }
 
-	public EList<Plugin> getOfficeParts(RCPL joffice) {
-		return joffice.getAllPlugins().getChildren();
+	public EList<Addon> getOfficeParts(RCPL joffice) {
+		return joffice.getAllAddons().getChildren();
 	}
 
 	// public double getDouble(JOKey key) {

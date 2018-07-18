@@ -504,7 +504,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 	}
 
 	@Override
-	public IRcplAddon findRcplPlugins(String id) {
+	public IRcplAddon findRcplAddons(String id) {
 		try {
 			String[] splits = id.split("/");
 			String lastSegment = splits[splits.length - 1];
@@ -713,35 +713,35 @@ public abstract class RcplAbstractUic implements IRcplUic {
 		copyFXToInternal();
 	}
 
-	private void initEcoreFile_OSGi() {
-
-		String installDir = "";
-
-		// try {
-		// if (JOSession.ENV_DEV) {
-		//
-		// File f = new
-		// File(ResourcesPlugi.getWorkspace().getRoot().getLocation().toOSString());
-		//
-		// f = new File(f.getParentFile(),
-		// "joffice_migration_1/org.eclipse.rcpl.build/installer/components/conf");
-		//
-		// installDir = f.getAbsolutePath() + "/";
-		//
-		// } else {
-		// try {
-		// installDir =
-		// org.eclipse.core.runtime.Platform.getInstallLocation().getDataArea("/").getPath();
-		//
-		// } catch (IOException e1) {
-		//
-		// }
-		// }
-		// } catch (Throwable ex) {
-		//
-		// }
-
-	}
+//	private void initEcoreFile_OSGi() {
+//
+//		String installDir = "";
+//
+//		 try {
+//		 if (JOSession.ENV_DEV) {
+//		
+//		 File f = new
+//		 File(ResourcesPlugi.getWorkspace().getRoot().getLocation().toOSString());
+//		
+//		 f = new File(f.getParentFile(),
+//		 "joffice_migration_1/org.eclipse.rcpl.build/installer/components/conf");
+//		
+//		 installDir = f.getAbsolutePath() + "/";
+//		
+//		 } else {
+//		 try {
+//		 installDir =
+//		 org.eclipse.core.runtime.Platform.getInstallLocation().getDataArea("/").getPath();
+//		
+//		 } catch (IOException e1) {
+//		
+//		 }
+//		 }
+//		 } catch (Throwable ex) {
+//		
+//		 }
+//
+//	}
 
 	@Override
 	public boolean initSession(RcplLogin login) {
@@ -979,7 +979,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 	 */
 	@Override
 	public boolean showPerspective(String id, boolean asEditor) {
-		IRcplAddon uc = findRcplPlugins(id);
+		IRcplAddon uc = findRcplAddons(id);
 		if (uc != null) {
 			if (uc.getEmfModel() != null) {
 				uc.setAsEditor(asEditor);
@@ -1132,14 +1132,14 @@ public abstract class RcplAbstractUic implements IRcplUic {
 	}
 
 	@Override
-	public INavigatorPlugin getNavigator() {
-		IRcplAddon rcplPlugin = Rcpl.rcplApplicationProvider.findRcplAddon(INavigatorPlugin.class);
-		if (rcplPlugin instanceof INavigatorPlugin) {
+	public INavigatorAddon getNavigator() {
+		IRcplAddon rcplPlugin = Rcpl.rcplApplicationProvider.findRcplAddon(INavigatorAddon.class);
+		if (rcplPlugin instanceof INavigatorAddon) {
 			Parent parent = rcplPlugin.getNode().getParent();
 			if (parent instanceof Pane) {
 				((Pane) parent).getChildren().remove(rcplPlugin.getNode());
 			}
-			return (INavigatorPlugin) rcplPlugin;
+			return (INavigatorAddon) rcplPlugin;
 		}
 		return null;
 	}

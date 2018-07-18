@@ -109,12 +109,12 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 				return createPreferencesAdapter();
 			}
 			@Override
-			public Adapter casePlugins(Plugins object) {
-				return createPluginsAdapter();
+			public Adapter caseAddons(Addons object) {
+				return createAddonsAdapter();
 			}
 			@Override
-			public Adapter casePlugin(Plugin object) {
-				return createPluginAdapter();
+			public Adapter caseAddon(Addon object) {
+				return createAddonAdapter();
 			}
 			@Override
 			public Adapter caseAbstractTool(AbstractTool object) {
@@ -411,30 +411,30 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugins <em>Plugins</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addons <em>Addons</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugins
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addons
 	 * @generated
 	 */
-	public Adapter createPluginsAdapter() {
+	public Adapter createAddonsAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Plugin <em>Plugin</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon <em>Addon</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Plugin
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon
 	 * @generated
 	 */
-	public Adapter createPluginAdapter() {
+	public Adapter createAddonAdapter() {
 		return null;
 	}
 

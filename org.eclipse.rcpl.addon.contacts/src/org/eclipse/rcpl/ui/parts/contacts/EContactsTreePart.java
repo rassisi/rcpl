@@ -14,8 +14,8 @@ import org.eclipse.fx.emf.edit.ui.EAttributeCellEditHandler;
 import org.eclipse.fx.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
-import org.eclipse.rcpl.contacts.plugin.OsgiContactsPlugin;
-import org.eclipse.rcpl.contacts.plugin.RcplContactsPlugin;
+import org.eclipse.rcpl.contacts.addon.OsgiContactsAddon;
+import org.eclipse.rcpl.contacts.addon.RcplContactsAddon;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Person;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Persons;
@@ -36,7 +36,7 @@ public class EContactsTreePart {
 
 	private Node node;
 
-	private RcplContactsPlugin useCase;
+	private RcplContactsAddon useCase;
 
 	private Persons rootGroup;
 
@@ -48,7 +48,7 @@ public class EContactsTreePart {
 
 	private AdapterFactoryTreeCellFactory treeCellFactory;
 
-	public EContactsTreePart(final RcplContactsPlugin useCase) {
+	public EContactsTreePart(final RcplContactsAddon useCase) {
 		this.useCase = useCase;
 
 		// TreeView
@@ -128,7 +128,7 @@ public class EContactsTreePart {
 					Object value = ((AdapterFactoryTreeItem) newItem).getValue();
 					if (value instanceof Person) {
 						Person contact = value instanceof Person ? (Person) value : null;
-						useCase.getController().updateBindings(contact, OsgiContactsPlugin.getEditingDomain());
+						useCase.getController().updateBindings(contact, OsgiContactsAddon.getEditingDomain());
 					}
 				}
 
@@ -161,15 +161,15 @@ public class EContactsTreePart {
 			try {
 				if (adapterFactory == null) {
 					adapterFactory = new AdapterFactoryTreeItem(rootGroup,
-							OsgiContactsPlugin.getDefault().getModelManager().getAdapterFactory());
+							OsgiContactsAddon.getDefault().getModelManager().getAdapterFactory());
 					treeView.setRoot(adapterFactory);
 
 					treeCellFactory = new AdapterFactoryTreeCellFactory(
-							OsgiContactsPlugin.getDefault().getModelManager().getAdapterFactory());
+							OsgiContactsAddon.getDefault().getModelManager().getAdapterFactory());
 
 					// add edit support
 					treeCellFactory.addCellEditHandler(new EAttributeCellEditHandler(
-							RcplPackage.eINSTANCE.getLayoutable_Id(), OsgiContactsPlugin.getEditingDomain()));
+							RcplPackage.eINSTANCE.getLayoutable_Id(), OsgiContactsAddon.getEditingDomain()));
 
 					// adds drag support
 					treeCellFactory.addCellCreationListener(new CellDragAdapter());
@@ -177,7 +177,7 @@ public class EContactsTreePart {
 					// adds drop support
 
 					EditingDomainCellDropAdapter dropAdapter = new EditingDomainCellDropAdapter(
-							OsgiContactsPlugin.getEditingDomain());
+							OsgiContactsAddon.getEditingDomain());
 
 					// dropAdapter.setFeedbackHandler(new
 					// CustomFeedbackHandler());
