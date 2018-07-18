@@ -4,6 +4,6 @@ package org.eclipse.rcpl.model;
  * @author ramin
  *
  */
-public interface IJOContactUs {
+public interface IContactUs {
 	public String contactUs(String message);
 }

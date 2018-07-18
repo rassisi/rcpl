@@ -6,5 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.rcpl.batik"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.rcpl.libs"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.rcpl.model"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

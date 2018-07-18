@@ -10,14 +10,14 @@ import java.io.OutputStream;
  * @author ramin
  *
  */
-public class JOFileUtil {
+public class RcplFileUtil {
 
 	/**
 	 * @param fileName
 	 * @return
 	 */
-	public static boolean copyTemplateResourceToUserDir(Class cl, String fileName) {
-		return JOFileUtil.copyResourceToUserDir(cl, fileName, fileName);
+	public static boolean copyTemplateResourceToUserDir(Class<?> cl, String fileName) {
+		return RcplFileUtil.copyResourceToUserDir(cl, fileName, fileName);
 	}
 
 	/**
@@ -25,7 +25,7 @@ public class JOFileUtil {
 	 * @param fileName
 	 * @return
 	 */
-	public static boolean copyResourceToUserDir(Class cl, String pathToResource, String fileName) {
+	public static boolean copyResourceToUserDir(Class<?> cl, String pathToResource, String fileName) {
 		String userDir = System.getProperty("user.home") + "/.rcpl";
 		return copyResourceToFile(pathToResource, cl, new File(userDir, fileName).getAbsolutePath());
 	}
@@ -35,7 +35,7 @@ public class JOFileUtil {
 	 * @param pathToFile
 	 * @return
 	 */
-	public static boolean copyResourceToFile(String pathToResource, Class cl, String pathToFile) {
+	public static boolean copyResourceToFile(String pathToResource, Class<?> cl, String pathToFile) {
 
 		InputStream stream = cl.getResourceAsStream(pathToResource);
 

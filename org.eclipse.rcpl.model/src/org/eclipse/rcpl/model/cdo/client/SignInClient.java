@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.eclipse.rcpl.model.IJOSignIn;
+import org.eclipse.rcpl.model.ISignIn;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 
@@ -27,7 +27,7 @@ public class SignInClient {
 
 	public static String getURL() {
 		try {
-			URL url = new URL(RcplSession.getDefault().codeBase);
+			URL url = new URL(RcplSession.getDefault().getCodeBases()[0]);
 			if ("localhost".equals(url.getHost())) {
 				String res = url.getHost() + ":8080";
 				return res;
@@ -67,9 +67,9 @@ public class SignInClient {
 	public String signIn(final String email, String password) {
 		String url = "http://" + host + "/com.joffice.servlet/josignin";
 		HessianProxyFactory factory = new HessianProxyFactory();
-		IJOSignIn signIn;
+		ISignIn signIn;
 		try {
-			signIn = (IJOSignIn) factory.create(IJOSignIn.class, url);
+			signIn = (ISignIn) factory.create(ISignIn.class, url);
 			return signIn.signIn(email, password);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

@@ -17,8 +17,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
@@ -30,7 +32,6 @@ import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.util.JOUtil2;
 
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -44,7 +45,7 @@ public class RcplImage implements IImage {
 
 	private InputStream is;
 
-	private URL url;
+	private URL SvgUrl;
 
 	private URL pngUrl;
 
@@ -52,7 +53,7 @@ public class RcplImage implements IImage {
 
 	private boolean gray;
 
-	private Node imageNode;
+	private ImageView node;
 
 	private double contrast = 0.0;
 
@@ -73,6 +74,8 @@ public class RcplImage implements IImage {
 	private Image errorImage;
 
 	private String resourcePath;
+
+	private static HashMap<String, IImage> imageRepository = new HashMap<String, IImage>();
 
 	// @Override
 	// public ImageView getImageView() {
@@ -99,19 +102,242 @@ public class RcplImage implements IImage {
 		this.height = height;
 	}
 
-	public RcplImage(String path, double width, double height) {
+	public RcplImage(String id, double width, double height) {
 		this.width = width;
 		this.height = height;
 
-		if (path.indexOf("strike") != -1) {
-			System.out.println();
+		if (id.startsWith("http")) {
+			try {
+				SvgUrl = new URL(id);
+				String idTemp = SvgUrl.getFile();
+
+				int pos = idTemp.lastIndexOf("/");
+				if (pos != -1) {
+					idTemp = idTemp.substring(pos + 1, idTemp.length());
+				}
+
+				pos = idTemp.lastIndexOf(".");
+				if (pos != -1) {
+					idTemp = idTemp.substring(0, pos);
+				}
+
+				this.id = idTemp;
+
+			} catch (MalformedURLException e) {
+				image = getErrorImage();
+				node = getErrorNode();
+			}
+		} else {
+			this.id = id;
 		}
-		if (path != null) {
-			preLoadImage(path);
+
+	}
+
+	@Override
+	public ImageView getNode() {
+
+		if (node != null) {
+			return node;
+		}
+
+		IImage img = get();
+
+		if (img != null) {
+			node = img.getNode();
+			return node;
+		}
+
+		if (findSvgUrl()) {
+
+			try {
+				if (is != null) {
+					node = createNode(is, width, height);
+				} else {
+					if (SvgUrl != null) {
+						try {
+							node = createNode(SvgUrl, width, height);
+						} catch (Exception ex) {
+							node = getErrorNode();
+							writeErrorPngFile();
+						}
+					}
+				}
+				return node;
+			} catch (Throwable ex) {
+				node = getErrorNode();
+				writeErrorPngFile();
+				return node;
+			}
+		} else {
+			node = getErrorNode();
+			writeErrorPngFile();
+			return node;
 		}
 	}
 
-	private ImageView createBatikImageNode(InputStream is, double width, double height) {
+	@Override
+	public ImageView getCopyNode() {
+		getNode();
+		if (image != null) {
+			ImageView iv = new ImageView(image);
+			iv.setFitWidth(width);
+			iv.setFitHeight(height);
+			return iv;
+		}
+		ImageView iv = new ImageView(getErrorImage());
+		iv.setFitWidth(width);
+		iv.setFitHeight(height);
+		return iv;
+	}
+
+	private boolean findSvgUrl() {
+		try {
+
+			if(SvgUrl!=null) {
+//				if (existsAtUrl(SvgUrl)) {
+				String s = SvgUrl.toExternalForm().substring(0, SvgUrl.toExternalForm().length()-3) + "png";
+					pngUrl = new URL(s);
+					return true;
+//				}
+				
+			}
+			for (String codeBase : RcplSession.getDefault().getCodeBases()) {
+				if (codeBase != null) {
+					URL url;
+					if (RcplSession.BASE_URL.equals(codeBase)) {
+						url = new URL(codeBase + "svg/" + id + ".svg");
+					} else {
+						url = new URL(codeBase + id + ".svg");
+					}
+//					if (existsAtUrl(url)) {
+						SvgUrl = url;
+						pngUrl = new URL(codeBase + "images/" + getWidth() + "_" + getHeight() + "/" + id + ".png");
+						return true;
+//					}
+				}
+
+			}
+
+//		resourceid = getWidth() + "_" + getHeight() + "/" + id + ".png";
+		} catch (Exception ex) {
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param svgUrl
+	 * @param pngFile
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	private ImageView createNode(URL url, double width, double height) {
+
+		ImageView iv = null;
+
+		if (id == null) {
+			iv = getErrorNode();
+			iv.setFitWidth(width);
+			iv.setFitHeight(height);
+			return node;
+		}
+
+		if (url.toString().endsWith(".svg")) {
+			svg = true;
+		}
+
+//		System.  out.println(pngUrl);
+
+		if (getPngFile().exists()) {
+			iv = new ImageView(getPngFile().toURI().toString());
+		} else if (getErrorPngFile().exists()) {
+			iv = getErrorNode();
+		} else if (getImageFromResource(resourcePath) != null) {
+			iv = new ImageView(image);
+		} else {
+			if (RcplSession.getDefault().isReachable()) {
+				try {
+					InputStream is = url.openStream();
+					if (svg) {
+						iv = createBatikNode(is, width, height);
+						if (iv == null) {
+							try {
+								image = new Image(pngUrl.toString());
+							} catch (Throwable ex) {
+								writeErrorPngFile();
+								return getErrorNode();
+							}
+							if (image.isError()) {
+								writeErrorPngFile();
+								return getErrorNode();
+							}
+							iv = new ImageView(image);
+
+						}
+						is.close();
+					} else {
+						image = new Image(is);
+						iv = new ImageView(image);
+						is.close();
+					}
+
+				} catch (Exception ex) {
+					iv = getErrorNode();
+					writeErrorPngFile();
+				}
+			} else {
+				iv = getErrorNode();
+				writeErrorPngFile();
+			}
+		}
+		iv.setFitWidth(width);
+		iv.setFitHeight(height);
+		return iv;
+	}
+
+	/**
+	 * Diese Methode wird aus JOImage aufgerufen, um ein Image aus einem PackagePart
+	 * (OOXML) auszulesen.
+	 * 
+	 * @param is
+	 * @param fileName
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	private ImageView createNode(InputStream is, double width, double height) {
+
+		if (isSvg()) {
+			ImageView node = createBatikNode(is, width, height);
+			if (node != null) {
+				return node;
+			}
+			return getErrorNode();
+		} else {
+			try {
+				image = new Image(is);
+				ImageView iv = new ImageView();
+				if (image != null) {
+					iv.setImage(image);
+					iv.setFitWidth(width);
+					iv.setFitHeight(height);
+				}
+				try {
+					is.close();
+				} catch (Exception ex) {
+					// ignore as all images wrong will be saved under the
+					// __ERROR__ folder
+				}
+				return iv;
+			} catch (Exception ex) {
+				return null;
+			}
+		}
+
+	}
+
+	private ImageView createBatikNode(InputStream is, double width, double height) {
 		OutputStream png_ostream;
 		try {
 			TranscoderInput transIn = new TranscoderInput(is);
@@ -144,8 +370,9 @@ public class RcplImage implements IImage {
 			fos.close();
 
 			isImage.close();
-
+			put(id, width, height);
 			return new ImageView(image);
+
 		} catch (Throwable ex) {
 			// ignore as all images wrong will be saved under the __ERROR__
 			// folder
@@ -153,136 +380,6 @@ public class RcplImage implements IImage {
 		}
 		return null;
 	}
-
-	/**
-	 * Diese Methode wird aus JOImage aufgerufen, um ein Image aus einem
-	 * PackagePart (OOXML) auszulesen.
-	 * 
-	 * @param is
-	 * @param fileName
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	public Node createImageNode(InputStream is, double width, double height) {
-
-		if (isSvg()) {
-			Node node = createBatikImageNode(is, width, height);
-			if (node != null) {
-				return node;
-			}
-			return getErrorImageNode();
-		} else {
-			try {
-				image = new Image(is);
-				ImageView iv = new ImageView();
-				if (image != null) {
-					iv.setImage(image);
-					iv.setFitWidth(width);
-					iv.setFitHeight(height);
-				}
-				try {
-					is.close();
-				} catch (Exception ex) {
-					// ignore as all images wrong will be saved under the
-					// __ERROR__ folder
-				}
-				return iv;
-			} catch (Exception ex) {
-				return null;
-			}
-		}
-
-	}
-
-	/**
-	 * @param svgUrl
-	 * @param pngFile
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	public Node createImageNode(URL url, double width, double height) {
-
-		ImageView iv = null;
-
-		if (url.toString().endsWith(".svg")) {
-			svg = true;
-		}
-
-		
-		
-		System.out.println(pngUrl);
-		
-		if (getPngFile().exists()) {
-			iv = new ImageView(getPngFile().toURI().toString());
-		} else if (getErrorPngFile().exists()) {
-			iv = getErrorImageNode();
-		} else if (getImageFromResource(resourcePath) != null) {
-			iv = new ImageView(image);
-		} else {
-			if (RcplSession.getDefault().isReachable()) {
-				try {
-					InputStream is = url.openStream();
-					if (svg) {
-						iv = createBatikImageNode(is, width, height);
-						if (iv == null) {
-							try {
-								image = new Image(pngUrl.toString());
-							} catch (Throwable ex) {
-								writeErrorPngFile();
-								return getErrorImageNode();
-							}
-							if (image.isError()) {
-								writeErrorPngFile();
-								return getErrorImageNode();
-							}
-							iv = new ImageView(image);
-						}
-						is.close();
-					} else {
-						image = new Image(is);
-						iv = new ImageView(image);
-						is.close();
-					}
-
-				} catch (Exception ex) {
-					iv = getErrorImageNode();
-					writeErrorPngFile();
-				}
-			} else {
-				iv = getErrorImageNode();
-				writeErrorPngFile();
-			}
-		}
-		iv.setFitWidth(width);
-		iv.setFitHeight(height);
-		return iv;
-	}
-
-	// private boolean existsAtUrl(String URLName) {
-	// try {
-	// HttpURLConnection.setFollowRedirects(false);
-	// // HttpURLConnection.setInstanceFollowRedirects(false)
-	// HttpURLConnection con = (HttpURLConnection) new
-	// URL(URLName).openConnection();
-	// con.setRequestMethod("HEAD");
-	// return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
-	// } catch (Exception e) {
-	//
-	// try {
-	// URL url = new URL(URLName);
-	// String host = url.getHost();
-	// url = new URL(JOSession.getDefault().codeBase);
-	// String host2 = url.getHost();
-	// if (host.equals(host2)) {
-	// JOSession.getDefault().setReachable(false);
-	// }
-	// } catch (MalformedURLException e1) {
-	// }
-	// return false;
-	// }
-	// }
 
 	@Override
 	public Rectangle2D getBounds() {
@@ -297,60 +394,6 @@ public class RcplImage implements IImage {
 		return contrast;
 	}
 
-	private Image getImageFromResource(String resourcePath) {
-		if (resourcePath == null) {
-			return null;
-		}
-		InputStream is = RcplImage.class.getResourceAsStream(resourcePath);
-		if (is != null) {
-			image = new Image(is);
-		}
-		try {
-			if (is != null) {
-				is.close();
-			}
-		} catch (IOException e) {
-			// ignore as all images wrong will be saved under the __ERROR__
-			// folder
-		}
-		return image;
-
-	}
-
-	private Image getErrorImage() {
-		if (errorImage == null) {
-			errorImage = getImageFromResource("16.0_16.0/error.png");
-		}
-		return errorImage;
-	}
-
-	private ImageView getErrorImageNode() {
-		if (errorImageNode == null) {
-			errorImageNode = new ImageView(getErrorImage());
-			errorImageNode.setFitHeight(16);
-			errorImageNode.setFitWidth(16);
-		} else {
-			errorImageNode = new ImageView();
-		}
-		try {
-			if (is != null) {
-				is.close();
-			}
-		} catch (IOException e) {
-		}
-		return errorImageNode;
-
-	}
-
-	private File getErrorPngFile() {
-		if (errorPngFile == null) {
-			errorPngFile = new File(JOUtil2.getUserLocalCacheDir(),
-					"images/___ERROR___/" + width + "_" + height + "/" + id + ".png");
-		}
-		return errorPngFile;
-
-	}
-
 	@Override
 	public double getHeight() {
 		return height;
@@ -362,52 +405,6 @@ public class RcplImage implements IImage {
 
 	public String getId() {
 		return id;
-	}
-
-	public InputStream getIs() {
-		return is;
-	}
-
-	@Override
-	public Node getNode() {
-
-		try {
-			if (imageNode != null) {
-				return imageNode;
-			}
-			if (is != null) {
-				imageNode = createImageNode(is, width, height);
-			} else {
-				if (url != null) {
-					try {
-						imageNode = createImageNode(url, width, height);
-					} catch (Exception ex) {
-						imageNode = getErrorImageNode();
-						writeErrorPngFile();
-					}
-				}
-			}
-			return imageNode;
-		} catch (Throwable ex) {
-			imageNode = getErrorImageNode();
-			writeErrorPngFile();
-			return imageNode;
-		}
-	}
-
-	@Override
-	public Node getCopyNode() {
-		getNode();
-		if (image != null) {
-			ImageView iv = new ImageView(image);
-			iv.setFitWidth(width);
-			iv.setFitHeight(height);
-			return iv;
-		}
-		ImageView iv = new ImageView(getErrorImage());
-		iv.setFitWidth(width);
-		iv.setFitHeight(height);
-		return iv;
 	}
 
 	@Override
@@ -425,7 +422,7 @@ public class RcplImage implements IImage {
 	}
 
 	public URL getUrl() {
-		return url;
+		return SvgUrl;
 	}
 
 	@Override
@@ -447,53 +444,6 @@ public class RcplImage implements IImage {
 		return svg;
 	}
 
-	/**
-	 * 
-	 * @param id0
-	 *            Format: 1.)
-	 *            http://host/imagename[?saturation=x;brightness=x;hue=x;
-	 *            contrast=x;] 2.)
-	 */
-	private void preLoadImage(String id) {
-
-		if (id == null) {
-			return;
-		}
-
-		if (id.startsWith("http")) {
-			try {
-				url = new URL(id);
-
-				String idTemp = url.getFile();
-
-				int pos = idTemp.lastIndexOf("/");
-				if (pos != -1) {
-					idTemp = idTemp.substring(pos + 1, idTemp.length());
-				}
-
-				pos = idTemp.lastIndexOf(".");
-				if (pos != -1) {
-					idTemp = idTemp.substring(0, pos);
-				}
-
-				this.id = idTemp;
-
-			} catch (MalformedURLException e) {
-			}
-			return;
-		}
-
-		try {
-			url = new URL(RcplSession.getDefault().getCodeBase() + "svg/" + id + ".svg");
-			pngUrl = new URL(RcplSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
-					+ id + ".png");
-			resourcePath = getWidth() + "_" + getHeight() + "/" + id + ".png";
-		} catch (Exception ex) {
-		}
-		this.id = id;
-
-	}
-
 	public void setBrightness(double brightness) {
 		this.brightness = brightness;
 	}
@@ -509,12 +459,12 @@ public class RcplImage implements IImage {
 
 	@Override
 	public void setHeight(double height) {
-		try {
-			pngUrl = new URL(RcplSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
-					+ id + ".png");
-		} catch (MalformedURLException e) {
-			// ignore
-		}
+//		try {
+//			pngUrl = new URL(RcplSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
+//					+ id + ".png");
+//		} catch (MalformedURLException e) {
+//			// ignore
+//		}
 		this.height = height;
 	}
 
@@ -533,15 +483,19 @@ public class RcplImage implements IImage {
 
 	@Override
 	public void setWidth(double width) {
-		try {
-			pngUrl = new URL(RcplSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
-					+ id + ".png");
-		} catch (MalformedURLException e) {
-			// ignore
-		}
+//		try {
+//			pngUrl = new URL(RcplSession.getDefault().getCodeBase() + "images/" + getWidth() + "_" + getHeight() + "/"
+//					+ id + ".png");
+//		} catch (MalformedURLException e) {
+//			// ignore
+//		}
 		this.width = width;
 	}
 
+	/**
+	 * This method is for debug purposes: It creates a dummy file to show that a
+	 * normal image file was not found.
+	 */
 	private void writeErrorPngFile() {
 		try {
 			getErrorPngFile().getParentFile().mkdirs();
@@ -552,10 +506,10 @@ public class RcplImage implements IImage {
 
 	@Override
 	public Image getImage() {
-		if (image != null) {
-			return image;
+		if (image == null) {
+			image = getErrorImage();
 		}
-		return getErrorImage();
+		return image;
 	}
 
 	// WebView wv = new WebView();
@@ -637,4 +591,83 @@ public class RcplImage implements IImage {
 		new RcplImage(path, 15, 15).getNode();
 
 	}
+
+	private File getErrorPngFile() {
+		if (errorPngFile == null) {
+			errorPngFile = new File(JOUtil2.getUserLocalCacheDir(),
+					"images/___ERROR___/" + width + "_" + height + "/" + id + ".png");
+		}
+		return errorPngFile;
+
+	}
+
+	private Image getImageFromResource(String resourcePath) {
+		if (resourcePath == null) {
+			return null;
+		}
+		InputStream is = RcplImage.class.getResourceAsStream(resourcePath);
+		if (is != null) {
+			image = new Image(is);
+		}
+		try {
+			if (is != null) {
+				is.close();
+			}
+		} catch (IOException e) {
+			// ignore as all images wrong will be saved under the __ERROR__
+			// folder
+		}
+		return image;
+
+	}
+
+	private Image getErrorImage() {
+		if (errorImage == null) {
+			errorImage = getImageFromResource("16.0_16.0/error.png");
+		}
+		return errorImage;
+	}
+
+	private ImageView getErrorNode() {
+		if (errorImageNode == null) {
+			errorImageNode = new ImageView(getErrorImage());
+			errorImageNode.setFitHeight(16);
+			errorImageNode.setFitWidth(16);
+		} else {
+			errorImageNode = new ImageView(getErrorImage());
+		}
+		try {
+			if (is != null) {
+				is.close();
+			}
+		} catch (IOException e) {
+		}
+		return errorImageNode;
+
+	}
+
+	private boolean existsAtUrl(URL url) {
+		try {
+			HttpURLConnection.setFollowRedirects(false);
+			// HttpURLConnection.setInstanceFollowRedirects(false)
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("HEAD");
+			return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private void put(String id, double width, double height) {
+		imageRepository.put(id + width + height, this);
+	}
+
+	private IImage get(String id, double width, double height) {
+		return imageRepository.get(id + width + height);
+	}
+
+	private IImage get() {
+		return imageRepository.get(id + width + height);
+	}
+
 }

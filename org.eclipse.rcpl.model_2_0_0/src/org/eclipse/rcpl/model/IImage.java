@@ -3,8 +3,8 @@ package org.eclipse.rcpl.model;
 import java.io.File;
 
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * @author ramin
@@ -14,9 +14,9 @@ public interface IImage {
 
 	Image getImage();
 
-	Node getNode();
+	ImageView getNode();
 
-	Node getCopyNode();
+	ImageView getCopyNode();
 
 	Rectangle2D getBounds();
 

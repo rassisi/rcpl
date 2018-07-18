@@ -65,6 +65,10 @@ import javafx.geometry.Rectangle2D;
 
 public class JOUtil2 {
 
+	private static File userLocalCacheDir;
+	private static File userLocalArea;
+	private static File userLocalTempDir;
+
 	// private static final Logger LOGGER =
 	// LoggerFactory.getLogger(JOUtil2.class);
 
@@ -700,10 +704,8 @@ public class JOUtil2 {
 	/**
 	 * Get the PackagePart that is the target of a relationship.
 	 * 
-	 * @param rel
-	 *            The relationship
-	 * @param pkg
-	 *            The package to fetch from
+	 * @param rel The relationship
+	 * @param pkg The package to fetch from
 	 * @return The target part
 	 * @throws InvalidFormatException
 	 */
@@ -719,10 +721,8 @@ public class JOUtil2 {
 	/**
 	 * Copy the input stream into the output stream.
 	 * 
-	 * @param inStream
-	 *            The source stream.
-	 * @param outStream
-	 *            The destination stream.
+	 * @param inStream  The source stream.
+	 * @param outStream The destination stream.
 	 * @return <b>true</b> if the operation succeed, else return <b>false</b>.
 	 */
 	public static byte[] copyStreamTyByteArray(InputStream inStream) {
@@ -816,16 +816,26 @@ public class JOUtil2 {
 	}
 
 	public static File getUserLocalArea() {
-		return RCPLModel.mobileProvider.getApplicationDir();
+		if (userLocalArea == null) {
+			if (RCPLModel.mobileProvider != null) {
+				userLocalArea = RCPLModel.mobileProvider.getApplicationDir(); // $NON-NLS-1$
+			} else {
+				userLocalArea = new File(System.getProperty("user.home"), ".rcpl"); //$NON-NLS-1$
+			}
+			userLocalArea.mkdirs();
+		}
+		return userLocalArea;
 	}
 
 	/**
 	 * @return
 	 */
 	public static File getUserLocalTempArea() {
-		File result = new File(RCPLModel.mobileProvider.getApplicationDir(), "temp");
-		result.mkdirs();
-		return result;
+		if (userLocalTempDir == null) {
+			userLocalTempDir = new File(getUserLocalArea(), "temp");
+			userLocalTempDir.mkdirs();
+		}
+		return userLocalTempDir;
 	}
 
 	/**
@@ -833,11 +843,7 @@ public class JOUtil2 {
 	 */
 	public static File getUserLocalCacheDir() {
 		if (userLocalCacheDir == null) {
-			if (RCPLModel.mobileProvider != null) {
-				userLocalCacheDir = new File(RCPLModel.mobileProvider.getApplicationDir(), "cache"); //$NON-NLS-1$
-			} else {
-				userLocalCacheDir = new File(System.getProperty("java.io.tmpdir"), "rcpl/cache"); //$NON-NLS-1$
-			}
+			userLocalCacheDir = new File(getUserLocalArea(), "cache");
 			userLocalCacheDir.mkdirs();
 		}
 		return userLocalCacheDir;
@@ -858,7 +864,7 @@ public class JOUtil2 {
 		}
 	}
 
-	private static int instanceNumber;
+//	private static int instanceNumber;
 
 	public static File lockFile;
 
@@ -1058,7 +1064,6 @@ public class JOUtil2 {
 		}
 	}
 
-	private static File userLocalCacheDir;
 
 	// /**
 	// * @param key
@@ -1225,7 +1230,7 @@ public class JOUtil2 {
 		setDefaultIfNull("browser/actions/browser/search_engine_default_" + index, true); //$NON-NLS-1$
 		setIfNull("browser/actions/browser/search_engine_default_" + index, true); //$NON-NLS-1$
 
-		setDefaultIfNull("infotab/actions/setup/setup_my_web_host", RcplSession.getDefault().codeBase); //$NON-NLS-1$ //$NON-NLS-2$
+		setDefaultIfNull("infotab/actions/setup/setup_my_web_host", RcplSession.getDefault().getCodeBases()[0]); //$NON-NLS-1$ //$NON-NLS-2$
 		setDefaultIfNull("infotab/actions/setup/setup_my_web_port", 8088); //$NON-NLS-1$
 
 		RcplCountry country = RcplCountry.getCountry(Locale.getDefault());
@@ -1647,7 +1652,7 @@ public class JOUtil2 {
 				"http://en.wikipedia.org/wiki/" + Rcpl.TEMPLATEVAR_1 + ""); //$NON-NLS-1$ //$NON-NLS-2$
 		setIfNull("infotab/actions/setup/setup_search_url_9", ""); //$NON-NLS-1$//$NON-NLS-2$
 
-		setIfNull("infotab/actions/setup/setup_my_web_host", RcplSession.getDefault().codeBase); //$NON-NLS-1$ //$NON-NLS-2$
+		setIfNull("infotab/actions/setup/setup_my_web_host", RcplSession.getDefault().getCodeBases()[0]); //$NON-NLS-1$ //$NON-NLS-2$
 		setIfNull("infotab/actions/setup/setup_my_web_port", 8088); //$NON-NLS-1$
 
 		RcplCountry country = RcplCountry.getCountry(Locale.getDefault());

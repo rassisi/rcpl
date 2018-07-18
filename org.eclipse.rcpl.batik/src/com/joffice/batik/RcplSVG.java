@@ -19,9 +19,9 @@ import javafx.scene.web.WebView;
  * @author ramin
  *
  */
-public class JOSVG {
+public class RcplSVG {
 
-	static String errorUrl = RcplSession.getDefault().getCodeBase() + "images/save.png";
+	static String errorUrl = RcplSession.getDefault().getCodeBases()[0] + "images/save.png";
 
 	static WebView errorImage;
 
@@ -43,6 +43,7 @@ public class JOSVG {
 	 * @throws TranscoderException
 	 * @throws IOException
 	 */
+	@SuppressWarnings("restriction")
 	public Node createPng(File file, double width, double height) {
 
 		WebView wv = new WebView();
@@ -261,7 +262,7 @@ public class JOSVG {
 			try {
 				URL url = new URL(URLName);
 				String host = url.getHost();
-				url = new URL(RcplSession.getDefault().codeBase);
+				url = new URL(RcplSession.getDefault().getCodeBases()[0]);
 				String host2 = url.getHost();
 				if (host.equals(host2)) {
 					RcplSession.getDefault().setReachable(false);

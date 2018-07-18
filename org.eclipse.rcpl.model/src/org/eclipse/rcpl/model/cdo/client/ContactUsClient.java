@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.eclipse.rcpl.model.IJOContactUs;
+import org.eclipse.rcpl.model.IContactUs;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 
@@ -27,7 +27,7 @@ public class ContactUsClient {
 
 	public static String getURL() {
 		try {
-			URL url = new URL(RcplSession.getDefault().codeBase);
+			URL url = new URL(RcplSession.getDefault().getCodeBases()[0]);
 			if ("localhost".equals(url.getHost())) {
 				String res = url.getHost() + ":8080";
 				return res;
@@ -67,9 +67,9 @@ public class ContactUsClient {
 	public String contactUs(final String message) {
 		String url = "http://" + host + "/com.joffice.servlet/jocontactus";
 		HessianProxyFactory factory = new HessianProxyFactory();
-		IJOContactUs contactUs;
+		IContactUs contactUs;
 		try {
-			contactUs = (IJOContactUs) factory.create(IJOContactUs.class, url);
+			contactUs = (IContactUs) factory.create(IContactUs.class, url);
 			return contactUs.contactUs(message);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch blockcont

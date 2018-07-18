@@ -91,7 +91,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			} else if (arg.startsWith("-codebase")) {
 				String[] splits = arg.split("=");
 				if (splits.length == 2) {
-					RcplSession.getDefault().codeBase = splits[1].trim();
+					RcplSession.getDefault().getCodeBases()[0] = splits[1].trim();
 				}
 			}
 		}

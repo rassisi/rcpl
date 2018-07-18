@@ -155,11 +155,9 @@ public class RcplSession {
 		System.out.println(msg);
 	}
 
-//	private static String BASE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
+	public static String BASE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 
-	private static String BASE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
-
-	public static String codeBase = BASE_URL;
+	public static String[] codeBases = new String[] { BASE_URL, null, null, null, null, null, null, null, null, null, null, null, null, null, null };
 
 	public String CDO_SERVER;
 
@@ -236,34 +234,31 @@ public class RcplSession {
 	private boolean reachable;
 
 	public static RcplSession getDefault() {
-		return getDefault(codeBase);
+		return getDefault(codeBases);
 	}
 
-	public static RcplSession getDefault(String url) {
+	public static RcplSession getDefault(String[] urls) {
 		if (INSTANCE == null) {
-			INSTANCE = new RcplSession(url);
+			INSTANCE = new RcplSession(urls);
 		}
 		return INSTANCE;
 	}
 
 	public RcplSession() throws SecurityException {
-		this(codeBase);
+		this(codeBases);
 	}
 
 	/**
 	 * @param port
 	 * @param ePackage
 	 */
-	public RcplSession(String url) throws SecurityException {
+	public RcplSession(String[] urls) throws SecurityException {
 
 		INSTANCE = this;
-		codeBase = url;
-		testReachable();
+		codeBases = urls;
+		testReachable(getCodeBases()[0]);
 
-		// if (!testReachable()) {
-		// this.codeBase = "http://localhost/";
-		// testReachable();
-		// }
+
 
 		if (!isReachable()) {
 			System.out.println("Server not running!");
@@ -310,10 +305,10 @@ public class RcplSession {
 
 	}
 
-	private boolean testReachable() {
+	private boolean testReachable(String urlString) {
 		URL url;
 		try {
-			url = new URL(codeBase);
+			url = new URL(urlString);
 			InetAddress[] ia = Inet4Address.getAllByName(url.getHost());
 			reachable = ia[0].isReachable(3000);
 		} catch (MalformedURLException e) {
@@ -886,8 +881,8 @@ public class RcplSession {
 		return eObject;
 	}
 
-	public String getCodeBase() {
-		return codeBase;
+	public String[] getCodeBases() {
+		return codeBases;
 	}
 
 	public EList<EObject> getContents() {
