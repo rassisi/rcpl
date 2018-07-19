@@ -23,7 +23,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -91,6 +90,15 @@ public class RcplLoginController {
 	@FXML
 	private ImageView barCodeImageView;
 
+	@FXML
+	private WebView termsAndConditions;
+
+	@FXML
+	private PasswordField repeatPassword;
+
+	@FXML
+	private GridPane signInArea;
+
 	private VBox centerVBox;
 
 	private RcplLogin login;
@@ -102,6 +110,11 @@ public class RcplLoginController {
 	private LoginState loginState = LoginState.START;
 
 	private RcplAuth authentication;
+
+//	private Label termsAndConditionsLabel = new Label("termsAndConditions");
+//	
+//	
+//	private Label labelRepeatPassword = new Label("labelRepeatPassword");
 
 	public RcplLoginController(RcplLogin login) {
 		this.login = login;
@@ -305,6 +318,9 @@ public class RcplLoginController {
 		// // + "\n"
 		// + " based on Eclipse Luna and Apache Open Source Components");
 
+		termsAndConditions.getEngine().load(
+				"https://raw.githubusercontent.com/rassisi/worldreservesystem/master/org.wrs.resources/html/terms_and_conditions.html");
+
 		collapse();
 
 	}
@@ -424,19 +440,13 @@ public class RcplLoginController {
 
 	}
 
-	private Label termsAndConditionsLabel = new Label("termsAndConditions");
-	private WebView termsAndConditions = new WebView();
-	private PasswordField repeatPassword = new PasswordField();
-	private Label labelRepeatPassword = new Label("labelRepeatPassword");
-
 	public void collapse2(final boolean signIn) {
 
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-				loginGridPane.getChildren().removeAll(termsAndConditionsLabel, termsAndConditions, labelRepeatPassword,
-						repeatPassword);
+				loginGridPane.getChildren().removeAll(signInArea);
 				buttonLogin.setVisible(true);
 				buttonDemo.setVisible(true);
 				buttonSignIn2.setVisible(signIn);
@@ -455,7 +465,7 @@ public class RcplLoginController {
 
 			@Override
 			public void run() {
-				if (!loginGridPane.getChildren().contains(termsAndConditionsLabel)) {
+				if (!loginGridPane.getChildren().contains(signInArea)) {
 
 					buttonLogin.setVisible(false);
 					buttonDemo.setVisible(false);
@@ -464,8 +474,7 @@ public class RcplLoginController {
 					userId.setText("");
 					password.setText("");
 //					createPasswordToolTip();
-					loginGridPane.getChildren().addAll(termsAndConditionsLabel, termsAndConditions, labelRepeatPassword,
-							repeatPassword);
+					loginGridPane.getChildren().addAll(signInArea);
 					loginGridPane.layout();
 				}
 			}
