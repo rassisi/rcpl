@@ -62,7 +62,7 @@ public class RcplLogin {
 	 */
 	private RcplLogin(IRcplApplicationProvider applicationProvider, Stage stage) {
 		this.applicationProvider = applicationProvider;
-		URL location = getClass().getResource("/org/eclipse/rcpl/login.fxml");
+		URL location = getClass().getResource("/org/eclipse/rcpl/login/login.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
 		controller = new RcplLoginController(this);
 		fxmlLoader.setController(controller);
