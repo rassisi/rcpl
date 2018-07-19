@@ -500,7 +500,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	public void setSize(double width, double height) {
 		applicationWindow.setPrefSize(width, height);
 		primaryStage.setWidth(width + 30);
-		primaryStage.setHeight(height + 60);
+		primaryStage.setHeight(height + 76);
 	}
 
 	@Override

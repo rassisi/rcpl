@@ -113,7 +113,7 @@ public class RcplLoginController {
 
 	private RcplAuth authentication;
 
-	private static final double COLLAPSED_HEIGHT = 300;
+	private static final double COLLAPSED_HEIGHT = 260;
 
 	private static final double COLLAPSED_WIDTH = 360;
 
