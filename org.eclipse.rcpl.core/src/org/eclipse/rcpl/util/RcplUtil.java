@@ -63,7 +63,7 @@ import org.w3c.dom.NodeList;
 
 import javafx.geometry.Rectangle2D;
 
-public class JOUtil2 {
+public class RcplUtil {
 
 	private static File userLocalCacheDir;
 	private static File userLocalArea;
@@ -2201,15 +2201,15 @@ public class JOUtil2 {
 	public static File loadTemplateDocumentToFile(String name, boolean escapeHtml) {
 
 		String path = Rcpl.getDefaultTemplatesPath() + name;
-		InputStream is = JOUtil2.class.getResourceAsStream(path); // $NON-NLS-1$
+		InputStream is = RcplUtil.class.getResourceAsStream(path); // $NON-NLS-1$
 		if (is == null) {
 			return null;
 		}
-		File outFile = new File(JOUtil2.getUserLocalTempArea(),
+		File outFile = new File(RcplUtil.getUserLocalTempArea(),
 				// "temp_" + new Date().getTime() + "_" +
 				name);
 		try {
-			JOUtil2.copyInputStream(is, outFile, escapeHtml);
+			RcplUtil.copyInputStream(is, outFile, escapeHtml);
 
 		} catch (Throwable e) {
 			RCPLModel.logError(e);
@@ -2219,7 +2219,7 @@ public class JOUtil2 {
 	}
 
 	public static File loadTemplateDocumentToTempFile(String name, boolean escapeHtml) {
-		File outFile = new File(JOUtil2.getUserLocalTempArea(),
+		File outFile = new File(RcplUtil.getUserLocalTempArea(),
 				// "temp_" + new Date().getTime() + "_" +
 				name);
 		loadTemplateDocumentToFile(name, outFile, escapeHtml);
@@ -2231,9 +2231,9 @@ public class JOUtil2 {
 	 * @return
 	 */
 	public static void loadTemplateDocumentToFile(String name, File outFile, boolean escapeHtml) {
-		InputStream is = JOUtil2.class.getResourceAsStream(Rcpl.getDefaultTemplatesPath() + name); // $NON-NLS-1$
+		InputStream is = RcplUtil.class.getResourceAsStream(Rcpl.getDefaultTemplatesPath() + name); // $NON-NLS-1$
 		try {
-			JOUtil2.copyInputStream(is, outFile, escapeHtml);
+			RcplUtil.copyInputStream(is, outFile, escapeHtml);
 		} catch (IOException e) {
 			// LOGGER.error("", e); //$NON-NLS-1$
 		}
@@ -2242,7 +2242,7 @@ public class JOUtil2 {
 	public static String loadTemplateHTMLDocument(String name, HashMap<String, String> wordReplacements,
 			boolean escapeHtml) {
 
-		InputStream is = JOUtil2.class.getResourceAsStream(Rcpl.getDefaultTemplatesPath() + name); // $NON-NLS-1$
+		InputStream is = RcplUtil.class.getResourceAsStream(Rcpl.getDefaultTemplatesPath() + name); // $NON-NLS-1$
 
 		// InputStreamReader r;
 		// OutputStreamWriter w;
@@ -2254,7 +2254,7 @@ public class JOUtil2 {
 			// w = new OutputStreamWriter(out, Charset.forName("UTF-8"));
 
 			try {
-				String htmlText = JOUtil2.copyInputStream(is, out, escapeHtml);
+				String htmlText = RcplUtil.copyInputStream(is, out, escapeHtml);
 				out.flush();
 				out.close();
 				htmlText = new String(htmlText.getBytes("windows-1252"));

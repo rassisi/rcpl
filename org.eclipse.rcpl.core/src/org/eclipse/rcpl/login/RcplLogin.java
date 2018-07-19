@@ -33,7 +33,7 @@ public class RcplLogin {
 
 	private RcplLoginController controller;
 
-	IRcplApplicationProvider applicationProvider;
+	private IRcplApplicationProvider applicationProvider;
 
 	public static void start(Stage stage) {
 		new RcplLogin(stage);
@@ -69,15 +69,7 @@ public class RcplLogin {
 
 		try {
 			node = (BorderPane) fxmlLoader.load();
-			double height = 300;
-			node.setPrefHeight(height);
-			node.setMinHeight(height);
-			node.setMaxHeight(height);
 			controller.init();
-			double width = 400;
-			node.setPrefWidth(width);
-			node.setMinWidth(width);
-			node.setMaxWidth(width);
 			node.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 10;");
 
 			if (applicationProvider != null && applicationProvider.isLoginDebug()) {

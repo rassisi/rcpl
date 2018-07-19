@@ -425,7 +425,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		double loginWidth = joLogin.getNode().getPrefWidth();
 		double loginHeight = joLogin.getNode().getPrefHeight();
 
-		primaryStage.setWidth(loginWidth);
+		primaryStage.setWidth(loginWidth + 60);
 		primaryStage.setHeight(loginHeight);
 		primaryStage.centerOnScreen();
 

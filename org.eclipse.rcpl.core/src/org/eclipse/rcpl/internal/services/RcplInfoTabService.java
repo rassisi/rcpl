@@ -13,7 +13,7 @@ package org.eclipse.rcpl.internal.services;
 
 import org.eclipse.rcpl.EnPageSize;
 import org.eclipse.rcpl.ICommand;
-import org.eclipse.rcpl.util.JOUtil2;
+import org.eclipse.rcpl.util.RcplUtil;
 
 /**
  * @author ramin
@@ -504,7 +504,7 @@ public class RcplInfoTabService extends RcplService {
 	}
 
 	public void createNewWordDocument() {
-		int index = JOUtil2
+		int index = RcplUtil
 				.getInteger("infotab/actions/editor/default_page_size"); //$NON-NLS-1$
 		EnPageSize defaultPageSize = EnPageSize.valueOf(index);
 

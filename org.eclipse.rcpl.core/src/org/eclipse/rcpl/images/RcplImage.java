@@ -31,7 +31,7 @@ import org.eclipse.rcpl.application.DefaultMobileProvider;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
-import org.eclipse.rcpl.util.JOUtil2;
+import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -442,7 +442,7 @@ public class RcplImage implements IImage {
 	@Override
 	public File getPngFile() {
 		if (pngFile == null) {
-			pngFile = new File(JOUtil2.getUserLocalCacheDir(), "images/" + createPngPath());
+			pngFile = new File(RcplUtil.getUserLocalCacheDir(), "images/" + createPngPath());
 			pngFile.getParentFile().mkdirs();
 		}
 		return pngFile;
@@ -560,7 +560,7 @@ public class RcplImage implements IImage {
 
 	private File getErrorPngFile() {
 		if (errorPngFile == null) {
-			errorPngFile = new File(JOUtil2.getUserLocalCacheDir(),
+			errorPngFile = new File(RcplUtil.getUserLocalCacheDir(),
 					"images/___ERROR___/" + width + "_" + height + "/" + id + ".png");
 		}
 		return errorPngFile;

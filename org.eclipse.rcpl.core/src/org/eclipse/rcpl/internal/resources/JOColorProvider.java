@@ -18,7 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.eclipse.rcpl.IColor;
 import org.eclipse.rcpl.IColorProvider;
 import org.eclipse.rcpl.RcplColor;
-import org.eclipse.rcpl.util.JOUtil2;
+import org.eclipse.rcpl.util.RcplUtil;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTColor;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTColorMapping;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTColorScheme;
@@ -203,7 +203,7 @@ public class JOColorProvider implements IColorProvider {
 	 * Loads the colors
 	 */
 	public static void loadColors() {
-		String colorMainOfficeColor = JOUtil2.getString(COLOR_MAIN_OFFICE_COLOR);
+		String colorMainOfficeColor = RcplUtil.getString(COLOR_MAIN_OFFICE_COLOR);
 		if (colorMainOfficeColor != null) {
 			colorRegistry.put(COLOR_MAIN_OFFICE_COLOR, string2Color(colorMainOfficeColor));
 		} else {
@@ -1602,7 +1602,7 @@ public class JOColorProvider implements IColorProvider {
 	public void setMainOfficeColor(IColor newColor) {
 		colorRegistry = new HashMap<String, IColor>();
 		colorRegistry.put(COLOR_MAIN_OFFICE_COLOR, newColor);
-		JOUtil2.set(COLOR_MAIN_OFFICE_COLOR, newColor.getRed() + "," + newColor.getGreen() + "," + newColor.getBlue()); //$NON-NLS-1$//$NON-NLS-2$
+		RcplUtil.set(COLOR_MAIN_OFFICE_COLOR, newColor.getRed() + "," + newColor.getGreen() + "," + newColor.getBlue()); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 	/**
@@ -1613,7 +1613,7 @@ public class JOColorProvider implements IColorProvider {
 	public void setMainOfficeColor(int red, int green, int blue) {
 		colorRegistry = new HashMap<String, IColor>();
 		colorRegistry.put(COLOR_MAIN_OFFICE_COLOR, new RcplColor(red, green, blue));
-		JOUtil2.set(COLOR_MAIN_OFFICE_COLOR, red + "," + green + "," + blue); //$NON-NLS-1$//$NON-NLS-2$
+		RcplUtil.set(COLOR_MAIN_OFFICE_COLOR, red + "," + green + "," + blue); //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 	/**

@@ -10,7 +10,7 @@ import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.application.RcplApplicationStarter;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
-import org.eclipse.rcpl.util.JOUtil2;
+import org.eclipse.rcpl.util.RcplUtil;
 
 import com.rcpl.rcpl.addon.demo.homepages.DocumentHomePage;
 import com.rcpl.rcpl.addon.demo.homepages.NewHomePage;
@@ -258,7 +258,7 @@ public class DemoUic extends RcplUic {
 	}
 
 	public void openDocument(URL url) {
-		File file = JOUtil2.copyFileFromUrlToCache(url, false);
+		File file = RcplUtil.copyFileFromUrlToCache(url, false);
 		openDocument(file);
 
 	}

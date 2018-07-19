@@ -23,7 +23,7 @@ import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model_2_0_0.IImageProvider;
 import org.eclipse.rcpl.model_2_0_0.ITextProvider;
 import org.eclipse.rcpl.model_2_0_0.JOfficeModelGeneratedPlugin;
-import org.eclipse.rcpl.util.JOUtil2;
+import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -114,7 +114,7 @@ public class JOResources implements IResources, IImageProvider, ITextProvider {
 
 	public void savePartToFile(String partName, byte[] imageBytes) {
 		if (imageBytes != null) {
-			File f = new File(JOUtil2.getUserLocalTempArea() + partName);
+			File f = new File(RcplUtil.getUserLocalTempArea() + partName);
 			f.getParentFile().mkdirs();
 			FileOutputStream fo;
 			try {

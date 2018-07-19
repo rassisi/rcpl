@@ -20,7 +20,7 @@ import javafx.scene.web.WebView;
 
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
-import org.eclipse.rcpl.util.JOUtil2;
+import org.eclipse.rcpl.util.RcplUtil;
 
 public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 
@@ -44,7 +44,7 @@ public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 		// String htmlText = new JODocumentProvider().createHtmlDocument(
 		// documentTemplate, wordReplacements)
 
-		String htmlText = JOUtil2.loadTemplateHTMLDocument(documentTemplate, wordReplacements, true);
+		String htmlText = RcplUtil.loadTemplateHTMLDocument(documentTemplate, wordReplacements, true);
 
 		// .replaceAll(
 		// new String(new byte[] { (byte) 63 }), "&uuml;")

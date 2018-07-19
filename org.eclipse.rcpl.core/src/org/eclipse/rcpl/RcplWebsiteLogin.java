@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.rcpl;
 
-import org.eclipse.rcpl.util.JOUtil2;
+import org.eclipse.rcpl.util.RcplUtil;
 
 /**
  * @author ramin
@@ -27,8 +27,8 @@ public class RcplWebsiteLogin {
 	 * @return
 	 */
 	public String getPassword(String masterPassword) {
-		String s = JOUtil2.createMD5(masterPassword + password, false);
-		int l = JOUtil2.getGeneratedPasswordsLength();
+		String s = RcplUtil.createMD5(masterPassword + password, false);
+		int l = RcplUtil.getGeneratedPasswordsLength();
 		s = s.substring(0, l);
 		return s;
 	}

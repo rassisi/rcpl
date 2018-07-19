@@ -20,7 +20,7 @@ import javafx.scene.web.HTMLEditor;
 
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
-import org.eclipse.rcpl.util.JOUtil2;
+import org.eclipse.rcpl.util.RcplUtil;
 
 public class DefaultHTMLHomePage extends AbstractHomePage {
 
@@ -35,7 +35,7 @@ public class DefaultHTMLHomePage extends AbstractHomePage {
 
 		HTMLEditor htmlEditor = new HTMLEditor();
 
-		File f = JOUtil2.loadTemplateDocumentToFile(documentTemplate, true);
+		File f = RcplUtil.loadTemplateDocumentToFile(documentTemplate, true);
 
 		// WebView w = new WebView();
 		// w.getEngine().load("file://" + f.getAbsolutePath());
@@ -44,7 +44,7 @@ public class DefaultHTMLHomePage extends AbstractHomePage {
 		// String htmlText = new JODocumentProvider().createHtmlDocument(
 		// documentTemplate, wordReplacements);
 
-		String htmlText = JOUtil2.loadTemplateHTMLDocument(documentTemplate,
+		String htmlText = RcplUtil.loadTemplateHTMLDocument(documentTemplate,
 				wordReplacements, true);
 
 		if (htmlText != null) {

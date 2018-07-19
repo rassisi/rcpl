@@ -16,7 +16,7 @@ import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 
 import org.eclipse.rcpl.IDownload;
-import org.eclipse.rcpl.util.JOUtil2;
+import org.eclipse.rcpl.util.RcplUtil;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 
@@ -69,13 +69,13 @@ public class DownloadClient {
 		IDownload download;
 		try {
 			download = (IDownload) factory.create(IDownload.class, url);
-			long cachedFileSize = JOUtil2.getCachedFileSize(fileName);
+			long cachedFileSize = RcplUtil.getCachedFileSize(fileName);
 			byte[] bArray = download.download(fileName, user, cachedFileSize);
 			if (bArray != null) {
 				if (bArray.length == 1 && bArray[0] == -1) {
-					return JOUtil2.getCachedFile(fileName);
+					return RcplUtil.getCachedFile(fileName);
 				}
-				return JOUtil2.copyByteArrayToCache(bArray, fileName);
+				return RcplUtil.copyByteArrayToCache(bArray, fileName);
 			} else {
 				return null;
 			}

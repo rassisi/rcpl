@@ -8,6 +8,8 @@ import java.net.URLEncoder;
 import java.security.SecureRandom;
 
 import org.apache.commons.codec.binary.Base32;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.util.RcplUtil;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -15,22 +17,21 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
-import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
-
-
 
 /**
  * @author Ramin
  *
  */
-public class WRSAuth {
+public class RcplAuth {
+
+	private File barCodeFile;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		new WRSAuth().registerNewUser("ramin.assisi@gmail.com", WRS.WORLD_RESERVE_SYSTEM_WEB_SITE);
-		new WRSAuth().validateUser("w4tc  afw w yy bs x b7g  vc7c  ooo f qp rh fbnw");
+		new RcplAuth().registerNewUser("ramin.assisi@gmail.com", RcplSession.HOME_URL);
+//		new WRSAuth().validateUser("w4tc  afw w yy bs x b7g  vc7c  ooo f qp rh fbnw");
 	}
 
 	/**
@@ -38,25 +39,22 @@ public class WRSAuth {
 	 * @param webSite
 	 */
 	public void registerNewUser(String user, String webSite) {
+
+		WriterException ex = null;
+
 		String secret = getRandomSecretKey().toLowerCase().replaceAll("(.{4})(?=.{4})", "$1 ");
-		
-		
-		GoogleAuthenticator ga = new GoogleAuthenticator();
-		final GoogleAuthenticatorKey key = ga.createCredentials(user);
-		
-		
-		
-		
+//		GoogleAuthenticator ga = new GoogleAuthenticator();
+//		final GoogleAuthenticatorKey key = ga.createCredentials(user);
 //		final String secret = key.getKey().toLowerCase().replaceAll("(.{4})(?=.{4})", "$1 ");
 		System.out.println("secret = " + secret);
 		String barCodeData = getGoogleAuthenticatorBarCode(secret, user, webSite);
 		try {
-		    String property = "java.io.tmpdir";
-		    String tempDir = System.getProperty(property);
-			File tempFile = File.createTempFile("barcode", ".png", new File(tempDir));
-			tempFile.delete();
-			System.out.println("create barcode as " + tempFile.getAbsolutePath());
-			createQRCode(barCodeData, tempFile.getAbsolutePath(), 512, 512);
+			File tempDir = RcplUtil.getUserLocalTempArea();
+			barCodeFile = File.createTempFile("barcode", ".png", tempDir);
+			barCodeFile.delete();
+			System.out.println("create barcode as " + barCodeFile.getAbsolutePath());
+			createQRCode(barCodeData, barCodeFile.getAbsolutePath(), 512, 512);
+
 		} catch (WriterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,7 +65,6 @@ public class WRSAuth {
 
 	}
 
-	
 	/**
 	 * @param user
 	 * @param webSite
@@ -77,7 +74,7 @@ public class WRSAuth {
 		int code = gAuth.getTotpPassword(secret);
 		System.out.println("code = " + code);
 	}
-	
+
 	/**
 	 * @return
 	 */
@@ -124,7 +121,11 @@ public class WRSAuth {
 			MatrixToImageWriter.writeToStream(matrix, "png", out);
 		}
 	}
-	
+
+	public File getBarCodeFile() {
+		return barCodeFile;
+	}
+
 //	public static String getTOTPCode(String secretKey) {
 //	    String normalizedBase32Key = secretKey.replace(" ", "").toUpperCase();
 //	    Base32 base32 = new Base32();
@@ -137,4 +138,5 @@ public class WRSAuth {
 //	    
 //	    return TOTP.generateTOTP(hexKey, hexTime, "6");
 //	}
+
 }

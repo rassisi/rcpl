@@ -156,6 +156,8 @@ public class RcplSession {
 
 	public static String BASE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 
+	public static String HOME_URL = "http://rcpl.org";
+
 	private static List<String> codeBases = new ArrayList<String>();
 
 	public String CDO_SERVER;

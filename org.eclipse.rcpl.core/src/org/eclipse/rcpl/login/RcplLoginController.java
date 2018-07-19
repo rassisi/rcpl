@@ -10,16 +10,27 @@
  *******************************************************************************/
 package org.eclipse.rcpl.login;
 
+import java.net.MalformedURLException;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -30,6 +41,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 
 /**
  * @author ramin
@@ -48,6 +60,9 @@ public class RcplLoginController {
 
 	@FXML
 	private Button buttonCancel;
+
+	@FXML
+	private ToggleButton buttonShowHide;
 
 	@FXML
 	private Text loginHeaderText;
@@ -73,6 +88,9 @@ public class RcplLoginController {
 	@FXML
 	private StackPane logoArea;
 
+	@FXML
+	private ImageView barCodeImageView;
+
 	private VBox centerVBox;
 
 	private RcplLogin login;
@@ -82,6 +100,8 @@ public class RcplLoginController {
 	}
 
 	private LoginState loginState = LoginState.START;
+
+	private RcplAuth authentication;
 
 	public RcplLoginController(RcplLogin login) {
 		this.login = login;
@@ -289,50 +309,49 @@ public class RcplLoginController {
 
 	}
 
-	// private void createPasswordToolTip() {
-	// Tooltip t = new Tooltip(
-	//
-	// "1. have at least eight characters.\n" + "2. consists of only letters and
-	// digits.\n"
-	// + "3. must contain at least two digits.\n");
-	// Tooltip.install(password, t);
-	// t.getStyleClass().add("ttip");
-	// }
+	private void createPasswordToolTip() {
+		Tooltip t = new Tooltip(
 
-	// private void resetPasswordToolTip() {
-	// Tooltip t = new Tooltip("");
-	// Tooltip.install(password, t);
-	// t.getStyleClass().add("ttip");
-	// }
+				"1. have at least eight characters.\n" + "2. consists of only letters and digits.\n"
+						+ "3. must contain at least two digits.\n");
+		Tooltip.install(password, t);
+		t.getStyleClass().add("ttip");
+	}
 
-	// private boolean verifyPassword() {
-	// String pass = password.getText();
-	// // if (!pass.equals(repeatPassword.getText())) {
-	// // return false;
-	// // }
-	// // return true if and only if password:
-	// // 1. have at least eight characters.
-	// // 2. consists of only letters and digits.
-	// // 3. must contain at least two digits.
-	// if (pass.length() < 8) {
-	// return false;
-	// } else {
-	// char c;
-	// int count = 1;
-	// for (int i = 0; i < pass.length() - 1; i++) {
-	// c = pass.charAt(i);
-	// if (!Character.isLetterOrDigit(c)) {
-	// return false;
-	// } else if (Character.isDigit(c)) {
-	// count++;
-	// if (count < 2) {
-	// return false;
-	// }
-	// }
-	// }
-	// }
-	// return true;
-	// }
+	private void resetPasswordToolTip() {
+		Tooltip t = new Tooltip("");
+		Tooltip.install(password, t);
+		t.getStyleClass().add("ttip");
+	}
+
+	private boolean verifyPassword() {
+		String pass = password.getText();
+		// if (!pass.equals(repeatPassword.getText())) {
+		// return false;
+		// }
+		// return true if and only if password:
+		// 1. have at least eight characters.
+		// 2. consists of only letters and digits.
+		// 3. must contain at least two digits.
+		if (pass.length() < 8) {
+			return false;
+		} else {
+			char c;
+			int count = 1;
+			for (int i = 0; i < pass.length() - 1; i++) {
+				c = pass.charAt(i);
+				if (!Character.isLetterOrDigit(c)) {
+					return false;
+				} else if (Character.isDigit(c)) {
+					count++;
+					if (count < 2) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
 
 	public void displayMessage(String message, String... params) {
 		// termsAndConditions.setText(message);
@@ -405,62 +424,65 @@ public class RcplLoginController {
 
 	}
 
+	private Label termsAndConditionsLabel = new Label("termsAndConditions");
+	private WebView termsAndConditions = new WebView();
+	private PasswordField repeatPassword = new PasswordField();
+	private Label labelRepeatPassword = new Label("labelRepeatPassword");
+
 	public void collapse2(final boolean signIn) {
 
-		// Platform.runLater(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// loginGridPane.getChildren().removeAll(termsAndConditionsLabel,
-		// termsAndConditions, labelRepeatPassword,
-		// repeatPassword);
-		// buttonLogin.setVisible(true);
-		// buttonDemo.setVisible(true);
-		// buttonSignIn2.setVisible(signIn);
-		// buttonCancel.setVisible(false);
-		// resetPasswordToolTip();
-		// login.getNode().setPrefHeight(300);
-		// login.getNode().setMaxHeight(300);
-		// }
-		// });
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				loginGridPane.getChildren().removeAll(termsAndConditionsLabel, termsAndConditions, labelRepeatPassword,
+						repeatPassword);
+				buttonLogin.setVisible(true);
+				buttonDemo.setVisible(true);
+				buttonSignIn2.setVisible(signIn);
+				buttonCancel.setVisible(false);
+				resetPasswordToolTip();
+				login.getNode().setPrefHeight(300);
+				login.getNode().setMaxHeight(300);
+			}
+		});
 
 	}
 
-	// private void expand() {
-	//
-	// Platform.runLater(new Runnable() {
-	//
-	// @Override
-	// public void run() {
-	// if (!loginGridPane.getChildren().contains(termsAndConditionsLabel)) {
-	//
-	// buttonLogin.setVisible(false);
-	// buttonDemo.setVisible(false);
-	// agreeCheckBox.setVisible(true);
-	// buttonCancel.setVisible(true);
-	// userId.setText("");
-	// password.setText("");
-	// createPasswordToolTip();
-	// loginGridPane.getChildren().addAll(termsAndConditionsLabel,
-	// termsAndConditions, labelRepeatPassword,
-	// repeatPassword);
-	// loginGridPane.layout();
-	// }
-	// }
-	// });
-	//
-	// }
+	private void expand() {
 
-	// private boolean isValidEmailAddress(String email) {
-	// boolean result = true;
-	// try {
-	// InternetAddress emailAddr = new InternetAddress(email);
-	// emailAddr.validate();
-	// } catch (AddressException ex) {
-	// result = false;
-	// }
-	// return result;
-	// }
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				if (!loginGridPane.getChildren().contains(termsAndConditionsLabel)) {
+
+					buttonLogin.setVisible(false);
+					buttonDemo.setVisible(false);
+//					agreeCheckBox.setVisible(true);
+					buttonCancel.setVisible(true);
+					userId.setText("");
+					password.setText("");
+//					createPasswordToolTip();
+					loginGridPane.getChildren().addAll(termsAndConditionsLabel, termsAndConditions, labelRepeatPassword,
+							repeatPassword);
+					loginGridPane.layout();
+				}
+			}
+		});
+
+	}
+
+	private boolean isValidEmailAddress(String email) {
+		boolean result = true;
+		try {
+			InternetAddress emailAddr = new InternetAddress(email);
+			emailAddr.validate();
+		} catch (AddressException ex) {
+			result = false;
+		}
+		return result;
+	}
 
 	public void setHeaderText(final String text) {
 		Platform.runLater(new Runnable() {
@@ -527,4 +549,31 @@ public class RcplLoginController {
 
 	}
 
+	public void onActionShowHide() {
+		authentication = new RcplAuth();
+		authentication.registerNewUser("ramin.assisi@gmail.com", RcplSession.HOME_URL);
+		Image img;
+		try {
+			img = new Image(authentication.getBarCodeFile().toURI().toURL().toExternalForm());
+			barCodeImageView.setImage(img);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		expand();
+//		Platform.runLater(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//
+//				expandArea.setMinHeight(100);
+//				expandArea.setPrefHeight(100);
+//			}
+//		});
+
+	}
+
+	public void onDragEnteredGoogleAuthentication() {
+
+	}
 }
