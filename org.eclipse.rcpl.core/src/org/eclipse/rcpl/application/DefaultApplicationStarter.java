@@ -1,10 +1,10 @@
 package org.eclipse.rcpl.application;
 
+import org.eclipse.rcpl.BasicFactory;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplFactory;
 import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.IWindowAdvisor;
-import org.eclipse.rcpl.BasicFactory;
 import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.login.RcplLogin;
@@ -39,6 +39,7 @@ public class DefaultApplicationStarter extends RcplApplicationStarter {
 		// getRcplApplicationProvider().registerService(JOStartButtonService.class);
 
 		return super.start(login, primaryStage);
+
 	}
 
 	@Override
@@ -56,4 +57,5 @@ public class DefaultApplicationStarter extends RcplApplicationStarter {
 	protected IRcplFactory createRcplFactory() {
 		return new BasicFactory();
 	}
+
 }

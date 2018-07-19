@@ -305,7 +305,7 @@ public class RcplLoginController {
 		Document doc;
 		try {
 			doc = Jsoup.connect(TERMS_AND_CONDITIONS_URL).get();
-			String text = doc.body().text();
+			String text = doc.toString();
 			termsAndConditions.getEngine().loadContent(text);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
