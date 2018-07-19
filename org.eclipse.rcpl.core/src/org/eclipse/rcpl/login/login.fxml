@@ -9,111 +9,106 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane id="loginBorderPane" fx:id="loginBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="loginBorderPane" fx:id="loginBorderPane" maxWidth="-Infinity" minHeight="300.0" minWidth="10.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 <padding>
-<Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+<Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
 </padding>
-<center><VBox fx:id="centerVBox" alignment="CENTER" BorderPane.alignment="CENTER">
-<children><GridPane id="loginGridPane" fx:id="loginGridPane" alignment="CENTER" hgap="5.0" maxWidth="-Infinity" minWidth="-Infinity" styleClass="-fx-background-color:  linear-gradient(lightgray, gray); -fx-border-color: white; -fx-border-radius: 20; -fx-padding: 10 10 10 10; -fx-background-radius: 20;" vgap="5.0" VBox.vgrow="NEVER" xmlns:fx="http://javafx.com/fxml">
-  <columnConstraints>
-    <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-    <ColumnConstraints hgrow="SOMETIMES" />
+   <center>
+      <GridPane id="loginGridPane" fx:id="loginGridPane" alignment="CENTER" hgap="5.0" styleClass="-fx-background-color:  linear-gradient(lightgray, gray); -fx-border-color: white; -fx-border-radius: 20; -fx-padding: 10 10 10 10; -fx-background-radius: 20;" vgap="5.0" BorderPane.alignment="CENTER">
+<columnConstraints>
+<ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="150.0" />
+<ColumnConstraints hgrow="SOMETIMES" />
 <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
-  </columnConstraints>
-  <rowConstraints>
-                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
-                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="SOMETIMES" />
+</columnConstraints>
+<rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" valignment="CENTER" vgrow="SOMETIMES" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="-Infinity" minHeight="32.0" prefHeight="32.0" valignment="CENTER" vgrow="SOMETIMES" />
-  </rowConstraints>
+</rowConstraints>
 <padding>
-<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+<Insets top="35.0" />
 </padding>
-<children><Label id="loginLabel" fx:id="" text="E-Mail" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.vgrow="NEVER" /><Label id="loginLabel" text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="NEVER" /><TextField id="loginTextField" fx:id="userId" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+<children>
+            <Label id="loginLabel" fx:id="" text="E-Mail" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.vgrow="NEVER" />
+            <Label id="loginLabel" text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="NEVER" />
+            <TextField id="loginTextField" fx:id="userId" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
 <GridPane.margin>
 <Insets />
-</GridPane.margin></TextField><HBox fx:id="registerButtonHBox" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="374.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-<children><Button id="buttonDemo" fx:id="buttonDemo" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleGuest" text="Guest" GridPane.columnIndex="2" GridPane.rowIndex="2">
-<FlowPane.margin>
-<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-</FlowPane.margin>
-<HBox.margin>
-<Insets />
-</HBox.margin></Button><Button id="buttonRegister" fx:id="buttonSignIn2" alignment="CENTER_RIGHT" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#handleSignIn" text="Sign In" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" /><Button id="buttonLogin" fx:id="buttonCancel" disable="true" mnemonicParsing="false" onAction="#handleCancel" text="Cancel">
-<HBox.margin>
-<Insets left="5.0" />
-</HBox.margin></Button><Button id="buttonLogin" fx:id="buttonLogin" disable="true" mnemonicParsing="false" onAction="#handleLogin" text="Login" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-<FlowPane.margin>
-<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-</FlowPane.margin></Button>
-</children>
-<GridPane.margin>
-<Insets top="10.0" />
-</GridPane.margin></HBox><PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2">
+</GridPane.margin>
+            </TextField>
+            <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2">
 <GridPane.margin>
 <Insets />
-</GridPane.margin></PasswordField>
-                  <HBox id="loginHeader" fx:id="loginHeader" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="32.0" prefWidth="234.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
-      <children>
-                        <Text id="loginHeaderText" fx:id="loginHeaderText" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="96.37109375" HBox.hgrow="NEVER">
-      <HBox.margin>
-      <Insets />
-      </HBox.margin>
-                        </Text>
-                        <Text id="" fx:id="versionText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="79.0" GridPane.rowIndex="3" StackPane.alignment="CENTER" VBox.vgrow="NEVER" />
-      </children>
-                  </HBox>
-                  <StackPane fx:id="logoArea" prefHeight="32.0" prefWidth="32.0" />
-                  <Label text="2FA Authentication" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                  <TextField fx:id="authentication" GridPane.columnIndex="1" GridPane.rowIndex="3">
+</GridPane.margin>
+            </PasswordField>
+            <StackPane fx:id="logoArea" prefHeight="32.0" prefWidth="32.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" />
+               </children>
+            </StackPane>
+            <Label text="2FA Authentication" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <TextField fx:id="authentication" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </TextField>
+            <GridPane fx:id="signInArea" hgap="5.0" vgap="5.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label id="loginLabel" text="Google Authentication" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Line endX="400.0" startX="-100.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" />
+                  <Label id="loginLabel" text="Repeat Password" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Label id="loginLabel" text="Terms and Conditions" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                  <PasswordField fx:id="repeatPassword" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
-                  </TextField>
-                  <ToggleButton fx:id="buttonShowHide" mnemonicParsing="false" onAction="#onActionShowHide" text="Show/Hide" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                  <GridPane fx:id="signInArea" hgap="5.0" vgap="5.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  </PasswordField>
+                  <Text id="loginHeaderText" fx:id="loginHeaderText1" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" wrappingWidth="96.37109375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label id="loginLabel" text="I agree" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <WebView fx:id="termsAndConditions" minHeight="100.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </WebView>
+                  <ImageView fx:id="barCodeImageView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <children>
-                        <Label id="loginLabel" text="Google Authentication" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Line endX="400.0" startX="-100.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" />
-                        <Label id="loginLabel" text="Repeat Password" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                        <Label id="loginLabel" text="Terms and Conditions" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                        <PasswordField fx:id="repeatPassword" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </PasswordField>
-                        <Text id="loginHeaderText" fx:id="loginHeaderText1" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" wrappingWidth="96.37109375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label id="loginLabel" text="I agree" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                        <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                           <GridPane.margin>
-                              <Insets left="5.0" />
-                           </GridPane.margin>
-                        </CheckBox>
-                        <WebView fx:id="termsAndConditions" minHeight="100.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </WebView>
-                        <ImageView fx:id="barCodeImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Button id="buttonSignIn" fx:id="buttonSignIn" alignment="CENTER_RIGHT" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#handleSignIn" text="Sign In" />
                      </children>
-                  </GridPane>
+                  </FlowPane>
+               </children>
+            </GridPane>
+            <Label id="loginHeaderText1" text="Login" GridPane.columnIndex="1" />
+            <FlowPane alignment="CENTER_RIGHT" hgap="5.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+               <children>
+                  <Button id="buttonDemo" fx:id="buttonDemo" alignment="CENTER" minWidth="50.0" mnemonicParsing="false" onAction="#handleGuest" text="Guest" />
+                  <Button id="buttonLogin" fx:id="buttonLogin" alignment="CENTER" disable="true" minWidth="50.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+                  <ToggleButton fx:id="buttonShowHide" minWidth="70.0" mnemonicParsing="false" onAction="#onActionShowHide" text="Register" />
+                  <Button id="buttonLogin" fx:id="buttonCancel" alignment="CENTER" disable="true" maxWidth="1.7976931348623157E308" minWidth="60.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#handleCancel" text="Cancel" textAlignment="CENTER" />
+               </children>
+            </FlowPane>
 </children>
 </GridPane>
-</children></VBox>
-</center></BorderPane>
+   </center></BorderPane>

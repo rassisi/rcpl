@@ -1015,8 +1015,14 @@
 	-fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.9), 1, 0.0, 0, 10);
 }
 
+#loginHeaderText1 {
+	-fx-fill: darkslategray; /*linear-gradient(blue, lightblue); */
+	-fx-font-size: 18.0pt;
+}
+
 #loginHeaderText {
 	-fx-fill: darkslategray; /*linear-gradient(blue, lightblue); */
+	-fx-font-size: 18.0pt;
 }
 
 #loginGridPane {
@@ -1033,23 +1039,18 @@
 }
 
 #buttonLogin {
-	-fx-font: 10pt "Arial";
-	-fx-font-size: 10.0pt;
 	-fx-background-radius: 3, 3, 2, 2;
 	-fx-padding: 3px 10px 3px 10px;
 	-fx-background-color: linear-gradient(lightgray, silver);
 }
 
 #buttonRegister {
-	-fx-font: 10pt "Arial";
-	-fx-font-size: 10.0pt;
 	-fx-background-radius: 3, 3, 2, 2;
 	-fx-padding: 3px 10px 3px 10px;
 	-fx-background-color: linear-gradient(blue, silver);
 }
 
 #loginLabel {
-	-fx-font: 10pt "Arial";
 	-fx-text-fill: darkslategray;
 }
 

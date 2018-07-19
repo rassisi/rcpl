@@ -18,8 +18,8 @@ import java.util.List;
 
 import org.eclipse.rcpl.homepages.DefaultAboutHomePage;
 import org.eclipse.rcpl.homepages.DefaultNewHomePage;
-import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
 import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
+import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.model.IImage;
@@ -1180,7 +1180,7 @@ public class RcplUic extends RcplAbstractUic {
 
 			@Override
 			public void run() {
-				StackPane stackPane = getRcplApplicationStarter().getRcplApplicationProvider().getMainContentGroup();
+				StackPane stackPane = getRcplApplicationStarter().getRcplApplicationProvider().getMainContent();
 				if (messageBox != null) {
 					stackPane.getChildren().remove(messageBox);
 				}
@@ -1222,7 +1222,7 @@ public class RcplUic extends RcplAbstractUic {
 							@Override
 							protected void execute() {
 								StackPane stackPane = getRcplApplicationStarter().getRcplApplicationProvider()
-										.getMainContentGroup();
+										.getMainContent();
 								stackPane.getChildren().remove(messageBox);
 							}
 						};

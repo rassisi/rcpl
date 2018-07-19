@@ -32,12 +32,15 @@ import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -137,7 +140,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	@Override
-	public StackPane getMainContentGroup() {
+	public StackPane getMainContent() {
 		return mainContent;
 	}
 
@@ -210,10 +213,9 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		if (applicationsStarter != null) {
 			Rcpl.progressMessage("Application Starter found: " + applicationsStarter.getClass().getSimpleName());
 
-			Platform.runLater(new Runnable() {
-
+			final Task<Void> task = new Task<Void>() {
 				@Override
-				public void run() {
+				public Void call() {
 					boolean success = applicationsStarter.start(joLogin, primaryStage);
 					if (!success) {
 						joLogin.getController().setErrorInUserId();
@@ -223,28 +225,11 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 								"Application " + applicationsStarter.getClass().getSimpleName() + "started");
 						joLogin.getController().setHeaderText("RCPL is starting.");
 					}
+					return null;
 				}
-			});
-
-//			final Task<Void> task = new Task<Void>() {
-//				@Override
-//				public Void call() {
-//					boolean success = applicationsStarter.start(joLogin, primaryStage);
-//					if (!success) {
-//						joLogin.getController().setErrorInUserId();
-//						reStart();
-//					} else {
-//						Rcpl.progressMessage(
-//								"Application " + applicationsStarter.getClass().getSimpleName() + "started");
-//						joLogin.getController().setHeaderText("RCPL is starting.");
-//					}
-//					return null;
-//				}
-//			};
-//
-//			new Thread(task).start();
+			};
+			new Thread(task).start();
 		}
-
 	}
 
 	private void registerAddons() {
@@ -327,9 +312,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		calculateMonitors();
 		mainStackPane = new StackPane();
 		mainContent = new StackPane();
-		mainStackPane.setPrefSize(5000, 5000);
-		mainContent.setPrefSize(5000, 5000);
-
+		StackPane.setMargin(mainContent, new Insets(5, 0, 0, 0));
 		progressGroup = new StackPane();
 		progressGroup.setPickOnBounds(false);
 		mainStackPane.getChildren().addAll(mainContent, progressGroup);
@@ -412,7 +395,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			}
 		});
 
-//		scene.setFill(Color.TRANSPARENT);
+		scene.setFill(Color.TRANSPARENT);
 		try {
 			primaryStage.initStyle(StageStyle.TRANSPARENT);
 		} catch (Throwable ex) {
@@ -421,18 +404,20 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 		primaryStage.setScene(scene);
 		setSimpleDialog();
-
-		double loginWidth = joLogin.getNode().getPrefWidth();
-		double loginHeight = joLogin.getNode().getPrefHeight();
-
-		primaryStage.setWidth(loginWidth + 60);
-		primaryStage.setHeight(loginHeight);
-		primaryStage.centerOnScreen();
+		primaryStage.setWidth(1000);
+		primaryStage.setHeight(1000);
 
 		applicationWindow.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 5;");
 		mainStackPane.setStyle("-fx-background-radius: 10;");
 
-		primaryStage.toFront();
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				primaryStage.centerOnScreen();
+				primaryStage.toFront();
+			}
+		});
 
 	}
 
@@ -509,6 +494,18 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		setMinimizable(true);
 		setMaximizable(true);
 		setFullscreenAble(true);
+	}
+
+	@Override
+	public void setSize(double width, double height) {
+		applicationWindow.setPrefSize(width, height);
+		primaryStage.setWidth(width + 30);
+		primaryStage.setHeight(height + 60);
+	}
+
+	@Override
+	public void centerWindow() {
+		primaryStage.centerOnScreen();
 	}
 
 }

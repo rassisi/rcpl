@@ -10,11 +10,11 @@
  *******************************************************************************/
 package org.eclipse.rcpl.application;
 
-import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplAddon;
+import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IWindowAdvisor;
-import org.eclipse.rcpl.RcplVersion;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.RcplVersion;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
@@ -23,10 +23,7 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -137,9 +134,9 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 		Rcpl.progressMessage("Configure Top Area");
 		Rcpl.UIC.expandTopAra(true);
 		splashMessage = "J Office  Version " + RcplVersion.getVersion();
-		StackPane stackPane = applicationProvider.getMainContentGroup();
+		StackPane stackPane = applicationProvider.getMainContent();
 		stackPane.getChildren().clear();
-		Rcpl.UIC.addtoApplicationStack(applicationProvider.getMainContentGroup());
+		Rcpl.UIC.addtoApplicationStack(applicationProvider.getMainContent());
 		splashMessage = "J Office  Version " + RcplVersion.getVersion();
 		Rcpl.progressMessage("OfficeRCP.createMainWindow()#2");
 		Rcpl.showProgress(false);

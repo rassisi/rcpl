@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.rcpl.login;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 import javax.mail.internet.AddressException;
@@ -17,28 +18,26 @@ import javax.mail.internet.InternetAddress;
 
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 
@@ -49,7 +48,7 @@ import javafx.scene.web.WebView;
 public class RcplLoginController {
 
 	@FXML
-	private Button buttonSignIn2;
+	private Button buttonSignIn;
 
 	@FXML
 	private Button buttonLogin;
@@ -99,9 +98,12 @@ public class RcplLoginController {
 	@FXML
 	private GridPane signInArea;
 
-	private VBox centerVBox;
+	@FXML
+	private FlowPane signInButtonPane;
 
 	private RcplLogin login;
+
+	private static String TERMS_AND_CONDITIONS_URL = "https://raw.githubusercontent.com/rassisi/worldreservesystem/master/org.wrs.resources/html/terms_and_conditions.html";
 
 	enum LoginState {
 		START, IN_REGISTRATION, AFTER_REGISTRATION
@@ -111,37 +113,19 @@ public class RcplLoginController {
 
 	private RcplAuth authentication;
 
-//	private Label termsAndConditionsLabel = new Label("termsAndConditions");
-//	
-//	
-//	private Label labelRepeatPassword = new Label("labelRepeatPassword");
+	private static final double COLLAPSED_HEIGHT = 300;
+
+	private static final double COLLAPSED_WIDTH = 360;
+
+	private static final double EXPANDED_HEIGHT = 600;
+
+	private static final double EXPANDED_WIDTH = 600;
 
 	public RcplLoginController(RcplLogin login) {
 		this.login = login;
 	}
 
 	public void init() {
-		// enableButtons();
-		// userId.setText("demo@joffice.eu");
-		// password.setText("demo");
-		DropShadow dropShadow = new DropShadow();
-		dropShadow.setOffsetX(1);
-		dropShadow.setOffsetY(1);
-		dropShadow.setColor(javafx.scene.paint.Color.GRAY);
-		loginHeaderText.setFont(Font.font("Arial", FontWeight.NORMAL, 22));
-		loginHeaderText.setId("loginHeaderText");
-		loginHeader.setId("loginHeader");
-		loginHeader.setEffect(dropShadow);
-		loginBorderPane.setId("loginBorderPane");
-		loginHeader.setId("loginHeaderText");
-		loginGridPane.setId("loginGridPane");
-		buttonLogin.setId("buttonLogin");
-		buttonSignIn2.setId("buttonLogin");
-		buttonDemo.setId("buttonLogin");
-
-		loginHeader.setPrefHeight(40);
-		loginHeader.setMinHeight(40);
-		loginHeader.setMaxHeight(40);
 
 		buttonCancel.setDisable(false);
 
@@ -318,8 +302,15 @@ public class RcplLoginController {
 		// // + "\n"
 		// + " based on Eclipse Luna and Apache Open Source Components");
 
-		termsAndConditions.getEngine().load(
-				"https://raw.githubusercontent.com/rassisi/worldreservesystem/master/org.wrs.resources/html/terms_and_conditions.html");
+		Document doc;
+		try {
+			doc = Jsoup.connect(TERMS_AND_CONDITIONS_URL).get();
+			String text = doc.body().text();
+			termsAndConditions.getEngine().loadContent(text);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		collapse();
 
@@ -398,62 +389,35 @@ public class RcplLoginController {
 		password.setText("");
 	}
 
-	private void collapse() {
-
-		// Platform.runLater(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// loginGridPane.getChildren().removeAll(termsAndConditionsLabel,
-		// termsAndConditions, labelRepeatPassword,
-		// repeatPassword);
-		// loginGridPane.layout();
-		// resetPasswordToolTip();
-		// login.getNode().setPrefHeight(300);
-		// login.getNode().setMaxHeight(300);
-		// }
-		// });
-
-	}
-
-	public void collapseAll() {
-
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-
-				Node n = loginBorderPane.getBottom();
-
-				if (n != null) {
-					loginGridPane.setPrefHeight(0);
-					loginGridPane.setMaxHeight(0);
-					loginGridPane.setMinHeight(0);
-					centerVBox.setVisible(false);
-					loginBorderPane.setCenter(null);
-					loginBorderPane.setBottom(null);
-					loginBorderPane.setCenter(n);
-				}
-				loginBorderPane.layout();
-			}
-		});
-
-	}
-
-	public void collapse2(final boolean signIn) {
+	public void collapse() {
 
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 				loginGridPane.getChildren().removeAll(signInArea);
+				loginBorderPane.layout();
 				buttonLogin.setVisible(true);
 				buttonDemo.setVisible(true);
-				buttonSignIn2.setVisible(signIn);
-				buttonCancel.setVisible(false);
+				buttonSignIn.setVisible(true);
+				buttonCancel.setVisible(true);
 				resetPasswordToolTip();
-				login.getNode().setPrefHeight(300);
-				login.getNode().setMaxHeight(300);
+
+				Platform.runLater(new Runnable() {
+
+					@Override
+					public void run() {
+						if (login.getApplicationProvider() != null) {
+//							login.getNode().setPrefSize(650, 350);
+							login.getApplicationProvider().setSize(COLLAPSED_WIDTH, COLLAPSED_HEIGHT);
+							login.getApplicationProvider().centerWindow();
+						} else {
+							login.getStage().setWidth(COLLAPSED_WIDTH);
+							login.getStage().setHeight(COLLAPSED_HEIGHT);
+							login.getStage().centerOnScreen();
+						}
+					}
+				});
 			}
 		});
 
@@ -476,6 +440,20 @@ public class RcplLoginController {
 //					createPasswordToolTip();
 					loginGridPane.getChildren().addAll(signInArea);
 					loginGridPane.layout();
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+							if (login.getApplicationProvider() != null) {
+								login.getApplicationProvider().setSize(EXPANDED_WIDTH, EXPANDED_HEIGHT);
+								login.getApplicationProvider().centerWindow();
+							} else {
+								login.getStage().setWidth(EXPANDED_WIDTH);
+								login.getStage().setHeight(EXPANDED_HEIGHT);
+								login.getStage().centerOnScreen();
+							}
+						}
+					});
 				}
 			}
 		});
@@ -494,13 +472,13 @@ public class RcplLoginController {
 	}
 
 	public void setHeaderText(final String text) {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				loginHeaderText.setText(text);
-			}
-		});
+//		Platform.runLater(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				loginHeaderText.setText(text);
+//			}
+//		});
 	}
 
 	public void setErrorInUserId() {
@@ -523,7 +501,9 @@ public class RcplLoginController {
 
 	@FXML
 	public void handleGuest() {
-		login.getApplicationProvider().login();
+		if (login.getApplicationProvider() != null) {
+			login.getApplicationProvider().login();
+		}
 	}
 
 	public Text getLoginHeaderText() {
@@ -559,6 +539,13 @@ public class RcplLoginController {
 	}
 
 	public void onActionShowHide() {
+
+		if (buttonShowHide.isSelected()) {
+			expand();
+		} else {
+			collapse();
+		}
+
 		authentication = new RcplAuth();
 		authentication.registerNewUser("ramin.assisi@gmail.com", RcplSession.HOME_URL);
 		Image img;
@@ -569,16 +556,6 @@ public class RcplLoginController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		expand();
-//		Platform.runLater(new Runnable() {
-//
-//			@Override
-//			public void run() {
-//
-//				expandArea.setMinHeight(100);
-//				expandArea.setPrefHeight(100);
-//			}
-//		});
 
 	}
 

@@ -36,7 +36,7 @@ public interface IRcplApplicationProvider {
 
 	void login();
 
-	StackPane getMainContentGroup();
+	StackPane getMainContent();
 
 	void setMainStackPane(StackPane stackPane);
 
@@ -59,4 +59,8 @@ public interface IRcplApplicationProvider {
 	void setSimpleDialog();
 
 	void setNormalWindow();
+
+	void setSize(double width, double height);
+
+	void centerWindow();
 }

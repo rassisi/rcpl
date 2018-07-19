@@ -24,6 +24,8 @@ import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -54,7 +56,6 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 		Rcpl.setFactory(createRcplFactory());
 		Rcpl.setToolFactory(createToolFactory());
 		Rcpl.progressMessage("Collapse All");
-		login.getController().collapseAll();
 		RCPLModel.configuration = new RcplConfig();
 
 		Rcpl.progressMessage("Create UIC");
@@ -76,7 +77,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 			public void run() {
 				uic.createContent();
 				if (Rcpl.isMobile()) {
-					uic.addtoApplicationStack(applicationProvider.getMainContentGroup());
+					uic.addtoApplicationStack(applicationProvider.getMainContent());
 				} else {
 					windowAdvisor = createWindowAdvisor();
 					windowAdvisor.start();
@@ -88,6 +89,8 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 
 			}
 		});
+
+		StackPane.setMargin(applicationProvider.getMainContent(), new Insets(0, 0, 0, 0));
 
 		applicationProvider.setNormalWindow();
 
