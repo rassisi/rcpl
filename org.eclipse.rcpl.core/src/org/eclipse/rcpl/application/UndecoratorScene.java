@@ -44,7 +44,7 @@ public class UndecoratorScene extends Scene {
     static public final String DEFAULT_STYLESHEET_UTILITY = "skin/undecoratorUtilityStage.css";
     static public final String DEFAULT_STAGEDECORATION = "stagedecoration.fxml";
     static public final String DEFAULT_STAGEDECORATION_UTILITY = "stageUtilityDecoration.fxml";
-    Undecorator undecorator;
+    RcplApplicationWindow undecorator;
 
     /**
      * Basic constructor with built-in behavior
@@ -79,7 +79,7 @@ public class UndecoratorScene extends Scene {
                 stageDecorationFxml = DEFAULT_STAGEDECORATION;
             }
         }
-        undecorator = new Undecorator(stage, root, stageDecorationFxml, stageStyle);
+        undecorator = new RcplApplicationWindow(stage, root, stageDecorationFxml, stageStyle);
         super.setRoot(undecorator);
         
         // Customize it by CSS if needed:
@@ -122,7 +122,7 @@ public class UndecoratorScene extends Scene {
         undecorator.getBackgroundNode().setFill(paint);
     }
 
-    public Undecorator getUndecorator() {
+    public RcplApplicationWindow getUndecorator() {
         return undecorator;
     }
 

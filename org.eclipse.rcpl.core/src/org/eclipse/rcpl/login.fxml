@@ -53,9 +53,9 @@
 </GridPane.margin></PasswordField>
                   <HBox id="loginHeader" fx:id="loginHeader" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="32.0" prefWidth="234.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
       <children>
-                        <Text id="loginHeaderText" fx:id="loginHeaderText" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="96.37109375" HBox.hgrow="NEVER">
+                        <Text id="loginHeaderText" fx:id="loginHeaderText" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="96.37109375" HBox.hgrow="NEVER">
       <HBox.margin>
-      <Insets />
+      <Insets left="5.0" />
       </HBox.margin>
                         </Text>
                         <Text id="" fx:id="versionText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="79.0" GridPane.rowIndex="3" StackPane.alignment="CENTER" VBox.vgrow="NEVER" />

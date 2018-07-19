@@ -18,14 +18,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.rcpl.IApplicationStarter;
+import org.eclipse.rcpl.IApplicationWindow;
 import org.eclipse.rcpl.IMonitor;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplAbstractService;
-import org.eclipse.rcpl.RcplLogin;
 import org.eclipse.rcpl.impl.RcplMonitor;
 import org.eclipse.rcpl.internal.services.RcplService;
+import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
@@ -51,6 +52,8 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	private static IApplicationStarter rcplApplicationStarter;
 
 	private boolean LOGIN_DEBUG = false;
+
+	private RcplApplicationWindow applicationWindow;
 
 	public static void init(String[] args) {
 
@@ -124,9 +127,9 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 	@Override
 	public void bindAddonsToModel() {
-		for (IRcplAddon plugin : rcplAddons.values()) {
+		for (IRcplAddon addon : rcplAddons.values()) {
 			try {
-				plugin.bindToModel();
+				addon.bindToModel();
 			} catch (Exception e) {
 				Rcpl.progressMessage(e.getMessage());
 			}
@@ -146,11 +149,11 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	private IApplicationStarter getRcplApplicationStarter() {
 		if (rcplApplicationStarter == null) {
 
-			// first scan all custom application rcpl plugins
+			// first scan all custom application rcpl Addons
 
-			for (IRcplAddon plugin : rcplAddons.values()) {
-				if (plugin.isCustomApplication()) {
-					IApplicationStarter applicationStarter = plugin.createApplicationStarter(this);
+			for (IRcplAddon addon : rcplAddons.values()) {
+				if (addon.isCustomApplication()) {
+					IApplicationStarter applicationStarter = addon.createApplicationStarter(this);
 					if (applicationStarter != null) {
 						rcplApplicationStarter = applicationStarter;
 						return rcplApplicationStarter;
@@ -158,12 +161,12 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 				}
 			}
 
-			// now find the built-in application rcpl plugin
+			// now find the built-in application rcpl Addon
 
-			// for (IRcplPlugin plugin : rcplPlugins) {
-			// if (!plugin.isCustomApplication()) {
+			// for (IRcplAddon addon : rcplAddons) {
+			// if (!addon.isCustomApplication()) {
 			// IApplicationStarter applicationStarter =
-			// plugin.createApplicationStarter(this);
+			// addon.createApplicationStarter(this);
 			// if (applicationStarter != null) {
 			// rcplApplicationStarter = applicationStarter;
 			// return rcplApplicationStarter;
@@ -200,8 +203,8 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			primaryStage.getScene().getRoot().setClip(null);
 			primaryStage.show();
 		}
-		Rcpl.progressMessage("Register Plugins");
-		registerPlugins();
+		Rcpl.progressMessage("Register Addons");
+		registerAddons();
 
 		final IApplicationStarter applicationsStarter = getRcplApplicationStarter();
 		if (applicationsStarter != null) {
@@ -244,24 +247,24 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 	}
 
-	private void registerPlugins() {
-		for (String pluginClass : rcplAddonClassNames) {
-			IRcplAddon rcplPlugin = createRcplPlugin(pluginClass);
-			if (rcplPlugin != null) {
-				Rcpl.progressMessage("RcplPlugin " + rcplPlugin.getDisplayName() + " registered.");
+	private void registerAddons() {
+		for (String addonClass : rcplAddonClassNames) {
+			IRcplAddon rcplAddon = createRcplAddon(addonClass);
+			if (rcplAddon != null) {
+				Rcpl.progressMessage("RcplAddon " + rcplAddon.getDisplayName() + " registered.");
 			}
 		}
 	}
 
-	private IRcplAddon createRcplPlugin(String rcplPluginClassName) {
+	private IRcplAddon createRcplAddon(String rcplAddonClassName) {
 		try {
-			Class<?> pluginClass = Class.forName(rcplPluginClassName);
-			Object plugin = pluginClass.newInstance();
-			if (plugin instanceof IRcplAddon) {
-				IRcplAddon rcplPlugin = (IRcplAddon) plugin;
-				rcplAddons.put(rcplPluginClassName, rcplPlugin);
-				Rcpl.progressMessage("RCPL - Plugin registered: " + rcplPlugin.getDisplayName());
-				return rcplPlugin;
+			Class<?> AddonClass = Class.forName(rcplAddonClassName);
+			Object addon = AddonClass.newInstance();
+			if (addon instanceof IRcplAddon) {
+				IRcplAddon rcplAddon = (IRcplAddon) addon;
+				rcplAddons.put(rcplAddonClassName, rcplAddon);
+				Rcpl.progressMessage("RCPL - Addon registered: " + rcplAddon.getDisplayName());
+				return rcplAddon;
 			}
 		} catch (InstantiationException e) {
 			RCPLModel.logError(e);
@@ -274,14 +277,14 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	@Override
-	public void registerRcplAddonClass(String rcplPluginClassName) {
-		String className = rcplPluginClassName;
-		if (rcplPluginClassName.endsWith(".class")) {
-			className = rcplPluginClassName.substring(0, rcplPluginClassName.length() - 6);
+	public void registerRcplAddonClass(String rcplAddonClassName) {
+		String className = rcplAddonClassName;
+		if (rcplAddonClassName.endsWith(".class")) {
+			className = rcplAddonClassName.substring(0, rcplAddonClassName.length() - 6);
 		}
 
 		try {
-			Class.forName(rcplPluginClassName);
+			Class.forName(rcplAddonClassName);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -394,18 +397,18 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	private void startPc() {
 		Rcpl.progressMessage("Start Desktop Application");
 
-		final Undecorator undecorator = new Undecorator(primaryStage, mainStackPane);
-		undecorator.getStylesheets().addAll("skin/undecorator.css", "/css/msoffice.css", "/css/default.css"); // ,
+		applicationWindow = new RcplApplicationWindow(primaryStage, mainStackPane);
+		applicationWindow.getStylesheets().addAll("skin/undecorator.css", "/css/msoffice.css", "/css/default.css"); // ,
 
-		Scene scene = new Scene(undecorator);
-		undecorator.installAccelerators(scene);
-		undecorator.setFadeInTransition();
+		Scene scene = new Scene(applicationWindow);
+		applicationWindow.installAccelerators(scene);
+		applicationWindow.setFadeInTransition();
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent we) {
 				we.consume(); // Do not hide
-				undecorator.setFadeOutTransition();
+				applicationWindow.setFadeOutTransition();
 			}
 		});
 
@@ -417,7 +420,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		}
 
 		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
+		setSimpleDialog();
 
 		double loginWidth = joLogin.getNode().getPrefWidth();
 		double loginHeight = joLogin.getNode().getPrefHeight();
@@ -426,14 +429,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		primaryStage.setHeight(loginHeight);
 		primaryStage.centerOnScreen();
 
-//		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-//		Rectangle r = new Rectangle((bounds.getWidth() - loginWidth) / 2.0, (bounds.getHeight() - loginHeight) / 2.0,
-//				loginWidth, loginHeight);
-//		primaryStage.getScene().getRoot().setClip(r);
-
-//		mainStackPane.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 10;");
-
-		undecorator.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 5;");
+		applicationWindow.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 5;");
 		mainStackPane.setStyle("-fx-background-radius: 10;");
 
 		primaryStage.toFront();
@@ -467,6 +463,52 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	@Override
 	public StackPane getMainApplicationStack() {
 		return mainStackPane;
+	}
+
+	public RcplApplicationWindow getUndecorator() {
+		return applicationWindow;
+	}
+
+	@Override
+	public IApplicationWindow getApplicationWindow() {
+		return applicationWindow;
+	}
+
+	@Override
+	public void setResizable(boolean resizable) {
+		primaryStage.setResizable(resizable);
+		applicationWindow.setResizable(resizable);
+	}
+
+	@Override
+	public void setMinimizable(boolean minimizable) {
+		applicationWindow.setMinimizable(minimizable);
+	}
+
+	@Override
+	public void setMaximizable(boolean maximizable) {
+		applicationWindow.setMaximizable(maximizable);
+	}
+
+	@Override
+	public void setFullscreenAble(boolean fullscreenAble) {
+		applicationWindow.setFullscreenAble(fullscreenAble);
+	}
+
+	@Override
+	public void setSimpleDialog() {
+		setResizable(false);
+		setMinimizable(false);
+		setMaximizable(false);
+		setFullscreenAble(false);
+	}
+
+	@Override
+	public void setNormalWindow() {
+		setResizable(true);
+		setMinimizable(true);
+		setMaximizable(true);
+		setFullscreenAble(true);
 	}
 
 }

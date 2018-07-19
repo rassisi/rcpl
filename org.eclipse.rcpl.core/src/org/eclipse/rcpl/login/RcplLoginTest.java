@@ -8,7 +8,7 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.login;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

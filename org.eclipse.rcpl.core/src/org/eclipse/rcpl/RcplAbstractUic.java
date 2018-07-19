@@ -22,6 +22,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;

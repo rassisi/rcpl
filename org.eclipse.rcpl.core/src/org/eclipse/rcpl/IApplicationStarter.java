@@ -1,5 +1,7 @@
 package org.eclipse.rcpl;
 
+import org.eclipse.rcpl.login.RcplLogin;
+
 import javafx.stage.Stage;
 
 /**

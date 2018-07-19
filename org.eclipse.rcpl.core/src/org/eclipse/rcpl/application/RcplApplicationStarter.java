@@ -17,9 +17,9 @@ import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplLogin;
 import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.internal.config.RcplConfig;
+import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
@@ -89,7 +89,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 			}
 		});
 
-		primaryStage.setResizable(true);
+		applicationProvider.setNormalWindow();
 
 		return true;
 	}

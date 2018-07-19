@@ -7,7 +7,7 @@ import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.application.RcplApplicationStarter;
 import org.eclipse.rcpl.application.RcplWindowAdvisor;
-import org.eclipse.rcpl.RcplLogin;
+import org.eclipse.rcpl.login.RcplLogin;
 
 public class DemoApplicationStarter extends RcplApplicationStarter {
 

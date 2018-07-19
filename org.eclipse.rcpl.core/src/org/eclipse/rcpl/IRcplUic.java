@@ -3,6 +3,7 @@ package org.eclipse.rcpl;
 import java.io.File;
 import java.util.List;
 
+import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 
 import javafx.event.ActionEvent;

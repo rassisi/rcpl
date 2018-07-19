@@ -35,6 +35,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.rcpl.IApplicationWindow;
+
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
@@ -83,7 +85,7 @@ import javafx.util.Duration;
  * not respect keyboard's locale. Multi screen: On second screen JFX returns
  * wrong value for MinY (300)
  */
-public class Undecorator extends StackPane {
+public class RcplApplicationWindow extends StackPane implements IApplicationWindow {
 
 	public int SHADOW_WIDTH = 15;
 	public int SAVED_SHADOW_WIDTH = 15;
@@ -148,15 +150,15 @@ public class Undecorator extends StackPane {
 		return fullscreenProperty;
 	}
 
-	public Undecorator(Stage stage, Region root) {
+	public RcplApplicationWindow(Stage stage, Region root) {
 		this(stage, root, "stagedecoration.fxml", StageStyle.UNDECORATED);
 	}
 
-	public Undecorator(Stage stag, Region clientArea, String stageDecorationFxml, StageStyle st) {
+	public RcplApplicationWindow(Stage stag, Region clientArea, String stageDecorationFxml, StageStyle st) {
 		create(stag, clientArea, getClass().getResource(stageDecorationFxml), st);
 	}
 
-	public Undecorator(Stage stag, Region clientArea, URL stageDecorationFxmlAsURL, StageStyle st) {
+	public RcplApplicationWindow(Stage stag, Region clientArea, URL stageDecorationFxmlAsURL, StageStyle st) {
 		create(stag, clientArea, stageDecorationFxmlAsURL, st);
 	}
 
@@ -424,8 +426,7 @@ public class Undecorator extends StackPane {
 	}
 
 	/**
-	 * Init the minimum/pref/max size in order to be reflected in the primary
-	 * stage
+	 * Init the minimum/pref/max size in order to be reflected in the primary stage
 	 */
 	private void computeAllSizes() {
 		// double minWidth = minWidth(getHeight());
@@ -484,7 +485,7 @@ public class Undecorator extends StackPane {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
 				if (t1.booleanValue()) {
-					FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), Undecorator.this);
+					FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), RcplApplicationWindow.this);
 					fadeTransition.setToValue(1);
 					fadeTransition.play();
 				}
@@ -493,11 +494,11 @@ public class Undecorator extends StackPane {
 	}
 
 	/**
-	 * Launch the fade out transition. Must be invoked when the
-	 * application/window is supposed to be closed
+	 * Launch the fade out transition. Must be invoked when the application/window
+	 * is supposed to be closed
 	 */
 	public void setFadeOutTransition() {
-		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), Undecorator.this);
+		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), RcplApplicationWindow.this);
 		fadeTransition.setToValue(0);
 		fadeTransition.play();
 		fadeTransition.setOnFinished(new EventHandler<ActionEvent>() {
@@ -892,7 +893,7 @@ public class Undecorator extends StackPane {
 		Properties prop = new Properties();
 
 		try {
-			prop.load(Undecorator.class.getClassLoader().getResourceAsStream("skin/undecorator.properties"));
+			prop.load(RcplApplicationWindow.class.getClassLoader().getResourceAsStream("skin/undecorator.properties"));
 			SHADOW_WIDTH = Integer.parseInt(prop.getProperty("window-shadow-width"));
 			RESIZE_PADDING = Integer.parseInt(prop.getProperty("window-resize-padding"));
 		} catch (IOException ex) {
@@ -901,4 +902,24 @@ public class Undecorator extends StackPane {
 		LOC = ResourceBundle.getBundle("insidefx/undecorator/resources/localization", Locale.getDefault());
 
 	}
+
+	public void setResizable(boolean resizable) {
+		resize.setVisible(resizable);
+	}
+
+	@Override
+	public void setMinimizable(boolean minimizable) {
+		minimize.setVisible(minimizable);
+	}
+
+	@Override
+	public void setMaximizable(boolean maximizable) {
+		maximize.setVisible(maximizable);
+	}
+
+	@Override
+	public void setFullscreenAble(boolean fullscreenAble) {
+		fullscreen.setVisible(fullscreenAble);
+	}
+
 }

@@ -32,7 +32,7 @@ public class UndecoratorController {
 	private static double newY;
 	private static int RESIZE_PADDING;
 	private static int SHADOW_WIDTH;
-	Undecorator undecorator;
+	RcplApplicationWindow undecorator;
 	BoundingBox savedBounds, savedFullScreenBounds;
 	boolean maximized = false;
 	static boolean isMacOS = false;
@@ -46,7 +46,7 @@ public class UndecoratorController {
 		}
 	}
 
-	public UndecoratorController(Undecorator ud) {
+	public UndecoratorController(RcplApplicationWindow ud) {
 		undecorator = ud;
 	}
 
@@ -318,7 +318,7 @@ public class UndecoratorController {
 				}
 			}
 		} catch (Exception e) {
-			Undecorator.LOGGER.log(Level.SEVERE, "setStageY issue", e);
+			RcplApplicationWindow.LOGGER.log(Level.SEVERE, "setStageY issue", e);
 		}
 	}
 

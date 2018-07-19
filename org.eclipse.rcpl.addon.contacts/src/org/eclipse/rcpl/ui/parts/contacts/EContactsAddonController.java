@@ -10,8 +10,8 @@ import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplAddon;
-import org.eclipse.rcpl.RcplLogin;
 import org.eclipse.rcpl.contacts.addon.RcplContactsAddon;
+import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.navigator.EViewController;
 

@@ -8,7 +8,9 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.login;
+
+import org.eclipse.rcpl.Rcpl;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -93,7 +95,7 @@ public class RcplLoginController {
 		dropShadow.setOffsetX(1);
 		dropShadow.setOffsetY(1);
 		dropShadow.setColor(javafx.scene.paint.Color.GRAY);
-		loginHeaderText.setFont(Font.font("Arial", FontWeight.BOLD, 28));
+		loginHeaderText.setFont(Font.font("Arial", FontWeight.NORMAL, 22));
 		loginHeaderText.setId("loginHeaderText");
 		loginHeader.setId("loginHeader");
 		loginHeader.setEffect(dropShadow);

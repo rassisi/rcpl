@@ -8,10 +8,12 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.login;
 
 import java.io.IOException;
 import java.net.URL;
+
+import org.eclipse.rcpl.IRcplApplicationProvider;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

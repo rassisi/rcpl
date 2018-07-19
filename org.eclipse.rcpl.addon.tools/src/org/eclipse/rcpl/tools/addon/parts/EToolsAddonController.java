@@ -23,7 +23,7 @@ import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplLogin;
+import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;

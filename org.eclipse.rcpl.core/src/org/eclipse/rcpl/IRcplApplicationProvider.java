@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.eclipse.rcpl.internal.services.RcplService;
 
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -47,4 +46,17 @@ public interface IRcplApplicationProvider {
 
 	StackPane getMainApplicationStack();
 
+	IApplicationWindow getApplicationWindow();
+
+	void setResizable(boolean resizable);
+
+	void setMinimizable(boolean minimizable);
+
+	void setMaximizable(boolean maximizable);
+
+	void setFullscreenAble(boolean fullscreenAble);
+
+	void setSimpleDialog();
+
+	void setNormalWindow();
 }
