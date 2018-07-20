@@ -12,15 +12,19 @@
 package org.eclipse.rcpl.navigator.tree.handlers;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.rcpl.navigator.tree.parts.DefaultTreeTreePart;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorTreePart;
 
-public abstract class JOAbstractAddHandler<T> extends JOAbstractEmfHandler<T> {
+public abstract class AbstractDeleteHandler<T> extends AbstractEmfHandler<T> {
 
-	public JOAbstractAddHandler(DefaultTreeTreePart treePart) {
+	public AbstractDeleteHandler(DefaultNavigatorTreePart treePart) {
 		super(treePart);
 	}
 
+	@Override
 	public void execute() {
 		try {
 			@SuppressWarnings({ "unchecked", "unused" })
@@ -28,11 +32,21 @@ public abstract class JOAbstractAddHandler<T> extends JOAbstractEmfHandler<T> {
 		} catch (ClassCastException e) {
 			return;
 		}
-		Command command = AddCommand.create(treePart.getEditingDomain(),
-				treePart.getSelectedObject(), newObjectClass(), createObject());
-		if (command != null && command.canExecute())
+		Command command = DeleteCommand.create(treePart.getEditingDomain(), treePart.getSelectedObject());
+		if (command != null && command.canExecute()) {
 			treePart.getEditingDomain().getCommandStack().execute(command);
+			RcplSession.getDefault().commit();
+		}
 
 	}
 
+	@Override
+	protected EObject createObject() {
+		return null;
+	}
+
+	@Override
+	protected EClass newObjectClass() {
+		return null;
+	}
 }

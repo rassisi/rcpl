@@ -30,19 +30,23 @@ import javafx.scene.layout.Pane;
  * 
  */
 @RcplAddon
-public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigatorAddon{
+public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigatorAddon {
 
 	@Override
 	public void setTool(Tool tool) {
 		super.setTool(tool);
-		DefaultTreeTreePart part = createPart(tool);
+		DefaultNavigatorTreePart part = createPart(tool);
 		getNode().setCenter(part.getNode());
 	}
 
-	protected DefaultTreeTreePart createPart(Tool tool) {
-		return new DefaultNavigatorTreePart(tool, true);
+	protected DefaultNavigatorTreePart createPart(Tool tool, EObject root) {
+		return new DefaultNavigatorTreePart(null, tool, root, true);
 	}
-	
+
+	protected DefaultNavigatorTreePart createPart(Tool tool) {
+		return new DefaultNavigatorTreePart(null, tool, null, true);
+	}
+
 	@Override
 	public void init() {
 		super.init();
@@ -74,7 +78,7 @@ public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigat
 	}
 
 	@Override
-	public DefaultTreeTreePart create(Pane detailPane, Tool tool, EObject root, boolean showRoot) {
+	public DefaultNavigatorTreePart create(Pane detailPane, Tool tool, EObject root, boolean showRoot) {
 
 		if (root == null) {
 			RCPL rcpl = RcplSession.getDefault().getRcpl();
@@ -82,7 +86,7 @@ public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigat
 				root = rcpl.getAllResources();
 			}
 		}
-		return new DefaultTreeTreePart(detailPane, tool, root, showRoot);
+		return new DefaultNavigatorTreePart(detailPane, tool, root, showRoot);
 
 	}
 }

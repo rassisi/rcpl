@@ -33,14 +33,14 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
  * @author ramin
  *
  */
-public class JOPreferencesDetails {
+public class PreferencesDetails {
 
 	private final Parent node;
 
 	/**
 	 * @param preferences
 	 */
-	public JOPreferencesDetails(Preferences preferences) {
+	public PreferencesDetails(Preferences preferences) {
 
 		node = new GridPane();
 

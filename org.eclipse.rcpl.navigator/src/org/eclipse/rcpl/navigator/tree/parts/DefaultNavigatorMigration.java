@@ -14,6 +14,10 @@ package org.eclipse.rcpl.navigator.tree.parts;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.RcplAbstractMigration;
 
+/**
+ * @author Ramin
+ *
+ */
 public class DefaultNavigatorMigration extends RcplAbstractMigration {
 
 	public DefaultNavigatorMigration(IRcplAddon useCase) {
@@ -22,8 +26,6 @@ public class DefaultNavigatorMigration extends RcplAbstractMigration {
 
 	@Override
 	protected void migrate() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

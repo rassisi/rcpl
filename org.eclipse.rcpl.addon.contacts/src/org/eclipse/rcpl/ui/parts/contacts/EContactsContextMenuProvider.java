@@ -52,25 +52,20 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 
 	static List<?> getSelectionModel(Cell<?> cell) {
 		if (cell instanceof ListCell<?>) {
-			return ((ListCell<?>) cell).getListView().getSelectionModel()
-					.getSelectedItems();
+			return ((ListCell<?>) cell).getListView().getSelectionModel().getSelectedItems();
 		} else if (cell instanceof TreeCell<?>) {
-			MultipleSelectionModel<?> selectionModel = ((TreeCell<?>) cell)
-					.getTreeView().getSelectionModel();
+			MultipleSelectionModel<?> selectionModel = ((TreeCell<?>) cell).getTreeView().getSelectionModel();
 			ObservableList<?> selectedItems = selectionModel.getSelectedItems();
-			ArrayList<Object> unwrappedItems = new ArrayList<>(
-					selectedItems.size());
+			ArrayList<Object> unwrappedItems = new ArrayList<>(selectedItems.size());
 			for (Object object : selectedItems) {
 				TreeItem<?> treeItem = (TreeItem<?>) object;
 				unwrappedItems.add(treeItem.getValue());
 			}
 			return unwrappedItems;
 		} else if (cell instanceof TableCell<?, ?>) {
-			return ((TableCell<?, ?>) cell).getTableView().getSelectionModel()
-					.getSelectedItems();
+			return ((TableCell<?, ?>) cell).getTableView().getSelectionModel().getSelectedItems();
 		} else if (cell instanceof TableRow<?>) {
-			return ((TableRow<?>) cell).getTableView().getSelectionModel()
-					.getSelectedItems();
+			return ((TableRow<?>) cell).getTableView().getSelectionModel().getSelectedItems();
 		}
 		return null;
 	}
@@ -87,12 +82,9 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 			public void handle(WindowEvent event) {
 				try {
 					List<?> selectedItems = getSelectionModel(cell);
-					deleteMenuItem.setDisable(!deleteHandler
-							.canExecute(selectedItems));
-					cutMenuItem.setDisable(!cutHandler
-							.canExecute(selectedItems));
-					copyMenuItem.setDisable(!copyHandler
-							.canExecute(selectedItems));
+					deleteMenuItem.setDisable(!deleteHandler.canExecute(selectedItems));
+					cutMenuItem.setDisable(!cutHandler.canExecute(selectedItems));
+					copyMenuItem.setDisable(!copyHandler.canExecute(selectedItems));
 					Object item2 = cell.getItem();
 					pasteMenuItem.setDisable(!pasteHandler.canExecute(item2));
 					contextMenu.getItems().clear();
@@ -100,8 +92,7 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 					contextMenu.getItems().add(cutMenuItem);
 					contextMenu.getItems().add(copyMenuItem);
 					contextMenu.getItems().add(pasteMenuItem);
-					addContactMenuItem.setDisable(!addContactHandler
-							.canExecute(item2));
+					addContactMenuItem.setDisable(!addContactHandler.canExecute(item2));
 					contextMenu.getItems().add(addContactMenuItem);
 					contextMenu.getItems().add(addContactGroupMenuItem);
 					addContactHandler.setSelectedItem(item2);
@@ -114,8 +105,7 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 
 		});
 
-		deleteMenuItem = new MenuItem("Delete",
-				getImage("icons/silk/cross.png"));
+		deleteMenuItem = new MenuItem("Delete", getImage("icons/silk/cross.png"));
 		deleteHandler = new DeleteContactHandler();
 		deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -133,8 +123,7 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 			}
 		});
 
-		copyMenuItem = new MenuItem("Copy",
-				getImage("icons/silk/page_copy.png"));
+		copyMenuItem = new MenuItem("Copy", getImage("icons/silk/page_copy.png"));
 		copyHandler = new CopyHandler();
 		copyMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -145,8 +134,7 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 
 		});
 
-		pasteMenuItem = new MenuItem("Paste",
-				getImage("icons/silk/page_paste.png"));
+		pasteMenuItem = new MenuItem("Paste", getImage("icons/silk/page_paste.png"));
 		pasteHandler = new PasteHandler();
 		pasteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -157,8 +145,7 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 
 		});
 
-		addContactMenuItem = new MenuItem("Add User",
-				getImage("icons/silk/user_add.png"));
+		addContactMenuItem = new MenuItem("Add User", getImage("icons/silk/user_add.png"));
 		addContactHandler = new AddContactHandler();
 		addContactMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -167,8 +154,7 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 			}
 		});
 
-		addContactGroupMenuItem = new MenuItem("Add Contact Group",
-				getImage("icons/silk/folder_add.png"));
+		addContactGroupMenuItem = new MenuItem("Add Contact Group", getImage("icons/silk/folder_add.png"));
 		addContactGroupHandler = new AddGroupHandler();
 		addContactGroupMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -185,8 +171,7 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 			Image image = new Image(url.toExternalForm());
 			return new ImageView(image);
 		} catch (MalformedURLException e) {
-			return new ImageView(Rcpl.resources().getImage(
-					"shape_16_point_star", 16, 16).getImage());
+			return new ImageView(Rcpl.resources().getImage("shape_16_point_star", 16, 16).getImage());
 		}
 	}
 

@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
-import org.eclipse.rcpl.navigator.tree.parts.DefaultTreeTreePart;
+import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorTreePart;
 
-public class AddPreferencesHandler extends JOAbstractAddHandler<Preferences> {
+public class AddPreferencesHandler extends AbstractAddHandler<Preferences> {
 
-	public AddPreferencesHandler(DefaultTreeTreePart treePart) {
+	public AddPreferencesHandler(DefaultNavigatorTreePart treePart) {
 		super(treePart);
 	}
 

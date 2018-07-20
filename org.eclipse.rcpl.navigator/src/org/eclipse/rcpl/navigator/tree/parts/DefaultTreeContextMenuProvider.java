@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.fx.emf.edit.ui.AdapterFactoryCellFactory.ICellUpdateListener;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.emf.edit.ui.AdapterFactoryCellFactory.ICellUpdateListener;
 import org.eclipse.rcpl.model.IImage;
-import org.eclipse.rcpl.navigator.tree.handlers.JOAbstractEmfHandler;
+import org.eclipse.rcpl.navigator.tree.handlers.AbstractEmfHandler;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,12 +39,11 @@ public class DefaultTreeContextMenuProvider implements ICellUpdateListener {
 
 	private MenuItem deleteMenuItem;
 
-
 	MenuItem addMenuItem;
 
-	private DefaultTreeTreePart treePart;
+	private DefaultNavigatorTreePart treePart;
 
-	public DefaultTreeContextMenuProvider(DefaultTreeTreePart treePart) {
+	public DefaultTreeContextMenuProvider(DefaultNavigatorTreePart treePart) {
 		this.treePart = treePart;
 	}
 
@@ -85,7 +84,7 @@ public class DefaultTreeContextMenuProvider implements ICellUpdateListener {
 
 						contextMenu.getItems().clear();
 
-						JOAbstractEmfHandler<?> addHandler = treePart.getAddHandler();
+						AbstractEmfHandler<?> addHandler = treePart.getAddHandler();
 						if (addHandler != null) {
 							addMenuItem.setDisable(!addHandler.canExecute());
 							contextMenu.getItems().add(addMenuItem);
@@ -96,7 +95,7 @@ public class DefaultTreeContextMenuProvider implements ICellUpdateListener {
 							addMenuItem.setText(addHandler.getText());
 						}
 
-						JOAbstractEmfHandler<?> deleteHandler = treePart.getDeleteHandler();
+						AbstractEmfHandler<?> deleteHandler = treePart.getDeleteHandler();
 						if (deleteHandler != null) {
 							deleteMenuItem.setDisable(!deleteHandler.canExecute());
 							contextMenu.getItems().add(deleteMenuItem);

@@ -13,13 +13,13 @@ package org.eclipse.rcpl.navigator.tree.handlers;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.rcpl.navigator.tree.parts.DefaultTreeTreePart;
+import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorTreePart;
 
-public abstract class JOAbstractEmfHandler<T> {
+public abstract class AbstractEmfHandler<T> {
 
-	protected DefaultTreeTreePart treePart;
+	protected DefaultNavigatorTreePart treePart;
 
-	public JOAbstractEmfHandler(DefaultTreeTreePart treePart) {
+	public AbstractEmfHandler(DefaultNavigatorTreePart treePart) {
 		this.treePart = treePart;
 	}
 

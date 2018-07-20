@@ -12,12 +12,12 @@
 package org.eclipse.rcpl.navigator.tree.handlers;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
-import org.eclipse.rcpl.navigator.tree.parts.DefaultTreeTreePart;
+import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorTreePart;
 
 public class DeletePreferenceHandler extends
-		JOAbstractDeleteHandler<Preference> {
+		AbstractDeleteHandler<Preference> {
 
-	public DeletePreferenceHandler(DefaultTreeTreePart treePart) {
+	public DeletePreferenceHandler(DefaultNavigatorTreePart treePart) {
 		super(treePart);
 	}
 

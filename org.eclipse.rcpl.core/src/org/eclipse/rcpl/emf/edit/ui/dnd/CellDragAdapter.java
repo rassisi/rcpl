@@ -13,8 +13,8 @@ package org.eclipse.rcpl.emf.edit.ui.dnd;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.rcpl.emf.edit.ui.AdapterFactoryCellFactory;
-import org.eclipse.rcpl.emf.edit.ui.AdapterFactoryCellFactory.ICellCreationListener;
+import org.eclipse.fx.emf.edit.ui.AdapterFactoryCellFactory;
+import org.eclipse.fx.emf.edit.ui.AdapterFactoryCellFactory.ICellCreationListener;
 import org.eclipse.rcpl.model.RCPLModel;
 
 import javafx.collections.ObservableList;

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.rcpl.emf.edit.ui.AdapterFactoryCellFactory.ICellUpdateListener;
-import org.eclipse.rcpl.navigator.tree.handlers.JOAbstractEmfHandler;
+import org.eclipse.fx.emf.edit.ui.AdapterFactoryCellFactory.ICellUpdateListener;
+import org.eclipse.rcpl.navigator.tree.handlers.AbstractEmfHandler;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,16 +37,13 @@ public class DefaultNavigatorContextMenuProvider extends DefaultTreeContextMenuP
 
 	private MenuItem deleteMenuItem;
 
+	private DefaultNavigatorTreePart treePart;
 
-
-	private DefaultTreeTreePart treePart;
-
-	
 //	public NavigatorContextMenuProvider(EEmfTreeTreePart treePart) {
 //		this.treePart = treePart;
 //	}
 
-	public DefaultNavigatorContextMenuProvider(DefaultTreeTreePart treePart) {
+	public DefaultNavigatorContextMenuProvider(DefaultNavigatorTreePart treePart) {
 		super(treePart);
 	}
 
@@ -87,7 +84,7 @@ public class DefaultNavigatorContextMenuProvider extends DefaultTreeContextMenuP
 
 						contextMenu.getItems().clear();
 
-						JOAbstractEmfHandler<?> addHandler = treePart.getAddHandler();
+						AbstractEmfHandler<?> addHandler = treePart.getAddHandler();
 						if (addHandler != null) {
 							addMenuItem.setDisable(!addHandler.canExecute());
 							contextMenu.getItems().add(addMenuItem);
@@ -95,7 +92,7 @@ public class DefaultNavigatorContextMenuProvider extends DefaultTreeContextMenuP
 							addMenuItem.setText(addHandler.getText());
 						}
 
-						JOAbstractEmfHandler<?> deleteHandler = treePart.getDeleteHandler();
+						AbstractEmfHandler<?> deleteHandler = treePart.getDeleteHandler();
 						if (deleteHandler != null) {
 							deleteMenuItem.setDisable(!deleteHandler.canExecute());
 							contextMenu.getItems().add(deleteMenuItem);

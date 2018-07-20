@@ -41,6 +41,7 @@ public abstract class RcplTool implements ITool {
 
 	public RcplTool(Tool tool) {
 		this.tool = tool;
+
 		Rcpl.getEditorListeners().add(this);
 	}
 

@@ -12,23 +12,28 @@
 package org.eclipse.rcpl.navigator.tree.model.manager;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.rcpl.INavigatorTreeManager;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory;
-import org.eclipse.rcpl.navigator.UCModelManager;
 
-public class UCEmfTreeModelManagerImpl implements UCModelManager {
+public class UCEmfTreeModelManagerImpl implements INavigatorTreeManager {
 
 	public static EditingDomain editingDomain;
 	public static ComposedAdapterFactory adapterFactory;
 
 	public UCEmfTreeModelManagerImpl() {
 
+	}
+
+	public EObject getRoot() {
+		return RcplSession.getDefault().getRcpl();
 	}
 
 	@Override

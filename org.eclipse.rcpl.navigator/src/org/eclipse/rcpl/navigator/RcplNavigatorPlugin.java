@@ -1,10 +1,11 @@
 package org.eclipse.rcpl.navigator;
 
+import org.eclipse.rcpl.INavigatorTreeManager;
 import org.eclipse.rcpl.navigator.tree.model.manager.UCEmfTreeModelManagerImpl;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-public class RcplNavigatorPlugin  implements BundleActivator {
+public class RcplNavigatorPlugin implements BundleActivator {
 
 	private static BundleContext context;
 
@@ -22,14 +23,12 @@ public class RcplNavigatorPlugin  implements BundleActivator {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
-	 * )
+	 * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext )
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		RcplNavigatorPlugin.context = bundleContext;
 		manager = new UCEmfTreeModelManagerImpl();
 
-		
 	}
 
 	/*
@@ -42,18 +41,13 @@ public class RcplNavigatorPlugin  implements BundleActivator {
 		RcplNavigatorPlugin.context = null;
 	}
 
-
-
 	public static RcplNavigatorPlugin getDefault() {
 		return INSTANCE;
 	}
 
+	private INavigatorTreeManager manager;
 
-	
-	
-	private UCModelManager manager;
-
-	public UCModelManager getManager() {
+	public INavigatorTreeManager getManager() {
 		return manager;
-	}	
+	}
 }
