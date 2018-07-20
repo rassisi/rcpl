@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Currency;
 import java.util.Date;
@@ -234,8 +235,10 @@ public class RcplSession {
 
 	private boolean reachable;
 
-	public static void addAdditionalCodebases(String additionalCodeBase) {
-		getCodeBases().add(additionalCodeBase);
+	public static void addAdditionalImageCodebases(String... additionalCodeBases) {
+		if (additionalCodeBases != null) {
+			getCodeBases().addAll(Arrays.asList(additionalCodeBases));
+		}
 	}
 
 	public static RcplSession getDefault() {

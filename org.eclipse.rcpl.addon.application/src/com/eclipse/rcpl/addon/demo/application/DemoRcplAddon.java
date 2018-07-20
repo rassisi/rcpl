@@ -13,7 +13,7 @@ import org.eclipse.rcpl.navigator.EViewController;
  * 
  */
 @RcplAddon
-public class DemoAddon extends AbstractRcplAddon implements IRcplAddon {
+public class DemoRcplAddon extends AbstractRcplAddon implements IRcplAddon {
 
 	public static final String ID = "DEMO_APPLICATION";
 
@@ -35,7 +35,7 @@ public class DemoAddon extends AbstractRcplAddon implements IRcplAddon {
 
 	@Override
 	public IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication) {
-		return new DemoApplicationStarter(rcplApplication);
+		return new DemoRcplApplicationStarter(rcplApplication);
 	}
 
 

@@ -10,18 +10,16 @@
  *******************************************************************************/
 package com.eclipse.rcpl.addon.demo.application;
 
-import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.IRcplApplicationProvider;
+import org.eclipse.rcpl.application.RcplApplication;
 import org.eclipse.rcpl.application.RcplApplicationProvider;
 import org.eclipse.rcpl.model.RCPLModel;
-
-import javafx.application.Application;
-import javafx.stage.Stage;
 
 /**
  * @author ramin
  *
  */
-public class DemoRcplApplication extends Application {
+public class DemoRcplApplication extends RcplApplication {
 
 	public static void main(String[] args) {
 		RcplApplicationProvider.init(args);
@@ -29,16 +27,33 @@ public class DemoRcplApplication extends Application {
 	}
 
 	@Override
-	public void start(final Stage primaryStage) {
+	protected IRcplApplicationProvider createApplicationProvider() {
+		return new RcplApplicationProvider(this);
+	}
 
-		Rcpl.rcplApplicationProvider = new RcplApplicationProvider(this);
-		Rcpl.setMobile(false);
-		RCPLModel.modelClass = JOModel.class;
-		RCPLModel.XMIName = "demorcpl";
-		Rcpl.rcplApplicationProvider.registerRcplAddonClass("com.eclipse.rcpl.plugin.demo.application.DemoPlugin");
-		Rcpl.rcplApplicationProvider
-				.registerRcplAddonClass("org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorPlugin");
+	@Override
+	protected boolean isMobile() {
+		return false;
+	}
 
-		Rcpl.rcplApplicationProvider.start(primaryStage);
+	@Override
+	protected String[] getRcplAddonClassNames() {
+		return new String[] { "com.eclipse.rcpl.addon.demo.application.DemoRcplAddon",
+				"org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorPlugin" };
+	}
+
+	@Override
+	protected Class<? extends RCPLModel> getRcplModel() {
+		return DemoRcplModel.class;
+	}
+
+	@Override
+	protected String getXmiName() {
+		return "demorcpl";
+	}
+
+	@Override
+	protected String[] getAdditionalImageCodeBases() {
+		return null;
 	}
 }

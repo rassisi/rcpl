@@ -49,7 +49,7 @@ public class FXTest extends Application {
 	}
 
 	void test_1() {
-		RcplSession.addAdditionalCodebases("https://upload.wikimedia.org/wikipedia/commons/d/d3/");
+		RcplSession.addAdditionalImageCodebases("https://upload.wikimedia.org/wikipedia/commons/d/d3/");
 		img = new RcplImage("Microsoft_Account", 300, 300);
 		imageView = img.getNode();
 	}
@@ -67,7 +67,7 @@ public class FXTest extends Application {
 	}
 
 	void test_4() {
-		RcplSession.addAdditionalCodebases(
+		RcplSession.addAdditionalImageCodebases(
 				"https://raw.githubusercontent.com/rassisi/worldreservesystem/master/org.wrs.resources/svg/");
 		img = new RcplImage("account", 200, 200);
 		imageView = img.getNode();

@@ -94,7 +94,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			} else if (arg.startsWith("-codebase")) {
 				String[] splits = arg.split("=");
 				if (splits.length == 2) {
-					RcplSession.addAdditionalCodebases(splits[1].trim());
+					RcplSession.addAdditionalImageCodebases(splits[1].trim());
 				}
 			}
 		}
@@ -262,20 +262,19 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	@Override
-	public void registerRcplAddonClass(String rcplAddonClassName) {
-		String className = rcplAddonClassName;
-		if (rcplAddonClassName.endsWith(".class")) {
-			className = rcplAddonClassName.substring(0, rcplAddonClassName.length() - 6);
+	public void registerRcplAddonClasses(String... rcplAddonClassName) {
+		for (String className : rcplAddonClassName) {
+			String newClassName = className;
+			if (className.endsWith(".class")) {
+				newClassName = className.substring(0, className.length() - 6);
+			}
+			try {
+				Class.forName(newClassName);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			rcplAddonClassNames.add(newClassName);
 		}
-
-		try {
-			Class.forName(rcplAddonClassName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		rcplAddonClassNames.add(className);
 	}
 
 	@Override

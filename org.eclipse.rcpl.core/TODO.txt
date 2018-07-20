@@ -1,0 +1,2 @@
+1. version Label aus EMF
+2. Navigator Bug (Verdoppelung)

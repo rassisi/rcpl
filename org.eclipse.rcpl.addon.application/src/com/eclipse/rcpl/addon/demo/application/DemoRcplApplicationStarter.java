@@ -9,15 +9,15 @@ import org.eclipse.rcpl.application.RcplApplicationStarter;
 import org.eclipse.rcpl.application.RcplWindowAdvisor;
 import org.eclipse.rcpl.login.RcplLogin;
 
-public class DemoApplicationStarter extends RcplApplicationStarter {
+public class DemoRcplApplicationStarter extends RcplApplicationStarter {
 
-	public DemoApplicationStarter(IRcplApplicationProvider application) {
+	public DemoRcplApplicationStarter(IRcplApplicationProvider application) {
 		super(application);
 	}
 
 	@Override
 	protected RcplUic createUIC(RcplLogin login) {
-		return new DemoUic(this);
+		return new DemoRcplUic(this);
 	}
 
 	@Override

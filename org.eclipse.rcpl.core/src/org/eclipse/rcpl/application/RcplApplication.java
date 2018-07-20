@@ -10,7 +10,10 @@
  *******************************************************************************/
 package org.eclipse.rcpl.application;
 
+import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.jpedal.examples.viewer.OpenViewerFX;
 
 import javafx.animation.FadeTransition;
@@ -40,19 +43,33 @@ import javafx.util.Duration;
  * @author ramin
  *
  */
-public class RcplApplication extends Application {
+public abstract class RcplApplication extends Application {
 
-	public static void main(String[] args) {
+	private ProgressBar loadProgress;
 
-		RcplApplicationProvider.init(args);
-		launch(args);
-	}
+	private Label progressText;
 
-	protected void initApplication() {
-		Rcpl.rcplApplicationProvider = new RcplApplicationProvider(this);
-		Rcpl.setMobile(false);
-		Rcpl.rcplApplicationProvider.registerRcplAddonClass("org.eclipse.rcpl.application.DefaultRcplPlugin.class");
-	}
+	OpenViewerFX viewer;
+
+	private Pane splashLayout;
+
+	private final Stage splashStage = new Stage();
+
+	protected static final int SPLASH_WIDTH = 600;
+
+	protected static final int SPLASH_HEIGHT = 200;
+
+	protected abstract IRcplApplicationProvider createApplicationProvider();
+
+	protected abstract boolean isMobile();
+
+	protected abstract String[] getRcplAddonClassNames();
+
+	protected abstract Class<? extends RCPLModel> getRcplModel();
+
+	protected abstract String[] getAdditionalImageCodeBases();
+
+	protected abstract String getXmiName();
 
 	@Override
 	public void start(final Stage primaryStage) {
@@ -112,15 +129,24 @@ public class RcplApplication extends Application {
 		new Thread(loadModsTask).start();
 	}
 
-	private ProgressBar loadProgress;
-	private Label progressText;
-	OpenViewerFX viewer;
-	private Pane splashLayout;
-	private final Stage splashStage = new Stage();
-	protected static final int SPLASH_WIDTH = 600;
-	protected static final int SPLASH_HEIGHT = 200;
+	/**
+	 * 
+	 */
+	private void initApplication() {
+		Rcpl.rcplApplicationProvider = createApplicationProvider();
+		Rcpl.setMobile(isMobile());
+		RCPLModel.XMIName = getXmiName();
+		RCPLModel.modelClass = getRcplModel();
+		Rcpl.rcplApplicationProvider.registerRcplAddonClasses(getRcplAddonClassNames());
+		RcplSession.addAdditionalImageCodebases(getAdditionalImageCodeBases());
 
-	// Starting the splash screen
+	}
+
+	/**
+	 * Starting the splash screen
+	 * 
+	 * @param task
+	 */
 	private void showSplash(final Task<ObservableList<String>> task) {
 		progressText.textProperty().bind(task.messageProperty());
 		loadProgress.progressProperty().bind(task.progressProperty());
@@ -149,10 +175,7 @@ public class RcplApplication extends Application {
 		});
 		final Scene splashScene = new Scene(splashLayout);
 		splashStage.initStyle(StageStyle.UNDECORATED);
-//		final Rectangle2D bounds = Screen.getPrimary().getBounds();
 		splashStage.setScene(splashScene);
-//		splashStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
-//		splashStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
 		splashStage.toFront();
 		splashStage.centerOnScreen();
 		splashStage.show();
