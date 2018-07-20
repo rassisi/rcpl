@@ -118,7 +118,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/sideToolBar"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/topToolBar"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/quickToolBar"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/quickTools"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/ribbonToolBar"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Preference">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Preference/key"/>
@@ -204,17 +204,21 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Tools/toolgroupChildren"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Tools/toolChildren"/>
     </genClasses>
-    <genClasses ecoreClass="rcpl.ecore#//QuickTools">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//QuickTools/quickTools"/>
+    <genClasses ecoreClass="rcpl.ecore#//RibbonToolBar">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//RibbonToolBar/toolGroups"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//RibbonToolBar/tools"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//TopToolBar">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//TopToolBar/toolGroups"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//TopToolBar/tools"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//SideToolBar">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//SideToolBar/toolGroups"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//SideToolBar/tools"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//QuickToolBar">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//QuickToolBar/toolGroups"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//QuickToolBar/tools"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Folder">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Folder/folders"/>

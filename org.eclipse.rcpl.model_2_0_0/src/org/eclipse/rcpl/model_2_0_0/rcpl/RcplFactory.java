@@ -157,13 +157,13 @@ public interface RcplFactory extends EFactory {
 	Tools createTools();
 
 	/**
-	 * Returns a new object of class '<em>Quick Tools</em>'.
+	 * Returns a new object of class '<em>Ribbon Tool Bar</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Quick Tools</em>'.
+	 * @return a new object of class '<em>Ribbon Tool Bar</em>'.
 	 * @generated
 	 */
-	QuickTools createQuickTools();
+	RibbonToolBar createRibbonToolBar();
 
 	/**
 	 * Returns a new object of class '<em>Top Tool Bar</em>'.

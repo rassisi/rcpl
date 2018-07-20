@@ -133,8 +133,8 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 				return createToolsAdapter();
 			}
 			@Override
-			public Adapter caseQuickTools(QuickTools object) {
-				return createQuickToolsAdapter();
+			public Adapter caseRibbonToolBar(RibbonToolBar object) {
+				return createRibbonToolBarAdapter();
 			}
 			@Override
 			public Adapter caseTopToolBar(TopToolBar object) {
@@ -495,16 +495,16 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools <em>Quick Tools</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar <em>Ribbon Tool Bar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar
 	 * @generated
 	 */
-	public Adapter createQuickToolsAdapter() {
+	public Adapter createRibbonToolBarAdapter() {
 		return null;
 	}
 

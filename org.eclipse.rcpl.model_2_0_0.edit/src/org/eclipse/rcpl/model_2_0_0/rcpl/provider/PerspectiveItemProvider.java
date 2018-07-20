@@ -85,7 +85,7 @@ public class PerspectiveItemProvider extends LayoutableItemProvider {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RcplPackage.Literals.PERSPECTIVE__SIDE_TOOL_BAR);
 			childrenFeatures.add(RcplPackage.Literals.PERSPECTIVE__TOP_TOOL_BAR);
-			childrenFeatures.add(RcplPackage.Literals.PERSPECTIVE__QUICK_TOOLS);
+			childrenFeatures.add(RcplPackage.Literals.PERSPECTIVE__RIBBON_TOOL_BAR);
 		}
 		return childrenFeatures;
 	}
@@ -138,7 +138,7 @@ public class PerspectiveItemProvider extends LayoutableItemProvider {
 		switch (notification.getFeatureID(Perspective.class)) {
 			case RcplPackage.PERSPECTIVE__SIDE_TOOL_BAR:
 			case RcplPackage.PERSPECTIVE__TOP_TOOL_BAR:
-			case RcplPackage.PERSPECTIVE__QUICK_TOOLS:
+			case RcplPackage.PERSPECTIVE__RIBBON_TOOL_BAR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -168,8 +168,8 @@ public class PerspectiveItemProvider extends LayoutableItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RcplPackage.Literals.PERSPECTIVE__QUICK_TOOLS,
-				 RcplFactory.eINSTANCE.createQuickTools()));
+				(RcplPackage.Literals.PERSPECTIVE__RIBBON_TOOL_BAR,
+				 RcplFactory.eINSTANCE.createRibbonToolBar()));
 	}
 
 }

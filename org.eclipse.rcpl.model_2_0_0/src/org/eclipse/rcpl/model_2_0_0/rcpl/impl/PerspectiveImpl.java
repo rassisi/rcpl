@@ -5,8 +5,8 @@ package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar;
-import org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 
@@ -21,7 +21,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectiveImpl#getSideToolBar <em>Side Tool Bar</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectiveImpl#getTopToolBar <em>Top Tool Bar</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectiveImpl#getQuickToolBar <em>Quick Tool Bar</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectiveImpl#getQuickTools <em>Quick Tools</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectiveImpl#getRibbonToolBar <em>Ribbon Tool Bar</em>}</li>
  * </ul>
  *
  * @generated
@@ -105,8 +105,8 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QuickTools getQuickTools() {
-		return (QuickTools)eGet(RcplPackage.Literals.PERSPECTIVE__QUICK_TOOLS, true);
+	public RibbonToolBar getRibbonToolBar() {
+		return (RibbonToolBar)eGet(RcplPackage.Literals.PERSPECTIVE__RIBBON_TOOL_BAR, true);
 	}
 
 	/**
@@ -114,8 +114,8 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setQuickTools(QuickTools newQuickTools) {
-		eSet(RcplPackage.Literals.PERSPECTIVE__QUICK_TOOLS, newQuickTools);
+	public void setRibbonToolBar(RibbonToolBar newRibbonToolBar) {
+		eSet(RcplPackage.Literals.PERSPECTIVE__RIBBON_TOOL_BAR, newRibbonToolBar);
 	}
 
 } //PerspectiveImpl

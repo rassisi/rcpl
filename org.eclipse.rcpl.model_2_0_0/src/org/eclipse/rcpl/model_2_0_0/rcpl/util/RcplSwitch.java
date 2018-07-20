@@ -184,10 +184,10 @@ public class RcplSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RcplPackage.QUICK_TOOLS: {
-				QuickTools quickTools = (QuickTools)theEObject;
-				T result = caseQuickTools(quickTools);
-				if (result == null) result = caseLayoutable(quickTools);
+			case RcplPackage.RIBBON_TOOL_BAR: {
+				RibbonToolBar ribbonToolBar = (RibbonToolBar)theEObject;
+				T result = caseRibbonToolBar(ribbonToolBar);
+				if (result == null) result = caseLayoutable(ribbonToolBar);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -626,17 +626,17 @@ public class RcplSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Quick Tools</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Ribbon Tool Bar</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Quick Tools</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Ribbon Tool Bar</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQuickTools(QuickTools object) {
+	public T caseRibbonToolBar(RibbonToolBar object) {
 		return null;
 	}
 

@@ -15,7 +15,7 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getSideToolBar <em>Side Tool Bar</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getTopToolBar <em>Top Tool Bar</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickToolBar <em>Quick Tool Bar</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickTools <em>Quick Tools</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getRibbonToolBar <em>Ribbon Tool Bar</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getPerspective()
@@ -102,29 +102,29 @@ public interface Perspective extends Layoutable {
 	void setQuickToolBar(QuickToolBar value);
 
 	/**
-	 * Returns the value of the '<em><b>Quick Tools</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Ribbon Tool Bar</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Quick Tools</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Ribbon Tool Bar</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Quick Tools</em>' containment reference.
-	 * @see #setQuickTools(QuickTools)
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getPerspective_QuickTools()
+	 * @return the value of the '<em>Ribbon Tool Bar</em>' containment reference.
+	 * @see #setRibbonToolBar(RibbonToolBar)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getPerspective_RibbonToolBar()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	QuickTools getQuickTools();
+	RibbonToolBar getRibbonToolBar();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickTools <em>Quick Tools</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getRibbonToolBar <em>Ribbon Tool Bar</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Quick Tools</em>' containment reference.
-	 * @see #getQuickTools()
+	 * @param value the new value of the '<em>Ribbon Tool Bar</em>' containment reference.
+	 * @see #getRibbonToolBar()
 	 * @generated
 	 */
-	void setQuickTools(QuickTools value);
+	void setRibbonToolBar(RibbonToolBar value);
 
 } // Perspective

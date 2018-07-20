@@ -6,22 +6,22 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Side Tool Bar</b></em>'.
+ * A representation of the model object '<em><b>Ribbon Tool Bar</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar#getToolGroups <em>Tool Groups</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar#getTools <em>Tools</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar#getToolGroups <em>Tool Groups</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar#getTools <em>Tools</em>}</li>
  * </ul>
  *
- * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getSideToolBar()
+ * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRibbonToolBar()
  * @model
  * @generated
  */
-public interface SideToolBar extends Layoutable {
+public interface RibbonToolBar extends Layoutable {
 	/**
 	 * Returns the value of the '<em><b>Tool Groups</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup}.
@@ -32,7 +32,7 @@ public interface SideToolBar extends Layoutable {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tool Groups</em>' reference list.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getSideToolBar_ToolGroups()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRibbonToolBar_ToolGroups()
 	 * @model
 	 * @generated
 	 */
@@ -48,10 +48,10 @@ public interface SideToolBar extends Layoutable {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tools</em>' reference list.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getSideToolBar_Tools()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRibbonToolBar_Tools()
 	 * @model
 	 * @generated
 	 */
 	EList<Tools> getTools();
 
-} // SideToolBar
+} // RibbonToolBar

@@ -415,26 +415,26 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected QuickToolsItemProvider quickToolsItemProvider;
+	protected RibbonToolBarItemProvider ribbonToolBarItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools}.
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createQuickToolsAdapter() {
-		if (quickToolsItemProvider == null) {
-			quickToolsItemProvider = new QuickToolsItemProvider(this);
+	public Adapter createRibbonToolBarAdapter() {
+		if (ribbonToolBarItemProvider == null) {
+			ribbonToolBarItemProvider = new RibbonToolBarItemProvider(this);
 		}
 
-		return quickToolsItemProvider;
+		return ribbonToolBarItemProvider;
 	}
 
 	/**
@@ -1126,7 +1126,7 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 		if (toolItemProvider != null) toolItemProvider.dispose();
 		if (toolGroupItemProvider != null) toolGroupItemProvider.dispose();
 		if (toolsItemProvider != null) toolsItemProvider.dispose();
-		if (quickToolsItemProvider != null) quickToolsItemProvider.dispose();
+		if (ribbonToolBarItemProvider != null) ribbonToolBarItemProvider.dispose();
 		if (topToolBarItemProvider != null) topToolBarItemProvider.dispose();
 		if (sideToolBarItemProvider != null) sideToolBarItemProvider.dispose();
 		if (quickToolBarItemProvider != null) quickToolBarItemProvider.dispose();

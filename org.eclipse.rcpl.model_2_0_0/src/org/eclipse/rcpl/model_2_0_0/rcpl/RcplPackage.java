@@ -773,13 +773,13 @@ public interface RcplPackage extends EPackage {
 	int PERSPECTIVE__QUICK_TOOL_BAR = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Quick Tools</b></em>' containment reference.
+	 * The feature id for the '<em><b>Ribbon Tool Bar</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERSPECTIVE__QUICK_TOOLS = LAYOUTABLE_FEATURE_COUNT + 3;
+	int PERSPECTIVE__RIBBON_TOOL_BAR = LAYOUTABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Perspective</em>' class.
@@ -3405,14 +3405,14 @@ public interface RcplPackage extends EPackage {
 	int TOOLS_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.QuickToolsImpl <em>Quick Tools</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RibbonToolBarImpl <em>Ribbon Tool Bar</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.QuickToolsImpl
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getQuickTools()
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RibbonToolBarImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getRibbonToolBar()
 	 * @generated
 	 */
-	int QUICK_TOOLS = 17;
+	int RIBBON_TOOL_BAR = 17;
 
 	/**
 	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
@@ -3421,7 +3421,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+	int RIBBON_TOOL_BAR__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
 
 	/**
 	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
@@ -3430,7 +3430,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+	int RIBBON_TOOL_BAR__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
 
 	/**
 	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
@@ -3439,7 +3439,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+	int RIBBON_TOOL_BAR__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
 
 	/**
 	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
@@ -3448,7 +3448,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+	int RIBBON_TOOL_BAR__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3457,7 +3457,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__NAME = LAYOUTABLE__NAME;
+	int RIBBON_TOOL_BAR__NAME = LAYOUTABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -3466,7 +3466,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+	int RIBBON_TOOL_BAR__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -3475,7 +3475,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__ID = LAYOUTABLE__ID;
+	int RIBBON_TOOL_BAR__ID = LAYOUTABLE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' attribute.
@@ -3484,7 +3484,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__IMAGE = LAYOUTABLE__IMAGE;
+	int RIBBON_TOOL_BAR__IMAGE = LAYOUTABLE__IMAGE;
 
 	/**
 	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
@@ -3493,7 +3493,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+	int RIBBON_TOOL_BAR__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
 
 	/**
 	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
@@ -3502,7 +3502,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+	int RIBBON_TOOL_BAR__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
@@ -3511,7 +3511,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+	int RIBBON_TOOL_BAR__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
 
 	/**
 	 * The feature id for the '<em><b>End Date</b></em>' attribute.
@@ -3520,7 +3520,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__END_DATE = LAYOUTABLE__END_DATE;
+	int RIBBON_TOOL_BAR__END_DATE = LAYOUTABLE__END_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
@@ -3529,34 +3529,43 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__LEAF = LAYOUTABLE__LEAF;
+	int RIBBON_TOOL_BAR__LEAF = LAYOUTABLE__LEAF;
 
 	/**
-	 * The feature id for the '<em><b>Quick Tools</b></em>' reference list.
+	 * The feature id for the '<em><b>Tool Groups</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS__QUICK_TOOLS = LAYOUTABLE_FEATURE_COUNT + 0;
+	int RIBBON_TOOL_BAR__TOOL_GROUPS = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Quick Tools</em>' class.
+	 * The feature id for the '<em><b>Tools</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+	int RIBBON_TOOL_BAR__TOOLS = LAYOUTABLE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Quick Tools</em>' class.
+	 * The number of structural features of the '<em>Ribbon Tool Bar</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOLS_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
+	int RIBBON_TOOL_BAR_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Ribbon Tool Bar</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RIBBON_TOOL_BAR_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.TopToolBarImpl <em>Top Tool Bar</em>}' class.
@@ -3695,13 +3704,22 @@ public interface RcplPackage extends EPackage {
 	int TOP_TOOL_BAR__TOOL_GROUPS = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Tools</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_TOOL_BAR__TOOLS = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Top Tool Bar</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_TOOL_BAR_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+	int TOP_TOOL_BAR_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Top Tool Bar</em>' class.
@@ -3849,13 +3867,22 @@ public interface RcplPackage extends EPackage {
 	int SIDE_TOOL_BAR__TOOL_GROUPS = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Tools</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIDE_TOOL_BAR__TOOLS = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Side Tool Bar</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIDE_TOOL_BAR_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+	int SIDE_TOOL_BAR_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Side Tool Bar</em>' class.
@@ -4003,13 +4030,22 @@ public interface RcplPackage extends EPackage {
 	int QUICK_TOOL_BAR__TOOL_GROUPS = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Tools</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUICK_TOOL_BAR__TOOLS = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Quick Tool Bar</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUICK_TOOL_BAR_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+	int QUICK_TOOL_BAR_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Quick Tool Bar</em>' class.
@@ -7831,15 +7867,15 @@ public interface RcplPackage extends EPackage {
 	EReference getPerspective_QuickToolBar();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickTools <em>Quick Tools</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getRibbonToolBar <em>Ribbon Tool Bar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Quick Tools</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickTools()
+	 * @return the meta object for the containment reference '<em>Ribbon Tool Bar</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getRibbonToolBar()
 	 * @see #getPerspective()
 	 * @generated
 	 */
-	EReference getPerspective_QuickTools();
+	EReference getPerspective_RibbonToolBar();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Preference <em>Preference</em>}'.
@@ -8610,25 +8646,36 @@ public interface RcplPackage extends EPackage {
 	EReference getTools_ToolChildren();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools <em>Quick Tools</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar <em>Ribbon Tool Bar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Quick Tools</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools
+	 * @return the meta object for class '<em>Ribbon Tool Bar</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar
 	 * @generated
 	 */
-	EClass getQuickTools();
+	EClass getRibbonToolBar();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools#getQuickTools <em>Quick Tools</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar#getToolGroups <em>Tool Groups</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Quick Tools</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools#getQuickTools()
-	 * @see #getQuickTools()
+	 * @return the meta object for the reference list '<em>Tool Groups</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar#getToolGroups()
+	 * @see #getRibbonToolBar()
 	 * @generated
 	 */
-	EReference getQuickTools_QuickTools();
+	EReference getRibbonToolBar_ToolGroups();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar#getTools <em>Tools</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Tools</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar#getTools()
+	 * @see #getRibbonToolBar()
+	 * @generated
+	 */
+	EReference getRibbonToolBar_Tools();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar <em>Top Tool Bar</em>}'.
@@ -8652,6 +8699,17 @@ public interface RcplPackage extends EPackage {
 	EReference getTopToolBar_ToolGroups();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar#getTools <em>Tools</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Tools</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar#getTools()
+	 * @see #getTopToolBar()
+	 * @generated
+	 */
+	EReference getTopToolBar_Tools();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar <em>Side Tool Bar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8673,6 +8731,17 @@ public interface RcplPackage extends EPackage {
 	EReference getSideToolBar_ToolGroups();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar#getTools <em>Tools</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Tools</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar#getTools()
+	 * @see #getSideToolBar()
+	 * @generated
+	 */
+	EReference getSideToolBar_Tools();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar <em>Quick Tool Bar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8692,6 +8761,17 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getQuickToolBar_ToolGroups();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar#getTools <em>Tools</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Tools</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar#getTools()
+	 * @see #getQuickToolBar()
+	 * @generated
+	 */
+	EReference getQuickToolBar_Tools();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Folder <em>Folder</em>}'.
@@ -9707,12 +9787,12 @@ public interface RcplPackage extends EPackage {
 		EReference PERSPECTIVE__QUICK_TOOL_BAR = eINSTANCE.getPerspective_QuickToolBar();
 
 		/**
-		 * The meta object literal for the '<em><b>Quick Tools</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Ribbon Tool Bar</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PERSPECTIVE__QUICK_TOOLS = eINSTANCE.getPerspective_QuickTools();
+		EReference PERSPECTIVE__RIBBON_TOOL_BAR = eINSTANCE.getPerspective_RibbonToolBar();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PreferenceImpl <em>Preference</em>}' class.
@@ -10309,22 +10389,30 @@ public interface RcplPackage extends EPackage {
 		EReference TOOLS__TOOL_CHILDREN = eINSTANCE.getTools_ToolChildren();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.QuickToolsImpl <em>Quick Tools</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RibbonToolBarImpl <em>Ribbon Tool Bar</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.QuickToolsImpl
-		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getQuickTools()
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RibbonToolBarImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getRibbonToolBar()
 		 * @generated
 		 */
-		EClass QUICK_TOOLS = eINSTANCE.getQuickTools();
+		EClass RIBBON_TOOL_BAR = eINSTANCE.getRibbonToolBar();
 
 		/**
-		 * The meta object literal for the '<em><b>Quick Tools</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Tool Groups</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference QUICK_TOOLS__QUICK_TOOLS = eINSTANCE.getQuickTools_QuickTools();
+		EReference RIBBON_TOOL_BAR__TOOL_GROUPS = eINSTANCE.getRibbonToolBar_ToolGroups();
+
+		/**
+		 * The meta object literal for the '<em><b>Tools</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RIBBON_TOOL_BAR__TOOLS = eINSTANCE.getRibbonToolBar_Tools();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.TopToolBarImpl <em>Top Tool Bar</em>}' class.
@@ -10345,6 +10433,14 @@ public interface RcplPackage extends EPackage {
 		EReference TOP_TOOL_BAR__TOOL_GROUPS = eINSTANCE.getTopToolBar_ToolGroups();
 
 		/**
+		 * The meta object literal for the '<em><b>Tools</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOP_TOOL_BAR__TOOLS = eINSTANCE.getTopToolBar_Tools();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.SideToolBarImpl <em>Side Tool Bar</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10363,6 +10459,14 @@ public interface RcplPackage extends EPackage {
 		EReference SIDE_TOOL_BAR__TOOL_GROUPS = eINSTANCE.getSideToolBar_ToolGroups();
 
 		/**
+		 * The meta object literal for the '<em><b>Tools</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SIDE_TOOL_BAR__TOOLS = eINSTANCE.getSideToolBar_Tools();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.QuickToolBarImpl <em>Quick Tool Bar</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10379,6 +10483,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EReference QUICK_TOOL_BAR__TOOL_GROUPS = eINSTANCE.getQuickToolBar_ToolGroups();
+
+		/**
+		 * The meta object literal for the '<em><b>Tools</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUICK_TOOL_BAR__TOOLS = eINSTANCE.getQuickToolBar_Tools();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.FolderImpl <em>Folder</em>}' class.

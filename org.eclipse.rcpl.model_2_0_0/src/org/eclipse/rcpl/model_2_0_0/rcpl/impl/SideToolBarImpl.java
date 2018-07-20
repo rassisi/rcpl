@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,6 +18,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.SideToolBarImpl#getToolGroups <em>Tool Groups</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.SideToolBarImpl#getTools <em>Tools</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,6 +51,16 @@ public class SideToolBarImpl extends LayoutableImpl implements SideToolBar {
 	@SuppressWarnings("unchecked")
 	public EList<ToolGroup> getToolGroups() {
 		return (EList<ToolGroup>)eGet(RcplPackage.Literals.SIDE_TOOL_BAR__TOOL_GROUPS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Tools> getTools() {
+		return (EList<Tools>)eGet(RcplPackage.Literals.SIDE_TOOL_BAR__TOOLS, true);
 	}
 
 } //SideToolBarImpl

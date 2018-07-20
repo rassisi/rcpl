@@ -48,12 +48,12 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar;
-import org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPLTemplates;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resources;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Street;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -195,7 +195,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass quickToolsEClass = null;
+	private EClass ribbonToolBarEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -793,7 +793,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPerspective_QuickTools() {
+	public EReference getPerspective_RibbonToolBar() {
 		return (EReference)perspectiveEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1441,8 +1441,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getQuickTools() {
-		return quickToolsEClass;
+	public EClass getRibbonToolBar() {
+		return ribbonToolBarEClass;
 	}
 
 	/**
@@ -1450,8 +1450,17 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getQuickTools_QuickTools() {
-		return (EReference)quickToolsEClass.getEStructuralFeatures().get(0);
+	public EReference getRibbonToolBar_ToolGroups() {
+		return (EReference)ribbonToolBarEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRibbonToolBar_Tools() {
+		return (EReference)ribbonToolBarEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1477,6 +1486,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTopToolBar_Tools() {
+		return (EReference)topToolBarEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSideToolBar() {
 		return sideToolBarEClass;
 	}
@@ -1495,6 +1513,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSideToolBar_Tools() {
+		return (EReference)sideToolBarEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getQuickToolBar() {
 		return quickToolBarEClass;
 	}
@@ -1506,6 +1533,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 */
 	public EReference getQuickToolBar_ToolGroups() {
 		return (EReference)quickToolBarEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getQuickToolBar_Tools() {
+		return (EReference)quickToolBarEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2176,7 +2212,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(perspectiveEClass, PERSPECTIVE__SIDE_TOOL_BAR);
 		createEReference(perspectiveEClass, PERSPECTIVE__TOP_TOOL_BAR);
 		createEReference(perspectiveEClass, PERSPECTIVE__QUICK_TOOL_BAR);
-		createEReference(perspectiveEClass, PERSPECTIVE__QUICK_TOOLS);
+		createEReference(perspectiveEClass, PERSPECTIVE__RIBBON_TOOL_BAR);
 
 		preferenceEClass = createEClass(PREFERENCE);
 		createEAttribute(preferenceEClass, PREFERENCE__KEY);
@@ -2262,17 +2298,21 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(toolsEClass, TOOLS__TOOLGROUP_CHILDREN);
 		createEReference(toolsEClass, TOOLS__TOOL_CHILDREN);
 
-		quickToolsEClass = createEClass(QUICK_TOOLS);
-		createEReference(quickToolsEClass, QUICK_TOOLS__QUICK_TOOLS);
+		ribbonToolBarEClass = createEClass(RIBBON_TOOL_BAR);
+		createEReference(ribbonToolBarEClass, RIBBON_TOOL_BAR__TOOL_GROUPS);
+		createEReference(ribbonToolBarEClass, RIBBON_TOOL_BAR__TOOLS);
 
 		topToolBarEClass = createEClass(TOP_TOOL_BAR);
 		createEReference(topToolBarEClass, TOP_TOOL_BAR__TOOL_GROUPS);
+		createEReference(topToolBarEClass, TOP_TOOL_BAR__TOOLS);
 
 		sideToolBarEClass = createEClass(SIDE_TOOL_BAR);
 		createEReference(sideToolBarEClass, SIDE_TOOL_BAR__TOOL_GROUPS);
+		createEReference(sideToolBarEClass, SIDE_TOOL_BAR__TOOLS);
 
 		quickToolBarEClass = createEClass(QUICK_TOOL_BAR);
 		createEReference(quickToolBarEClass, QUICK_TOOL_BAR__TOOL_GROUPS);
+		createEReference(quickToolBarEClass, QUICK_TOOL_BAR__TOOLS);
 
 		folderEClass = createEClass(FOLDER);
 		createEReference(folderEClass, FOLDER__FOLDERS);
@@ -2410,7 +2450,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		toolEClass.getESuperTypes().add(this.getAbstractTool());
 		toolGroupEClass.getESuperTypes().add(this.getAbstractTool());
 		toolsEClass.getESuperTypes().add(this.getLayoutable());
-		quickToolsEClass.getESuperTypes().add(this.getLayoutable());
+		ribbonToolBarEClass.getESuperTypes().add(this.getLayoutable());
 		topToolBarEClass.getESuperTypes().add(this.getLayoutable());
 		sideToolBarEClass.getESuperTypes().add(this.getLayoutable());
 		quickToolBarEClass.getESuperTypes().add(this.getLayoutable());
@@ -2473,7 +2513,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getPerspective_SideToolBar(), this.getSideToolBar(), null, "sideToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPerspective_TopToolBar(), this.getTopToolBar(), null, "topToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPerspective_QuickToolBar(), this.getQuickToolBar(), null, "quickToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPerspective_QuickTools(), this.getQuickTools(), null, "quickTools", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPerspective_RibbonToolBar(), this.getRibbonToolBar(), null, "ribbonToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(preferenceEClass, Preference.class, "Preference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPreference_Key(), ecorePackage.getEString(), "key", null, 0, 1, Preference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2559,17 +2599,21 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getTools_ToolgroupChildren(), this.getToolGroup(), null, "toolgroupChildren", null, 0, -1, Tools.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTools_ToolChildren(), this.getTool(), null, "toolChildren", null, 0, -1, Tools.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(quickToolsEClass, QuickTools.class, "QuickTools", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getQuickTools_QuickTools(), this.getToolGroup(), null, "quickTools", null, 0, -1, QuickTools.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(ribbonToolBarEClass, RibbonToolBar.class, "RibbonToolBar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRibbonToolBar_ToolGroups(), this.getToolGroup(), null, "toolGroups", null, 0, -1, RibbonToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRibbonToolBar_Tools(), this.getTools(), null, "tools", null, 0, -1, RibbonToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(topToolBarEClass, TopToolBar.class, "TopToolBar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTopToolBar_ToolGroups(), this.getToolGroup(), null, "toolGroups", null, 0, -1, TopToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTopToolBar_Tools(), this.getTools(), null, "tools", null, 0, -1, TopToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sideToolBarEClass, SideToolBar.class, "SideToolBar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSideToolBar_ToolGroups(), this.getToolGroup(), null, "toolGroups", null, 0, -1, SideToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSideToolBar_Tools(), this.getTools(), null, "tools", null, 0, -1, SideToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(quickToolBarEClass, QuickToolBar.class, "QuickToolBar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getQuickToolBar_ToolGroups(), this.getToolGroup(), null, "toolGroups", null, 0, -1, QuickToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuickToolBar_Tools(), this.getTools(), null, "tools", null, 0, -1, QuickToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(folderEClass, Folder.class, "Folder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFolder_Folders(), this.getFolder(), null, "folders", null, 0, -1, Folder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

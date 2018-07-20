@@ -4,16 +4,16 @@ package org.eclipse.rcpl.model_2_0_0.rcpl.tests;
 
 import junit.textui.TestRunner;
 
-import org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Quick Tools</b></em>'.
+ * A test case for the model object '<em><b>Ribbon Tool Bar</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class QuickToolsTest extends LayoutableTest {
+public class RibbonToolBarTest extends LayoutableTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -21,28 +21,28 @@ public class QuickToolsTest extends LayoutableTest {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(QuickToolsTest.class);
+		TestRunner.run(RibbonToolBarTest.class);
 	}
 
 	/**
-	 * Constructs a new Quick Tools test case with the given name.
+	 * Constructs a new Ribbon Tool Bar test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QuickToolsTest(String name) {
+	public RibbonToolBarTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Returns the fixture for this Quick Tools test case.
+	 * Returns the fixture for this Ribbon Tool Bar test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected QuickTools getFixture() {
-		return (QuickTools)fixture;
+	protected RibbonToolBar getFixture() {
+		return (RibbonToolBar)fixture;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class QuickToolsTest extends LayoutableTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(RcplFactory.eINSTANCE.createQuickTools());
+		setFixture(RcplFactory.eINSTANCE.createRibbonToolBar());
 	}
 
 	/**
@@ -67,4 +67,4 @@ public class QuickToolsTest extends LayoutableTest {
 		setFixture(null);
 	}
 
-} //QuickToolsTest
+} //RibbonToolBarTest

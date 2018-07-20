@@ -67,7 +67,7 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 			case RcplPackage.TOOL: return (EObject)createTool();
 			case RcplPackage.TOOL_GROUP: return (EObject)createToolGroup();
 			case RcplPackage.TOOLS: return (EObject)createTools();
-			case RcplPackage.QUICK_TOOLS: return (EObject)createQuickTools();
+			case RcplPackage.RIBBON_TOOL_BAR: return (EObject)createRibbonToolBar();
 			case RcplPackage.TOP_TOOL_BAR: return (EObject)createTopToolBar();
 			case RcplPackage.SIDE_TOOL_BAR: return (EObject)createSideToolBar();
 			case RcplPackage.QUICK_TOOL_BAR: return (EObject)createQuickToolBar();
@@ -295,13 +295,13 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public QuickTools createQuickTools() {
-		QuickToolsImpl quickTools = new QuickToolsImpl();
-		return quickTools;
+	public RibbonToolBar createRibbonToolBar() {
+		RibbonToolBarImpl ribbonToolBar = new RibbonToolBarImpl();
+		return ribbonToolBar;
 	}
 
 	/**

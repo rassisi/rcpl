@@ -3,33 +3,35 @@
 package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar;
+
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Quick Tool Bar</b></em>'.
+ * An implementation of the model object '<em><b>Ribbon Tool Bar</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.QuickToolBarImpl#getToolGroups <em>Tool Groups</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.QuickToolBarImpl#getTools <em>Tools</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RibbonToolBarImpl#getToolGroups <em>Tool Groups</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RibbonToolBarImpl#getTools <em>Tools</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class QuickToolBarImpl extends LayoutableImpl implements QuickToolBar {
+public class RibbonToolBarImpl extends LayoutableImpl implements RibbonToolBar {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected QuickToolBarImpl() {
+	protected RibbonToolBarImpl() {
 		super();
 	}
 
@@ -40,7 +42,7 @@ public class QuickToolBarImpl extends LayoutableImpl implements QuickToolBar {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return RcplPackage.Literals.QUICK_TOOL_BAR;
+		return RcplPackage.Literals.RIBBON_TOOL_BAR;
 	}
 
 	/**
@@ -50,7 +52,7 @@ public class QuickToolBarImpl extends LayoutableImpl implements QuickToolBar {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ToolGroup> getToolGroups() {
-		return (EList<ToolGroup>)eGet(RcplPackage.Literals.QUICK_TOOL_BAR__TOOL_GROUPS, true);
+		return (EList<ToolGroup>)eGet(RcplPackage.Literals.RIBBON_TOOL_BAR__TOOL_GROUPS, true);
 	}
 
 	/**
@@ -60,7 +62,7 @@ public class QuickToolBarImpl extends LayoutableImpl implements QuickToolBar {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Tools> getTools() {
-		return (EList<Tools>)eGet(RcplPackage.Literals.QUICK_TOOL_BAR__TOOLS, true);
+		return (EList<Tools>)eGet(RcplPackage.Literals.RIBBON_TOOL_BAR__TOOLS, true);
 	}
 
-} //QuickToolBarImpl
+} //RibbonToolBarImpl

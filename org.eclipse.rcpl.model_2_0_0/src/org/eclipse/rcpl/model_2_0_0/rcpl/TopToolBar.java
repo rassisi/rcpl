@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar#getToolGroups <em>Tool Groups</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar#getTools <em>Tools</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getTopToolBar()
@@ -36,5 +37,21 @@ public interface TopToolBar extends Layoutable {
 	 * @generated
 	 */
 	EList<ToolGroup> getToolGroups();
+
+	/**
+	 * Returns the value of the '<em><b>Tools</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.Tools}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tools</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tools</em>' reference list.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getTopToolBar_Tools()
+	 * @model
+	 * @generated
+	 */
+	EList<Tools> getTools();
 
 } // TopToolBar
