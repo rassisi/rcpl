@@ -3,6 +3,7 @@
 package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 

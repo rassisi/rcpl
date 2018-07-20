@@ -3,26 +3,16 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:rcpl="http://rcpl/1.0">
-  <allPlugins>
+  <allAddons>
     <children
-        name="Contacts"
-        id="USE_CASE_CONTACTS"
-        leaf="true"
-        className="org.eclipse.rcpl.ui.parts.contacts.EContactsUseCase"/>
+        name="Demo RCPL"
+        id="DEMO_RCPL"
+        className="com.eclipse.rcpl.addon.demo.application.DemoRcplAddon"/>
     <children
-        name="Configure Tools"
-        id="USE_CASE_TOOLS"
-        leaf="true"
-        className="org.eclipse.rcpl.client.uc.tools.parts.EToolsUseCase"/>
-    <children
-        name="EMF Tree Browser"
-        id="USE_CASE_EMF_TREE"
-        leaf="true"/>
-    <children
-        name="IT Architecture"
-        id="itTreePart"
-        leaf="true"/>
-  </allPlugins>
+        name="Navigator"
+        id="NAVIGATOR_ADDON"
+        className="org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon"/>
+  </allAddons>
   <allPerspectives>
     <children
         name="WORD"
@@ -33,8 +23,8 @@
       <topToolBar
           leaf="true"
           toolGroups="//@allTools/@toolgroupChildren.16 //@allTools/@toolgroupChildren.21 //@allTools/@toolgroupChildren.22"/>
-      <quickTools
-          leaf="true"/>
+      <quickToolBar/>
+      <ribbonToolBar/>
     </children>
     <children
         name="SETTINGS"
@@ -43,8 +33,8 @@
           leaf="true"/>
       <topToolBar
           leaf="true"/>
-      <quickTools
-          leaf="true"/>
+      <quickToolBar/>
+      <ribbonToolBar/>
     </children>
   </allPerspectives>
   <allPreferences/>
@@ -3259,4 +3249,5 @@
           leaf="true"/>
     </children>
   </allPersons>
+  <homepages/>
 </rcpl:RCPL>

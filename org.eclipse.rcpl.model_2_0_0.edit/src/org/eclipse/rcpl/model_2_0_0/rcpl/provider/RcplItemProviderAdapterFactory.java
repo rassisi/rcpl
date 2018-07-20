@@ -8,6 +8,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -19,6 +20,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.eclipse.rcpl.model_2_0_0.rcpl.util.RcplAdapterFactory;
 
 /**
@@ -1013,6 +1015,52 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected HomePagesItemProvider homePagesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createHomePagesAdapter() {
+		if (homePagesItemProvider == null) {
+			homePagesItemProvider = new HomePagesItemProvider(this);
+		}
+
+		return homePagesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected HomePageItemProvider homePageItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createHomePageAdapter() {
+		if (homePageItemProvider == null) {
+			homePageItemProvider = new HomePageItemProvider(this);
+		}
+
+		return homePageItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1152,6 +1200,8 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 		if (phoneItemProvider != null) phoneItemProvider.dispose();
 		if (domainsItemProvider != null) domainsItemProvider.dispose();
 		if (domainItemProvider != null) domainItemProvider.dispose();
+		if (homePagesItemProvider != null) homePagesItemProvider.dispose();
+		if (homePageItemProvider != null) homePageItemProvider.dispose();
 	}
 
 }

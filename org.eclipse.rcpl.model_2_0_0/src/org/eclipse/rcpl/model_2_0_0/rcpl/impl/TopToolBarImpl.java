@@ -3,10 +3,12 @@
 package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 
 /**
@@ -59,8 +61,8 @@ public class TopToolBarImpl extends LayoutableImpl implements TopToolBar {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Tools> getTools() {
-		return (EList<Tools>)eGet(RcplPackage.Literals.TOP_TOOL_BAR__TOOLS, true);
+	public EList<Tool> getTools() {
+		return (EList<Tool>)eGet(RcplPackage.Literals.TOP_TOOL_BAR__TOOLS, true);
 	}
 
 } //TopToolBarImpl

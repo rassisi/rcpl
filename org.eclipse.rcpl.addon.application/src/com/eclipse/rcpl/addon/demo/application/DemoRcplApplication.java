@@ -10,6 +10,7 @@
  *******************************************************************************/
 package com.eclipse.rcpl.addon.demo.application;
 
+import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.application.RcplApplication;
 import org.eclipse.rcpl.application.RcplApplicationProvider;
@@ -37,12 +38,6 @@ public class DemoRcplApplication extends RcplApplication {
 	}
 
 	@Override
-	protected String[] getRcplAddonClassNames() {
-		return new String[] { "com.eclipse.rcpl.addon.demo.application.DemoRcplAddon",
-				"org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon" };
-	}
-
-	@Override
 	protected Class<? extends RCPLModel> getRcplModel() {
 		return DemoRcplModel.class;
 	}
@@ -55,5 +50,10 @@ public class DemoRcplApplication extends RcplApplication {
 	@Override
 	protected String[] getAdditionalImageCodeBases() {
 		return null;
+	}
+
+	@Override
+	public IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication) {
+		return new DemoRcplApplicationStarter(getApplicationProvider());
 	}
 }

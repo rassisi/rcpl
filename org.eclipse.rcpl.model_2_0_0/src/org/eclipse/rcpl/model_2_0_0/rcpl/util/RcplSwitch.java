@@ -366,6 +366,20 @@ public class RcplSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case RcplPackage.HOME_PAGES: {
+				HomePages homePages = (HomePages)theEObject;
+				T result = caseHomePages(homePages);
+				if (result == null) result = caseLayoutable(homePages);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RcplPackage.HOME_PAGE: {
+				HomePage homePage = (HomePage)theEObject;
+				T result = caseHomePage(homePage);
+				if (result == null) result = caseLayoutable(homePage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1012,6 +1026,36 @@ public class RcplSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDomain(Domain object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Home Pages</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Home Pages</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHomePages(HomePages object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Home Page</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Home Page</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHomePage(HomePage object) {
 		return null;
 	}
 

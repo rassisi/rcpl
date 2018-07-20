@@ -120,17 +120,16 @@ import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
 /**
- * This is an example of a Rcpl model editor. <!-- begin-user-doc --> <!--
+ * This is an example of a Rcpl model editor.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class RcplEditor extends MultiPageEditorPart
 		implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
-	 * This keeps track of the editing domain that is used to track all changes to
-	 * the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This keeps track of the editing domain that is used to track all changes to the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected AdapterFactoryEditingDomain editingDomain;
@@ -152,16 +151,16 @@ public class RcplEditor extends MultiPageEditorPart
 	protected IContentOutlinePage contentOutlinePage;
 
 	/**
-	 * This is a kludge... <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This is a kludge...
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IStatusLineManager contentOutlineStatusLineManager;
 
 	/**
-	 * This is the content outline page's viewer. <!-- begin-user-doc --> <!--
+	 * This is the content outline page's viewer.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TreeViewer contentOutlineViewer;
@@ -184,9 +183,8 @@ public class RcplEditor extends MultiPageEditorPart
 	protected TreeViewer selectionViewer;
 
 	/**
-	 * This inverts the roll of parent and child in the content provider and show
-	 * parents as a tree. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This inverts the roll of parent and child in the content provider and show parents as a tree.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TreeViewer parentViewer;
@@ -208,51 +206,48 @@ public class RcplEditor extends MultiPageEditorPart
 	protected ListViewer listViewer;
 
 	/**
-	 * This shows how a table view works. A table can be used as a list with icons.
+	 * This shows how a table view works.
+	 * A table can be used as a list with icons.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TableViewer tableViewer;
 
 	/**
-	 * This shows how a tree view with columns works. <!-- begin-user-doc --> <!--
+	 * This shows how a tree view with columns works.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TreeViewer treeViewerWithColumns;
 
 	/**
-	 * This keeps track of the active viewer pane, in the book. <!-- begin-user-doc
+	 * This keeps track of the active viewer pane, in the book.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ViewerPane currentViewerPane;
 
 	/**
-	 * This keeps track of the active content viewer, which may be either one of the
-	 * viewers in the pages or the content outline viewer. <!-- begin-user-doc -->
+	 * This keeps track of the active content viewer, which may be either one of the viewers in the pages or the content outline viewer.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Viewer currentViewer;
 
 	/**
-	 * This listens to which ever viewer is active. <!-- begin-user-doc --> <!--
+	 * This listens to which ever viewer is active.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ISelectionChangedListener selectionChangedListener;
 
 	/**
-	 * This keeps track of all the
-	 * {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are
-	 * listening to this editor. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This keeps track of all the {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are listening to this editor.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
@@ -266,82 +261,80 @@ public class RcplEditor extends MultiPageEditorPart
 	protected ISelection editorSelection = StructuredSelection.EMPTY;
 
 	/**
-	 * The MarkerHelper is responsible for creating workspace resource markers
-	 * presented in Eclipse's Problems View. <!-- begin-user-doc --> <!--
+	 * The MarkerHelper is responsible for creating workspace resource markers presented
+	 * in Eclipse's Problems View.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
 	/**
-	 * This listens for when the outline becomes active <!-- begin-user-doc --> <!--
+	 * This listens for when the outline becomes active
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IPartListener partListener = new IPartListener() {
-		public void partActivated(IWorkbenchPart p) {
-			if (p instanceof ContentOutline) {
-				if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
-					getActionBarContributor().setActiveEditor(RcplEditor.this);
+			public void partActivated(IWorkbenchPart p) {
+				if (p instanceof ContentOutline) {
+					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
+						getActionBarContributor().setActiveEditor(RcplEditor.this);
 
-					setCurrentViewer(contentOutlineViewer);
+						setCurrentViewer(contentOutlineViewer);
+					}
 				}
-			} else if (p instanceof PropertySheet) {
-				if (propertySheetPages.contains(((PropertySheet) p).getCurrentPage())) {
-					getActionBarContributor().setActiveEditor(RcplEditor.this);
+				else if (p instanceof PropertySheet) {
+					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
+						getActionBarContributor().setActiveEditor(RcplEditor.this);
+						handleActivate();
+					}
+				}
+				else if (p == RcplEditor.this) {
 					handleActivate();
 				}
-			} else if (p == RcplEditor.this) {
-				handleActivate();
 			}
-		}
-
-		public void partBroughtToTop(IWorkbenchPart p) {
-			// Ignore.
-		}
-
-		public void partClosed(IWorkbenchPart p) {
-			// Ignore.
-		}
-
-		public void partDeactivated(IWorkbenchPart p) {
-			// Ignore.
-		}
-
-		public void partOpened(IWorkbenchPart p) {
-			// Ignore.
-		}
-	};
+			public void partBroughtToTop(IWorkbenchPart p) {
+				// Ignore.
+			}
+			public void partClosed(IWorkbenchPart p) {
+				// Ignore.
+			}
+			public void partDeactivated(IWorkbenchPart p) {
+				// Ignore.
+			}
+			public void partOpened(IWorkbenchPart p) {
+				// Ignore.
+			}
+		};
 
 	/**
-	 * Resources that have been removed since last activation. <!-- begin-user-doc
+	 * Resources that have been removed since last activation.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
 	/**
-	 * Resources that have been changed since last activation. <!-- begin-user-doc
+	 * Resources that have been changed since last activation.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<Resource> changedResources = new ArrayList<Resource>();
 
 	/**
-	 * Resources that have been saved. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Resources that have been saved.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<Resource> savedResources = new ArrayList<Resource>();
 
 	/**
-	 * Map to store the diagnostic associated with a resource. <!-- begin-user-doc
+	 * Map to store the diagnostic associated with a resource.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
@@ -355,61 +348,63 @@ public class RcplEditor extends MultiPageEditorPart
 	protected boolean updateProblemIndication = true;
 
 	/**
-	 * Adapter used to update the problem indication when resources are demanded
-	 * loaded. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Adapter used to update the problem indication when resources are demanded loaded.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
-		protected boolean dispatching;
+			protected boolean dispatching;
 
-		@Override
-		public void notifyChanged(Notification notification) {
-			if (notification.getNotifier() instanceof Resource) {
-				switch (notification.getFeatureID(Resource.class)) {
-				case Resource.RESOURCE__IS_LOADED:
-				case Resource.RESOURCE__ERRORS:
-				case Resource.RESOURCE__WARNINGS: {
-					Resource resource = (Resource) notification.getNotifier();
-					Diagnostic diagnostic = analyzeResourceProblems(resource, null);
-					if (diagnostic.getSeverity() != Diagnostic.OK) {
-						resourceToDiagnosticMap.put(resource, diagnostic);
-					} else {
-						resourceToDiagnosticMap.remove(resource);
+			@Override
+			public void notifyChanged(Notification notification) {
+				if (notification.getNotifier() instanceof Resource) {
+					switch (notification.getFeatureID(Resource.class)) {
+						case Resource.RESOURCE__IS_LOADED:
+						case Resource.RESOURCE__ERRORS:
+						case Resource.RESOURCE__WARNINGS: {
+							Resource resource = (Resource)notification.getNotifier();
+							Diagnostic diagnostic = analyzeResourceProblems(resource, null);
+							if (diagnostic.getSeverity() != Diagnostic.OK) {
+								resourceToDiagnosticMap.put(resource, diagnostic);
+							}
+							else {
+								resourceToDiagnosticMap.remove(resource);
+							}
+							dispatchUpdateProblemIndication();
+							break;
+						}
 					}
-					dispatchUpdateProblemIndication();
-					break;
 				}
+				else {
+					super.notifyChanged(notification);
 				}
-			} else {
-				super.notifyChanged(notification);
 			}
-		}
 
-		protected void dispatchUpdateProblemIndication() {
-			if (updateProblemIndication && !dispatching) {
-				dispatching = true;
-				getSite().getShell().getDisplay().asyncExec(new Runnable() {
-					public void run() {
-						dispatching = false;
-						updateProblemIndication();
-					}
-				});
+			protected void dispatchUpdateProblemIndication() {
+				if (updateProblemIndication && !dispatching) {
+					dispatching = true;
+					getSite().getShell().getDisplay().asyncExec
+						(new Runnable() {
+							 public void run() {
+								 dispatching = false;
+								 updateProblemIndication();
+							 }
+						 });
+				}
 			}
-		}
 
-		@Override
-		protected void setTarget(Resource target) {
-			basicSetTarget(target);
-		}
+			@Override
+			protected void setTarget(Resource target) {
+				basicSetTarget(target);
+			}
 
-		@Override
-		protected void unsetTarget(Resource target) {
-			basicUnsetTarget(target);
-			resourceToDiagnosticMap.remove(target);
-			dispatchUpdateProblemIndication();
-		}
-	};
+			@Override
+			protected void unsetTarget(Resource target) {
+				basicUnsetTarget(target);
+				resourceToDiagnosticMap.remove(target);
+				dispatchUpdateProblemIndication();
+			}
+		};
 
 	/**
 	 * This listens for workspace changes. <!-- begin-user-doc --> <!-- end-user-doc
@@ -418,72 +413,75 @@ public class RcplEditor extends MultiPageEditorPart
 	 * @generated
 	 */
 	protected IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
-		public void resourceChanged(IResourceChangeEvent event) {
-			IResourceDelta delta = event.getDelta();
-			try {
-				class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-					protected ResourceSet resourceSet = editingDomain.getResourceSet();
-					protected Collection<Resource> changedResources = new ArrayList<Resource>();
-					protected Collection<Resource> removedResources = new ArrayList<Resource>();
+			public void resourceChanged(IResourceChangeEvent event) {
+				IResourceDelta delta = event.getDelta();
+				try {
+					class ResourceDeltaVisitor implements IResourceDeltaVisitor {
+						protected ResourceSet resourceSet = editingDomain.getResourceSet();
+						protected Collection<Resource> changedResources = new ArrayList<Resource>();
+						protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
-					public boolean visit(IResourceDelta delta) {
-						if (delta.getResource().getType() == IResource.FILE) {
-							if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED
-									&& delta.getFlags() != IResourceDelta.MARKERS) {
-								Resource resource = resourceSet.getResource(
-										URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
-								if (resource != null) {
-									if (delta.getKind() == IResourceDelta.REMOVED) {
-										removedResources.add(resource);
-									} else if (!savedResources.remove(resource)) {
-										changedResources.add(resource);
+						public boolean visit(IResourceDelta delta) {
+							if (delta.getResource().getType() == IResource.FILE) {
+								if (delta.getKind() == IResourceDelta.REMOVED ||
+								    delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
+									Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+									if (resource != null) {
+										if (delta.getKind() == IResourceDelta.REMOVED) {
+											removedResources.add(resource);
+										}
+										else if (!savedResources.remove(resource)) {
+											changedResources.add(resource);
+										}
 									}
 								}
+								return false;
 							}
-							return false;
+
+							return true;
 						}
 
-						return true;
-					}
-
-					public Collection<Resource> getChangedResources() {
-						return changedResources;
-					}
-
-					public Collection<Resource> getRemovedResources() {
-						return removedResources;
-					}
-				}
-
-				final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-				delta.accept(visitor);
-
-				if (!visitor.getRemovedResources().isEmpty()) {
-					getSite().getShell().getDisplay().asyncExec(new Runnable() {
-						public void run() {
-							removedResources.addAll(visitor.getRemovedResources());
-							if (!isDirty()) {
-								getSite().getPage().closeEditor(RcplEditor.this, false);
-							}
+						public Collection<Resource> getChangedResources() {
+							return changedResources;
 						}
-					});
-				}
 
-				if (!visitor.getChangedResources().isEmpty()) {
-					getSite().getShell().getDisplay().asyncExec(new Runnable() {
-						public void run() {
-							changedResources.addAll(visitor.getChangedResources());
-							if (getSite().getPage().getActiveEditor() == RcplEditor.this) {
-								handleActivate();
-							}
+						public Collection<Resource> getRemovedResources() {
+							return removedResources;
 						}
-					});
+					}
+
+					final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+					delta.accept(visitor);
+
+					if (!visitor.getRemovedResources().isEmpty()) {
+						getSite().getShell().getDisplay().asyncExec
+							(new Runnable() {
+								 public void run() {
+									 removedResources.addAll(visitor.getRemovedResources());
+									 if (!isDirty()) {
+										 getSite().getPage().closeEditor(RcplEditor.this, false);
+									 }
+								 }
+							 });
+					}
+
+					if (!visitor.getChangedResources().isEmpty()) {
+						getSite().getShell().getDisplay().asyncExec
+							(new Runnable() {
+								 public void run() {
+									 changedResources.addAll(visitor.getChangedResources());
+									 if (getSite().getPage().getActiveEditor() == RcplEditor.this) {
+										 handleActivate();
+									 }
+								 }
+							 });
+					}
 				}
-			} catch (CoreException exception) {
-				RCPLEditorPlugin.INSTANCE.log(exception);
+				catch (CoreException exception) {
+					RCPLEditorPlugin.INSTANCE.log(exception);
+				}
 			}
-		}
-	};
+		};
 
 	/**
 	 * Handles activation of the editor or it's associated views. <!--
@@ -495,22 +493,24 @@ public class RcplEditor extends MultiPageEditorPart
 		// Recompute the read only state.
 		//
 		if (editingDomain.getResourceToReadOnlyMap() != null) {
-			editingDomain.getResourceToReadOnlyMap().clear();
+		  editingDomain.getResourceToReadOnlyMap().clear();
 
-			// Refresh any actions that may become enabled or disabled.
-			//
-			setSelection(getSelection());
+		  // Refresh any actions that may become enabled or disabled.
+		  //
+		  setSelection(getSelection());
 		}
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
 				getSite().getPage().closeEditor(RcplEditor.this, false);
-			} else {
+			}
+			else {
 				removedResources.clear();
 				changedResources.clear();
 				savedResources.clear();
 			}
-		} else if (!changedResources.isEmpty()) {
+		}
+		else if (!changedResources.isEmpty()) {
 			changedResources.removeAll(savedResources);
 			handleChangedResources();
 			changedResources.clear();
@@ -519,9 +519,9 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * Handles what to do with changed resources on activation. <!-- begin-user-doc
+	 * Handles what to do with changed resources on activation.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void handleChangedResources() {
@@ -538,7 +538,8 @@ public class RcplEditor extends MultiPageEditorPart
 					resource.unload();
 					try {
 						resource.load(resourceSet.getLoadOptions());
-					} catch (IOException exception) {
+					}
+					catch (IOException exception) {
 						if (!resourceToDiagnosticMap.containsKey(resource)) {
 							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
 						}
@@ -556,15 +557,19 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * Updates the problems indication with the information described in the
-	 * specified diagnostic. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Updates the problems indication with the information described in the specified diagnostic.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void updateProblemIndication() {
 		if (updateProblemIndication) {
-			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "org.eclipse.rcpl.model_2_0_0.editor", 0,
-					null, new Object[] { editingDomain.getResourceSet() });
+			BasicDiagnostic diagnostic =
+				new BasicDiagnostic
+					(Diagnostic.OK,
+					 "org.eclipse.rcpl.model_2_0_0.editor",
+					 0,
+					 null,
+					 new Object [] { editingDomain.getResourceSet() });
 			for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
 				if (childDiagnostic.getSeverity() != Diagnostic.OK) {
 					diagnostic.add(childDiagnostic);
@@ -573,11 +578,12 @@ public class RcplEditor extends MultiPageEditorPart
 
 			int lastEditorPage = getPageCount() - 1;
 			if (lastEditorPage >= 0 && getEditor(lastEditorPage) instanceof ProblemEditorPart) {
-				((ProblemEditorPart) getEditor(lastEditorPage)).setDiagnostic(diagnostic);
+				((ProblemEditorPart)getEditor(lastEditorPage)).setDiagnostic(diagnostic);
 				if (diagnostic.getSeverity() != Diagnostic.OK) {
 					setActivePage(lastEditorPage);
 				}
-			} else if (diagnostic.getSeverity() != Diagnostic.OK) {
+			}
+			else if (diagnostic.getSeverity() != Diagnostic.OK) {
 				ProblemEditorPart problemEditorPart = new ProblemEditorPart();
 				problemEditorPart.setDiagnostic(diagnostic);
 				problemEditorPart.setMarkerHelper(markerHelper);
@@ -586,7 +592,8 @@ public class RcplEditor extends MultiPageEditorPart
 					setPageText(lastEditorPage, problemEditorPart.getPartName());
 					setActivePage(lastEditorPage);
 					showTabs();
-				} catch (PartInitException exception) {
+				}
+				catch (PartInitException exception) {
 					RCPLEditorPlugin.INSTANCE.log(exception);
 				}
 			}
@@ -594,7 +601,8 @@ public class RcplEditor extends MultiPageEditorPart
 			if (markerHelper.hasMarkers(editingDomain.getResourceSet())) {
 				try {
 					markerHelper.updateMarkers(diagnostic);
-				} catch (CoreException exception) {
+				}
+				catch (CoreException exception) {
 					RCPLEditorPlugin.INSTANCE.log(exception);
 				}
 			}
@@ -608,13 +616,16 @@ public class RcplEditor extends MultiPageEditorPart
 	 * @generated
 	 */
 	protected boolean handleDirtyConflict() {
-		return MessageDialog.openQuestion(getSite().getShell(), getString("_UI_FileConflict_label"),
-				getString("_WARN_FileConflict"));
+		return
+			MessageDialog.openQuestion
+				(getSite().getShell(),
+				 getString("_UI_FileConflict_label"),
+				 getString("_WARN_FileConflict"));
 	}
 
 	/**
-	 * This creates a model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates a model editor.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RcplEditor() {
@@ -623,9 +634,9 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This sets up the editing domain for the model editor. <!-- begin-user-doc -->
+	 * This sets up the editing domain for the model editor.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void initializeEditingDomain() {
@@ -637,38 +648,39 @@ public class RcplEditor extends MultiPageEditorPart
 		adapterFactory.addAdapterFactory(new RcplItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
-		// Create the command stack that will notify this editor as commands are
-		// executed.
+		// Create the command stack that will notify this editor as commands are executed.
 		//
 		BasicCommandStack commandStack = new BasicCommandStack();
 
-		// Add a listener to set the most recent command's affected objects to be the
-		// selection of the viewer with focus.
+		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		//
-		commandStack.addCommandStackListener(new CommandStackListener() {
-			public void commandStackChanged(final EventObject event) {
-				getContainer().getDisplay().asyncExec(new Runnable() {
-					public void run() {
-						firePropertyChange(IEditorPart.PROP_DIRTY);
+		commandStack.addCommandStackListener
+			(new CommandStackListener() {
+				 public void commandStackChanged(final EventObject event) {
+					 getContainer().getDisplay().asyncExec
+						 (new Runnable() {
+							  public void run() {
+								  firePropertyChange(IEditorPart.PROP_DIRTY);
 
-						// Try to select the affected objects.
-						//
-						Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
-						if (mostRecentCommand != null) {
-							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
-						}
-						for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext();) {
-							PropertySheetPage propertySheetPage = i.next();
-							if (propertySheetPage.getControl().isDisposed()) {
-								i.remove();
-							} else {
-								propertySheetPage.refresh();
-							}
-						}
-					}
-				});
-			}
-		});
+								  // Try to select the affected objects.
+								  //
+								  Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
+								  if (mostRecentCommand != null) {
+									  setSelectionToViewer(mostRecentCommand.getAffectedObjects());
+								  }
+								  for (Iterator<PropertySheetPage> i = propertySheetPages.iterator(); i.hasNext(); ) {
+									  PropertySheetPage propertySheetPage = i.next();
+									  if (propertySheetPage.getControl().isDisposed()) {
+										  i.remove();
+									  }
+									  else {
+										  propertySheetPage.refresh();
+									  }
+								  }
+							  }
+						  });
+				 }
+			 });
 
 		// Create the editing domain with a special command stack.
 		//
@@ -676,9 +688,9 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This is here for the listener to be able to call it. <!-- begin-user-doc -->
+	 * This is here for the listener to be able to call it.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -687,9 +699,9 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This sets the selection into whichever viewer is active. <!-- begin-user-doc
+	 * This sets the selection into whichever viewer is active.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSelectionToViewer(Collection<?> collection) {
@@ -697,26 +709,26 @@ public class RcplEditor extends MultiPageEditorPart
 		// Make sure it's okay.
 		//
 		if (theSelection != null && !theSelection.isEmpty()) {
-			Runnable runnable = new Runnable() {
-				public void run() {
-					// Try to select the items in the current content viewer of the editor.
-					//
-					if (currentViewer != null) {
-						currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+			Runnable runnable =
+				new Runnable() {
+					public void run() {
+						// Try to select the items in the current content viewer of the editor.
+						//
+						if (currentViewer != null) {
+							currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+						}
 					}
-				}
-			};
+				};
 			getSite().getShell().getDisplay().asyncExec(runnable);
 		}
 	}
 
 	/**
-	 * This returns the editing domain as required by the
-	 * {@link IEditingDomainProvider} interface. This is important for implementing
-	 * the static methods of {@link AdapterFactoryEditingDomain} and for supporting
-	 * {@link org.eclipse.emf.edit.ui.action.CommandAction}. <!-- begin-user-doc -->
+	 * This returns the editing domain as required by the {@link IEditingDomainProvider} interface.
+	 * This is important for implementing the static methods of {@link AdapterFactoryEditingDomain}
+	 * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EditingDomain getEditingDomain() {
@@ -725,13 +737,11 @@ public class RcplEditor extends MultiPageEditorPart
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public class ReverseAdapterFactoryContentProvider extends AdapterFactoryContentProvider {
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		public ReverseAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
@@ -740,29 +750,26 @@ public class RcplEditor extends MultiPageEditorPart
 
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		@Override
-		public Object[] getElements(Object object) {
+		public Object [] getElements(Object object) {
 			Object parent = super.getParent(object);
 			return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
 		}
 
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		@Override
-		public Object[] getChildren(Object object) {
+		public Object [] getChildren(Object object) {
 			Object parent = super.getParent(object);
 			return (parent == null ? Collections.EMPTY_SET : Collections.singleton(parent)).toArray();
 		}
 
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		@Override
@@ -773,7 +780,6 @@ public class RcplEditor extends MultiPageEditorPart
 
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		@Override
@@ -784,7 +790,6 @@ public class RcplEditor extends MultiPageEditorPart
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCurrentViewerPane(ViewerPane viewerPane) {
@@ -798,10 +803,10 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This makes sure that one content viewer, either for the current page or the
-	 * outline view, if it has focus, is the current one. <!-- begin-user-doc -->
+	 * This makes sure that one content viewer, either for the current page or the outline view, if it has focus,
+	 * is the current one.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCurrentViewer(Viewer viewer) {
@@ -811,13 +816,14 @@ public class RcplEditor extends MultiPageEditorPart
 			if (selectionChangedListener == null) {
 				// Create the listener on demand.
 				//
-				selectionChangedListener = new ISelectionChangedListener() {
-					// This just notifies those things that are affected by the section.
-					//
-					public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
-						setSelection(selectionChangedEvent.getSelection());
-					}
-				};
+				selectionChangedListener =
+					new ISelectionChangedListener() {
+						// This just notifies those things that are affected by the section.
+						//
+						public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
+							setSelection(selectionChangedEvent.getSelection());
+						}
+					};
 			}
 
 			// Stop listening to the old one.
@@ -845,7 +851,6 @@ public class RcplEditor extends MultiPageEditorPart
 	/**
 	 * This returns the viewer as required by the {@link IViewerProvider} interface.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Viewer getViewer() {
@@ -864,22 +869,20 @@ public class RcplEditor extends MultiPageEditorPart
 		contextMenu.add(new Separator("additions"));
 		contextMenu.setRemoveAllWhenShown(true);
 		contextMenu.addMenuListener(this);
-		Menu menu = contextMenu.createContextMenu(viewer.getControl());
+		Menu menu= contextMenu.createContextMenu(viewer.getControl());
 		viewer.getControl().setMenu(menu);
 		getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(),
-				FileTransfer.getInstance() };
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(), FileTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
 		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
 
 	/**
-	 * This is the method called to load a resource into the editing domain's
-	 * resource set based on the editor's input. <!-- begin-user-doc --> <!--
+	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createModel() {
@@ -890,38 +893,49 @@ public class RcplEditor extends MultiPageEditorPart
 			// Load the resource through the editing domain.
 			//
 			resource = editingDomain.getResourceSet().getResource(resourceURI, true);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			exception = e;
 			resource = editingDomain.getResourceSet().getResource(resourceURI, false);
 		}
 
 		Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
 		if (diagnostic.getSeverity() != Diagnostic.OK) {
-			resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+			resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
 		}
 		editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
 	}
 
 	/**
-	 * Returns a diagnostic describing the errors and warnings listed in the
-	 * resource and the specified exception (if any). <!-- begin-user-doc --> <!--
+	 * Returns a diagnostic describing the errors and warnings listed in the resource
+	 * and the specified exception (if any).
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
 		boolean hasErrors = !resource.getErrors().isEmpty();
 		if (hasErrors || !resource.getWarnings().isEmpty()) {
-			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
-					"org.eclipse.rcpl.model_2_0_0.editor", 0,
-					getString("_UI_CreateModelError_message", resource.getURI()),
-					new Object[] { exception == null ? (Object) resource : exception });
+			BasicDiagnostic basicDiagnostic =
+				new BasicDiagnostic
+					(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
+					 "org.eclipse.rcpl.model_2_0_0.editor",
+					 0,
+					 getString("_UI_CreateModelError_message", resource.getURI()),
+					 new Object [] { exception == null ? (Object)resource : exception });
 			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
 			return basicDiagnostic;
-		} else if (exception != null) {
-			return new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.rcpl.model_2_0_0.editor", 0,
-					getString("_UI_CreateModelError_message", resource.getURI()), new Object[] { exception });
-		} else {
+		}
+		else if (exception != null) {
+			return
+				new BasicDiagnostic
+					(Diagnostic.ERROR,
+					 "org.eclipse.rcpl.model_2_0_0.editor",
+					 0,
+					 getString("_UI_CreateModelError_message", resource.getURI()),
+					 new Object[] { exception });
+		}
+		else {
 			return Diagnostic.OK_INSTANCE;
 		}
 	}
@@ -944,30 +958,29 @@ public class RcplEditor extends MultiPageEditorPart
 			// Create a page for the selection tree view.
 			//
 			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RcplEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						Tree tree = new Tree(composite, SWT.MULTI);
-						TreeViewer newTreeViewer = new TreeViewer(tree);
-						return newTreeViewer;
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), RcplEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							Tree tree = new Tree(composite, SWT.MULTI);
+							TreeViewer newTreeViewer = new TreeViewer(tree);
+							return newTreeViewer;
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
 				viewerPane.createControl(getContainer());
 
-				selectionViewer = (TreeViewer) viewerPane.getViewer();
+				selectionViewer = (TreeViewer)viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				selectionViewer.setUseHashlookup(true);
 
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
-				selectionViewer.setSelection(
-						new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 				viewerPane.setTitle(editingDomain.getResourceSet());
 
 				new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
@@ -980,23 +993,23 @@ public class RcplEditor extends MultiPageEditorPart
 			// Create a page for the parent tree view.
 			//
 			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RcplEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						Tree tree = new Tree(composite, SWT.MULTI);
-						TreeViewer newTreeViewer = new TreeViewer(tree);
-						return newTreeViewer;
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), RcplEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							Tree tree = new Tree(composite, SWT.MULTI);
+							TreeViewer newTreeViewer = new TreeViewer(tree);
+							return newTreeViewer;
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
 				viewerPane.createControl(getContainer());
 
-				parentViewer = (TreeViewer) viewerPane.getViewer();
+				parentViewer = (TreeViewer)viewerPane.getViewer();
 				parentViewer.setAutoExpandLevel(30);
 				parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
 				parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
@@ -1009,20 +1022,20 @@ public class RcplEditor extends MultiPageEditorPart
 			// This is the page for the list viewer
 			//
 			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RcplEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						return new ListViewer(composite);
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), RcplEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							return new ListViewer(composite);
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
 				viewerPane.createControl(getContainer());
-				listViewer = (ListViewer) viewerPane.getViewer();
+				listViewer = (ListViewer)viewerPane.getViewer();
 				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -1034,20 +1047,20 @@ public class RcplEditor extends MultiPageEditorPart
 			// This is the page for the tree viewer
 			//
 			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RcplEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						return new TreeViewer(composite);
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), RcplEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							return new TreeViewer(composite);
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
 				viewerPane.createControl(getContainer());
-				treeViewer = (TreeViewer) viewerPane.getViewer();
+				treeViewer = (TreeViewer)viewerPane.getViewer();
 				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -1061,20 +1074,20 @@ public class RcplEditor extends MultiPageEditorPart
 			// This is the page for the table viewer.
 			//
 			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RcplEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						return new TableViewer(composite);
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), RcplEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							return new TableViewer(composite);
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
 				viewerPane.createControl(getContainer());
-				tableViewer = (TableViewer) viewerPane.getViewer();
+				tableViewer = (TableViewer)viewerPane.getViewer();
 
 				Table table = tableViewer.getTable();
 				TableLayout layout = new TableLayout();
@@ -1092,7 +1105,7 @@ public class RcplEditor extends MultiPageEditorPart
 				selfColumn.setText(getString("_UI_SelfColumn_label"));
 				selfColumn.setResizable(true);
 
-				tableViewer.setColumnProperties(new String[] { "a", "b" });
+				tableViewer.setColumnProperties(new String [] {"a", "b"});
 				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -1104,21 +1117,21 @@ public class RcplEditor extends MultiPageEditorPart
 			// This is the page for the table tree viewer.
 			//
 			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RcplEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						return new TreeViewer(composite);
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
+				ViewerPane viewerPane =
+					new ViewerPane(getSite().getPage(), RcplEditor.this) {
+						@Override
+						public Viewer createViewer(Composite composite) {
+							return new TreeViewer(composite);
+						}
+						@Override
+						public void requestActivation() {
+							super.requestActivation();
+							setCurrentViewerPane(this);
+						}
+					};
 				viewerPane.createControl(getContainer());
 
-				treeViewerWithColumns = (TreeViewer) viewerPane.getViewer();
+				treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
 
 				Tree tree = treeViewerWithColumns.getTree();
 				tree.setLayoutData(new FillLayout());
@@ -1135,7 +1148,7 @@ public class RcplEditor extends MultiPageEditorPart
 				selfColumn.setResizable(true);
 				selfColumn.setWidth(200);
 
-				treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" });
+				treeViewerWithColumns.setColumnProperties(new String [] {"a", "b"});
 				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
@@ -1144,42 +1157,44 @@ public class RcplEditor extends MultiPageEditorPart
 				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
 			}
 
-			getSite().getShell().getDisplay().asyncExec(new Runnable() {
-				public void run() {
-					if (!getContainer().isDisposed()) {
-						setActivePage(0);
-					}
-				}
-			});
+			getSite().getShell().getDisplay().asyncExec
+				(new Runnable() {
+					 public void run() {
+						 if (!getContainer().isDisposed()) {
+							 setActivePage(0);
+						 }
+					 }
+				 });
 		}
 
 		// Ensures that this editor will only display the page's tab
 		// area if there are more than one page
 		//
-		getContainer().addControlListener(new ControlAdapter() {
-			boolean guard = false;
-
-			@Override
-			public void controlResized(ControlEvent event) {
-				if (!guard) {
-					guard = true;
-					hideTabs();
-					guard = false;
+		getContainer().addControlListener
+			(new ControlAdapter() {
+				boolean guard = false;
+				@Override
+				public void controlResized(ControlEvent event) {
+					if (!guard) {
+						guard = true;
+						hideTabs();
+						guard = false;
+					}
 				}
-			}
-		});
+			 });
 
-		getSite().getShell().getDisplay().asyncExec(new Runnable() {
-			public void run() {
-				updateProblemIndication();
-			}
-		});
+		getSite().getShell().getDisplay().asyncExec
+			(new Runnable() {
+				 public void run() {
+					 updateProblemIndication();
+				 }
+			 });
 	}
 
 	/**
-	 * If there is just one page in the multi-page editor part, this hides the
-	 * single tab at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * If there is just one page in the multi-page editor part,
+	 * this hides the single tab at the bottom.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void hideTabs() {
@@ -1188,15 +1203,15 @@ public class RcplEditor extends MultiPageEditorPart
 			if (getContainer() instanceof CTabFolder) {
 				Point point = getContainer().getSize();
 				Rectangle clientArea = getContainer().getClientArea();
-				getContainer().setSize(point.x, 2 * point.y - clientArea.height - clientArea.y);
+				getContainer().setSize(point.x,  2 * point.y - clientArea.height - clientArea.y);
 			}
 		}
 	}
 
 	/**
-	 * If there is more than one page in the multi-page editor part, this shows the
-	 * tabs at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * If there is more than one page in the multi-page editor part,
+	 * this shows the tabs at the bottom.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void showTabs() {
@@ -1211,9 +1226,9 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This is used to track the active viewer. <!-- begin-user-doc --> <!--
+	 * This is used to track the active viewer.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -1235,19 +1250,22 @@ public class RcplEditor extends MultiPageEditorPart
 	public <T> T getAdapter(Class<T> key) {
 		if (key.equals(IContentOutlinePage.class)) {
 			return showOutlineView() ? key.cast(getContentOutlinePage()) : null;
-		} else if (key.equals(IPropertySheetPage.class)) {
+		}
+		else if (key.equals(IPropertySheetPage.class)) {
 			return key.cast(getPropertySheetPage());
-		} else if (key.equals(IGotoMarker.class)) {
+		}
+		else if (key.equals(IGotoMarker.class)) {
 			return key.cast(this);
-		} else {
+		}
+		else {
 			return super.getAdapter(key);
 		}
 	}
 
 	/**
-	 * This accesses a cached version of the content outliner. <!-- begin-user-doc
+	 * This accesses a cached version of the content outliner.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IContentOutlinePage getContentOutlinePage() {
@@ -1273,16 +1291,14 @@ public class RcplEditor extends MultiPageEditorPart
 					createContextMenuFor(contentOutlineViewer);
 
 					if (!editingDomain.getResourceSet().getResources().isEmpty()) {
-						// Select the root object in the view.
-						//
-						contentOutlineViewer.setSelection(
-								new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+					  // Select the root object in the view.
+					  //
+					  contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 					}
 				}
 
 				@Override
-				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager,
-						IStatusLineManager statusLineManager) {
+				public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
 					super.makeContributions(menuManager, toolBarManager, statusLineManager);
 					contentOutlineStatusLineManager = statusLineManager;
 				}
@@ -1298,39 +1314,40 @@ public class RcplEditor extends MultiPageEditorPart
 
 			// Listen to selection so that we can handle it is a special way.
 			//
-			contentOutlinePage.addSelectionChangedListener(new ISelectionChangedListener() {
-				// This ensures that we handle selections correctly.
-				//
-				public void selectionChanged(SelectionChangedEvent event) {
-					handleContentOutlineSelection(event.getSelection());
-				}
-			});
+			contentOutlinePage.addSelectionChangedListener
+				(new ISelectionChangedListener() {
+					 // This ensures that we handle selections correctly.
+					 //
+					 public void selectionChanged(SelectionChangedEvent event) {
+						 handleContentOutlineSelection(event.getSelection());
+					 }
+				 });
 		}
 
 		return contentOutlinePage;
 	}
 
 	/**
-	 * This accesses a cached version of the property sheet. <!-- begin-user-doc -->
+	 * This accesses a cached version of the property sheet.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
-		PropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(editingDomain,
-				ExtendedPropertySheetPage.Decoration.NONE, null, 0, false) {
-			@Override
-			public void setSelectionToViewer(List<?> selection) {
-				RcplEditor.this.setSelectionToViewer(selection);
-				RcplEditor.this.setFocus();
-			}
+		PropertySheetPage propertySheetPage =
+			new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.NONE, null, 0, false) {
+				@Override
+				public void setSelectionToViewer(List<?> selection) {
+					RcplEditor.this.setSelectionToViewer(selection);
+					RcplEditor.this.setFocus();
+				}
 
-			@Override
-			public void setActionBars(IActionBars actionBars) {
-				super.setActionBars(actionBars);
-				getActionBarContributor().shareGlobalActions(this, actionBars);
-			}
-		};
+				@Override
+				public void setActionBars(IActionBars actionBars) {
+					super.setActionBars(actionBars);
+					getActionBarContributor().shareGlobalActions(this, actionBars);
+				}
+			};
 		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
 		propertySheetPages.add(propertySheetPage);
 
@@ -1338,21 +1355,19 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This deals with how we want selection in the outliner to affect the other
-	 * views. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This deals with how we want selection in the outliner to affect the other views.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
 		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
-			Iterator<?> selectedElements = ((IStructuredSelection) selection).iterator();
+			Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
 			if (selectedElements.hasNext()) {
 				// Get the first selected element.
 				//
 				Object selectedElement = selectedElements.next();
 
-				// If it's the selection viewer, then we want it to select the same selection as
-				// this selection.
+				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
 				if (currentViewerPane.getViewer() == selectionViewer) {
 					ArrayList<Object> selectionList = new ArrayList<Object>();
@@ -1364,7 +1379,8 @@ public class RcplEditor extends MultiPageEditorPart
 					// Set the selection to the widget.
 					//
 					selectionViewer.setSelection(new StructuredSelection(selectionList));
-				} else {
+				}
+				else {
 					// Set the input to the widget.
 					//
 					if (currentViewerPane.getViewer().getInput() != selectedElement) {
@@ -1377,20 +1393,18 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This is for implementing {@link IEditorPart} and simply tests the command
-	 * stack. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This is for implementing {@link IEditorPart} and simply tests the command stack.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean isDirty() {
-		return ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
+		return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
 	}
 
 	/**
 	 * This is for implementing {@link IEditorPart} and simply saves the model file.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -1401,36 +1415,36 @@ public class RcplEditor extends MultiPageEditorPart
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		saveOptions.put(Resource.OPTION_LINE_DELIMITER, Resource.OPTION_LINE_DELIMITER_UNSPECIFIED);
 
-		// Do the work within an operation because this is a long running activity that
-		// modifies the workbench.
+		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//
-		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
-			// This is the method that gets invoked when the operation runs.
-			//
-			@Override
-			public void execute(IProgressMonitor monitor) {
-				// Save the resources to the file system.
+		WorkspaceModifyOperation operation =
+			new WorkspaceModifyOperation() {
+				// This is the method that gets invoked when the operation runs.
 				//
-				boolean first = true;
-				List<Resource> resources = editingDomain.getResourceSet().getResources();
-				for (int i = 0; i < resources.size(); ++i) {
-					Resource resource = resources.get(i);
-					if ((first || !resource.getContents().isEmpty() || isPersisted(resource))
-							&& !editingDomain.isReadOnly(resource)) {
-						try {
-							long timeStamp = resource.getTimeStamp();
-							resource.save(saveOptions);
-							if (resource.getTimeStamp() != timeStamp) {
-								savedResources.add(resource);
+				@Override
+				public void execute(IProgressMonitor monitor) {
+					// Save the resources to the file system.
+					//
+					boolean first = true;
+					List<Resource> resources = editingDomain.getResourceSet().getResources();
+					for (int i = 0; i < resources.size(); ++i) {
+						Resource resource = resources.get(i);
+						if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
+							try {
+								long timeStamp = resource.getTimeStamp();
+								resource.save(saveOptions);
+								if (resource.getTimeStamp() != timeStamp) {
+									savedResources.add(resource);
+								}
 							}
-						} catch (Exception exception) {
-							resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+							catch (Exception exception) {
+								resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+							}
+							first = false;
 						}
-						first = false;
 					}
 				}
-			}
-		};
+			};
 
 		updateProblemIndication = false;
 		try {
@@ -1440,9 +1454,10 @@ public class RcplEditor extends MultiPageEditorPart
 
 			// Refresh the necessary state.
 			//
-			((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
+			((BasicCommandStack)editingDomain.getCommandStack()).saveIsDone();
 			firePropertyChange(IEditorPart.PROP_DIRTY);
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
 			RCPLEditorPlugin.INSTANCE.log(exception);
@@ -1452,11 +1467,10 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This returns whether something has been persisted to the URI of the specified
-	 * resource. The implementation uses the URI converter from the editor's
-	 * resource set to try to open an input stream. <!-- begin-user-doc --> <!--
+	 * This returns whether something has been persisted to the URI of the specified resource.
+	 * The implementation uses the URI converter from the editor's resource set to try to open an input stream.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected boolean isPersisted(Resource resource) {
@@ -1467,7 +1481,8 @@ public class RcplEditor extends MultiPageEditorPart
 				result = true;
 				stream.close();
 			}
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			// Ignore
 		}
 		return result;
@@ -1485,9 +1500,9 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This also changes the editor's input. <!-- begin-user-doc --> <!--
+	 * This also changes the editor's input.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -1505,22 +1520,21 @@ public class RcplEditor extends MultiPageEditorPart
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
 		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
-		IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null
-				? getActionBars().getStatusLineManager().getProgressMonitor()
-				: new NullProgressMonitor();
+		IProgressMonitor progressMonitor =
+			getActionBars().getStatusLineManager() != null ?
+				getActionBars().getStatusLineManager().getProgressMonitor() :
+				new NullProgressMonitor();
 		doSave(progressMonitor);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void gotoMarker(IMarker marker) {
@@ -1531,8 +1545,8 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This is called during startup. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This is called during startup.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1542,20 +1556,19 @@ public class RcplEditor extends MultiPageEditorPart
 		setPartName(editorInput.getName());
 		site.setSelectionProvider(this);
 		site.getPage().addPartListener(partListener);
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener,
-				IResourceChangeEvent.POST_CHANGE);
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setFocus() {
 		if (currentViewerPane != null) {
 			currentViewerPane.setFocus();
-		} else {
+		}
+		else {
 			getControl(getActivePage()).setFocus();
 		}
 	}
@@ -1581,10 +1594,9 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to
-	 * return this editor's overall selection. <!-- begin-user-doc --> <!--
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to return this editor's overall selection.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ISelection getSelection() {
@@ -1592,10 +1604,9 @@ public class RcplEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set
-	 * this editor's overall selection. Calling this result will notify the
-	 * listeners. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set this editor's overall selection.
+	 * Calling this result will notify the listeners.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSelection(ISelection selection) {
@@ -1609,34 +1620,32 @@ public class RcplEditor extends MultiPageEditorPart
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStatusLineManager(ISelection selection) {
-		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer
-				? contentOutlineStatusLineManager
-				: getActionBars().getStatusLineManager();
+		IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ?
+			contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 
 		if (statusLineManager != null) {
 			if (selection instanceof IStructuredSelection) {
-				Collection<?> collection = ((IStructuredSelection) selection).toList();
+				Collection<?> collection = ((IStructuredSelection)selection).toList();
 				switch (collection.size()) {
-				case 0: {
-					statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
-					break;
+					case 0: {
+						statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
+						break;
+					}
+					case 1: {
+						String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
+						statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
+						break;
+					}
+					default: {
+						statusLineManager.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
+						break;
+					}
 				}
-				case 1: {
-					String text = new AdapterFactoryItemDelegator(adapterFactory).getText(collection.iterator().next());
-					statusLineManager.setMessage(getString("_UI_SingleObjectSelected", text));
-					break;
-				}
-				default: {
-					statusLineManager
-							.setMessage(getString("_UI_MultiObjectSelected", Integer.toString(collection.size())));
-					break;
-				}
-				}
-			} else {
+			}
+			else {
 				statusLineManager.setMessage("");
 			}
 		}
@@ -1659,32 +1668,29 @@ public class RcplEditor extends MultiPageEditorPart
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return RCPLEditorPlugin.INSTANCE.getString(key, new Object[] { s1 });
+		return RCPLEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill
-	 * the context menus with contributions from the Edit menu. <!-- begin-user-doc
+	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill the context menus with contributions from the Edit menu.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void menuAboutToShow(IMenuManager menuManager) {
-		((IMenuListener) getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
+		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EditingDomainActionBarContributor getActionBarContributor() {
-		return (EditingDomainActionBarContributor) getEditorSite().getActionBarContributor();
+		return (EditingDomainActionBarContributor)getEditorSite().getActionBarContributor();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IActionBars getActionBars() {
@@ -1693,7 +1699,6 @@ public class RcplEditor extends MultiPageEditorPart
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AdapterFactory getAdapterFactory() {
@@ -1702,7 +1707,6 @@ public class RcplEditor extends MultiPageEditorPart
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

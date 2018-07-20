@@ -447,13 +447,22 @@ public interface RcplPackage extends EPackage {
 	int RCPL__LINKED_RCPLS = LAYOUTABLE_FEATURE_COUNT + 12;
 
 	/**
+	 * The feature id for the '<em><b>Homepages</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RCPL__HOMEPAGES = LAYOUTABLE_FEATURE_COUNT + 13;
+
+	/**
 	 * The number of structural features of the '<em>RCPL</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 13;
+	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of operations of the '<em>RCPL</em>' class.
@@ -764,7 +773,7 @@ public interface RcplPackage extends EPackage {
 	int PERSPECTIVE__TOP_TOOL_BAR = LAYOUTABLE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Quick Tool Bar</b></em>' reference.
+	 * The feature id for the '<em><b>Quick Tool Bar</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7445,6 +7454,305 @@ public interface RcplPackage extends EPackage {
 	int DOMAIN_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePagesImpl <em>Home Pages</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePagesImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getHomePages()
+	 * @generated
+	 */
+	int HOME_PAGES = 43;
+
+	/**
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+
+	/**
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+
+	/**
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__NAME = LAYOUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__ID = LAYOUTABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__IMAGE = LAYOUTABLE__IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+
+	/**
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__END_DATE = LAYOUTABLE__END_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__LEAF = LAYOUTABLE__LEAF;
+
+	/**
+	 * The feature id for the '<em><b>Homepage</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES__HOMEPAGE = LAYOUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Home Pages</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Home Pages</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGES_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl <em>Home Page</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getHomePage()
+	 * @generated
+	 */
+	int HOME_PAGE = 44;
+
+	/**
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+
+	/**
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+
+	/**
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__NAME = LAYOUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__ID = LAYOUTABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__IMAGE = LAYOUTABLE__IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+
+	/**
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__END_DATE = LAYOUTABLE__END_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__LEAF = LAYOUTABLE__LEAF;
+
+	/**
+	 * The number of structural features of the '<em>Home Page</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Home Page</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7452,7 +7760,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolType()
 	 * @generated
 	 */
-	int TOOL_TYPE = 43;
+	int TOOL_TYPE = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.FontStyles <em>Font Styles</em>}' enum.
@@ -7462,7 +7770,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getFontStyles()
 	 * @generated
 	 */
-	int FONT_STYLES = 44;
+	int FONT_STYLES = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolBarReplacementPolicy <em>Tool Bar Replacement Policy</em>}' enum.
@@ -7472,7 +7780,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolBarReplacementPolicy()
 	 * @generated
 	 */
-	int TOOL_BAR_REPLACEMENT_POLICY = 45;
+	int TOOL_BAR_REPLACEMENT_POLICY = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.GroupType <em>Group Type</em>}' enum.
@@ -7482,7 +7790,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getGroupType()
 	 * @generated
 	 */
-	int GROUP_TYPE = 46;
+	int GROUP_TYPE = 48;
 
 
 	/**
@@ -7493,7 +7801,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getAddressType()
 	 * @generated
 	 */
-	int ADDRESS_TYPE = 47;
+	int ADDRESS_TYPE = 49;
 
 
 	/**
@@ -7803,6 +8111,17 @@ public interface RcplPackage extends EPackage {
 	EReference getRCPL_LinkedRcpls();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomepages <em>Homepages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Homepages</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomepages()
+	 * @see #getRCPL()
+	 * @generated
+	 */
+	EReference getRCPL_Homepages();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspectives <em>Perspectives</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7856,10 +8175,10 @@ public interface RcplPackage extends EPackage {
 	EReference getPerspective_TopToolBar();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickToolBar <em>Quick Tool Bar</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickToolBar <em>Quick Tool Bar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Quick Tool Bar</em>'.
+	 * @return the meta object for the containment reference '<em>Quick Tool Bar</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickToolBar()
 	 * @see #getPerspective()
 	 * @generated
@@ -9434,6 +9753,37 @@ public interface RcplPackage extends EPackage {
 	EAttribute getDomain_Resource();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages <em>Home Pages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Home Pages</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePages
+	 * @generated
+	 */
+	EClass getHomePages();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages#getHomepage <em>Homepage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Homepage</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePages#getHomepage()
+	 * @see #getHomePages()
+	 * @generated
+	 */
+	EReference getHomePages_Homepage();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage <em>Home Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Home Page</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePage
+	 * @generated
+	 */
+	EClass getHomePage();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9735,6 +10085,14 @@ public interface RcplPackage extends EPackage {
 		EReference RCPL__LINKED_RCPLS = eINSTANCE.getRCPL_LinkedRcpls();
 
 		/**
+		 * The meta object literal for the '<em><b>Homepages</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RCPL__HOMEPAGES = eINSTANCE.getRCPL_Homepages();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectivesImpl <em>Perspectives</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9779,7 +10137,7 @@ public interface RcplPackage extends EPackage {
 		EReference PERSPECTIVE__TOP_TOOL_BAR = eINSTANCE.getPerspective_TopToolBar();
 
 		/**
-		 * The meta object literal for the '<em><b>Quick Tool Bar</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Quick Tool Bar</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -11031,6 +11389,34 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOMAIN__RESOURCE = eINSTANCE.getDomain_Resource();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePagesImpl <em>Home Pages</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePagesImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getHomePages()
+		 * @generated
+		 */
+		EClass HOME_PAGES = eINSTANCE.getHomePages();
+
+		/**
+		 * The meta object literal for the '<em><b>Homepage</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HOME_PAGES__HOMEPAGE = eINSTANCE.getHomePages_Homepage();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl <em>Home Page</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getHomePage()
+		 * @generated
+		 */
+		EClass HOME_PAGE = eINSTANCE.getHomePage();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.

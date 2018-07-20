@@ -13,9 +13,7 @@ package org.eclipse.rcpl.navigator.tree.parts;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.AbstractRcplAddon;
-import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.INavigatorAddon;
-import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.RcplAbstractMigration;
 import org.eclipse.rcpl.RcplAddon;
@@ -65,11 +63,6 @@ public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigat
 	@Override
 	public boolean isCustomApplication() {
 		return false;
-	}
-
-	@Override
-	public IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication) {
-		return null;
 	}
 
 	@Override

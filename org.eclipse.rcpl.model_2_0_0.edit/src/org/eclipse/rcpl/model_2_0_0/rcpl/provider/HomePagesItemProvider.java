@@ -12,23 +12,23 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePages;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar} object.
+ * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class QuickToolBarItemProvider extends LayoutableItemProvider {
+public class HomePagesItemProvider extends LayoutableItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QuickToolBarItemProvider(AdapterFactory adapterFactory) {
+	public HomePagesItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -43,26 +43,25 @@ public class QuickToolBarItemProvider extends LayoutableItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addToolGroupsPropertyDescriptor(object);
-			addToolsPropertyDescriptor(object);
+			addHomepagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Tool Groups feature.
+	 * This adds a property descriptor for the Homepage feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addToolGroupsPropertyDescriptor(Object object) {
+	protected void addHomepagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_QuickToolBar_toolGroups_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_QuickToolBar_toolGroups_feature", "_UI_QuickToolBar_type"),
-				 RcplPackage.Literals.QUICK_TOOL_BAR__TOOL_GROUPS,
+				 getString("_UI_HomePages_homepage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HomePages_homepage_feature", "_UI_HomePages_type"),
+				 RcplPackage.Literals.HOME_PAGES__HOMEPAGE,
 				 true,
 				 false,
 				 true,
@@ -72,36 +71,14 @@ public class QuickToolBarItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Tools feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addToolsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_QuickToolBar_tools_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_QuickToolBar_tools_feature", "_UI_QuickToolBar_type"),
-				 RcplPackage.Literals.QUICK_TOOL_BAR__TOOLS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns QuickToolBar.gif.
+	 * This returns HomePages.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/QuickToolBar"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/HomePages"));
 	}
 
 	/**
@@ -112,10 +89,10 @@ public class QuickToolBarItemProvider extends LayoutableItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((QuickToolBar)object).getName();
+		String label = ((HomePages)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_QuickToolBar_type") :
-			getString("_UI_QuickToolBar_type") + " " + label;
+			getString("_UI_HomePages_type") :
+			getString("_UI_HomePages_type") + " " + label;
 	}
 
 

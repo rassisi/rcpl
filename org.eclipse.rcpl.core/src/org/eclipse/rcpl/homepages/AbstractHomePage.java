@@ -81,8 +81,10 @@ public abstract class AbstractHomePage implements IHomePage {
 			header.setPrefHeight(80);
 			if (image != null) {
 				Node imageView = Rcpl.resources().getImage(image, 32, 32).getNode();
-				header.getChildren().add(imageView);
-				HBox.setMargin(imageView, new Insets(15, 0, 0, 20));
+				if (imageView != null) {
+					header.getChildren().add(imageView);
+					HBox.setMargin(imageView, new Insets(15, 0, 0, 20));
+				}
 			}
 
 			header.setStyle("-fx-background-color: white");

@@ -103,6 +103,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkedRcpls" upperBound="-1"
         eType="#//RCPL"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="homepages" lowerBound="1"
+        eType="#//HomePages" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Perspectives" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
@@ -114,7 +116,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="topToolBar" lowerBound="1"
         eType="#//TopToolBar" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="quickToolBar" lowerBound="1"
-        eType="#//QuickToolBar"/>
+        eType="#//QuickToolBar" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ribbonToolBar" lowerBound="1"
         eType="#//RibbonToolBar" containment="true"/>
   </eClassifiers>
@@ -225,25 +227,25 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="toolGroups" upperBound="-1"
         eType="#//ToolGroup"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tools" upperBound="-1"
-        eType="#//Tools"/>
+        eType="#//Tool"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TopToolBar" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toolGroups" upperBound="-1"
         eType="#//ToolGroup"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tools" upperBound="-1"
-        eType="#//Tools"/>
+        eType="#//Tool"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SideToolBar" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toolGroups" upperBound="-1"
         eType="#//ToolGroup"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tools" upperBound="-1"
-        eType="#//Tools"/>
+        eType="#//Tool"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QuickToolBar" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toolGroups" upperBound="-1"
         eType="#//ToolGroup"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tools" upperBound="-1"
-        eType="#//Tools"/>
+        eType="#//Tool"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Folder" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="folders" upperBound="-1"
@@ -353,4 +355,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HomePages" eSuperTypes="#//Layoutable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="homepage" upperBound="-1"
+        eType="#//HomePage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HomePage" eSuperTypes="#//Layoutable"/>
 </ecore:EPackage>

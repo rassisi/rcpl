@@ -237,6 +237,14 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 				return createDomainAdapter();
 			}
 			@Override
+			public Adapter caseHomePages(HomePages object) {
+				return createHomePagesAdapter();
+			}
+			@Override
+			public Adapter caseHomePage(HomePage object) {
+				return createHomePageAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -855,6 +863,34 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDomainAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages <em>Home Pages</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePages
+	 * @generated
+	 */
+	public Adapter createHomePagesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage <em>Home Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePage
+	 * @generated
+	 */
+	public Adapter createHomePageAdapter() {
 		return null;
 	}
 

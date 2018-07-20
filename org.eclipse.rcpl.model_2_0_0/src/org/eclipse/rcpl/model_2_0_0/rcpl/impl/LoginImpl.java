@@ -3,7 +3,9 @@
 package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.rcpl.model_2_0_0.rcpl.Domain;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Login;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Person;

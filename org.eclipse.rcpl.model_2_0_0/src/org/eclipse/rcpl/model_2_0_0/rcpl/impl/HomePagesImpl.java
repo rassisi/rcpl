@@ -6,30 +6,30 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.rcpl.model_2_0_0.rcpl.Login;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePages;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Logins</b></em>'.
+ * An implementation of the model object '<em><b>Home Pages</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.LoginsImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePagesImpl#getHomepage <em>Homepage</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LoginsImpl extends LayoutableImpl implements Logins {
+public class HomePagesImpl extends LayoutableImpl implements HomePages {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LoginsImpl() {
+	protected HomePagesImpl() {
 		super();
 	}
 
@@ -40,7 +40,7 @@ public class LoginsImpl extends LayoutableImpl implements Logins {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return RcplPackage.Literals.LOGINS;
+		return RcplPackage.Literals.HOME_PAGES;
 	}
 
 	/**
@@ -49,8 +49,8 @@ public class LoginsImpl extends LayoutableImpl implements Logins {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Login> getChildren() {
-		return (EList<Login>)eGet(RcplPackage.Literals.LOGINS__CHILDREN, true);
+	public EList<HomePage> getHomepage() {
+		return (EList<HomePage>)eGet(RcplPackage.Literals.HOME_PAGES__HOMEPAGE, true);
 	}
 
-} //LoginsImpl
+} //HomePagesImpl

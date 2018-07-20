@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.rcpl.application;
 
+import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
@@ -63,13 +64,31 @@ public abstract class RcplApplication extends Application {
 
 	protected abstract boolean isMobile();
 
-	protected abstract String[] getRcplAddonClassNames();
-
 	protected abstract Class<? extends RCPLModel> getRcplModel();
 
 	protected abstract String[] getAdditionalImageCodeBases();
 
 	protected abstract String getXmiName();
+
+	private IApplicationStarter applicationStarter;
+
+	private IRcplApplicationProvider applicationProvider;
+
+	public IRcplApplicationProvider getApplicationProvider() {
+		if (applicationProvider == null) {
+			applicationProvider = createApplicationProvider();
+		}
+		return applicationProvider;
+	}
+
+	public abstract IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication);
+
+	public IApplicationStarter getApplicationStarter() {
+		if (applicationStarter == null) {
+			applicationStarter = createApplicationStarter(getApplicationProvider());
+		}
+		return applicationStarter;
+	}
 
 	@Override
 	public void start(final Stage primaryStage) {
@@ -122,7 +141,7 @@ public abstract class RcplApplication extends Application {
 		loadModsTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 			@Override
 			public void handle(final WorkerStateEvent event) {
-				Rcpl.rcplApplicationProvider.start(primaryStage);
+				getApplicationProvider().start(primaryStage);
 			}
 		});
 
@@ -133,11 +152,12 @@ public abstract class RcplApplication extends Application {
 	 * 
 	 */
 	private void initApplication() {
+
 		Rcpl.rcplApplicationProvider = createApplicationProvider();
 		Rcpl.setMobile(isMobile());
 		RCPLModel.XMIName = getXmiName();
 		RCPLModel.modelClass = getRcplModel();
-		Rcpl.rcplApplicationProvider.registerRcplAddonClasses(getRcplAddonClassNames());
+
 		RcplSession.addAdditionalImageCodebases(getAdditionalImageCodeBases());
 
 	}

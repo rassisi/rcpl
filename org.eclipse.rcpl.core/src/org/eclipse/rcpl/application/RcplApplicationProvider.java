@@ -29,10 +29,11 @@ import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -115,17 +116,17 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 	private HashMap<String, IRcplAddon> rcplAddons = new HashMap<String, IRcplAddon>();
 
-	private Application fxApplication;
+	private RcplApplication rcplApplication;
 
 	private RcplLogin joLogin;
 
-	public RcplApplicationProvider(Application fxApplication) {
-		this.fxApplication = fxApplication;
+	public RcplApplicationProvider(RcplApplication rcplApplication) {
+		this.rcplApplication = rcplApplication;
 	}
 
 	@Override
 	public Application getFxApplication() {
-		return fxApplication;
+		return rcplApplication;
 	}
 
 	@Override
@@ -150,37 +151,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	}
 
 	private IApplicationStarter getRcplApplicationStarter() {
-		if (rcplApplicationStarter == null) {
-
-			// first scan all custom application rcpl Addons
-
-			for (IRcplAddon addon : rcplAddons.values()) {
-				if (addon.isCustomApplication()) {
-					IApplicationStarter applicationStarter = addon.createApplicationStarter(this);
-					if (applicationStarter != null) {
-						rcplApplicationStarter = applicationStarter;
-						return rcplApplicationStarter;
-					}
-				}
-			}
-
-			// now find the built-in application rcpl Addon
-
-			// for (IRcplAddon addon : rcplAddons) {
-			// if (!addon.isCustomApplication()) {
-			// IApplicationStarter applicationStarter =
-			// addon.createApplicationStarter(this);
-			// if (applicationStarter != null) {
-			// rcplApplicationStarter = applicationStarter;
-			// return rcplApplicationStarter;
-			// }
-			// }
-			// }
-
-			return new DefaultApplicationStarter(this);
-
-		}
-		return rcplApplicationStarter;
+		return rcplApplication.getApplicationStarter();
 	}
 
 	@Override
@@ -207,29 +178,62 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			primaryStage.show();
 		}
 		Rcpl.progressMessage("Register Addons");
-		registerAddons();
 
 		final IApplicationStarter applicationsStarter = getRcplApplicationStarter();
 		if (applicationsStarter != null) {
-			Rcpl.progressMessage("Application Starter found: " + applicationsStarter.getClass().getSimpleName());
 
-			final Task<Void> task = new Task<Void>() {
-				@Override
-				public Void call() {
-					boolean success = applicationsStarter.start(joLogin, primaryStage);
-					if (!success) {
-						joLogin.getController().setErrorInUserId();
-						reStart();
-					} else {
-						Rcpl.progressMessage(
-								"Application " + applicationsStarter.getClass().getSimpleName() + "started");
-						joLogin.getController().setHeaderText("RCPL is starting.");
-					}
-					return null;
-				}
-			};
-			new Thread(task).start();
+//			final Task<Void> task = new Task<Void>() {
+//				@Override
+//				public Void call() {
+//					boolean success = applicationsStarter.start(joLogin, primaryStage);
+//					if (!success) {
+//						joLogin.getController().setErrorInUserId();
+//						reStart();
+//					} else {
+//						Rcpl.rcplApplicationProvider.registerRcplAddonClasses(getRcplAddonClassNames());
+//						registerAddons();
+//						Rcpl.progressMessage(
+//								"Application " + applicationsStarter.getClass().getSimpleName() + "started");
+//						joLogin.getController().setHeaderText("RCPL is starting.");
+//
+//					}
+//					return null;
+//				}
+//			};
+//			new Thread(task).start();
+
+			boolean success = applicationsStarter.start(joLogin, primaryStage);
+			if (!success) {
+				joLogin.getController().setErrorInUserId();
+				reStart();
+			} else {
+				Rcpl.rcplApplicationProvider.registerRcplAddonClasses(getRcplAddonClassNames());
+				registerAddons();
+				Rcpl.progressMessage("Application " + applicationsStarter.getClass().getSimpleName() + "started");
+				joLogin.getController().setHeaderText("RCPL is starting.");
+
+			}
+
 		}
+
+	}
+
+	protected String[] getRcplAddonClassNames() {
+		List<String> result = new ArrayList<>();
+		RCPL rcpl = RcplSession.getDefault().getRcpl();
+		if (rcpl != null) {
+			if (rcpl.getAllAddons() != null) {
+				for (Addon addon : rcpl.getAllAddons().getChildren()) {
+					if (addon.getClassName() != null) {
+						result.add(addon.getClassName());
+
+						System.out.println("Addon:  " + addon.getClassName());
+
+					}
+				}
+			}
+		}
+		return result.toArray(new String[0]);
 	}
 
 	private void registerAddons() {
@@ -237,6 +241,9 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			IRcplAddon rcplAddon = createRcplAddon(addonClass);
 			if (rcplAddon != null) {
 				Rcpl.progressMessage("RcplAddon " + rcplAddon.getDisplayName() + " registered.");
+
+				System.out.println("RcplAddon " + rcplAddon.getClass() + " registered.");
+
 			}
 		}
 	}
@@ -270,10 +277,10 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			}
 			try {
 				Class.forName(newClassName);
+				rcplAddonClassNames.add(newClassName);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-			rcplAddonClassNames.add(newClassName);
 		}
 	}
 
@@ -319,7 +326,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 		if (!started) {
 			this.primaryStage = primaryStage;
-			Map<String, String> map = fxApplication.getParameters().getNamed();
+			Map<String, String> map = rcplApplication.getParameters().getNamed();
 			for (String key : map.keySet()) {
 				if ("cdo".equals(key)) {
 					RcplSession.getDefault().CDO_SERVER = map.get(key);

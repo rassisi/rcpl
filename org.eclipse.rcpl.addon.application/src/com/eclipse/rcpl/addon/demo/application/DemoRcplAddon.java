@@ -1,8 +1,6 @@
 package com.eclipse.rcpl.addon.demo.application;
 
 import org.eclipse.rcpl.AbstractRcplAddon;
-import org.eclipse.rcpl.IApplicationStarter;
-import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.RcplAbstractMigration;
 import org.eclipse.rcpl.RcplAddon;
@@ -17,10 +15,6 @@ public class DemoRcplAddon extends AbstractRcplAddon implements IRcplAddon {
 
 	public static final String ID = "DEMO_APPLICATION";
 
-
-
-
-
 	@Override
 	public String getDisplayName() {
 		return "Demo Application";
@@ -31,24 +25,14 @@ public class DemoRcplAddon extends AbstractRcplAddon implements IRcplAddon {
 		return null; // new EContactsMigration(this);
 	}
 
-
-
-	@Override
-	public IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication) {
-		return new DemoRcplApplicationStarter(rcplApplication);
-	}
-
-
-
 	@Override
 	protected EViewController createController() {
 		return null;
 	}
-	
+
 	@Override
 	public boolean isCustomApplication() {
 		return false;
 	}
-
 
 }

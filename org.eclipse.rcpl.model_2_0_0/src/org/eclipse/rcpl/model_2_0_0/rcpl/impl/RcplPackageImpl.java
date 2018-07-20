@@ -2,18 +2,14 @@
  */
 package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
-import org.eclipse.emf.cdo.etypes.EtypesPackage;
-import org.eclipse.emf.cdo.etypes.impl.EtypesPackageImpl;
-import org.eclipse.emf.cdo.expressions.ExpressionsPackage;
-import org.eclipse.emf.cdo.expressions.impl.ExpressionsPackageImpl;
-import org.eclipse.emf.cdo.security.SecurityPackage;
-import org.eclipse.emf.cdo.security.impl.SecurityPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addons;
@@ -32,6 +28,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.FontStyles;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Geo;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePages;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HouseNumber;
 import org.eclipse.rcpl.model_2_0_0.rcpl.JPerson;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Layoutable;
@@ -377,6 +375,20 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass homePagesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass homePageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum toolTypeEEnum = null;
 
 	/**
@@ -454,25 +466,11 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		isInited = true;
 
-		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SecurityPackage.eNS_URI);
-		SecurityPackageImpl theSecurityPackage = (SecurityPackageImpl)(registeredPackage instanceof SecurityPackageImpl ? registeredPackage : SecurityPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EtypesPackage.eNS_URI);
-		EtypesPackageImpl theEtypesPackage = (EtypesPackageImpl)(registeredPackage instanceof EtypesPackageImpl ? registeredPackage : EtypesPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
-		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(registeredPackage instanceof ExpressionsPackageImpl ? registeredPackage : ExpressionsPackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theRcplPackage.createPackageContents();
-		theSecurityPackage.createPackageContents();
-		theEtypesPackage.createPackageContents();
-		theExpressionsPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRcplPackage.initializePackageContents();
-		theSecurityPackage.initializePackageContents();
-		theEtypesPackage.initializePackageContents();
-		theExpressionsPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRcplPackage.freeze();
@@ -732,6 +730,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 */
 	public EReference getRCPL_LinkedRcpls() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRCPL_Homepages() {
+		return (EReference)rcplEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -1378,15 +1385,6 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getToolGroup_Tools() {
-		return (EReference)toolGroupEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getToolGroup_Grid() {
 		return (EAttribute)toolGroupEClass.getEStructuralFeatures().get(1);
 	}
@@ -1396,8 +1394,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getToolGroup_Type() {
-		return (EAttribute)toolGroupEClass.getEStructuralFeatures().get(4);
+	public EAttribute getToolGroup_Format() {
+		return (EAttribute)toolGroupEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1405,8 +1403,17 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getToolGroup_Format() {
-		return (EAttribute)toolGroupEClass.getEStructuralFeatures().get(2);
+	public EReference getToolGroup_Tools() {
+		return (EReference)toolGroupEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getToolGroup_Type() {
+		return (EAttribute)toolGroupEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -2107,6 +2114,33 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getHomePages() {
+		return homePagesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHomePages_Homepage() {
+		return (EReference)homePagesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHomePage() {
+		return homePageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getToolType() {
 		return toolTypeEEnum;
 	}
@@ -2204,6 +2238,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(rcplEClass, RCPL__ALL_RESOURCES);
 		createEReference(rcplEClass, RCPL__ALL_PERSONS);
 		createEReference(rcplEClass, RCPL__LINKED_RCPLS);
+		createEReference(rcplEClass, RCPL__HOMEPAGES);
 
 		perspectivesEClass = createEClass(PERSPECTIVES);
 		createEReference(perspectivesEClass, PERSPECTIVES__CHILDREN);
@@ -2398,6 +2433,11 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEAttribute(domainEClass, DOMAIN__PORT);
 		createEAttribute(domainEClass, DOMAIN__RESOURCE);
 
+		homePagesEClass = createEClass(HOME_PAGES);
+		createEReference(homePagesEClass, HOME_PAGES__HOMEPAGE);
+
+		homePageEClass = createEClass(HOME_PAGE);
+
 		// Create enums
 		toolTypeEEnum = createEEnum(TOOL_TYPE);
 		fontStylesEEnum = createEEnum(FONT_STYLES);
@@ -2474,6 +2514,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		buildingEClass.getESuperTypes().add(this.getLayoutable());
 		contactEClass.getESuperTypes().add(this.getLayoutable());
 		phoneEClass.getESuperTypes().add(this.getLayoutable());
+		homePagesEClass.getESuperTypes().add(this.getLayoutable());
+		homePageEClass.getESuperTypes().add(this.getLayoutable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(layoutableEClass, Layoutable.class, "Layoutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2505,6 +2547,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getRCPL_AllResources(), this.getResources(), null, "allResources", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_AllPersons(), this.getPersons(), null, "allPersons", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_LinkedRcpls(), this.getRCPL(), null, "linkedRcpls", null, 0, -1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRCPL_Homepages(), this.getHomePages(), null, "homepages", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(perspectivesEClass, Perspectives.class, "Perspectives", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPerspectives_Children(), this.getPerspective(), null, "children", null, 0, -1, Perspectives.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2512,7 +2555,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEClass(perspectiveEClass, Perspective.class, "Perspective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPerspective_SideToolBar(), this.getSideToolBar(), null, "sideToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPerspective_TopToolBar(), this.getTopToolBar(), null, "topToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPerspective_QuickToolBar(), this.getQuickToolBar(), null, "quickToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPerspective_QuickToolBar(), this.getQuickToolBar(), null, "quickToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPerspective_RibbonToolBar(), this.getRibbonToolBar(), null, "ribbonToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(preferenceEClass, Preference.class, "Preference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2601,19 +2644,19 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		initEClass(ribbonToolBarEClass, RibbonToolBar.class, "RibbonToolBar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRibbonToolBar_ToolGroups(), this.getToolGroup(), null, "toolGroups", null, 0, -1, RibbonToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRibbonToolBar_Tools(), this.getTools(), null, "tools", null, 0, -1, RibbonToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRibbonToolBar_Tools(), this.getTool(), null, "tools", null, 0, -1, RibbonToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(topToolBarEClass, TopToolBar.class, "TopToolBar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTopToolBar_ToolGroups(), this.getToolGroup(), null, "toolGroups", null, 0, -1, TopToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTopToolBar_Tools(), this.getTools(), null, "tools", null, 0, -1, TopToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTopToolBar_Tools(), this.getTool(), null, "tools", null, 0, -1, TopToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sideToolBarEClass, SideToolBar.class, "SideToolBar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSideToolBar_ToolGroups(), this.getToolGroup(), null, "toolGroups", null, 0, -1, SideToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSideToolBar_Tools(), this.getTools(), null, "tools", null, 0, -1, SideToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSideToolBar_Tools(), this.getTool(), null, "tools", null, 0, -1, SideToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(quickToolBarEClass, QuickToolBar.class, "QuickToolBar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getQuickToolBar_ToolGroups(), this.getToolGroup(), null, "toolGroups", null, 0, -1, QuickToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getQuickToolBar_Tools(), this.getTools(), null, "tools", null, 0, -1, QuickToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuickToolBar_Tools(), this.getTool(), null, "tools", null, 0, -1, QuickToolBar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(folderEClass, Folder.class, "Folder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFolder_Folders(), this.getFolder(), null, "folders", null, 0, -1, Folder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2698,6 +2741,11 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEAttribute(getDomain_Host(), ecorePackage.getEString(), "host", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDomain_Port(), ecorePackage.getEInt(), "port", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDomain_Resource(), ecorePackage.getEString(), "resource", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(homePagesEClass, HomePages.class, "HomePages", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getHomePages_Homepage(), this.getHomePage(), null, "homepage", null, 0, -1, HomePages.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(homePageEClass, HomePage.class, "HomePage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(toolTypeEEnum, ToolType.class, "ToolType");

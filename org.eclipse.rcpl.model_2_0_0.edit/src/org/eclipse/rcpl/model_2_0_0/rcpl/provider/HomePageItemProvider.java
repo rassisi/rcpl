@@ -9,26 +9,24 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
-import org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar;
-import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.QuickToolBar} object.
+ * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class QuickToolBarItemProvider extends LayoutableItemProvider {
+public class HomePageItemProvider extends LayoutableItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QuickToolBarItemProvider(AdapterFactory adapterFactory) {
+	public HomePageItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -43,65 +41,19 @@ public class QuickToolBarItemProvider extends LayoutableItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addToolGroupsPropertyDescriptor(object);
-			addToolsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Tool Groups feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addToolGroupsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_QuickToolBar_toolGroups_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_QuickToolBar_toolGroups_feature", "_UI_QuickToolBar_type"),
-				 RcplPackage.Literals.QUICK_TOOL_BAR__TOOL_GROUPS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Tools feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addToolsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_QuickToolBar_tools_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_QuickToolBar_tools_feature", "_UI_QuickToolBar_type"),
-				 RcplPackage.Literals.QUICK_TOOL_BAR__TOOLS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns QuickToolBar.gif.
+	 * This returns HomePage.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/QuickToolBar"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/HomePage"));
 	}
 
 	/**
@@ -112,10 +64,10 @@ public class QuickToolBarItemProvider extends LayoutableItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((QuickToolBar)object).getName();
+		String label = ((HomePage)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_QuickToolBar_type") :
-			getString("_UI_QuickToolBar_type") + " " + label;
+			getString("_UI_HomePage_type") :
+			getString("_UI_HomePage_type") + " " + label;
 	}
 
 

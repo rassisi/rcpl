@@ -47,8 +47,6 @@ public interface IRcplAddon {
 
 	void executeCommand(ICommand command);
 
-	IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication);
-
 	void bindToModel() throws Exception;
 
 	boolean isCustomApplication();

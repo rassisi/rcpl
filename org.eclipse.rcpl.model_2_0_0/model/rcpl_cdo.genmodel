@@ -110,6 +110,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allResources"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allPersons"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/linkedRcpls"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/homepages"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Perspectives">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspectives/children"/>
@@ -117,7 +118,7 @@
     <genClasses ecoreClass="rcpl.ecore#//Perspective">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/sideToolBar"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/topToolBar"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/quickToolBar"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/quickToolBar"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/ribbonToolBar"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Preference">
@@ -299,210 +300,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Domain/port"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Domain/resource"/>
     </genClasses>
-  </genPackages>
-  <genPackages prefix="Security" basePackage="org.eclipse.emf.cdo" ecorePackage="http://www.eclipse.org/emf/CDO/security/4.1.0#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="http://www.eclipse.org/emf/CDO/security/4.1.0#//PatternStyle">
-      <genEnumLiterals ecoreEnumLiteral="http://www.eclipse.org/emf/CDO/security/4.1.0#//PatternStyle/EXACT"/>
-      <genEnumLiterals ecoreEnumLiteral="http://www.eclipse.org/emf/CDO/security/4.1.0#//PatternStyle/TREE"/>
-      <genEnumLiterals ecoreEnumLiteral="http://www.eclipse.org/emf/CDO/security/4.1.0#//PatternStyle/ANT"/>
-      <genEnumLiterals ecoreEnumLiteral="http://www.eclipse.org/emf/CDO/security/4.1.0#//PatternStyle/REGEX"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="http://www.eclipse.org/emf/CDO/security/4.1.0#//Access">
-      <genEnumLiterals ecoreEnumLiteral="http://www.eclipse.org/emf/CDO/security/4.1.0#//Access/READ"/>
-      <genEnumLiterals ecoreEnumLiteral="http://www.eclipse.org/emf/CDO/security/4.1.0#//Access/WRITE"/>
-    </genEnums>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/emf/CDO/security/4.1.0#//AccessObject"/>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//SecurityElement">
-      <genOperations ecoreOperation="http://www.eclipse.org/emf/CDO/security/4.1.0#//SecurityElement/getRealm"/>
+    <genClasses ecoreClass="rcpl.ecore#//HomePages">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//HomePages/homepage"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//SecurityItem"/>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/items"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/allUsers"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/allGroups"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/allRoles"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/allPermissions"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/defaultAccess"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/defaultUserDirectory"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/defaultGroupDirectory"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Realm/defaultRoleDirectory"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//Directory">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Directory/items"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//Directory/name"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//Role">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//Role/id"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Role/permissions"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Role/assignees"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//Assignee">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//Assignee/id"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Assignee/roles"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//Group">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Group/users"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Group/inheritedGroups"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Group/inheritingGroups"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Group/allInheritedGroups"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Group/allInheritingGroups"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Group/allRoles"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//User">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//User/groups"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//User/label"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//User/firstName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//User/lastName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//User/email"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//User/defaultAccessOverride"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//User/defaultAccess"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//User/locked"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//User/password"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//User/allGroups"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//User/allRoles"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//User/allPermissions"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//User/unassignedRoles"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//UserPassword">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//UserPassword/encrypted"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//Permission">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//Permission/role"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//Permission/access"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//ClassPermission">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//ClassPermission/applicableClass"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//PackagePermission">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//PackagePermission/applicablePackage"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourcePermission">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourcePermission/pattern"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//ObjectPermission"/>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//FilterPermission">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//FilterPermission/filters"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//PermissionFilter"/>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//LinkedFilter">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//LinkedFilter/filter"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//PackageFilter">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//PackageFilter/applicablePackage"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//ClassFilter">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//ClassFilter/applicableClass"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ClassFilter/subTypes"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter/path"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter/patternStyle"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter/folders"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter/textResources"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter/binaryResources"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter/modelResources"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter/modelObjects"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter/includeParents"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/security/4.1.0#//ResourceFilter/includeRoot"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//ObjectFilter"/>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//ExpressionFilter">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//ExpressionFilter/expression"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//CombinedFilter">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/security/4.1.0#//CombinedFilter/operands"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//NotFilter"/>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//AndFilter"/>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/security/4.1.0#//OrFilter"/>
-  </genPackages>
-  <genPackages prefix="Etypes" basePackage="org.eclipse.emf.cdo" ecorePackage="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#/">
-    <genDataTypes ecoreDataType="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Blob"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Clob"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Lob">
-      <genTypeParameters ecoreTypeParameter="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Lob/IO"/>
-    </genDataTypes>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//InputStream"/>
-    <genDataTypes ecoreDataType="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Reader"/>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//ModelElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//ModelElement/annotations"/>
-      <genOperations ecoreOperation="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//ModelElement/getAnnotation">
-        <genParameters ecoreParameter="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//ModelElement/getAnnotation/source"/>
-      </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Annotation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Annotation/source"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Annotation/details"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Annotation/modelElement"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Annotation/contents"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/Etypes/4.0.0#//Annotation/references"/>
-    </genClasses>
-  </genPackages>
-  <genPackages prefix="Expressions" basePackage="org.eclipse.emf.cdo" ecorePackage="http://www.eclipse.org/emf/CDO/expressions/4.3.0#/">
-    <genDataTypes ecoreDataType="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//EvaluationContext"/>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Expression">
-      <genOperations ecoreOperation="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Expression/evaluate">
-        <genParameters ecoreParameter="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Expression/evaluate/context"/>
-      </genOperations>
-    </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Value">
-      <genOperations ecoreOperation="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Value/getLiteral"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//BooleanValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/expressions/4.3.0#//BooleanValue/literal"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//ByteValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/expressions/4.3.0#//ByteValue/literal"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//ShortValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/expressions/4.3.0#//ShortValue/literal"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//IntValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/expressions/4.3.0#//IntValue/literal"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//LongValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/expressions/4.3.0#//LongValue/literal"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//FloatValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/expressions/4.3.0#//FloatValue/literal"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//DoubleValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/expressions/4.3.0#//DoubleValue/literal"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//CharValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/expressions/4.3.0#//CharValue/literal"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//StringValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute http://www.eclipse.org/emf/CDO/expressions/4.3.0#//StringValue/literal"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Invocation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Invocation/arguments"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Invocation/name"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//FunctionInvocation"/>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//MemberInvocation">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/expressions/4.3.0#//MemberInvocation/object"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Access">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/expressions/4.3.0#//Access/name"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//StaticAccess"/>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//MemberAccess">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/expressions/4.3.0#//MemberAccess/object"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//ContextAccess"/>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//ContainedObject">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/expressions/4.3.0#//ContainedObject/object"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//LinkedObject">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/expressions/4.3.0#//LinkedObject/object"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//LinkedExpression">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/expressions/4.3.0#//LinkedExpression/expression"/>
-    </genClasses>
-    <genClasses ecoreClass="http://www.eclipse.org/emf/CDO/expressions/4.3.0#//ListConstruction">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference http://www.eclipse.org/emf/CDO/expressions/4.3.0#//ListConstruction/elements"/>
-    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//HomePage"/>
   </genPackages>
 </genmodel:GenModel>

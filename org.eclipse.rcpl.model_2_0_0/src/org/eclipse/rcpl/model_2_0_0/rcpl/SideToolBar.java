@@ -40,7 +40,7 @@ public interface SideToolBar extends Layoutable {
 
 	/**
 	 * Returns the value of the '<em><b>Tools</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.Tools}.
+	 * The list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Tools</em>' reference list isn't clear,
@@ -52,6 +52,6 @@ public interface SideToolBar extends Layoutable {
 	 * @model
 	 * @generated
 	 */
-	EList<Tools> getTools();
+	EList<Tool> getTools();
 
 } // SideToolBar

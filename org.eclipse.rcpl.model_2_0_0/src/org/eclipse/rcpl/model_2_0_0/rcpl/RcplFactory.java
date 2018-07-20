@@ -391,6 +391,24 @@ public interface RcplFactory extends EFactory {
 	Domain createDomain();
 
 	/**
+	 * Returns a new object of class '<em>Home Pages</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Home Pages</em>'.
+	 * @generated
+	 */
+	HomePages createHomePages();
+
+	/**
+	 * Returns a new object of class '<em>Home Page</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Home Page</em>'.
+	 * @generated
+	 */
+	HomePage createHomePage();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

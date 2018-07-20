@@ -76,26 +76,26 @@ public interface Perspective extends Layoutable {
 	void setTopToolBar(TopToolBar value);
 
 	/**
-	 * Returns the value of the '<em><b>Quick Tool Bar</b></em>' reference.
+	 * Returns the value of the '<em><b>Quick Tool Bar</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Quick Tool Bar</em>' reference isn't clear,
+	 * If the meaning of the '<em>Quick Tool Bar</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Quick Tool Bar</em>' reference.
+	 * @return the value of the '<em>Quick Tool Bar</em>' containment reference.
 	 * @see #setQuickToolBar(QuickToolBar)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getPerspective_QuickToolBar()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	QuickToolBar getQuickToolBar();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickToolBar <em>Quick Tool Bar</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickToolBar <em>Quick Tool Bar</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Quick Tool Bar</em>' reference.
+	 * @param value the new value of the '<em>Quick Tool Bar</em>' containment reference.
 	 * @see #getQuickToolBar()
 	 * @generated
 	 */

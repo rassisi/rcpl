@@ -6,20 +6,24 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.rcpl.model_2_0_0.rcpl.*;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
  * @generated
  */
 public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static RcplFactory init() {
@@ -37,8 +41,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RcplFactoryImpl() {
@@ -46,7 +50,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -93,13 +98,16 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 			case RcplPackage.PHONE: return (EObject)createPhone();
 			case RcplPackage.DOMAINS: return (EObject)createDomains();
 			case RcplPackage.DOMAIN: return (EObject)createDomain();
+			case RcplPackage.HOME_PAGES: return (EObject)createHomePages();
+			case RcplPackage.HOME_PAGE: return (EObject)createHomePage();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -121,7 +129,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -143,100 +152,100 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public RCPL createRCPL() {
 		RCPLImpl rcpl = new RCPLImpl();
 		return rcpl;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Perspectives createPerspectives() {
 		PerspectivesImpl perspectives = new PerspectivesImpl();
 		return perspectives;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Perspective createPerspective() {
 		PerspectiveImpl perspective = new PerspectiveImpl();
 		return perspective;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Preference createPreference() {
 		PreferenceImpl preference = new PreferenceImpl();
 		return preference;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Logins createLogins() {
 		LoginsImpl logins = new LoginsImpl();
 		return logins;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Login createLogin() {
 		LoginImpl login = new LoginImpl();
 		return login;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Favorites createFavorites() {
 		FavoritesImpl favorites = new FavoritesImpl();
 		return favorites;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Favorite createFavorite() {
 		FavoriteImpl favorite = new FavoriteImpl();
 		return favorite;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public FavoritesGroup createFavoritesGroup() {
 		FavoritesGroupImpl favoritesGroup = new FavoritesGroupImpl();
 		return favoritesGroup;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Preferences createPreferences() {
 		PreferencesImpl preferences = new PreferencesImpl();
 		return preferences;
@@ -263,32 +272,30 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
-	@Override
 	public Tool createTool() {
 		ToolImpl tool = new ToolImpl();
-		tool.setLeaf(true);
 		return tool;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ToolGroup createToolGroup() {
 		ToolGroupImpl toolGroup = new ToolGroupImpl();
 		return toolGroup;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Tools createTools() {
 		ToolsImpl tools = new ToolsImpl();
 		return tools;
@@ -305,257 +312,278 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TopToolBar createTopToolBar() {
 		TopToolBarImpl topToolBar = new TopToolBarImpl();
 		return topToolBar;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public SideToolBar createSideToolBar() {
 		SideToolBarImpl sideToolBar = new SideToolBarImpl();
 		return sideToolBar;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public QuickToolBar createQuickToolBar() {
 		QuickToolBarImpl quickToolBar = new QuickToolBarImpl();
 		return quickToolBar;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Folder createFolder() {
 		FolderImpl folder = new FolderImpl();
 		return folder;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Resource createResource() {
 		ResourceImpl resource = new ResourceImpl();
 		return resource;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Person createPerson() {
 		PersonImpl person = new PersonImpl();
 		return person;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public PersonGroup createPersonGroup() {
 		PersonGroupImpl personGroup = new PersonGroupImpl();
 		return personGroup;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Resources createResources() {
 		ResourcesImpl resources = new ResourcesImpl();
 		return resources;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public PreferenceGroup createPreferenceGroup() {
 		PreferenceGroupImpl preferenceGroup = new PreferenceGroupImpl();
 		return preferenceGroup;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Persons createPersons() {
 		PersonsImpl persons = new PersonsImpl();
 		return persons;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public RCPLTemplates createRCPLTemplates() {
 		RCPLTemplatesImpl rcplTemplates = new RCPLTemplatesImpl();
 		return rcplTemplates;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public JPerson createJPerson() {
 		JPersonImpl jPerson = new JPersonImpl();
 		return jPerson;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public NPerson createNPerson() {
 		NPersonImpl nPerson = new NPersonImpl();
 		return nPerson;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Address createAddress() {
 		AddressImpl address = new AddressImpl();
 		return address;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Country createCountry() {
 		CountryImpl country = new CountryImpl();
 		return country;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public City createCity() {
 		CityImpl city = new CityImpl();
 		return city;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Geo createGeo() {
 		GeoImpl geo = new GeoImpl();
 		return geo;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public WorldRegion createWorldRegion() {
 		WorldRegionImpl worldRegion = new WorldRegionImpl();
 		return worldRegion;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Street createStreet() {
 		StreetImpl street = new StreetImpl();
 		return street;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public HouseNumber createHouseNumber() {
 		HouseNumberImpl houseNumber = new HouseNumberImpl();
 		return houseNumber;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Building createBuilding() {
 		BuildingImpl building = new BuildingImpl();
 		return building;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Contact createContact() {
 		ContactImpl contact = new ContactImpl();
 		return contact;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Phone createPhone() {
 		PhoneImpl phone = new PhoneImpl();
 		return phone;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Domains createDomains() {
 		DomainsImpl domains = new DomainsImpl();
 		return domains;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Domain createDomain() {
 		DomainImpl domain = new DomainImpl();
 		return domain;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HomePages createHomePages() {
+		HomePagesImpl homePages = new HomePagesImpl();
+		return homePages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HomePage createHomePage() {
+		HomePageImpl homePage = new HomePageImpl();
+		return homePage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ToolType createToolTypeFromString(EDataType eDataType, String initialValue) {
@@ -565,7 +593,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertToolTypeToString(EDataType eDataType, Object instanceValue) {
@@ -573,7 +602,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FontStyles createFontStylesFromString(EDataType eDataType, String initialValue) {
@@ -583,7 +613,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertFontStylesToString(EDataType eDataType, Object instanceValue) {
@@ -591,7 +622,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ToolBarReplacementPolicy createToolBarReplacementPolicyFromString(EDataType eDataType, String initialValue) {
@@ -601,7 +633,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertToolBarReplacementPolicyToString(EDataType eDataType, Object instanceValue) {
@@ -609,7 +642,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GroupType createGroupTypeFromString(EDataType eDataType, String initialValue) {
@@ -619,7 +653,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertGroupTypeToString(EDataType eDataType, Object instanceValue) {
@@ -627,7 +662,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AddressType createAddressTypeFromString(EDataType eDataType, String initialValue) {
@@ -637,7 +673,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertAddressTypeToString(EDataType eDataType, Object instanceValue) {
@@ -645,16 +682,17 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public RcplPackage getRcplPackage() {
 		return (RcplPackage)getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -663,4 +701,4 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 		return RcplPackage.eINSTANCE;
 	}
 
-} // RcplFactoryImpl
+} //RcplFactoryImpl
