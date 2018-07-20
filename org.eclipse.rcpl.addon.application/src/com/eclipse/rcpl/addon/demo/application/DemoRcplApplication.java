@@ -39,7 +39,7 @@ public class DemoRcplApplication extends RcplApplication {
 	@Override
 	protected String[] getRcplAddonClassNames() {
 		return new String[] { "com.eclipse.rcpl.addon.demo.application.DemoRcplAddon",
-				"org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorPlugin" };
+				"org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon" };
 	}
 
 	@Override

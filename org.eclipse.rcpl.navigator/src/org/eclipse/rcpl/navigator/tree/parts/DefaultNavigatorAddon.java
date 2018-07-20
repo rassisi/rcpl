@@ -30,7 +30,7 @@ import javafx.scene.layout.Pane;
  * 
  */
 @RcplAddon
-public class DefaultNavigatorPlugin extends AbstractRcplAddon implements INavigatorAddon{
+public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigatorAddon{
 
 	@Override
 	public void setTool(Tool tool) {
