@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.EnCustomToolIds;
+import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorAddon;
@@ -33,7 +34,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.navigator.EViewController;
-import org.eclipse.rcpl.tools.addon.EToolsPlugin;
+import org.eclipse.rcpl.tools.addon.EToolsAddon;
 
 import com.sun.javafx.scene.control.IntegerField;
 
@@ -311,7 +312,7 @@ public class EToolsAddonController extends EViewController {
 	}
 
 	public void doInit(AbstractRcplAddon uc) {
-		Node node1 = new EToolsTreePart((EToolsPlugin) uc).getNode();
+		Node node1 = new EToolsTreePart((EToolsAddon) uc).getNode();
 		getViewerBox().getChildren().add(node1);
 		getToolType().getItems().clear();
 		getToolType().getItems().addAll(ToolType.values());
@@ -933,6 +934,11 @@ public class EToolsAddonController extends EViewController {
 	public void init(IRcplAddon rcplPlugin) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public IApplicationStarter getApplicationStarter() {
+		return null;
 	}
 
 }

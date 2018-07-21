@@ -11,5 +11,5 @@ import javafx.scene.layout.Pane;
  */
 public interface INavigatorAddon extends IRcplAddon {
 
-	RcplTool create(Pane detailPane, Tool tool, EObject root, boolean showRoot);
+	ITreePart createPart(Pane detailPane, Tool tool, EObject root, boolean showRoot);
 }

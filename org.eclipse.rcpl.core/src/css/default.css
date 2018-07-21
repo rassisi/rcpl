@@ -1087,10 +1087,10 @@
 }
 
 .tree-cell {
-    -fx-padding: 0.0em 0em 0.0em 0em ;
+    -fx-padding: 0.1em;
 }
 .tree-cell:sub-tree-item {
-    -fx-padding: 0.0em ;
+    -fx-padding: 0.0em;
 }
 
 #toolButton:selected{

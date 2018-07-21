@@ -24,7 +24,7 @@ import javafx.scene.Node;
  */
 public abstract class RcplTool implements ITool {
 
-	private final Tool tool;
+	protected Tool tool;
 
 	protected Node node;
 
@@ -40,9 +40,14 @@ public abstract class RcplTool implements ITool {
 		tool.setToolTip(toolTip);
 	}
 
+	/**
+	 * This constructor is for conveniant reflection (e.g. creation of a Navigator)
+	 */
+	public RcplTool() {
+	}
+
 	public RcplTool(Tool tool) {
 		this.tool = tool;
-
 		Rcpl.getEditorListeners().add(this);
 	}
 

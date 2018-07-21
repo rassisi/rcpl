@@ -170,7 +170,9 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 	}
 
 	@Override
-	public abstract String getDisplayName();
+	public String getDisplayName() {
+		return getEmfModel().getName();
+	}
 
 	@Override
 	public Addon getEmfModel() {

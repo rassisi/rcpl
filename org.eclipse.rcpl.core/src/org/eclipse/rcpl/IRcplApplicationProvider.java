@@ -24,8 +24,6 @@ public interface IRcplApplicationProvider {
 
 	void bindAddonsToModel();
 
-	void registerRcplAddonClasses(String... rcpAddonClassName);
-
 	IRcplAddon findRcplAddon(String className);
 
 	IRcplAddon findRcplAddon(Class<? extends IRcplAddon> addon);

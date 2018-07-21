@@ -31,6 +31,7 @@ import org.eclipse.rcpl.IResourceEntry;
 import org.eclipse.rcpl.IToolComponent;
 import org.eclipse.rcpl.IToolGroup;
 import org.eclipse.rcpl.IToolRegistry;
+import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
@@ -69,7 +70,7 @@ import javafx.scene.layout.Pane;
  * @author ramin
  *
  */
-public class DefaultNavigatorTreePart extends RcplTool {
+public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private EObject root;
 
@@ -86,17 +87,17 @@ public class DefaultNavigatorTreePart extends RcplTool {
 
 	private HashMap<String, File> documentRegistry = new HashMap<String, File>();
 
-	private final Pane detailPane;
+	private Pane detailPane;
 
-	public DefaultNavigatorTreePart(Pane detailPane, Tool tool, EObject root, boolean showRoot) {
-		super(tool);
+	public DefaultNavigatorTreePart() {
+	}
+
+	public void init(Pane detailPane, Tool tool, EObject root, boolean showRoot) {
+		this.tool = tool;
+		Rcpl.getEditorListeners().add(this);
+
 		this.detailPane = detailPane;
 		try {
-
-			if (root == null) {
-
-			}
-
 			this.root = root;
 			registerHandlers();
 			getNode();
@@ -112,10 +113,10 @@ public class DefaultNavigatorTreePart extends RcplTool {
 		} catch (Throwable ex) {
 			RCPLModel.logError(ex);
 		}
+
 	}
 
 	protected void doSelection() {
-
 	}
 
 	protected void defineDetailNode(EObject eObject) {
@@ -293,7 +294,7 @@ public class DefaultNavigatorTreePart extends RcplTool {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void refresh() {
+	public void refresh() {
 
 		try {
 			if (adapterFactoryTreeItem2 == null) {
@@ -592,6 +593,11 @@ public class DefaultNavigatorTreePart extends RcplTool {
 
 	public Pane getDetailPane() {
 		return detailPane;
+	}
+
+	@Override
+	public EObject getRoot() {
+		return RcplSession.getDefault().getRcpl().getAllResources();
 	}
 
 }

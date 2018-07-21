@@ -13,7 +13,6 @@ package org.eclipse.rcpl.navigator;
 import java.math.BigDecimal;
 import java.util.List;
 
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -22,6 +21,7 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITopToolbar;
+import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.emf.util.EMFEditFXProperties;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 
@@ -171,7 +171,7 @@ abstract public class EViewController implements ITreePartControler, IRcplPlugin
 				textField.numberProperty().unbindBidirectional(oldProperty);
 
 			Property<BigDecimal> property = null;
-			
+
 			if (eObject != null) {
 				property = EMFEditFXProperties.value(editingDomain, eObject, feature);
 				textField.numberProperty().bindBidirectional(property);

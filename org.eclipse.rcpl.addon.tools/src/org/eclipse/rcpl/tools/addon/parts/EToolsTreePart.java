@@ -25,7 +25,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuToolGroups;
 import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroups;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
-import org.eclipse.rcpl.tools.addon.EToolsPlugin;
+import org.eclipse.rcpl.tools.addon.EToolsAddon;
 import org.eclipse.rcpl.tools.addon.UCToolsPlugin;
 import org.eclipse.rcpl.tools.addon.handlers.CustomFeedbackHandler;
 
@@ -54,9 +54,9 @@ public class EToolsTreePart {
 
 	private EObject selectedObject;
 
-	private EToolsPlugin useCase;
+	private EToolsAddon useCase;
 
-	public EToolsTreePart(final EToolsPlugin useCase) {
+	public EToolsTreePart(final EToolsAddon useCase) {
 
 		// TreeView
 		this.useCase = useCase;
@@ -266,7 +266,7 @@ public class EToolsTreePart {
 		this.selectedObject = selectedObject;
 	}
 
-	public EToolsPlugin getUseCase() {
+	public EToolsAddon getUseCase() {
 		return useCase;
 	}
 

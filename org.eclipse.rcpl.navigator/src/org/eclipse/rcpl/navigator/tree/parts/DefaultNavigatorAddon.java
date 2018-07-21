@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplPluginControler;
+import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.RcplAddon;
 import org.eclipse.rcpl.migration.RcplAbstractMigration;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
@@ -33,26 +34,35 @@ public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigat
 	@Override
 	public void setTool(Tool tool) {
 		super.setTool(tool);
-		DefaultNavigatorTreePart part = createPart(tool);
+		ITreePart part = createPart(tool);
 		getNode().setCenter(part.getNode());
 	}
 
-	protected DefaultNavigatorTreePart createPart(Tool tool, EObject root) {
-		return new DefaultNavigatorTreePart(null, tool, root, true);
+	protected ITreePart createPart(Tool tool, EObject root) {
+		ITreePart treePart = new DefaultNavigatorTreePart();
+		treePart.init(null, tool, root, true);
+		return treePart;
 	}
 
-	protected DefaultNavigatorTreePart createPart(Tool tool) {
-		return new DefaultNavigatorTreePart(null, tool, null, true);
+	protected ITreePart createPart(Tool tool) {
+		ITreePart treePart = new DefaultNavigatorTreePart();
+		treePart.init(null, tool, null, true);
+		return treePart;
 	}
 
 	@Override
-	public void init() {
-		super.init();
-	}
+	public ITreePart createPart(Pane detailPane, Tool tool, EObject root, boolean showRoot) {
+		if (root == null) {
+			RCPL rcpl = RcplSession.getDefault().getRcpl();
+			if (rcpl != null) {
+				root = rcpl.getAllResources();
+			}
+		}
+		ITreePart treePart = new DefaultNavigatorTreePart();
 
-	@Override
-	public String getDisplayName() {
-		return "Setup Tools";
+		treePart.init(detailPane, tool, root, showRoot);
+		return treePart;
+
 	}
 
 	@Override
@@ -70,16 +80,4 @@ public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigat
 		return null;
 	}
 
-	@Override
-	public DefaultNavigatorTreePart create(Pane detailPane, Tool tool, EObject root, boolean showRoot) {
-
-		if (root == null) {
-			RCPL rcpl = RcplSession.getDefault().getRcpl();
-			if (rcpl != null) {
-				root = rcpl.getAllResources();
-			}
-		}
-		return new DefaultNavigatorTreePart(detailPane, tool, root, showRoot);
-
-	}
 }

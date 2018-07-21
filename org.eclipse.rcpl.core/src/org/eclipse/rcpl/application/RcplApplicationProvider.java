@@ -11,10 +11,8 @@
 package org.eclipse.rcpl.application;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.rcpl.IApplicationStarter;
@@ -52,8 +50,6 @@ import javafx.stage.WindowEvent;
  *
  */
 public class RcplApplicationProvider implements IRcplApplicationProvider {
-
-	private static IApplicationStarter rcplApplicationStarter;
 
 	private boolean LOGIN_DEBUG = false;
 
@@ -111,8 +107,6 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	private StackPane mainContent;
 
 	private StackPane progressGroup;
-
-	private List<String> rcplAddonClassNames = new ArrayList<String>();
 
 	private HashMap<String, IRcplAddon> rcplAddons = new HashMap<String, IRcplAddon>();
 
@@ -207,7 +201,6 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 				joLogin.getController().setErrorInUserId();
 				reStart();
 			} else {
-				Rcpl.rcplApplicationProvider.registerRcplAddonClasses(getRcplAddonClassNames());
 				registerAddons();
 				Rcpl.progressMessage("Application " + applicationsStarter.getClass().getSimpleName() + "started");
 				joLogin.getController().setHeaderText("RCPL is starting.");
@@ -218,32 +211,24 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 
 	}
 
-	protected String[] getRcplAddonClassNames() {
-		List<String> result = new ArrayList<>();
+	private void registerAddons() {
 		RCPL rcpl = RcplSession.getDefault().getRcpl();
 		if (rcpl != null) {
 			if (rcpl.getAllAddons() != null) {
 				for (Addon addon : rcpl.getAllAddons().getChildren()) {
-					if (addon.getClassName() != null) {
-						result.add(addon.getClassName());
+					try {
+						if (addon.getClassName() != null) {
+							IRcplAddon rcplAddon = createRcplAddon(addon.getClassName());
+							if (rcplAddon != null) {
+								Rcpl.progressMessage("RcplAddon " + rcplAddon.getDisplayName() + " registered.");
+								System.out.println("RcplAddon " + rcplAddon.getClass() + " registered.");
 
-						System.out.println("Addon:  " + addon.getClassName());
-
+							}
+						}
+					} catch (Throwable ex) {
+						System.out.println();
 					}
 				}
-			}
-		}
-		return result.toArray(new String[0]);
-	}
-
-	private void registerAddons() {
-		for (String addonClass : rcplAddonClassNames) {
-			IRcplAddon rcplAddon = createRcplAddon(addonClass);
-			if (rcplAddon != null) {
-				Rcpl.progressMessage("RcplAddon " + rcplAddon.getDisplayName() + " registered.");
-
-				System.out.println("RcplAddon " + rcplAddon.getClass() + " registered.");
-
 			}
 		}
 	}
@@ -266,22 +251,6 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			RCPLModel.logError(e);
 		}
 		return null;
-	}
-
-	@Override
-	public void registerRcplAddonClasses(String... rcplAddonClassName) {
-		for (String className : rcplAddonClassName) {
-			String newClassName = className;
-			if (className.endsWith(".class")) {
-				newClassName = className.substring(0, className.length() - 6);
-			}
-			try {
-				Class.forName(newClassName);
-				rcplAddonClassNames.add(newClassName);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	@Override

@@ -185,10 +185,10 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 		SplitPane splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
 
-		INavigatorAddon navigatorPlugin = Rcpl.UIC.getNavigator();
+		INavigatorAddon navigatorAddon = Rcpl.UIC.getNavigator();
 
-		if (navigatorPlugin != null) {
-			Node n = navigatorPlugin.create(detailsArea, null, null, false).getNode();
+		if (navigatorAddon != null) {
+			Node n = navigatorAddon.createPart(detailsArea, null, null, false).getNode();
 			if (n != null) {
 				splitPane.getItems().add(n);
 			}
