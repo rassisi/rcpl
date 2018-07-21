@@ -3,6 +3,7 @@ package org.eclipse.rcpl;
 import java.util.Collection;
 
 import org.eclipse.rcpl.internal.services.RcplService;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.application.Application;
 import javafx.scene.layout.StackPane;
@@ -27,6 +28,8 @@ public interface IRcplApplicationProvider {
 	IRcplAddon findRcplAddon(String className);
 
 	IRcplAddon findRcplAddon(Class<? extends IRcplAddon> addon);
+
+	INavigatorAddon findNavigatorAddon(Tool tool);
 
 	void registerService(Class<? extends RcplService> serviceClass);
 

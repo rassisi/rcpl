@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.CopyToClipboardCommand;
-import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon;
+import org.eclipse.rcpl.navigator.addon.DefaultNavigatorAddon;
 
 public class CopyHandler {
 

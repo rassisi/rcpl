@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -65,7 +66,7 @@ public interface IRcplUic {
 
 	StackPane getMainTopStack();
 
-	INavigatorAddon getNavigator();
+	INavigatorAddon getNavigator(Tool tool);
 
 	Perspective getPerspective();
 

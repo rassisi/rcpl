@@ -19,7 +19,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
-import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon;
+import org.eclipse.rcpl.navigator.addon.DefaultNavigatorAddon;
 import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorTreePart;
 
 public class AddEmfTreeHandler {

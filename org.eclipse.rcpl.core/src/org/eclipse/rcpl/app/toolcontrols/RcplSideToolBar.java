@@ -20,8 +20,8 @@ import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IButtonListener;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.INavigatorAddon;
-import org.eclipse.rcpl.IRcplConstants;
 import org.eclipse.rcpl.IRcplAddon;
+import org.eclipse.rcpl.IRcplConstants;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
@@ -595,11 +595,10 @@ public class RcplSideToolBar implements ISideToolBar {
 				for (ToolGroup toolGroup_0 : toolGroups) {
 
 					EList<ToolGroup> mainGroups = toolGroup_0.getToolGroups();
-					
-					
+
 					// Es kann auch nur ein Tool geben
 					if (mainGroups.isEmpty()) {
-						
+
 //						System.out.println();
 //						continue;
 					}
@@ -668,12 +667,10 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	private void processTools(ToolGroup toolGroup, Accordion accordion, int hierarchy) {
 
-		if("sideBar/file".equals(toolGroup.getId())){
+		if ("sideBar/file".equals(toolGroup.getId())) {
 			System.out.println();
 		}
-		
-		
-		
+
 		try {
 			final StackPane stackPane = new StackPane();
 
@@ -688,15 +685,13 @@ public class RcplSideToolBar implements ISideToolBar {
 			stackPane.getChildren().add(scrollPane);
 
 			ToolType mainSideToolGroupType = toolGroup.getTools().get(0).getType();
-			
+
 			if (toolGroup.getTools().size() == 1 && ToolType.NAVIGATOR.equals(mainSideToolGroupType)) {
 
 				try {
-					INavigatorAddon navigatorPlugin = Rcpl.UIC.getNavigator();
-
-					if (navigatorPlugin != null) {
-						navigatorPlugin.setTool(toolGroup.getTools().get(0));
-						scrollPane.setContent(navigatorPlugin.getNode());
+					INavigatorAddon navigatorAddon = Rcpl.UIC.getNavigator(toolGroup.getTools().get(0));
+					if (navigatorAddon != null) {
+						scrollPane.setContent(navigatorAddon.getNode());
 					}
 				} catch (Throwable ex) {
 					RCPLModel.logError(ex);
@@ -839,7 +834,6 @@ public class RcplSideToolBar implements ISideToolBar {
 		showSideTools(id, true);
 	}
 
-	
 	public static String getNormalizedGroupId(String groupId) {
 		String groupIdKey = groupId;
 		if (groupId.startsWith(IRcplConstants.SWITCH_TO_PERSPECTIVE_KEY_PREFIX)) {
@@ -849,12 +843,11 @@ public class RcplSideToolBar implements ISideToolBar {
 		}
 		return groupIdKey;
 	}
-	
+
 	private boolean showSideTools(final String groupId, boolean restoreTab) {
 
 		String groupIdKey = getNormalizedGroupId(groupId);
-	
-		
+
 		try {
 			if (groupIdKey == null || groupIdKey.length() == 0) {
 				return false;

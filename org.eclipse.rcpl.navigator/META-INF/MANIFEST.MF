@@ -4,7 +4,8 @@ Bundle-Name: Navigator
 Bundle-SymbolicName: org.eclipse.rcpl.navigator
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.eclipse.rcpl.navigator.details,
+Export-Package: org.eclipse.rcpl.navigator.addon,
+ org.eclipse.rcpl.navigator.details,
  org.eclipse.rcpl.navigator.tree.handlers,
  org.eclipse.rcpl.navigator.tree.model.manager,
  org.eclipse.rcpl.navigator.tree.parts

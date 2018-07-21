@@ -72,8 +72,6 @@ import javafx.scene.layout.Pane;
  */
 public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
-	private EObject root;
-
 	private TreeView<Object> treeView;
 
 	private AdapterFactoryTreeItem<Object> adapterFactoryTreeItem2;
@@ -92,13 +90,12 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	public DefaultNavigatorTreePart() {
 	}
 
-	public void init(Pane detailPane, Tool tool, EObject root, boolean showRoot) {
+	public void init(Pane detailPane, Tool tool, boolean showRoot) {
 		this.tool = tool;
 		Rcpl.getEditorListeners().add(this);
 
 		this.detailPane = detailPane;
 		try {
-			this.root = root;
 			registerHandlers();
 			getNode();
 			treeView.setPrefHeight(10);
@@ -299,7 +296,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		try {
 			if (adapterFactoryTreeItem2 == null) {
 
-				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(root, manager.getAdapterFactory());
+				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(getRoot(), manager.getAdapterFactory());
 				treeView.setRoot(adapterFactoryTreeItem2);
 				AdapterFactoryTreeCellFactory treeCellFactory = new AdapterFactoryTreeCellFactory(
 						manager.getAdapterFactory());

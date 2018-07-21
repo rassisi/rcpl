@@ -54,6 +54,7 @@ import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.w3c.dom.Document;
@@ -1312,14 +1313,14 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public INavigatorAddon getNavigator() {
-		IRcplAddon rcplPlugin = Rcpl.rcplApplicationProvider.findRcplAddon(INavigatorAddon.class);
-		if (rcplPlugin instanceof INavigatorAddon) {
-			Parent parent = rcplPlugin.getNode().getParent();
+	public INavigatorAddon getNavigator(Tool tool) {
+		IRcplAddon addon = Rcpl.rcplApplicationProvider.findNavigatorAddon(tool);
+		if (addon instanceof INavigatorAddon) {
+			Parent parent = addon.getNode().getParent();
 			if (parent instanceof Pane) {
-				((Pane) parent).getChildren().remove(rcplPlugin.getNode());
+				((Pane) parent).getChildren().remove(addon.getNode());
 			}
-			return (INavigatorAddon) rcplPlugin;
+			return (INavigatorAddon) addon;
 		}
 		return null;
 	}

@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
  */
 public interface ITreePart extends ITool {
 
-	void init(Pane detailPane, Tool tool, EObject root, boolean showRoot);
+	void init(Pane detailPane, Tool tool, boolean showRoot);
 
 	Node getNode();
 

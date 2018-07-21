@@ -655,7 +655,7 @@ public class EToolsAddonController extends EViewController {
 	}
 
 	@Override
-	public INavigatorAddon getNavigator() {
+	public INavigatorAddon getNavigator(Tool tool) {
 		// TODO Auto-generated method stub
 		return null;
 	}
