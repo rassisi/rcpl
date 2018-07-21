@@ -8,11 +8,19 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.action;
 
 import java.util.Arrays;
 
 import org.apache.xmlbeans.XmlObject;
+import org.eclipse.rcpl.EnCommandId;
+import org.eclipse.rcpl.ICommand;
+import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.ILayoutObject;
+import org.eclipse.rcpl.IParagraph;
+import org.eclipse.rcpl.ITool;
+import org.eclipse.rcpl.IWordDocument;
+import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTbl;
 

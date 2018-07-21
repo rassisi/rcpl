@@ -12,7 +12,7 @@ package org.eclipse.rcpl.homepages;
 
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplUic;
+import org.eclipse.rcpl.ui.controler.RcplUic;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;

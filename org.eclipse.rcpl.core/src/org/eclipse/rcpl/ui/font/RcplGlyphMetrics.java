@@ -8,13 +8,19 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.font;
 
-public class RcplException extends Exception {
+public class RcplGlyphMetrics {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public double width;
 
+	public double ascent;
+
+	public double descent;
+
+	public RcplGlyphMetrics(double height, double ascent, double width) {
+		this.width = width;
+		this.ascent = ascent;
+		this.width = width;
+	}
 }

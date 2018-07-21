@@ -33,7 +33,6 @@ import org.eclipse.rcpl.IToolGroup;
 import org.eclipse.rcpl.IToolRegistry;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplTool;
-import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
 import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
 import org.eclipse.rcpl.model.RCPLModel;
@@ -53,6 +52,7 @@ import org.eclipse.rcpl.navigator.tree.handlers.DeleteOfficeFolderHandler;
 import org.eclipse.rcpl.navigator.tree.handlers.DeletePreferenceHandler;
 import org.eclipse.rcpl.navigator.tree.handlers.DeletePreferencesHandler;
 import org.eclipse.rcpl.navigator.tree.model.manager.UCEmfTreeModelManagerImpl;
+import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.eclipse.rcpl.upload.DownloadClient;
 
 import javafx.beans.value.ChangeListener;

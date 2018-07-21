@@ -12,7 +12,7 @@
 package org.eclipse.rcpl.internal.services;
 
 import org.eclipse.rcpl.ICommand;
-import org.eclipse.rcpl.RcplCommand;
+import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
  * @author ramin

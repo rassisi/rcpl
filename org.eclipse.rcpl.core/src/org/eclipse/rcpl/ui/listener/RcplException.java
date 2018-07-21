@@ -8,19 +8,13 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.listener;
 
-public class RcplGlyphMetrics {
+public class RcplException extends Exception {
 
-	public double width;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public double ascent;
-
-	public double descent;
-
-	public RcplGlyphMetrics(double height, double ascent, double width) {
-		this.width = width;
-		this.ascent = ascent;
-		this.width = width;
-	}
 }

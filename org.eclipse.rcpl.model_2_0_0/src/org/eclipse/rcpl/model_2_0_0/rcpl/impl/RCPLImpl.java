@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addons;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Documents;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Favorites;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePages;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Persons;
@@ -39,6 +40,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllPersons <em>All Persons</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getLinkedRcpls <em>Linked Rcpls</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getHomepages <em>Homepages</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getDocuments <em>Documents</em>}</li>
  * </ul>
  *
  * @generated
@@ -305,6 +307,24 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 */
 	public void setHomepages(HomePages newHomepages) {
 		eSet(RcplPackage.Literals.RCPL__HOMEPAGES, newHomepages);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Documents getDocuments() {
+		return (Documents)eGet(RcplPackage.Literals.RCPL__DOCUMENTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDocuments(Documents newDocuments) {
+		eSet(RcplPackage.Literals.RCPL__DOCUMENTS, newDocuments);
 	}
 
 } //RCPLImpl

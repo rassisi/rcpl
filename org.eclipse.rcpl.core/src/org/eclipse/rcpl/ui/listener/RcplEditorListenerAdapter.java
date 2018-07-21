@@ -8,7 +8,11 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.listener;
+
+import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.IEditorListener;
+import org.eclipse.rcpl.IPage;
 
 /**
  * @author Ramin Assisi
@@ -128,7 +132,7 @@ public class RcplEditorListenerAdapter implements IEditorListener {
 	}
 
 	@Override
-	public void update(JOEvent event) {
+	public void update(RcplEvent event) {
 	}
 
 	@Override

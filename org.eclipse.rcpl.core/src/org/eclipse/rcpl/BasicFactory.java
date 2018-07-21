@@ -38,6 +38,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
+import org.eclipse.rcpl.ui.action.RcplCommand;
+import org.eclipse.rcpl.ui.font.RcplFontProvider;
 
 import javafx.scene.Node;
 import javafx.scene.control.Tab;

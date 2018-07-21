@@ -11,6 +11,8 @@
  ****************************************************************************/
 package org.eclipse.rcpl;
 
+import org.eclipse.rcpl.ui.listener.RcplEvent;
+
 /**
  * @author ramin
  * 
@@ -53,5 +55,5 @@ public interface IEditorListener {
 
 	public void fullScreen();
 
-	public void update(JOEvent event);
+	public void update(RcplEvent event);
 }

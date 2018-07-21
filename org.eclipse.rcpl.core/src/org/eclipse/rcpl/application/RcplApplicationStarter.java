@@ -17,12 +17,12 @@ import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.internal.config.RcplConfig;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
+import org.eclipse.rcpl.ui.controler.RcplUic;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;

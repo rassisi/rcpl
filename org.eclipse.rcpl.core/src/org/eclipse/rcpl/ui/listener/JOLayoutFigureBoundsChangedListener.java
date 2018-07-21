@@ -9,7 +9,7 @@
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
 
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.listener;
 
 import javafx.geometry.Rectangle2D;
 

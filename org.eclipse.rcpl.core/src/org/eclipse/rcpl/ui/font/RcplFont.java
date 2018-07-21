@@ -8,8 +8,10 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.font;
 
+import org.eclipse.rcpl.IFont;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
 
 import javafx.scene.text.Font;

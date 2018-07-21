@@ -1,8 +1,6 @@
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.images;
 
 import java.io.InputStream;
-
-import org.eclipse.rcpl.images.RcplImage;
 
 /**
  * @author ramin

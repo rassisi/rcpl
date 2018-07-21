@@ -105,6 +105,8 @@
         eType="#//RCPL"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="homepages" lowerBound="1"
         eType="#//HomePages" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documents" lowerBound="1"
+        eType="#//Documents" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Perspectives" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
@@ -356,8 +358,45 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="HomePages" eSuperTypes="#//Layoutable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="homepage" upperBound="-1"
-        eType="#//HomePage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//HomePage" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="HomePage" eSuperTypes="#//Layoutable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="HomePage" eSuperTypes="#//Layoutable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//HomePageType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="perspective" eType="#//Perspective"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HomePageType">
+    <eLiterals name="WEBSITE"/>
+    <eLiterals name="PDF" value="1"/>
+    <eLiterals name="WORD" value="2"/>
+    <eLiterals name="EXCEL" value="3"/>
+    <eLiterals name="POWERPOINT" value="4"/>
+    <eLiterals name="WELCOME" value="5"/>
+    <eLiterals name="SAMPLES" value="6"/>
+    <eLiterals name="CONTACT_US" value="7"/>
+    <eLiterals name="NEWS" value="8"/>
+    <eLiterals name="OVERVIEW" value="9"/>
+    <eLiterals name="PERSPECTIVES" value="10"/>
+    <eLiterals name="PREFERENCES" value="11"/>
+    <eLiterals name="ABOUT" value="12"/>
+    <eLiterals name="CUSTOM" value="13"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Documents" eSuperTypes="#//Layoutable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//Document"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//Layoutable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//DocumentType"
+        defaultValueLiteral="TEXT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DocumentType">
+    <eLiterals name="WORD"/>
+    <eLiterals name="EXCEL" value="1"/>
+    <eLiterals name="POWERPOINT" value="2"/>
+    <eLiterals name="HTML" value="3"/>
+    <eLiterals name="PDF" value="4"/>
+    <eLiterals name="IMAGE" value="5"/>
+    <eLiterals name="TEXT" value="6"/>
+  </eClassifiers>
 </ecore:EPackage>

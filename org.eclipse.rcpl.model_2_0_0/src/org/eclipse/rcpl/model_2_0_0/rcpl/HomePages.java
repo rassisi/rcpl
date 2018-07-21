@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages#getHomepage <em>Homepage</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages#getChildren <em>Children</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getHomePages()
@@ -22,19 +22,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface HomePages extends Layoutable {
 	/**
-	 * Returns the value of the '<em><b>Homepage</b></em>' reference list.
+	 * Returns the value of the '<em><b>Children</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Homepage</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Homepage</em>' reference list.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getHomePages_Homepage()
-	 * @model
+	 * @return the value of the '<em>Children</em>' containment reference list.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getHomePages_Children()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<HomePage> getHomepage();
+	EList<HomePage> getChildren();
 
 } // HomePages

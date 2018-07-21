@@ -8,7 +8,7 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.controler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -22,7 +22,20 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.eclipse.rcpl.DelayedExecution;
+import org.eclipse.rcpl.IApplicationStarter;
+import org.eclipse.rcpl.IDocument;
+import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.IEditorListener;
+import org.eclipse.rcpl.INavigatorAddon;
+import org.eclipse.rcpl.IRcplAddon;
+import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.ISideToolBar;
+import org.eclipse.rcpl.ITopToolbar;
+import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.WaitThread;
 import org.eclipse.rcpl.login.RcplLogin;
+import org.eclipse.rcpl.migration.RcplMigration;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;

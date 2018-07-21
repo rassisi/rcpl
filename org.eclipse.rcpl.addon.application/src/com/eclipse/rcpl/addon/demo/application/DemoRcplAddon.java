@@ -2,8 +2,8 @@ package com.eclipse.rcpl.addon.demo.application;
 
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IRcplAddon;
-import org.eclipse.rcpl.RcplAbstractMigration;
 import org.eclipse.rcpl.RcplAddon;
+import org.eclipse.rcpl.migration.RcplAbstractMigration;
 import org.eclipse.rcpl.navigator.EViewController;
 
 /**

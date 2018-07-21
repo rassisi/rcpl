@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.scene.Node;
 
@@ -229,7 +230,7 @@ public abstract class RcplTool implements ITool {
 	}
 
 	@Override
-	public void update(JOEvent event) {
+	public void update(RcplEvent event) {
 
 	}
 

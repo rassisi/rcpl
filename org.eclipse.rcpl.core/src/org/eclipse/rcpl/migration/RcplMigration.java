@@ -8,8 +8,9 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.migration;
 
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Favorites;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -23,7 +24,7 @@ public class RcplMigration extends RcplAbstractMigration {
 	 *  
 	 */
 	@Override
-	protected void migrate() {
+	public void migrate() {
 		Rcpl.progressMessage("Migrate Model");
 		if (RcplSession.getDefault().getContents() == null) {
 			Rcpl.progressMessage("Model migrated (Content == null)");
@@ -34,7 +35,8 @@ public class RcplMigration extends RcplAbstractMigration {
 	}
 
 	protected void migrateOffice() {
-		if (RcplSession.getDefault().getRcpl() != null && RcplSession.getDefault().getRcpl().getAllFavorites() == null) {
+		if (RcplSession.getDefault().getRcpl() != null
+				&& RcplSession.getDefault().getRcpl().getAllFavorites() == null) {
 			Favorites favorites = RcplFactory.eINSTANCE.createFavorites();
 			RcplSession.getDefault().getRcpl().setAllFavorites(favorites);
 

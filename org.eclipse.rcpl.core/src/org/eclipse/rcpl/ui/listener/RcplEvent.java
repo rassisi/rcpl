@@ -1,12 +1,16 @@
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.listener;
 
 import java.util.HashMap;
+
+import org.eclipse.rcpl.EnEditMode;
+import org.eclipse.rcpl.ILayoutObject;
+import org.eclipse.rcpl.IStyle;
 
 /**
  * @author ramin
  * 
  */
-public class JOEvent {
+public class RcplEvent {
 
 	private IStyle style;
 
@@ -18,28 +22,28 @@ public class JOEvent {
 
 	private final HashMap<String, Object> data;
 
-	public JOEvent(HashMap<String, Object> data) {
+	public RcplEvent(HashMap<String, Object> data) {
 		this.data = data;
 		this.editMode = null;
 		this.layoutObject = null;
 		this.message = null;
 	}
 
-	public JOEvent(EnEditMode editMode, HashMap<String, Object> data) {
+	public RcplEvent(EnEditMode editMode, HashMap<String, Object> data) {
 		this.editMode = editMode;
 		this.data = data;
 		this.layoutObject = null;
 		this.message = null;
 	}
 
-	public JOEvent(String message, HashMap<String, Object> data) {
+	public RcplEvent(String message, HashMap<String, Object> data) {
 		this.message = message;
 		this.data = data;
 		this.editMode = null;
 		this.layoutObject = null;
 	}
 
-	public JOEvent(ILayoutObject layoutObject, IStyle style,
+	public RcplEvent(ILayoutObject layoutObject, IStyle style,
 			HashMap<String, Object> data) {
 		this.layoutObject = layoutObject;
 		this.data = data;

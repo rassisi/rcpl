@@ -2,6 +2,8 @@ package org.eclipse.rcpl;
 
 import java.util.List;
 
+import org.eclipse.rcpl.ui.action.RcplAction;
+
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -110,7 +112,7 @@ public interface ILayoutFigure extends IPane {
 
 	void setVisible(boolean visible);
 
-	void setZOrder(JOAction action);
+	void setZOrder(RcplAction action);
 
 	void showOutline(boolean show);
 

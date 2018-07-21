@@ -456,13 +456,22 @@ public interface RcplPackage extends EPackage {
 	int RCPL__HOMEPAGES = LAYOUTABLE_FEATURE_COUNT + 13;
 
 	/**
+	 * The feature id for the '<em><b>Documents</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RCPL__DOCUMENTS = LAYOUTABLE_FEATURE_COUNT + 14;
+
+	/**
 	 * The number of structural features of the '<em>RCPL</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 14;
+	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of operations of the '<em>RCPL</em>' class.
@@ -7581,13 +7590,13 @@ public interface RcplPackage extends EPackage {
 	int HOME_PAGES__LEAF = LAYOUTABLE__LEAF;
 
 	/**
-	 * The feature id for the '<em><b>Homepage</b></em>' reference list.
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOME_PAGES__HOMEPAGE = LAYOUTABLE_FEATURE_COUNT + 0;
+	int HOME_PAGES__CHILDREN = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Home Pages</em>' class.
@@ -7735,13 +7744,31 @@ public interface RcplPackage extends EPackage {
 	int HOME_PAGE__LEAF = LAYOUTABLE__LEAF;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__TYPE = LAYOUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Perspective</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__PERSPECTIVE = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Home Page</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOME_PAGE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 0;
+	int HOME_PAGE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Home Page</em>' class.
@@ -7753,6 +7780,323 @@ public interface RcplPackage extends EPackage {
 	int HOME_PAGE_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentsImpl <em>Documents</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentsImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getDocuments()
+	 * @generated
+	 */
+	int DOCUMENTS = 45;
+
+	/**
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+
+	/**
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+
+	/**
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__NAME = LAYOUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__ID = LAYOUTABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__IMAGE = LAYOUTABLE__IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+
+	/**
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__END_DATE = LAYOUTABLE__END_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__LEAF = LAYOUTABLE__LEAF;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS__CHILDREN = LAYOUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Documents</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Documents</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENTS_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentImpl <em>Document</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getDocument()
+	 * @generated
+	 */
+	int DOCUMENT = 46;
+
+	/**
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+
+	/**
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+
+	/**
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__NAME = LAYOUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__ID = LAYOUTABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__IMAGE = LAYOUTABLE__IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+
+	/**
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__END_DATE = LAYOUTABLE__END_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__LEAF = LAYOUTABLE__LEAF;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__PATH = LAYOUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__TYPE = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Document</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Document</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7760,7 +8104,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolType()
 	 * @generated
 	 */
-	int TOOL_TYPE = 45;
+	int TOOL_TYPE = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.FontStyles <em>Font Styles</em>}' enum.
@@ -7770,7 +8114,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getFontStyles()
 	 * @generated
 	 */
-	int FONT_STYLES = 46;
+	int FONT_STYLES = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolBarReplacementPolicy <em>Tool Bar Replacement Policy</em>}' enum.
@@ -7780,7 +8124,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolBarReplacementPolicy()
 	 * @generated
 	 */
-	int TOOL_BAR_REPLACEMENT_POLICY = 47;
+	int TOOL_BAR_REPLACEMENT_POLICY = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.GroupType <em>Group Type</em>}' enum.
@@ -7790,7 +8134,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getGroupType()
 	 * @generated
 	 */
-	int GROUP_TYPE = 48;
+	int GROUP_TYPE = 50;
 
 
 	/**
@@ -7801,7 +8145,28 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getAddressType()
 	 * @generated
 	 */
-	int ADDRESS_TYPE = 49;
+	int ADDRESS_TYPE = 51;
+
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType <em>Home Page Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getHomePageType()
+	 * @generated
+	 */
+	int HOME_PAGE_TYPE = 52;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType <em>Document Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getDocumentType()
+	 * @generated
+	 */
+	int DOCUMENT_TYPE = 53;
 
 
 	/**
@@ -8120,6 +8485,17 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRCPL_Homepages();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getDocuments <em>Documents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Documents</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getDocuments()
+	 * @see #getRCPL()
+	 * @generated
+	 */
+	EReference getRCPL_Documents();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspectives <em>Perspectives</em>}'.
@@ -9763,15 +10139,15 @@ public interface RcplPackage extends EPackage {
 	EClass getHomePages();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages#getHomepage <em>Homepage</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePages#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Homepage</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePages#getHomepage()
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePages#getChildren()
 	 * @see #getHomePages()
 	 * @generated
 	 */
-	EReference getHomePages_Homepage();
+	EReference getHomePages_Children();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage <em>Home Page</em>}'.
@@ -9782,6 +10158,81 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getHomePage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getType()
+	 * @see #getHomePage()
+	 * @generated
+	 */
+	EAttribute getHomePage_Type();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getPerspective <em>Perspective</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Perspective</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getPerspective()
+	 * @see #getHomePage()
+	 * @generated
+	 */
+	EReference getHomePage_Perspective();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Documents <em>Documents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Documents</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Documents
+	 * @generated
+	 */
+	EClass getDocuments();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Documents#getChildren <em>Children</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Children</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Documents#getChildren()
+	 * @see #getDocuments()
+	 * @generated
+	 */
+	EReference getDocuments_Children();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Document <em>Document</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Document</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Document
+	 * @generated
+	 */
+	EClass getDocument();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Document#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Document#getPath()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_Path();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Document#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Document#getType()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_Type();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}'.
@@ -9832,6 +10283,26 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getAddressType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType <em>Home Page Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Home Page Type</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType
+	 * @generated
+	 */
+	EEnum getHomePageType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType <em>Document Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Document Type</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType
+	 * @generated
+	 */
+	EEnum getDocumentType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -10091,6 +10562,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RCPL__HOMEPAGES = eINSTANCE.getRCPL_Homepages();
+
+		/**
+		 * The meta object literal for the '<em><b>Documents</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RCPL__DOCUMENTS = eINSTANCE.getRCPL_Documents();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectivesImpl <em>Perspectives</em>}' class.
@@ -11401,12 +11880,12 @@ public interface RcplPackage extends EPackage {
 		EClass HOME_PAGES = eINSTANCE.getHomePages();
 
 		/**
-		 * The meta object literal for the '<em><b>Homepage</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference HOME_PAGES__HOMEPAGE = eINSTANCE.getHomePages_Homepage();
+		EReference HOME_PAGES__CHILDREN = eINSTANCE.getHomePages_Children();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl <em>Home Page</em>}' class.
@@ -11417,6 +11896,66 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EClass HOME_PAGE = eINSTANCE.getHomePage();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute HOME_PAGE__TYPE = eINSTANCE.getHomePage_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Perspective</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HOME_PAGE__PERSPECTIVE = eINSTANCE.getHomePage_Perspective();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentsImpl <em>Documents</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentsImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getDocuments()
+		 * @generated
+		 */
+		EClass DOCUMENTS = eINSTANCE.getDocuments();
+
+		/**
+		 * The meta object literal for the '<em><b>Children</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOCUMENTS__CHILDREN = eINSTANCE.getDocuments_Children();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentImpl <em>Document</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getDocument()
+		 * @generated
+		 */
+		EClass DOCUMENT = eINSTANCE.getDocument();
+
+		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__PATH = eINSTANCE.getDocument_Path();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__TYPE = eINSTANCE.getDocument_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.
@@ -11467,6 +12006,26 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ADDRESS_TYPE = eINSTANCE.getAddressType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType <em>Home Page Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getHomePageType()
+		 * @generated
+		 */
+		EEnum HOME_PAGE_TYPE = eINSTANCE.getHomePageType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType <em>Document Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getDocumentType()
+		 * @generated
+		 */
+		EEnum DOCUMENT_TYPE = eINSTANCE.getDocumentType();
 
 	}
 

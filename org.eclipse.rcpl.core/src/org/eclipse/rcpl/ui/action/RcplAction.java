@@ -5,8 +5,17 @@
  *
  ****************************************************************************/
 
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.action;
 
+import org.eclipse.rcpl.IDrawingFigure;
+import org.eclipse.rcpl.IMovableLayoutFigure;
+import org.eclipse.rcpl.IPage;
+import org.eclipse.rcpl.IParagraphFigure;
+import org.eclipse.rcpl.IPictFigure;
+import org.eclipse.rcpl.ISpreadsheetWorkbookFigure;
+import org.eclipse.rcpl.ITableFigure;
+import org.eclipse.rcpl.ITextBoxFigure;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.IImage;
 
 /**
@@ -17,7 +26,7 @@ import org.eclipse.rcpl.model.IImage;
  *         subclass checking
  * 
  */
-public enum JOAction {
+public enum RcplAction {
 
 	// ---------- special actions ----------------------------------------------
 
@@ -97,7 +106,7 @@ public enum JOAction {
 	 * @param figureClass
 	 * @param text
 	 */
-	private JOAction(String key, String group, Class<?> figureClass, String text, int type) {
+	private RcplAction(String key, String group, Class<?> figureClass, String text, int type) {
 		this.key = key;
 		this.type = type;
 		this.text = text;

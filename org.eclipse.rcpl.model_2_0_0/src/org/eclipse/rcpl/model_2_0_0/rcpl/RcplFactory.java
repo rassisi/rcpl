@@ -409,6 +409,24 @@ public interface RcplFactory extends EFactory {
 	HomePage createHomePage();
 
 	/**
+	 * Returns a new object of class '<em>Documents</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Documents</em>'.
+	 * @generated
+	 */
+	Documents createDocuments();
+
+	/**
+	 * Returns a new object of class '<em>Document</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Document</em>'.
+	 * @generated
+	 */
+	Document createDocument();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

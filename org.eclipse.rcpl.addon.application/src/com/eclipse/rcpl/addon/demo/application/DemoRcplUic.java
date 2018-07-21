@@ -6,8 +6,8 @@ import java.net.URL;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
-import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.application.RcplApplicationStarter;
+import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import com.rcpl.rcpl.addon.demo.homepages.DocumentHomePage;

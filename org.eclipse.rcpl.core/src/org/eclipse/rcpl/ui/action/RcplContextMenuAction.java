@@ -9,11 +9,13 @@
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
 
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.action;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.ILayoutFigure;
 import org.eclipse.rcpl.internal.services.RcplActionListener;
 import org.eclipse.rcpl.internal.services.RcplActionProvider;
 
@@ -23,7 +25,7 @@ import org.eclipse.rcpl.internal.services.RcplActionProvider;
  */
 public class RcplContextMenuAction implements RcplActionProvider {
 
-	private JOAction action;
+	private RcplAction action;
 	private ILayoutFigure figure;
 	private List<RcplActionListener> actionListeners = new ArrayList<RcplActionListener>();
 
@@ -33,7 +35,7 @@ public class RcplContextMenuAction implements RcplActionProvider {
 	 * @param figure
 	 * @param action
 	 */
-	public RcplContextMenuAction(IEditor editorFigure, ILayoutFigure figure, JOAction action) {
+	public RcplContextMenuAction(IEditor editorFigure, ILayoutFigure figure, RcplAction action) {
 		// super(action.getText());
 		// this.action = action;
 		// this.figure = figure;

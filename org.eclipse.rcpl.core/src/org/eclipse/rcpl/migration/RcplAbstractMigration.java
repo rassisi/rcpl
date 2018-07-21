@@ -8,8 +8,10 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.migration;
 
+import org.eclipse.rcpl.IRcplAddon;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
@@ -36,7 +38,7 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 
 	}
 
-	protected abstract void migrate();
+	public abstract void migrate();
 
 	/**
 	 * @param perspectiveType

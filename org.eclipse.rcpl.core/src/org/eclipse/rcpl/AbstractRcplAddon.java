@@ -13,6 +13,7 @@ package org.eclipse.rcpl;
 import java.net.URL;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.rcpl.migration.RcplAbstractMigration;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;

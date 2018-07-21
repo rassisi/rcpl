@@ -18,12 +18,12 @@ import org.eclipse.rcpl.IFont;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IStyle;
-import org.eclipse.rcpl.JOEvent;
-import org.eclipse.rcpl.RcplFont;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.ui.font.RcplFont;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -198,7 +198,7 @@ public class FontNameTool extends RcplTool {
 	}
 
 	@Override
-	public void update(JOEvent event) {
+	public void update(RcplEvent event) {
 		try {
 			ILayoutObject lo = event.getLayoutObject();
 			if (lo instanceof IParagraph) {

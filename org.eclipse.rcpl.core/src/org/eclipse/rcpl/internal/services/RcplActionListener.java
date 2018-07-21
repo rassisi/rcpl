@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.rcpl.internal.services;
 
-import org.eclipse.rcpl.RcplCommand;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.ui.action.RcplCommand;
 
 public interface RcplActionListener {
 

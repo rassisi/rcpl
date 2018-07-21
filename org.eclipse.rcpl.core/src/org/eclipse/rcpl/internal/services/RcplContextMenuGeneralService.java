@@ -12,8 +12,8 @@
 package org.eclipse.rcpl.internal.services;
 
 import org.eclipse.rcpl.ICommand;
-import org.eclipse.rcpl.JOAction;
-import org.eclipse.rcpl.RcplCommand;
+import org.eclipse.rcpl.ui.action.RcplAction;
+import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
  * @author eclipse
@@ -86,7 +86,7 @@ public class RcplContextMenuGeneralService extends RcplService {
 	 */
 	protected boolean editLayoutFigure(RcplCommand cmd) {
 		Object[] data = cmd.getNewData();
-		JOAction actionType = (JOAction) data[0];
+		RcplAction actionType = (RcplAction) data[0];
 		// if (cmd.getNewData()[1] instanceof JODrawingFigure) {
 		// JODrawingFigure df = (JODrawingFigure) cmd.getNewData()[1];
 		// if (df.getDrawing().getSvg() != null) {

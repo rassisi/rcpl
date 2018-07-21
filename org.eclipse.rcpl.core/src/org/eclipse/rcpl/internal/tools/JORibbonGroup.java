@@ -15,7 +15,6 @@ import java.util.HashMap;
 
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ITool;
-import org.eclipse.rcpl.JOEvent;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
@@ -24,6 +23,7 @@ import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -272,7 +272,7 @@ public class JORibbonGroup extends RcplTool {
 		this.mainGridPane.add(node, col, row, colSpan, rowSpan);
 	}
 
-	protected void updateToolGroup(JOEvent event) {
+	protected void updateToolGroup(RcplEvent event) {
 
 		try {
 			String id = toolGroup.getId();

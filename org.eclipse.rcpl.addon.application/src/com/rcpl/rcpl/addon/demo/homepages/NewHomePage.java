@@ -2,9 +2,9 @@ package com.rcpl.rcpl.addon.demo.homepages;
 
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplUic;
 import org.eclipse.rcpl.homepages.DefaultNewHomePage;
 import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.ui.controler.RcplUic;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

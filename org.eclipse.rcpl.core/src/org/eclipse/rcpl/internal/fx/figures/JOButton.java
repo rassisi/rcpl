@@ -23,13 +23,13 @@ import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.IToolComponent;
 import org.eclipse.rcpl.IToolGroup;
 import org.eclipse.rcpl.IToolRegistry;
-import org.eclipse.rcpl.JOEvent;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -324,7 +324,7 @@ public class JOButton extends RcplTool implements IButton {
 	}
 
 	@Override
-	public void update(JOEvent event) {
+	public void update(RcplEvent event) {
 		try {
 			if (getTool() != null) {
 				String id = getTool().getId();
@@ -445,7 +445,7 @@ public class JOButton extends RcplTool implements IButton {
 		addToggleButtonListener();
 	}
 
-	private void updateStyle(JOEvent event, EnCommandId cmd) {
+	private void updateStyle(RcplEvent event, EnCommandId cmd) {
 		IStyle style = findSelectedStyle(event);
 		switch (cmd) {
 		case style_normal:
@@ -472,7 +472,7 @@ public class JOButton extends RcplTool implements IButton {
 
 	}
 
-	private IStyle findSelectedStyle(JOEvent event) {
+	private IStyle findSelectedStyle(RcplEvent event) {
 		ILayoutObject lo = event.getLayoutObject();
 		if (lo instanceof IParagraph) {
 			IParagraph p = (IParagraph) lo;
@@ -490,28 +490,28 @@ public class JOButton extends RcplTool implements IButton {
 	// return null;
 	// }
 
-	private void updateBold(JOEvent event) {
+	private void updateBold(RcplEvent event) {
 		IStyle style = findSelectedStyle(event);
 		if (style != null) {
 			((ToggleButton) getNode()).setSelected(style.isBold());
 		}
 	}
 
-	private void updateItalic(JOEvent event) {
+	private void updateItalic(RcplEvent event) {
 		IStyle style = findSelectedStyle(event);
 		if (style != null) {
 			((ToggleButton) getNode()).setSelected(style.isItalic());
 		}
 	}
 
-	private void updateUnderline(JOEvent event) {
+	private void updateUnderline(RcplEvent event) {
 		IStyle style = findSelectedStyle(event);
 		if (style != null) {
 			((ToggleButton) getNode()).setSelected(style.isUnderline());
 		}
 	}
 
-	private void updateAlign(JOEvent event, AlignType type) {
+	private void updateAlign(RcplEvent event, AlignType type) {
 		ILayoutObject lo = event.getLayoutObject();
 		if (lo instanceof IParagraph) {
 			IParagraph p = (IParagraph) lo;

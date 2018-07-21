@@ -18,7 +18,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePagesImpl#getHomepage <em>Homepage</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePagesImpl#getChildren <em>Children</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,8 +49,8 @@ public class HomePagesImpl extends LayoutableImpl implements HomePages {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<HomePage> getHomepage() {
-		return (EList<HomePage>)eGet(RcplPackage.Literals.HOME_PAGES__HOMEPAGE, true);
+	public EList<HomePage> getChildren() {
+		return (EList<HomePage>)eGet(RcplPackage.Literals.HOME_PAGES__CHILDREN, true);
 	}
 
 } //HomePagesImpl

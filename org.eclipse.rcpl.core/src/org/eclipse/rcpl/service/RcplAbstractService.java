@@ -8,18 +8,26 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.service;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import org.eclipse.rcpl.EnServiceId;
+import org.eclipse.rcpl.ICommand;
+import org.eclipse.rcpl.IDocument;
+import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.ILayoutObject;
+import org.eclipse.rcpl.IParagraph;
+import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
 import org.eclipse.rcpl.internal.services.RcplCommandService;
 import org.eclipse.rcpl.internal.services.RcplObjectService;
 import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.internal.services.RcplStartButtonService;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
  * @author ramin

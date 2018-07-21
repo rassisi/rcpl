@@ -19,6 +19,9 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Building;
 import org.eclipse.rcpl.model_2_0_0.rcpl.City;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Contact;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Country;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Document;
+import org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Documents;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Domain;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Domains;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Favorite;
@@ -29,6 +32,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.FontStyles;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Geo;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePages;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HouseNumber;
 import org.eclipse.rcpl.model_2_0_0.rcpl.JPerson;
@@ -389,6 +393,20 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass documentsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass documentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum toolTypeEEnum = null;
 
 	/**
@@ -418,6 +436,20 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * @generated
 	 */
 	private EEnum addressTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum homePageTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum documentTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -739,6 +771,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 */
 	public EReference getRCPL_Homepages() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRCPL_Documents() {
+		return (EReference)rcplEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -2123,7 +2164,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getHomePages_Homepage() {
+	public EReference getHomePages_Children() {
 		return (EReference)homePagesEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2134,6 +2175,69 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 */
 	public EClass getHomePage() {
 		return homePageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getHomePage_Type() {
+		return (EAttribute)homePageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHomePage_Perspective() {
+		return (EReference)homePageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDocuments() {
+		return documentsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDocuments_Children() {
+		return (EReference)documentsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDocument() {
+		return documentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDocument_Path() {
+		return (EAttribute)documentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDocument_Type() {
+		return (EAttribute)documentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2179,6 +2283,24 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 */
 	public EEnum getAddressType() {
 		return addressTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getHomePageType() {
+		return homePageTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getDocumentType() {
+		return documentTypeEEnum;
 	}
 
 	/**
@@ -2239,6 +2361,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(rcplEClass, RCPL__ALL_PERSONS);
 		createEReference(rcplEClass, RCPL__LINKED_RCPLS);
 		createEReference(rcplEClass, RCPL__HOMEPAGES);
+		createEReference(rcplEClass, RCPL__DOCUMENTS);
 
 		perspectivesEClass = createEClass(PERSPECTIVES);
 		createEReference(perspectivesEClass, PERSPECTIVES__CHILDREN);
@@ -2434,9 +2557,18 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEAttribute(domainEClass, DOMAIN__RESOURCE);
 
 		homePagesEClass = createEClass(HOME_PAGES);
-		createEReference(homePagesEClass, HOME_PAGES__HOMEPAGE);
+		createEReference(homePagesEClass, HOME_PAGES__CHILDREN);
 
 		homePageEClass = createEClass(HOME_PAGE);
+		createEAttribute(homePageEClass, HOME_PAGE__TYPE);
+		createEReference(homePageEClass, HOME_PAGE__PERSPECTIVE);
+
+		documentsEClass = createEClass(DOCUMENTS);
+		createEReference(documentsEClass, DOCUMENTS__CHILDREN);
+
+		documentEClass = createEClass(DOCUMENT);
+		createEAttribute(documentEClass, DOCUMENT__PATH);
+		createEAttribute(documentEClass, DOCUMENT__TYPE);
 
 		// Create enums
 		toolTypeEEnum = createEEnum(TOOL_TYPE);
@@ -2444,6 +2576,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		toolBarReplacementPolicyEEnum = createEEnum(TOOL_BAR_REPLACEMENT_POLICY);
 		groupTypeEEnum = createEEnum(GROUP_TYPE);
 		addressTypeEEnum = createEEnum(ADDRESS_TYPE);
+		homePageTypeEEnum = createEEnum(HOME_PAGE_TYPE);
+		documentTypeEEnum = createEEnum(DOCUMENT_TYPE);
 	}
 
 	/**
@@ -2516,6 +2650,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		phoneEClass.getESuperTypes().add(this.getLayoutable());
 		homePagesEClass.getESuperTypes().add(this.getLayoutable());
 		homePageEClass.getESuperTypes().add(this.getLayoutable());
+		documentsEClass.getESuperTypes().add(this.getLayoutable());
+		documentEClass.getESuperTypes().add(this.getLayoutable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(layoutableEClass, Layoutable.class, "Layoutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2548,6 +2684,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getRCPL_AllPersons(), this.getPersons(), null, "allPersons", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_LinkedRcpls(), this.getRCPL(), null, "linkedRcpls", null, 0, -1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_Homepages(), this.getHomePages(), null, "homepages", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRCPL_Documents(), this.getDocuments(), null, "documents", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(perspectivesEClass, Perspectives.class, "Perspectives", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPerspectives_Children(), this.getPerspective(), null, "children", null, 0, -1, Perspectives.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2743,9 +2880,18 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEAttribute(getDomain_Resource(), ecorePackage.getEString(), "resource", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(homePagesEClass, HomePages.class, "HomePages", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHomePages_Homepage(), this.getHomePage(), null, "homepage", null, 0, -1, HomePages.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHomePages_Children(), this.getHomePage(), null, "children", null, 0, -1, HomePages.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(homePageEClass, HomePage.class, "HomePage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getHomePage_Type(), this.getHomePageType(), "type", null, 0, 1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHomePage_Perspective(), this.getPerspective(), null, "perspective", null, 0, 1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(documentsEClass, Documents.class, "Documents", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDocuments_Children(), this.getDocument(), null, "children", null, 0, -1, Documents.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDocument_Path(), ecorePackage.getEString(), "path", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDocument_Type(), this.getDocumentType(), "type", "TEXT", 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(toolTypeEEnum, ToolType.class, "ToolType");
@@ -2815,6 +2961,31 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		initEEnum(addressTypeEEnum, AddressType.class, "AddressType");
 		addEEnumLiteral(addressTypeEEnum, AddressType.RESIDENCE);
+
+		initEEnum(homePageTypeEEnum, HomePageType.class, "HomePageType");
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.WEBSITE);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.PDF);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.WORD);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.EXCEL);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.POWERPOINT);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.WELCOME);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.SAMPLES);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.CONTACT_US);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.NEWS);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.OVERVIEW);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.PERSPECTIVES);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.PREFERENCES);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.ABOUT);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.CUSTOM);
+
+		initEEnum(documentTypeEEnum, DocumentType.class, "DocumentType");
+		addEEnumLiteral(documentTypeEEnum, DocumentType.WORD);
+		addEEnumLiteral(documentTypeEEnum, DocumentType.EXCEL);
+		addEEnumLiteral(documentTypeEEnum, DocumentType.POWERPOINT);
+		addEEnumLiteral(documentTypeEEnum, DocumentType.HTML);
+		addEEnumLiteral(documentTypeEEnum, DocumentType.PDF);
+		addEEnumLiteral(documentTypeEEnum, DocumentType.IMAGE);
+		addEEnumLiteral(documentTypeEEnum, DocumentType.TEXT);
 
 		// Create resource
 		createResource(eNS_URI);

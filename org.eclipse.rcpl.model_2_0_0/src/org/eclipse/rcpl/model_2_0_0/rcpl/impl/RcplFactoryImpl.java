@@ -100,6 +100,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 			case RcplPackage.DOMAIN: return (EObject)createDomain();
 			case RcplPackage.HOME_PAGES: return (EObject)createHomePages();
 			case RcplPackage.HOME_PAGE: return (EObject)createHomePage();
+			case RcplPackage.DOCUMENTS: return (EObject)createDocuments();
+			case RcplPackage.DOCUMENT: return (EObject)createDocument();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -123,6 +125,10 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 				return createGroupTypeFromString(eDataType, initialValue);
 			case RcplPackage.ADDRESS_TYPE:
 				return createAddressTypeFromString(eDataType, initialValue);
+			case RcplPackage.HOME_PAGE_TYPE:
+				return createHomePageTypeFromString(eDataType, initialValue);
+			case RcplPackage.DOCUMENT_TYPE:
+				return createDocumentTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -146,6 +152,10 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 				return convertGroupTypeToString(eDataType, instanceValue);
 			case RcplPackage.ADDRESS_TYPE:
 				return convertAddressTypeToString(eDataType, instanceValue);
+			case RcplPackage.HOME_PAGE_TYPE:
+				return convertHomePageTypeToString(eDataType, instanceValue);
+			case RcplPackage.DOCUMENT_TYPE:
+				return convertDocumentTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -586,6 +596,26 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Documents createDocuments() {
+		DocumentsImpl documents = new DocumentsImpl();
+		return documents;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Document createDocument() {
+		DocumentImpl document = new DocumentImpl();
+		return document;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ToolType createToolTypeFromString(EDataType eDataType, String initialValue) {
 		ToolType result = ToolType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -678,6 +708,46 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	 * @generated
 	 */
 	public String convertAddressTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HomePageType createHomePageTypeFromString(EDataType eDataType, String initialValue) {
+		HomePageType result = HomePageType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertHomePageTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DocumentType createDocumentTypeFromString(EDataType eDataType, String initialValue) {
+		DocumentType result = DocumentType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertDocumentTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

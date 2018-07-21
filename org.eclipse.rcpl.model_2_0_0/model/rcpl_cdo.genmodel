@@ -81,6 +81,31 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//AddressType">
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//AddressType/RESIDENCE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//HomePageType">
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/WEBSITE"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/PDF"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/WORD"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/EXCEL"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/POWERPOINT"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/WELCOME"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/SAMPLES"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/CONTACT_US"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/NEWS"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/OVERVIEW"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/PERSPECTIVES"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/PREFERENCES"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/ABOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/CUSTOM"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//DocumentType">
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//DocumentType/WORD"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//DocumentType/EXCEL"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//DocumentType/POWERPOINT"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//DocumentType/HTML"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//DocumentType/PDF"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//DocumentType/IMAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//DocumentType/TEXT"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="rcpl.ecore#//Layoutable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/layoutX"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Layoutable/layoutY"/>
@@ -111,6 +136,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allPersons"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/linkedRcpls"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/homepages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/documents"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Perspectives">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspectives/children"/>
@@ -301,8 +327,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Domain/resource"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//HomePages">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//HomePages/homepage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//HomePages/children"/>
     </genClasses>
-    <genClasses ecoreClass="rcpl.ecore#//HomePage"/>
+    <genClasses ecoreClass="rcpl.ecore#//HomePage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//HomePage/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//HomePage/perspective"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Documents">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Documents/children"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Document">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Document/path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Document/type"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

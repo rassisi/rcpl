@@ -13,13 +13,13 @@ import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.ITool;
-import org.eclipse.rcpl.RcplAbstractService;
-import org.eclipse.rcpl.RcplCommand;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.service.RcplAbstractService;
+import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
  * @author ramin

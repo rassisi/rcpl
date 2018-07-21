@@ -1061,6 +1061,52 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Documents} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DocumentsItemProvider documentsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Documents}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDocumentsAdapter() {
+		if (documentsItemProvider == null) {
+			documentsItemProvider = new DocumentsItemProvider(this);
+		}
+
+		return documentsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Document} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DocumentItemProvider documentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Document}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDocumentAdapter() {
+		if (documentItemProvider == null) {
+			documentItemProvider = new DocumentItemProvider(this);
+		}
+
+		return documentItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1202,6 +1248,8 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 		if (domainItemProvider != null) domainItemProvider.dispose();
 		if (homePagesItemProvider != null) homePagesItemProvider.dispose();
 		if (homePageItemProvider != null) homePageItemProvider.dispose();
+		if (documentsItemProvider != null) documentsItemProvider.dispose();
+		if (documentItemProvider != null) documentItemProvider.dispose();
 	}
 
 }

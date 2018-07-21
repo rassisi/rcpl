@@ -8,7 +8,7 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.ui.controler;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +16,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.rcpl.DelayedExecution;
+import org.eclipse.rcpl.IApplicationStarter;
+import org.eclipse.rcpl.IButton;
+import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.IHomePage;
+import org.eclipse.rcpl.IParagraphFigure;
+import org.eclipse.rcpl.ISideToolBar;
+import org.eclipse.rcpl.ITopToolbar;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.homepages.DefaultAboutHomePage;
 import org.eclipse.rcpl.homepages.DefaultNewHomePage;
 import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
@@ -26,7 +35,11 @@ import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
+import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -375,7 +388,7 @@ public class RcplUic extends RcplAbstractUic {
 
 		Rcpl.progressMessage("Rcpl.doCreateContent()");
 
-		URL location = getClass().getResource("/org/eclipse/rcpl/RcplUic.fxml");
+		URL location = getClass().getResource("/org/eclipse/rcpl/ui/controler/rcpl_uic.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
 		fxmlLoader.setController(Rcpl.UIC);
 
@@ -621,7 +634,7 @@ public class RcplUic extends RcplAbstractUic {
 	private void updateEditorListener() {
 		Rcpl.getEditorListeners().add(new RcplEditorListenerAdapter() {
 			@Override
-			public void update(final JOEvent event) {
+			public void update(final RcplEvent event) {
 				if (event.getEditMode() != null) {
 					Platform.runLater(new Runnable() {
 
@@ -1292,29 +1305,37 @@ public class RcplUic extends RcplAbstractUic {
 
 	protected void doCreateHomeButtons() {
 
-		addHomeButton(EnCommandId.homeShowOverview.name(), "My Cloud", "Show Documents in the Cloud", "internet_cloud",
-				false);
-		addHomeButton("homeShowNew", "New", "New Document", "office_new", false);
+		RCPL rcpl = RcplSession.getDefault().getRcpl();
 
-		addHomeButton(EnCommandId.homeShowSamples.name(), "Samples", "Show Samples Page", "office_samples", false);
+		for (HomePage homePage : rcpl.getHomepages().getChildren()) {
 
-		if (Rcpl.isBigDisplay()) {
-			if (!Rcpl.isMobile()) {
-				addHomeButton(EnCommandId.homeShowWhatsNew.name(), "What's New", "What's New", "office_whatsnew",
-						false);
-			}
-			addHomeButton(EnCommandId.homeShowPreferences.name(), "Preferences", "Preferences", "office_preferences",
-					false);
+			addHomeButton(homePage.getId(), homePage.getName(), homePage.getToolTip(), homePage.getImage(), false);
 
-			addHomeButton(EnCommandId.CONTACT_US.name(), "Contact Us", "Contact Us", "contact_us", false);
-
-			if (!Rcpl.isMobile()) {
-				addHomeButton(EnCommandId.homeShowDonation.name(), "Donation", "Show Donation Page", "donation", false);
-			}
-			addHomeButton(EnCommandId.homeShowTutorials.name(), "Help", "Show Help Page", "office_help", false);
-
-			addHomeButton(EnCommandId.homeShowAbout.name(), "About", "About", "joffice", false);
 		}
+
+//		addHomeButton(EnCommandId.homeShowOverview.name(), "My Cloud", "Show Documents in the Cloud", "internet_cloud",
+//				false);
+//		addHomeButton("homeShowNew", "New", "New Document", "office_new", false);
+//
+//		addHomeButton(EnCommandId.homeShowSamples.name(), "Samples", "Show Samples Page", "office_samples", false);
+//
+//		if (Rcpl.isBigDisplay()) {
+//			if (!Rcpl.isMobile()) {
+//				addHomeButton(EnCommandId.homeShowWhatsNew.name(), "What's New", "What's New", "office_whatsnew",
+//						false);
+//			}
+//			addHomeButton(EnCommandId.homeShowPreferences.name(), "Preferences", "Preferences", "office_preferences",
+//					false);
+//
+//			addHomeButton(EnCommandId.CONTACT_US.name(), "Contact Us", "Contact Us", "contact_us", false);
+//
+//			if (!Rcpl.isMobile()) {
+//				addHomeButton(EnCommandId.homeShowDonation.name(), "Donation", "Show Donation Page", "donation", false);
+//			}
+//			addHomeButton(EnCommandId.homeShowTutorials.name(), "Help", "Show Help Page", "office_help", false);
+//
+//			addHomeButton(EnCommandId.homeShowAbout.name(), "About", "About", "joffice", false);
+//		}
 
 	}
 

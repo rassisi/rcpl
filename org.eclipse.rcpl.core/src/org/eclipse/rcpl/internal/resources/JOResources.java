@@ -16,8 +16,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-import org.eclipse.rcpl.SVGImage;
 import org.eclipse.rcpl.images.RcplImage;
+import org.eclipse.rcpl.images.SVGImage;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model_2_0_0.IImageProvider;

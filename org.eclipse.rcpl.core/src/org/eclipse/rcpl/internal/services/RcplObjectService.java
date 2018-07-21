@@ -15,9 +15,9 @@ import java.math.BigInteger;
 
 import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.IEditor;
-import org.eclipse.rcpl.RcplCommand;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.util.JOUtil;
+import org.eclipse.rcpl.ui.action.RcplCommand;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTBorder;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTPBdr;
 
