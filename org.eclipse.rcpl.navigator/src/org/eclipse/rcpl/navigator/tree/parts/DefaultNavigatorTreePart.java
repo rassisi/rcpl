@@ -92,6 +92,11 @@ public class DefaultNavigatorTreePart extends RcplTool {
 		super(tool);
 		this.detailPane = detailPane;
 		try {
+
+			if (root == null) {
+
+			}
+
 			this.root = root;
 			registerHandlers();
 			getNode();
