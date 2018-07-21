@@ -4,30 +4,42 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>RCPL</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>RCPL</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllAddons <em>All Addons</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPerspectives <em>All Perspectives</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPreferences <em>All Preferences</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllTools <em>All Tools</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllFavorites <em>All Favorites</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMajor <em>Version Major</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMinor <em>Version Minor</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMaintenance <em>Version Maintenance</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getBuildNumber <em>Build Number</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionDescription <em>Version Description</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllResources <em>All Resources</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPersons <em>All Persons</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getLinkedRcpls <em>Linked Rcpls</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomepages <em>Homepages</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllAddons <em>All
+ * Addons</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPerspectives <em>All
+ * Perspectives</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPreferences <em>All
+ * Preferences</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllTools <em>All
+ * Tools</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllFavorites <em>All
+ * Favorites</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMajor <em>Version
+ * Major</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMinor <em>Version
+ * Minor</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMaintenance
+ * <em>Version Maintenance</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getBuildNumber <em>Build
+ * Number</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionDescription
+ * <em>Version Description</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllResources <em>All
+ * Resources</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPersons <em>All
+ * Persons</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getLinkedRcpls <em>Linked
+ * Rcpls</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomepages
+ * <em>Homepages</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL()
@@ -35,14 +47,16 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface RCPL extends Layoutable {
+
 	/**
 	 * Returns the value of the '<em><b>All Addons</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>All Addons</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>All Addons</em>' containment reference isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>All Addons</em>' containment reference.
 	 * @see #setAllAddons(Addons)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllAddons()
@@ -52,23 +66,27 @@ public interface RCPL extends Layoutable {
 	Addons getAllAddons();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllAddons <em>All Addons</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>All Addons</em>' containment reference.
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllAddons <em>All
+	 * Addons</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>All Addons</em>' containment
+	 *              reference.
 	 * @see #getAllAddons()
 	 * @generated
 	 */
 	void setAllAddons(Addons value);
 
 	/**
-	 * Returns the value of the '<em><b>All Perspectives</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>All Perspectives</b></em>' containment
+	 * reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>All Perspectives</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>All Perspectives</em>' containment reference isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>All Perspectives</em>' containment reference.
 	 * @see #setAllPerspectives(Perspectives)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllPerspectives()
@@ -78,23 +96,27 @@ public interface RCPL extends Layoutable {
 	Perspectives getAllPerspectives();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPerspectives <em>All Perspectives</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>All Perspectives</em>' containment reference.
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPerspectives <em>All
+	 * Perspectives</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>All Perspectives</em>' containment
+	 *              reference.
 	 * @see #getAllPerspectives()
 	 * @generated
 	 */
 	void setAllPerspectives(Perspectives value);
 
 	/**
-	 * Returns the value of the '<em><b>All Preferences</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>All Preferences</b></em>' containment
+	 * reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>All Preferences</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>All Preferences</em>' containment reference isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>All Preferences</em>' containment reference.
 	 * @see #setAllPreferences(Preferences)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllPreferences()
@@ -104,10 +126,13 @@ public interface RCPL extends Layoutable {
 	Preferences getAllPreferences();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPreferences <em>All Preferences</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>All Preferences</em>' containment reference.
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPreferences <em>All
+	 * Preferences</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>All Preferences</em>' containment
+	 *              reference.
 	 * @see #getAllPreferences()
 	 * @generated
 	 */
@@ -121,6 +146,7 @@ public interface RCPL extends Layoutable {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>All Tools</em>' containment reference.
 	 * @see #setAllTools(Tools)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllTools()
@@ -130,9 +156,11 @@ public interface RCPL extends Layoutable {
 	Tools getAllTools();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllTools <em>All Tools</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllTools <em>All
+	 * Tools</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @param value the new value of the '<em>All Tools</em>' containment reference.
 	 * @see #getAllTools()
 	 * @generated
@@ -140,13 +168,14 @@ public interface RCPL extends Layoutable {
 	void setAllTools(Tools value);
 
 	/**
-	 * Returns the value of the '<em><b>All Favorites</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>All Favorites</b></em>' containment
+	 * reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>All Favorites</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>All Favorites</em>' containment reference isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>All Favorites</em>' containment reference.
 	 * @see #setAllFavorites(Favorites)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllFavorites()
@@ -156,23 +185,27 @@ public interface RCPL extends Layoutable {
 	Favorites getAllFavorites();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllFavorites <em>All Favorites</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>All Favorites</em>' containment reference.
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllFavorites <em>All
+	 * Favorites</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>All Favorites</em>' containment
+	 *              reference.
 	 * @see #getAllFavorites()
 	 * @generated
 	 */
 	void setAllFavorites(Favorites value);
 
 	/**
-	 * Returns the value of the '<em><b>Version Major</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Version Major</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Version Major</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Version Major</em>' attribute isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Version Major</em>' attribute.
 	 * @see #setVersionMajor(int)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_VersionMajor()
@@ -182,9 +215,10 @@ public interface RCPL extends Layoutable {
 	int getVersionMajor();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMajor <em>Version Major</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMajor <em>Version
+	 * Major</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Version Major</em>' attribute.
 	 * @see #getVersionMajor()
 	 * @generated
@@ -192,13 +226,14 @@ public interface RCPL extends Layoutable {
 	void setVersionMajor(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Version Minor</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Version Minor</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Version Minor</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Version Minor</em>' attribute isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Version Minor</em>' attribute.
 	 * @see #setVersionMinor(int)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_VersionMinor()
@@ -208,9 +243,10 @@ public interface RCPL extends Layoutable {
 	int getVersionMinor();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMinor <em>Version Minor</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMinor <em>Version
+	 * Minor</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Version Minor</em>' attribute.
 	 * @see #getVersionMinor()
 	 * @generated
@@ -225,6 +261,7 @@ public interface RCPL extends Layoutable {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Version Maintenance</em>' attribute.
 	 * @see #setVersionMaintenance(int)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_VersionMaintenance()
@@ -234,9 +271,11 @@ public interface RCPL extends Layoutable {
 	int getVersionMaintenance();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMaintenance <em>Version Maintenance</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMaintenance
+	 * <em>Version Maintenance</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Version Maintenance</em>' attribute.
 	 * @see #getVersionMaintenance()
 	 * @generated
@@ -244,13 +283,14 @@ public interface RCPL extends Layoutable {
 	void setVersionMaintenance(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Build Number</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Build Number</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Build Number</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Build Number</em>' attribute isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Build Number</em>' attribute.
 	 * @see #setBuildNumber(String)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_BuildNumber()
@@ -260,9 +300,10 @@ public interface RCPL extends Layoutable {
 	String getBuildNumber();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getBuildNumber <em>Build Number</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getBuildNumber <em>Build
+	 * Number</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Build Number</em>' attribute.
 	 * @see #getBuildNumber()
 	 * @generated
@@ -277,6 +318,7 @@ public interface RCPL extends Layoutable {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Version Description</em>' attribute.
 	 * @see #setVersionDescription(String)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_VersionDescription()
@@ -286,9 +328,11 @@ public interface RCPL extends Layoutable {
 	String getVersionDescription();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionDescription <em>Version Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionDescription
+	 * <em>Version Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Version Description</em>' attribute.
 	 * @see #getVersionDescription()
 	 * @generated
@@ -296,13 +340,14 @@ public interface RCPL extends Layoutable {
 	void setVersionDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>All Resources</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>All Resources</b></em>' containment
+	 * reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>All Resources</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>All Resources</em>' containment reference isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>All Resources</em>' containment reference.
 	 * @see #setAllResources(Resources)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllResources()
@@ -312,10 +357,13 @@ public interface RCPL extends Layoutable {
 	Resources getAllResources();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllResources <em>All Resources</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>All Resources</em>' containment reference.
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllResources <em>All
+	 * Resources</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>All Resources</em>' containment
+	 *              reference.
 	 * @see #getAllResources()
 	 * @generated
 	 */
@@ -325,10 +373,11 @@ public interface RCPL extends Layoutable {
 	 * Returns the value of the '<em><b>All Persons</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>All Persons</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>All Persons</em>' containment reference isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>All Persons</em>' containment reference.
 	 * @see #setAllPersons(Persons)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllPersons()
@@ -338,24 +387,28 @@ public interface RCPL extends Layoutable {
 	Persons getAllPersons();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPersons <em>All Persons</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>All Persons</em>' containment reference.
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPersons <em>All
+	 * Persons</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>All Persons</em>' containment
+	 *              reference.
 	 * @see #getAllPersons()
 	 * @generated
 	 */
 	void setAllPersons(Persons value);
 
 	/**
-	 * Returns the value of the '<em><b>Linked Rcpls</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL}.
+	 * Returns the value of the '<em><b>Linked Rcpls</b></em>' reference list. The
+	 * list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Linked Rcpls</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Linked Rcpls</em>' reference list.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_LinkedRcpls()
 	 * @model
@@ -371,6 +424,7 @@ public interface RCPL extends Layoutable {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Homepages</em>' containment reference.
 	 * @see #setHomepages(HomePages)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_Homepages()
@@ -380,9 +434,11 @@ public interface RCPL extends Layoutable {
 	HomePages getHomepages();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomepages <em>Homepages</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomepages
+	 * <em>Homepages</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Homepages</em>' containment reference.
 	 * @see #getHomepages()
 	 * @generated

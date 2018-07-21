@@ -22,6 +22,7 @@ import org.eclipse.rcpl.internal.config.RcplConfig;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -30,6 +31,8 @@ import javafx.stage.Stage;
 
 /**
  * @author ramin
+ * 
+ *         Lifecycle: This class contains the functionality after the login.
  *
  */
 public abstract class RcplApplicationStarter implements IApplicationStarter {
@@ -52,6 +55,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 	 */
 	@Override
 	public boolean start(final RcplLogin login, final Stage primaryStage) {
+
 		RcplSession.getDefault().STANDALONE = true;
 		Rcpl.setFactory(createRcplFactory());
 		Rcpl.setToolFactory(createToolFactory());
@@ -109,6 +113,12 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 
 	public IRcplApplicationProvider getRcplApplicationProvider() {
 		return applicationProvider;
+	}
+
+	public String getVersionString() {
+		RCPL rcpl = RcplSession.getDefault().getRcpl();
+		return rcpl.getName() + " Version " + rcpl.getVersionMajor() + "." + rcpl.getVersionMinor() + "."
+				+ rcpl.getVersionMaintenance() + " (" + rcpl.getVersionDescription() + ")";
 	}
 
 }

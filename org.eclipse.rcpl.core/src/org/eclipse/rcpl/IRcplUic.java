@@ -169,4 +169,5 @@ public interface IRcplUic {
 
 	void updateStartMenuButton();
 
+	IApplicationStarter getApplicationStarter();
 }

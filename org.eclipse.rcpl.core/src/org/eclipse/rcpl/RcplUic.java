@@ -407,7 +407,7 @@ public class RcplUic extends RcplAbstractUic {
 			updateTabPane();
 			updateEditorListener();
 
-			statusText.setText("JOffice " + RcplVersion.getVersion());
+			statusText.setText(getApplicationStarter().getVersionString());
 		} catch (Exception ex) {
 			RCPLModel.logError(ex);
 		}
@@ -435,7 +435,7 @@ public class RcplUic extends RcplAbstractUic {
 	}
 
 	private void createTitelArea() {
-		titleText = new Text("JOffice " + RcplVersion.getVersion() + " - " + RcplSession.getDefault().userId + " ("
+		titleText = new Text(getApplicationStarter().getVersionString() + " - " + RcplSession.getDefault().userId + " ("
 				+ (RcplSession.getDefault().isOnline() ? "Online" : "Offline") + ")");
 		titleText.setId("joffice_title_version");
 		titleText.setOpacity(0.8);

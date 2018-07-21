@@ -176,7 +176,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 
 	protected File lastDocumentFile = null;
 
-	private IApplicationStarter rcplApplicationStarter;
+	private IApplicationStarter applicationStarter;
 
 	private boolean internalRemoteCDOServer = false;
 
@@ -238,7 +238,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 	 * @param rcplApplicationStarter
 	 */
 	public RcplAbstractUic(IApplicationStarter rcplApplicationStarter, final String name) {
-		this.rcplApplicationStarter = rcplApplicationStarter;
+		this.applicationStarter = rcplApplicationStarter;
 		this.name = name;
 		this.editorArea = new StackPane();
 		this.logPage = new VBox();
@@ -509,7 +509,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 		try {
 			String[] splits = id.split("/");
 			String lastSegment = splits[splits.length - 1];
-			for (IRcplAddon uc : rcplApplicationStarter.getRcplApplicationProvider().getRcplAddons()) {
+			for (IRcplAddon uc : applicationStarter.getRcplApplicationProvider().getRcplAddons()) {
 
 				String id2 = uc.getId();
 
@@ -592,7 +592,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 	}
 
 	public IApplicationStarter getRcplApplicationStarter() {
-		return rcplApplicationStarter;
+		return applicationStarter;
 	}
 
 	@Override
@@ -611,7 +611,7 @@ public abstract class RcplAbstractUic implements IRcplUic {
 
 	@Override
 	public Stage getStage() {
-		return rcplApplicationStarter.getRcplApplicationProvider().getPrimaryStage();
+		return applicationStarter.getRcplApplicationProvider().getPrimaryStage();
 	}
 
 	@Override
@@ -1188,4 +1188,9 @@ public abstract class RcplAbstractUic implements IRcplUic {
 		}
 		return null;
 	}
+
+	public IApplicationStarter getApplicationStarter() {
+		return applicationStarter;
+	}
+
 }

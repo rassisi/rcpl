@@ -2,7 +2,13 @@
 <rcpl:RCPL xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:rcpl="http://rcpl/1.0">
+    xmlns:rcpl="http://rcpl/1.0"
+    name="Demo RCPL"
+    id="DEMO_RCPL"
+    image="demo"
+    versionMinor="9"
+    versionMaintenance="1"
+    versionDescription="Reengineering 80 %">
   <allAddons>
     <children
         name="Demo RCPL"

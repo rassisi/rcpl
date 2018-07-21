@@ -14,4 +14,6 @@ public interface IApplicationStarter {
 
 	IRcplApplicationProvider getRcplApplicationProvider();
 
+	String getVersionString();
+
 }
