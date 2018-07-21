@@ -12,8 +12,7 @@
 package org.eclipse.rcpl.navigator.tree.handlers;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.rcpl.Activator;
-import org.eclipse.rcpl.navigator.RcplNavigatorPlugin;
+import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon;
 
 public class PasteHandler {
 
@@ -48,7 +47,7 @@ public class PasteHandler {
 
 	public void execute() {
 		if (command != null && command.canExecute())
-			RcplNavigatorPlugin.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
+			DefaultNavigatorAddon.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
 	}
 
 }

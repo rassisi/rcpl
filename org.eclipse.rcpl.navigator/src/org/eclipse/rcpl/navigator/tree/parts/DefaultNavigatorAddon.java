@@ -21,6 +21,7 @@ import org.eclipse.rcpl.migration.RcplAbstractMigration;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.navigator.tree.model.manager.UCEmfTreeModelManagerImpl;
 
 import javafx.scene.layout.Pane;
 
@@ -30,6 +31,15 @@ import javafx.scene.layout.Pane;
  */
 @RcplAddon
 public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigatorAddon {
+
+	UCEmfTreeModelManagerImpl manager;
+
+	private static DefaultNavigatorAddon INSTANCE;
+
+	public DefaultNavigatorAddon() {
+		INSTANCE = this;
+		manager = new UCEmfTreeModelManagerImpl();
+	}
 
 	@Override
 	public void setTool(Tool tool) {
@@ -80,4 +90,11 @@ public class DefaultNavigatorAddon extends AbstractRcplAddon implements INavigat
 		return null;
 	}
 
+	public static DefaultNavigatorAddon getDefault() {
+		return INSTANCE;
+	}
+
+	public UCEmfTreeModelManagerImpl getManager() {
+		return manager;
+	}
 }

@@ -19,7 +19,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
-import org.eclipse.rcpl.navigator.RcplNavigatorPlugin;
+import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon;
 import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorTreePart;
 
 public class AddEmfTreeHandler {
@@ -34,17 +34,17 @@ public class AddEmfTreeHandler {
 		if (eEmfTreeTreePart.getSelectedObject() instanceof ToolGroup) {
 			Tool tool = RcplFactory.eINSTANCE.createTool();
 			ToolGroup rootGroup = ((ToolGroup) eEmfTreeTreePart.getSelectedObject());
-			Command command = AddCommand.create(RcplNavigatorPlugin.getDefault().getManager().getEditingDomain(),
+			Command command = AddCommand.create(DefaultNavigatorAddon.getDefault().getManager().getEditingDomain(),
 					rootGroup, RcplPackage.Literals.TOOL_GROUP, tool);
 			if (command != null && command.canExecute())
-				RcplNavigatorPlugin.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
+				DefaultNavigatorAddon.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
 		} else if (eEmfTreeTreePart.getSelectedObject() instanceof FavoritesGroup) {
 			Favorite item = RcplFactory.eINSTANCE.createFavorite();
 			FavoritesGroup rootGroup = ((FavoritesGroup) eEmfTreeTreePart.getSelectedObject());
-			Command command = AddCommand.create(RcplNavigatorPlugin.getDefault().getManager().getEditingDomain(),
+			Command command = AddCommand.create(DefaultNavigatorAddon.getDefault().getManager().getEditingDomain(),
 					rootGroup, RcplPackage.Literals.FAVORITE, item);
 			if (command != null && command.canExecute())
-				RcplNavigatorPlugin.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
+				DefaultNavigatorAddon.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
 		}
 
 	}

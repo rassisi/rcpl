@@ -12,13 +12,13 @@
 package org.eclipse.rcpl.navigator.tree.handlers;
 
 import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.rcpl.navigator.RcplNavigatorPlugin;
+import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon;
 
 public class RedoHandler {
 
 	public boolean canUndo() {
 		try {
-			CommandStack commandStack = RcplNavigatorPlugin.getDefault().getManager().getEditingDomain()
+			CommandStack commandStack = DefaultNavigatorAddon.getDefault().getManager().getEditingDomain()
 					.getCommandStack();
 			return commandStack.canRedo();
 		} catch (Exception ex) {
@@ -28,7 +28,8 @@ public class RedoHandler {
 	}
 
 	public void undo() {
-		CommandStack commandStack = RcplNavigatorPlugin.getDefault().getManager().getEditingDomain().getCommandStack();
+		CommandStack commandStack = DefaultNavigatorAddon.getDefault().getManager().getEditingDomain()
+				.getCommandStack();
 		if (commandStack.canRedo())
 			commandStack.redo();
 	}

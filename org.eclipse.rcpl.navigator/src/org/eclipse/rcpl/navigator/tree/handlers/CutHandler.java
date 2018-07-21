@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.CutToClipboardCommand;
-import org.eclipse.rcpl.navigator.RcplNavigatorPlugin;
+import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon;
 
 public class CutHandler {
 
@@ -27,8 +27,8 @@ public class CutHandler {
 	public boolean canExecute(List<?> selection) {
 		try {
 			if (selection != null) {
-				command = CutToClipboardCommand.create(RcplNavigatorPlugin.getDefault().getManager().getEditingDomain(),
-						selection);
+				command = CutToClipboardCommand
+						.create(DefaultNavigatorAddon.getDefault().getManager().getEditingDomain(), selection);
 				return command.canExecute();
 			}
 		} catch (Exception ex) {
@@ -39,7 +39,7 @@ public class CutHandler {
 
 	public void execute() {
 		if (command != null && command.canExecute())
-			RcplNavigatorPlugin.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
+			DefaultNavigatorAddon.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
 	}
 
 }

@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.CopyToClipboardCommand;
-import org.eclipse.rcpl.navigator.RcplNavigatorPlugin;
+import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorAddon;
 
 public class CopyHandler {
 
@@ -28,7 +28,7 @@ public class CopyHandler {
 		try {
 			if (selection != null) {
 				command = CopyToClipboardCommand
-						.create(RcplNavigatorPlugin.getDefault().getManager().getEditingDomain(), selection);
+						.create(DefaultNavigatorAddon.getDefault().getManager().getEditingDomain(), selection);
 				return command.canExecute();
 			}
 		} catch (Exception ex) {
@@ -39,7 +39,7 @@ public class CopyHandler {
 
 	public void execute() {
 		if (command != null && command.canExecute())
-			RcplNavigatorPlugin.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
+			DefaultNavigatorAddon.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
 	}
 
 }
