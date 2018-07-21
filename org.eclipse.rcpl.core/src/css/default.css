@@ -1080,12 +1080,18 @@
 
 
 .emfTreeView {
--fx-font: 10pt "Segoe UI";
+   -fx-font: 9pt "Segoe UI";
    -fx-stroke: #eeeeee;
    -fx-background-color: #0a0a0a;
    -fx-text-fill: #ffffff;
 }
 
+.tree-cell {
+    -fx-padding: 0.0em 0em 0.0em 0em ;
+}
+.tree-cell:sub-tree-item {
+    -fx-padding: -0.1em ;
+}
 
 #toolButton:selected{
     -fx-background-color: orange;
