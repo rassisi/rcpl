@@ -78,21 +78,23 @@ public enum EnCommandId {
 
 	characterStyle(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	homeShowOverview(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+	HOME_PAGE_OVERVIEW(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	homeShowTutorials(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+	HOME_PAGE_TUTORIALS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	homeShowDonation(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+	HOME_PAGE_DONATIONS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	homeShowSamples(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+	HOME_PAGE_SAMPLES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	homeShowNew(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+	HOME_PAGE_NEWS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	homeShowWhatsNew(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+	HOME_PAGE_WHATS_NEW(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	homeShowAbout(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+	HOME_PAGE_ABOUT(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	homeShowPreferences(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+	HOME_PAGE_PREFERENCES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+
+	HOME_PAGE_TEMPLATES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
 	collapse_all(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
@@ -115,8 +117,6 @@ public enum EnCommandId {
 	insertText(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
 	CONTACT_US(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	homeShowTemplates(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
 	style_normal(EnServiceId.PARAGRAPH_SERVICE, null, "N", "Normal"),
 
@@ -218,6 +218,16 @@ public enum EnCommandId {
 
 	public EnServiceId getServiceId() {
 		return serviceId;
+	}
+
+	public static EnCommandId findCommandId(String id) {
+		for (EnCommandId e : EnCommandId.values()) {
+			String enId = e.getId();
+			if (id.equals(enId)) {
+				return e;
+			}
+		}
+		return EnCommandId.NO_COMMAND;
 	}
 
 }

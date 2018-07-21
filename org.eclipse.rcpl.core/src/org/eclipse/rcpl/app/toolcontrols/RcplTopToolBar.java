@@ -125,29 +125,29 @@ public class RcplTopToolBar implements ITopToolbar {
 
 		registerToolPane(RcplKey.HOME_TAB.name(), pane);
 
-		createCustomRibbonGroup(pane, "My Cloud", "Show Documents in the Cloud", EnCommandId.homeShowOverview.name(),
+		createCustomRibbonGroup(pane, "My Cloud", "Show Documents in the Cloud", EnCommandId.HOME_PAGE_OVERVIEW.name(),
 				"internet_cloud", true, null);
 
 		createCustomRibbonGroup(pane, "New", "New Document", "homeShowNew", "office_new", false, null);
-		createCustomRibbonGroup(pane, "Samples", "Show Samples Page", EnCommandId.homeShowSamples.name(),
+		createCustomRibbonGroup(pane, "Samples", "Show Samples Page", EnCommandId.HOME_PAGE_SAMPLES.name(),
 				"office_samples", false, null);
 
 		if (Rcpl.isBigDisplay()) {
 			if (!Rcpl.isMobile()) {
-				createCustomRibbonGroup(pane, "What's New", "What's New", EnCommandId.homeShowWhatsNew.name(),
+				createCustomRibbonGroup(pane, "What's New", "What's New", EnCommandId.HOME_PAGE_WHATS_NEW.name(),
 						"office_whatsnew", false, null);
 			}
-			createCustomRibbonGroup(pane, "Preferences", "Preferences", EnCommandId.homeShowPreferences.name(),
+			createCustomRibbonGroup(pane, "Preferences", "Preferences", EnCommandId.HOME_PAGE_PREFERENCES.name(),
 					"office_preferences", false, null);
 			createCustomRibbonGroup(pane, "Contact Us", "Contact Us", EnCommandId.CONTACT_US.name(), "contact_us",
 					false, null);
 			if (!Rcpl.isMobile()) {
-				createCustomRibbonGroup(pane, "Donation", "Show Donation Page", EnCommandId.homeShowDonation.name(),
+				createCustomRibbonGroup(pane, "Donation", "Show Donation Page", EnCommandId.HOME_PAGE_DONATIONS.name(),
 						"donation", false, null);
 			}
-			createCustomRibbonGroup(pane, "Help", "Show Help Page", EnCommandId.homeShowTutorials.name(), "office_help",
-					false, null);
-			createCustomRibbonGroup(pane, "About", "About", EnCommandId.homeShowAbout.name(), "joffice", false, null);
+			createCustomRibbonGroup(pane, "Help", "Show Help Page", EnCommandId.HOME_PAGE_TUTORIALS.name(),
+					"office_help", false, null);
+			createCustomRibbonGroup(pane, "About", "About", EnCommandId.HOME_PAGE_ABOUT.name(), "joffice", false, null);
 		}
 
 		pane.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {

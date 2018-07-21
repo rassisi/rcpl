@@ -3,8 +3,6 @@ package org.eclipse.rcpl.internal.services;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnServiceId;
 import org.eclipse.rcpl.IColorTool;
@@ -31,16 +29,19 @@ public class RcplService extends RcplAbstractService implements IService {
 	}
 
 	@Override
-	public Object doExecute(ICommand command) throws Exception {
+	public Object doExecute(ICommand command0) throws Exception {
+
+		if (executeHomePages(command0)) {
+			return true;
+		}
+		ICommand command = getCommand(command0);
+		String id = getId(command0);
 
 		try {
 			ITool iTool = command.getTool();
 			if (iTool != null) {
 				Tool tool = iTool.getTool();
 				if (tool != null) {
-
-					String id = tool.getId();
-
 					if (id != null) {
 
 						if (id.startsWith(RcplSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED)) {
@@ -82,36 +83,6 @@ public class RcplService extends RcplAbstractService implements IService {
 				RcplSession.getDefault().getSystemPreferences().put(RcplKey.SHOW_OUTLINE,
 						(Boolean) command.getNewData()[0]);
 				showOutLine(command, (Boolean) command.getNewData()[0]);
-				break;
-			case showStartMenu:
-				Rcpl.UIC.showHomePage();
-				break;
-			case homeShowOverview:
-				Rcpl.UIC.showOverviewPage();
-				break;
-			case homeShowPreferences:
-				Rcpl.UIC.showPreferencesPage();
-				break;
-			case homeShowSamples:
-				Rcpl.UIC.showSamplesPage();
-				break;
-			case homeShowNew:
-				Rcpl.UIC.showNewPage();
-				break;
-			case homeShowTutorials:
-				Rcpl.UIC.showTutorialsPage();
-				break;
-			case homeShowDonation:
-				Rcpl.UIC.showDonationPage();
-				break;
-			case homeShowWhatsNew:
-				Rcpl.UIC.showWhatsNewPage();
-				break;
-			case homeShowAbout:
-				Rcpl.UIC.showAboutPage();
-				break;
-			case CONTACT_US:
-				Rcpl.UIC.showContactUsPage();
 				break;
 			case collapse_all:
 				Rcpl.UIC.collapseAll();
@@ -156,9 +127,60 @@ public class RcplService extends RcplAbstractService implements IService {
 		}
 	}
 
+	private boolean executeHomePages(ICommand command) {
+		switch (command.getCommandId()) {
+		case showStartMenu:
+			Rcpl.UIC.showHomePage();
+			break;
+		case HOME_PAGE_OVERVIEW:
+			Rcpl.UIC.showOverviewPage();
+			break;
+		case HOME_PAGE_PREFERENCES:
+			Rcpl.UIC.showPreferencesPage();
+			break;
+		case HOME_PAGE_SAMPLES:
+			Rcpl.UIC.showSamplesPage();
+			break;
+		case HOME_PAGE_NEWS:
+			Rcpl.UIC.showNewPage();
+			break;
+		case HOME_PAGE_TUTORIALS:
+			Rcpl.UIC.showTutorialsPage();
+			break;
+		case HOME_PAGE_DONATIONS:
+			Rcpl.UIC.showDonationPage();
+			break;
+		case HOME_PAGE_WHATS_NEW:
+			Rcpl.UIC.showWhatsNewPage();
+			break;
+		case HOME_PAGE_ABOUT:
+			Rcpl.UIC.showAboutPage();
+			break;
+		case HOME_PAGE_TEMPLATES:
+			Rcpl.UIC.showTutorialsPage();
+			break;
+		case CONTACT_US:
+			Rcpl.UIC.showContactUsPage();
+			break;
+		default:
+			return false;
+		}
+		return true;
+
+	}
+
 	@Override
-	public Object execute(ICommand command) {
-		if (EnCommandId.NO_COMMAND.equals(command.getCommandId())) {
+	public Object execute(ICommand command0) {
+		if (executeHomePages(command0)) {
+			return null;
+		}
+
+		ICommand command = getCommand(command0);
+		if (executeHomePages(command)) {
+			return null;
+		}
+
+		if (EnCommandId.NO_COMMAND.equals(command0.getCommandId())) {
 			try {
 				IEditor editor = getEditor(command);
 				setEditor(editor);
@@ -183,6 +205,31 @@ public class RcplService extends RcplAbstractService implements IService {
 		}
 
 		return null;
+	}
+
+	private ICommand getCommand(ICommand command) {
+		if (EnCommandId.NO_COMMAND.equals(command.getCommandId())) {
+			if (command.getTool() != null && command.getTool().getTool().getId() != null) {
+				String id = command.getTool().getTool().getId();
+				for (EnCommandId e : EnCommandId.values()) {
+					if (id == e.getId()) {
+						return new RcplCommand(command.getEditor(), e, command.getNewData());
+					}
+				}
+			}
+		}
+		return command;
+	}
+
+	private String getId(ICommand command) {
+		String id;
+		if (EnCommandId.NO_COMMAND.equals(command.getCommandId())) {
+			if (command.getTool() != null && command.getTool().getTool().getId() != null) {
+				id = command.getTool().getTool().getId();
+			}
+		}
+		return getCommand(command).getCommandId().getId();
+
 	}
 
 	public Object execute(ITool tool) {

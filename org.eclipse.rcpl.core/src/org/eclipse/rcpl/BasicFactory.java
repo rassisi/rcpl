@@ -16,9 +16,9 @@ import java.util.HashMap;
 import org.eclipse.rcpl.app.toolcontrols.RcplSideToolBar;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
 import org.eclipse.rcpl.homepages.DefaultContactUsHomePage;
-import org.eclipse.rcpl.homepages.DefaultHomePage;
 import org.eclipse.rcpl.homepages.DefaultHTMLHomePage;
 import org.eclipse.rcpl.homepages.DefaultHTMLReadOnlyHomePage;
+import org.eclipse.rcpl.homepages.DefaultHomePage;
 import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
 import org.eclipse.rcpl.homepages.DefaultPreferencesHomePage;
 import org.eclipse.rcpl.homepages.DefaultWebHomePage;
@@ -126,72 +126,7 @@ public class BasicFactory implements IRcplFactory {
 			}
 			EnCommandId commandId = null;
 
-			String id = tool.getTool().getId();
-			try {
-				commandId = EnCommandId.valueOf(id);
-			} catch (Exception ex) {
-				commandId = EnCommandId.NO_COMMAND;
-			}
-
 			switch (tool.getTool().getType()) {
-			case BUTTON:
-				break;
-			case CHECKBOX:
-				break;
-			case CHOICEBOX:
-				break;
-			case COLOR_CHOOSER:
-				break;
-			case COMBO:
-				break;
-			case DATEANDTIMEFIELD:
-				break;
-			case DATEFIELD:
-				break;
-			case FLOWPANE:
-				break;
-			case GRIDPANE:
-				break;
-			case HTMLEDITOR:
-				break;
-			case HYPERLINK:
-				break;
-			case IMAGEVIEW:
-				break;
-			case LABEL:
-				break;
-			case LISTVIEW:
-				break;
-			case MENUBAR:
-				break;
-			case MENUBUTTON:
-				break;
-			case NAVIGATOR:
-				break;
-			case OTHER:
-				break;
-			case PASSWORDFIELD:
-				break;
-			case PROGRESSBAR:
-				break;
-			case PROGRESSINDICATOR:
-				break;
-			case RADIOBUTTON:
-				break;
-			case SEPARATOR_HORIZONTAL:
-				break;
-			case SEPARATOR_VERTICAL:
-				break;
-			case SLIDER_HORIZONTAL:
-				break;
-			case SLIDER_VERTICAL:
-				break;
-			case SPLITMENUBUTTON:
-				break;
-			case TEXTAREA:
-				break;
-			case TEXTFIELD:
-				break;
 			case TOGGLEBUTTON:
 				JOButton b = (JOButton) tool.getTool().getData();
 				newData = new Object[] { b.isSelected() };
@@ -202,6 +137,10 @@ public class BasicFactory implements IRcplFactory {
 			default:
 				break;
 			}
+
+			String id = tool.getTool().getId();
+
+			commandId = EnCommandId.findCommandId(id);
 
 			return new RcplCommand(editor, commandId, layoutObject, tool, oldData, newData);
 		} catch (Exception ex) {
@@ -335,4 +274,5 @@ public class BasicFactory implements IRcplFactory {
 	public IStyleTemplate createStyleTemplate() {
 		return null;
 	}
+
 }

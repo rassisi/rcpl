@@ -23,8 +23,8 @@ import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.IToolComponent;
 import org.eclipse.rcpl.IToolGroup;
 import org.eclipse.rcpl.IToolRegistry;
-import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -41,7 +41,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -157,12 +156,16 @@ public class JOButton extends RcplTool implements IButton {
 			toggleButonListener = new ChangeListener<Boolean>() {
 				@Override
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-					performAction();
+					if (newValue) {
+						performAction();
+					}
 				}
 			};
 			addToggleButtonListener();
 
-		} else {
+		} else
+
+		{
 			node = new Button();
 			node.setPickOnBounds(false);
 			((ButtonBase) node).setOnAction(new EventHandler<ActionEvent>() {
@@ -179,7 +182,9 @@ public class JOButton extends RcplTool implements IButton {
 		}
 
 		node.setId("toolButton");
-		image = Rcpl.resources().getSvgImage(imageName, getWidth(), getHeight());
+		image = Rcpl.resources().getSvgImage(imageName,
+
+				getWidth(), getHeight());
 
 		this.imageNode = image.getNode();
 
@@ -371,23 +376,23 @@ public class JOButton extends RcplTool implements IButton {
 
 				case foregroundColor:
 					break;
-				case homeShowAbout:
+				case HOME_PAGE_ABOUT:
 					break;
-				case homeShowDonation:
+				case HOME_PAGE_DONATIONS:
 					break;
-				case homeShowNew:
+				case HOME_PAGE_NEWS:
 					break;
-				case homeShowOverview:
+				case HOME_PAGE_OVERVIEW:
 					break;
-				case homeShowPreferences:
+				case HOME_PAGE_PREFERENCES:
 					break;
-				case homeShowSamples:
+				case HOME_PAGE_SAMPLES:
 					break;
-				case homeShowTemplates:
+				case HOME_PAGE_TEMPLATES:
 					break;
-				case homeShowTutorials:
+				case HOME_PAGE_TUTORIALS:
 					break;
-				case homeShowWhatsNew:
+				case HOME_PAGE_WHATS_NEW:
 					break;
 				case insertDrawing:
 					break;

@@ -86,6 +86,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
@@ -126,124 +127,6 @@ public class RcplUic implements IRcplUic {
 	public static String internalStyleWindows7;
 
 	public static String internalStyleDark;
-
-	/**
-	 * 
-	 */
-	public static Rectangle getCaret() {
-
-		if (caret == null) {
-			caret = new Rectangle(3, 0, 1.6, 18);
-			caret.setX(80);
-			caret.setFill(Color.BLACK);
-			caretTimeline = new Timeline();
-			caretTimeline.setCycleCount(Timeline.INDEFINITE);
-			caretTimeline.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					Node n = Rcpl.UIC.getFocusOwner();
-					if (n instanceof ComboBox<?>) {
-						caret.setFill(Color.TRANSPARENT);
-						return;
-					}
-					caret.setFill(Color.BLACK);
-					Parent parent = caret.getParent();
-					if (parent != null) {
-						parent.requestFocus();
-					}
-					IEditor editor = Rcpl.UIC.getEditor();
-					if (editor != null) {
-						// editor.updateScrollTargetForCaret();
-					}
-				}
-			}), new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					caret.setFill(Color.TRANSPARENT);
-				}
-			}), new KeyFrame(Duration.seconds(1)));
-			caretTimeline.play();
-		}
-		return caret;
-	}
-
-	public static double getCaretHeight() {
-		return getCaret().getHeight();
-	}
-
-	private static Timeline getCaretTimeline() {
-		return caretTimeline;
-	}
-
-	public static double getCaretX() {
-		return getCaret().getX();
-	}
-
-	public static double getCaretY() {
-		return getCaret().getY();
-	}
-
-	protected static String getInternalStyleDark() {
-		return internalStyleDark;
-	}
-
-	protected static String getInternalStyleMsOffice() {
-		return internalStyleMsOffice;
-	}
-
-	// private IButton saveButton;
-	//
-	// private IButton saveAsButton;
-
-	protected static List<String> getInternalStylesRegistry() {
-		return internalStylesRegistry;
-	}
-
-	protected static String getInternalStyleWindows7() {
-		return internalStyleWindows7;
-	}
-
-	public static void setCaretHeight(double height) {
-		getCaret().setHeight(height);
-	}
-
-	public static void setCaretLocation(double x, double y) {
-		getCaret().setX(x);
-		getCaret().setY(y);
-	}
-
-	// ===================================================
-
-	public static void setCaretWidth(double width) {
-		getCaret().setWidth(width);
-	}
-
-	protected static void setInternalStyleDark(String internalStyleDark) {
-		RcplUic.internalStyleDark = internalStyleDark;
-	}
-
-	protected static void setInternalStyleMsOffice(String internalStyleMsOffice) {
-		RcplUic.internalStyleMsOffice = internalStyleMsOffice;
-	}
-
-	protected static void setInternalStylesRegistry(List<String> internalStylesRegistry) {
-		RcplUic.internalStylesRegistry = internalStylesRegistry;
-	}
-
-	protected static void setInternalStyleWindows7(String internalStyleWindows7) {
-		RcplUic.internalStyleWindows7 = internalStyleWindows7;
-	}
-
-	public static void showCaret(IParagraphFigure figure) {
-
-		if (!figure.getPane().getChildren().contains(RcplUic.getCaret())) {
-			figure.getPane().getChildren().add(RcplUic.getCaret());
-		}
-
-		getCaretTimeline().playFromStart();
-		getCaret().setVisible(true);
-
-	}
 
 	protected boolean viewer;
 
@@ -639,13 +522,17 @@ public class RcplUic implements IRcplUic {
 		blinkingTimeline.play();
 	}
 
-	protected void addHomeButton(String id, String name, String toolTip, String image, boolean toggle) {
-		IButton homeButton = new JOButton(id, name, toolTip, image, false);
+	protected void addHomeButton(String id, String name, String toolTip, String image, boolean toggle,
+			ToggleGroup toggleGroup) {
+		IButton homeButton = new JOButton(id, name, toolTip, image, true);
 		homeButton.setWidth(20);
 		homeButton.setHeight(20);
 		if (homeButtonsArea.getChildren().isEmpty()) {
 			HBox.setMargin(homeButtonsArea, new Insets(-4, 0, 0, 48));
 			homeButtonsArea.setSpacing(2);
+		}
+		if (toggle && toggleGroup != null) {
+			((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
 		}
 		homeButtonsArea.getChildren().add(homeButton.getNode());
 	}
@@ -1070,9 +957,12 @@ public class RcplUic implements IRcplUic {
 
 		RCPL rcpl = RcplSession.getDefault().getRcpl();
 
+		ToggleGroup toggleGroup = new ToggleGroup();
+
 		for (HomePage homePage : rcpl.getHomepages().getChildren()) {
 
-			addHomeButton(homePage.getId(), homePage.getName(), homePage.getToolTip(), homePage.getImage(), false);
+			addHomeButton(homePage.getId(), homePage.getName(), homePage.getToolTip(), homePage.getImage(), true,
+					toggleGroup);
 
 		}
 
@@ -2423,6 +2313,120 @@ public class RcplUic implements IRcplUic {
 				}
 			});
 		}
+	}
+
+	/**
+	 * 
+	 */
+	public static Rectangle getCaret() {
+
+		if (caret == null) {
+			caret = new Rectangle(3, 0, 1.6, 18);
+			caret.setX(80);
+			caret.setFill(Color.BLACK);
+			caretTimeline = new Timeline();
+			caretTimeline.setCycleCount(Timeline.INDEFINITE);
+			caretTimeline.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					Node n = Rcpl.UIC.getFocusOwner();
+					if (n instanceof ComboBox<?>) {
+						caret.setFill(Color.TRANSPARENT);
+						return;
+					}
+					caret.setFill(Color.BLACK);
+					Parent parent = caret.getParent();
+					if (parent != null) {
+						parent.requestFocus();
+					}
+					IEditor editor = Rcpl.UIC.getEditor();
+					if (editor != null) {
+						// editor.updateScrollTargetForCaret();
+					}
+				}
+			}), new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					caret.setFill(Color.TRANSPARENT);
+				}
+			}), new KeyFrame(Duration.seconds(1)));
+			caretTimeline.play();
+		}
+		return caret;
+	}
+
+	public static double getCaretHeight() {
+		return getCaret().getHeight();
+	}
+
+	private static Timeline getCaretTimeline() {
+		return caretTimeline;
+	}
+
+	public static double getCaretX() {
+		return getCaret().getX();
+	}
+
+	public static double getCaretY() {
+		return getCaret().getY();
+	}
+
+	protected static String getInternalStyleDark() {
+		return internalStyleDark;
+	}
+
+	protected static String getInternalStyleMsOffice() {
+		return internalStyleMsOffice;
+	}
+
+	protected static List<String> getInternalStylesRegistry() {
+		return internalStylesRegistry;
+	}
+
+	protected static String getInternalStyleWindows7() {
+		return internalStyleWindows7;
+	}
+
+	public static void setCaretHeight(double height) {
+		getCaret().setHeight(height);
+	}
+
+	public static void setCaretLocation(double x, double y) {
+		getCaret().setX(x);
+		getCaret().setY(y);
+	}
+
+	// ===================================================
+
+	public static void setCaretWidth(double width) {
+		getCaret().setWidth(width);
+	}
+
+	protected static void setInternalStyleDark(String internalStyleDark) {
+		RcplUic.internalStyleDark = internalStyleDark;
+	}
+
+	protected static void setInternalStyleMsOffice(String internalStyleMsOffice) {
+		RcplUic.internalStyleMsOffice = internalStyleMsOffice;
+	}
+
+	protected static void setInternalStylesRegistry(List<String> internalStylesRegistry) {
+		RcplUic.internalStylesRegistry = internalStylesRegistry;
+	}
+
+	protected static void setInternalStyleWindows7(String internalStyleWindows7) {
+		RcplUic.internalStyleWindows7 = internalStyleWindows7;
+	}
+
+	public static void showCaret(IParagraphFigure figure) {
+
+		if (!figure.getPane().getChildren().contains(RcplUic.getCaret())) {
+			figure.getPane().getChildren().add(RcplUic.getCaret());
+		}
+
+		getCaretTimeline().playFromStart();
+		getCaret().setVisible(true);
+
 	}
 
 }
