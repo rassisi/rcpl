@@ -49,7 +49,7 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	private static final int EDITOR_TOP_BAR_HEIGHT = 122;
 
-	// private static final int BROWSER_TOP_BAR_HEIGHT = 63; // 40;
+	private static final int BROWSER_TOP_BAR_HEIGHT = 63; // 40;
 
 	private IEditor editor;
 
@@ -139,8 +139,8 @@ public class RcplTopToolBar implements ITopToolbar {
 			}
 			createCustomRibbonGroup(pane, "Preferences", "Preferences", EnCommandId.HOME_PAGE_PREFERENCES.name(),
 					"office_preferences", false, null);
-			createCustomRibbonGroup(pane, "Contact Us", "Contact Us", EnCommandId.HOME_PAGE_CONTACT_US.name(), "contact_us",
-					false, null);
+			createCustomRibbonGroup(pane, "Contact Us", "Contact Us", EnCommandId.HOME_PAGE_CONTACT_US.name(),
+					"contact_us", false, null);
 			if (!Rcpl.isMobile()) {
 				createCustomRibbonGroup(pane, "Donation", "Show Donation Page", EnCommandId.HOME_PAGE_DONATIONS.name(),
 						"donation", false, null);
@@ -187,8 +187,8 @@ public class RcplTopToolBar implements ITopToolbar {
 		Perspective perspective = RcplSession.getDefault().findPerspective(type);
 		pane.setId("topBarHBox");
 		pane.setPadding(new Insets(3, 0, 0, 7));
-		// Rcpl.UIC.getMainTopStack().getChildren().add(pane);
-		// Rcpl.UIC.getMainTopStack().layout();
+		Rcpl.UIC.getMainTopStack().getChildren().add(pane);
+		Rcpl.UIC.getMainTopStack().layout();
 		registerToolPane(type, pane);
 		processTopBar(pane, perspective.getTopToolBar(), useCase);
 	}
@@ -216,8 +216,8 @@ public class RcplTopToolBar implements ITopToolbar {
 	}
 
 	@Override
-	public void processTopBarMainGroups(IRcplAddon useCase) {
-		if (useCase.getEmfModel() != null) {
+	public void processTopBarMainGroups(IRcplAddon addon) {
+		if (addon.getEmfModel() != null) {
 			// !!!
 			// if (new JOMigration().getUseCaseTopBar(useCase) != null) {
 			// HBox pane = new HBox();
@@ -277,17 +277,7 @@ public class RcplTopToolBar implements ITopToolbar {
 			}
 			mainTopArea = null;
 		}
-
 		updateHeight();
-
-		// if (PerspectiveType.WEB.equals(activePerspectiveType)) {
-		// savedHeight = BROWSER_TOP_BAR_HEIGHT;
-		// } else if (PerspectiveType.SETTINGS.equals(activePerspectiveType)) {
-		// savedHeight = EDITOR_TOP_BAR_HEIGHT;
-		// } else {
-		// savedHeight = EDITOR_TOP_BAR_HEIGHT;
-		// }
-
 	}
 
 	@Override
@@ -298,118 +288,88 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	@Override
 	public void updateHeight() {
-
-		// String persp = Rcpl.UIC.getPerspective().getId();
-
-		// if ("MAIN_PERSPECTIVE".equals(persp)) {
-		// savedHeight = EDITOR_TOP_BAR_HEIGHT;
-		// } else
-		//
-
-		hideAll();
-
-		{
-
-			if (Rcpl.UIC.getPerspective() != null) {
-
-				hideAll();
-				// if
-				// ("PRESENTATION".equals(Rcpl.UIC.getActivePerspectiveType()))
-				// {
-				// savedHeight = EDITOR_TOP_BAR_HEIGHT;
-				// } else if
-				// ("SETTINGS".equals(Rcpl.UIC.getActivePerspectiveType())) {
-				// savedHeight = EDITOR_TOP_BAR_HEIGHT;
-				// } else if
-				// ("SPREADSHEET".equals(Rcpl.UIC.getActivePerspectiveType())) {
-				// savedHeight = EDITOR_TOP_BAR_HEIGHT;
-				// } else if ("WEB".equals(Rcpl.UIC.getActivePerspectiveType()))
-				// {
-				// savedHeight = EDITOR_TOP_BAR_HEIGHT;
-				// } else if
-				// ("WORD".equals(Rcpl.UIC.getActivePerspectiveType())) {
-				// savedHeight = EDITOR_TOP_BAR_HEIGHT;
-				// } else if
-				// ("USECASE".equals(Rcpl.UIC.getActivePerspectiveType())) {
-				// savedHeight = EDITOR_TOP_BAR_HEIGHT;
-				// }
-
+		if (Rcpl.UIC.getPerspective() != null) {
+			if ("PRESENTATION".equals(Rcpl.UIC.getActiveAddon())) {
+				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+			} else if ("SETTINGS".equals(Rcpl.UIC.getActiveAddon())) {
+				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+			} else if ("SPREADSHEET".equals(Rcpl.UIC.getActiveAddon())) {
+				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+			} else if ("WEB".equals(Rcpl.UIC.getActiveAddon())) {
+				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+			} else if ("WORD".equals(Rcpl.UIC.getActiveAddon())) {
+				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+			} else if ("USECASE".equals(Rcpl.UIC.getActiveAddon())) {
+				savedHeight = EDITOR_TOP_BAR_HEIGHT;
 			}
 
-			savedHeight = 30;
 		}
-		Rcpl.UIC.setTopAreaHeight(savedHeight);
+		Rcpl.UIC.setTopAreaHeight(EDITOR_TOP_BAR_HEIGHT); // savedHeight);
 	}
 
 	@Override
 	public void show(final String perspective) {
 
-		// javafx.application.Platform.runLater(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// String key = null;
-		// if (perspective == null) {
-		// key = JOKey.HOME_TAB.name();
-		// if (key != null) {
-		// Rcpl.UIC.getMainTopStack().getChildren().clear();
-		//
-		// Node n = toolPaneRegistry.get(key);
-		// if (n != null) {
-		// Rcpl.UIC.getMainTopStack().getChildren().add(n);
-		// }
-		// }
-		// collapsed = true;
-		// collapse(false);
-		// } else {
-		// Rcpl.UIC.setActivePerspectiveType(perspective);
-		// if (perspective != null) {
-		// key = perspective;
-		// }
-		// updateHeight();
-		// }
-		//
-		// }
-		// });
+		javafx.application.Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				String key = null;
+				if (perspective == null) {
+					key = RcplKey.HOME_TAB.name();
+				} else {
+					key = perspective;
+				}
+				Rcpl.UIC.getMainTopStack().getChildren().clear();
+
+				Node n = toolPaneRegistry.get(key);
+				if (n != null) {
+					Rcpl.UIC.getMainTopStack().getChildren().add(n);
+				}
+
+				collapsed = false;
+				updateHeight();
+				collapse(false);
+
+			}
+		});
+
 	}
 
 	@Override
 	public void hideAll() {
 		if (Platform.isFxApplicationThread()) {
 			Rcpl.UIC.getMainTopStack().getChildren().clear();
-			savedHeight = 30;
-			Rcpl.UIC.setTopAreaHeight(savedHeight);
+			Rcpl.UIC.setTopAreaHeight(0);
 		} else {
 			Platform.runLater(new Runnable() {
 
 				@Override
 				public void run() {
 					Rcpl.UIC.getMainTopStack().getChildren().clear();
-					savedHeight = 30;
-					Rcpl.UIC.setTopAreaHeight(savedHeight);
+					Rcpl.UIC.setTopAreaHeight(0);
 				}
 			});
 		}
 	}
 
 	@Override
-	public void show(final IRcplAddon rcplPlugin) {
-		// javafx.application.Platform.runLater(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// Rcpl.UIC.getMainTopStack().getChildren().clear();
-		// Node n = toolPaneRegistry.get(rcplPlugin.getId());
-		// if (n != null) {
-		// Rcpl.UIC.setActivePerspectiveType("USECASE");
-		// Rcpl.UIC.setActiveUseCaseId(rcplPlugin.getId());
-		// Rcpl.UIC.getMainTopStack().getChildren().add(n);
-		// }
-		// collapsed = true;
-		// collapse(false);
-		// updateUseCaseHeight();
-		// }
-		// });
+	public void show(final IRcplAddon addon) {
+		javafx.application.Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				Rcpl.UIC.getMainTopStack().getChildren().clear();
+				Node n = toolPaneRegistry.get(addon.getId());
+				if (n != null) {
+					Rcpl.UIC.setActiveAddon(addon);
+					Rcpl.UIC.getMainTopStack().getChildren().add(n);
+				}
+				collapsed = true;
+				collapse(false);
+				updateUseCaseHeight();
+			}
+		});
 	}
 
 	public boolean isCollapsed() {

@@ -531,6 +531,7 @@ public class RcplUic implements IRcplUic {
 
 	}
 
+	@Override
 	public void createContent() {
 
 		Rcpl.progressMessage(this.getClass().getName() + ".createContent()");
@@ -664,6 +665,7 @@ public class RcplUic implements IRcplUic {
 
 	}
 
+	@Override
 	public IApplicationStarter getApplicationStarter() {
 		return applicationStarter;
 	}
@@ -1179,9 +1181,6 @@ public class RcplUic implements IRcplUic {
 		mainTopArea.setMaxHeight(height);
 		mainTopArea.setMinHeight(height);
 		mainTopArea.setPrefHeight(height);
-		if (height <= 30) {
-			height = 0;
-		}
 		mainTopStack.setMaxHeight(height);
 		mainTopStack.setMinHeight(height);
 		mainTopStack.setPrefHeight(height);
@@ -1219,6 +1218,7 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
+	@Override
 	public IHomePage findHomePage(EnCommandId id) {
 		for (IHomePage homePage : homepages) {
 			if (id.equals(homePage.getId())) {
@@ -1366,6 +1366,7 @@ public class RcplUic implements IRcplUic {
 		if (perspective != null) {
 			Rcpl.UIC.setPerspective(perspective);
 			getSideToolBarControl().showPerspective(perspective, false);
+			getTopToolBarControl().show(perspective.getId());
 		}
 		return false;
 	}
@@ -1704,6 +1705,7 @@ public class RcplUic implements IRcplUic {
 		return tab;
 	}
 
+	@Override
 	public void createHomePages() {
 		if (homepages.isEmpty()) {
 			for (HomePage modelHomePage : RcplSession.getDefault().getRcpl().getHomepages().getChildren()) {
