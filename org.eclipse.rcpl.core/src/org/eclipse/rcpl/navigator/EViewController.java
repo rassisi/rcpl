@@ -25,8 +25,6 @@ import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.emf.util.EMFEditFXProperties;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 
-import com.sun.javafx.scene.control.IntegerField;
-
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -189,29 +187,29 @@ abstract public class EViewController implements ITreePartControler, IRcplPlugin
 		return null;
 	}
 
-	protected Property<Number> rebind(IntegerField textField, Property<Number> oldProperty, EObject eObject,
-			EStructuralFeature feature, EditingDomain editingDomain) {
-		try {
-			if (oldProperty != null)
-				textField.valueProperty().unbindBidirectional(oldProperty);
-
-			Property<Number> property = null;
-			if (eObject != null) {
-				property = EMFEditFXProperties.value(editingDomain, eObject, feature);
-				textField.valueProperty().bindBidirectional(property);
-			}
-
-			textField.setDisable(eObject == null);
-
-			// if (eObject == null)
-			// textField.clear();
-
-			return property;
-		} catch (IllegalArgumentException ex) {
-			// ignore
-		}
-		return null;
-	}
+//	protected Property<Number> rebind(IntegerField textField, Property<Number> oldProperty, EObject eObject,
+//			EStructuralFeature feature, EditingDomain editingDomain) {
+//		try {
+//			if (oldProperty != null)
+//				textField.valueProperty().unbindBidirectional(oldProperty);
+//
+//			Property<Number> property = null;
+//			if (eObject != null) {
+//				property = EMFEditFXProperties.value(editingDomain, eObject, feature);
+//				textField.valueProperty().bindBidirectional(property);
+//			}
+//
+//			textField.setDisable(eObject == null);
+//
+//			// if (eObject == null)
+//			// textField.clear();
+//
+//			return property;
+//		} catch (IllegalArgumentException ex) {
+//			// ignore
+//		}
+//		return null;
+//	}
 
 	protected Property<BigDecimal> rebind(BigDecimalField field, Property<BigDecimal> oldProperty, EObject eObject,
 			EStructuralFeature feature, EditingDomain editingDomain, boolean in) {
