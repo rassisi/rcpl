@@ -1230,7 +1230,7 @@ public class RcplUtil {
 		setDefaultIfNull("browser/actions/browser/search_engine_default_" + index, true); //$NON-NLS-1$
 		setIfNull("browser/actions/browser/search_engine_default_" + index, true); //$NON-NLS-1$
 
-		setDefaultIfNull("infotab/actions/setup/setup_my_web_host", RcplSession.getCodeBases().get(0)); //$NON-NLS-1$ //$NON-NLS-2$
+		setDefaultIfNull("infotab/actions/setup/setup_my_web_host", RcplSession.getImageCodeBases().get(0)); //$NON-NLS-1$ //$NON-NLS-2$
 		setDefaultIfNull("infotab/actions/setup/setup_my_web_port", 8088); //$NON-NLS-1$
 
 		RcplCountry country = RcplCountry.getCountry(Locale.getDefault());
@@ -1652,7 +1652,7 @@ public class RcplUtil {
 				"http://en.wikipedia.org/wiki/" + Rcpl.TEMPLATEVAR_1 + ""); //$NON-NLS-1$ //$NON-NLS-2$
 		setIfNull("infotab/actions/setup/setup_search_url_9", ""); //$NON-NLS-1$//$NON-NLS-2$
 
-		setIfNull("infotab/actions/setup/setup_my_web_host", RcplSession.getCodeBases().get(0)); //$NON-NLS-1$ //$NON-NLS-2$
+		setIfNull("infotab/actions/setup/setup_my_web_host", RcplSession.getImageCodeBases().get(0)); //$NON-NLS-1$ //$NON-NLS-2$
 		setIfNull("infotab/actions/setup/setup_my_web_port", 8088); //$NON-NLS-1$
 
 		RcplCountry country = RcplCountry.getCountry(Locale.getDefault());

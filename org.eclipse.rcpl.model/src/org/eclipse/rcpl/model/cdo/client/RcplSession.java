@@ -155,11 +155,11 @@ public class RcplSession {
 		System.out.println(msg);
 	}
 
-	public static String BASE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
+	public static String BASE_IMAGE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 
 	public static String HOME_URL = "http://rcpl.org";
 
-	private static List<String> codeBases = new ArrayList<String>();
+	private static List<String> imageCodeBases = new ArrayList<String>();
 
 	public String CDO_SERVER;
 
@@ -237,7 +237,7 @@ public class RcplSession {
 
 	public static void addAdditionalImageCodebases(String... additionalCodeBases) {
 		if (additionalCodeBases != null) {
-			getCodeBases().addAll(Arrays.asList(additionalCodeBases));
+			getImageCodeBases().addAll(Arrays.asList(additionalCodeBases));
 		}
 	}
 
@@ -256,7 +256,7 @@ public class RcplSession {
 
 		INSTANCE = this;
 
-		testReachable(getCodeBases().get(0));
+		testReachable(getImageCodeBases().get(0));
 
 		this.CDO_SERVER = null; // "85.25.100.163:80";
 		this.DEFAULT_PASSWORD = "joffice";
@@ -876,11 +876,11 @@ public class RcplSession {
 		return eObject;
 	}
 
-	public static List<String> getCodeBases() {
-		if (codeBases.isEmpty()) {
-			codeBases.add(BASE_URL);
+	public static List<String> getImageCodeBases() {
+		if (imageCodeBases.isEmpty()) {
+			imageCodeBases.add(BASE_IMAGE_URL);
 		}
-		return codeBases;
+		return imageCodeBases;
 	}
 
 	public EList<EObject> getContents() {

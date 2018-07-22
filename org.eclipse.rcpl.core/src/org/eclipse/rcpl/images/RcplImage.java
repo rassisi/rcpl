@@ -228,10 +228,15 @@ public class RcplImage implements IImage {
 				}
 				return false;
 			}
-			for (String codeBase : RcplSession.getCodeBases()) {
+			for (String codeBase : RcplSession.getImageCodeBases()) {
+				
+				if("Information_icon".equals(id)) {
+					System.out.println();
+				}
+				
 				if (codeBase != null) {
 					URL url;
-					if (RcplSession.BASE_URL.equals(codeBase)) {
+					if (RcplSession.BASE_IMAGE_URL.equals(codeBase)) {
 						url = new URL(codeBase + "svg/" + id + ".svg");
 					} else {
 						url = new URL(codeBase + id + ".svg");
@@ -259,10 +264,10 @@ public class RcplImage implements IImage {
 				}
 				return false;
 			}
-			for (String codeBase : RcplSession.getCodeBases()) {
+			for (String codeBase : RcplSession.getImageCodeBases()) {
 				if (codeBase != null) {
 					URL url;
-					if (RcplSession.BASE_URL.equals(codeBase)) {
+					if (RcplSession.BASE_IMAGE_URL.equals(codeBase)) {
 						url = new URL(codeBase + "images/" + id + ".png");
 					} else {
 						url = new URL(codeBase + id + ".png");

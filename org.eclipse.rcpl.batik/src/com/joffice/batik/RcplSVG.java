@@ -21,7 +21,7 @@ import javafx.scene.web.WebView;
  */
 public class RcplSVG {
 
-	static String errorUrl = RcplSession.getCodeBases().get(0) + "images/save.png";
+	static String errorUrl = RcplSession.getImageCodeBases().get(0) + "images/save.png";
 
 	static WebView errorImage;
 
@@ -262,7 +262,7 @@ public class RcplSVG {
 			try {
 				URL url = new URL(URLName);
 				String host = url.getHost();
-				url = new URL(RcplSession.getCodeBases().get(0));
+				url = new URL(RcplSession.getImageCodeBases().get(0));
 				String host2 = url.getHost();
 				if (host.equals(host2)) {
 					RcplSession.getDefault().setReachable(false);

@@ -357,7 +357,7 @@ public class RcplUic implements IRcplUic {
 				});
 
 		this.urlAddressTool = new URLAddressTool(null);
-		WELCOME_URL = RcplSession.getCodeBases().get(0) + "joffice_welcome.html";
+		WELCOME_URL = RcplSession.getImageCodeBases().get(0) + "joffice_welcome.html";
 
 	}
 

@@ -37,6 +37,15 @@ public class FXTest extends Application {
 		case 4:
 			test_4();
 			break;
+		case 5:
+			test_5();
+			break;
+		case 6:
+			test_4();
+			break;
+		case 7:
+			test_4();
+			break;
 		}
 
 		if (imageView != null) {
@@ -73,4 +82,15 @@ public class FXTest extends Application {
 		imageView = img.getNode();
 	}
 
+	void test_5() {
+		RcplSession.addAdditionalImageCodebases(
+				"https://de.m.wikipedia.org/wiki/Datei:");
+		img = new RcplImage("Information_icon", 200, 200);
+		imageView = img.getNode();
+	}
+
+
+	
+	
+	
 }
