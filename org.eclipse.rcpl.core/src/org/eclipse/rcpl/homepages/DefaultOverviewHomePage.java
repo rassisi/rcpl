@@ -10,13 +10,13 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -102,6 +102,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 	/**
 	 * @param detailNode
 	 */
+	@Override
 	public void setDetailNode(Node detailNode) {
 		detailsArea.getChildren().clear();
 		if (detailNode != null) {
@@ -217,7 +218,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 
 				@Override
 				public void handle(ActionEvent event) {
-					uic.showHomePage(EnCommandId.HOME_PAGE_NEWS);
+					uic.showHomePage(HomePageType.NEW);
 				}
 			});
 			b.setPrefWidth(100);
@@ -228,7 +229,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 
 				@Override
 				public void handle(ActionEvent event) {
-					uic.showHomePage(EnCommandId.HOME_PAGE_SAMPLES);
+					uic.showHomePage(HomePageType.SAMPLES);
 				}
 			});
 			b.setPrefWidth(100);
@@ -251,8 +252,8 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 	}
 
 	@Override
-	public EnCommandId getId() {
-		return EnCommandId.HOME_PAGE_OVERVIEW;
+	public HomePageType getId() {
+		return HomePageType.OVERVIEW;
 	}
 
 }

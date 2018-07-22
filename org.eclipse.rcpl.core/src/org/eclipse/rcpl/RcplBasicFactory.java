@@ -18,7 +18,6 @@ import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
 import org.eclipse.rcpl.homepages.DefaultAboutHomePage;
 import org.eclipse.rcpl.homepages.DefaultContactUsHomePage;
 import org.eclipse.rcpl.homepages.DefaultDocumentHomePage;
-import org.eclipse.rcpl.homepages.DefaultDonationsHomePage;
 import org.eclipse.rcpl.homepages.DefaultHTMLEditorHomePage;
 import org.eclipse.rcpl.homepages.DefaultHomePage;
 import org.eclipse.rcpl.homepages.DefaultNewHomePage;
@@ -58,11 +57,7 @@ import javafx.scene.layout.StackPane;
  * @author ramin
  * 
  */
-public class BasicFactory implements IRcplFactory {
-
-	// public IResizableStackPane createResizableStackPane(Stage stage) {
-	// return new ResizableStackPane(stage);
-	// }
+public class RcplBasicFactory implements IRcplFactory {
 
 	@Override
 	public IButton createButton(String id, String name, String toolTip, String imageName, boolean toggle,
@@ -221,13 +216,11 @@ public class BasicFactory implements IRcplFactory {
 
 	@Override
 	public IEditor createEditor(File file, Tab tab, HashMap<String, String> wordReplacements, boolean onePage) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public IEditor createEditor(Tab tab, boolean isBrowser) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -239,44 +232,32 @@ public class BasicFactory implements IRcplFactory {
 	@Override
 	public IHomePage createHomePage(IRcplUic uic, HomePage modelHomePage) {
 
-//		import org.eclipse.rcpl.homepages.DefaultContactUsHomePage;
-//		import org.eclipse.rcpl.homepages.DefaultHomePage;
-//		import org.eclipse.rcpl.homepages.DefaultHTMLHomePage;
-//		import org.eclipse.rcpl.homepages.DefaultHTMLReadOnlyHomePage;
-//		import org.eclipse.rcpl.homepages.DefaultNewHomePage;
-//		import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
-//		import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
-//		import org.eclipse.rcpl.homepages.DefaultPreferencesHomePage;
-//		import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
-//		import org.eclipse.rcpl.homepages.DefaultWebHomePage;
-
-		EnCommandId id = EnCommandId.findCommandId(modelHomePage.getId());
-		switch (id) {
-		case HOME_PAGE_ABOUT:
+		switch (modelHomePage.getType()) {
+		case ABOUT:
 			return new DefaultAboutHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_CONTACT_US:
+		case CONTACT_US:
 			return new DefaultContactUsHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_DOCUMENT:
+		case DOCUMENT:
 			return new DefaultDocumentHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_DONATIONS:
-			return new DefaultDonationsHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_HTML_EDITOR:
+//		case DONAT:
+//			return new DefaultDonationsHomePage(uic, modelHomePage, null);
+		case HTML_EDITOR:
 			return new DefaultHTMLEditorHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_NEWS:
+		case NEWS:
 			return new DefaultNewHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_OVERVIEW:
+		case OVERVIEW:
 			return new DefaultOverviewHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_PERSPECTIVES:
+		case PERSPECTIVES:
 			return new DefaultPerspectiveHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_PREFERENCES:
+		case PREFERENCES:
 			return new DefaultPreferencesHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_SAMPLES:
+		case SAMPLES:
 			return new DefaultSamplesHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_TEMPLATES:
+		case TEMPLATES:
 			return new DefaultTemplatesHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_TUTORIALS:
+		case TUTORIALS:
 			return new DefaultTutorialsHomePage(uic, modelHomePage, null);
-		case HOME_PAGE_WHATS_NEW:
+		case WHATS_NEW:
 			return new DefaultWhatsNewHomePage(uic, modelHomePage, null); // TODO
 		default:
 			return new DefaultHomePage(uic, modelHomePage, null);

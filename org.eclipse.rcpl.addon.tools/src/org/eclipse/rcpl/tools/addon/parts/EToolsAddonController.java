@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnCustomToolIds;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IEditor;
@@ -29,6 +28,7 @@ import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -170,6 +170,7 @@ public class EToolsAddonController extends EViewController {
 		}
 	}
 
+	@Override
 	public void updateBindings(EObject eObject, EditingDomain editingDomain) {
 		// General
 
@@ -312,6 +313,7 @@ public class EToolsAddonController extends EViewController {
 		addToolIdListener();
 	}
 
+	@Override
 	public void doInit(AbstractRcplAddon uc) {
 		Node node1 = new EToolsTreePart((EToolsAddon) uc).getNode();
 		getViewerBox().getChildren().add(node1);
@@ -440,6 +442,7 @@ public class EToolsAddonController extends EViewController {
 		}
 	}
 
+	@Override
 	protected void addCustomFields() {
 		if (gridXField == null) {
 			gridXField = new IntegerField();
@@ -817,12 +820,12 @@ public class EToolsAddonController extends EViewController {
 	}
 
 	@Override
-	public void showHomePage(EnCommandId id) {
+	public void showHomePage(HomePageType id) {
 
 	}
 
 	@Override
-	public IHomePage findHomePage(EnCommandId id) {
+	public IHomePage findHomePage(HomePageType id) {
 		return null;
 	}
 

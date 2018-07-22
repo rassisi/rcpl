@@ -96,6 +96,15 @@
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/PREFERENCES"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/ABOUT"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/CUSTOM"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/NEW"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/WHATS_NEW"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/DOCUMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/HTML_EDITOR"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/HOME"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/TEMPLATES"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/TUTORIALS"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/HELP"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/DONATIONS"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//DocumentType">
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//DocumentType/WORD"/>

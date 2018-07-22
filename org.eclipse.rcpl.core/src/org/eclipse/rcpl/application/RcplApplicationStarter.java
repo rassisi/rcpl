@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.rcpl.application;
 
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplFactory;
@@ -22,6 +21,7 @@ import org.eclipse.rcpl.internal.config.RcplConfig;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 
@@ -89,7 +89,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 					windowAdvisor.openMainWindow();
 				}
 				uic.createHomePages();
-				uic.showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
+				uic.showHomePage(HomePageType.OVERVIEW);
 				uic.updateStartMenuButton();
 				RCPLModel.log(this, "User dir: " + RCPLModel.mobileProvider.getApplicationDir().toString());
 
@@ -113,10 +113,12 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 		return new RcplUic(this);
 	}
 
+	@Override
 	public IRcplApplicationProvider getRcplApplicationProvider() {
 		return applicationProvider;
 	}
 
+	@Override
 	public String getVersionString() {
 		RCPL rcpl = RcplSession.getDefault().getRcpl();
 		return rcpl.getName() + " Version " + rcpl.getVersionMajor() + "." + rcpl.getVersionMinor() + "."

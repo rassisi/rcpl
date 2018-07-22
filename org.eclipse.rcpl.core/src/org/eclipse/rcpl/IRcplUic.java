@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import org.eclipse.rcpl.login.RcplLogin;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
@@ -26,7 +27,7 @@ public interface IRcplUic {
 
 	void createHomePages();
 
-	IHomePage findHomePage(EnCommandId id);
+	IHomePage findHomePage(HomePageType id);
 
 	void actionAddPresentationTab();
 
@@ -150,5 +151,5 @@ public interface IRcplUic {
 
 	IApplicationStarter getApplicationStarter();
 
-	void showHomePage(EnCommandId id);
+	void showHomePage(HomePageType id);
 }

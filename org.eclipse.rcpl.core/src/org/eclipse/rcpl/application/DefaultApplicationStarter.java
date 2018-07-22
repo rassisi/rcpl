@@ -1,6 +1,6 @@
 package org.eclipse.rcpl.application;
 
-import org.eclipse.rcpl.BasicFactory;
+import org.eclipse.rcpl.RcplBasicFactory;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplFactory;
 import org.eclipse.rcpl.IToolFactory;
@@ -55,7 +55,7 @@ public class DefaultApplicationStarter extends RcplApplicationStarter {
 
 	@Override
 	protected IRcplFactory createRcplFactory() {
-		return new BasicFactory();
+		return new RcplBasicFactory();
 	}
 
 }

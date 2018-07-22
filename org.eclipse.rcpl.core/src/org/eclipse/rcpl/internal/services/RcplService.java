@@ -15,6 +15,7 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.service.RcplAbstractService;
 import org.eclipse.rcpl.ui.action.RcplCommand;
@@ -130,38 +131,38 @@ public class RcplService extends RcplAbstractService implements IService {
 	private boolean executeHomePages(ICommand command) {
 		switch (command.getCommandId()) {
 		case showStartMenu:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
+			Rcpl.UIC.showHomePage(HomePageType.OVERVIEW);
 			break;
-		case HOME_PAGE_OVERVIEW:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
-			break;
-		case HOME_PAGE_PREFERENCES:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_PREFERENCES);
-			break;
-		case HOME_PAGE_SAMPLES:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_SAMPLES);
-			break;
-		case HOME_PAGE_NEWS:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_NEWS);
-			break;
-		case HOME_PAGE_TUTORIALS:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_TUTORIALS);
-			break;
-		case HOME_PAGE_DONATIONS:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_DONATIONS);
-			break;
-		case HOME_PAGE_WHATS_NEW:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_WHATS_NEW);
-			break;
-		case HOME_PAGE_ABOUT:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_ABOUT);
-			break;
-		case HOME_PAGE_TEMPLATES:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_TEMPLATES);
-			break;
-		case HOME_PAGE_CONTACT_US:
-			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_CONTACT_US);
-			break;
+//		case HOME_PAGE_OVERVIEW:
+//			Rcpl.UIC.showHomePage(HomePageType.OVERVIEW);
+//			break;
+//		case HOME_PAGE_PREFERENCES:
+//			Rcpl.UIC.showHomePage(HomePageType.PREFERENCES);
+//			break;
+//		case HOME_PAGE_SAMPLES:
+//			Rcpl.UIC.showHomePage(HomePageType.SAMPLES);
+//			break;
+//		case HOME_PAGE_NEWS:
+//			Rcpl.UIC.showHomePage(HomePageType.NEW);
+//			break;
+//		case HOME_PAGE_TUTORIALS:
+//			Rcpl.UIC.showHomePage(HomePageType.TUTORIALS);
+//			break;
+//		case HOME_PAGE_DONATIONS:
+//			Rcpl.UIC.showHomePage(HomePageType.DONATIONS);
+//			break;
+//		case HOME_PAGE_WHATS_NEW:
+//			Rcpl.UIC.showHomePage(HomePageType.WHATS_NEW);
+//			break;
+//		case HOME_PAGE_ABOUT:
+//			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_ABOUT);
+//			break;
+//		case HOME_PAGE_TEMPLATES:
+//			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_TEMPLATES);
+//			break;
+//		case HOME_PAGE_CONTACT_US:
+//			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_CONTACT_US);
+//			break;
 		default:
 			return false;
 		}

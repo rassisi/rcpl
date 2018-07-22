@@ -13,10 +13,10 @@ package org.eclipse.rcpl.homepages;
 import java.io.IOException;
 import java.net.URL;
 
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,8 +54,8 @@ public class DefaultContactUsHomePage extends AbstractHomePage {
 	}
 
 	@Override
-	public EnCommandId getId() {
-		return EnCommandId.HOME_PAGE_CONTACT_US;
+	public HomePageType getId() {
+		return HomePageType.CONTACT_US;
 	}
 
 	@Override

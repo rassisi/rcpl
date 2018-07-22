@@ -10,11 +10,11 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -69,7 +69,7 @@ public abstract class AbstractHomePage implements IHomePage {
 
 			@Override
 			public void handle(SwipeEvent event) {
-				uic.showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
+				uic.showHomePage(HomePageType.OVERVIEW);
 			}
 		});
 
@@ -164,6 +164,7 @@ public abstract class AbstractHomePage implements IHomePage {
 	public void refresh() {
 	}
 
+	@Override
 	public void setDetailNode(Node node) {
 		getContentPane().getChildren().add(node);
 	}

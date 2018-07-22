@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ITool;
@@ -31,9 +30,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -115,71 +111,71 @@ public class RcplTopToolBar implements ITopToolbar {
 	 * Home Tab
 	 */
 	private void processTopBarHomeGroups() {
-		final HBox pane = new HBox();
-
-		pane.setPrefWidth(0);
-		pane.setMinWidth(0);
-
-		pane.setId("topBarHBox");
-		Rcpl.UIC.getMainTopStack().getChildren().add(pane);
-
-		registerToolPane(RcplKey.HOME_TAB.name(), pane);
-
-		createCustomRibbonGroup(pane, "My Cloud", "Show Documents in the Cloud", EnCommandId.HOME_PAGE_OVERVIEW.name(),
-				"internet_cloud", true, null);
-
-		createCustomRibbonGroup(pane, "New", "New Document", "homeShowNew", "office_new", false, null);
-		createCustomRibbonGroup(pane, "Samples", "Show Samples Page", EnCommandId.HOME_PAGE_SAMPLES.name(),
-				"office_samples", false, null);
-
-		if (Rcpl.isBigDisplay()) {
-			if (!Rcpl.isMobile()) {
-				createCustomRibbonGroup(pane, "What's New", "What's New", EnCommandId.HOME_PAGE_WHATS_NEW.name(),
-						"office_whatsnew", false, null);
-			}
-			createCustomRibbonGroup(pane, "Preferences", "Preferences", EnCommandId.HOME_PAGE_PREFERENCES.name(),
-					"office_preferences", false, null);
-			createCustomRibbonGroup(pane, "Contact Us", "Contact Us", EnCommandId.HOME_PAGE_CONTACT_US.name(),
-					"contact_us", false, null);
-			if (!Rcpl.isMobile()) {
-				createCustomRibbonGroup(pane, "Donation", "Show Donation Page", EnCommandId.HOME_PAGE_DONATIONS.name(),
-						"donation", false, null);
-			}
-			createCustomRibbonGroup(pane, "Help", "Show Help Page", EnCommandId.HOME_PAGE_TUTORIALS.name(),
-					"office_help", false, null);
-			createCustomRibbonGroup(pane, "About", "About", EnCommandId.HOME_PAGE_ABOUT.name(), "joffice", false, null);
-		}
-
-		pane.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
-
-				if (inHomeRibbonChange) {
-					return;
-				}
-
-				inHomeRibbonChange = true;
-
-				double ribbonWidth = homeRibbons.get(0).getBoundsInParent().getWidth() + 6;
-
-				pane.getChildren().clear();
-
-				double x = 25;
-
-				for (Node n : homeRibbons) {
-					x += ribbonWidth;
-					if (x <= newValue.getWidth()) {
-						pane.getChildren().add(n);
-						pane.layout();
-						x += 12;
-					}
-
-				}
-				inHomeRibbonChange = false;
-
-			}
-		});
+//		final HBox pane = new HBox();
+//
+//		pane.setPrefWidth(0);
+//		pane.setMinWidth(0);
+//
+//		pane.setId("topBarHBox");
+//		Rcpl.UIC.getMainTopStack().getChildren().add(pane);
+//
+//		registerToolPane(RcplKey.HOME_TAB.name(), pane);
+//
+//		createCustomRibbonGroup(pane, "My Cloud", "Show Documents in the Cloud", EnCommandId.HOME_PAGE_OVERVIEW.name(),
+//				"internet_cloud", true, null);
+//
+//		createCustomRibbonGroup(pane, "New", "New Document", "homeShowNew", "office_new", false, null);
+//		createCustomRibbonGroup(pane, "Samples", "Show Samples Page", EnCommandId.HOME_PAGE_SAMPLES.name(),
+//				"office_samples", false, null);
+//
+//		if (Rcpl.isBigDisplay()) {
+//			if (!Rcpl.isMobile()) {
+//				createCustomRibbonGroup(pane, "What's New", "What's New", EnCommandId.HOME_PAGE_WHATS_NEW.name(),
+//						"office_whatsnew", false, null);
+//			}
+//			createCustomRibbonGroup(pane, "Preferences", "Preferences", EnCommandId.HOME_PAGE_PREFERENCES.name(),
+//					"office_preferences", false, null);
+//			createCustomRibbonGroup(pane, "Contact Us", "Contact Us", EnCommandId.HOME_PAGE_CONTACT_US.name(),
+//					"contact_us", false, null);
+//			if (!Rcpl.isMobile()) {
+//				createCustomRibbonGroup(pane, "Donation", "Show Donation Page", EnCommandId.HOME_PAGE_DONATIONS.name(),
+//						"donation", false, null);
+//			}
+//			createCustomRibbonGroup(pane, "Help", "Show Help Page", EnCommandId.HOME_PAGE_TUTORIALS.name(),
+//					"office_help", false, null);
+//			createCustomRibbonGroup(pane, "About", "About", EnCommandId.HOME_PAGE_ABOUT.name(), "joffice", false, null);
+//		}
+//
+//		pane.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {
+//
+//			@Override
+//			public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
+//
+//				if (inHomeRibbonChange) {
+//					return;
+//				}
+//
+//				inHomeRibbonChange = true;
+//
+//				double ribbonWidth = homeRibbons.get(0).getBoundsInParent().getWidth() + 6;
+//
+//				pane.getChildren().clear();
+//
+//				double x = 25;
+//
+//				for (Node n : homeRibbons) {
+//					x += ribbonWidth;
+//					if (x <= newValue.getWidth()) {
+//						pane.getChildren().add(n);
+//						pane.layout();
+//						x += 12;
+//					}
+//
+//				}
+//				inHomeRibbonChange = false;
+//
+//			}
+//		});
 	}
 
 	private void processTopBarMainGroups(String type, IRcplAddon useCase) {

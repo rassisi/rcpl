@@ -80,33 +80,33 @@ public enum EnCommandId {
 
 	characterStyle(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	HOME_PAGE_OVERVIEW(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_PERSPECTIVES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_TUTORIALS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_DONATIONS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_SAMPLES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_NEWS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_WHATS_NEW(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_ABOUT(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_PREFERENCES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_TEMPLATES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_HTML_EDITOR(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_HTML(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_CONTACT_US(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	HOME_PAGE_DOCUMENT(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//	HOME_PAGE_OVERVIEW(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_PERSPECTIVES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_TUTORIALS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_DONATIONS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_SAMPLES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_NEWS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_WHATS_NEW(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_ABOUT(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_PREFERENCES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_TEMPLATES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_HTML_EDITOR(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_HTML(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_CONTACT_US(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+//
+//	HOME_PAGE_DOCUMENT(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
 	collapse_all(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 

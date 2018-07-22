@@ -13,10 +13,10 @@ package org.eclipse.rcpl.homepages;
 import java.io.File;
 import java.util.HashMap;
 
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.Node;
@@ -114,8 +114,8 @@ public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 	}
 
 	@Override
-	public EnCommandId getId() {
-		return EnCommandId.HOME_PAGE_HTML;
+	public HomePageType getId() {
+		return HomePageType.HOME;
 	}
 
 	@Override

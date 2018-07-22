@@ -386,6 +386,15 @@
     <eLiterals name="PREFERENCES" value="11"/>
     <eLiterals name="ABOUT" value="12"/>
     <eLiterals name="CUSTOM" value="13"/>
+    <eLiterals name="NEW" value="14"/>
+    <eLiterals name="WHATS_NEW" value="15"/>
+    <eLiterals name="DOCUMENT" value="16"/>
+    <eLiterals name="HTML_EDITOR" value="17"/>
+    <eLiterals name="HOME" value="18"/>
+    <eLiterals name="TEMPLATES" value="19"/>
+    <eLiterals name="TUTORIALS" value="20"/>
+    <eLiterals name="HELP" value="21"/>
+    <eLiterals name="DONATIONS" value="22"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Documents" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"

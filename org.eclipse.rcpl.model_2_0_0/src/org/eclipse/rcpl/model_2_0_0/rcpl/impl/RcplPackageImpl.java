@@ -3085,6 +3085,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		addEEnumLiteral(homePageTypeEEnum, HomePageType.PREFERENCES);
 		addEEnumLiteral(homePageTypeEEnum, HomePageType.ABOUT);
 		addEEnumLiteral(homePageTypeEEnum, HomePageType.CUSTOM);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.NEW);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.WHATS_NEW);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.DOCUMENT);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.HTML_EDITOR);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.HOME);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.TEMPLATES);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.TUTORIALS);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.HELP);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.DONATIONS);
 
 		initEEnum(documentTypeEEnum, DocumentType.class, "DocumentType");
 		addEEnumLiteral(documentTypeEEnum, DocumentType.WORD);

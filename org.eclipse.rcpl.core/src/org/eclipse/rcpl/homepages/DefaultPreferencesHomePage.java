@@ -10,10 +10,10 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
@@ -49,6 +49,7 @@ public class DefaultPreferencesHomePage extends AbstractHomePage {
 	/**
 	 * @param detailNode
 	 */
+	@Override
 	public void setDetailNode(Node detailNode) {
 		borderPane.setCenter(detailNode);
 		borderPane.layout();
@@ -63,8 +64,8 @@ public class DefaultPreferencesHomePage extends AbstractHomePage {
 	}
 
 	@Override
-	public EnCommandId getId() {
-		return EnCommandId.HOME_PAGE_PREFERENCES;
+	public HomePageType getId() {
+		return HomePageType.PREFERENCES;
 	}
 
 	@Override

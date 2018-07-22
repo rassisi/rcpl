@@ -1,5 +1,7 @@
 package org.eclipse.rcpl;
 
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
+
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 
@@ -17,7 +19,7 @@ public interface IHomePage {
 
 	void refresh();
 
-	EnCommandId getId();
+	HomePageType getId();
 
 	void setDetailNode(Node node);
 

@@ -25,7 +25,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.rcpl.DelayedExecution;
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IDocument;
@@ -49,6 +48,7 @@ import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -165,49 +165,6 @@ public class RcplUic implements IRcplUic {
 	@FXML
 	protected StackPane mainTopStack;
 
-	// private void createQuickToolButtons() {
-	//
-	// if (!Rcpl.isBigDisplay()) {
-	// buttonHome = Rcpl.factory.createButton("", "", "Home", "home", false, new
-	// IButtonListener() {
-	//
-	// @Override
-	// public void doAction() {
-	// showOverviewPage();
-	// }
-	// }, true);
-	// }
-	//
-	// saveButton = Rcpl.factory.createButton("", "", "Save", "save", false, new
-	// IButtonListener() {
-	//
-	// @Override
-	// public void doAction() {
-	// actionSaveDocument();
-	// }
-	// }, true);
-	//
-	// saveAsButton = Rcpl.factory.createButton("", "", "Save As...", "save_as",
-	// false, new IButtonListener() {
-	//
-	// @Override
-	// public void doAction() {
-	// actionSaveDocumentAs();
-	// }
-	// }, true);
-	//
-	// // buttonLogout = Rcpl.factory.createButton("logout", "Log Out", "Log
-	// // Out", "logout", false,
-	// // new IButtonListener() {
-	// //
-	// // @Override
-	// // public void doAction() {
-	// // actionLogout();
-	// //
-	// // }
-	// // }, true);
-	// }
-
 	@FXML
 	protected HBox mainBottomArea;
 
@@ -309,6 +266,10 @@ public class RcplUic implements IRcplUic {
 		this(rcplApplicationStarter, "Rcpl");
 	}
 
+	/**
+	 * @param rcplApplicationStarter
+	 * @param id
+	 */
 	public RcplUic(IApplicationStarter rcplApplicationStarter, String id) {
 
 		this.applicationStarter = rcplApplicationStarter;
@@ -331,7 +292,7 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void handle(ActionEvent event) {
-				showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
+				showHomePage(HomePageType.OVERVIEW);
 			}
 		});
 		Button clearButton = new Button("clear");
@@ -476,7 +437,7 @@ public class RcplUic implements IRcplUic {
 			final IDocument doc = editor.getDocument();
 
 			if (internalTabPane.getTabs().isEmpty()) {
-				showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
+				showHomePage(HomePageType.OVERVIEW);
 			}
 
 			new DelayedExecution(200) {
@@ -492,7 +453,7 @@ public class RcplUic implements IRcplUic {
 
 									@Override
 									public void doRun() {
-										showHomePage(EnCommandId.align_center.HOME_PAGE_OVERVIEW);
+										showHomePage(HomePageType.OVERVIEW);
 									}
 								};
 
@@ -984,7 +945,7 @@ public class RcplUic implements IRcplUic {
 		if (activeHomePage == null) {
 			return false;
 		}
-		return EnCommandId.HOME_PAGE_OVERVIEW.equals(activeHomePage.getId());
+		return HomePageType.OVERVIEW.equals(activeHomePage.getId());
 	}
 
 	@Override
@@ -1202,9 +1163,9 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void showHomePage(EnCommandId id) {
+	public void showHomePage(HomePageType id) {
 		IHomePage homePage = findHomePage(id);
-		if (EnCommandId.HOME_PAGE_HTML_EDITOR.equals(id)) {
+		if (HomePageType.HTML_EDITOR.equals(id)) {
 			showHtmlEditor();
 			return;
 		}
@@ -1212,14 +1173,14 @@ public class RcplUic implements IRcplUic {
 		setContent(homePage.getNode());
 		updateButtons(true);
 		activeHomePage = homePage;
-		if (EnCommandId.HOME_PAGE_OVERVIEW.equals(id)) {
+		if (HomePageType.OVERVIEW.equals(id)) {
 			actionPerspectiveOverview();
 			return;
 		}
 	}
 
 	@Override
-	public IHomePage findHomePage(EnCommandId id) {
+	public IHomePage findHomePage(HomePageType id) {
 		for (IHomePage homePage : homepages) {
 			if (id.equals(homePage.getId())) {
 				return homePage;
@@ -1844,7 +1805,7 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void handle(ActionEvent event) {
-				showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
+				showHomePage(HomePageType.OVERVIEW);
 			}
 		});
 

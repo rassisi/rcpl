@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -30,8 +30,8 @@ public class DefaultHomePage extends AbstractHomePage {
 	}
 
 	@Override
-	public EnCommandId getId() {
-		return EnCommandId.HOME_PAGE_OVERVIEW;
+	public HomePageType getId() {
+		return HomePageType.OVERVIEW;
 	}
 
 	@Override

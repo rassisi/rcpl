@@ -26,12 +26,12 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IURLAddressTool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.favicon.FavIconHandler;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.w3c.dom.NamedNodeMap;
@@ -167,7 +167,7 @@ public class URLAddressTool extends RcplTool implements IURLAddressTool {
 			@Override
 			protected void doAction() {
 				if (isSelected()) {
-					Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_HTML_EDITOR);
+					Rcpl.UIC.showHomePage(HomePageType.HTML_EDITOR);
 				} else {
 					Rcpl.UIC.showBrowser();
 				}

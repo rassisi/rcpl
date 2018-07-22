@@ -24,7 +24,6 @@ import org.eclipse.fx.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleException;
-import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorListener;
 import org.eclipse.rcpl.INavigatorTreeManager;
@@ -40,6 +39,7 @@ import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
@@ -90,6 +90,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	public DefaultNavigatorTreePart() {
 	}
 
+	@Override
 	public void init(Pane detailPane, Tool tool, boolean showRoot) {
 		this.tool = tool;
 		Rcpl.getEditorListeners().add(this);
@@ -197,7 +198,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	 */
 	protected void setDetailNode(Node node) {
 		try {
-			IHomePage homePage = Rcpl.UIC.findHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
+			IHomePage homePage = Rcpl.UIC.findHomePage(HomePageType.OVERVIEW);
 			homePage.setDetailNode(node);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -291,6 +292,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		}
 	}
 
+	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void refresh() {
 
@@ -537,6 +539,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		return treeView;
 	}
 
+	@Override
 	public EObject getSelectedObject() {
 		return selectedObject;
 	}

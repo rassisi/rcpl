@@ -340,8 +340,6 @@ public class JOButton extends RcplTool implements IButton {
 				removeToggleButtonListener();
 				EnCommandId cmd = EnCommandId.valueOf(id);
 				switch (cmd) {
-				case HOME_PAGE_CONTACT_US:
-					break;
 				case INSERT_PARAGRAPH:
 					break;
 				case NO_COMMAND:
@@ -375,24 +373,6 @@ public class JOButton extends RcplTool implements IButton {
 					break;
 
 				case foregroundColor:
-					break;
-				case HOME_PAGE_ABOUT:
-					break;
-				case HOME_PAGE_DONATIONS:
-					break;
-				case HOME_PAGE_NEWS:
-					break;
-				case HOME_PAGE_OVERVIEW:
-					break;
-				case HOME_PAGE_PREFERENCES:
-					break;
-				case HOME_PAGE_SAMPLES:
-					break;
-				case HOME_PAGE_TEMPLATES:
-					break;
-				case HOME_PAGE_TUTORIALS:
-					break;
-				case HOME_PAGE_WHATS_NEW:
 					break;
 				case insertDrawing:
 					break;
