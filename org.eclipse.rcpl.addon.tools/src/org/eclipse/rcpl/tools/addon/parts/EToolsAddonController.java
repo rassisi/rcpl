@@ -269,17 +269,17 @@ public class EToolsAddonController extends EViewController {
 				imageSize.setText(width + " / " + height);
 			}
 
-			gridXFieldProperty = rebind(gridXField, gridXFieldProperty, eObject,
-					RcplPackage.eINSTANCE.getAbstractTool_GridX(), editingDomain);
+//			gridXFieldProperty = rebind(gridXField, gridXFieldProperty, eObject,
+//					RcplPackage.eINSTANCE.getAbstractTool_GridX(), editingDomain);
 
-			gridYFieldProperty = rebind(gridYField, gridYFieldProperty, eObject,
-					RcplPackage.eINSTANCE.getAbstractTool_GridY(), editingDomain);
+//			gridYFieldProperty = rebind(gridYField, gridYFieldProperty, eObject,
+//					RcplPackage.eINSTANCE.getAbstractTool_GridY(), editingDomain);
 
-			spanXFieldProperty = rebind(spanXField, spanXFieldProperty, eObject,
-					RcplPackage.eINSTANCE.getAbstractTool_SpanX(), editingDomain);
+//			spanXFieldProperty = rebind(spanXField, spanXFieldProperty, eObject,
+//					RcplPackage.eINSTANCE.getAbstractTool_SpanX(), editingDomain);
 
-			spanYFieldProperty = rebind(spanYField, spanYFieldProperty, eObject,
-					RcplPackage.eINSTANCE.getAbstractTool_SpanY(), editingDomain);
+//			spanYFieldProperty = rebind(spanYField, spanYFieldProperty, eObject,
+//					RcplPackage.eINSTANCE.getAbstractTool_SpanY(), editingDomain);
 
 			addRecreationListener(gridXFieldProperty);
 			addRecreationListener(gridYFieldProperty);
