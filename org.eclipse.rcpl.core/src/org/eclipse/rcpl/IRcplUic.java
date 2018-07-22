@@ -22,6 +22,10 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	void createContent();
+
+	void createHomePages();
+
 	IHomePage findHomePage(EnCommandId id);
 
 	void actionAddPresentationTab();
@@ -35,8 +39,6 @@ public interface IRcplUic {
 	void addtoApplicationStack(StackPane contentGroup);
 
 	void collapseAll();
-
-	void createContent();
 
 	void expandAllToolBars();
 
@@ -55,8 +57,6 @@ public interface IRcplUic {
 	IEditor getEditor();
 
 	Node getFocusOwner();
-
-	List<IHomePage> getHomepages();
 
 	HBox getMainBottomArea();
 
@@ -82,7 +82,7 @@ public interface IRcplUic {
 
 	ITopToolbar getTopToolBarControl();
 
-	IRcplAddon getUseCase();
+	IRcplAddon getActiveAddon();
 
 	void handleThemeDefault(ActionEvent event);
 
@@ -112,7 +112,7 @@ public interface IRcplUic {
 
 	void setPerspective(Perspective perspective, IRcplAddon useCase);
 
-	void setUseCase(IRcplAddon useCase);
+	void setActiveAddon(IRcplAddon useCase);
 
 	void setContent(IEditor editor);
 

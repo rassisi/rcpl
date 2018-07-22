@@ -253,6 +253,14 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 				return createDocumentAdapter();
 			}
 			@Override
+			public Adapter caseKeyValue(KeyValue object) {
+				return createKeyValueAdapter();
+			}
+			@Override
+			public Adapter caseKeyValues(KeyValues object) {
+				return createKeyValuesAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -927,6 +935,34 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDocumentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue <em>Key Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue
+	 * @generated
+	 */
+	public Adapter createKeyValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues <em>Key Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues
+	 * @generated
+	 */
+	public Adapter createKeyValuesAdapter() {
 		return null;
 	}
 

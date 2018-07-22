@@ -32,7 +32,7 @@ public class DefaultAboutHomePage extends AbstractHomePage implements IHomePage 
 
 	@Override
 	public EnCommandId getId() {
-		return EnCommandId.HOME_PAGE_OVERVIEW;
+		return EnCommandId.HOME_PAGE_ABOUT;
 	}
 
 	@Override

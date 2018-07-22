@@ -17,11 +17,18 @@ import org.eclipse.rcpl.app.toolcontrols.RcplSideToolBar;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
 import org.eclipse.rcpl.homepages.DefaultAboutHomePage;
 import org.eclipse.rcpl.homepages.DefaultContactUsHomePage;
-import org.eclipse.rcpl.homepages.DefaultHTMLHomePage;
+import org.eclipse.rcpl.homepages.DefaultDocumentHomePage;
+import org.eclipse.rcpl.homepages.DefaultDonationsHomePage;
+import org.eclipse.rcpl.homepages.DefaultHTMLEditorHomePage;
+import org.eclipse.rcpl.homepages.DefaultHomePage;
 import org.eclipse.rcpl.homepages.DefaultNewHomePage;
 import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
 import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
 import org.eclipse.rcpl.homepages.DefaultPreferencesHomePage;
+import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
+import org.eclipse.rcpl.homepages.DefaultTemplatesHomePage;
+import org.eclipse.rcpl.homepages.DefaultTutorialsHomePage;
+import org.eclipse.rcpl.homepages.DefaultWhatsNewHomePage;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.resources.JOColorProvider;
@@ -250,11 +257,11 @@ public class BasicFactory implements IRcplFactory {
 		case HOME_PAGE_CONTACT_US:
 			return new DefaultContactUsHomePage(uic, modelHomePage, null);
 		case HOME_PAGE_DOCUMENT:
-			return new DefaultAboutHomePage(uic, modelHomePage, null);
+			return new DefaultDocumentHomePage(uic, modelHomePage, null);
 		case HOME_PAGE_DONATIONS:
-			return new DefaultAboutHomePage(uic, modelHomePage, null);
+			return new DefaultDonationsHomePage(uic, modelHomePage, null);
 		case HOME_PAGE_HTML_EDITOR:
-			return new DefaultHTMLHomePage(uic, modelHomePage, null, "", null);
+			return new DefaultHTMLEditorHomePage(uic, modelHomePage, null);
 		case HOME_PAGE_NEWS:
 			return new DefaultNewHomePage(uic, modelHomePage, null);
 		case HOME_PAGE_OVERVIEW:
@@ -264,15 +271,15 @@ public class BasicFactory implements IRcplFactory {
 		case HOME_PAGE_PREFERENCES:
 			return new DefaultPreferencesHomePage(uic, modelHomePage, null);
 		case HOME_PAGE_SAMPLES:
-			return new DefaultAboutHomePage(uic, modelHomePage, null);
+			return new DefaultSamplesHomePage(uic, modelHomePage, null);
 		case HOME_PAGE_TEMPLATES:
-			return new DefaultAboutHomePage(uic, modelHomePage, null);
+			return new DefaultTemplatesHomePage(uic, modelHomePage, null);
 		case HOME_PAGE_TUTORIALS:
-			return new DefaultAboutHomePage(uic, modelHomePage, null);
+			return new DefaultTutorialsHomePage(uic, modelHomePage, null);
 		case HOME_PAGE_WHATS_NEW:
-			return new DefaultAboutHomePage(uic, modelHomePage, null);
+			return new DefaultWhatsNewHomePage(uic, modelHomePage, null); // TODO
 		default:
-			return new DefaultAboutHomePage(uic, modelHomePage, null);
+			return new DefaultHomePage(uic, modelHomePage, null);
 
 		}
 	}

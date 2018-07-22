@@ -555,313 +555,259 @@ public class EToolsAddonController extends EViewController {
 
 	@Override
 	public Perspective findPerspective(String type) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public void actionAddPresentationTab() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void actionLogout() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void actionOpen() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void actionOpenLast() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void addtoApplicationStack(StackPane contentGroup) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void collapseAll() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void createContent() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void expandAllToolBars() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void expandBottomAra(boolean expand) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void expandLeftAra(boolean expand) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void expandTopAra(boolean epand) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public IRcplAddon findRcplAddons(String id) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public WebView getBrowser() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public IEditor getEditor() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public Node getFocusOwner() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public List<IHomePage> getHomepages() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public INavigatorAddon getNavigator(Tool tool) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Perspective getPerspective() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Stage getStage() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public IRcplAddon getUseCase() {
-		// TODO Auto-generated method stub
+	public IRcplAddon getActiveAddon() {
 		return null;
 	}
 
 	@Override
 	public void handleThemeDefault(ActionEvent event) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void init(BorderPane parent) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean initSession(RcplLogin login) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
 	public void initStyles() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean isViewer() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
 	public void openDocument(File file) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void openTemplate(String name, String tabName) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void recreateSideBar() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void recreateTopBar() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void restorePerspective() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void restoreTab() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setPerspective(Perspective perspective, IRcplAddon useCase) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void setUseCase(IRcplAddon useCase) {
-		// TODO Auto-generated method stub
+	public void setActiveAddon(IRcplAddon useCase) {
 
 	}
 
 	@Override
 	public void setContent(IEditor editor) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setContent(Node node) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setDebugText(String text) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setInhibitUI(boolean inhibitUI) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setLeftTrimBar(StackPane perspectiveToolSideBarStackPane) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setPerspective(Perspective perspective) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setStatusText(String text) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setTopAreaHeight(double height) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setTopContent(Node content) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void setViewer(boolean viewer) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean showBrowser() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
 	public void showErrorPage() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean showPerspective(String id, boolean asEditor) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
 	public void showStartMenuButton(boolean show) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void showTabPane() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void showWebView(String url) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void updateStartMenuButton() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void init(IRcplAddon rcplPlugin) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -872,13 +818,22 @@ public class EToolsAddonController extends EViewController {
 
 	@Override
 	public void showHomePage(EnCommandId id) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public IHomePage findHomePage(EnCommandId id) {
 		return null;
+	}
+
+	@Override
+	public void createContent() {
+
+	}
+
+	@Override
+	public void createHomePages() {
+
 	}
 
 }

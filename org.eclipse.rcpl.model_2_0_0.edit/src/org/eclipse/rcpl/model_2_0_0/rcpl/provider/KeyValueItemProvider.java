@@ -9,28 +9,43 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+
+import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage} object.
+ * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HomePageItemProvider extends LayoutableItemProvider {
+public class KeyValueItemProvider 
+	extends ItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HomePageItemProvider(AdapterFactory adapterFactory) {
+	public KeyValueItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -45,28 +60,26 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTypePropertyDescriptor(object);
-			addPerspectivePropertyDescriptor(object);
-			addDocumentsPropertyDescriptor(object);
-			addTextReplacementsPropertyDescriptor(object);
+			addKeyPropertyDescriptor(object);
+			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature.
+	 * This adds a property descriptor for the Key feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object) {
+	protected void addKeyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_HomePage_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HomePage_type_feature", "_UI_HomePage_type"),
-				 RcplPackage.Literals.HOME_PAGE__TYPE,
+				 getString("_UI_KeyValue_key_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_KeyValue_key_feature", "_UI_KeyValue_type"),
+				 RcplPackage.Literals.KEY_VALUE__KEY,
 				 true,
 				 false,
 				 false,
@@ -76,80 +89,46 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Perspective feature.
+	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPerspectivePropertyDescriptor(Object object) {
+	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_HomePage_perspective_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HomePage_perspective_feature", "_UI_HomePage_type"),
-				 RcplPackage.Literals.HOME_PAGE__PERSPECTIVE,
+				 getString("_UI_KeyValue_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_KeyValue_value_feature", "_UI_KeyValue_type"),
+				 RcplPackage.Literals.KEY_VALUE__VALUE,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Documents feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDocumentsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_HomePage_documents_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HomePage_documents_feature", "_UI_HomePage_type"),
-				 RcplPackage.Literals.HOME_PAGE__DOCUMENTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public boolean hasChildren(Object object) {
+		return hasChildren(object, true);
 	}
 
 	/**
-	 * This adds a property descriptor for the Text Replacements feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTextReplacementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_HomePage_textReplacements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HomePage_textReplacements_feature", "_UI_HomePage_type"),
-				 RcplPackage.Literals.HOME_PAGE__TEXT_REPLACEMENTS,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns HomePage.gif.
+	 * This returns KeyValue.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/HomePage"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/KeyValue"));
 	}
 
 	/**
@@ -160,10 +139,10 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((HomePage)object).getName();
+		String label = ((KeyValue)object).getKey();
 		return label == null || label.length() == 0 ?
-			getString("_UI_HomePage_type") :
-			getString("_UI_HomePage_type") + " " + label;
+			getString("_UI_KeyValue_type") :
+			getString("_UI_KeyValue_type") + " " + label;
 	}
 
 
@@ -178,9 +157,9 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(HomePage.class)) {
-			case RcplPackage.HOME_PAGE__TYPE:
-			case RcplPackage.HOME_PAGE__TEXT_REPLACEMENTS:
+		switch (notification.getFeatureID(KeyValue.class)) {
+			case RcplPackage.KEY_VALUE__KEY:
+			case RcplPackage.KEY_VALUE__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -197,6 +176,17 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return RCPLEditPlugin.INSTANCE;
 	}
 
 }

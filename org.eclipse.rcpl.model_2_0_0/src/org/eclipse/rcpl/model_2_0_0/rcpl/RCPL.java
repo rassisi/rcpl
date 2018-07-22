@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getLinkedRcpls <em>Linked Rcpls</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomepages <em>Homepages</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getDocuments <em>Documents</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getKeyvalues <em>Keyvalues</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL()
@@ -416,5 +417,31 @@ public interface RCPL extends Layoutable {
 	 * @generated
 	 */
 	void setDocuments(Documents value);
+
+	/**
+	 * Returns the value of the '<em><b>Keyvalues</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Keyvalues</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Keyvalues</em>' containment reference.
+	 * @see #setKeyvalues(KeyValues)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_Keyvalues()
+	 * @model containment="true"
+	 * @generated
+	 */
+	KeyValues getKeyvalues();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getKeyvalues <em>Keyvalues</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Keyvalues</em>' containment reference.
+	 * @see #getKeyvalues()
+	 * @generated
+	 */
+	void setKeyvalues(KeyValues value);
 
 } // RCPL

@@ -465,13 +465,22 @@ public interface RcplPackage extends EPackage {
 	int RCPL__DOCUMENTS = LAYOUTABLE_FEATURE_COUNT + 14;
 
 	/**
+	 * The feature id for the '<em><b>Keyvalues</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RCPL__KEYVALUES = LAYOUTABLE_FEATURE_COUNT + 15;
+
+	/**
 	 * The number of structural features of the '<em>RCPL</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 15;
+	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 16;
 
 	/**
 	 * The number of operations of the '<em>RCPL</em>' class.
@@ -7762,13 +7771,31 @@ public interface RcplPackage extends EPackage {
 	int HOME_PAGE__PERSPECTIVE = LAYOUTABLE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Documents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__DOCUMENTS = LAYOUTABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Text Replacements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__TEXT_REPLACEMENTS = LAYOUTABLE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Home Page</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOME_PAGE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
+	int HOME_PAGE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Home Page</em>' class.
@@ -8097,6 +8124,89 @@ public interface RcplPackage extends EPackage {
 	int DOCUMENT_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.KeyValueImpl <em>Key Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.KeyValueImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getKeyValue()
+	 * @generated
+	 */
+	int KEY_VALUE = 47;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Key Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Key Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.KeyValuesImpl <em>Key Values</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.KeyValuesImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getKeyValues()
+	 * @generated
+	 */
+	int KEY_VALUES = 48;
+
+	/**
+	 * The feature id for the '<em><b>Keyvalues</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__KEYVALUES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Key Values</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Key Values</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8104,7 +8214,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolType()
 	 * @generated
 	 */
-	int TOOL_TYPE = 47;
+	int TOOL_TYPE = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.FontStyles <em>Font Styles</em>}' enum.
@@ -8114,7 +8224,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getFontStyles()
 	 * @generated
 	 */
-	int FONT_STYLES = 48;
+	int FONT_STYLES = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolBarReplacementPolicy <em>Tool Bar Replacement Policy</em>}' enum.
@@ -8124,7 +8234,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolBarReplacementPolicy()
 	 * @generated
 	 */
-	int TOOL_BAR_REPLACEMENT_POLICY = 49;
+	int TOOL_BAR_REPLACEMENT_POLICY = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.GroupType <em>Group Type</em>}' enum.
@@ -8134,7 +8244,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getGroupType()
 	 * @generated
 	 */
-	int GROUP_TYPE = 50;
+	int GROUP_TYPE = 52;
 
 
 	/**
@@ -8145,7 +8255,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getAddressType()
 	 * @generated
 	 */
-	int ADDRESS_TYPE = 51;
+	int ADDRESS_TYPE = 53;
 
 
 	/**
@@ -8156,7 +8266,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getHomePageType()
 	 * @generated
 	 */
-	int HOME_PAGE_TYPE = 52;
+	int HOME_PAGE_TYPE = 54;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType <em>Document Type</em>}' enum.
@@ -8166,7 +8276,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getDocumentType()
 	 * @generated
 	 */
-	int DOCUMENT_TYPE = 53;
+	int DOCUMENT_TYPE = 55;
 
 
 	/**
@@ -8496,6 +8606,17 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRCPL_Documents();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getKeyvalues <em>Keyvalues</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Keyvalues</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getKeyvalues()
+	 * @see #getRCPL()
+	 * @generated
+	 */
+	EReference getRCPL_Keyvalues();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspectives <em>Perspectives</em>}'.
@@ -10182,6 +10303,28 @@ public interface RcplPackage extends EPackage {
 	EReference getHomePage_Perspective();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getDocuments <em>Documents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Documents</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getDocuments()
+	 * @see #getHomePage()
+	 * @generated
+	 */
+	EReference getHomePage_Documents();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getTextReplacements <em>Text Replacements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Text Replacements</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getTextReplacements()
+	 * @see #getHomePage()
+	 * @generated
+	 */
+	EReference getHomePage_TextReplacements();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Documents <em>Documents</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10233,6 +10376,59 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDocument_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue <em>Key Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Key Value</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue
+	 * @generated
+	 */
+	EClass getKeyValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue#getKey <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue#getKey()
+	 * @see #getKeyValue()
+	 * @generated
+	 */
+	EAttribute getKeyValue_Key();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue#getValue()
+	 * @see #getKeyValue()
+	 * @generated
+	 */
+	EAttribute getKeyValue_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues <em>Key Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Key Values</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues
+	 * @generated
+	 */
+	EClass getKeyValues();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues#getKeyvalues <em>Keyvalues</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Keyvalues</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues#getKeyvalues()
+	 * @see #getKeyValues()
+	 * @generated
+	 */
+	EReference getKeyValues_Keyvalues();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}'.
@@ -10570,6 +10766,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RCPL__DOCUMENTS = eINSTANCE.getRCPL_Documents();
+
+		/**
+		 * The meta object literal for the '<em><b>Keyvalues</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RCPL__KEYVALUES = eINSTANCE.getRCPL_Keyvalues();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectivesImpl <em>Perspectives</em>}' class.
@@ -11914,6 +12118,22 @@ public interface RcplPackage extends EPackage {
 		EReference HOME_PAGE__PERSPECTIVE = eINSTANCE.getHomePage_Perspective();
 
 		/**
+		 * The meta object literal for the '<em><b>Documents</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HOME_PAGE__DOCUMENTS = eINSTANCE.getHomePage_Documents();
+
+		/**
+		 * The meta object literal for the '<em><b>Text Replacements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference HOME_PAGE__TEXT_REPLACEMENTS = eINSTANCE.getHomePage_TextReplacements();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentsImpl <em>Documents</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -11956,6 +12176,50 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOCUMENT__TYPE = eINSTANCE.getDocument_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.KeyValueImpl <em>Key Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.KeyValueImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getKeyValue()
+		 * @generated
+		 */
+		EClass KEY_VALUE = eINSTANCE.getKeyValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute KEY_VALUE__KEY = eINSTANCE.getKeyValue_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute KEY_VALUE__VALUE = eINSTANCE.getKeyValue_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.KeyValuesImpl <em>Key Values</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.KeyValuesImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getKeyValues()
+		 * @generated
+		 */
+		EClass KEY_VALUES = eINSTANCE.getKeyValues();
+
+		/**
+		 * The meta object literal for the '<em><b>Keyvalues</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference KEY_VALUES__KEYVALUES = eINSTANCE.getKeyValues_Keyvalues();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.

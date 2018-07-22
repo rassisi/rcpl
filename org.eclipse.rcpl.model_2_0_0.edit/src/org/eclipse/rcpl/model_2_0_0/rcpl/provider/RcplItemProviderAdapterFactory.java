@@ -1107,6 +1107,52 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected KeyValueItemProvider keyValueItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createKeyValueAdapter() {
+		if (keyValueItemProvider == null) {
+			keyValueItemProvider = new KeyValueItemProvider(this);
+		}
+
+		return keyValueItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected KeyValuesItemProvider keyValuesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createKeyValuesAdapter() {
+		if (keyValuesItemProvider == null) {
+			keyValuesItemProvider = new KeyValuesItemProvider(this);
+		}
+
+		return keyValuesItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1250,6 +1296,8 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 		if (homePageItemProvider != null) homePageItemProvider.dispose();
 		if (documentsItemProvider != null) documentsItemProvider.dispose();
 		if (documentItemProvider != null) documentItemProvider.dispose();
+		if (keyValueItemProvider != null) keyValueItemProvider.dispose();
+		if (keyValuesItemProvider != null) keyValuesItemProvider.dispose();
 	}
 
 }

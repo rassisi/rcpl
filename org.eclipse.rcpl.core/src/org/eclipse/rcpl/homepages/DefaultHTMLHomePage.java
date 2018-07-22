@@ -62,7 +62,7 @@ public class DefaultHTMLHomePage extends AbstractHomePage {
 
 	@Override
 	public EnCommandId getId() {
-		return EnCommandId.HOME_PAGE_DOCUMENT;
+		return EnCommandId.HOME_PAGE_HTML_EDITOR;
 	}
 
 	@Override

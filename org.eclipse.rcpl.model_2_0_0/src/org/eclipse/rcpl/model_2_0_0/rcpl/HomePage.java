@@ -2,6 +2,8 @@
  */
 package org.eclipse.rcpl.model_2_0_0.rcpl;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +16,8 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  * <ul>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getPerspective <em>Perspective</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getDocuments <em>Documents</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getTextReplacements <em>Text Replacements</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getHomePage()
@@ -76,4 +80,36 @@ public interface HomePage extends Layoutable {
 	 * @generated
 	 */
 	void setPerspective(Perspective value);
+
+	/**
+	 * Returns the value of the '<em><b>Documents</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.Document}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Documents</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Documents</em>' reference list.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getHomePage_Documents()
+	 * @model
+	 * @generated
+	 */
+	EList<Document> getDocuments();
+
+	/**
+	 * Returns the value of the '<em><b>Text Replacements</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Text Replacements</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Text Replacements</em>' reference list.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getHomePage_TextReplacements()
+	 * @model
+	 * @generated
+	 */
+	EList<KeyValue> getTextReplacements();
 } // HomePage

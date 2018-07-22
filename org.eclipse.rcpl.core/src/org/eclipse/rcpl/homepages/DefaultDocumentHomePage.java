@@ -11,6 +11,7 @@
 package org.eclipse.rcpl.homepages;
 
 import org.eclipse.rcpl.EnCommandId;
+import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
@@ -20,23 +21,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 /**
- * @author Ramin
- *
+ * @author ramin
+ * 
  */
-public class DefaultHomePage extends AbstractHomePage {
+public class DefaultDocumentHomePage extends AbstractHomePage implements IHomePage {
 
-	public DefaultHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
-		super(uic, modelHomePage, pane);
+	public DefaultDocumentHomePage(IRcplUic uic, HomePage modelHomePage, Pane controlPane) {
+		super(uic, modelHomePage, controlPane);
 	}
 
 	@Override
 	public EnCommandId getId() {
-		return EnCommandId.HOME_PAGE_OVERVIEW;
+		return EnCommandId.HOME_PAGE_DOCUMENT;
 	}
 
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
-		Label l = new Label("Default Home Page");
+		Label l = new Label("Default Document Page");
 		l.setAlignment(Pos.CENTER);
 		getContentPane().getChildren().add(l);
 	}

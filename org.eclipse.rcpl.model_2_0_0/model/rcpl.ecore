@@ -107,6 +107,8 @@
         eType="#//HomePages" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documents" lowerBound="1"
         eType="#//Documents" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keyvalues" eType="#//KeyValues"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Perspectives" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
@@ -364,6 +366,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="HomePage" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//HomePageType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="perspective" eType="#//Perspective"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documents" upperBound="-1"
+        eType="#//Document"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textReplacements" upperBound="-1"
+        eType="#//KeyValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="HomePageType">
     <eLiterals name="WEBSITE"/>
@@ -398,5 +404,13 @@
     <eLiterals name="PDF" value="4"/>
     <eLiterals name="IMAGE" value="5"/>
     <eLiterals name="TEXT" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KeyValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KeyValues">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keyvalues" upperBound="-1"
+        eType="#//KeyValue" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

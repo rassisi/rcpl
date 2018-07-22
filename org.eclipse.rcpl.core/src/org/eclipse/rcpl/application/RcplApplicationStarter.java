@@ -88,6 +88,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 					windowAdvisor.start();
 					windowAdvisor.openMainWindow();
 				}
+				uic.createHomePages();
 				uic.showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
 				uic.updateStartMenuButton();
 				RCPLModel.log(this, "User dir: " + RCPLModel.mobileProvider.getApplicationDir().toString());

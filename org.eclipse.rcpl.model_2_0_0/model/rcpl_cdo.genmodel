@@ -137,6 +137,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/linkedRcpls"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/homepages"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/documents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/keyvalues"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Perspectives">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspectives/children"/>
@@ -332,6 +333,8 @@
     <genClasses ecoreClass="rcpl.ecore#//HomePage">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//HomePage/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//HomePage/perspective"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//HomePage/documents"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference rcpl.ecore#//HomePage/textReplacements"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Documents">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Documents/children"/>
@@ -339,6 +342,13 @@
     <genClasses ecoreClass="rcpl.ecore#//Document">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Document/path"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Document/type"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//KeyValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//KeyValue/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//KeyValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//KeyValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//KeyValues/keyvalues"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

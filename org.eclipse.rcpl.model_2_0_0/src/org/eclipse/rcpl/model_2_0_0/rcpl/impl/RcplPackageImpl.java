@@ -36,6 +36,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePages;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HouseNumber;
 import org.eclipse.rcpl.model_2_0_0.rcpl.JPerson;
+import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue;
+import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Layoutable;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Login;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
@@ -401,6 +403,20 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * @generated
 	 */
 	private EClass documentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass keyValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass keyValuesEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -780,6 +796,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 */
 	public EReference getRCPL_Documents() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRCPL_Keyvalues() {
+		return (EReference)rcplEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -2200,6 +2225,24 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getHomePage_Documents() {
+		return (EReference)homePageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getHomePage_TextReplacements() {
+		return (EReference)homePageEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDocuments() {
 		return documentsEClass;
 	}
@@ -2238,6 +2281,51 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 */
 	public EAttribute getDocument_Type() {
 		return (EAttribute)documentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getKeyValue() {
+		return keyValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getKeyValue_Key() {
+		return (EAttribute)keyValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getKeyValue_Value() {
+		return (EAttribute)keyValueEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getKeyValues() {
+		return keyValuesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getKeyValues_Keyvalues() {
+		return (EReference)keyValuesEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2362,6 +2450,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(rcplEClass, RCPL__LINKED_RCPLS);
 		createEReference(rcplEClass, RCPL__HOMEPAGES);
 		createEReference(rcplEClass, RCPL__DOCUMENTS);
+		createEReference(rcplEClass, RCPL__KEYVALUES);
 
 		perspectivesEClass = createEClass(PERSPECTIVES);
 		createEReference(perspectivesEClass, PERSPECTIVES__CHILDREN);
@@ -2562,6 +2651,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		homePageEClass = createEClass(HOME_PAGE);
 		createEAttribute(homePageEClass, HOME_PAGE__TYPE);
 		createEReference(homePageEClass, HOME_PAGE__PERSPECTIVE);
+		createEReference(homePageEClass, HOME_PAGE__DOCUMENTS);
+		createEReference(homePageEClass, HOME_PAGE__TEXT_REPLACEMENTS);
 
 		documentsEClass = createEClass(DOCUMENTS);
 		createEReference(documentsEClass, DOCUMENTS__CHILDREN);
@@ -2569,6 +2660,13 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		documentEClass = createEClass(DOCUMENT);
 		createEAttribute(documentEClass, DOCUMENT__PATH);
 		createEAttribute(documentEClass, DOCUMENT__TYPE);
+
+		keyValueEClass = createEClass(KEY_VALUE);
+		createEAttribute(keyValueEClass, KEY_VALUE__KEY);
+		createEAttribute(keyValueEClass, KEY_VALUE__VALUE);
+
+		keyValuesEClass = createEClass(KEY_VALUES);
+		createEReference(keyValuesEClass, KEY_VALUES__KEYVALUES);
 
 		// Create enums
 		toolTypeEEnum = createEEnum(TOOL_TYPE);
@@ -2685,6 +2783,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getRCPL_LinkedRcpls(), this.getRCPL(), null, "linkedRcpls", null, 0, -1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_Homepages(), this.getHomePages(), null, "homepages", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_Documents(), this.getDocuments(), null, "documents", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRCPL_Keyvalues(), this.getKeyValues(), null, "keyvalues", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(perspectivesEClass, Perspectives.class, "Perspectives", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPerspectives_Children(), this.getPerspective(), null, "children", null, 0, -1, Perspectives.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2885,6 +2984,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEClass(homePageEClass, HomePage.class, "HomePage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getHomePage_Type(), this.getHomePageType(), "type", null, 0, 1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getHomePage_Perspective(), this.getPerspective(), null, "perspective", null, 0, 1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHomePage_Documents(), this.getDocument(), null, "documents", null, 0, -1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHomePage_TextReplacements(), this.getKeyValue(), null, "textReplacements", null, 0, -1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(documentsEClass, Documents.class, "Documents", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDocuments_Children(), this.getDocument(), null, "children", null, 0, -1, Documents.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2892,6 +2993,13 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDocument_Path(), ecorePackage.getEString(), "path", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocument_Type(), this.getDocumentType(), "type", "TEXT", 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(keyValueEClass, KeyValue.class, "KeyValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getKeyValue_Key(), ecorePackage.getEString(), "key", null, 0, 1, KeyValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getKeyValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, KeyValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(keyValuesEClass, KeyValues.class, "KeyValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getKeyValues_Keyvalues(), this.getKeyValue(), null, "keyvalues", null, 0, -1, KeyValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(toolTypeEEnum, ToolType.class, "ToolType");

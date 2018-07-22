@@ -51,7 +51,6 @@ public abstract class AbstractHomePage implements IHomePage {
 	private StackPane contentPane;
 
 	public AbstractHomePage(final IRcplUic uic, HomePage modelHomePage, Pane controlPane) {
-		uic.getHomepages().add(this);
 		this.uic = uic;
 		this.modeHomePage = modelHomePage;
 
@@ -167,5 +166,10 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	public void setDetailNode(Node node) {
 		getContentPane().getChildren().add(node);
+	}
+
+	@Override
+	public String toString() {
+		return "Home Page: " + getId();
 	}
 }

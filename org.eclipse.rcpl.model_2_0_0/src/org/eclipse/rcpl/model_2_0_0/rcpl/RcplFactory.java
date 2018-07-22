@@ -427,6 +427,24 @@ public interface RcplFactory extends EFactory {
 	Document createDocument();
 
 	/**
+	 * Returns a new object of class '<em>Key Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Key Value</em>'.
+	 * @generated
+	 */
+	KeyValue createKeyValue();
+
+	/**
+	 * Returns a new object of class '<em>Key Values</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Key Values</em>'.
+	 * @generated
+	 */
+	KeyValues createKeyValues();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

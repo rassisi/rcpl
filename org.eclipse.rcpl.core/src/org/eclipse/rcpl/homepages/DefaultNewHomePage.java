@@ -15,6 +15,8 @@ import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -35,5 +37,8 @@ public class DefaultNewHomePage extends AbstractHomePage implements IHomePage {
 
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
+		Label l = new Label("Default New Page");
+		l.setAlignment(Pos.CENTER);
+		getContentPane().getChildren().add(l);
 	}
 }

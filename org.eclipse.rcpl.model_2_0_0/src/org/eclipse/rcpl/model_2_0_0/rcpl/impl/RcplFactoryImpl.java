@@ -102,6 +102,8 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 			case RcplPackage.HOME_PAGE: return (EObject)createHomePage();
 			case RcplPackage.DOCUMENTS: return (EObject)createDocuments();
 			case RcplPackage.DOCUMENT: return (EObject)createDocument();
+			case RcplPackage.KEY_VALUE: return (EObject)createKeyValue();
+			case RcplPackage.KEY_VALUES: return (EObject)createKeyValues();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -609,6 +611,26 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	public Document createDocument() {
 		DocumentImpl document = new DocumentImpl();
 		return document;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public KeyValue createKeyValue() {
+		KeyValueImpl keyValue = new KeyValueImpl();
+		return keyValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public KeyValues createKeyValues() {
+		KeyValuesImpl keyValues = new KeyValuesImpl();
+		return keyValues;
 	}
 
 	/**
