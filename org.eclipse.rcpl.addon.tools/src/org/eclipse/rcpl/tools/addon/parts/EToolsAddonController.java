@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnCustomToolIds;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IEditor;
@@ -817,27 +818,9 @@ public class EToolsAddonController extends EViewController {
 	}
 
 	@Override
-	public void showAboutPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public boolean showBrowser() {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public void showContactUsPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showDonationPage() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -847,51 +830,9 @@ public class EToolsAddonController extends EViewController {
 	}
 
 	@Override
-	public void showHomePage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean showHtmlEditor() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void showNewPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showPerspectivePage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showOverviewPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public boolean showPerspective(String id, boolean asEditor) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public void showPreferencesPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showSamplesPage() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -907,19 +848,7 @@ public class EToolsAddonController extends EViewController {
 	}
 
 	@Override
-	public void showTutorialsPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void showWebView(String url) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showWhatsNewPage() {
 		// TODO Auto-generated method stub
 
 	}
@@ -938,6 +867,17 @@ public class EToolsAddonController extends EViewController {
 
 	@Override
 	public IApplicationStarter getApplicationStarter() {
+		return null;
+	}
+
+	@Override
+	public void showHomePage(EnCommandId id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IHomePage findHomePage(EnCommandId id) {
 		return null;
 	}
 

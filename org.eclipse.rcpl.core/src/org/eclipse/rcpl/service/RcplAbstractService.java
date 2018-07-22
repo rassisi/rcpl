@@ -207,6 +207,17 @@ public abstract class RcplAbstractService {
 
 	public IService getService(ICommand command) {
 
+		if (command.getCommandId().getServiceId() != null) {
+			EnServiceId servId = command.getCommandId().getServiceId();
+			if (servId != null) {
+				IService customService = getService(servId);
+				if (customService != null) {
+					return customService;
+				}
+			}
+
+		}
+
 		if (command.getTool() != null && command.getTool().getTool().getId() != null) {
 			EnServiceId servId = EnServiceId.getServiceId(command.getTool().getTool().getId());
 			if (servId != null) {
@@ -232,7 +243,7 @@ public abstract class RcplAbstractService {
 	// }
 
 	/**
-	 * @param <T>
+	 * @param              <T>
 	 * @param serviceClass
 	 * @return
 	 */
@@ -248,7 +259,7 @@ public abstract class RcplAbstractService {
 	}
 
 	/**
-	 * @param <T>
+	 * @param              <T>
 	 * @param serviceClass
 	 * @return
 	 */

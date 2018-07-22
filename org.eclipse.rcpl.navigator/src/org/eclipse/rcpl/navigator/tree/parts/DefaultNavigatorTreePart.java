@@ -24,6 +24,8 @@ import org.eclipse.fx.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleException;
+import org.eclipse.rcpl.EnCommandId;
+import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorListener;
 import org.eclipse.rcpl.INavigatorTreeManager;
 import org.eclipse.rcpl.IOfficeUIC;
@@ -35,7 +37,6 @@ import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
-import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
@@ -53,7 +54,6 @@ import org.eclipse.rcpl.navigator.tree.handlers.DeleteOfficeFolderHandler;
 import org.eclipse.rcpl.navigator.tree.handlers.DeletePreferenceHandler;
 import org.eclipse.rcpl.navigator.tree.handlers.DeletePreferencesHandler;
 import org.eclipse.rcpl.navigator.tree.model.manager.UCEmfTreeModelManagerImpl;
-import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.eclipse.rcpl.upload.DownloadClient;
 
 import javafx.beans.value.ChangeListener;
@@ -197,7 +197,8 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	 */
 	protected void setDetailNode(Node node) {
 		try {
-			((DefaultOverviewHomePage) ((RcplUic) Rcpl.UIC).getOverviewPage()).setDetailNode(node);
+			IHomePage homePage = Rcpl.UIC.findHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
+			homePage.setDetailNode(node);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

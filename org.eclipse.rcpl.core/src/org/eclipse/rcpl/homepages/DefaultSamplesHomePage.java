@@ -10,51 +10,33 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IHomePage;
-import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.ui.controler.RcplUic;
+import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * @author ramin
  * 
  */
-public class DefaultSamplesHomePage implements IHomePage {
+public class DefaultSamplesHomePage extends AbstractHomePage implements IHomePage {
 
 	protected IHomePage homePage;
 
-	public DefaultSamplesHomePage(final RcplUic uic, String image) {
-		uic.getHomepages().add(this);
-		homePage = Rcpl.getFactory().createDefaultHomePage(uic, "Sample Office Documents", image);
-
-		createdContent();
-
-	}
-
-	protected void createdContent() {
-
+	public DefaultSamplesHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
+		super(uic, modelHomePage, pane);
 	}
 
 	@Override
-	public Node getNode() {
-		return homePage.getNode();
+	public EnCommandId getId() {
+		return EnCommandId.HOME_PAGE_SAMPLES;
 	}
 
 	@Override
-	public Pane getContentPane() {
-		return homePage.getContentPane();
-	}
-
-	@Override
-	public int getRow() {
-		return homePage.getRow();
-	}
-
-	@Override
-	public void refresh() {
-		homePage.refresh();
+	protected void doCreateContent(StackPane contentPane) {
 	}
 
 }

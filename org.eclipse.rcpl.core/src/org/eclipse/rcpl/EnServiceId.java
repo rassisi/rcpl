@@ -2,6 +2,8 @@ package org.eclipse.rcpl;
 
 public enum EnServiceId {
 
+	NEW_WORD_DOCUMENT,
+
 	BROWSER_SERVICE,
 
 	COLOR_SERVICE,

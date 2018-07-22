@@ -10,11 +10,13 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,6 +32,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -92,8 +95,8 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 	 * @param title
 	 * @param image
 	 */
-	public DefaultOverviewHomePage(IRcplUic uic, String title, String image) {
-		super(uic, title, image, null);
+	public DefaultOverviewHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
+		super(uic, modelHomePage, pane);
 	}
 
 	/**
@@ -180,7 +183,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 	}
 
 	@Override
-	protected void createContent(StackPane contentPane) {
+	protected void doCreateContent(StackPane contentPane) {
 
 		SplitPane splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
@@ -214,8 +217,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 
 				@Override
 				public void handle(ActionEvent event) {
-					uic.showNewPage();
-
+					uic.showHomePage(EnCommandId.HOME_PAGE_NEWS);
 				}
 			});
 			b.setPrefWidth(100);
@@ -226,9 +228,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 
 				@Override
 				public void handle(ActionEvent event) {
-					uic.showSamplesPage();
-					;
-
+					uic.showHomePage(EnCommandId.HOME_PAGE_SAMPLES);
 				}
 			});
 			b.setPrefWidth(100);
@@ -248,6 +248,11 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 
 	public IDocument getDocument() {
 		return document;
+	}
+
+	@Override
+	public EnCommandId getId() {
+		return EnCommandId.HOME_PAGE_OVERVIEW;
 	}
 
 }

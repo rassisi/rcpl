@@ -22,6 +22,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	IHomePage findHomePage(EnCommandId id);
+
 	void actionAddPresentationTab();
 
 	void actionLogout();
@@ -132,43 +134,21 @@ public interface IRcplUic {
 
 	void setViewer(boolean viewer);
 
-	void showAboutPage();
-
 	boolean showBrowser();
-
-	void showContactUsPage();
-
-	void showDonationPage();
 
 	void showErrorPage();
 
-	void showHomePage();
-
-	boolean showHtmlEditor();
-
-	void showNewPage();
-
-	void showPerspectivePage();
-
-	void showOverviewPage();
-
 	boolean showPerspective(String id, boolean asEditor);
-
-	void showPreferencesPage();
-
-	void showSamplesPage();
 
 	void showStartMenuButton(boolean show);
 
 	void showTabPane();
 
-	void showTutorialsPage();
-
 	void showWebView(String url);
-
-	void showWhatsNewPage();
 
 	void updateStartMenuButton();
 
 	IApplicationStarter getApplicationStarter();
+
+	void showHomePage(EnCommandId id);
 }

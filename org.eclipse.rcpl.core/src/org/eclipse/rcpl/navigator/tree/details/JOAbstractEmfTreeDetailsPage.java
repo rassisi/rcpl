@@ -11,12 +11,14 @@
 
 package org.eclipse.rcpl.navigator.tree.details;
 
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.homepages.AbstractHomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * @author ramin
@@ -24,28 +26,21 @@ import org.eclipse.rcpl.homepages.AbstractHomePage;
  */
 public abstract class JOAbstractEmfTreeDetailsPage extends AbstractHomePage {
 
-	private EObject root;
-
 	private GridPane detailsPane;
 
-	public JOAbstractEmfTreeDetailsPage(EObject root, String title, String image) {
-		super(Rcpl.UIC, title, image, null);
-		this.root = root;
+	public JOAbstractEmfTreeDetailsPage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
+		super(uic, modelHomePage, pane);
 		createDetailsPane();
-
 	}
 
 	@Override
-	protected void createContent(StackPane contentPane) {
+	protected void doCreateContent(StackPane contentPane) {
 		detailsPane = new GridPane();
 		contentPane.getChildren().add(detailsPane);
-
 	}
 
 	protected abstract void createDetailsPane();
 
-	public EObject getRoot() {
-		return root;
-	}
+	public abstract EObject getRoot();
 
 }

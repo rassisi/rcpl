@@ -139,7 +139,7 @@ public class RcplTopToolBar implements ITopToolbar {
 			}
 			createCustomRibbonGroup(pane, "Preferences", "Preferences", EnCommandId.HOME_PAGE_PREFERENCES.name(),
 					"office_preferences", false, null);
-			createCustomRibbonGroup(pane, "Contact Us", "Contact Us", EnCommandId.CONTACT_US.name(), "contact_us",
+			createCustomRibbonGroup(pane, "Contact Us", "Contact Us", EnCommandId.HOME_PAGE_CONTACT_US.name(), "contact_us",
 					false, null);
 			if (!Rcpl.isMobile()) {
 				createCustomRibbonGroup(pane, "Donation", "Show Donation Page", EnCommandId.HOME_PAGE_DONATIONS.name(),

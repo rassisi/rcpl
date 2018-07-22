@@ -8,6 +8,8 @@ public enum EnCommandId {
 
 	NO_COMMAND(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
+	NEW_WORD_DOCUMENT(EnServiceId.NEW_WORD_DOCUMENT, null, "", ""),
+
 	delete(EnServiceId.PICTURE_SERVICE, "delete", "", ""),
 
 	toFront(EnServiceId.PICTURE_SERVICE, "to_front", "", ""),
@@ -80,6 +82,8 @@ public enum EnCommandId {
 
 	HOME_PAGE_OVERVIEW(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
+	HOME_PAGE_PERSPECTIVES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+
 	HOME_PAGE_TUTORIALS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
 	HOME_PAGE_DONATIONS(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
@@ -95,6 +99,14 @@ public enum EnCommandId {
 	HOME_PAGE_PREFERENCES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
 	HOME_PAGE_TEMPLATES(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+
+	HOME_PAGE_HTML_EDITOR(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+
+	HOME_PAGE_HTML(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+
+	HOME_PAGE_CONTACT_US(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+
+	HOME_PAGE_DOCUMENT(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
 	collapse_all(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
@@ -115,8 +127,6 @@ public enum EnCommandId {
 	INSERT_PARAGRAPH(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
 	insertText(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
-
-	CONTACT_US(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
 	style_normal(EnServiceId.PARAGRAPH_SERVICE, null, "N", "Normal"),
 

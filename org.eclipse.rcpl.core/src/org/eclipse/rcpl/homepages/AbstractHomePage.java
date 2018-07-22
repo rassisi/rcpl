@@ -10,9 +10,11 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -44,17 +46,14 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	private int row = 0;
 
-	private String title;
-
-	private String image;
+	HomePage modeHomePage;
 
 	private StackPane contentPane;
 
-	public AbstractHomePage(final IRcplUic uic, String title, String image, Pane controlPane) {
+	public AbstractHomePage(final IRcplUic uic, HomePage modelHomePage, Pane controlPane) {
 		uic.getHomepages().add(this);
 		this.uic = uic;
-		this.title = title;
-		this.image = image;
+		this.modeHomePage = modelHomePage;
 
 		vBox = new VBox();
 		vBox.setId("homeHeader");
@@ -71,16 +70,17 @@ public abstract class AbstractHomePage implements IHomePage {
 
 			@Override
 			public void handle(SwipeEvent event) {
-				uic.showOverviewPage();
+				uic.showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
 			}
 		});
+
 		// if (!Rcpl.isMobile())
 		{
 
 			HBox header = new HBox();
 			header.setPrefHeight(80);
-			if (image != null) {
-				Node imageView = Rcpl.resources().getImage(image, 32, 32).getNode();
+			if (modelHomePage.getImage() != null) {
+				Node imageView = Rcpl.resources().getImage(modelHomePage.getImage(), 32, 32).getNode();
 				if (imageView != null) {
 					header.getChildren().add(imageView);
 					HBox.setMargin(imageView, new Insets(15, 0, 0, 20));
@@ -93,13 +93,13 @@ public abstract class AbstractHomePage implements IHomePage {
 			InnerShadow is = new InnerShadow();
 			is.setOffsetX(2.0f);
 			is.setOffsetY(2.0f);
-			Text t = new Text(title.substring(0, 1).toUpperCase());
+			Text t = new Text(modelHomePage.getName().substring(0, 1).toUpperCase());
 			samplesHeaderTextFlow.getChildren().add(t);
 			t.setCache(true);
 			t.setFont(Font.font(null, FontWeight.NORMAL, 28));
 			t.setId("homeHeaderText");
 			t.setEffect(is);
-			t = new Text(title.substring(1).toUpperCase());
+			t = new Text(modelHomePage.getName().substring(1).toUpperCase());
 			samplesHeaderTextFlow.getChildren().add(t);
 			t.setCache(true);
 			t.setFont(Font.font(null, FontWeight.NORMAL, 20));
@@ -140,15 +140,16 @@ public abstract class AbstractHomePage implements IHomePage {
 		contentPane = new StackPane();
 		vBox.getChildren().add(contentPane);
 		VBox.setVgrow(contentPane, Priority.SOMETIMES);
-		createContent(contentPane);
+		doCreateContent(contentPane);
 	}
 
 	@Override
 	public Node getNode() {
+		vBox.setUserData(this);
 		return vBox;
 	}
 
-	protected abstract void createContent(StackPane contentPane);
+	protected abstract void doCreateContent(StackPane contentPane);
 
 	@Override
 	public StackPane getContentPane() {
@@ -162,5 +163,9 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	@Override
 	public void refresh() {
+	}
+
+	public void setDetailNode(Node node) {
+		getContentPane().getChildren().add(node);
 	}
 }

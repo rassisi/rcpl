@@ -10,17 +10,21 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
+import java.io.File;
 import java.util.HashMap;
+
+import org.eclipse.rcpl.EnCommandId;
+import org.eclipse.rcpl.IDocument;
+import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-
-import org.eclipse.rcpl.IDocument;
-import org.eclipse.rcpl.IRcplUic;
-import org.eclipse.rcpl.util.RcplUtil;
 
 public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 
@@ -28,9 +32,31 @@ public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 
 	private StackPane contentPane;
 
-	public DefaultHTMLReadOnlyHomePage(IRcplUic uic, String title, String documentTemplate, String image,
-			final HashMap<String, String> wordReplacements, Pane controlPane) {
-		super(uic, title, image, controlPane);
+	public DefaultHTMLReadOnlyHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane, String documentTemplate,
+			HashMap<String, String> wordReplacements) {
+		super(uic, modelHomePage, pane);
+
+		HTMLEditor htmlEditor = new HTMLEditor();
+
+		File f = RcplUtil.loadTemplateDocumentToFile(documentTemplate, true);
+
+		// WebView w = new WebView();
+		// w.getEngine().load("file://" + f.getAbsolutePath());
+		// contentPane.getChildren().add(w);
+
+		// String htmlText = new JODocumentProvider().createHtmlDocument(
+		// documentTemplate, wordReplacements);
+
+		getContentPane().getChildren().add(htmlEditor);
+
+		String htmlText = RcplUtil.loadTemplateHTMLDocument(documentTemplate, wordReplacements, true);
+		if (htmlText != null) {
+			for (String key : wordReplacements.keySet()) {
+				String replacement = wordReplacements.get(key);
+				htmlText = htmlText.replaceAll(key, replacement);
+			}
+			htmlEditor.setHtmlText(htmlText);
+		}
 
 		final WebView webView = new WebView();
 
@@ -44,7 +70,7 @@ public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 		// String htmlText = new JODocumentProvider().createHtmlDocument(
 		// documentTemplate, wordReplacements)
 
-		String htmlText = RcplUtil.loadTemplateHTMLDocument(documentTemplate, wordReplacements, true);
+		htmlText = RcplUtil.loadTemplateHTMLDocument(documentTemplate, wordReplacements, true);
 
 		// .replaceAll(
 		// new String(new byte[] { (byte) 63 }), "&uuml;")
@@ -78,11 +104,6 @@ public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 	}
 
 	@Override
-	protected void createContent(StackPane contentPane) {
-		this.contentPane = contentPane;
-	}
-
-	@Override
 	public Node getNode() {
 		super.getNode().setUserData(this);
 		return super.getNode();
@@ -90,6 +111,17 @@ public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 
 	public IDocument getDocument() {
 		return document;
+	}
+
+	@Override
+	public EnCommandId getId() {
+		return EnCommandId.HOME_PAGE_HTML;
+	}
+
+	@Override
+	protected void doCreateContent(StackPane contentPane) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -10,12 +10,15 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
 import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 
@@ -38,10 +41,34 @@ public class DefaultPreferencesHomePage extends AbstractHomePage {
 	 * @param title
 	 * @param image
 	 */
-	public DefaultPreferencesHomePage(IRcplUic uic, String title, String image) {
-		super(uic, title, image, null);
-		
-		
+	public DefaultPreferencesHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
+		super(uic, modelHomePage, pane);
+
+	}
+
+	/**
+	 * @param detailNode
+	 */
+	public void setDetailNode(Node detailNode) {
+		borderPane.setCenter(detailNode);
+		borderPane.layout();
+	}
+
+	public void hideSplash() {
+		borderPane.setBackground(null);
+	}
+
+	public IDocument getDocument() {
+		return document;
+	}
+
+	@Override
+	public EnCommandId getId() {
+		return EnCommandId.HOME_PAGE_PREFERENCES;
+	}
+
+	@Override
+	protected void doCreateContent(StackPane contentPane) {
 		// !!! 1
 //		EObject root = JOSession.INSTANCE.getUserPreferences().getPreferenceGroup();
 //		EEmfTreeTreePart part = new EEmfPreferencesTreePart(null, root, true) {
@@ -60,33 +87,6 @@ public class DefaultPreferencesHomePage extends AbstractHomePage {
 		splitPane.getItems().add(borderPane);
 		splitPane.setDividerPositions(0.3f, 0.7f);
 		contentPane.getChildren().add(splitPane);
-	}
-
-	/**
-	 * @param detailNode
-	 */
-	public void setDetailNode(Node detailNode) {
-		borderPane.setCenter(detailNode);
-		borderPane.layout();
-	}
-
-	public void hideSplash() {
-		borderPane.setBackground(null);
-	}
-
-	@Override
-	protected void createContent(StackPane contentPane) {
-		this.contentPane = contentPane;
-	}
-
-	@Override
-	public Node getNode() {
-		super.getNode().setUserData(this);
-		return super.getNode();
-	}
-
-	public IDocument getDocument() {
-		return document;
 	}
 
 }

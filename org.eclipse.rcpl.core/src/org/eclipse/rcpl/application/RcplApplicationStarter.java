@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.rcpl.application;
 
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplFactory;
@@ -87,7 +88,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 					windowAdvisor.start();
 					windowAdvisor.openMainWindow();
 				}
-				uic.showOverviewPage();
+				uic.showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
 				uic.updateStartMenuButton();
 				RCPLModel.log(this, "User dir: " + RCPLModel.mobileProvider.getApplicationDir().toString());
 

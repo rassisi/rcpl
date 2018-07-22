@@ -182,6 +182,64 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	private IEditor editor;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.rcpl.ISideToolBar#showPerspective(org.eclipse.rcpl.model_2_0_0.
+	 * rcpl.Perspective, boolean)
+	 */
+	@Override
+	public void showPerspective(Perspective perspective, boolean collapse) {
+		System.out.println("Show " + perspective.getId() + " Perspective");
+		boolean isPerspectivesOverview = RcplSession.PERSPECTIVE_OVERVIEW.getId().equals(perspective.getId());
+		Rcpl.UIC.showStartMenuButton(!isPerspectivesOverview);
+		try {
+			if (!processedList.contains(perspective.getId())) {
+				processedList.add(perspective.getId());
+				processPerspectiveGroups(perspective.getId());
+			}
+
+			ToolBar n = toolbarRegistry.get(getKey(perspective.getId()));
+			toolbarStack.getChildren().clear();
+			if (n != null) {
+				toolbarStack.getChildren().add(n);
+				n.setVisible(true);
+			}
+			collapseToolPane();
+
+		} catch (Throwable ex) {
+			RCPLModel.logError(ex);
+		}
+	}
+
+	/**
+	 * @param perspectiveId
+	 */
+	private void processPerspectiveGroups(String perspectiveId) {
+		Perspective perspective = RcplSession.getDefault().findPerspective(perspectiveId);
+		if (perspective != null) {
+			ToolBar groupsToolBar = new ToolBar();
+			StackPane.setMargin(groupsToolBar, new Insets(40, 0, 0, 0));
+			groupsToolBar.setOrientation(Orientation.VERTICAL);
+			groupsToolBar.setMinWidth(WIDTH_COLLAPSED);
+			groupsToolBar.setId("groupVBox");
+			toolbarRegistry.put(getKey(perspectiveId), groupsToolBar);
+			List<ToolGroup> toolGroups = getToolGroups(perspective);
+			for (ToolGroup toolGroup : toolGroups) {
+				processMainToolGroupButtons(groupsToolBar, perspective, toolGroup);
+			}
+			processToolGroups(toolGroups, perspective, false);
+
+			List<Tool> tools = getTools(perspective);
+
+			for (Tool tool : tools) {
+				processMainToolGroupButtons(groupsToolBar, perspective, tool);
+			}
+
+		}
+	}
+
 	/**
 	 * Nur die Groupbuttons sind zu sehen
 	 */
@@ -370,6 +428,10 @@ public class RcplSideToolBar implements ISideToolBar {
 		return perspective.getSideToolBar().getToolGroups();
 	}
 
+	private EList<Tool> getTools(Perspective perspective) {
+		return perspective.getSideToolBar().getTools();
+	}
+
 	private boolean groupHasAccordionItems(ToolGroup toolGroup) {
 
 		for (ToolGroup t : toolGroup.getToolGroups()) {
@@ -450,6 +512,59 @@ public class RcplSideToolBar implements ISideToolBar {
 	 * @param toolGroup
 	 */
 	private void processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspectiveType,
+			final Tool tool) {
+
+		String imageName = tool.getImage();
+
+		IButton b = Rcpl.getFactory().createButton(tool.getId(), tool.getName(), tool.getToolTip(), imageName, false,
+				null, false);
+
+		if (!Rcpl.isBigDisplay()) {
+			b.setWidth(16);
+			b.setHeight(16);
+
+		} else {
+			b.setWidth(18);
+			b.setHeight(18);
+		}
+
+		b.setButtonListener(new IButtonListener() {
+
+			@Override
+			public void doAction() {
+				try {
+
+					String groupId0 = tool.getId();
+
+					if ("logout".equals(groupId0)) {
+						Rcpl.UIC.actionLogout();
+						return;
+					}
+
+					if (groupId0.equals(activeGroupId)) {
+						collapseToolPane();
+					} else {
+						showSideTools(groupId0, true);
+					}
+				} catch (Throwable ex) {
+					RCPLModel.logError(ex);
+				}
+			}
+		});
+
+		Tooltip toolTip = new Tooltip(tool.getToolTip() != null ? tool.getToolTip() : tool.getName());
+		toolTip.setId("joffice_tooltip");
+
+		toolGroupToolBar.getItems().add(b.getNode());
+
+	}
+
+	/**
+	 * @param toolGroupToolBar
+	 * @param perspectiveType
+	 * @param toolGroup
+	 */
+	private void processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspectiveType,
 			final ToolGroup toolGroup) {
 
 		String imageName = toolGroup.getImage();
@@ -495,19 +610,6 @@ public class RcplSideToolBar implements ISideToolBar {
 
 		toolGroupToolBar.getItems().add(b.getNode());
 
-	}
-
-	private void processPerspectiveGroups(String perspectiveId) {
-		Perspective perspective = RcplSession.getDefault().findPerspective(perspectiveId);
-		if (perspective != null) {
-			ToolBar groupsToolBar = new ToolBar();
-			StackPane.setMargin(groupsToolBar, new Insets(40, 0, 0, 0));
-			groupsToolBar.setOrientation(Orientation.VERTICAL);
-			groupsToolBar.setMinWidth(WIDTH_COLLAPSED);
-			groupsToolBar.setId("groupVBox");
-			toolbarRegistry.put(getKey(perspectiveId), groupsToolBar);
-			processToolGroups(perspective, groupsToolBar, false);
-		}
 	}
 
 	private void processTool(final Tool tool, Pane pane, final AccordionColorTitlePane titlePane) {
@@ -657,13 +759,6 @@ public class RcplSideToolBar implements ISideToolBar {
 	 * @param startMenu
 	 * @return
 	 */
-	protected void processToolGroups(final Perspective perspective, ToolBar toolBar, boolean startMenu) {
-		List<ToolGroup> toolGroups = getToolGroups(perspective);
-		for (ToolGroup toolGroup : toolGroups) {
-			processMainToolGroupButtons(toolBar, perspective, toolGroup);
-		}
-		processToolGroups(toolGroups, perspective, startMenu);
-	}
 
 	private void processTools(ToolGroup toolGroup, Accordion accordion, int hierarchy) {
 
@@ -792,30 +887,6 @@ public class RcplSideToolBar implements ISideToolBar {
 		// } catch (Throwable ex) {
 		// RCPLModel.logError(ex);
 		// }
-	}
-
-	@Override
-	public void showPerspective(Perspective perspective, boolean collapse) {
-		System.out.println("Show " + perspective.getId() + " Perspective");
-		boolean isPerspectivesOverview = RcplSession.PERSPECTIVE_OVERVIEW.getId().equals(perspective.getId());
-		Rcpl.UIC.showStartMenuButton(!isPerspectivesOverview);
-		try {
-			if (!processedList.contains(perspective.getId())) {
-				processedList.add(perspective.getId());
-				processPerspectiveGroups(perspective.getId());
-			}
-
-			ToolBar n = toolbarRegistry.get(getKey(perspective.getId()));
-			toolbarStack.getChildren().clear();
-			if (n != null) {
-				toolbarStack.getChildren().add(n);
-				n.setVisible(true);
-			}
-			collapseToolPane();
-
-		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
-		}
 	}
 
 	/**

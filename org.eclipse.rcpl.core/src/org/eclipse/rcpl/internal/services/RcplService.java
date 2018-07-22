@@ -130,37 +130,37 @@ public class RcplService extends RcplAbstractService implements IService {
 	private boolean executeHomePages(ICommand command) {
 		switch (command.getCommandId()) {
 		case showStartMenu:
-			Rcpl.UIC.showHomePage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
 			break;
 		case HOME_PAGE_OVERVIEW:
-			Rcpl.UIC.showOverviewPage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
 			break;
 		case HOME_PAGE_PREFERENCES:
-			Rcpl.UIC.showPreferencesPage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_PREFERENCES);
 			break;
 		case HOME_PAGE_SAMPLES:
-			Rcpl.UIC.showSamplesPage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_SAMPLES);
 			break;
 		case HOME_PAGE_NEWS:
-			Rcpl.UIC.showNewPage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_NEWS);
 			break;
 		case HOME_PAGE_TUTORIALS:
-			Rcpl.UIC.showTutorialsPage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_TUTORIALS);
 			break;
 		case HOME_PAGE_DONATIONS:
-			Rcpl.UIC.showDonationPage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_DONATIONS);
 			break;
 		case HOME_PAGE_WHATS_NEW:
-			Rcpl.UIC.showWhatsNewPage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_WHATS_NEW);
 			break;
 		case HOME_PAGE_ABOUT:
-			Rcpl.UIC.showAboutPage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_ABOUT);
 			break;
 		case HOME_PAGE_TEMPLATES:
-			Rcpl.UIC.showTutorialsPage();
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_TEMPLATES);
 			break;
-		case CONTACT_US:
-			Rcpl.UIC.showContactUsPage();
+		case HOME_PAGE_CONTACT_US:
+			Rcpl.UIC.showHomePage(EnCommandId.HOME_PAGE_CONTACT_US);
 			break;
 		default:
 			return false;
@@ -403,6 +403,8 @@ public class RcplService extends RcplAbstractService implements IService {
 			return getServiceBySimpleName("JOPictureService");
 		case TABLE_SERVICE:
 			return getServiceBySimpleName("JOTableService");
+		case NEW_WORD_DOCUMENT:
+			return getServiceBySimpleName("NewWORDDocumentService");
 		default:
 			break;
 		}

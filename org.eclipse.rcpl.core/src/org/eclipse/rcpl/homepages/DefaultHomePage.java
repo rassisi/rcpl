@@ -10,18 +10,30 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+/**
+ * @author Ramin
+ *
+ */
 public class DefaultHomePage extends AbstractHomePage {
 
-	public DefaultHomePage(IRcplUic uic, String title, String image) {
-		super(uic, title, image, null);
+	public DefaultHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
+		super(uic, modelHomePage, pane);
 	}
 
 	@Override
-	protected void createContent(StackPane contentPane) {
+	public EnCommandId getId() {
+		return EnCommandId.HOME_PAGE_OVERVIEW;
+	}
+
+	@Override
+	protected void doCreateContent(StackPane contentPane) {
 	}
 
 }

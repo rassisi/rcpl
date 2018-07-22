@@ -5,14 +5,9 @@ import java.net.URL;
 
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
-import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.application.RcplApplicationStarter;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.eclipse.rcpl.util.RcplUtil;
-
-import com.rcpl.rcpl.addon.demo.homepages.DocumentHomePage;
-import com.rcpl.rcpl.addon.demo.homepages.NewHomePage;
-import com.rcpl.rcpl.addon.demo.homepages.SamplesHomePage;
 
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
@@ -38,21 +33,6 @@ public class DemoRcplUic extends RcplUic {
 
 	@Override
 	public void actionOpenLast() {
-	}
-
-	@Override
-	protected IHomePage createAboutHomePage() {
-		return super.createAboutHomePage();
-	}
-
-	@Override
-	protected IHomePage createNewHomePage() {
-		return new NewHomePage(this, "64_48/office_new");
-	}
-
-	@Override
-	protected IHomePage createSamplesHomePage() {
-		return new SamplesHomePage(this, "64_48/office_samples");
 	}
 
 	@Override
@@ -88,9 +68,9 @@ public class DemoRcplUic extends RcplUic {
 			Node n = internalBorderPane.getCenter();
 			if (n != null) {
 				Object o = n.getUserData();
-				if (o instanceof DocumentHomePage) {
-					return ((DocumentHomePage) o).getDocument().getEditor();
-				}
+//				if (o instanceof DocumentHomePage) {
+//					return ((DocumentHomePage) o).getDocument().getEditor();
+//				}
 			}
 		}
 		return result;

@@ -25,6 +25,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.rcpl.DelayedExecution;
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IDocument;
@@ -39,10 +40,6 @@ import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.WaitThread;
-import org.eclipse.rcpl.homepages.DefaultAboutHomePage;
-import org.eclipse.rcpl.homepages.DefaultNewHomePage;
-import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
-import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.login.RcplLogin;
@@ -116,6 +113,8 @@ import javafx.util.Duration;
  */
 public class RcplUic implements IRcplUic {
 
+	private IHomePage activeHomePage;
+
 	private static Timeline caretTimeline;
 
 	private static Rectangle caret;
@@ -132,26 +131,6 @@ public class RcplUic implements IRcplUic {
 
 	protected URLAddressTool urlAddressTool;
 
-	protected IHomePage samplesPage;
-
-	protected IHomePage perspectivePage;
-
-	protected IHomePage newPage;
-
-	protected IHomePage aboutPage;
-
-	protected IHomePage overviewPage;
-
-	protected IHomePage preferencesPage;
-
-	protected IHomePage tutorialsPage;
-
-	protected IHomePage donationPage;
-
-	protected IHomePage whatsNewPage;
-
-	protected IHomePage contactUsPage;
-
 	public String WELCOME_URL;
 
 	protected IButton buttonHome;
@@ -160,7 +139,7 @@ public class RcplUic implements IRcplUic {
 
 	protected Node onlineOfflineView;
 
-	protected List<IHomePage> homepages = new ArrayList<IHomePage>();
+	private List<IHomePage> homepages = new ArrayList<IHomePage>();
 
 	@FXML
 	protected Button startMenuButton;
@@ -379,7 +358,7 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void handle(ActionEvent event) {
-				showOverviewPage();
+				showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
 			}
 		});
 		Button clearButton = new Button("clear");
@@ -476,6 +455,15 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
+	public void actionPerspectiveOverview() {
+		Perspective p = findPerspective("OVERVIEW");
+//		if (!"OVERVIEW".equals(getPerspective().getId())) 
+		{
+//			showPerspective(p.getId(), true);
+			showPerspective("OVERVIEW", true);
+		}
+	}
+
 	public void actionPerspectiveSettings() {
 		if (!"SETTINGS".equals(getPerspective().getId())) {
 			Perspective p = findPerspective("SETTINGS");
@@ -564,7 +552,7 @@ public class RcplUic implements IRcplUic {
 			final IDocument doc = editor.getDocument();
 
 			if (internalTabPane.getTabs().isEmpty()) {
-				showOverviewPage();
+				showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
 			}
 
 			new DelayedExecution(200) {
@@ -580,7 +568,7 @@ public class RcplUic implements IRcplUic {
 
 									@Override
 									public void doRun() {
-										showOverviewPage();
+										showHomePage(EnCommandId.align_center.HOME_PAGE_OVERVIEW);
 									}
 								};
 
@@ -630,10 +618,6 @@ public class RcplUic implements IRcplUic {
 	protected void copyFXToInternal() {
 		internalTabPane = tabPane;
 		internalMainBottomArea = mainBottomArea;
-	}
-
-	protected IHomePage createAboutHomePage() {
-		return new DefaultAboutHomePage(RcplUic.this, "joffice");
 	}
 
 	private void createBorderDragger() {
@@ -707,10 +691,6 @@ public class RcplUic implements IRcplUic {
 
 	}
 
-	protected IHomePage createNewHomePage() {
-		return new DefaultNewHomePage(RcplUic.this, "office_new");
-	}
-
 	protected Tab createNewTab(String title) {
 		return createNewTab(new Tab(), title);
 	}
@@ -769,51 +749,48 @@ public class RcplUic implements IRcplUic {
 		return tab;
 	}
 
-	public void createPages() {
+	protected void createPages() {
 
-		if (overviewPage == null) {
-			internalTitle.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					showAboutPage();
-				}
-			});
-
-			overviewPage = Rcpl.getFactory().createOverviewHomePage(RcplUic.this, "My JOffice Cloud", "internet_cloud");
-
-			perspectivePage = createPerspectivePage();
-
-			samplesPage = createSamplesHomePage();
-			newPage = createNewHomePage();
-
-			whatsNewPage = Rcpl.getFactory().createWebHomePage(RcplUic.this, "What's New",
-					RcplSession.getCodeBases().get(0) + "joffice_new_and_noteworthy.html", "office_whatsnew");
-
-			String url = "http://85.25.100.163:8081/help/index.jsp";
-
-			// if (JOSession.codeBase.endsWith("/")) {
-			// helpUrl = JOSession.codeBase.substring(0,
-			// JOSession.codeBase.length() - 1)
-			// + ":8081/help/index.jsp";
-			// }
-
-			tutorialsPage = Rcpl.getFactory().createWebHomePage(RcplUic.this, "JOffice Help", url, "help");
-
-			url = "http://joffice.eu/joffice_donation_text.html";
-			donationPage = Rcpl.getFactory().createWebHomePage(RcplUic.this, "Donation", url, "donation");
-
-			contactUsPage = Rcpl.getFactory().createContactUsHomePage(RcplUic.this, "Contact Us", "contact_us");
-
-			preferencesPage = Rcpl.getFactory().createPreferencesHomePage(RcplUic.this, "Preferences",
-					"preferences_clipart");
-
-			aboutPage = createAboutHomePage();
+		if (getHomepages().isEmpty()) {
+			for (HomePage modelHomePage : RcplSession.getDefault().getRcpl().getHomepages().getChildren()) {
+				getHomepages().add(Rcpl.getFactory().createHomePage(this, modelHomePage));
+			}
 		}
 
-	}
+//		if (overviewPage == null) {
+//
+//
+//			overviewPage = Rcpl.getFactory().createOverviewHomePage(RcplUic.this, "My JOffice Cloud", "internet_cloud");
+//
+//			perspectivePage = createPerspectivePage();
+//
+//			samplesPage = createSamplesHomePage();
+//			newPage = createNewHomePage();
+//
+//			whatsNewPage = Rcpl.getFactory().createWebHomePage(RcplUic.this, "What's New",
+//					RcplSession.getCodeBases().get(0) + "joffice_new_and_noteworthy.html", "office_whatsnew");
+//
+//			String url = "http://85.25.100.163:8081/help/index.jsp";
+//
+//			// if (JOSession.codeBase.endsWith("/")) {
+//			// helpUrl = JOSession.codeBase.substring(0,
+//			// JOSession.codeBase.length() - 1)
+//			// + ":8081/help/index.jsp";
+//			// }
+//
+//			tutorialsPage = Rcpl.getFactory().createWebHomePage(RcplUic.this, "JOffice Help", url, "help");
+//
+//			url = "http://joffice.eu/joffice_donation_text.html";
+//			donationPage = Rcpl.getFactory().createWebHomePage(RcplUic.this, "Donation", url, "donation");
+//
+//			contactUsPage = Rcpl.getFactory().createContactUsHomePage(RcplUic.this, "Contact Us", "contact_us");
+//
+//			preferencesPage = Rcpl.getFactory().createPreferencesHomePage(RcplUic.this, "Preferences",
+//					"preferences_clipart");
+//
+//			aboutPage = createAboutHomePage();
+//		}
 
-	protected IHomePage createPerspectivePage() {
-		return new DefaultPerspectiveHomePage(RcplUic.this);
 	}
 
 	private void createRecentDocumentList() {
@@ -831,10 +808,6 @@ public class RcplUic implements IRcplUic {
 
 		}
 
-	}
-
-	protected IHomePage createSamplesHomePage() {
-		return new DefaultSamplesHomePage(RcplUic.this, "office_samples");
 	}
 
 	private void createTitelArea() {
@@ -945,7 +918,7 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void handle(ActionEvent event) {
-				showHomePage();
+				showHomePage(EnCommandId.HOME_PAGE_OVERVIEW);
 			}
 		});
 
@@ -1215,10 +1188,6 @@ public class RcplUic implements IRcplUic {
 		return null;
 	}
 
-	public IHomePage getOverviewPage() {
-		return overviewPage;
-	}
-
 	@Override
 	public Perspective getPerspective() {
 		if (perspective == null) {
@@ -1435,10 +1404,10 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public boolean isHome() {
-		if (overviewPage == null) {
-			return true;
+		if (activeHomePage == null) {
+			return false;
 		}
-		return internalBorderPane.getCenter() == overviewPage.getNode();
+		return EnCommandId.HOME_PAGE_OVERVIEW.equals(activeHomePage.getId());
 	}
 
 	@Override
@@ -1639,9 +1608,6 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void setPerspective(Perspective perspective) {
-		if (perspective == null) {
-			System.out.println();
-		}
 		this.perspective = perspective;
 	}
 
@@ -1718,10 +1684,30 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void showAboutPage() {
+	public void showHomePage(EnCommandId id) {
 		createPages();
-		setContent(aboutPage.getNode());
+		IHomePage homePage = findHomePage(id);
+		if (EnCommandId.HOME_PAGE_HTML_EDITOR.equals(id)) {
+			showHtmlEditor();
+			return;
+		}
+
+		setContent(homePage.getNode());
 		updateButtons(true);
+		activeHomePage = homePage;
+		if (EnCommandId.HOME_PAGE_OVERVIEW.equals(id)) {
+			actionPerspectiveOverview();
+			return;
+		}
+	}
+
+	public IHomePage findHomePage(EnCommandId id) {
+		for (IHomePage homePage : getHomepages()) {
+			if (id.equals(homePage.getId())) {
+				return homePage;
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -1735,30 +1721,9 @@ public class RcplUic implements IRcplUic {
 				return true;
 			}
 		} else if ("homeTab".equals(o)) {
-			showHomePage();
+			showHomePage(activeHomePage.getId());
 		}
 		return false;
-	}
-
-	@Override
-	public void showContactUsPage() {
-		createPages();
-		setContent(contactUsPage.getNode());
-		updateButtons(true);
-	}
-
-	@Override
-	public void showDonationPage() {
-		createPages();
-		setContent(donationPage.getNode());
-		updateButtons(true);
-		// donationPage.refresh();
-
-		// Application app = (Application)
-		// getRcplApplicationStarter().getRcplApplicationProvider();
-		// HostServicesDelegate hostServices =
-		// HostServicesFactory.getInstance(app);
-		// hostServices.showDocument("http://joffice.eu/joffice_donation.html");
 	}
 
 	@Override
@@ -1780,21 +1745,7 @@ public class RcplUic implements IRcplUic {
 
 	}
 
-	@Override
-	public void showHomePage() {
-		createPages();
-		showHomePage(-1);
-		updateButtons(true);
-	}
-
-	public void showHomePage(final int imageIndex) {
-
-		showOverviewPage();
-
-	}
-
-	@Override
-	public boolean showHtmlEditor() {
+	private boolean showHtmlEditor() {
 		WebView webView = getBrowser();
 		if (webView != null) {
 
@@ -1902,33 +1853,26 @@ public class RcplUic implements IRcplUic {
 
 	}
 
-	@Override
-	public void showNewPage() {
-		createPages();
-		setContent(newPage.getNode());
-		updateButtons(true);
-	}
-
-	@Override
-	public void showOverviewPage() {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				createPages();
-				if (overviewPage != null) {
-					setContent(overviewPage.getNode());
-				}
-
-				getSideToolBarControl().showHomeTools();
-
-				setPerspective(RcplSession.PERSPECTIVE_OVERVIEW);
-
-			}
-		});
-
-	}
-
+//	private void showOverviewPage(IHomePage homePage) {
+//
+//		if (homePage == null) {
+//			return;
+//		}
+//		Platform.runLater(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				createPages();
+//				if (homePage.getNode() != null) {
+//					setContent(homePage.getNode());
+//				}
+//				getSideToolBarControl().showHomeTools();
+//				setPerspective(RcplSession.PERSPECTIVE_OVERVIEW);
+//			}
+//		});
+//
+//	}
+//
 	/**
 	 * @param id
 	 */
@@ -1963,17 +1907,9 @@ public class RcplUic implements IRcplUic {
 		if (perspective != null) {
 			Rcpl.UIC.setPerspective(perspective);
 			getSideToolBarControl().showPerspective(perspective, false);
-			showPerspectivePage();
 		}
 		return false;
 	};
-
-	@Override
-	public void showPerspectivePage() {
-		createPages();
-		setContent(perspectivePage.getNode());
-		updateButtons(true);
-	}
 
 	private void showPluginInEditor(IRcplAddon rcplPlugin) {
 		final Tab newTab = createNewTab(rcplPlugin.getEmfModel().getName());
@@ -1988,37 +1924,6 @@ public class RcplUic implements IRcplUic {
 
 	public boolean showPluginPerspective(IRcplAddon rcplPlugin) {
 		return showPerspective(rcplPlugin.getId(), rcplPlugin.isAsEditor());
-	}
-
-	/**
-	 * 
-	 */
-	@Override
-	public void showPreferencesPage() {
-		createPages();
-		if (preferencesPage != null) {
-			setContent(preferencesPage.getNode());
-		}
-
-		// quickToolsArea.getChildren().removeAll((Node) saveAsButton.getNode(),
-		// (Node) saveButton.getNode(),
-		// (Node) getInternalUndoRedoListener());
-		// getTopToolbarControl().show((PerspectiveType) null);
-		// getSideToolBarControl().show((PerspectiveType) null, true);
-		// getSideToolBarControl().collapseToolBar();
-		updateButtons(true);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.rcpl.IUIC#showSamplesPage()
-	 */
-	@Override
-	public void showSamplesPage() {
-		createPages();
-		setContent(samplesPage.getNode());
-		updateButtons(true);
 	}
 
 	@Override
@@ -2095,14 +2000,6 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
-	@Override
-	public void showTutorialsPage() {
-		createPages();
-		setContent(tutorialsPage.getNode());
-		updateButtons(true);
-		tutorialsPage.refresh();
-	}
-
 	/**
 	 * 
 	 */
@@ -2121,15 +2018,6 @@ public class RcplUic implements IRcplUic {
 		setContent(internalWebView);
 		internalWebView.getEngine().load(url);
 	}
-
-	@Override
-	public void showWhatsNewPage() {
-		createPages();
-		setContent(whatsNewPage.getNode());
-		updateButtons(true);
-	}
-
-//	protected abstract void updateButtons(boolean update);
 
 	public void updateButtons(boolean home) {
 	}

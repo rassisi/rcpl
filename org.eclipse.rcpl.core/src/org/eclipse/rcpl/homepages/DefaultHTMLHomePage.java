@@ -13,27 +13,27 @@ package org.eclipse.rcpl.homepages;
 import java.io.File;
 import java.util.HashMap;
 
-import javafx.scene.Node;
+import org.eclipse.rcpl.EnCommandId;
+import org.eclipse.rcpl.IDocument;
+import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.util.RcplUtil;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.HTMLEditor;
-
-import org.eclipse.rcpl.IDocument;
-import org.eclipse.rcpl.IRcplUic;
-import org.eclipse.rcpl.util.RcplUtil;
 
 public class DefaultHTMLHomePage extends AbstractHomePage {
 
 	private IDocument document = null;
 
-	private StackPane contentPane;
+	HTMLEditor htmlEditor;
 
-	public DefaultHTMLHomePage(IRcplUic uic, String title, String documentTemplate,
-			String image, HashMap<String, String> wordReplacements,
-			Pane controlPane) {
-		super(uic, title, image, controlPane);
+	public DefaultHTMLHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane, String documentTemplate,
+			HashMap<String, String> wordReplacements) {
+		super(uic, modelHomePage, pane);
 
-		HTMLEditor htmlEditor = new HTMLEditor();
+		htmlEditor = new HTMLEditor();
 
 		File f = RcplUtil.loadTemplateDocumentToFile(documentTemplate, true);
 
@@ -44,9 +44,9 @@ public class DefaultHTMLHomePage extends AbstractHomePage {
 		// String htmlText = new JODocumentProvider().createHtmlDocument(
 		// documentTemplate, wordReplacements);
 
-		String htmlText = RcplUtil.loadTemplateHTMLDocument(documentTemplate,
-				wordReplacements, true);
+		getContentPane().getChildren().add(htmlEditor);
 
+		String htmlText = RcplUtil.loadTemplateHTMLDocument(documentTemplate, wordReplacements, true);
 		if (htmlText != null) {
 			for (String key : wordReplacements.keySet()) {
 				String replacement = wordReplacements.get(key);
@@ -54,23 +54,20 @@ public class DefaultHTMLHomePage extends AbstractHomePage {
 			}
 			htmlEditor.setHtmlText(htmlText);
 		}
-		contentPane.getChildren().add(htmlEditor);
-
-	}
-
-	@Override
-	protected void createContent(StackPane contentPane) {
-		this.contentPane = contentPane;
-	}
-
-	@Override
-	public Node getNode() {
-		super.getNode().setUserData(this);
-		return super.getNode();
 	}
 
 	public IDocument getDocument() {
 		return document;
+	}
+
+	@Override
+	public EnCommandId getId() {
+		return EnCommandId.HOME_PAGE_DOCUMENT;
+	}
+
+	@Override
+	protected void doCreateContent(StackPane contentPane) {
+
 	}
 
 }

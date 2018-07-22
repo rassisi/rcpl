@@ -340,7 +340,7 @@ public class JOButton extends RcplTool implements IButton {
 				removeToggleButtonListener();
 				EnCommandId cmd = EnCommandId.valueOf(id);
 				switch (cmd) {
-				case CONTACT_US:
+				case HOME_PAGE_CONTACT_US:
 					break;
 				case INSERT_PARAGRAPH:
 					break;

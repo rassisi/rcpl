@@ -4,13 +4,13 @@ import java.io.File;
 import java.util.HashMap;
 
 import org.eclipse.rcpl.model.IResources;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -40,24 +40,7 @@ public interface IRcplFactory {
 
 	ITopToolbar createTopToolBar(StackPane stackPane);
 
-	IHomePage createDefaultHomePage(IRcplUic uic, String title, String image);
-
-	IHomePage createDocumentHomePage(IRcplUic uic, String title, String documentTemplate, String image,
-			HashMap<String, String> wordReplacements, Pane controlPane);
-
-	IHomePage createHTMLHomePage(IRcplUic uic, String title, String documentTemplate, String image,
-			HashMap<String, String> wordReplacements, Pane controlPane);
-
-	IHomePage createHTMLReadOnlyHomePage(IRcplUic uic, String title, String documentTemplate, String image,
-			HashMap<String, String> wordReplacements, Pane controlPane);
-
-	IHomePage createWebHomePage(IRcplUic uic, String title, String url, String image);
-
-	IHomePage createOverviewHomePage(IRcplUic uic, String title, String image);
-
-	IHomePage createPreferencesHomePage(IRcplUic uic, String title, String image);
-
-	IHomePage createContactUsHomePage(IRcplUic uic, String title, String image);
+	IHomePage createHomePage(IRcplUic uic, HomePage modelHomePage);
 
 	Perspective createPerspective(String id, String name, String image);
 

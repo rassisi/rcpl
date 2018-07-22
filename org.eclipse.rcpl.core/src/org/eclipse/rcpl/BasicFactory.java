@@ -15,13 +15,13 @@ import java.util.HashMap;
 
 import org.eclipse.rcpl.app.toolcontrols.RcplSideToolBar;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
+import org.eclipse.rcpl.homepages.DefaultAboutHomePage;
 import org.eclipse.rcpl.homepages.DefaultContactUsHomePage;
 import org.eclipse.rcpl.homepages.DefaultHTMLHomePage;
-import org.eclipse.rcpl.homepages.DefaultHTMLReadOnlyHomePage;
-import org.eclipse.rcpl.homepages.DefaultHomePage;
+import org.eclipse.rcpl.homepages.DefaultNewHomePage;
 import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
+import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
 import org.eclipse.rcpl.homepages.DefaultPreferencesHomePage;
-import org.eclipse.rcpl.homepages.DefaultWebHomePage;
 import org.eclipse.rcpl.internal.fx.figures.JOButton;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.resources.JOColorProvider;
@@ -32,6 +32,7 @@ import org.eclipse.rcpl.internal.tools.UndoRedoTool;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -44,7 +45,6 @@ import org.eclipse.rcpl.ui.font.RcplFontProvider;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -165,16 +165,6 @@ public class BasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public IHomePage createDefaultHomePage(IRcplUic uic, String title, String image) {
-		return new DefaultHomePage(uic, title, image);
-	}
-
-	@Override
-	public IHomePage createWebHomePage(IRcplUic uic, String title, String url, String image) {
-		return new DefaultWebHomePage(uic, title, url, image);
-	}
-
-	@Override
 	public Perspective createPerspective(String id, String name, String image) {
 		Perspective perspective = RcplFactory.eINSTANCE.createPerspective();
 		perspective.setId(id);
@@ -195,35 +185,6 @@ public class BasicFactory implements IRcplFactory {
 	@Override
 	public IButton createButton(ToolGroup g, boolean toggle, boolean systemButton, IButtonListener buttonListener) {
 		return createButton(g.getId(), g.getName(), g.getToolTip(), g.getImage(), toggle, buttonListener, systemButton);
-	}
-
-	@Override
-	public IHomePage createHTMLHomePage(IRcplUic uic, String title, String documentTemplate, String image,
-			HashMap<String, String> wordReplacements, Pane controlPane) {
-		return new DefaultHTMLHomePage(uic, title, documentTemplate, image, wordReplacements, controlPane);
-
-	}
-
-	@Override
-	public IHomePage createHTMLReadOnlyHomePage(IRcplUic uic, String title, String documentTemplate, String image,
-			HashMap<String, String> wordReplacements, Pane controlPane) {
-		return new DefaultHTMLReadOnlyHomePage(uic, title, documentTemplate, image, wordReplacements, controlPane);
-
-	}
-
-	@Override
-	public IHomePage createOverviewHomePage(IRcplUic uic, String title, String image) {
-		return new DefaultOverviewHomePage(uic, title, image);
-	}
-
-	@Override
-	public IHomePage createPreferencesHomePage(IRcplUic uic, String title, String image) {
-		return new DefaultPreferencesHomePage(uic, title, image);
-	}
-
-	@Override
-	public IHomePage createContactUsHomePage(IRcplUic uic, String title, String image) {
-		return new DefaultContactUsHomePage(uic, title, image);
 	}
 
 	@Override
@@ -264,15 +225,56 @@ public class BasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public IHomePage createDocumentHomePage(IRcplUic uic, String title, String documentTemplate, String image,
-			HashMap<String, String> wordReplacements, Pane controlPane) {
-		// TODO Auto-generated method stub
+	public IStyleTemplate createStyleTemplate() {
 		return null;
 	}
 
 	@Override
-	public IStyleTemplate createStyleTemplate() {
-		return null;
+	public IHomePage createHomePage(IRcplUic uic, HomePage modelHomePage) {
+
+//		import org.eclipse.rcpl.homepages.DefaultContactUsHomePage;
+//		import org.eclipse.rcpl.homepages.DefaultHomePage;
+//		import org.eclipse.rcpl.homepages.DefaultHTMLHomePage;
+//		import org.eclipse.rcpl.homepages.DefaultHTMLReadOnlyHomePage;
+//		import org.eclipse.rcpl.homepages.DefaultNewHomePage;
+//		import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
+//		import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
+//		import org.eclipse.rcpl.homepages.DefaultPreferencesHomePage;
+//		import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
+//		import org.eclipse.rcpl.homepages.DefaultWebHomePage;
+
+		EnCommandId id = EnCommandId.findCommandId(modelHomePage.getId());
+		switch (id) {
+		case HOME_PAGE_ABOUT:
+			return new DefaultAboutHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_CONTACT_US:
+			return new DefaultContactUsHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_DOCUMENT:
+			return new DefaultAboutHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_DONATIONS:
+			return new DefaultAboutHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_HTML_EDITOR:
+			return new DefaultHTMLHomePage(uic, modelHomePage, null, "", null);
+		case HOME_PAGE_NEWS:
+			return new DefaultNewHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_OVERVIEW:
+			return new DefaultOverviewHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_PERSPECTIVES:
+			return new DefaultPerspectiveHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_PREFERENCES:
+			return new DefaultPreferencesHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_SAMPLES:
+			return new DefaultAboutHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_TEMPLATES:
+			return new DefaultAboutHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_TUTORIALS:
+			return new DefaultAboutHomePage(uic, modelHomePage, null);
+		case HOME_PAGE_WHATS_NEW:
+			return new DefaultAboutHomePage(uic, modelHomePage, null);
+		default:
+			return new DefaultAboutHomePage(uic, modelHomePage, null);
+
+		}
 	}
 
 }

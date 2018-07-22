@@ -10,51 +10,36 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IHomePage;
-import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.ui.controler.RcplUic;
+import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * @author ramin
  * 
  */
-public class DefaultAboutHomePage implements IHomePage {
+public class DefaultAboutHomePage extends AbstractHomePage implements IHomePage {
 
-	private IHomePage homePage;
+	public DefaultAboutHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
+		super(uic, modelHomePage, pane);
+	}
 
-	public DefaultAboutHomePage(RcplUic uic, String image) {
-		uic.getHomepages().add(this);
-		homePage = Rcpl.getFactory().createDefaultHomePage(uic, "about", image);
+	@Override
+	public EnCommandId getId() {
+		return EnCommandId.HOME_PAGE_OVERVIEW;
+	}
+
+	@Override
+	protected void doCreateContent(StackPane contentPane) {
 		Label l = new Label("(c) Ramin Assisi 2013-2014, support@raminassisi.com");
 		l.setAlignment(Pos.CENTER);
-		homePage.getContentPane().getChildren().add(l);
+		getContentPane().getChildren().add(l);
 	}
 
-	@Override
-	public Node getNode() {
-		return homePage.getNode();
-	}
-
-	@Override
-	public Pane getContentPane() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getRow() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void refresh() {
-		// TODO Auto-generated method stub
-
-	}
 }
