@@ -15,8 +15,8 @@ import java.util.HashMap;
 
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ITool;
-import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.model.RCPLModel;
@@ -142,6 +142,9 @@ public class JORibbonGroup extends RcplTool {
 		} else {
 			HBox.setMargin(root, new Insets(3, 7, 7, 5));
 		}
+
+		root.setMinWidth(2);
+		mainGridPane.setMinWidth(2);
 	}
 
 	/**
@@ -151,6 +154,8 @@ public class JORibbonGroup extends RcplTool {
 		try {
 			if (toolGroup == null) {
 				IButton b = Rcpl.getFactory().createButton("error", "error", "error", null, false, null, false);
+				b.getNode().setMinWidth(2);
+				;
 				add(b.getNode(), 0, 0);
 				return 0;
 
@@ -160,6 +165,8 @@ public class JORibbonGroup extends RcplTool {
 
 				IButton b = Rcpl.getFactory().createButton(toolGroup.getId(), "", toolGroup.getToolTip(), image, false,
 						null, false);
+				b.getNode().setMinWidth(2);
+				;
 				b.setWidth(48);
 				b.setHeight(48);
 				add(b.getNode(), 0, 0);
@@ -255,8 +262,8 @@ public class JORibbonGroup extends RcplTool {
 	}
 
 	/**
-	 * get. Returns the instance of the HBox which contains the mainGridPane of
-	 * the clipboard region.
+	 * get. Returns the instance of the HBox which contains the mainGridPane of the
+	 * clipboard region.
 	 * 
 	 * @return
 	 */

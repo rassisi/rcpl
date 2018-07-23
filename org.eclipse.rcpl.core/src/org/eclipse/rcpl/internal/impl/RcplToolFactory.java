@@ -20,17 +20,16 @@ import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.IURLAddressTool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
-import org.eclipse.rcpl.internal.tools.FontNameTool;
-import org.eclipse.rcpl.internal.tools.FontSizeTool;
 import org.eclipse.rcpl.internal.tools.CheckBoxTool;
 import org.eclipse.rcpl.internal.tools.ComboBoxTool;
 import org.eclipse.rcpl.internal.tools.DateTool;
-import org.eclipse.rcpl.internal.tools.JOFlowPaneTool;
+import org.eclipse.rcpl.internal.tools.FontNameTool;
+import org.eclipse.rcpl.internal.tools.FontSizeTool;
 import org.eclipse.rcpl.internal.tools.GridPaneTool;
+import org.eclipse.rcpl.internal.tools.JOFlowPaneTool;
 import org.eclipse.rcpl.internal.tools.JOHtmlTool;
 import org.eclipse.rcpl.internal.tools.JOHyperLinkTool;
 import org.eclipse.rcpl.internal.tools.JOImageTool;
-import org.eclipse.rcpl.internal.tools.LabelTool;
 import org.eclipse.rcpl.internal.tools.JOListTool;
 import org.eclipse.rcpl.internal.tools.JOMenuButtonTool;
 import org.eclipse.rcpl.internal.tools.JOPasswordTool;
@@ -43,13 +42,16 @@ import org.eclipse.rcpl.internal.tools.JOSplitMenuTool;
 import org.eclipse.rcpl.internal.tools.JOTextAreaTool;
 import org.eclipse.rcpl.internal.tools.JOTextFieldTool;
 import org.eclipse.rcpl.internal.tools.JOWebBrowserTool;
+import org.eclipse.rcpl.internal.tools.LabelTool;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
@@ -71,49 +73,51 @@ public class RcplToolFactory implements IToolFactory {
 	}
 
 	@Override
-	public ITool createTool(final Tool emfTool, double width, double height) {
+	public ITool createTool(final Tool model, double width, double height) {
 
 		ITool tool = null;
-		String id = emfTool.getId();
+		String id = model.getId();
 
 		if (id != null && !Tool.ids.contains(id)) {
 			Tool.ids.add(id);
 		}
 
-		switch (emfTool.getType()) {
+		switch (model.getType()) {
 		case NAVIGATOR:
 
 			break;
 		case BUTTON:
-			tool = new RcplButton(emfTool);
+			tool = new RcplButton(model);
 			tool.setBounds(0, 0, width, height);
 			break;
 		case CHECKBOX:
-			tool = new CheckBoxTool(emfTool);
-			emfTool.setLabeled(true);
+			tool = new CheckBoxTool(model);
+			model.setLabeled(true);
 			break;
 		case COMBO:
 
-			if ("fontName".equals(emfTool.getFormat())) {
-				tool = new FontNameTool(emfTool);
-				emfTool.setService(EnServiceId.PARAGRAPH_SERVICE.name());
+			if ("fontName".equals(model.getFormat())) {
+				tool = new FontNameTool(model);
+				model.setService(EnServiceId.PARAGRAPH_SERVICE.name());
 				GridPane.setHgrow(tool.getNode(), Priority.ALWAYS);
 				break;
 			}
 
-			if ("fontSize".equals(emfTool.getFormat())) {
-				tool = new FontSizeTool(emfTool);
-				emfTool.setService(EnServiceId.PARAGRAPH_SERVICE.name());
+			if ("fontSize".equals(model.getFormat())) {
+				tool = new FontSizeTool(model);
+				model.setService(EnServiceId.PARAGRAPH_SERVICE.name());
 				GridPane.setHgrow(tool.getNode(), Priority.ALWAYS);
 				break;
 			}
-			ComboBoxTool combo = new ComboBoxTool(emfTool);
+			ComboBoxTool combo = new ComboBoxTool(model);
+			((ComboBox<?>) combo.getNode()).setMinWidth(2);
+
 			GridPane.setHgrow(combo.getNode(), Priority.ALWAYS);
 			tool = combo;
-			if (emfTool.getFormat() != null) {
+			if (model.getFormat() != null) {
 
 				try {
-					Class<?> clazz = Class.forName(emfTool.getFormat());
+					Class<?> clazz = Class.forName(model.getFormat());
 					if (clazz.isEnum()) {
 						Object[] values = clazz.getEnumConstants();
 
@@ -122,8 +126,8 @@ public class RcplToolFactory implements IToolFactory {
 						}
 					}
 				} catch (ClassNotFoundException e) {
-					if (emfTool.getFormat() != null) {
-						List<String> list = new ArrayList<String>(Arrays.asList(emfTool.getFormat().split(",")));
+					if (model.getFormat() != null) {
+						List<String> list = new ArrayList<String>(Arrays.asList(model.getFormat().split(",")));
 
 						List<String> list2 = new ArrayList<String>();
 						int index = 0;
@@ -144,22 +148,22 @@ public class RcplToolFactory implements IToolFactory {
 			}
 			break;
 		case DATEANDTIMEFIELD:
-			tool = new DateTool(emfTool);
+			tool = new DateTool(model);
 			break;
 		case DATEFIELD:
-			tool = new DateTool(emfTool);
+			tool = new DateTool(model);
 			break;
 		case PASSWORDFIELD:
-			tool = new JOPasswordTool(emfTool);
+			tool = new JOPasswordTool(model);
 			break;
 		case RADIOBUTTON:
-			tool = new JORadioButtonTool(emfTool);
+			tool = new JORadioButtonTool(model);
 			break;
 		case SPLITMENUBUTTON:
-			JOSplitMenuTool b = new JOSplitMenuTool(emfTool);
+			JOSplitMenuTool b = new JOSplitMenuTool(model);
 			b.getNode().setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
 
-			String imName = emfTool.getImage();
+			String imName = model.getImage();
 			if (imName != null) {
 				Node im = Rcpl.resources().getImage(imName, 16, 16).getNode();
 				if (im != null) {
@@ -172,10 +176,10 @@ public class RcplToolFactory implements IToolFactory {
 			tool = b;
 			break;
 		case TEXTFIELD:
-			tool = new JOTextFieldTool(emfTool);
+			tool = new JOTextFieldTool(model);
 			break;
 		case TOGGLEBUTTON:
-			tool = new RcplButton(emfTool);
+			tool = new RcplButton(model);
 			((RcplButton) tool).setSelected(false);
 			break;
 		case CHOICEBOX:
@@ -183,73 +187,75 @@ public class RcplToolFactory implements IToolFactory {
 		case COLOR_CHOOSER:
 			break;
 		case HTMLEDITOR:
-			tool = new JOHtmlTool(emfTool);
+			tool = new JOHtmlTool(model);
 			break;
 		case HYPERLINK:
-			tool = new JOHyperLinkTool(emfTool);
+			tool = new JOHyperLinkTool(model);
 			break;
 		case IMAGEVIEW:
-			tool = new JOImageTool(emfTool);
+			tool = new JOImageTool(model);
 			break;
 		case LABEL:
-			tool = new LabelTool(emfTool);
+			tool = new LabelTool(model);
 			break;
 		case LISTVIEW:
-			tool = new JOListTool(emfTool);
+			tool = new JOListTool(model);
+			((ListView<?>) tool.getNode()).setMinWidth(2);
 			break;
 		case MENUBAR:
-			tool = new JOMenuButtonTool(emfTool);
+			tool = new JOMenuButtonTool(model);
 			break;
 		case MENUBUTTON:
-			tool = new JOMenuButtonTool(emfTool);
+			tool = new JOMenuButtonTool(model);
 			break;
 		case PROGRESSBAR:
-			tool = new JOProgressBarTool(emfTool);
+			tool = new JOProgressBarTool(model);
 			break;
 		case PROGRESSINDICATOR:
-			tool = new JOProgressIndicatorTool(emfTool);
+			tool = new JOProgressIndicatorTool(model);
 			break;
 		case SEPARATOR_HORIZONTAL:
-			tool = new JOSeparatorTool(emfTool); // (Orientation.HORIZONTAL);
+			tool = new JOSeparatorTool(model); // (Orientation.HORIZONTAL);
 			break;
 		case SEPARATOR_VERTICAL:
-			tool = new JOSeparatorTool(emfTool); // Orientation.VERTICAL);
+			tool = new JOSeparatorTool(model); // Orientation.VERTICAL);
 			break;
 		case SLIDER_HORIZONTAL:
-			JOSliderTool sl = new JOSliderTool(emfTool);
+			JOSliderTool sl = new JOSliderTool(model);
 			sl.getNode().setOrientation(Orientation.HORIZONTAL);
 			tool = sl;
 			break;
 		case SLIDER_VERTICAL:
-			sl = new JOSliderTool(emfTool);
+			sl = new JOSliderTool(model);
 			sl.getNode().setOrientation(Orientation.VERTICAL);
 			tool = sl;
 			break;
 		case TEXTAREA:
-			tool = new JOTextAreaTool(emfTool);
+			tool = new JOTextAreaTool(model);
 			break;
 		case WEBVIEW:
-			tool = new JOWebBrowserTool(emfTool);
+			tool = new JOWebBrowserTool(model);
 			break;
 		case GRIDPANE:
-			tool = new GridPaneTool(emfTool);
+			tool = new GridPaneTool(model);
 			break;
 		case FLOWPANE:
-			tool = new JOFlowPaneTool(emfTool);
+			tool = new JOFlowPaneTool(model);
 			break;
 		default:
 			break;
 
 		}
 
-		if (tool instanceof Control) {
-			double w = getWidth(emfTool);
+		if (tool.getNode() instanceof Control) {
+			((Control) tool.getNode()).setMinWidth(2);
+			double w = getWidth(model);
 			if (w > 0) {
-				((Control) tool).setMaxWidth(w);
+				((Control) tool.getNode()).setMaxWidth(w);
 			}
 		}
 		if (tool != null) {
-			tool.getNode().setUserData(emfTool);
+			tool.getNode().setUserData(model);
 		}
 		return tool;
 	}

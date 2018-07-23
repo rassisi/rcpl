@@ -152,6 +152,7 @@ public class RcplButton extends RcplTool implements IButton {
 
 		if (toggle) {
 			node = new ToggleButton();
+			((ToggleButton) node).setMinWidth(2);
 			node.setPickOnBounds(false);
 			toggleButonListener = new ChangeListener<Boolean>() {
 				@Override
@@ -163,10 +164,9 @@ public class RcplButton extends RcplTool implements IButton {
 			};
 			addToggleButtonListener();
 
-		} else
-
-		{
+		} else {
 			node = new Button();
+			((Button) node).setMinWidth(2);
 			node.setPickOnBounds(false);
 			((ButtonBase) node).setOnAction(new EventHandler<ActionEvent>() {
 
