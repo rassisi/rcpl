@@ -1,18 +1,20 @@
 package org.eclipse.rcpl.ui.parts.contacts;
 
 import java.io.File;
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
+import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.contacts.addon.RcplContactsAddon;
 import org.eclipse.rcpl.login.RcplLogin;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.navigator.EViewController;
 
 import javafx.beans.property.Property;
@@ -99,6 +101,7 @@ public class EContactsAddonController extends EViewController {
 	@FXML
 	private VBox viewerBox;
 
+	@Override
 	public void updateBindings(EObject contact, EditingDomain editingDomain) {
 //		titleProperty = bind(title, titleProperty, contact,
 //				RcplPackage.eINSTANCE.getEContact_Title(), editingDomain);
@@ -156,6 +159,7 @@ public class EContactsAddonController extends EViewController {
 		return viewerBox;
 	}
 
+	@Override
 	public void doInit(AbstractRcplAddon uc) {
 		Node node1 = new EContactsTreePart((RcplContactsAddon) uc).getNode();
 		getViewerBox().getChildren().add(node1);
@@ -253,18 +257,6 @@ public class EContactsAddonController extends EViewController {
 	}
 
 	@Override
-	public List<IHomePage> getHomepages() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public INavigatorAddon getNavigator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Perspective getPerspective() {
 		// TODO Auto-generated method stub
 		return null;
@@ -272,12 +264,6 @@ public class EContactsAddonController extends EViewController {
 
 	@Override
 	public Stage getStage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IRcplAddon getUseCase() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -343,19 +329,7 @@ public class EContactsAddonController extends EViewController {
 	}
 
 	@Override
-	public void restoreTab() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void setPerspective(Perspective perspective, IRcplAddon useCase) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setUseCase(IRcplAddon useCase) {
 		// TODO Auto-generated method stub
 
 	}
@@ -421,79 +395,13 @@ public class EContactsAddonController extends EViewController {
 	}
 
 	@Override
-	public void showAboutPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public boolean showBrowser() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void showContactUsPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showDonationPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void showErrorPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showHomePage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean showHtmlEditor() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void showNewPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showPerspectivePage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showOverviewPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean showPerspective(String id, boolean asEditor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void showPreferencesPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showSamplesPage() {
 		// TODO Auto-generated method stub
 
 	}
@@ -505,25 +413,7 @@ public class EContactsAddonController extends EViewController {
 	}
 
 	@Override
-	public void showTabPane() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showTutorialsPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void showWebView(String url) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void showWhatsNewPage() {
 		// TODO Auto-generated method stub
 
 	}
@@ -536,6 +426,54 @@ public class EContactsAddonController extends EViewController {
 
 	@Override
 	public void init(IRcplAddon rcplAddon) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void createHomePages() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public IHomePage findHomePage(HomePageType id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public INavigatorAddon getNavigator(Tool tool) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IRcplAddon getActiveAddon() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setActiveAddon(IRcplAddon useCase) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean showPerspective(Perspective perspective) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public IApplicationStarter getApplicationStarter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void showHomePage(HomePageType id) {
 		// TODO Auto-generated method stub
 
 	}

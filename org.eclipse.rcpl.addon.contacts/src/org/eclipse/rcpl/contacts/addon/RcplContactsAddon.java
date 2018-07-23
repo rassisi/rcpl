@@ -1,14 +1,12 @@
 package org.eclipse.rcpl.contacts.addon;
 
 import org.eclipse.rcpl.AbstractRcplAddon;
-import org.eclipse.rcpl.IApplicationStarter;
-import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplAddon;
-import org.eclipse.rcpl.RcplAbstractMigration;
 import org.eclipse.rcpl.RcplAddon;
+import org.eclipse.rcpl.migration.RcplAbstractMigration;
 import org.eclipse.rcpl.navigator.EViewController;
-import org.eclipse.rcpl.ui.parts.contacts.EContactsMigration;
 import org.eclipse.rcpl.ui.parts.contacts.EContactsAddonController;
+import org.eclipse.rcpl.ui.parts.contacts.EContactsMigration;
 
 /**
  * @author Ramin
@@ -44,14 +42,8 @@ public class RcplContactsAddon extends AbstractRcplAddon implements IRcplAddon {
 	}
 
 	@Override
-	public IApplicationStarter createApplicationStarter(IRcplApplicationProvider application) {
-		return null;
-	}
-
-	@Override
 	public boolean isCustomApplication() {
 		return false;
 	}
-
 
 }

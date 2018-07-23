@@ -1,8 +1,8 @@
 package org.eclipse.rcpl.ui.parts.contacts;
 
 import org.eclipse.rcpl.IRcplAddon;
-import org.eclipse.rcpl.RcplAbstractMigration;
 import org.eclipse.rcpl.contacts.addon.RcplContactsAddon;
+import org.eclipse.rcpl.migration.RcplAbstractMigration;
 
 public class EContactsMigration extends RcplAbstractMigration {
 
@@ -11,7 +11,7 @@ public class EContactsMigration extends RcplAbstractMigration {
 	}
 
 	@Override
-	protected void migrate() {
+	public void migrate() {
 
 		// removeGroupFromTopBar(JOModel.USE_CASE_CONTACTS,
 		// "sideBar/clipboard");
@@ -22,15 +22,12 @@ public class EContactsMigration extends RcplAbstractMigration {
 		// IUseCase ucContacts = JO.UIC.findUsecase(JOModel.USE_CASE_CONTACTS);
 		// ucContacts.getEUseCase().setName("Contacts");
 		//
-		addGroupToTopBar(useCase, "addContact_419", "Add Contact",
-				"addContact_419", 0);
-		addGroupToTopBar(useCase, "addContactsGroup", "Add Contact Group",
-				"addContactsGroup", 0);
+		addGroupToTopBar(useCase, "addContact_419", "Add Contact", "addContact_419", 0);
+		addGroupToTopBar(useCase, "addContactsGroup", "Add Contact Group", "addContactsGroup", 0);
 
 		// removeGroupFromTopBar(EContactsUseCase.ID, "addItProject");
 
-		addToolToQuickBar(RcplContactsAddon.ID, "openContactsPerspective",
-				"Open Contacts Perspective", "contacts", 0);
+		addToolToQuickBar(RcplContactsAddon.ID, "openContactsPerspective", "Open Contacts Perspective", "contacts", 0);
 
 		// addToolToQuickBar(JOModel.USE_CASE_CONTACTS, "addContactsGroup", 0);
 		//

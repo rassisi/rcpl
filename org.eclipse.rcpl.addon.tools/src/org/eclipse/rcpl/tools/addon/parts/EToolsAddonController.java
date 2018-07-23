@@ -24,6 +24,7 @@ import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.control.IntegerField;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
@@ -36,8 +37,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.navigator.EViewController;
 import org.eclipse.rcpl.tools.addon.EToolsAddon;
-
-import com.sun.javafx.scene.control.IntegerField;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
@@ -304,10 +303,10 @@ public class EToolsAddonController extends EViewController {
 		grid.setDisable(!(eObject instanceof ToolGroup));
 		toolType.setDisable(!(eObject instanceof Tool));
 		format.setDisable(!(eObject instanceof AbstractTool));
-		gridXField.setDisable(!(eObject instanceof AbstractTool));
-		gridYField.setDisable(!(eObject instanceof AbstractTool));
-		spanXField.setDisable(!(eObject instanceof AbstractTool));
-		spanYField.setDisable(!(eObject instanceof AbstractTool));
+//		gridXField.setDisable(!(eObject instanceof AbstractTool));
+//		gridYField.setDisable(!(eObject instanceof AbstractTool));
+//		spanXField.setDisable(!(eObject instanceof AbstractTool));
+//		spanYField.setDisable(!(eObject instanceof AbstractTool));
 		toolId.setDisable(!(eObject instanceof AbstractTool));
 
 		addToolIdListener();
@@ -446,21 +445,21 @@ public class EToolsAddonController extends EViewController {
 	protected void addCustomFields() {
 		if (gridXField == null) {
 			gridXField = new IntegerField();
-			gridXField.setMinWidth(0);
+			gridXField.getNode().setMinWidth(0);
 			gridYField = new IntegerField();
-			gridYField.setMinHeight(0);
+			gridYField.getNode().setMinHeight(0);
 			spanXField = new IntegerField();
-			spanXField.setMinWidth(1);
+			spanXField.getNode().setMinWidth(1);
 			spanYField = new IntegerField();
-			spanYField.setMinHeight(1);
+			spanYField.getNode().setMinHeight(1);
 
 			int startY = 8;
 			labeled = new CheckBox();
 			getGridPane().add(labeled, 1, startY++);
-			getGridPane().add(gridXField, 1, startY++);
-			getGridPane().add(gridYField, 1, startY++);
-			getGridPane().add(spanXField, 1, startY++);
-			getGridPane().add(spanYField, 1, startY++);
+			getGridPane().add(gridXField.getNode(), 1, startY++);
+			getGridPane().add(gridYField.getNode(), 1, startY++);
+			getGridPane().add(spanXField.getNode(), 1, startY++);
+			getGridPane().add(spanYField.getNode(), 1, startY++);
 
 		}
 	}
