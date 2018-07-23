@@ -121,7 +121,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	ParallelTransition parallelTransition;
 	Effect dsFocused;
 	Effect dsNotFocused;
-	UndecoratorController undecoratorController;
+	RcplWindowController undecoratorController;
 	Stage stage;
 	Rectangle backgroundRect;
 	SimpleBooleanProperty maximizeProperty;
@@ -201,7 +201,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		});
 
 		// The controller
-		undecoratorController = new UndecoratorController(this);
+		undecoratorController = new RcplWindowController(this);
 
 		undecoratorController.setAsStageDraggable(stage, clientArea);
 
@@ -794,7 +794,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		return SHADOW_WIDTH * 2 + RESIZE_PADDING * 2;
 	}
 
-	public UndecoratorController getController() {
+	public RcplWindowController getController() {
 		return undecoratorController;
 	}
 

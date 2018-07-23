@@ -19,7 +19,7 @@ import javafx.stage.WindowEvent;
  *
  * @author in-sideFX
  */
-public class UndecoratorController {
+public class RcplWindowController {
 
 	static final int DOCK_NONE = 0x0;
 	static final int DOCK_LEFT = 0x1;
@@ -46,7 +46,7 @@ public class UndecoratorController {
 		}
 	}
 
-	public UndecoratorController(RcplApplicationWindow ud) {
+	public RcplWindowController(RcplApplicationWindow ud) {
 		undecorator = ud;
 	}
 

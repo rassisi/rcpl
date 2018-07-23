@@ -1652,7 +1652,6 @@ public class RcplUic implements IRcplUic {
 			internalBorderPane = fxmlLoader.load();
 			internalBorderPane.setCenter(editorArea);
 			init(internalBorderPane);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 			// System.exit(1);

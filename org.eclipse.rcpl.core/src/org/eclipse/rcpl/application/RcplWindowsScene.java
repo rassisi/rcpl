@@ -38,7 +38,7 @@ import javafx.stage.StageStyle;
  *
  * @author In-SideFX
  */
-public class UndecoratorScene extends Scene {
+public class RcplWindowsScene extends Scene {
 
     static public final String DEFAULT_STYLESHEET = "skin/undecorator.css";
     static public final String DEFAULT_STYLESHEET_UTILITY = "skin/undecoratorUtilityStage.css";
@@ -52,7 +52,7 @@ public class UndecoratorScene extends Scene {
      * @param stage The main stage
      * @param root your UI to be displayed in the Stage
      */
-    public UndecoratorScene(Stage stage, Region root) {
+    public RcplWindowsScene(Stage stage, Region root) {
         this(stage, StageStyle.TRANSPARENT, root, DEFAULT_STAGEDECORATION);
     }
 
@@ -65,7 +65,7 @@ public class UndecoratorScene extends Scene {
      * @param stageDecorationFxml Your own Stage decoration or null to use the
      * built-in one
      */
-    public UndecoratorScene(Stage stage, StageStyle stageStyle, Region root, String stageDecorationFxml) {
+    public RcplWindowsScene(Stage stage, StageStyle stageStyle, Region root, String stageDecorationFxml) {
 
         super(root);
         
