@@ -2,6 +2,8 @@ package org.eclipse.rcpl;
 
 import java.util.List;
 
+import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
+
 import javafx.scene.Parent;
 
 /**
@@ -39,8 +41,6 @@ public interface IEditor extends ICommandProvider {
 	IPage getFirstPage();
 
 	List<IPage> getPages();
-
-	// void startLayoutService();
 
 	void removeEmptyPages();
 
@@ -186,4 +186,7 @@ public interface IEditor extends ICommandProvider {
 
 	void showAnchor(ILayoutFigure figure);
 
+	void setPerspective(Perspective perspective);
+
+	Perspective getPerspective();
 }

@@ -708,11 +708,6 @@ public class EToolsAddonController extends EViewController {
 	}
 
 	@Override
-	public void restoreTab() {
-
-	}
-
-	@Override
 	public void setPerspective(Perspective perspective, IRcplAddon useCase) {
 
 	}
@@ -791,11 +786,6 @@ public class EToolsAddonController extends EViewController {
 
 	@Override
 	public void showStartMenuButton(boolean show) {
-
-	}
-
-	@Override
-	public void showTabPane() {
 
 	}
 

@@ -109,8 +109,6 @@ public interface IRcplUic {
 
 	void restorePerspective();
 
-	void restoreTab();
-
 	void setPerspective(Perspective perspective, IRcplAddon useCase);
 
 	void setActiveAddon(IRcplAddon useCase);
@@ -142,8 +140,6 @@ public interface IRcplUic {
 	boolean showPerspective(Perspective perspective);
 
 	void showStartMenuButton(boolean show);
-
-	void showTabPane();
 
 	void showWebView(String url);
 

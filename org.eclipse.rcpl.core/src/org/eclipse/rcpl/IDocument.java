@@ -14,6 +14,7 @@ import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
 import org.apache.poi.openxml4j.opc.PackagePart;
 import org.apache.xmlbeans.XmlException;
 import org.eclipse.rcpl.model.IImage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTColorSchemeMapping;
 
 /**
@@ -384,7 +385,7 @@ public interface IDocument {
 
 	EnDocumentType getDocumentType();
 
-	String getDefaultPerspective();
+	Perspective getPerspective();
 
 	IParagraph getFirstDirtyParagraph();
 

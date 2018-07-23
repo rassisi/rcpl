@@ -262,21 +262,49 @@ public class RcplUic implements IRcplUic {
 
 	protected long lastUsedMemory;
 
-	private class TabInfo {
-		TabInfo(Node node, Perspective perspective) {
-			this.node = node;
-			this.perspective = perspective;
+	protected class TabInfo {
+		public TabInfo() {
 		}
 
-		private final Node node;
-		private final Perspective perspective;
+		private Node node;
+		private Perspective perspective;
+		private IEditor editor;
+
+		private IRcplAddon addon;
 
 		public Node getNode() {
 			return node;
 		}
 
 		public Perspective getPerspective() {
+			if (this.perspective == null && editor != null) {
+				this.perspective = editor.getPerspective();
+			}
 			return perspective;
+		}
+
+		public IEditor getEditor() {
+			return editor;
+		}
+
+		public void setEditor(IEditor editor) {
+			this.editor = editor;
+		}
+
+		public void setNode(Node node) {
+			this.node = node;
+		}
+
+		public void setPerspective(Perspective perspective) {
+			this.perspective = perspective;
+		}
+
+		public IRcplAddon getAddon() {
+			return addon;
+		}
+
+		public void setAddon(IRcplAddon addon) {
+			this.addon = addon;
 		}
 
 	}
@@ -346,19 +374,19 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public void actionAddWebBrowserTab() {
-		final Tab newTab = createNewTab("Google");
+		final Tab newTab = createNewTab(new Tab(), "Google");
 		newTab.setClosable(true);
 		newTab.setId("webBrowserTab");
 		final WebView newWebView = new WebView();
 		newWebView.getEngine().setJavaScriptEnabled(true);
 		newWebView.setEffect(new InnerShadow());
-		newWebView.setUserData(newTab);
-		newTab.setUserData(newWebView);
+		TabInfo tabInfo = new TabInfo();
+		tabInfo.setNode(newWebView);
 		newWebView.getEngine().load("http://www.google.com");
 		urlAddressTool.addWebListener(newTab, newWebView);
 		setContent(newWebView);
 		newWebView.setUserData(newTab);
-		newTab.setUserData(new TabInfo(newWebView, null));
+		newTab.setUserData(tabInfo);
 		tabPane.getSelectionModel().select(newTab);
 		newTab.setOnSelectionChanged(new EventHandler<Event>() {
 
@@ -397,62 +425,65 @@ public class RcplUic implements IRcplUic {
 
 		Object o = tab.getUserData();
 		tab.setUserData(null);
-		if (o instanceof IEditor) {
+		if (o instanceof TabInfo) {
+			TabInfo tabInfo = (TabInfo) o;
+			if (tabInfo.getEditor() != null) {
+				final IEditor editor = tabInfo.getEditor();
+				final IDocument doc = editor.getDocument();
 
-			final IEditor editor = (IEditor) o;
-			final IDocument doc = editor.getDocument();
+				if (internalTabPane.getTabs().isEmpty()) {
+					showHomePage(HomePageType.OVERVIEW);
+				}
 
-			if (internalTabPane.getTabs().isEmpty()) {
-				showHomePage(HomePageType.OVERVIEW);
-			}
+				new DelayedExecution(200) {
+					@Override
+					protected void execute() {
+						new Thread() {
+							@Override
+							public void run() {
+								setName("CLOSE TAB");
+								if (internalTabPane.getTabs().isEmpty()) {
 
-			new DelayedExecution(200) {
-				@Override
-				protected void execute() {
-					new Thread() {
-						@Override
-						public void run() {
-							setName("CLOSE TAB");
-							if (internalTabPane.getTabs().isEmpty()) {
+									new WaitThread(editor) {
 
-								new WaitThread(editor) {
+										@Override
+										public void doRun() {
+											showHomePage(HomePageType.OVERVIEW);
+										}
+									};
+
+									RcplSession.getDefault().commit();
+								}
+
+								new DelayedExecution(200) {
 
 									@Override
-									public void doRun() {
-										showHomePage(HomePageType.OVERVIEW);
+									protected void execute() {
+										if (editor != null && editor.getDocument() != null) {
+											editor.showPageGroup(false);
+											closeEditor(editor);
+											Rcpl.showProgress(false);
+
+											new Thread("SAVE & CLOSE DOCUMENT") {
+												@Override
+												public void run() {
+													doc.save();
+													doc.dispose();
+
+													printMemory("nach doc.dispose()    ");
+
+												};
+											}.start();
+										}
 									}
 								};
 
-								RcplSession.getDefault().commit();
-							}
-
-							new DelayedExecution(200) {
-
-								@Override
-								protected void execute() {
-									if (editor != null && editor.getDocument() != null) {
-										editor.showPageGroup(false);
-										closeEditor(editor);
-										Rcpl.showProgress(false);
-
-										new Thread("SAVE & CLOSE DOCUMENT") {
-											@Override
-											public void run() {
-												doc.save();
-												doc.dispose();
-
-												printMemory("nach doc.dispose()    ");
-
-											};
-										}.start();
-									}
-								}
 							};
+						}.start();
+					}
 
-						};
-					}.start();
-				}
-			};
+				};
+			}
 
 		}
 
@@ -984,16 +1015,6 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void restoreTab() {
-		Tab tab = internalTabPane.getSelectionModel().getSelectedItem();
-		if (tab == null) {
-			// showHomePage();
-		} else {
-			showTab(tab);
-		}
-	}
-
-	@Override
 	public void setContent(IEditor editor) {
 		setEditor(editor);
 	}
@@ -1268,23 +1289,6 @@ public class RcplUic implements IRcplUic {
 	}
 
 	/**
-	  *
-	  */
-	@Override
-	public void showTabPane() {
-		try {
-			updateButtons(false);
-			if (internalActiveAddon != null && !internalActiveAddon.isAsEditor()) {
-				internalActiveAddon.getNode().setVisible(false);
-				internalActiveAddon = null;
-			}
-			restoreTab();
-		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
-		}
-	}
-
-	/**
 	 * 
 	 */
 
@@ -1312,7 +1316,10 @@ public class RcplUic implements IRcplUic {
 				return;
 			}
 			Object o = tab.getUserData();
-
+			if (o instanceof TabInfo) {
+				TabInfo tabInfo = (TabInfo) o;
+				showPerspective(tabInfo.getPerspective());
+			}
 //			if (getBrowser() != null) {
 //				urlAddressTool.setText(getBrowser().getEngine().getLocation());
 //			}
@@ -1493,10 +1500,6 @@ public class RcplUic implements IRcplUic {
 				}
 			});
 		}
-	}
-
-	protected Tab createNewTab(String title) {
-		return createNewTab(new Tab(), title);
 	}
 
 	protected Tab createNewTab(Tab tab, String title) {
@@ -1890,28 +1893,20 @@ public class RcplUic implements IRcplUic {
 		return false;
 	}
 
-	// ===================================================
-
-	private void showPluginInEditor(IRcplAddon rcplPlugin) {
-		final Tab newTab = createNewTab(rcplPlugin.getEmfModel().getName());
-		newTab.setGraphic(Rcpl.resources().getImage("contact", 16, 16).getNode());
-		newTab.setClosable(true);
-		internalTabPane.getSelectionModel().select(newTab);
-		setContent(rcplPlugin.getNode());
-		newTab.setUserData(rcplPlugin);
-		updateButtons(false);
-		updatePerspective(newTab);
-	}
-
 	protected void showTab(final Tab tab) {
 		try {
+			final TabInfo tabInfo;
 
 			Object o = tab.getUserData();
-			IEditor edit = null;
-			if (o instanceof IEditor) {
-				edit = (IEditor) o;
+			if (o instanceof TabInfo) {
+				tabInfo = (TabInfo) o;
+			} else {
+				return;
 			}
-			final IEditor editor = edit;
+
+			final IEditor editor = tabInfo.getEditor();
+			final Node node = tabInfo.getNode();
+			final IRcplAddon addon = tabInfo.getAddon();
 
 			new Thread() {
 
@@ -1933,15 +1928,13 @@ public class RcplUic implements IRcplUic {
 
 						@Override
 						public void doRun() {
-							Object o = tab.getUserData();
-							if (o instanceof IEditor) {
-								final IEditor editor = (IEditor) o;
+							if (editor != null) {
 								setContent(editor);
-							} else if (o instanceof Node) {
-								setContent((Node) o);
+							} else if (node != null) {
+								setContent(node);
 								setEditor(null);
-							} else if (o instanceof IRcplAddon) {
-								setContent(((IRcplAddon) o).getNode());
+							} else if (addon != null) {
+								setContent(addon.getNode());
 								setEditor(null);
 							}
 						}
@@ -1989,7 +1982,22 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void handle(MouseEvent event) {
 				if (!internalDragMode) { // && isHome()) {
-					showTabPane();
+					try {
+						updateButtons(false);
+						if (internalActiveAddon != null && !internalActiveAddon.isAsEditor()) {
+							internalActiveAddon.getNode().setVisible(false);
+							internalActiveAddon = null;
+						}
+						Tab tab = internalTabPane.getSelectionModel().getSelectedItem();
+						if (tab == null) {
+							// showHomePage();
+						} else {
+							showTab(tab);
+						}
+
+					} catch (Throwable ex) {
+						RCPLModel.logError(ex);
+					}
 				}
 				internalDragMode = false;
 			}

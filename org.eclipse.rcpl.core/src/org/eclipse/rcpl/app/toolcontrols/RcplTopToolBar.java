@@ -47,7 +47,7 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	private static final int BROWSER_HEIGHT = 63;
 
-	private static final int NORMAL_HEIGHT = 30;
+	private static final int COLLAPSED_HEIGHT = 30;
 
 	private IEditor editor;
 
@@ -257,8 +257,6 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	private boolean collapsed = false;
 
-	double savedHeight = -1;
-
 	HBox mainTopArea = null;
 
 	@Override
@@ -281,22 +279,14 @@ public class RcplTopToolBar implements ITopToolbar {
 	@Override
 	public void updateHeight() {
 		if (Rcpl.UIC.getPerspective() != null) {
-			if ("PRESENTATION".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = RIBBON_HEIGHT;
-			} else if ("SETTINGS".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = RIBBON_HEIGHT;
-			} else if ("SPREADSHEET".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = RIBBON_HEIGHT;
-			} else if ("WEB".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = RIBBON_HEIGHT;
-			} else if ("WORD".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = RIBBON_HEIGHT;
-			} else if ("USECASE".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = RIBBON_HEIGHT;
+			Perspective p = Rcpl.UIC.getPerspective();
+			if (!p.getTopToolBar().getToolGroups().isEmpty()) {
+				Rcpl.UIC.setTopAreaHeight(RIBBON_HEIGHT);
+			} else {
+				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
 			}
 
 		}
-		Rcpl.UIC.setTopAreaHeight(RIBBON_HEIGHT); // savedHeight);
 	}
 
 	@Override
