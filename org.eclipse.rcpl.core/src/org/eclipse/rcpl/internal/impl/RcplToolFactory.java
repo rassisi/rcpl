@@ -19,7 +19,7 @@ import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.IURLAddressTool;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.internal.fx.figures.JOButton;
+import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.FontNameTool;
 import org.eclipse.rcpl.internal.tools.FontSizeTool;
 import org.eclipse.rcpl.internal.tools.CheckBoxTool;
@@ -85,7 +85,7 @@ public class RcplToolFactory implements IToolFactory {
 
 			break;
 		case BUTTON:
-			tool = new JOButton(emfTool);
+			tool = new RcplButton(emfTool);
 			tool.setBounds(0, 0, width, height);
 			break;
 		case CHECKBOX:
@@ -175,8 +175,8 @@ public class RcplToolFactory implements IToolFactory {
 			tool = new JOTextFieldTool(emfTool);
 			break;
 		case TOGGLEBUTTON:
-			tool = new JOButton(emfTool);
-			((JOButton) tool).setSelected(false);
+			tool = new RcplButton(emfTool);
+			((RcplButton) tool).setSelected(false);
 			break;
 		case CHOICEBOX:
 			break;

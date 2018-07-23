@@ -20,7 +20,7 @@ public class SVGButtonTest extends Application {
 
 		// JOSVG joSVG = new JOSVG();
 
-		JOButton b = new JOButton("save", "save", "", "16/save", false);
+		RcplButton b = new RcplButton("save", "save", "", "16/save", false);
 
 		// WebView webView = joSVG.createPng("http://localhost/svg/save.svg",
 		// null, 16d, 16d);

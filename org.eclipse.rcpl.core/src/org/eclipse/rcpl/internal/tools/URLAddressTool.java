@@ -30,7 +30,7 @@ import org.eclipse.rcpl.IURLAddressTool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.favicon.FavIconHandler;
-import org.eclipse.rcpl.internal.fx.figures.JOButton;
+import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
@@ -79,7 +79,7 @@ public class URLAddressTool extends RcplTool implements IURLAddressTool {
 		this.layout = new GridPane();
 		HBox hBox = new HBox();
 		getNode().getChildren().add(hBox);
-		JOButton backButton = new JOButton("", "", "Back", "back", false) {
+		RcplButton backButton = new RcplButton("", "", "Back", "back", false) {
 			@Override
 			protected void doAction() {
 				if (Rcpl.UIC.getBrowser() != null) {
@@ -92,7 +92,7 @@ public class URLAddressTool extends RcplTool implements IURLAddressTool {
 		// backButton.setStyle("back_button");
 		hBox.getChildren().add(backButton.getNode());
 
-		JOButton forewardButton = new JOButton("", "", "Forward", "forward", false) {
+		RcplButton forewardButton = new RcplButton("", "", "Forward", "forward", false) {
 			@Override
 			protected void doAction() {
 				if (Rcpl.UIC.getBrowser() != null) {
@@ -105,7 +105,7 @@ public class URLAddressTool extends RcplTool implements IURLAddressTool {
 		hBox.getChildren().add(forewardButton.getNode());
 		HBox.setMargin(forewardButton.getNode(), new Insets(-2, 0, 0, 0));
 
-		JOButton refreshButton = new JOButton("", "", "Refresh", "refresh", false) {
+		RcplButton refreshButton = new RcplButton("", "", "Refresh", "refresh", false) {
 			@Override
 			protected void doAction() {
 				if (Rcpl.UIC.getBrowser() != null) {
@@ -116,7 +116,7 @@ public class URLAddressTool extends RcplTool implements IURLAddressTool {
 		hBox.getChildren().add(refreshButton.getNode());
 		HBox.setMargin(refreshButton.getNode(), new Insets(-2, 0, 0, 0));
 
-		JOButton browserHomeButton = new JOButton("", "", "Home", "browser", false) {
+		RcplButton browserHomeButton = new RcplButton("", "", "Home", "browser", false) {
 			@Override
 			protected void doAction() {
 				if (Rcpl.UIC.getBrowser() != null) {
@@ -163,7 +163,7 @@ public class URLAddressTool extends RcplTool implements IURLAddressTool {
 		x.setPadding(new Insets(6, 20, 0, -25));
 		hBox.getChildren().add(x);
 
-		JOButton b1 = new JOButton("HTML", "", "Convert To HTML", "24/html_document", true) {
+		RcplButton b1 = new RcplButton("HTML", "", "Convert To HTML", "24/html_document", true) {
 			@Override
 			protected void doAction() {
 				if (isSelected()) {

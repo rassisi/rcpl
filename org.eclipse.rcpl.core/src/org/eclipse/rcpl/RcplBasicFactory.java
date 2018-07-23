@@ -28,7 +28,7 @@ import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
 import org.eclipse.rcpl.homepages.DefaultTemplatesHomePage;
 import org.eclipse.rcpl.homepages.DefaultTutorialsHomePage;
 import org.eclipse.rcpl.homepages.DefaultWhatsNewHomePage;
-import org.eclipse.rcpl.internal.fx.figures.JOButton;
+import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.resources.JOColorProvider;
 import org.eclipse.rcpl.internal.resources.JOResources;
@@ -63,7 +63,7 @@ public class RcplBasicFactory implements IRcplFactory {
 	@Override
 	public IButton createButton(String id, String name, String toolTip, String imageName, boolean toggle,
 			IButtonListener buttonListener, boolean systemButton) {
-		IButton b = new JOButton(id, name, toolTip, imageName, toggle);
+		IButton b = new RcplButton(id, name, toolTip, imageName, toggle);
 		b.setButtonListener(buttonListener);
 		if (systemButton) {
 			b.setSystemButton();
@@ -131,7 +131,7 @@ public class RcplBasicFactory implements IRcplFactory {
 
 			switch (tool.getTool().getType()) {
 			case TOGGLEBUTTON:
-				JOButton b = (JOButton) tool.getTool().getData();
+				RcplButton b = (RcplButton) tool.getTool().getData();
 				newData = new Object[] { b.isSelected() };
 				oldData = new Object[] { !b.isSelected() };
 				break;

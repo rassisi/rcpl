@@ -39,7 +39,7 @@ import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.WaitThread;
-import org.eclipse.rcpl.internal.fx.figures.JOButton;
+import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.migration.RcplMigration;
@@ -1451,7 +1451,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	protected void addHomeButton(HomePage homePage, ToggleGroup toggleGroup) {
-		IButton homeButton = new JOButton(homePage.getType().getName(), homePage.getName(), homePage.getToolTip(),
+		IButton homeButton = new RcplButton(homePage.getType().getName(), homePage.getName(), homePage.getToolTip(),
 				homePage.getImage(), true);
 		homeButton.setData(homePage);
 		homeButton.setWidth(20);

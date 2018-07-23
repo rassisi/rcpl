@@ -47,7 +47,7 @@ import javafx.scene.input.MouseEvent;
  * @author ramin
  *
  */
-public class JOButton extends RcplTool implements IButton {
+public class RcplButton extends RcplTool implements IButton {
 
 	private Node imageNode;
 
@@ -63,7 +63,7 @@ public class JOButton extends RcplTool implements IButton {
 
 	private IImage image;
 
-	public JOButton(String id, String name, String toolTip, String imageName, boolean toggle) {
+	public RcplButton(String id, String name, String toolTip, String imageName, boolean toggle) {
 		super(id, name, toolTip, imageName, toggle);
 		this.toggle = toggle;
 	}
@@ -85,7 +85,7 @@ public class JOButton extends RcplTool implements IButton {
 		}
 	}
 
-	public JOButton(Tool tool) {
+	public RcplButton(Tool tool) {
 		super(tool);
 		toggle = ToolType.TOGGLEBUTTON.equals(tool.getType());
 	}
@@ -93,8 +93,8 @@ public class JOButton extends RcplTool implements IButton {
 	private void performAction() {
 		try {
 
-			getTool().setData(JOButton.this);
-			ICommand command = Rcpl.getFactory().createCommand(getEditor(), JOButton.this);
+			getTool().setData(RcplButton.this);
+			ICommand command = Rcpl.getFactory().createCommand(getEditor(), RcplButton.this);
 			Object result = Rcpl.service().execute(command);
 			if (result instanceof Boolean) {
 				if (!((Boolean) result)) {

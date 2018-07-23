@@ -21,7 +21,7 @@ import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IService;
-import org.eclipse.rcpl.internal.fx.figures.JOButton;
+import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.services.RcplCommandService;
 import org.eclipse.rcpl.internal.services.RcplObjectService;
 import org.eclipse.rcpl.internal.services.RcplService;
@@ -119,8 +119,8 @@ public abstract class RcplAbstractService {
 	public boolean getBoolean(Tool tool) {
 		if (tool.getData() instanceof Boolean) {
 			return ((Boolean) tool.getData()).booleanValue();
-		} else if (tool.getData() instanceof JOButton) {
-			return ((JOButton) tool.getData()).isSelected();
+		} else if (tool.getData() instanceof RcplButton) {
+			return ((RcplButton) tool.getData()).isSelected();
 		}
 		return false;
 	}

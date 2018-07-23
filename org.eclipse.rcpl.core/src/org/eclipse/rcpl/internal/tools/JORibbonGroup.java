@@ -17,7 +17,7 @@ import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.internal.fx.figures.JOButton;
+import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
@@ -111,7 +111,7 @@ public class JORibbonGroup extends RcplTool {
 		VBox.setMargin(gridPane, new Insets(0, 0, 5, 0));
 
 		if (dialogButton) {
-			JOButton showSideBarButton = new JOButton("showSideBar", "", "Show Side Bar Dialog", "dialog_button",
+			RcplButton showSideBarButton = new RcplButton("showSideBar", "", "Show Side Bar Dialog", "dialog_button",
 					true) {
 				@Override
 				protected void doAction() {
@@ -295,7 +295,7 @@ public class JORibbonGroup extends RcplTool {
 								}
 
 								if ("italic".equals(id)) {
-									JOButton n = (JOButton) registry.get(tool);
+									RcplButton n = (RcplButton) registry.get(tool);
 									if (n != null) {
 										n.setSelected(event.getStyle().isItalic());
 									}
