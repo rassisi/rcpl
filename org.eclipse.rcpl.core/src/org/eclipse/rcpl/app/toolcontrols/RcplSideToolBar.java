@@ -21,7 +21,6 @@ import org.eclipse.rcpl.IButtonListener;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplAddon;
-import org.eclipse.rcpl.IRcplConstants;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
@@ -190,10 +189,10 @@ public class RcplSideToolBar implements ISideToolBar {
 	 * rcpl.Perspective, boolean)
 	 */
 	@Override
-	public void showPerspective(Perspective perspective, boolean collapse) {
+	public void showPerspective(Perspective perspective) {
 		System.out.println("Show " + perspective.getId() + " Perspective");
-		boolean isPerspectivesOverview = RcplSession.PERSPECTIVE_OVERVIEW.getId().equals(perspective.getId());
-		Rcpl.UIC.showStartMenuButton(!isPerspectivesOverview);
+		toolbarStack.getChildren().clear();
+//		Rcpl.UIC.showStartMenuButton(!isPerspectivesOverview);
 		try {
 			if (!processedList.contains(perspective.getId())) {
 				processedList.add(perspective.getId());
@@ -201,7 +200,6 @@ public class RcplSideToolBar implements ISideToolBar {
 			}
 
 			ToolBar n = toolbarRegistry.get(getKey(perspective.getId()));
-			toolbarStack.getChildren().clear();
 			if (n != null) {
 				toolbarStack.getChildren().add(n);
 				n.setVisible(true);
@@ -889,15 +887,6 @@ public class RcplSideToolBar implements ISideToolBar {
 		// }
 	}
 
-	/**
-	 * This method shows all perspectives & general tools - log off
-	 * 
-	 */
-	@Override
-	public void showHomeTools() {
-		showPerspective(RcplSession.PERSPECTIVE_OVERVIEW, true);
-	}
-
 	@Override
 	public void showSideTools() {
 		String id = activeGroupId;
@@ -905,39 +894,27 @@ public class RcplSideToolBar implements ISideToolBar {
 		showSideTools(id, true);
 	}
 
-	public static String getNormalizedGroupId(String groupId) {
-		String groupIdKey = groupId;
-		if (groupId.startsWith(IRcplConstants.SWITCH_TO_PERSPECTIVE_KEY_PREFIX)) {
-			String newPerspectiveId = groupId.substring(IRcplConstants.SWITCH_TO_PERSPECTIVE_KEY_PREFIX.length());
-			Rcpl.UIC.showPerspective(newPerspectiveId, false);
-			groupIdKey = newPerspectiveId;
-		}
-		return groupIdKey;
-	}
-
 	private boolean showSideTools(final String groupId, boolean restoreTab) {
 
-		String groupIdKey = getNormalizedGroupId(groupId);
-
 		try {
-			if (groupIdKey == null || groupIdKey.length() == 0) {
+			if (groupId == null || groupId.length() == 0) {
 				return false;
 			}
-			if (!RcplSession.PERSPECTIVE_OVERVIEW.getId().equals(Rcpl.UIC.getPerspective().getId())) {
-				if (restoreTab) {
-					Rcpl.UIC.showTabPane();
-					Rcpl.UIC.restoreTab();
-				}
-			}
+//			if (!RcplSession.PERSPECTIVE_OVERVIEW.getId().equals(Rcpl.UIC.getPerspective().getId())) {
+//				if (restoreTab) {
+//					Rcpl.UIC.showTabPane();
+//					Rcpl.UIC.restoreTab();
+//				}
+//			}
 
 			Perspective actualPerspective = Rcpl.UIC.getPerspective();
 			String perspectiveId = actualPerspective.getId();
 
-			Pane pane = toolPaneStackRegistry.get(getKey(perspectiveId, groupIdKey));
+			Pane pane = toolPaneStackRegistry.get(getKey(perspectiveId, groupId));
 			if (pane != null) {
 				pane.setVisible(true);
 				activeToolPane = pane;
-				activeGroupId = groupIdKey;
+				activeGroupId = groupId;
 
 				final Timeline timeline = new Timeline(
 						new KeyFrame(Duration.millis(10), new EventHandler<ActionEvent>() {

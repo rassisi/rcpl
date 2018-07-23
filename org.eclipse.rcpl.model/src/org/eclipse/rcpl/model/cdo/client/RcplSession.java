@@ -83,7 +83,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
-import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
@@ -138,16 +137,6 @@ public class RcplSession {
 	public static boolean connectionFailed = false;
 
 	private static RcplSession INSTANCE;
-
-	public final static Perspective PERSPECTIVE_OVERVIEW = RcplFactory.eINSTANCE.createPerspective();
-
-	private final static String PERSPECTIVE_OVERVIEW_ID = "PERSPECTIVE_OVERVIEW";
-
-	static {
-		PERSPECTIVE_OVERVIEW.setId(PERSPECTIVE_OVERVIEW_ID);
-		SideToolBar st = RcplFactory.eINSTANCE.createSideToolBar();
-		PERSPECTIVE_OVERVIEW.setSideToolBar(st);
-	}
 
 	public final static String SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED = "SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED";
 
@@ -742,30 +731,6 @@ public class RcplSession {
 				return p;
 			}
 		}
-
-		// the overview perspective is not loaded from the XMI. Instead it will be
-		// constructed here.
-
-		if (PERSPECTIVE_OVERVIEW.getId().equals(id)) {
-
-			PERSPECTIVE_OVERVIEW.getSideToolBar().getToolGroups().clear();
-
-			for (Perspective p2 : rcpl.getAllPerspectives().getChildren()) {
-				ToolGroup pt = RcplFactory.eINSTANCE.createToolGroup();
-				pt.setId(SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED + p2.getId());
-				pt.setImage(p2.getId().toLowerCase());
-				pt.setDescription(p2.getDescription());
-				PERSPECTIVE_OVERVIEW.getSideToolBar().getToolGroups().add(pt);
-			}
-
-			ToolGroup pt = RcplFactory.eINSTANCE.createToolGroup();
-			pt.setId("logout");
-			pt.setImage("logout");
-			PERSPECTIVE_OVERVIEW.getSideToolBar().getToolGroups().add(pt);
-
-			return PERSPECTIVE_OVERVIEW;
-		}
-
 		return null;
 	}
 

@@ -46,13 +46,13 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	private int row = 0;
 
-	HomePage modeHomePage;
+	private final HomePage model;
 
 	private StackPane contentPane;
 
 	public AbstractHomePage(final IRcplUic uic, HomePage modelHomePage, Pane controlPane) {
 		this.uic = uic;
-		this.modeHomePage = modelHomePage;
+		this.model = modelHomePage;
 
 		vBox = new VBox();
 		vBox.setId("homeHeader");
@@ -173,4 +173,9 @@ public abstract class AbstractHomePage implements IHomePage {
 	public String toString() {
 		return "Home Page: " + getId();
 	}
+
+	public HomePage getModel() {
+		return model;
+	}
+
 }

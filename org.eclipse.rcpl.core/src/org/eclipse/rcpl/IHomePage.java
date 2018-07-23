@@ -1,5 +1,6 @@
 package org.eclipse.rcpl;
 
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.scene.Node;
@@ -22,5 +23,7 @@ public interface IHomePage {
 	HomePageType getId();
 
 	void setDetailNode(Node node);
+
+	HomePage getModel();
 
 }

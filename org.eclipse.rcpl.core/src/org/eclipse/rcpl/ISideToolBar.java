@@ -1,12 +1,10 @@
 package org.eclipse.rcpl;
 
-import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
-
 /**
  * @author ramin
  *
  */
-public interface ISideToolBar {
+public interface ISideToolBar extends IToolbar {
 
 	public static int MARGIN_BOX_1 = 5;
 
@@ -27,11 +25,7 @@ public interface ISideToolBar {
 
 	void init();
 
-	void showPerspective(Perspective perspective, boolean collapse);
-
 	void showGroup(String groupId, boolean collapse);
-
-	void showHomeTools();
 
 	void showSideTools();
 

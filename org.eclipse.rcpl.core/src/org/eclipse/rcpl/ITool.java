@@ -1,8 +1,8 @@
 package org.eclipse.rcpl;
 
-import javafx.scene.Node;
-
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+
+import javafx.scene.Node;
 
 public interface ITool extends IEditorListener {
 
@@ -33,5 +33,9 @@ public interface ITool extends IEditorListener {
 	boolean isWrap();
 
 	String getService();
+
+	void setData(Object data);
+
+	Object getData();
 
 }

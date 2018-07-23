@@ -139,7 +139,7 @@ public interface IRcplUic {
 
 	void showErrorPage();
 
-	boolean showPerspective(String id, boolean asEditor);
+	boolean showPerspective(Perspective perspective);
 
 	void showStartMenuButton(boolean show);
 

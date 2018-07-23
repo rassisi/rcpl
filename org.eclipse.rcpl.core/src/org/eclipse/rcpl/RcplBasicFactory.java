@@ -39,6 +39,7 @@ import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -232,7 +233,8 @@ public class RcplBasicFactory implements IRcplFactory {
 	@Override
 	public IHomePage createHomePage(IRcplUic uic, HomePage modelHomePage) {
 
-		switch (modelHomePage.getType()) {
+		HomePageType type = modelHomePage.getType();
+		switch (type) {
 		case ABOUT:
 			return new DefaultAboutHomePage(uic, modelHomePage, null);
 		case CONTACT_US:

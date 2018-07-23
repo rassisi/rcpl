@@ -4,15 +4,11 @@ package org.eclipse.rcpl;
  * @author ramin
  *
  */
-public interface ITopToolbar {
+public interface ITopToolbar extends IToolbar {
 
 	void processTopBarMainGroups(IRcplAddon useCase);
 
 	void updateHeight();
-
-	void show(IRcplAddon activeUseCase);
-
-	void show(String type);
 
 	void init();
 
@@ -20,9 +16,7 @@ public interface ITopToolbar {
 
 	void expandAll();
 
-	void hideAll();;
-
-	void updateUseCaseHeight();
+	void hideAll();
 
 	void setEditor(IEditor editor);
 

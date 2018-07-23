@@ -784,7 +784,7 @@ public class EToolsAddonController extends EViewController {
 	}
 
 	@Override
-	public boolean showPerspective(String id, boolean asEditor) {
+	public boolean showPerspective(Perspective perspective) {
 
 		return false;
 	}

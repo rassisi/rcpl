@@ -513,4 +513,5 @@ public class JOButton extends RcplTool implements IButton {
 	public IImage getImage() {
 		return image;
 	}
+
 }

@@ -202,7 +202,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 		splitPane.getItems().add(detailsArea);
 		splitPane.setDividerPositions(0.3f);
 
-		uic.getTopToolBarControl().show((String) null);
+		uic.getTopToolBarControl().showPerspective(null);
 
 		if (!Rcpl.isMobile()) {
 			showSplash(1);

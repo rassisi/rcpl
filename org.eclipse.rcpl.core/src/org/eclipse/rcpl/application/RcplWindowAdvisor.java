@@ -14,7 +14,6 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
@@ -143,13 +142,13 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 
 				@Override
 				public void handle(KeyEvent event) {
-					if (event.isControlDown()) {
-						if (event.getText().equals("x") && event.isShiftDown()) {
-							Rcpl.UIC.showPerspective(RCPLModel.USE_CASE_IT_ID, false);
-							event.consume();
-							return;
-						}
-					}
+//					if (event.isControlDown()) {
+//						if (event.getText().equals("x") && event.isShiftDown()) {
+//							Rcpl.UIC.showPerspective(RCPLModel.USE_CASE_IT_ID, false);
+//							event.consume();
+//							return;
+//						}
+//					}
 				}
 			};
 		}

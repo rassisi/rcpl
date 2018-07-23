@@ -3,7 +3,6 @@ package com.eclipse.rcpl.addon.demo.application;
 import java.io.File;
 import java.net.URL;
 
-import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.application.RcplApplicationStarter;
 import org.eclipse.rcpl.ui.controler.RcplUic;
@@ -12,7 +11,6 @@ import org.eclipse.rcpl.util.RcplUtil;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Separator;
-import javafx.scene.control.Tab;
 
 public class DemoRcplUic extends RcplUic {
 
@@ -79,31 +77,6 @@ public class DemoRcplUic extends RcplUic {
 	@Override
 	public void openDocument(File file) {
 
-		if (file.getName().endsWith(".docx")) {
-			actionPerspectiveWord();
-		} else if (file.getName().endsWith(".pptx")) {
-			actionPerspectivePresentation();
-		} else if (file.getName().endsWith(".xlsx")) {
-			actionPerspectiveSpreadsheet();
-		}
-
-		final Tab newTab = createNewTab(file.getName());
-		// final IEditor f = factory().createEditor(newTab, false);
-		// IDocument doc = JOAbstractDocument.load(file, false, null, false);
-		//
-		// f.setDocument(doc);
-		// centerEditor(f);
-		newTab.setId("wordTab");
-		newTab.setClosable(true);
-		// newTab.setUserData(f);
-		internalTabPane.getSelectionModel().select(newTab);
-		// internalBorderPane.setCenter(f.getMainPane());
-		updatePerspective(newTab);
-		updateButtons(false);
-//		getSideToolBarControl().show(true);
-		internalTabPane.getSelectionModel().select(newTab);
-
-//		status_button_2_pages.setSelected(getEditor().getPageColumns() >= 2);
 	}
 
 	public void openDocument(URL url) {
@@ -115,35 +88,6 @@ public class DemoRcplUic extends RcplUic {
 	@Override
 	public void openTemplate(String name, String tabName) {
 
-		if (name.endsWith(".docx")) {
-			actionPerspectiveWord();
-		} else if (name.endsWith(".pptx")) {
-			actionPerspectivePresentation();
-		} else if (name.endsWith(".xlsx")) {
-			actionPerspectiveSpreadsheet();
-		}
-
-		IDocument document = null;
-		String title = tabName != null ? tabName : name;
-
-		final Tab newTab = createNewTab(title);
-		newTab.setId("wordTab");
-//		IEditor f = factory().createEditor(newTab, false);
-//		document = new JODocumentProvider().createTemplateDocument(name, (HashMap<String, String>) null, false);
-//		f.setDocument(document);
-//		internalBorderPane.setCenter(f.getMainPane());
-//		newTab.setUserData(f);
-		updatePerspective(newTab);
-		updateButtons(false);
-//		getSideToolBarControl().show();
-		internalTabPane.getSelectionModel().select(newTab);
-
-		if (getEditor() != null) {
-//			status_button_2_pages.setSelected(getEditor().getPageColumns() >= 2);
-		}
-//		addGeneralQuickTools_1();
-
-//		return newTab;
 	}
 
 	@Override

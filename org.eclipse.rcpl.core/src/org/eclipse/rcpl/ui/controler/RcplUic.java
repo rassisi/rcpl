@@ -262,6 +262,25 @@ public class RcplUic implements IRcplUic {
 
 	protected long lastUsedMemory;
 
+	private class TabInfo {
+		TabInfo(Node node, Perspective perspective) {
+			this.node = node;
+			this.perspective = perspective;
+		}
+
+		private final Node node;
+		private final Perspective perspective;
+
+		public Node getNode() {
+			return node;
+		}
+
+		public Perspective getPerspective() {
+			return perspective;
+		}
+
+	}
+
 	public RcplUic(IApplicationStarter rcplApplicationStarter) {
 		this(rcplApplicationStarter, "Rcpl");
 	}
@@ -339,6 +358,7 @@ public class RcplUic implements IRcplUic {
 		urlAddressTool.addWebListener(newTab, newWebView);
 		setContent(newWebView);
 		newWebView.setUserData(newTab);
+		newTab.setUserData(new TabInfo(newWebView, null));
 		tabPane.getSelectionModel().select(newTab);
 		newTab.setOnSelectionChanged(new EventHandler<Event>() {
 
@@ -365,60 +385,6 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void actionOpenLast() {
-	}
-
-	/**
-	 * @param rcplApplicationStarter
-	 */
-
-	public void actionPerspectivePresentation() {
-		Perspective p = findPerspective("PRESENTATION");
-		if (!"PRESENTATION".equals(getPerspective().getId())) {
-			showPerspective(p.getId(), true);
-		}
-	}
-
-	public void actionPerspectiveOverview() {
-		Perspective p = findPerspective("OVERVIEW");
-		if (!"OVERVIEW".equals(getPerspective().getId())) {
-			showPerspective(p.getId(), true);
-		}
-	}
-
-	public void actionPerspectiveSettings() {
-		if (!"SETTINGS".equals(getPerspective().getId())) {
-			Perspective p = findPerspective("SETTINGS");
-			if (p != null) {
-				getSideToolBarControl().showPerspective(p, true);
-				getTopToolbarControl().show("SETTINGS");
-				showPerspective(RCPLModel.USE_CASE_CONTACTS_ID, true);
-			}
-		}
-	}
-
-	public void actionPerspectiveSpreadsheet() {
-		Perspective p = findPerspective("SPREADSHEET");
-		if (!"SPREADSHEET".equals(getPerspective().getId())) {
-			showPerspective(p.getId(), true);
-		}
-	}
-
-	public void actionPerspectiveWebbrowser() {
-		Perspective p = findPerspective("WEB");
-		if (!"WEB".equals(getPerspective().getId())) {
-			showPerspective(p.getId(), true);
-		}
-	}
-
-	public void actionPerspectiveWord() {
-		try {
-			Perspective p = findPerspective("WORD");
-			if (!"WORD".equals(getPerspective().getId())) {
-				showPerspective(p.getId(), true);
-			}
-		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
-		}
 	}
 
 	@Override
@@ -724,9 +690,6 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public Perspective getPerspective() {
-		if (perspective == null) {
-			perspective = RcplSession.PERSPECTIVE_OVERVIEW;
-		}
 		return perspective;
 	}
 
@@ -996,9 +959,8 @@ public class RcplUic implements IRcplUic {
 		internalInhibitUI = true;
 		getSideToolBarControl().init();
 		internalInhibitUI = false;
-		getSideToolBarControl().showPerspective(Rcpl.UIC.getPerspective(), false);
+		getSideToolBarControl().showPerspective(Rcpl.UIC.getPerspective());
 		getSideToolBarControl().showSideTools();
-		showPluginPerspective(internalActiveAddon);
 	}
 
 	@Override
@@ -1006,9 +968,7 @@ public class RcplUic implements IRcplUic {
 		internalInhibitUI = true;
 		getTopToolbarControl().init();
 		internalInhibitUI = false;
-		String p = Rcpl.UIC.getPerspective().getId();
-		getTopToolbarControl().show(p);
-		showPluginPerspective(internalActiveAddon);
+		getTopToolbarControl().showPerspective(Rcpl.UIC.getPerspective());
 	}
 
 	public void removeAllSideToolBars() {
@@ -1169,13 +1129,14 @@ public class RcplUic implements IRcplUic {
 			showHtmlEditor();
 			return;
 		}
-
 		setContent(homePage.getNode());
 		updateButtons(true);
 		activeHomePage = homePage;
-		if (HomePageType.OVERVIEW.equals(id)) {
-			actionPerspectiveOverview();
-			return;
+
+		HomePage model = homePage.getModel();
+
+		if (model.getPerspective() != null) {
+			showPerspective(model.getPerspective());
 		}
 	}
 
@@ -1273,67 +1234,32 @@ public class RcplUic implements IRcplUic {
 
 	}
 
-	// private void showOverviewPage(IHomePage homePage) {
-	//
-	// if (homePage == null) {
-	// return;
-	// }
-	// Platform.runLater(new Runnable() {
-	//
-	// @Override
-	// public void run() {
-	// createPages();
-	// if (homePage.getNode() != null) {
-	// setContent(homePage.getNode());
-	// }
-	// getSideToolBarControl().showHomeTools();
-	// setPerspective(RcplSession.PERSPECTIVE_OVERVIEW);
-	// }
-	// });
-	//
-	// }
-	//
 	/**
 	 * @param id
 	 */
 	@Override
-	public boolean showPerspective(String id, boolean asEditor) {
-		IRcplAddon uc = findRcplAddons(id);
-		if (uc != null) {
-			if (uc.getEmfModel() != null) {
-				uc.setAsEditor(asEditor);
-				if (asEditor) {
-					showPluginInEditor(uc);
-				} else {
-					setContent(uc.getNode());
-				}
-				updateButtons(false);
-				uc.getNode().setVisible(true);
-				if (internalActiveAddon != null && id.equals(internalActiveAddon.getId())) {
-					return false;
-				}
-				internalActiveAddon = uc;
-
-				getTopToolbarControl().show(internalActiveAddon);
-
-				return true;
-			} else {
-				uc.getNode().setVisible(false);
-			}
-			return true;
-		}
-
-		Perspective perspective = findPerspective(id);
+	public boolean showPerspective(Perspective perspective) {
 		if (perspective != null) {
+
+//			RcplAddon addon = null;
+//			addon.setAsEditor(asEditor);
+//			if (asEditor) {
+//				showPluginInEditor(addon);
+//			} else {
+//				setContent(addon.getNode());
+//			}
+//			updateButtons(false);
+//			addon.getNode().setVisible(true);
+//			if (internalActiveAddon != null && id.equals(internalActiveAddon.getId())) {
+//				return false;
+//			}
+//			internalActiveAddon = uc;
+
 			Rcpl.UIC.setPerspective(perspective);
-			getSideToolBarControl().showPerspective(perspective, false);
-			getTopToolBarControl().show(perspective.getId());
+			getSideToolBarControl().showPerspective(perspective);
+			getTopToolBarControl().showPerspective(perspective);
 		}
 		return false;
-	}
-
-	public boolean showPluginPerspective(IRcplAddon rcplPlugin) {
-		return showPerspective(rcplPlugin.getId(), rcplPlugin.isAsEditor());
 	}
 
 	@Override
@@ -1363,9 +1289,9 @@ public class RcplUic implements IRcplUic {
 	 */
 
 	public boolean showAddon() {
-		if (internalActiveAddon != null && internalActiveAddon.getId().length() > 0) {
-			return showPluginPerspective(internalActiveAddon);
-		}
+//		if (internalActiveAddon != null && internalActiveAddon.getId().length() > 0) {
+//			return showPluginPerspective(internalActiveAddon);
+//		}
 		return false;
 	}
 
@@ -1386,48 +1312,10 @@ public class RcplUic implements IRcplUic {
 				return;
 			}
 			Object o = tab.getUserData();
-			if (o instanceof IRcplAddon) {
-				getSideToolBarControl().showPerspective(((IRcplAddon) o).getEmfModel().getDefaultPerspective(), true);
-				getTopToolbarControl().show((IRcplAddon) o);
-				getTopToolbarControl().updateUseCaseHeight();
-			}
-			// if (tab.getContent() instanceof WebView) {
-			// JO.officePane.setBrowser((WebView) tab.getContent());
-			// actionPerspectiveWebbrowser();
-			// JO.officePane.setEditor(null);
-			// } else
-			{
-				if (o instanceof WebView) {
-					actionPerspectiveWebbrowser();
-				} else {
-					if (o instanceof IEditor) {
 
-						IEditor e = (IEditor) o;
-
-						if (e.getDocument() != null && e.getDocument().getDefaultPerspective() != null) {
-							if ("PRESENTATION".equals(e.getDocument().getDefaultPerspective())) {
-								actionPerspectivePresentation();
-							} else if ("SETTINGS".equals(e.getDocument().getDefaultPerspective())) {
-								actionPerspectiveSettings();
-							} else if ("SPREADSHEET".equals(e.getDocument().getDefaultPerspective())) {
-								actionPerspectiveSpreadsheet();
-							} else if ("WEB".equals(e.getDocument().getDefaultPerspective())) {
-								actionPerspectiveWebbrowser();
-							} else if ("WORD".equals(e.getDocument().getDefaultPerspective())) {
-								actionPerspectiveWord();
-							} else if ("USECASE".equals(e.getDocument().getDefaultPerspective())) {
-							}
-						}
-
-					}
-				}
-
-				getTopToolbarControl().updateHeight();
-			}
-
-			if (getBrowser() != null) {
-				urlAddressTool.setText(getBrowser().getEngine().getLocation());
-			}
+//			if (getBrowser() != null) {
+//				urlAddressTool.setText(getBrowser().getEngine().getLocation());
+//			}
 		} catch (Exception ex) {
 
 		}
@@ -1555,18 +1443,17 @@ public class RcplUic implements IRcplUic {
 		blinkingTimeline.play();
 	}
 
-	protected void addHomeButton(String id, String name, String toolTip, String image, boolean toggle,
-			ToggleGroup toggleGroup) {
-		IButton homeButton = new JOButton(id, name, toolTip, image, true);
+	protected void addHomeButton(HomePage homePage, ToggleGroup toggleGroup) {
+		IButton homeButton = new JOButton(homePage.getType().getName(), homePage.getName(), homePage.getToolTip(),
+				homePage.getImage(), true);
+		homeButton.setData(homePage);
 		homeButton.setWidth(20);
 		homeButton.setHeight(20);
 		if (homeButtonsArea.getChildren().isEmpty()) {
 			HBox.setMargin(homeButtonsArea, new Insets(-4, 0, 0, 48));
 			homeButtonsArea.setSpacing(2);
 		}
-		if (toggle && toggleGroup != null) {
-			((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
-		}
+		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
 		homeButtonsArea.getChildren().add(homeButton.getNode());
 	}
 
@@ -1819,8 +1706,7 @@ public class RcplUic implements IRcplUic {
 
 		for (HomePage homePage : rcpl.getHomepages().getChildren()) {
 
-			addHomeButton(homePage.getId(), homePage.getName(), homePage.getToolTip(), homePage.getImage(), true,
-					toggleGroup);
+			addHomeButton(homePage, toggleGroup);
 
 		}
 	}

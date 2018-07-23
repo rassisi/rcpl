@@ -32,6 +32,8 @@ public abstract class RcplTool implements ITool {
 
 	private IEditor editor;
 
+	private Object data;
+
 	public RcplTool(String id, String name, String toolTip, String imageName, boolean toggle) {
 		this(RcplFactory.eINSTANCE.createTool());
 		tool.setName(name);
@@ -243,8 +245,19 @@ public abstract class RcplTool implements ITool {
 		return editor;
 	}
 
+	@Override
 	public void setEditor(IEditor editor) {
 		this.editor = editor;
+	}
+
+	@Override
+	public Object getData() {
+		return data;
+	}
+
+	@Override
+	public void setData(Object data) {
+		this.data = data;
 	}
 
 }

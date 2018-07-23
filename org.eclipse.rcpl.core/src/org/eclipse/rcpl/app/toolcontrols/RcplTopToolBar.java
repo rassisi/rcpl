@@ -43,9 +43,11 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	private HashMap<String, HBox> toolPaneRegistry = new HashMap<String, HBox>();
 
-	private static final int EDITOR_TOP_BAR_HEIGHT = 122;
+	private static final int RIBBON_HEIGHT = 122;
 
-	private static final int BROWSER_TOP_BAR_HEIGHT = 63; // 40;
+	private static final int BROWSER_HEIGHT = 63;
+
+	private static final int NORMAL_HEIGHT = 30;
 
 	private IEditor editor;
 
@@ -277,46 +279,40 @@ public class RcplTopToolBar implements ITopToolbar {
 	}
 
 	@Override
-	public void updateUseCaseHeight() {
-		savedHeight = EDITOR_TOP_BAR_HEIGHT;
-		Rcpl.UIC.setTopAreaHeight(savedHeight);
-	}
-
-	@Override
 	public void updateHeight() {
 		if (Rcpl.UIC.getPerspective() != null) {
 			if ("PRESENTATION".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+				savedHeight = RIBBON_HEIGHT;
 			} else if ("SETTINGS".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+				savedHeight = RIBBON_HEIGHT;
 			} else if ("SPREADSHEET".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+				savedHeight = RIBBON_HEIGHT;
 			} else if ("WEB".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+				savedHeight = RIBBON_HEIGHT;
 			} else if ("WORD".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+				savedHeight = RIBBON_HEIGHT;
 			} else if ("USECASE".equals(Rcpl.UIC.getActiveAddon())) {
-				savedHeight = EDITOR_TOP_BAR_HEIGHT;
+				savedHeight = RIBBON_HEIGHT;
 			}
 
 		}
-		Rcpl.UIC.setTopAreaHeight(EDITOR_TOP_BAR_HEIGHT); // savedHeight);
+		Rcpl.UIC.setTopAreaHeight(RIBBON_HEIGHT); // savedHeight);
 	}
 
 	@Override
-	public void show(final String perspective) {
+	public void showPerspective(Perspective perspective) {
 
 		javafx.application.Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
+				Rcpl.UIC.getMainTopStack().getChildren().clear();
 				String key = null;
 				if (perspective == null) {
 					key = RcplKey.HOME_TAB.name();
 				} else {
-					key = perspective;
+					key = perspective.getId();
 				}
-				Rcpl.UIC.getMainTopStack().getChildren().clear();
 
 				Node n = toolPaneRegistry.get(key);
 				if (n != null) {
@@ -347,25 +343,6 @@ public class RcplTopToolBar implements ITopToolbar {
 				}
 			});
 		}
-	}
-
-	@Override
-	public void show(final IRcplAddon addon) {
-		javafx.application.Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				Rcpl.UIC.getMainTopStack().getChildren().clear();
-				Node n = toolPaneRegistry.get(addon.getId());
-				if (n != null) {
-					Rcpl.UIC.setActiveAddon(addon);
-					Rcpl.UIC.getMainTopStack().getChildren().add(n);
-				}
-				collapsed = true;
-				collapse(false);
-				updateUseCaseHeight();
-			}
-		});
 	}
 
 	public boolean isCollapsed() {
