@@ -9,8 +9,6 @@ import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 
-import javafx.stage.Stage;
-
 public class DefaultApplicationStarter extends RcplApplicationStarter {
 
 	public DefaultApplicationStarter(IRcplApplicationProvider applicationProvider) {
@@ -20,13 +18,6 @@ public class DefaultApplicationStarter extends RcplApplicationStarter {
 	@Override
 	protected RcplUic createUIC(RcplLogin login) {
 		return new RcplUic(this);
-	}
-
-	@Override
-	public boolean start(RcplLogin login, Stage primaryStage) {
-
-		return super.start(login, primaryStage);
-
 	}
 
 	@Override

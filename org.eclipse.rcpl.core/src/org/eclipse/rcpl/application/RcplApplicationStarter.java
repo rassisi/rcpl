@@ -56,6 +56,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 	 */
 	@Override
 	public boolean start(final RcplLogin login, final Stage primaryStage) {
+		RCPLModel.mobileProvider.appendLog("before Session)");
 
 		if (!beforeSession(login)) {
 			return false;

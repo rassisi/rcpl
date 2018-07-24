@@ -8,21 +8,6 @@ import javafx.scene.Node;
 
 public interface IRcplAddon {
 
-	String USECASE_CONTACTS_CLASS = "org.eclipse.rcpl.ui.parts.contacts.EContactsUseCase";
-	String USECASE_TOOLS_CLASS = "org.eclipse.rcpl.client.uc.tools.parts.EToolsUseCase";
-	String USECASE_IT_CLASS = "org.eclipse.rcpl.uc.it.parts.EITUseCase";
-
-	//
-	// String[] registeredUseCases = new String[] {
-	//
-	// USECASE_CONTACTS,
-	//
-	// USECASE_TOOLS,
-	//
-	// USECASE_IT
-	//
-	// };
-
 	void init();
 
 	String getId();

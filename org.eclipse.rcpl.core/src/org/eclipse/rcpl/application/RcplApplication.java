@@ -14,7 +14,6 @@ import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.jpedal.examples.viewer.OpenViewerFX;
 
 import javafx.animation.FadeTransition;
@@ -65,8 +64,6 @@ public abstract class RcplApplication extends Application {
 	protected abstract boolean isMobile();
 
 	protected abstract Class<? extends RCPLModel> getRcplModel();
-
-	protected abstract String[] getAdditionalImageCodeBases();
 
 	protected abstract String getXmiName();
 
@@ -157,8 +154,6 @@ public abstract class RcplApplication extends Application {
 		Rcpl.setMobile(isMobile());
 		RCPLModel.XMIName = getXmiName();
 		RCPLModel.modelClass = getRcplModel();
-
-		RcplSession.addAdditionalImageCodebases(getAdditionalImageCodeBases());
 
 	}
 

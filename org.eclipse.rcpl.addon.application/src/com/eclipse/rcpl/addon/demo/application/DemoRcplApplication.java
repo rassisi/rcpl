@@ -48,11 +48,6 @@ public class DemoRcplApplication extends RcplApplication {
 	}
 
 	@Override
-	protected String[] getAdditionalImageCodeBases() {
-		return null;
-	}
-
-	@Override
 	public IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication) {
 		return new DemoRcplApplicationStarter(getApplicationProvider());
 	}
