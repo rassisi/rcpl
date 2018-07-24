@@ -124,11 +124,14 @@ public class RcplService extends RcplAbstractService implements IService {
 			Rcpl.UIC.showHomePage(HomePageType.OVERVIEW);
 			return true;
 		}
-		Object data = command.getTool().getData();
-		if (data instanceof HomePage) {
-			HomePageType type = ((HomePage) data).getType();
-			Rcpl.UIC.showHomePage(type);
-			return true;
+
+		if (command.getTool() != null) {
+			Object data = command.getTool().getData();
+			if (data instanceof HomePage) {
+				HomePageType type = ((HomePage) data).getType();
+				Rcpl.UIC.showHomePage(type);
+				return true;
+			}
 		}
 		return false;
 	}
