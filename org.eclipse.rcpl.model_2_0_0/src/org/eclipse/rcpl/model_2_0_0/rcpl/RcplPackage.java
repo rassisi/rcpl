@@ -474,13 +474,40 @@ public interface RcplPackage extends EPackage {
 	int RCPL__KEYVALUES = LAYOUTABLE_FEATURE_COUNT + 15;
 
 	/**
+	 * The feature id for the '<em><b>Image Urls</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RCPL__IMAGE_URLS = LAYOUTABLE_FEATURE_COUNT + 16;
+
+	/**
+	 * The feature id for the '<em><b>Service Classes</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RCPL__SERVICE_CLASSES = LAYOUTABLE_FEATURE_COUNT + 17;
+
+	/**
+	 * The feature id for the '<em><b>Home URL</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RCPL__HOME_URL = LAYOUTABLE_FEATURE_COUNT + 18;
+
+	/**
 	 * The number of structural features of the '<em>RCPL</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 16;
+	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 19;
 
 	/**
 	 * The number of operations of the '<em>RCPL</em>' class.
@@ -8619,6 +8646,39 @@ public interface RcplPackage extends EPackage {
 	EReference getRCPL_Keyvalues();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getImageUrls <em>Image Urls</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Image Urls</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getImageUrls()
+	 * @see #getRCPL()
+	 * @generated
+	 */
+	EAttribute getRCPL_ImageUrls();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServiceClasses <em>Service Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Service Classes</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServiceClasses()
+	 * @see #getRCPL()
+	 * @generated
+	 */
+	EAttribute getRCPL_ServiceClasses();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomeURL <em>Home URL</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Home URL</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomeURL()
+	 * @see #getRCPL()
+	 * @generated
+	 */
+	EAttribute getRCPL_HomeURL();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspectives <em>Perspectives</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10774,6 +10834,30 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RCPL__KEYVALUES = eINSTANCE.getRCPL_Keyvalues();
+
+		/**
+		 * The meta object literal for the '<em><b>Image Urls</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RCPL__IMAGE_URLS = eINSTANCE.getRCPL_ImageUrls();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Classes</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RCPL__SERVICE_CLASSES = eINSTANCE.getRCPL_ServiceClasses();
+
+		/**
+		 * The meta object literal for the '<em><b>Home URL</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RCPL__HOME_URL = eINSTANCE.getRCPL_HomeURL();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectivesImpl <em>Perspectives</em>}' class.

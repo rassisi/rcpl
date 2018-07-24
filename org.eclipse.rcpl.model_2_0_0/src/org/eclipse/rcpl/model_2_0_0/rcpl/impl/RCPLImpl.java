@@ -43,6 +43,9 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getHomepages <em>Homepages</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getDocuments <em>Documents</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getKeyvalues <em>Keyvalues</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getImageUrls <em>Image Urls</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getServiceClasses <em>Service Classes</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getHomeURL <em>Home URL</em>}</li>
  * </ul>
  *
  * @generated
@@ -345,6 +348,44 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 */
 	public void setKeyvalues(KeyValues newKeyvalues) {
 		eSet(RcplPackage.Literals.RCPL__KEYVALUES, newKeyvalues);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<String> getImageUrls() {
+		return (EList<String>)eGet(RcplPackage.Literals.RCPL__IMAGE_URLS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<String> getServiceClasses() {
+		return (EList<String>)eGet(RcplPackage.Literals.RCPL__SERVICE_CLASSES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getHomeURL() {
+		return (String)eGet(RcplPackage.Literals.RCPL__HOME_URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHomeURL(String newHomeURL) {
+		eSet(RcplPackage.Literals.RCPL__HOME_URL, newHomeURL);
 	}
 
 } //RCPLImpl

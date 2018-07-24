@@ -812,6 +812,33 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getRCPL_ImageUrls() {
+		return (EAttribute)rcplEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRCPL_ServiceClasses() {
+		return (EAttribute)rcplEClass.getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRCPL_HomeURL() {
+		return (EAttribute)rcplEClass.getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPerspectives() {
 		return perspectivesEClass;
 	}
@@ -2451,6 +2478,9 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(rcplEClass, RCPL__HOMEPAGES);
 		createEReference(rcplEClass, RCPL__DOCUMENTS);
 		createEReference(rcplEClass, RCPL__KEYVALUES);
+		createEAttribute(rcplEClass, RCPL__IMAGE_URLS);
+		createEAttribute(rcplEClass, RCPL__SERVICE_CLASSES);
+		createEAttribute(rcplEClass, RCPL__HOME_URL);
 
 		perspectivesEClass = createEClass(PERSPECTIVES);
 		createEReference(perspectivesEClass, PERSPECTIVES__CHILDREN);
@@ -2784,6 +2814,9 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getRCPL_Homepages(), this.getHomePages(), null, "homepages", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_Documents(), this.getDocuments(), null, "documents", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_Keyvalues(), this.getKeyValues(), null, "keyvalues", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRCPL_ImageUrls(), ecorePackage.getEString(), "imageUrls", null, 0, -1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRCPL_ServiceClasses(), ecorePackage.getEString(), "ServiceClasses", null, 0, -1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRCPL_HomeURL(), ecorePackage.getEString(), "homeURL", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(perspectivesEClass, Perspectives.class, "Perspectives", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPerspectives_Children(), this.getPerspective(), null, "children", null, 0, -1, Perspectives.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

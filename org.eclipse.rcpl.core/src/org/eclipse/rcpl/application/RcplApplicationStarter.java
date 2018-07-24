@@ -57,24 +57,11 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 	@Override
 	public boolean start(final RcplLogin login, final Stage primaryStage) {
 
-		RcplSession.getDefault().STANDALONE = true;
-		Rcpl.setFactory(createRcplFactory());
-		Rcpl.setToolFactory(createToolFactory());
-		Rcpl.progressMessage("Collapse All");
-		RCPLModel.configuration = new RcplConfig();
-
-		Rcpl.progressMessage("Create UIC");
-		uic = createUIC(login);
-
-		Rcpl.progressMessage("Init Session");
-
-		if (!uic.initSession(login)) {
-			Rcpl.progressMessage("Init Session failed");
+		if (!beforeSession(login)) {
 			return false;
 		}
 
-		Rcpl.progressMessage("Bind Plugins to Model");
-		applicationProvider.bindAddonsToModel();
+		initApplicationWithModel();
 
 		Platform.runLater(new Runnable() {
 
@@ -97,8 +84,40 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 		});
 
 		StackPane.setMargin(applicationProvider.getMainContent(), new Insets(0, 0, 0, 0));
-
 		applicationProvider.setNormalWindow();
+
+		return true;
+	}
+
+	private void initApplicationWithModel() {
+		for (String url : RcplSession.getDefault().getRcpl().getImageUrls()) {
+			RcplSession.addAdditionalImageCodebases(url);
+
+		}
+		doInitApplicationWithModel();
+		Rcpl.progressMessage("Bind Plugins to Model");
+		applicationProvider.bindAddonsToModel();
+
+	}
+
+	protected abstract void doInitApplicationWithModel();
+
+	private boolean beforeSession(final RcplLogin login) {
+		RcplSession.getDefault().STANDALONE = true;
+		Rcpl.setFactory(createRcplFactory());
+		Rcpl.setToolFactory(createToolFactory());
+		Rcpl.progressMessage("Collapse All");
+		RCPLModel.configuration = new RcplConfig();
+
+		Rcpl.progressMessage("Create UIC");
+		uic = createUIC(login);
+
+		Rcpl.progressMessage("Init Session");
+
+		if (!uic.initSession(login)) {
+			Rcpl.progressMessage("Init Session failed");
+			return false;
+		}
 
 		return true;
 	}

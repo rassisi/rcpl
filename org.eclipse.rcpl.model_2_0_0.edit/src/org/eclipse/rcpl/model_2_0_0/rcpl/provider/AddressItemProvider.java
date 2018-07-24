@@ -16,10 +16,9 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Address;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.rcpl.model_2_0_0.rcpl.Address} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Address} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AddressItemProvider extends LayoutableItemProvider {
@@ -55,47 +54,69 @@ public class AddressItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Country feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Country feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addCountryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Address_country_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Address_country_feature",
-								"_UI_Address_type"),
-						RcplPackage.Literals.ADDRESS__COUNTRY, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Address_country_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Address_country_feature", "_UI_Address_type"),
+				 RcplPackage.Literals.ADDRESS__COUNTRY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the City feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the City feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addCityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Address_city_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Address_city_feature", "_UI_Address_type"),
-						RcplPackage.Literals.ADDRESS__CITY, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Address_city_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Address_city_feature", "_UI_Address_type"),
+				 RcplPackage.Literals.ADDRESS__CITY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Street feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Street feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addStreetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Address_street_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Address_street_feature",
-								"_UI_Address_type"),
-						RcplPackage.Literals.ADDRESS__STREET, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Address_street_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Address_street_feature", "_UI_Address_type"),
+				 RcplPackage.Literals.ADDRESS__STREET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -105,12 +126,19 @@ public class AddressItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addHousenumberPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Address_housenumber_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Address_housenumber_feature",
-								"_UI_Address_type"),
-						RcplPackage.Literals.ADDRESS__HOUSENUMBER, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Address_housenumber_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Address_housenumber_feature", "_UI_Address_type"),
+				 RcplPackage.Literals.ADDRESS__HOUSENUMBER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -120,12 +148,19 @@ public class AddressItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addBuildingsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Address_buildings_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Address_buildings_feature",
-								"_UI_Address_type"),
-						RcplPackage.Literals.ADDRESS__BUILDINGS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Address_buildings_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Address_buildings_feature", "_UI_Address_type"),
+				 RcplPackage.Literals.ADDRESS__BUILDINGS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -135,13 +170,19 @@ public class AddressItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addAddressTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Address_addressType_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Address_addressType_feature",
-								"_UI_Address_type"),
-						RcplPackage.Literals.ADDRESS__ADDRESS_TYPE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Address_addressType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Address_addressType_feature", "_UI_Address_type"),
+				 RcplPackage.Literals.ADDRESS__ADDRESS_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -167,10 +208,9 @@ public class AddressItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update
-	 * any cached children and by creating a viewer notification, which it passes to
-	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -178,18 +218,18 @@ public class AddressItemProvider extends LayoutableItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Address.class)) {
-		case RcplPackage.ADDRESS__ADDRESS_TYPE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case RcplPackage.ADDRESS__ADDRESS_TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-	 * the children that can be created under this object. <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -51,6 +51,9 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			addBuildNumberPropertyDescriptor(object);
 			addVersionDescriptionPropertyDescriptor(object);
 			addLinkedRcplsPropertyDescriptor(object);
+			addImageUrlsPropertyDescriptor(object);
+			addServiceClassesPropertyDescriptor(object);
+			addHomeURLPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -188,6 +191,72 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Image Urls feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addImageUrlsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RCPL_imageUrls_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RCPL_imageUrls_feature", "_UI_RCPL_type"),
+				 RcplPackage.Literals.RCPL__IMAGE_URLS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Service Classes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addServiceClassesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RCPL_ServiceClasses_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RCPL_ServiceClasses_feature", "_UI_RCPL_type"),
+				 RcplPackage.Literals.RCPL__SERVICE_CLASSES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Home URL feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHomeURLPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RCPL_homeURL_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RCPL_homeURL_feature", "_UI_RCPL_type"),
+				 RcplPackage.Literals.RCPL__HOME_URL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -263,6 +332,9 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			case RcplPackage.RCPL__VERSION_MAINTENANCE:
 			case RcplPackage.RCPL__BUILD_NUMBER:
 			case RcplPackage.RCPL__VERSION_DESCRIPTION:
+			case RcplPackage.RCPL__IMAGE_URLS:
+			case RcplPackage.RCPL__SERVICE_CLASSES:
+			case RcplPackage.RCPL__HOME_URL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case RcplPackage.RCPL__ALL_ADDONS:

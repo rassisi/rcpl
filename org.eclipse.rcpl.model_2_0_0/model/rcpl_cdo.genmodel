@@ -147,6 +147,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/homepages"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/documents"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/keyvalues"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/imageUrls"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/ServiceClasses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/homeURL"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Perspectives">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspectives/children"/>

@@ -295,13 +295,6 @@ public class RcplLoginController {
 			}
 		});
 
-		// versionText
-		// .setText(Rcpl.COPYRIGHT
-		// + " Ramin Assisi 2009-2014 and others - Version "
-		// + JOVersion.getVersion()
-		// // + "\n"
-		// + " based on Eclipse Luna and Apache Open Source Components");
-
 		Document doc;
 		try {
 			doc = Jsoup.connect(TERMS_AND_CONDITIONS_URL).get();

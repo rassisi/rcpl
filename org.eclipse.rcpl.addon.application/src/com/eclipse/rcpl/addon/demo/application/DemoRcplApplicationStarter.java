@@ -1,10 +1,10 @@
 package com.eclipse.rcpl.addon.demo.application;
 
-import org.eclipse.rcpl.RcplBasicFactory;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplFactory;
 import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.IWindowAdvisor;
+import org.eclipse.rcpl.RcplBasicFactory;
 import org.eclipse.rcpl.application.RcplApplicationStarter;
 import org.eclipse.rcpl.application.RcplWindowAdvisor;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
@@ -40,5 +40,16 @@ public class DemoRcplApplicationStarter extends RcplApplicationStarter {
 	@Override
 	protected IRcplFactory createRcplFactory() {
 		return new RcplBasicFactory();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.rcpl.application.RcplApplicationStarter#
+	 * doInitApplicationWithModel()
+	 */
+	@Override
+	protected void doInitApplicationWithModel() {
+
 	}
 }

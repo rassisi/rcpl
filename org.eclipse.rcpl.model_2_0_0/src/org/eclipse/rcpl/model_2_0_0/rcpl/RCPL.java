@@ -28,6 +28,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomepages <em>Homepages</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getDocuments <em>Documents</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getKeyvalues <em>Keyvalues</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getImageUrls <em>Image Urls</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServiceClasses <em>Service Classes</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomeURL <em>Home URL</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL()
@@ -443,5 +446,63 @@ public interface RCPL extends Layoutable {
 	 * @generated
 	 */
 	void setKeyvalues(KeyValues value);
+
+	/**
+	 * Returns the value of the '<em><b>Image Urls</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Image Urls</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Image Urls</em>' attribute list.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_ImageUrls()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getImageUrls();
+
+	/**
+	 * Returns the value of the '<em><b>Service Classes</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Service Classes</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service Classes</em>' attribute list.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_ServiceClasses()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getServiceClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Home URL</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Home URL</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Home URL</em>' attribute.
+	 * @see #setHomeURL(String)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_HomeURL()
+	 * @model
+	 * @generated
+	 */
+	String getHomeURL();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomeURL <em>Home URL</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Home URL</em>' attribute.
+	 * @see #getHomeURL()
+	 * @generated
+	 */
+	void setHomeURL(String value);
 
 } // RCPL
