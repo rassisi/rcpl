@@ -24,7 +24,6 @@ import org.eclipse.fx.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleException;
-import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.INavigatorListener;
 import org.eclipse.rcpl.INavigatorTreeManager;
 import org.eclipse.rcpl.IOfficeUIC;
@@ -39,7 +38,6 @@ import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
@@ -86,6 +84,8 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	private HashMap<String, File> documentRegistry = new HashMap<String, File>();
 
 	private Pane detailPane;
+
+	private EObject root;
 
 	public DefaultNavigatorTreePart() {
 	}
@@ -187,23 +187,10 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 				} else if (sel instanceof Folder) {
 					defineDetailNode(sel);
 				} else {
-					setDetailNode((Node) null);
+//					setDetailNode((Node) null);
 				}
 			}
 		});
-	}
-
-	/**
-	 * @param node
-	 */
-	protected void setDetailNode(Node node) {
-		try {
-			IHomePage homePage = Rcpl.UIC.findHomePage(HomePageType.OVERVIEW);
-			homePage.setDetailNode(node);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
 	}
 
 	/**
@@ -344,177 +331,6 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	}
 
-//	private void refresh() {
-//
-//		try {
-//
-//			EditingDomain editingDomain = getEditingDomain();
-//			// TreeView
-//			TreeView<Object> treeView = new TreeView<>();
-//			treeView.setRoot(new AdapterFactoryTreeItem(emfTreeManager.getRoot(), emfTreeManager.getAdapterFactory()));
-//			AdapterFactoryTreeCellFactory treeCellFactory = new AdapterFactoryTreeCellFactory(
-//					emfTreeManager.getAdapterFactory());
-//
-//			// ---------- add edit support
-//
-//			treeCellFactory.addCellEditHandler(
-//					new EAttributeCellEditHandler(RcplPackage.eINSTANCE.getRCPL().getEIDAttribute(), editingDomain));
-//
-//			// ---------- adds drag support
-//
-//			treeCellFactory.addCellCreationListener(new CellDragAdapter());
-//
-//			// ---------- adds drop support
-//			EditingDomainCellDropAdapter dropAdapter = new EditingDomainCellDropAdapter(editingDomain);
-////			dropAdapter.setFeedbackHandler(new CustomFeedbackHandler());
-////			treeCellFactory.addCellCreationListener(dropAdapter);
-//
-//			treeView.setCellFactory(treeCellFactory);
-//
-////			parent.setCenter(treeView);
-//
-//			treeView.setShowRoot(true);
-//
-//			treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-//
-////			treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
-////
-////				public void changed(ObservableValue<? extends Object> arg0, Object arg1, Object arg2) {
-////					if (arg2 instanceof AdapterFactoryTreeItem) {
-////						Object value = ((AdapterFactoryTreeItem) arg2).getValue();
-////						if (value instanceof Contact)
-////							application.getContext().set(Object.class, value);
-////					}
-////				}
-////
-////			});
-//
-////			treeView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Object>() {
-////
-////				@Override
-////				public void onChanged(Change<?> change) {
-////					ArrayList<Object> selection = new ArrayList<Object>();
-////					for (Object item : change.getList()) {
-////						if (item instanceof AdapterFactoryTreeItem) {
-////							Object value = ((AdapterFactoryTreeItem) item).getValue();
-////							selection.add(value);
-////						}
-////					}
-////					application.getContext().set(List.class, selection);
-////				}
-////
-////			});
-//
-//			// add the context menu
-////			DefaultTreeContextMenuProvider contextMenuProvider = new DefaultTreeContextMenuProvider(
-////					(UCEmfTreeModelManagerImpl) emfTreeManager);
-////			treeCellFactory.addCellUpdateListener(contextMenuProvider);
-//
-////			treeView.setEditable(true);
-////
-////			EditingDomain editingDomain = getEditingDomain();
-////
-////			// TreeView
-////			TreeView<Object> treeView = new TreeView<>();
-////			treeView.setRoot(
-////					new AdapterFactoryTreeItem(contactsManager.getRootGroup(), contactsManager.getAdapterFactory()));
-////			AdapterFactoryTreeCellFactory treeCellFactory = new AdapterFactoryTreeCellFactory(
-////					contactsManager.getAdapterFactory());
-////
-////			// add edit support
-////			treeCellFactory.addCellEditHandler(
-////					new EAttributeCellEditHandler(ContactsPackage.eINSTANCE.getGroup_Name(), editingDomain));
-////
-////			// adds drag support
-////			treeCellFactory.addCellCreationListener(new CellDragAdapter());
-////
-////			// adds drop support
-////			EditingDomainCellDropAdapter dropAdapter = new EditingDomainCellDropAdapter(editingDomain);
-////			dropAdapter.setFeedbackHandler(new CustomFeedbackHandler());
-////			treeCellFactory.addCellCreationListener(dropAdapter);
-////
-////			treeView.setCellFactory(treeCellFactory);
-////
-////			parent.setCenter(treeView);
-////
-////			treeView.setShowRoot(false);
-////
-////			treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-////
-////			treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
-////
-////				public void changed(ObservableValue<? extends Object> arg0, Object arg1, Object arg2) {
-////					if (arg2 instanceof AdapterFactoryTreeItem) {
-////						Object value = ((AdapterFactoryTreeItem) arg2).getValue();
-////						if (value instanceof Contact)
-////							application.getContext().set(Object.class, value);
-////					}
-////				}
-////
-////			});
-////
-////			treeView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Object>() {
-////
-////				@Override
-////				public void onChanged(Change<?> change) {
-////					ArrayList<Object> selection = new ArrayList<Object>();
-////					for (Object item : change.getList()) {
-////						if (item instanceof AdapterFactoryTreeItem) {
-////							Object value = ((AdapterFactoryTreeItem) item).getValue();
-////							selection.add(value);
-////						}
-////					}
-////					application.getContext().set(List.class, selection);
-////				}
-////
-////			});
-//
-//			if (adapterFactoryTreeItem2 == null) {
-//
-//				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem<Object>(emfTreeManager.getRoot(),
-//						emfTreeManager.getAdapterFactory());
-//				treeView.setRoot(adapterFactoryTreeItem2);
-//
-//				AdapterFactoryTreeCellFactory<Object> treeCellFactory2 = new AdapterFactoryTreeCellFactory<Object>(
-//						emfTreeManager.getAdapterFactory());
-//
-//				// ---------- add edit support
-//
-//				treeCellFactory.addCellEditHandler(new EAttributeCellEditHandler(
-//						RcplPackage.eINSTANCE.getTools().getEIDAttribute(), getEditingDomain()));
-//				treeCellFactory.addCellEditHandler(
-//						new EAttributeCellEditHandler(RcplPackage.eINSTANCE.getLayoutable_Id(), getEditingDomain()));
-//
-//				// ---------- DOD support
-//
-//				if (!Rcpl.isMobile()) {
-////					treeCellFactory.addCellCreationListener(new CellDragAdapter());
-//				}
-//
-//				treeView.setCellFactory(treeCellFactory2);
-//
-////				if (RcplSession.getDefault().isDemo()) {
-////					treeView.setEditable(false);
-////				} else {
-////					if (!Rcpl.isMobile()) {
-////						EditingDomainCellDropAdapter dropAdapter = new EditingDomainCellDropAdapter(getEditingDomain());
-////						dropAdapter.setFeedbackHandler(new EditingDomainCellDropAdapter.DefaultFeedbackHandler());
-//////						treeCellFactory.addCellCreationListener(dropAdapter);
-////						DefaultTreeContextMenuProvider contextMenuProvider = createContextMenuProvider();
-//////						treeCellFactory.addCellUpdateListener(contextMenuProvider);
-////					}
-////					treeView.setEditable(true);
-////				}
-//				treeView.getRoot().setExpanded(true);
-//
-////				expandAll();
-//			}
-//		} catch (LifecycleException ex) {
-//			//
-//		}
-//
-//	}
-
 	@SuppressWarnings("unused")
 	private void expandAll() {
 		for (TreeItem<?> item : treeView.getRoot().getChildren()) {
@@ -598,7 +414,17 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	@Override
 	public EObject getRoot() {
-		return RcplSession.getDefault().getRcpl().getAllResources();
+		if (root == null) {
+			return RcplSession.getDefault().getRcpl().getAllResources();
+		}
+		return root;
+	}
+
+	@Override
+	public void setRoot(EObject root) {
+		this.root = root;
+		adapterFactoryTreeItem2 = null;
+		refresh();
 	}
 
 }

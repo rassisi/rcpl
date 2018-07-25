@@ -22,8 +22,6 @@ public interface IRcplAddon {
 
 	Class<? extends EObject> getRootClass();
 
-	void setRootClass(Class<? extends EObject> cl);
-
 	void setTool(Tool tool);
 
 	Tool getTool();

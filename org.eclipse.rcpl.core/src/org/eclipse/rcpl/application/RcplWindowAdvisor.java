@@ -14,8 +14,6 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.cdo.client.RcplKey;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -63,12 +61,12 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 		String xs = "0";
 		String ys = "0";
 
-		try {
-			xs = RcplSession.getDefault().getSystemPreferences().getString(RcplKey.STAGE_X);
-			ys = RcplSession.getDefault().getSystemPreferences().getString(RcplKey.STAGE_Y);
-		} catch (Exception ex) {
-			Rcpl.progressMessage(ex);
-		}
+//		try {
+//			xs = RcplSession.getDefault().getSystemPreferences().getString(RcplKey.STAGE_X);
+//			ys = RcplSession.getDefault().getSystemPreferences().getString(RcplKey.STAGE_Y);
+//		} catch (Exception ex) {
+//			Rcpl.progressMessage(ex);
+//		}
 		double maxWidth = 0;
 
 		ObservableList<Screen> screens = Screen.getScreens();

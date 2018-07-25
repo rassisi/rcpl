@@ -26,10 +26,8 @@ abstract public class RcplAbstractToolBarInitializer {
 		this.joffice = joffice;
 	}
 
-	public Tool createTool(RCPL joffice, ToolGroup group, String id,
-			String name, String image) {
-		return createTool(joffice, group, id, name, name, image, 0, 0, 0, 0,
-				ToolType.BUTTON);
+	public Tool createTool(RCPL joffice, ToolGroup group, String id, String name, String image) {
+		return createTool(joffice, group, id, name, name, image, 0, 0, 0, 0, ToolType.BUTTON);
 	}
 
 	//
@@ -38,8 +36,8 @@ abstract public class RcplAbstractToolBarInitializer {
 	// return createTool(joffice, group, id, name, image, 0, 0, 0, 0, type);
 	// }
 
-	protected Tool createColorTool(RCPL joffice, ToolGroup group, String id,
-			String name, double red, double green, double blue) {
+	protected Tool createColorTool(RCPL joffice, ToolGroup group, String id, String name, double red, double green,
+			double blue) {
 		Tool tool = RcplFactory.eINSTANCE.createTool();
 		tool.setId(id);
 		tool.setName(name);
@@ -54,8 +52,7 @@ abstract public class RcplAbstractToolBarInitializer {
 		return tool;
 	}
 
-	protected ToolGroup createToolGroup(RCPL joffice, Perspective perspective,
-			String id) {
+	protected ToolGroup createToolGroup(RCPL joffice, Perspective perspective, String id) {
 		ToolGroup group = session.findToolGroup(joffice, id);
 		if (group != null) {
 			perspective.getSideToolBar().getToolGroups().add(group);
@@ -65,17 +62,14 @@ abstract public class RcplAbstractToolBarInitializer {
 		return group;
 	}
 
-	protected ToolGroup createToolGroup(RCPL joffice, Perspective perspective,
-			String id, String name, String image, double x, double y,
-			double width, double height) {
-		ToolGroup group = createToolGroup(joffice, id, name, image, x, y,
-				width, height);
+	protected ToolGroup createToolGroup(RCPL joffice, Perspective perspective, String id, String name, String image,
+			double x, double y, double width, double height) {
+		ToolGroup group = createToolGroup(joffice, id, name, image, x, y, width, height);
 		perspective.getSideToolBar().getToolGroups().add(group);
 		return group;
 	}
 
-	protected Tool createNavigatorTool(RCPL joffice, ToolGroup group,
-			String id, String name, String image) {
+	protected Tool createNavigatorTool(RCPL joffice, ToolGroup group, String id, String name, String image) {
 		Tool tool = RcplFactory.eINSTANCE.createTool();
 		tool.setId(id);
 		tool.setName(name);
@@ -84,9 +78,8 @@ abstract public class RcplAbstractToolBarInitializer {
 		return tool;
 	}
 
-	protected Tool createTool(RCPL joffice, ToolGroup group, String id,
-			String name, String toolTip, String image, int gridX, int gridY,
-			int spanX, int spanY, ToolType type) {
+	protected Tool createTool(RCPL joffice, ToolGroup group, String id, String name, String toolTip, String image,
+			int gridX, int gridY, int spanX, int spanY, ToolType type) {
 		Tool tool = RcplFactory.eINSTANCE.createTool();
 		tool.setImage(image);
 		tool.setId(id);
@@ -101,8 +94,8 @@ abstract public class RcplAbstractToolBarInitializer {
 		return tool;
 	}
 
-	protected ToolGroup createToolGroup(RCPL joffice, String id, String name,
-			String image, double x, double y, double width, double height) {
+	protected ToolGroup createToolGroup(RCPL joffice, String id, String name, String image, double x, double y,
+			double width, double height) {
 		ToolGroup group = RcplFactory.eINSTANCE.createToolGroup();
 		group.setImage(image);
 		group.setId(id);
@@ -113,22 +106,17 @@ abstract public class RcplAbstractToolBarInitializer {
 		return group;
 	}
 
-	protected ToolGroup createSideBarToolGroup(RCPL joffice, String id,
-			String name, String image) {
-		return createToolGroup(joffice, id, name, image, 0, 0, session
-				.getSystemPreferences().getToolSideBarWidth(), session
-				.getSystemPreferences().getToolSideBarHeight());
+	protected ToolGroup createSideBarToolGroup(RCPL joffice, String id, String name, String image) {
+		return createToolGroup(joffice, id, name, image, 0, 0, 250, 550);
 	}
 
-	protected ToolGroup createToolGroup(RCPL joffice, ToolGroup toolGroup,
-			String id, String name, String image) {
+	protected ToolGroup createToolGroup(RCPL joffice, ToolGroup toolGroup, String id, String name, String image) {
 		return createToolGroup(joffice, toolGroup, id, name, image, 0, 0, 0, 0);
 	}
 
-	protected ToolGroup createGridToolGroup(RCPL joffice, ToolGroup toolGroup,
-			String id, int gridX, int gridY, int spanX, int spanY) {
-		ToolGroup g = createToolGroup(joffice, toolGroup, id, id, null, 0, 0,
-				0, 0);
+	protected ToolGroup createGridToolGroup(RCPL joffice, ToolGroup toolGroup, String id, int gridX, int gridY,
+			int spanX, int spanY) {
+		ToolGroup g = createToolGroup(joffice, toolGroup, id, id, null, 0, 0, 0, 0);
 		g.setGridX(gridX);
 		g.setGridY(gridY);
 		g.setSpanX(spanX);
@@ -136,11 +124,9 @@ abstract public class RcplAbstractToolBarInitializer {
 		return g;
 	}
 
-	protected ToolGroup createToolGroup(RCPL joffice, ToolGroup toolGroup,
-			String id, String name, String image, double x, double y,
-			double width, double height) {
-		ToolGroup group = createToolGroup(joffice, id, name, image, x, y,
-				width, height);
+	protected ToolGroup createToolGroup(RCPL joffice, ToolGroup toolGroup, String id, String name, String image,
+			double x, double y, double width, double height) {
+		ToolGroup group = createToolGroup(joffice, id, name, image, x, y, width, height);
 		toolGroup.getToolGroups().add(group);
 
 		return group;

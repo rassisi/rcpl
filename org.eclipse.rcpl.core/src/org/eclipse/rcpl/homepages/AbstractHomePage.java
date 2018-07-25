@@ -13,6 +13,7 @@ package org.eclipse.rcpl.homepages;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
@@ -29,6 +30,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -174,7 +178,6 @@ public abstract class AbstractHomePage implements IHomePage {
 
 		doCreateContent(contentPane);
 		vBox.layout();
-//		vBox.setId("redBorder");
 
 	}
 
@@ -214,11 +217,6 @@ public abstract class AbstractHomePage implements IHomePage {
 	}
 
 	@Override
-	public void setDetailNode(Node node) {
-		getContentPane().getChildren().add(node);
-	}
-
-	@Override
 	public String toString() {
 		return "Home Page: " + getId();
 	}
@@ -227,5 +225,116 @@ public abstract class AbstractHomePage implements IHomePage {
 	public HomePage getModel() {
 		return model;
 	}
+
+	/**
+	 * @param imageIndex
+	 */
+	protected void showSplash(int imageIndex) {
+
+		if (homeImages == null) {
+			return;
+		}
+		try {
+			int randomImageIndex;
+
+			if (imageIndex >= 0) {
+				randomImageIndex = imageIndex;
+			} else {
+
+				randomImageIndex = (int) (Math.random() * homeImages.length);
+
+			}
+
+			String mediaUrl = homeImages[randomImageIndex];
+			if (mediaUrl.indexOf("youtube") != -1) {
+
+				Media media = new Media(mediaUrl);
+				javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(media);
+				internalMediaPlay.setAutoPlay(true);
+				internalMediaView = new MediaView();
+				internalMediaView.setMediaPlayer(mediaPlayer);
+				internalMediaView.setVisible(true);
+
+				// internalHomeWebView.setVisible(false);
+				// // homeWebView.getEngine().load(mediaUrl);
+				// internalHomeImageView.setVisible(false);
+
+			} else {
+				// homeWebView.setVisible(false);
+				// mediaView.setVisible(false);
+//				Image image = new Image(mediaUrl);
+				// homeImageView.setImage(image);
+
+//				detailPane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+//						BackgroundRepeat.NO_REPEAT, new BackgroundPosition(Side.LEFT, 0, false, Side.TOP, 0, false),
+//						new BackgroundSize(10, 10, true, true, false, true))));
+//				// homeImageView.setFitWidth(homeStackPane.getWidth() -
+//				// 100);
+//				// homeImageView.setVisible(false);
+//
+//				if (Rcpl.isMobile()) {
+//					detailPane.setOnSwipeLeft(new EventHandler<SwipeEvent>() {
+//
+//						@Override
+//						public void handle(SwipeEvent event) {
+//							uic.showErrorPage();
+//						}
+//					});
+//				} else {
+//					detailPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//
+//						@Override
+//						public void handle(MouseEvent event) {
+//							uic.showErrorPage();
+//						}
+//					});
+//				}
+
+			}
+		} catch (Exception ex) {
+			RCPLModel.logError(ex);
+		}
+	}
+
+	private MediaPlayer internalMediaPlay;
+
+	protected MediaView internalMediaView;
+
+	String[] homeImages = new String[] {
+
+			"http://apod.nasa.gov/apod/image/1308/skylab_nasa_960.jpg",
+
+			"http://apod.nasa.gov/apod/image/1308/skylab_nasa_960.jpg",
+
+			// //
+			// "http://www.youtube.com/watch?v=FG0fTKAqZ5g&feature=player_embedded#t=72",
+			//
+			// "http://apod.nasa.gov/apod/image/0806/M51HST-GendlerS_800.jpg",
+			//
+			// //
+			// "http://apod.nasa.gov/apod/image/1312/horsehead_chumack_1800.jpg",
+			//
+			// "http://apod.nasa.gov/apod/image/1401/cubesats_iss038_960.jpg",
+			//
+			// //
+			// "http://apod.nasa.gov/apod/image/1401/iss013e49644clevels.jpg",
+			//
+			// "http://apod.nasa.gov/apod/image/1312/mandelbox077_leys_960.jpg",
+			//
+			// "http://apod.nasa.gov/apod/image/1312/p1769716276metsavainio950c.jpg",
+			//
+			// "http://apod.nasa.gov/apod/image/1310/orionwisps_colombari_960.jpg",
+			//
+			// "http://apod.nasa.gov/apod/image/1310/carina_fenyes_960.jpg",
+			//
+			// "http://apod.nasa.gov/apod/image/1308/ngc3370_hst_900.jpg",
+			//
+			// "http://apod.nasa.gov/apod/image/1307/ngc6384_hst_1265.jpg",
+			//
+			// "http://apod.nasa.gov/apod/image/1305/richat_aster_960.jpg",
+			//
+			// "http://apod.nasa.gov/apod/image/1304/NGC1788_davis950.jpg",
+
+	};
 
 }

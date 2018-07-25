@@ -182,10 +182,6 @@ public class RcplSession {
 
 	protected CDONet4jSessionConfiguration configuration;
 
-	private RcplUserPreferences userPreferences;
-
-	private RcplSystemPreferences systemPreferences;
-
 	public Hashtable<String, Object> coreDataTable;
 
 	private Connection connection;
@@ -1049,8 +1045,6 @@ public class RcplSession {
 				for (EObject eo : getResource().getContents()) {
 					if (eo instanceof RCPL) {
 						rcpl = (RCPL) eo;
-						this.systemPreferences = new RcplSystemPreferences();
-						this.userPreferences = new RcplUserPreferences();
 						break;
 					}
 				}
@@ -1134,26 +1128,12 @@ public class RcplSession {
 		return spreadsheetPerspective;
 	}
 
-	public RcplSystemPreferences getSystemPreferences() {
-		if (systemPreferences == null) {
-			systemPreferences = new RcplSystemPreferences();
-		}
-		return systemPreferences;
-	}
-
 	public CDOTransaction getTransaction() {
 		return transaction;
 	}
 
 	public User getUser() {
 		return user;
-	}
-
-	public RcplUserPreferences getUserPreferences() {
-		if (userPreferences == null) {
-			userPreferences = new RcplUserPreferences();
-		}
-		return userPreferences;
 	}
 
 	public Perspective getWebPerspective() {

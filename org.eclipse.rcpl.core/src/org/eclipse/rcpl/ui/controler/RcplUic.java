@@ -45,7 +45,6 @@ import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.migration.RcplMigration;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
@@ -798,8 +797,8 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	public void handleClose(ActionEvent event) {
-		RcplSession.getDefault().getSystemPreferences().put(RcplKey.STAGE_X, "" + getStage().getX());
-		RcplSession.getDefault().getSystemPreferences().put(RcplKey.STAGE_Y, "" + getStage().getY());
+//		RcplSession.getDefault().getSystemPreferences().put(RcplKey.STAGE_X, "" + getStage().getX());
+//		RcplSession.getDefault().getSystemPreferences().put(RcplKey.STAGE_Y, "" + getStage().getY());
 		RcplSession.getDefault().commit();
 
 		RcplSession.getDefault().close(true, true);
@@ -918,10 +917,10 @@ public class RcplUic implements IRcplUic {
 		double max = 0;
 		if (RcplSession.getDefault() != null && RcplSession.getDefault().isOnline()) {
 			// login.getController().collapseAll();
-			max = RcplSession.getDefault().getSystemPreferences().getDouble(RcplKey.MAX_PROGRESS);
-			if (max > 0) {
-				// Rcpl.UIC.setProgressMax(max);
-			}
+//			max = RcplSession.getDefault().getSystemPreferences().getDouble(RcplKey.MAX_PROGRESS);
+//			if (max > 0) {
+//				// Rcpl.UIC.setProgressMax(max);
+//			}
 		}
 
 		Rcpl.progressMessage("Migrate Model");
@@ -1570,18 +1569,18 @@ public class RcplUic implements IRcplUic {
 
 	private void createRecentDocumentList() {
 
-		try {
-			if (RcplSession.getDefault().getSystemPreferences() != null)
-
-			{
-				String lastDoc = RcplSession.getDefault().getSystemPreferences().getLastDocument();
-				if (lastDoc != null && lastDoc.trim().length() > 0) {
-					lastDocumentFile = new File(lastDoc);
-				}
-			}
-		} catch (Exception ex) {
-
-		}
+//		try {
+//			if (RcplSession.getDefault().getSystemPreferences() != null)
+//
+//			{
+//				String lastDoc = RcplSession.getDefault().getSystemPreferences().getLastDocument();
+//				if (lastDoc != null && lastDoc.trim().length() > 0) {
+//					lastDocumentFile = new File(lastDoc);
+//				}
+//			}
+//		} catch (Exception ex) {
+//
+//		}
 
 	}
 

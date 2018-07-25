@@ -11,6 +11,7 @@
 
 package org.eclipse.rcpl.navigator.addon;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.INavigatorTreeManager;
@@ -34,13 +35,15 @@ public abstract class AbstractNavigatorAddon extends AbstractRcplAddon implement
 
 	private static AbstractNavigatorAddon INSTANCE;
 
+	private ITreePart treePart;
+
 	public AbstractNavigatorAddon() {
 		INSTANCE = this;
 	}
 
 	@Override
 	public ITreePart createPart(Pane detailPane, Tool tool, boolean showRoot) {
-		ITreePart treePart = createTreePart();
+		treePart = createTreePart();
 		treePart.init(detailPane, tool, showRoot);
 		return treePart;
 
@@ -72,6 +75,12 @@ public abstract class AbstractNavigatorAddon extends AbstractRcplAddon implement
 		return manager;
 	}
 
+	@Override
+	public void setRoot(EObject root) {
+		treePart.setRoot(root);
+	}
+
+	@Override
 	public abstract ITreePart createTreePart();
 
 	@Override

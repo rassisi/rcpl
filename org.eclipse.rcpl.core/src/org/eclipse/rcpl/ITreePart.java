@@ -14,6 +14,7 @@ public interface ITreePart extends ITool {
 
 	void init(Pane detailPane, Tool tool, boolean showRoot);
 
+	@Override
 	Node getNode();
 
 	Object getSelectedObject();
@@ -21,4 +22,6 @@ public interface ITreePart extends ITool {
 	void refresh();
 
 	EObject getRoot();
+
+	void setRoot(EObject root);
 }

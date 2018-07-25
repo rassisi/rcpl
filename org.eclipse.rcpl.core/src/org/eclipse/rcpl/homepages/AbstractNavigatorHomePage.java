@@ -10,52 +10,47 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 /**
  * @author ramin
  *
  */
-public class DefaultOverviewWithNavigatorHomePage extends DefaultOverviewHomePage {
+public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 
-	private StackPane detailsArea;
+	private final StackPane detailsArea;
+
+	private final INavigatorAddon navigatorAddon;
 
 	/**
 	 * @param uic
 	 * @param title
 	 * @param image
 	 */
-	public DefaultOverviewWithNavigatorHomePage(IRcplUic uic, HomePage modelHomePage) {
+	public AbstractNavigatorHomePage(IRcplUic uic, HomePage modelHomePage) {
 		super(uic, modelHomePage);
-	}
-
-	@Override
-	protected void doCreateContent(StackPane contentPane) {
 		SplitPane splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
+		detailsArea = new StackPane();
 
-		INavigatorAddon navigatorAddon = Rcpl.UIC.getNavigator(null);
+		navigatorAddon = Rcpl.UIC.getNavigator(null);
 
 		if (navigatorAddon != null) {
 			Node n = navigatorAddon.createPart(detailsArea, null, false).getNode();
 			if (n != null) {
 				splitPane.getItems().add(n);
 			}
+			navigatorAddon.setRoot(getRoot());
 		}
 
-		detailsArea = new StackPane();
 		splitPane.getItems().add(detailsArea);
 		splitPane.setDividerPositions(0.3f);
 
@@ -64,38 +59,15 @@ public class DefaultOverviewWithNavigatorHomePage extends DefaultOverviewHomePag
 		if (!Rcpl.isMobile()) {
 			showSplash(1);
 		}
-
-		if (Rcpl.isMobile()) {
-			VBox vBox = new VBox();
-			vBox.setSpacing(5);
-
-			vBox.setSpacing(5);
-			Button b = new Button("New");
-			b.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					uic.showHomePage(HomePageType.NEW);
-				}
-			});
-			b.setPrefWidth(100);
-			vBox.getChildren().add(b);
-
-			b = new Button("Samples");
-			b.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					uic.showHomePage(HomePageType.SAMPLES);
-				}
-			});
-			b.setPrefWidth(100);
-			vBox.getChildren().add(b);
-
-//			setDetailNode(vBox);
-
-		}
-
 	}
 
+	public INavigatorAddon getNavigatorAddon() {
+		return navigatorAddon;
+	}
+
+	public StackPane getDetailsArea() {
+		return detailsArea;
+	}
+
+	protected abstract EObject getRoot();
 }

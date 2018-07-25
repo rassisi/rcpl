@@ -12,6 +12,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Layoutable;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PersonGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
@@ -58,19 +59,12 @@ public class PersonGroupItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addLinkedPersonsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PersonGroup_linkedPersons_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PersonGroup_linkedPersons_feature", "_UI_PersonGroup_type"),
-				 RcplPackage.Literals.PERSON_GROUP__LINKED_PERSONS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_PersonGroup_linkedPersons_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_PersonGroup_linkedPersons_feature",
+								"_UI_PersonGroup_type"),
+						RcplPackage.Literals.PERSON_GROUP__LINKED_PERSONS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -80,26 +74,21 @@ public class PersonGroupItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addLinkedPersongroupsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PersonGroup_linkedPersongroups_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PersonGroup_linkedPersongroups_feature", "_UI_PersonGroup_type"),
-				 RcplPackage.Literals.PERSON_GROUP__LINKED_PERSONGROUPS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_PersonGroup_linkedPersongroups_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_PersonGroup_linkedPersongroups_feature",
+								"_UI_PersonGroup_type"),
+						RcplPackage.Literals.PERSON_GROUP__LINKED_PERSONGROUPS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an
+	 * appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -114,11 +103,13 @@ public class PersonGroupItemProvider extends LayoutableItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper feature to
+		// use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -136,21 +127,21 @@ public class PersonGroupItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		return ((Layoutable) object).getName();
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update
+	 * any cached children and by creating a viewer notification, which it passes to
+	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,18 +149,18 @@ public class PersonGroupItemProvider extends LayoutableItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PersonGroup.class)) {
-			case RcplPackage.PERSON_GROUP__PERSONGROUPS:
-			case RcplPackage.PERSON_GROUP__PERSONS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case RcplPackage.PERSON_GROUP__PERSONGROUPS:
+		case RcplPackage.PERSON_GROUP__PERSONS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
+	 * the children that can be created under this object. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -177,25 +168,17 @@ public class PersonGroupItemProvider extends LayoutableItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RcplPackage.Literals.PERSON_GROUP__PERSONGROUPS,
-				 RcplFactory.eINSTANCE.createPersonGroup()));
+		newChildDescriptors.add(createChildParameter(RcplPackage.Literals.PERSON_GROUP__PERSONGROUPS,
+				RcplFactory.eINSTANCE.createPersonGroup()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RcplPackage.Literals.PERSON_GROUP__PERSONS,
-				 RcplFactory.eINSTANCE.createPerson()));
+		newChildDescriptors.add(
+				createChildParameter(RcplPackage.Literals.PERSON_GROUP__PERSONS, RcplFactory.eINSTANCE.createPerson()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RcplPackage.Literals.PERSON_GROUP__PERSONS,
-				 RcplFactory.eINSTANCE.createJPerson()));
+		newChildDescriptors.add(createChildParameter(RcplPackage.Literals.PERSON_GROUP__PERSONS,
+				RcplFactory.eINSTANCE.createJPerson()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RcplPackage.Literals.PERSON_GROUP__PERSONS,
-				 RcplFactory.eINSTANCE.createNPerson()));
+		newChildDescriptors.add(createChildParameter(RcplPackage.Literals.PERSON_GROUP__PERSONS,
+				RcplFactory.eINSTANCE.createNPerson()));
 	}
 
 }

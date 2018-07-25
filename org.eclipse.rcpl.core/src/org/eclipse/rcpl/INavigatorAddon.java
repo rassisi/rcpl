@@ -1,5 +1,6 @@
 package org.eclipse.rcpl;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.layout.Pane;
@@ -15,5 +16,7 @@ public interface INavigatorAddon extends IRcplAddon {
 	INavigatorTreeManager createNavigatorTreemanager();
 
 	ITreePart createTreePart();
+
+	void setRoot(EObject root);
 
 }

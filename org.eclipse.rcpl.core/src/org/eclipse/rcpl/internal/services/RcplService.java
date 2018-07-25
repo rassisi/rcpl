@@ -13,7 +13,6 @@ import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.RcplKey;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
@@ -80,9 +79,9 @@ public class RcplService extends RcplAbstractService implements IService {
 				// getService(JOColor).doExecute(command);
 				break;
 			case showOutline:
-				RcplSession.getDefault().getSystemPreferences().put(RcplKey.SHOW_OUTLINE,
-						(Boolean) command.getNewData()[0]);
-				showOutLine(command, (Boolean) command.getNewData()[0]);
+//				RcplSession.getDefault().getSystemPreferences().put(RcplKey.SHOW_OUTLINE,
+//						(Boolean) command.getNewData()[0]);
+//				showOutLine(command, (Boolean) command.getNewData()[0]);
 				break;
 			case collapse_all:
 				Rcpl.UIC.collapseAll();

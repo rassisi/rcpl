@@ -24,8 +24,6 @@ public interface IHomePage {
 
 	HomePageType getId();
 
-	void setDetailNode(Node node);
-
 	HomePage getModel();
 
 }

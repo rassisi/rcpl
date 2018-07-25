@@ -185,11 +185,6 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 	}
 
 	@Override
-	public void setRootClass(Class<? extends EObject> cl) {
-		this.cl = cl;
-	}
-
-	@Override
 	public String getId() {
 		if (tool != null) {
 			return tool.getId();
