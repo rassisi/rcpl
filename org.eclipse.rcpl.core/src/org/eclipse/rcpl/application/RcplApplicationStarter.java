@@ -56,6 +56,11 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 	 */
 	@Override
 	public boolean start(final RcplLogin login, final Stage primaryStage) {
+
+		RCPLModel.mobileProvider.appendLog("register services)");
+
+		registerServices();
+
 		RCPLModel.mobileProvider.appendLog("before Session)");
 
 		if (!beforeSession(login)) {
@@ -89,6 +94,8 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 
 		return true;
 	}
+
+	protected abstract void registerServices();
 
 	private void initApplicationWithModel() {
 		for (String url : RcplSession.getDefault().getRcpl().getImageUrls()) {

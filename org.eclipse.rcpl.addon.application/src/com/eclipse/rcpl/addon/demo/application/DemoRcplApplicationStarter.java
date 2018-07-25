@@ -52,4 +52,8 @@ public class DemoRcplApplicationStarter extends RcplApplicationStarter {
 	protected void doInitApplicationWithModel() {
 
 	}
+
+	@Override
+	protected void registerServices() {
+	}
 }

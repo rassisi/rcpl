@@ -38,8 +38,10 @@ public class DefaultApplicationStarter extends RcplApplicationStarter {
 
 	@Override
 	protected void doInitApplicationWithModel() {
-		// TODO Auto-generated method stub
+	}
 
+	@Override
+	protected void registerServices() {
 	}
 
 }
