@@ -11,7 +11,6 @@
 package org.eclipse.rcpl.navigator;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -19,11 +18,8 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplPluginControler;
-import org.eclipse.rcpl.ISideToolBar;
-import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.emf.util.EMFEditFXProperties;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -35,10 +31,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import jfxtras.labs.scene.control.BigDecimalField;
 
 /**
@@ -313,78 +307,6 @@ abstract public class EViewController implements ITreePartControler, IRcplPlugin
 	}
 
 	public boolean registerRcplPlugin(Class<? extends IRcplAddon> useCaseClass) {
-		return false;
-	}
-
-	@Override
-	public Perspective findPerspective(String type) {
-
-		return null;
-	}
-
-	@Override
-	public HBox getMainBottomArea() {
-
-		return null;
-	}
-
-	@Override
-	public HBox getMainLeftArea() {
-
-		return null;
-	}
-
-	@Override
-	public VBox getMainLeftBox() {
-
-		return null;
-	}
-
-	@Override
-	public HBox getMainTopArea() {
-
-		return null;
-	}
-
-	@Override
-	public StackPane getMainTopStack() {
-
-		return null;
-	}
-
-	@Override
-	public ISideToolBar getSideToolBarControl() {
-
-		return null;
-	}
-
-	@Override
-	public String getStyleMsOffice() {
-
-		return null;
-	}
-
-	@Override
-	public List<String> getStylesRegistry() {
-
-		return null;
-	}
-
-	@Override
-	public ITopToolbar getTopToolBarControl() {
-
-		return null;
-	}
-
-	@Override
-	public boolean isHome() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isInhibitUI() {
-
 		return false;
 	}
 

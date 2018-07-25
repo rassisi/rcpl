@@ -11,11 +11,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
  */
 public class RCPLModel {
 
-	public static final String USE_CASE_TOOLS_ID = "USE_CASE_TOOLS";
-	public static final String USE_CASE_IT_ID = "USE_CASE_TOGAV";
-	public static final String USE_CASE_CONTACTS_ID = "USE_CASE_CONTACTS";
-	public static final String PERSPECTIVE_SUFFIX = "_PERSPECTIVE";
-
 	public static IMobileProvider mobileProvider;
 
 	public static StringBuilder errorBuf = new StringBuilder();

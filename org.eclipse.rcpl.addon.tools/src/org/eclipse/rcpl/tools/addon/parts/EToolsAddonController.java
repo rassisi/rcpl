@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.rcpl.tools.addon.parts;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,19 +17,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.EnCustomToolIds;
-import org.eclipse.rcpl.IApplicationStarter;
-import org.eclipse.rcpl.IEditor;
-import org.eclipse.rcpl.IHomePage;
-import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.control.IntegerField;
-import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
@@ -54,12 +46,8 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 
 public class EToolsAddonController extends EViewController {
 
@@ -556,275 +544,7 @@ public class EToolsAddonController extends EViewController {
 	}
 
 	@Override
-	public Perspective findPerspective(String type) {
-
-		return null;
-	}
-
-	@Override
-	public void actionAddPresentationTab() {
-
-	}
-
-	@Override
-	public void actionLogout() {
-
-	}
-
-	@Override
-	public void actionOpen() {
-
-	}
-
-	@Override
-	public void actionOpenLast() {
-
-	}
-
-	@Override
-	public void addtoApplicationStack(StackPane contentGroup) {
-
-	}
-
-	@Override
-	public void collapseAll() {
-
-	}
-
-	@Override
-	public void expandAllToolBars() {
-
-	}
-
-	@Override
-	public void expandBottomAra(boolean expand) {
-
-	}
-
-	@Override
-	public void expandLeftAra(boolean expand) {
-
-	}
-
-	@Override
-	public void expandTopAra(boolean epand) {
-
-	}
-
-	@Override
-	public IRcplAddon findRcplAddons(String id) {
-
-		return null;
-	}
-
-	@Override
-	public WebView getBrowser() {
-
-		return null;
-	}
-
-	@Override
-	public IEditor getEditor() {
-
-		return null;
-	}
-
-	@Override
-	public Node getFocusOwner() {
-
-		return null;
-	}
-
-	@Override
-	public INavigatorAddon getNavigator(Tool tool) {
-		return null;
-	}
-
-	@Override
-	public Perspective getPerspective() {
-		return null;
-	}
-
-	@Override
-	public Stage getStage() {
-		return null;
-	}
-
-	@Override
-	public IRcplAddon getActiveAddon() {
-		return null;
-	}
-
-	@Override
-	public void handleThemeDefault(ActionEvent event) {
-	}
-
-	@Override
-	public void init(BorderPane parent) {
-
-	}
-
-	@Override
-	public boolean initSession(RcplLogin login) {
-
-		return false;
-	}
-
-	@Override
-	public void initStyles() {
-
-	}
-
-	@Override
-	public boolean isViewer() {
-
-		return false;
-	}
-
-	@Override
-	public void openDocument(File file) {
-
-	}
-
-	@Override
-	public void openTemplate(String name, String tabName) {
-
-	}
-
-	@Override
-	public void recreateSideBar() {
-
-	}
-
-	@Override
-	public void recreateTopBar() {
-
-	}
-
-	@Override
-	public void restorePerspective() {
-
-	}
-
-	@Override
-	public void setPerspective(Perspective perspective, IRcplAddon useCase) {
-
-	}
-
-	@Override
-	public void setActiveAddon(IRcplAddon useCase) {
-
-	}
-
-	@Override
-	public void setContent(IEditor editor) {
-
-	}
-
-	@Override
-	public void setContent(Node node) {
-
-	}
-
-	@Override
-	public void setDebugText(String text) {
-
-	}
-
-	@Override
-	public void setInhibitUI(boolean inhibitUI) {
-
-	}
-
-	@Override
-	public void setLeftTrimBar(StackPane perspectiveToolSideBarStackPane) {
-
-	}
-
-	@Override
-	public void setPerspective(Perspective perspective) {
-
-	}
-
-	@Override
-	public void setStatusText(String text) {
-
-	}
-
-	@Override
-	public void setTopAreaHeight(double height) {
-
-	}
-
-	@Override
-	public void setTopContent(Node content) {
-
-	}
-
-	@Override
-	public void setViewer(boolean viewer) {
-
-	}
-
-	@Override
-	public boolean showBrowser() {
-
-		return false;
-	}
-
-	@Override
-	public void showErrorPage() {
-
-	}
-
-	@Override
-	public boolean showPerspective(Perspective perspective) {
-
-		return false;
-	}
-
-	@Override
-	public void showStartMenuButton(boolean show) {
-
-	}
-
-	@Override
-	public void showWebView(String url) {
-
-	}
-
-	@Override
-	public void updateStartMenuButton() {
-
-	}
-
-	@Override
-	public void init(IRcplAddon rcplPlugin) {
-
-	}
-
-	@Override
-	public IApplicationStarter getApplicationStarter() {
-		return null;
-	}
-
-	@Override
-	public void showHomePage(HomePageType id) {
-
-	}
-
-	@Override
-	public IHomePage findHomePage(HomePageType id) {
-		return null;
-	}
-
-	@Override
-	public void createContent() {
-
-	}
-
-	@Override
-	public void createHomePages() {
+	public void init(IRcplAddon addon) {
 
 	}
 

@@ -68,8 +68,8 @@ public class RcplTopToolBar implements ITopToolbar {
 					IRcplAddon useCase = null;
 					if ("USECASE".equals(p.getId())) {
 						for (IRcplAddon u : Rcpl.rcplApplicationProvider.getRcplAddons()) {
-							if (u.getEmfModel() != null) {
-								if (u.getEmfModel().getDefaultPerspective() == p) {
+							if (u.getModel() != null) {
+								if (u.getModel().getDefaultPerspective() == p) {
 									useCase = u;
 									break;
 								}
@@ -215,7 +215,7 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	@Override
 	public void processTopBarMainGroups(IRcplAddon addon) {
-		if (addon.getEmfModel() != null) {
+		if (addon.getModel() != null) {
 			// !!!
 			// if (new JOMigration().getUseCaseTopBar(useCase) != null) {
 			// HBox pane = new HBox();
@@ -257,27 +257,28 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	private boolean collapsed = false;
 
-	HBox mainTopArea = null;
-
 	@Override
 	public void collapse(boolean collapse) {
-
 		collapsed = collapse;
-
-		if (collapse) {
-			mainTopArea = null;
-			Rcpl.UIC.setTopContent(null);
-		} else {
-			if (mainTopArea != null) {
-				Rcpl.UIC.setTopContent(mainTopArea);
-			}
-			mainTopArea = null;
-		}
+		Rcpl.UIC.collapseMainTopArea(collapse);
+//		if (collapse) {
+//			mainTopArea = null;
+//			Rcpl.UIC.setTopContent(null);
+//		} else {
+//			if (mainTopArea != null) {
+//				Rcpl.UIC.setTopContent(mainTopArea);
+//			}
+//			mainTopArea = null;
+//		}
 		updateHeight();
 	}
 
 	@Override
 	public void updateHeight() {
+		if (collapsed) {
+			Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+			return;
+		}
 		if (Rcpl.UIC.getPerspective() != null) {
 			Perspective p = Rcpl.UIC.getPerspective();
 			if (!p.getTopToolBar().getToolGroups().isEmpty()) {

@@ -22,8 +22,8 @@ public class EContactsMigration extends RcplAbstractMigration {
 		// IUseCase ucContacts = JO.UIC.findUsecase(JOModel.USE_CASE_CONTACTS);
 		// ucContacts.getEUseCase().setName("Contacts");
 		//
-		addGroupToTopBar(useCase, "addContact_419", "Add Contact", "addContact_419", 0);
-		addGroupToTopBar(useCase, "addContactsGroup", "Add Contact Group", "addContactsGroup", 0);
+		addGroupToTopBar(addon, "addContact_419", "Add Contact", "addContact_419", 0);
+		addGroupToTopBar(addon, "addContactsGroup", "Add Contact Group", "addContactsGroup", 0);
 
 		// removeGroupFromTopBar(EContactsUseCase.ID, "addItProject");
 

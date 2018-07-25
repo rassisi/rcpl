@@ -14,7 +14,7 @@ public interface IRcplAddon {
 
 	Node getNode();
 
-	Addon getEmfModel();
+	Addon getModel();
 
 	String getDisplayName();
 

@@ -1097,7 +1097,7 @@
     -fx-background-color: orange;
 }
 
-#paneBorder{
+#redBorder{
 	-fx-border-style: solid;
 	-fx-border-color: red;
 	-fx-border-width: 3;

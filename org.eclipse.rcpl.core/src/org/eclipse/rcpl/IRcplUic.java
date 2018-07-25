@@ -4,14 +4,17 @@ import java.io.File;
 import java.util.List;
 
 import org.eclipse.rcpl.login.RcplLogin;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
@@ -22,6 +25,12 @@ import javafx.stage.Stage;
  *
  */
 public interface IRcplUic {
+
+	public void createAllHomeButtons(Pane pane);
+
+	void addHomeButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup);
+
+	void collapseMainTopArea(boolean collapse);
 
 	void createContent();
 
@@ -81,7 +90,7 @@ public interface IRcplUic {
 
 	List<String> getStylesRegistry();
 
-	ITopToolbar getTopToolBarControl();
+	ITopToolbar getTopToolBar();
 
 	IRcplAddon getActiveAddon();
 

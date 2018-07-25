@@ -28,10 +28,10 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
  */
 public abstract class RcplAbstractMigration extends RCPLModel {
 
-	protected IRcplAddon useCase;
+	protected IRcplAddon addon;
 
-	public RcplAbstractMigration(IRcplAddon useCase) {
-		this.useCase = useCase;
+	public RcplAbstractMigration(IRcplAddon addon) {
+		this.addon = addon;
 	}
 
 	public RcplAbstractMigration() {
@@ -93,7 +93,7 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	}
 
 	protected void addGroupToTopBar(IRcplAddon useCase, String id, String name, String image, int index) {
-		Addon eAddon = useCase.getEmfModel();
+		Addon eAddon = useCase.getModel();
 		if (eAddon == null) {
 			return;
 		}
@@ -101,50 +101,25 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	}
 
 	protected void addGroupToSideBar(IRcplAddon useCase, String id, String name, String image, int index) {
-		Addon eAddon = useCase.getEmfModel();
+		Addon eAddon = useCase.getModel();
 		if (eAddon == null) {
 			return;
 		}
 		addGroupToSideBar(getAddonSideBar(useCase), id, name, image, index);
 	}
 
-	public TopToolBar getAddonTopBar(IRcplAddon useCase) {
-		Perspective perspective = RcplSession.getDefault()
-				.findPerspective(useCase.getId() + RCPLModel.PERSPECTIVE_SUFFIX);
-		if (perspective == null) {
-			perspective = Rcpl.getFactory().createPerspective(useCase.getId() + RCPLModel.PERSPECTIVE_SUFFIX,
-					useCase.getNode() + " Perspective", useCase.getEmfModel().getImage());
-			commit();
-
+	public TopToolBar getAddonTopBar(IRcplAddon addon) {
+		if (addon.getModel().getDefaultPerspective() != null) {
+			addon.getModel().getDefaultPerspective().getTopToolBar();
 		}
-		// TODO: kann später wieder raus
-		if (useCase.getEmfModel().getDefaultPerspective() == null) {
-			useCase.getEmfModel().setDefaultPerspective(perspective);
-			perspective.setName(useCase.getEmfModel().getName() + " Perspective");
-			commit();
-		}
-		return perspective.getTopToolBar();
-
+		return null;
 	}
 
 	public SideToolBar getAddonSideBar(IRcplAddon useCase) {
-		Perspective perspective = RcplSession.getDefault()
-				.findPerspective(useCase.getId() + RCPLModel.PERSPECTIVE_SUFFIX);
-		if (perspective == null) {
-			perspective = Rcpl.getFactory().createPerspective(useCase.getId() + RCPLModel.PERSPECTIVE_SUFFIX,
-					useCase.getEmfModel().getName() + " Perspective", useCase.getEmfModel().getImage());
-			useCase.getEmfModel().setDefaultPerspective(perspective);
-			commit();
-
+		if (addon.getModel().getDefaultPerspective() != null) {
+			addon.getModel().getDefaultPerspective().getSideToolBar();
 		}
-		// TODO: kann später wieder raus
-		if (useCase.getEmfModel().getDefaultPerspective() == null) {
-			useCase.getEmfModel().setDefaultPerspective(perspective);
-			perspective.setName(useCase.getEmfModel().getName() + " Perspective");
-			commit();
-		}
-		return perspective.getSideToolBar();
-
+		return null;
 	}
 
 	/**
@@ -153,8 +128,8 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	 * @param index
 	 */
 	protected void addGroupToTopBar(String perspectiveType, String id, String name, String image, int index) {
-		Perspective wordPerspective = RcplSession.getDefault().findPerspective(perspectiveType);
-		addGroupToTopBar(wordPerspective.getTopToolBar(), id, name, image, index);
+		Perspective perspective = RcplSession.getDefault().findPerspective(perspectiveType);
+		addGroupToTopBar(perspective.getTopToolBar(), id, name, image, index);
 	}
 
 	/**
@@ -246,7 +221,7 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	}
 
 	protected void removeGroupFromTopBar(IRcplAddon useCase, String id) {
-		Addon eAddon = useCase.getEmfModel();
+		Addon eAddon = useCase.getModel();
 		if (eAddon == null) {
 			return;
 		}

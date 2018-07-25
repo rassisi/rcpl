@@ -218,7 +218,7 @@ public class RcplSideToolBar implements ISideToolBar {
 		Perspective perspective = RcplSession.getDefault().findPerspective(perspectiveId);
 		if (perspective != null) {
 			ToolBar groupsToolBar = new ToolBar();
-			StackPane.setMargin(groupsToolBar, new Insets(40, 0, 0, 0));
+			StackPane.setMargin(groupsToolBar, new Insets(0, 0, 0, 0));
 			groupsToolBar.setOrientation(Orientation.VERTICAL);
 			groupsToolBar.setMinWidth(WIDTH_COLLAPSED);
 			groupsToolBar.setId("groupVBox");

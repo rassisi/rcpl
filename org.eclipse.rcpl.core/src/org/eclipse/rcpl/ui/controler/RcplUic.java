@@ -180,6 +180,12 @@ public class RcplUic implements IRcplUic {
 	@FXML
 	protected HBox titleArea;
 
+	@FXML
+	protected ToggleButton topBarCollapseButton;
+
+	@FXML
+	protected HBox collapseButtonHBox;
+
 	private Timeline blinkingTimeline;
 
 	private Label debugLabel;
@@ -773,7 +779,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public ITopToolbar getTopToolBarControl() {
+	public ITopToolbar getTopToolBar() {
 		return getTopToolbarControl();
 	}
 
@@ -869,6 +875,12 @@ public class RcplUic implements IRcplUic {
 		removeAllStyles();
 		scene.getStylesheets().add(internalStyleWindows7);
 
+	}
+
+	@FXML
+	public void handleTopBarCollapseButton(ActionEvent event) {
+		boolean selected = topBarCollapseButton.isSelected();
+		getTopToolbarControl().collapse(selected);
 	}
 
 	public void hideTopBar() {
@@ -1023,14 +1035,13 @@ public class RcplUic implements IRcplUic {
 	public void setContent(Node node) {
 		for (IHomePage h : homepages) {
 			if (node == h.getNode()) {
-				showHomeButtons(true);
+//				showHomeButtons(true);
 				doSetContent(node);
 				return;
 			}
 		}
-		showHomeButtons(false);
+//		showHomeButtons(false);
 		doSetContent(node);
-		;
 	}
 
 	public void doSetContent(final Node node) {
@@ -1144,18 +1155,21 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void showHomePage(HomePageType id) {
-		IHomePage homePage = findHomePage(id);
-		if (HomePageType.HTML_EDITOR.equals(id)) {
+	public void showHomePage(HomePageType type) {
+		if (type == null) {
+			showStartMenuButton(true);
+			return;
+		}
+		showStartMenuButton(!HomePageType.OVERVIEW.equals(type));
+		IHomePage homePage = findHomePage(type);
+		if (HomePageType.HTML_EDITOR.equals(type)) {
 			showHtmlEditor();
 			return;
 		}
 		setContent(homePage.getNode());
 		updateButtons(true);
 		activeHomePage = homePage;
-
 		HomePage model = homePage.getModel();
-
 		if (model.getPerspective() != null) {
 			showPerspective(model.getPerspective());
 		}
@@ -1260,26 +1274,16 @@ public class RcplUic implements IRcplUic {
 	 */
 	@Override
 	public boolean showPerspective(Perspective perspective) {
+		if (perspective == this.perspective) {
+			return false;
+		}
+
 		if (perspective != null) {
-
-//			RcplAddon addon = null;
-//			addon.setAsEditor(asEditor);
-//			if (asEditor) {
-//				showPluginInEditor(addon);
-//			} else {
-//				setContent(addon.getNode());
-//			}
-//			updateButtons(false);
-//			addon.getNode().setVisible(true);
-//			if (internalActiveAddon != null && id.equals(internalActiveAddon.getId())) {
-//				return false;
-//			}
-//			internalActiveAddon = uc;
-
 			Rcpl.UIC.setPerspective(perspective);
 			getSideToolBarControl().showPerspective(perspective);
-			getTopToolBarControl().showPerspective(perspective);
+			getTopToolBar().showPerspective(perspective);
 		}
+		this.perspective = perspective;
 		return false;
 	}
 
@@ -1450,7 +1454,8 @@ public class RcplUic implements IRcplUic {
 		blinkingTimeline.play();
 	}
 
-	protected void addHomeButton(HomePage homePage, ToggleGroup toggleGroup) {
+	@Override
+	public void addHomeButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup) {
 		IButton homeButton = new RcplButton(homePage.getType().getName(), homePage.getName(), homePage.getToolTip(),
 				homePage.getImage(), true);
 		homeButton.setData(homePage);
@@ -1564,10 +1569,6 @@ public class RcplUic implements IRcplUic {
 				homepages.add(homePage);
 			}
 		}
-
-		for (IHomePage h : homepages) {
-			System.out.println(h.toString());
-		}
 	}
 
 	private void createRecentDocumentList() {
@@ -1609,7 +1610,7 @@ public class RcplUic implements IRcplUic {
 		top.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				getTopToolBarControl().collapse(!top.isSelected());
+				getTopToolBar().collapse(!top.isSelected());
 			}
 
 		});
@@ -1700,15 +1701,18 @@ public class RcplUic implements IRcplUic {
 
 		Rcpl.showProgress(false);
 
+		// DEBUG
+		// collapseButtonHBox.setId("redBorder");
 	}
 
-	protected void doCreateHomeButtons() {
+	@Override
+	public void createAllHomeButtons(Pane pane) {
 		RCPL rcpl = RcplSession.getDefault().getRcpl();
 		ToggleGroup toggleGroup = new ToggleGroup();
 
 		for (HomePage homePage : rcpl.getHomepages().getChildren()) {
 
-			addHomeButton(homePage, toggleGroup);
+			addHomeButton(homePage, pane, toggleGroup);
 
 		}
 	}
@@ -1833,17 +1837,17 @@ public class RcplUic implements IRcplUic {
 //
 //	}
 
-	private void showHomeButtons(boolean show) {
-
-		if (show) {
-			if (homeButtonsArea.getChildren().isEmpty()) {
-				doCreateHomeButtons();
-			}
-		} else {
-			homeButtonsArea.getChildren().clear();
-		}
-
-	}
+//	private void showHomeButtons(boolean show) {
+//
+//		if (show) {
+//			if (homeButtonsArea.getChildren().isEmpty()) {
+//				doCreateHomeButtons();
+//			}
+//		} else {
+//			homeButtonsArea.getChildren().clear();
+//		}
+//
+//	}
 
 	private boolean showHtmlEditor() {
 		WebView webView = getBrowser();
@@ -2092,6 +2096,15 @@ public class RcplUic implements IRcplUic {
 
 	protected static void setInternalStyleWindows7(String internalStyleWindows7) {
 		RcplUic.internalStyleWindows7 = internalStyleWindows7;
+	}
+
+	@Override
+	public void collapseMainTopArea(boolean collapse) {
+		if (collapse && mainTopArea.getChildren().contains(mainTopStack)) {
+			mainTopArea.getChildren().remove(mainTopStack);
+		} else if (!collapse && !mainTopArea.getChildren().contains(mainTopStack)) {
+			mainTopArea.getChildren().add(2, mainTopStack);
+		}
 	}
 
 }
