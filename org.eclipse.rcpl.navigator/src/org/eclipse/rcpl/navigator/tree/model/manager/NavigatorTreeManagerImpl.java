@@ -23,12 +23,12 @@ import org.eclipse.rcpl.INavigatorTreeManager;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory;
 
-public class UCEmfTreeModelManagerImpl implements INavigatorTreeManager {
+public class NavigatorTreeManagerImpl implements INavigatorTreeManager {
 
 	public static EditingDomain editingDomain;
 	public static ComposedAdapterFactory adapterFactory;
 
-	public UCEmfTreeModelManagerImpl() {
+	public NavigatorTreeManagerImpl() {
 
 	}
 

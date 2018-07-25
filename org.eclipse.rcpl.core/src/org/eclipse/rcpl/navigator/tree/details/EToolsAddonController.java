@@ -8,7 +8,7 @@
  * Contributors: 
  *     Torsten Sommer <torsten.sommer@tesis.de> - initial API and implementation 
  *******************************************************************************/
-package org.eclipse.rcpl.tools.addon.parts;
+package org.eclipse.rcpl.navigator.tree.details;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +28,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.navigator.EViewController;
-import org.eclipse.rcpl.tools.addon.EToolsAddon;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
@@ -37,7 +36,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -302,8 +300,8 @@ public class EToolsAddonController extends EViewController {
 
 	@Override
 	public void doInit(AbstractRcplAddon uc) {
-		Node node1 = new EToolsTreePart((EToolsAddon) uc).getNode();
-		getViewerBox().getChildren().add(node1);
+//		Node node1 = new EToolsTreePart((EToolsAddon) uc).getNode();
+//		getViewerBox().getChildren().add(node1);
 		getToolType().getItems().clear();
 		getToolType().getItems().addAll(ToolType.values());
 		getToolType().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToolType>() {

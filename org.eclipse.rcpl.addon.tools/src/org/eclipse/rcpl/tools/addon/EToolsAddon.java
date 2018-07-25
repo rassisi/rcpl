@@ -5,7 +5,7 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.RcplAddon;
 import org.eclipse.rcpl.migration.RcplAbstractMigration;
-import org.eclipse.rcpl.tools.addon.parts.EToolsAddonController;
+import org.eclipse.rcpl.navigator.tree.details.EToolsAddonController;
 
 /**
  * @author Ramin

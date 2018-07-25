@@ -54,6 +54,7 @@ public class AddonItemProvider extends LayoutableItemProvider {
 			addReadOnlyPropertyDescriptor(object);
 			addDefaultPerspectivePropertyDescriptor(object);
 			addPerspectivesPropertyDescriptor(object);
+			addRootClassNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -257,6 +258,28 @@ public class AddonItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Root Class Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRootClassNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Addon_rootClassName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Addon_rootClassName_feature", "_UI_Addon_type"),
+				 RcplPackage.Literals.ADDON__ROOT_CLASS_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Addon.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -301,6 +324,7 @@ public class AddonItemProvider extends LayoutableItemProvider {
 			case RcplPackage.ADDON__GROUPS:
 			case RcplPackage.ADDON__IS_PERSPECTIVE:
 			case RcplPackage.ADDON__READ_ONLY:
+			case RcplPackage.ADDON__ROOT_CLASS_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

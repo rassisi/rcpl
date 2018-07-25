@@ -51,7 +51,7 @@ import org.eclipse.rcpl.navigator.tree.handlers.DeleteOfficeDocumentHandler;
 import org.eclipse.rcpl.navigator.tree.handlers.DeleteOfficeFolderHandler;
 import org.eclipse.rcpl.navigator.tree.handlers.DeletePreferenceHandler;
 import org.eclipse.rcpl.navigator.tree.handlers.DeletePreferencesHandler;
-import org.eclipse.rcpl.navigator.tree.model.manager.UCEmfTreeModelManagerImpl;
+import org.eclipse.rcpl.navigator.tree.model.manager.NavigatorTreeManagerImpl;
 import org.eclipse.rcpl.upload.DownloadClient;
 
 import javafx.beans.value.ChangeListener;
@@ -100,7 +100,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 			registerHandlers();
 			getNode();
 			treeView.setPrefHeight(10);
-			manager = new UCEmfTreeModelManagerImpl();
+			manager = new NavigatorTreeManagerImpl();
 			refresh();
 			treeView.setShowRoot(showRoot);
 			treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -344,7 +344,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	}
 
 	public EditingDomain getEditingDomain() {
-		return ((UCEmfTreeModelManagerImpl) manager).getEditingDomain();
+		return ((NavigatorTreeManagerImpl) manager).getEditingDomain();
 	}
 
 	@Override

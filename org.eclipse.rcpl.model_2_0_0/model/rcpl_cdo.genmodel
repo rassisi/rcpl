@@ -105,6 +105,7 @@
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/TUTORIALS"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/HELP"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/DONATIONS"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//HomePageType/TOOLS_EDITOR"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//DocumentType">
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//DocumentType/WORD"/>
@@ -215,6 +216,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Addon/readOnly"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Addon/defaultPerspective"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Addon/perspectives"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Addon/rootClassName"/>
     </genClasses>
     <genClasses image="false" ecoreClass="rcpl.ecore#//AbstractTool">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/x"/>
@@ -349,6 +351,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EReference rcpl.ecore#//HomePage/textReplacements"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//HomePage/navigator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//HomePage/showHomePageButtons"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//HomePage/rootClassName"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Documents">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Documents/children"/>

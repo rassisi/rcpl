@@ -236,7 +236,15 @@ public enum HomePageType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DONATIONS(22, "DONATIONS", "DONATIONS");
+	DONATIONS(22, "DONATIONS", "DONATIONS"), /**
+	 * The '<em><b>TOOLS EDITOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TOOLS_EDITOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TOOLS_EDITOR(23, "TOOLS_EDITOR", "TOOLS_EDITOR");
 
 	/**
 	 * The '<em><b>WEBSITE</b></em>' literal value.
@@ -584,6 +592,21 @@ public enum HomePageType implements Enumerator {
 	public static final int DONATIONS_VALUE = 22;
 
 	/**
+	 * The '<em><b>TOOLS EDITOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TOOLS EDITOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TOOLS_EDITOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TOOLS_EDITOR_VALUE = 23;
+
+	/**
 	 * An array of all the '<em><b>Home Page Type</b></em>' enumerators. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -613,6 +636,7 @@ public enum HomePageType implements Enumerator {
 			TUTORIALS,
 			HELP,
 			DONATIONS,
+			TOOLS_EDITOR,
 		};
 
 	/**
@@ -688,6 +712,7 @@ public enum HomePageType implements Enumerator {
 			case TUTORIALS_VALUE: return TUTORIALS;
 			case HELP_VALUE: return HELP;
 			case DONATIONS_VALUE: return DONATIONS;
+			case TOOLS_EDITOR_VALUE: return TOOLS_EDITOR;
 		}
 		return null;
 	}

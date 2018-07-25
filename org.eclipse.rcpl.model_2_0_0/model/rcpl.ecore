@@ -197,6 +197,7 @@
         eType="#//Perspective"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="perspectives" upperBound="-1"
         eType="#//Perspective"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rootClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractTool" abstract="true" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
@@ -377,6 +378,7 @@
         eType="#//KeyValue"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="navigator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="showHomePageButtons" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rootClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="HomePageType">
     <eLiterals name="WEBSITE"/>
@@ -402,6 +404,7 @@
     <eLiterals name="TUTORIALS" value="20"/>
     <eLiterals name="HELP" value="21"/>
     <eLiterals name="DONATIONS" value="22"/>
+    <eLiterals name="TOOLS_EDITOR" value="23"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Documents" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"

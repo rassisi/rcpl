@@ -1325,6 +1325,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAddon_RootClassName() {
+		return (EAttribute)addonEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAbstractTool() {
 		return abstractToolEClass;
 	}
@@ -2288,6 +2297,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getHomePage_RootClassName() {
+		return (EAttribute)homePageEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDocuments() {
 		return documentsEClass;
 	}
@@ -2564,6 +2582,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEAttribute(addonEClass, ADDON__READ_ONLY);
 		createEReference(addonEClass, ADDON__DEFAULT_PERSPECTIVE);
 		createEReference(addonEClass, ADDON__PERSPECTIVES);
+		createEAttribute(addonEClass, ADDON__ROOT_CLASS_NAME);
 
 		abstractToolEClass = createEClass(ABSTRACT_TOOL);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__X);
@@ -2703,6 +2722,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(homePageEClass, HOME_PAGE__TEXT_REPLACEMENTS);
 		createEAttribute(homePageEClass, HOME_PAGE__NAVIGATOR);
 		createEAttribute(homePageEClass, HOME_PAGE__SHOW_HOME_PAGE_BUTTONS);
+		createEAttribute(homePageEClass, HOME_PAGE__ROOT_CLASS_NAME);
 
 		documentsEClass = createEClass(DOCUMENTS);
 		createEReference(documentsEClass, DOCUMENTS__CHILDREN);
@@ -2902,6 +2922,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEAttribute(getAddon_ReadOnly(), ecorePackage.getEBoolean(), "readOnly", null, 0, 1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAddon_DefaultPerspective(), this.getPerspective(), null, "defaultPerspective", null, 1, 1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAddon_Perspectives(), this.getPerspective(), null, "perspectives", null, 0, -1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAddon_RootClassName(), ecorePackage.getEString(), "rootClassName", null, 0, 1, Addon.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractToolEClass, AbstractTool.class, "AbstractTool", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractTool_X(), ecorePackage.getEDouble(), "x", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3041,6 +3062,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getHomePage_TextReplacements(), this.getKeyValue(), null, "textReplacements", null, 0, -1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getHomePage_Navigator(), ecorePackage.getEBoolean(), "navigator", null, 0, 1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getHomePage_ShowHomePageButtons(), ecorePackage.getEBoolean(), "showHomePageButtons", null, 0, 1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHomePage_RootClassName(), ecorePackage.getEString(), "rootClassName", null, 0, 1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(documentsEClass, Documents.class, "Documents", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDocuments_Children(), this.getDocument(), null, "children", null, 0, -1, Documents.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3149,6 +3171,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		addEEnumLiteral(homePageTypeEEnum, HomePageType.TUTORIALS);
 		addEEnumLiteral(homePageTypeEEnum, HomePageType.HELP);
 		addEEnumLiteral(homePageTypeEEnum, HomePageType.DONATIONS);
+		addEEnumLiteral(homePageTypeEEnum, HomePageType.TOOLS_EDITOR);
 
 		initEEnum(documentTypeEEnum, DocumentType.class, "DocumentType");
 		addEEnumLiteral(documentTypeEEnum, DocumentType.WORD);

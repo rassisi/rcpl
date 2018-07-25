@@ -27,6 +27,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonImpl#isReadOnly <em>Read Only</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonImpl#getDefaultPerspective <em>Default Perspective</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonImpl#getPerspectives <em>Perspectives</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AddonImpl#getRootClassName <em>Root Class Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -179,6 +180,24 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	@SuppressWarnings("unchecked")
 	public EList<Perspective> getPerspectives() {
 		return (EList<Perspective>)eGet(RcplPackage.Literals.ADDON__PERSPECTIVES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRootClassName() {
+		return (String)eGet(RcplPackage.Literals.ADDON__ROOT_CLASS_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRootClassName(String newRootClassName) {
+		eSet(RcplPackage.Literals.ADDON__ROOT_CLASS_NAME, newRootClassName);
 	}
 
 } //AddonImpl

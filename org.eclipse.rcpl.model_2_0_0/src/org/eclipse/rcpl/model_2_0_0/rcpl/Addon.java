@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#isReadOnly <em>Read Only</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getDefaultPerspective <em>Default Perspective</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getPerspectives <em>Perspectives</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getRootClassName <em>Root Class Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAddon()
@@ -222,5 +223,31 @@ public interface Addon extends Layoutable {
 	 * @generated
 	 */
 	EList<Perspective> getPerspectives();
+
+	/**
+	 * Returns the value of the '<em><b>Root Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Root Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Root Class Name</em>' attribute.
+	 * @see #setRootClassName(String)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAddon_RootClassName()
+	 * @model
+	 * @generated
+	 */
+	String getRootClassName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getRootClassName <em>Root Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Root Class Name</em>' attribute.
+	 * @see #getRootClassName()
+	 * @generated
+	 */
+	void setRootClassName(String value);
 
 } // Addon

@@ -27,6 +27,7 @@ import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
 import org.eclipse.rcpl.homepages.DefaultPreferencesHomePage;
 import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
 import org.eclipse.rcpl.homepages.DefaultTemplatesHomePage;
+import org.eclipse.rcpl.homepages.DefaultToolsEditorHomePage;
 import org.eclipse.rcpl.homepages.DefaultTutorialsHomePage;
 import org.eclipse.rcpl.homepages.DefaultWhatsNewHomePage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
@@ -265,6 +266,8 @@ public class RcplBasicFactory implements IRcplFactory {
 			return new DefaultTutorialsHomePage(uic, model);
 		case WHATS_NEW:
 			return new DefaultWhatsNewHomePage(uic, model); // TODO
+		case TOOLS_EDITOR:
+			return new DefaultToolsEditorHomePage(uic, model);
 		default:
 			return new DefaultHomePage(uic, model);
 

@@ -2483,13 +2483,22 @@ public interface RcplPackage extends EPackage {
 	int ADDON__PERSPECTIVES = LAYOUTABLE_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Root Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADDON__ROOT_CLASS_NAME = LAYOUTABLE_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Addon</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADDON_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 9;
+	int ADDON_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of operations of the '<em>Addon</em>' class.
@@ -7834,13 +7843,22 @@ public interface RcplPackage extends EPackage {
 	int HOME_PAGE__SHOW_HOME_PAGE_BUTTONS = LAYOUTABLE_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Root Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__ROOT_CLASS_NAME = LAYOUTABLE_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Home Page</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOME_PAGE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 6;
+	int HOME_PAGE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Home Page</em>' class.
@@ -9280,6 +9298,17 @@ public interface RcplPackage extends EPackage {
 	EReference getAddon_Perspectives();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getRootClassName <em>Root Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Root Class Name</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Addon#getRootClassName()
+	 * @see #getAddon()
+	 * @generated
+	 */
+	EAttribute getAddon_RootClassName();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool <em>Abstract Tool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10425,6 +10454,17 @@ public interface RcplPackage extends EPackage {
 	EAttribute getHomePage_ShowHomePageButtons();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getRootClassName <em>Root Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Root Class Name</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getRootClassName()
+	 * @see #getHomePage()
+	 * @generated
+	 */
+	EAttribute getHomePage_RootClassName();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Documents <em>Documents</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11354,6 +11394,14 @@ public interface RcplPackage extends EPackage {
 		EReference ADDON__PERSPECTIVES = eINSTANCE.getAddon_Perspectives();
 
 		/**
+		 * The meta object literal for the '<em><b>Root Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ADDON__ROOT_CLASS_NAME = eINSTANCE.getAddon_RootClassName();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl <em>Abstract Tool</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -12272,6 +12320,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute HOME_PAGE__SHOW_HOME_PAGE_BUTTONS = eINSTANCE.getHomePage_ShowHomePageButtons();
+
+		/**
+		 * The meta object literal for the '<em><b>Root Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute HOME_PAGE__ROOT_CLASS_NAME = eINSTANCE.getHomePage_RootClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentsImpl <em>Documents</em>}' class.

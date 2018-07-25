@@ -26,9 +26,9 @@ import javafx.scene.layout.StackPane;
  */
 public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 
-	private final StackPane detailsArea;
+	private StackPane detailsArea;
 
-	private final INavigatorAddon navigatorAddon;
+	private INavigatorAddon navigatorAddon;
 
 	/**
 	 * @param uic
@@ -37,6 +37,10 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 	 */
 	public AbstractNavigatorHomePage(IRcplUic uic, HomePage modelHomePage) {
 		super(uic, modelHomePage);
+	}
+
+	@Override
+	protected void doCreateContent(StackPane contentPane) {
 		SplitPane splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
 		detailsArea = new StackPane();

@@ -15,8 +15,7 @@ import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
-import org.eclipse.rcpl.navigator.details.JOPreferencesDetails;
+import org.eclipse.rcpl.navigator.tree.details.ToolsDetailPage;
 
 import javafx.scene.layout.StackPane;
 
@@ -24,31 +23,32 @@ import javafx.scene.layout.StackPane;
  * @author ramin
  *
  */
-public class DefaultPreferencesHomePage extends AbstractNavigatorHomePage {
+public class DefaultToolsEditorHomePage extends AbstractNavigatorHomePage {
 
 	/**
 	 * @param uic
 	 * @param title
 	 * @param image
 	 */
-	public DefaultPreferencesHomePage(IRcplUic uic, HomePage modelHomePage) {
+	public DefaultToolsEditorHomePage(IRcplUic uic, HomePage modelHomePage) {
 		super(uic, modelHomePage);
 	}
 
 	@Override
 	public HomePageType getId() {
-		return HomePageType.PREFERENCES;
+		return HomePageType.TOOLS_EDITOR;
 	}
 
 	@Override
 	protected EObject getRoot() {
-		return RcplSession.getDefault().getRcpl().getAllPreferences();
+		return RcplSession.getDefault().getRcpl().getAllPerspectives();
 	}
 
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
 		super.doCreateContent(contentPane);
-		JOPreferencesDetails detailPane = new JOPreferencesDetails((Preferences) getRoot());
+
+		ToolsDetailPage detailPane = new ToolsDetailPage();
 		getDetailsArea().getChildren().add(detailPane.getNode());
 	}
 

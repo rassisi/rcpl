@@ -26,6 +26,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#getTextReplacements <em>Text Replacements</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#isNavigator <em>Navigator</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#isShowHomePageButtons <em>Show Home Page Buttons</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#getRootClassName <em>Root Class Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -140,6 +141,24 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 */
 	public void setShowHomePageButtons(boolean newShowHomePageButtons) {
 		eSet(RcplPackage.Literals.HOME_PAGE__SHOW_HOME_PAGE_BUTTONS, newShowHomePageButtons);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRootClassName() {
+		return (String)eGet(RcplPackage.Literals.HOME_PAGE__ROOT_CLASS_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRootClassName(String newRootClassName) {
+		eSet(RcplPackage.Literals.HOME_PAGE__ROOT_CLASS_NAME, newRootClassName);
 	}
 
 } //HomePageImpl

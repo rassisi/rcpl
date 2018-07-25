@@ -13,6 +13,10 @@ package org.eclipse.rcpl.navigator.details;
 
 import java.util.Locale;
 
+import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
+import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -24,10 +28,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-
-import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
-import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 
 /**
  * @author ramin
@@ -98,7 +98,10 @@ public class JOPreferencesDetails {
 	}
 
 	private Node createEditor(Preference pref) {
-		String type = pref.getType();
+		String type = "java.lang.String";
+		if (pref.getType() != null) {
+			type = pref.getType();
+		}
 
 		try {
 			Class<?> cl = Class.forName(type);

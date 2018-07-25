@@ -15,7 +15,7 @@ import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.INavigatorTreeManager;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.RcplAddon;
-import org.eclipse.rcpl.navigator.tree.model.manager.UCEmfTreeModelManagerImpl;
+import org.eclipse.rcpl.navigator.tree.model.manager.NavigatorTreeManagerImpl;
 import org.eclipse.rcpl.navigator.tree.parts.DefaultNavigatorTreePart;
 
 /**
@@ -31,6 +31,6 @@ public class DefaultNavigatorAddon extends AbstractNavigatorAddon implements INa
 
 	@Override
 	public INavigatorTreeManager createNavigatorTreemanager() {
-		return new UCEmfTreeModelManagerImpl();
+		return new NavigatorTreeManagerImpl();
 	}
 }
