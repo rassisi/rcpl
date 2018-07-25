@@ -220,7 +220,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 				for (Addon addon : rcpl.getAllAddons().getChildren()) {
 					try {
 						if (addon.getClassName() != null) {
-							IRcplAddon rcplAddon = createRcplAddon(addon.getClassName());
+							IRcplAddon rcplAddon = createRcplAddon(addon);
 							if (rcplAddon != null) {
 								Rcpl.progressMessage("RcplAddon " + rcplAddon.getDisplayName() + " registered.");
 								System.out.println("RcplAddon " + rcplAddon.getClass() + " registered.");
@@ -235,13 +235,14 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		}
 	}
 
-	private IRcplAddon createRcplAddon(String rcplAddonClassName) {
+	private IRcplAddon createRcplAddon(Addon model) {
 		try {
-			Class<?> AddonClass = Class.forName(rcplAddonClassName);
+			Class<?> AddonClass = Class.forName(model.getClassName());
 			Object addon = AddonClass.newInstance();
 			if (addon instanceof IRcplAddon) {
 				IRcplAddon rcplAddon = (IRcplAddon) addon;
-				rcplAddons.put(rcplAddonClassName, rcplAddon);
+				rcplAddon.setModel(model);
+				rcplAddons.put(model.getClassName(), rcplAddon);
 				Rcpl.progressMessage("RCPL - Addon registered: " + rcplAddon.getDisplayName());
 				return rcplAddon;
 			}

@@ -20,7 +20,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebEngine;
@@ -32,9 +31,9 @@ public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 
 	private StackPane contentPane;
 
-	public DefaultHTMLReadOnlyHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane, String documentTemplate,
+	public DefaultHTMLReadOnlyHomePage(IRcplUic uic, HomePage modelHomePage, String documentTemplate,
 			HashMap<String, String> wordReplacements) {
-		super(uic, modelHomePage, pane);
+		super(uic, modelHomePage);
 
 		HTMLEditor htmlEditor = new HTMLEditor();
 

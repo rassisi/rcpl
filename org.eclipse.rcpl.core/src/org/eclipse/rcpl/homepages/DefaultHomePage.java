@@ -16,7 +16,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -25,8 +24,8 @@ import javafx.scene.layout.StackPane;
  */
 public class DefaultHomePage extends AbstractHomePage {
 
-	public DefaultHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
-		super(uic, modelHomePage, pane);
+	public DefaultHomePage(IRcplUic uic, HomePage modelHomePage) {
+		super(uic, modelHomePage);
 	}
 
 	@Override

@@ -50,6 +50,7 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 			addDocumentsPropertyDescriptor(object);
 			addTextReplacementsPropertyDescriptor(object);
 			addNavigatorPropertyDescriptor(object);
+			addShowHomePageButtonsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -165,6 +166,28 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Show Home Page Buttons feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addShowHomePageButtonsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_HomePage_showHomePageButtons_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HomePage_showHomePageButtons_feature", "_UI_HomePage_type"),
+				 RcplPackage.Literals.HOME_PAGE__SHOW_HOME_PAGE_BUTTONS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns HomePage.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -205,6 +228,7 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 			case RcplPackage.HOME_PAGE__TYPE:
 			case RcplPackage.HOME_PAGE__TEXT_REPLACEMENTS:
 			case RcplPackage.HOME_PAGE__NAVIGATOR:
+			case RcplPackage.HOME_PAGE__SHOW_HOME_PAGE_BUTTONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

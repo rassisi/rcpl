@@ -21,7 +21,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -38,8 +37,8 @@ public class DefaultOverviewWithNavigatorHomePage extends DefaultOverviewHomePag
 	 * @param title
 	 * @param image
 	 */
-	public DefaultOverviewWithNavigatorHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
-		super(uic, modelHomePage, pane);
+	public DefaultOverviewWithNavigatorHomePage(IRcplUic uic, HomePage modelHomePage) {
+		super(uic, modelHomePage);
 	}
 
 	/**

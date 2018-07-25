@@ -16,6 +16,8 @@ public interface IRcplAddon {
 
 	Addon getModel();
 
+	void setModel(Addon model);
+
 	String getDisplayName();
 
 	Class<? extends EObject> getRootClass();

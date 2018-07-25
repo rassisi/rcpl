@@ -23,7 +23,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class DefaultContactUsHomePage extends AbstractHomePage {
@@ -36,8 +35,8 @@ public class DefaultContactUsHomePage extends AbstractHomePage {
 
 	private IDocument document = null;
 
-	public DefaultContactUsHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
-		super(uic, modelHomePage, pane);
+	public DefaultContactUsHomePage(IRcplUic uic, HomePage modelHomePage) {
+		super(uic, modelHomePage);
 
 	}
 

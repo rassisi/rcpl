@@ -17,7 +17,6 @@ import org.eclipse.rcpl.homepages.AbstractHomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -28,8 +27,8 @@ public abstract class JOAbstractEmfTreeDetailsPage extends AbstractHomePage {
 
 	private GridPane detailsPane;
 
-	public JOAbstractEmfTreeDetailsPage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
-		super(uic, modelHomePage, pane);
+	public JOAbstractEmfTreeDetailsPage(IRcplUic uic, HomePage modelHomePage) {
+		super(uic, modelHomePage);
 		createDetailsPane();
 	}
 

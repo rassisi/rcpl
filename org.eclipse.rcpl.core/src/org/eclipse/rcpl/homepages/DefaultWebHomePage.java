@@ -14,7 +14,6 @@ import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
 
@@ -26,8 +25,8 @@ public class DefaultWebHomePage extends AbstractHomePage {
 
 	private WebView webView;
 
-	public DefaultWebHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane, String url) {
-		super(uic, modelHomePage, pane);
+	public DefaultWebHomePage(IRcplUic uic, HomePage modelHomePage, String url) {
+		super(uic, modelHomePage);
 		webView.getEngine().load(url);
 	}
 

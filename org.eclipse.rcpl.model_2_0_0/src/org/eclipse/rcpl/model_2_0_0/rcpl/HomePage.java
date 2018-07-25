@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getDocuments <em>Documents</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#getTextReplacements <em>Text Replacements</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#isNavigator <em>Navigator</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#isShowHomePageButtons <em>Show Home Page Buttons</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getHomePage()
@@ -139,4 +140,30 @@ public interface HomePage extends Layoutable {
 	 * @generated
 	 */
 	void setNavigator(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Show Home Page Buttons</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Show Home Page Buttons</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Show Home Page Buttons</em>' attribute.
+	 * @see #setShowHomePageButtons(boolean)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getHomePage_ShowHomePageButtons()
+	 * @model
+	 * @generated
+	 */
+	boolean isShowHomePageButtons();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#isShowHomePageButtons <em>Show Home Page Buttons</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Show Home Page Buttons</em>' attribute.
+	 * @see #isShowHomePageButtons()
+	 * @generated
+	 */
+	void setShowHomePageButtons(boolean value);
 } // HomePage

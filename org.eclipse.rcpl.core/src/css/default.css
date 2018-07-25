@@ -964,10 +964,10 @@
 	
 }
 
+ 
 #homeHeader {
-	-fx-background-color: radial-gradient(radius 100.0%, white, derive(-fx-base, -20.0%));
+	-fx-background-color: radial-gradient(radius 100.0%, white, derive(-fx-base, -1.0%));
 	-fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
-	-fx-font: 12.0pt Arial;
 }
 
 .modal-dialog-glass {

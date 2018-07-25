@@ -1461,12 +1461,8 @@ public class RcplUic implements IRcplUic {
 		homeButton.setData(homePage);
 		homeButton.setWidth(20);
 		homeButton.setHeight(20);
-		if (homeButtonsArea.getChildren().isEmpty()) {
-			HBox.setMargin(homeButtonsArea, new Insets(-4, 0, 0, 48));
-			homeButtonsArea.setSpacing(2);
-		}
 		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
-		homeButtonsArea.getChildren().add(homeButton.getNode());
+		pane.getChildren().add(homeButton.getNode());
 	}
 
 	protected void closeEditor(IEditor editor) {
@@ -1711,8 +1707,9 @@ public class RcplUic implements IRcplUic {
 		ToggleGroup toggleGroup = new ToggleGroup();
 
 		for (HomePage homePage : rcpl.getHomepages().getChildren()) {
-
-			addHomeButton(homePage, pane, toggleGroup);
+			if (!HomePageType.OVERVIEW.equals(homePage.getType())) {
+				addHomeButton(homePage, pane, toggleGroup);
+			}
 
 		}
 	}

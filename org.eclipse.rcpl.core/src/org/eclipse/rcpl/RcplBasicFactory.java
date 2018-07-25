@@ -237,36 +237,36 @@ public class RcplBasicFactory implements IRcplFactory {
 		HomePageType type = model.getType();
 		switch (type) {
 		case ABOUT:
-			return new DefaultAboutHomePage(uic, model, null);
+			return new DefaultAboutHomePage(uic, model);
 		case CONTACT_US:
-			return new DefaultContactUsHomePage(uic, model, null);
+			return new DefaultContactUsHomePage(uic, model);
 		case DOCUMENT:
-			return new DefaultDocumentHomePage(uic, model, null);
+			return new DefaultDocumentHomePage(uic, model);
 //		case DONAT:
-//			return new DefaultDonationsHomePage(uic, modelHomePage, null);
+//			return new DefaultDonationsHomePage(uic, modelHomePage);
 		case HTML_EDITOR:
-			return new DefaultHTMLEditorHomePage(uic, model, null);
+			return new DefaultHTMLEditorHomePage(uic, model);
 		case NEWS:
-			return new DefaultNewHomePage(uic, model, null);
+			return new DefaultNewHomePage(uic, model);
 		case OVERVIEW:
 			if (model.isNavigator()) {
-				return new DefaultOverviewWithNavigatorHomePage(uic, model, null);
+				return new DefaultOverviewWithNavigatorHomePage(uic, model);
 			}
-			return new DefaultOverviewHomePage(uic, model, null);
+			return new DefaultOverviewHomePage(uic, model);
 		case PERSPECTIVES:
-			return new DefaultPerspectiveHomePage(uic, model, null);
+			return new DefaultPerspectiveHomePage(uic, model);
 		case PREFERENCES:
-			return new DefaultPreferencesHomePage(uic, model, null);
+			return new DefaultPreferencesHomePage(uic, model);
 		case SAMPLES:
-			return new DefaultSamplesHomePage(uic, model, null);
+			return new DefaultSamplesHomePage(uic, model);
 		case TEMPLATES:
-			return new DefaultTemplatesHomePage(uic, model, null);
+			return new DefaultTemplatesHomePage(uic, model);
 		case TUTORIALS:
-			return new DefaultTutorialsHomePage(uic, model, null);
+			return new DefaultTutorialsHomePage(uic, model);
 		case WHATS_NEW:
-			return new DefaultWhatsNewHomePage(uic, model, null); // TODO
+			return new DefaultWhatsNewHomePage(uic, model); // TODO
 		default:
-			return new DefaultHomePage(uic, model, null);
+			return new DefaultHomePage(uic, model);
 
 		}
 	}

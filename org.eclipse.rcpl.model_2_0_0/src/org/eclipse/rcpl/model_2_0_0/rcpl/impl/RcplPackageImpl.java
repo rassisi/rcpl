@@ -2279,6 +2279,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getHomePage_ShowHomePageButtons() {
+		return (EAttribute)homePageEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDocuments() {
 		return documentsEClass;
 	}
@@ -2693,6 +2702,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(homePageEClass, HOME_PAGE__DOCUMENTS);
 		createEReference(homePageEClass, HOME_PAGE__TEXT_REPLACEMENTS);
 		createEAttribute(homePageEClass, HOME_PAGE__NAVIGATOR);
+		createEAttribute(homePageEClass, HOME_PAGE__SHOW_HOME_PAGE_BUTTONS);
 
 		documentsEClass = createEClass(DOCUMENTS);
 		createEReference(documentsEClass, DOCUMENTS__CHILDREN);
@@ -3030,6 +3040,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getHomePage_Documents(), this.getDocument(), null, "documents", null, 0, -1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getHomePage_TextReplacements(), this.getKeyValue(), null, "textReplacements", null, 0, -1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getHomePage_Navigator(), ecorePackage.getEBoolean(), "navigator", null, 0, 1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHomePage_ShowHomePageButtons(), ecorePackage.getEBoolean(), "showHomePageButtons", null, 0, 1, HomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(documentsEClass, Documents.class, "Documents", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDocuments_Children(), this.getDocument(), null, "children", null, 0, -1, Documents.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

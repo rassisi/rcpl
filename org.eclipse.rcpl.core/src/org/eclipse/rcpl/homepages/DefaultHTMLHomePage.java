@@ -19,7 +19,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.util.RcplUtil;
 
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.HTMLEditor;
 
@@ -29,9 +28,9 @@ public class DefaultHTMLHomePage extends AbstractHomePage {
 
 	HTMLEditor htmlEditor;
 
-	public DefaultHTMLHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane, String documentTemplate,
+	public DefaultHTMLHomePage(IRcplUic uic, HomePage modelHomePage, String documentTemplate,
 			HashMap<String, String> wordReplacements) {
-		super(uic, modelHomePage, pane);
+		super(uic, modelHomePage);
 
 		htmlEditor = new HTMLEditor();
 

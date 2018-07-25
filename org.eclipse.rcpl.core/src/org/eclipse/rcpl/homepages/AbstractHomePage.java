@@ -19,19 +19,20 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Separator;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 /**
@@ -50,12 +51,11 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	private StackPane contentPane;
 
-	public AbstractHomePage(final IRcplUic uic, HomePage modelHomePage, Pane controlPane) {
+	public AbstractHomePage(final IRcplUic uic, HomePage modelHomePage) {
 		this.uic = uic;
 		this.model = modelHomePage;
 
 		vBox = new VBox();
-		vBox.setId("homeHeader");
 
 		vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -77,40 +77,48 @@ public abstract class AbstractHomePage implements IHomePage {
 		{
 
 			HBox header = new HBox();
+			header.setSpacing(20);
 			header.setPrefHeight(80);
+			header.setAlignment(Pos.CENTER_LEFT);
 			if (modelHomePage.getImage() != null) {
 				Node imageView = Rcpl.resources().getImage(modelHomePage.getImage(), 32, 32).getNode();
 				if (imageView != null) {
 					header.getChildren().add(imageView);
-					HBox.setMargin(imageView, new Insets(15, 0, 0, 20));
+					HBox.setMargin(imageView, new Insets(0, 0, 0, 20));
 				}
 			}
 
-			header.setStyle("-fx-background-color: white");
-			TextFlow samplesHeaderTextFlow = new TextFlow();
+			header.setId("homeHeader"); // Style("-fx-background-color: white");
+			TextFlow headerText = new TextFlow();
 			vBox.setEffect(new InnerShadow());
 			InnerShadow is = new InnerShadow();
 			is.setOffsetX(2.0f);
 			is.setOffsetY(2.0f);
 			Text t = new Text(modelHomePage.getName().substring(0, 1).toUpperCase());
-			samplesHeaderTextFlow.getChildren().add(t);
+			headerText.getChildren().add(t);
 			t.setCache(true);
 			t.setFont(Font.font(null, FontWeight.NORMAL, 28));
 			t.setId("homeHeaderText");
 			t.setEffect(is);
 			t = new Text(modelHomePage.getName().substring(1).toUpperCase());
-			samplesHeaderTextFlow.getChildren().add(t);
+			headerText.getChildren().add(t);
 			t.setCache(true);
 			t.setFont(Font.font(null, FontWeight.NORMAL, 20));
 			t.setId("homeHeaderText");
 			t.setEffect(is);
-			samplesHeaderTextFlow.layout();
 
-			HBox.setMargin(samplesHeaderTextFlow, new Insets(12, 0, 0, 20));
+			headerText.textAlignmentProperty().setValue(TextAlignment.CENTER);
+			headerText.layout();
 
-			header.getChildren().add(samplesHeaderTextFlow);
+			headerText.setMaxHeight(28);
+
+			header.getChildren().add(headerText);
 
 			// samplesHeader.setPadding(new Insets(10, 0, 0, 30));
+
+			if (getModel().isShowHomePageButtons()) {
+				Rcpl.UIC.createAllHomeButtons(header);
+			}
 
 			int headerHeight = 80;
 			header.setPrefHeight(headerHeight);
@@ -133,13 +141,13 @@ public abstract class AbstractHomePage implements IHomePage {
 
 		// ---------- CONTENT PANE -----------------------------------
 
-		if (controlPane != null) {
-			vBox.getChildren().add(controlPane);
-		}
 		contentPane = new StackPane();
+		contentPane.setPrefHeight(10000);
 		vBox.getChildren().add(contentPane);
-		VBox.setVgrow(contentPane, Priority.SOMETIMES);
+		VBox.setVgrow(contentPane, Priority.ALWAYS);
+
 		doCreateContent(contentPane);
+		vBox.layout();
 	}
 
 	@Override
@@ -174,6 +182,7 @@ public abstract class AbstractHomePage implements IHomePage {
 		return "Home Page: " + getId();
 	}
 
+	@Override
 	public HomePage getModel() {
 		return model;
 	}

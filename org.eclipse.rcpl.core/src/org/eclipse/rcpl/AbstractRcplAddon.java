@@ -29,7 +29,7 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 
 	private BorderPane node;
 
-	protected Addon rcplAddon;
+	protected Addon model;
 
 	private Class<? extends EObject> cl;
 
@@ -107,17 +107,17 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 			for (Addon plugin : RcplSession.getDefault().getRcpl().getAllAddons().getChildren()) {
 				String pluginId = plugin.getId();
 				if (pluginId != null && pluginId.equals(getId())) {
-					rcplAddon = plugin;
+					model = plugin;
 					break;
 				}
 			}
 
-			if (rcplAddon == null) {
-				rcplAddon = RcplFactory.eINSTANCE.createAddon();
+			if (model == null) {
+				model = RcplFactory.eINSTANCE.createAddon();
 				if (tool != null) {
-					rcplAddon.setId(tool.getId());
+					model.setId(tool.getId());
 				}
-				RcplSession.getDefault().getRcpl().getAllAddons().getChildren().add(rcplAddon);
+				RcplSession.getDefault().getRcpl().getAllAddons().getChildren().add(model);
 				RcplSession.getDefault().commit();
 			}
 			if (getMigration() != null) {
@@ -176,7 +176,7 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 
 	@Override
 	public Addon getModel() {
-		return rcplAddon;
+		return model;
 	}
 
 	@Override
@@ -224,7 +224,7 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((rcplAddon == null) ? 0 : rcplAddon.hashCode());
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
 		result = prime * result + (getId().hashCode());
 		return result;
 	}
@@ -238,14 +238,19 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 		if (getClass() != obj.getClass())
 			return false;
 		AbstractRcplAddon other = (AbstractRcplAddon) obj;
-		if (rcplAddon == null) {
-			if (other.rcplAddon != null)
+		if (model == null) {
+			if (other.model != null)
 				return false;
-		} else if (!rcplAddon.equals(other.rcplAddon))
+		} else if (!model.equals(other.model))
 			return false;
 		if (!getId().equals(other.getId()))
 			return false;
 		return true;
 	}
 
+	@Override
+	public void setModel(Addon model) {
+		this.model = model;
+
+	}
 }

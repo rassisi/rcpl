@@ -25,6 +25,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#getDocuments <em>Documents</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#getTextReplacements <em>Text Replacements</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#isNavigator <em>Navigator</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#isShowHomePageButtons <em>Show Home Page Buttons</em>}</li>
  * </ul>
  *
  * @generated
@@ -121,6 +122,24 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 */
 	public void setNavigator(boolean newNavigator) {
 		eSet(RcplPackage.Literals.HOME_PAGE__NAVIGATOR, newNavigator);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isShowHomePageButtons() {
+		return (Boolean)eGet(RcplPackage.Literals.HOME_PAGE__SHOW_HOME_PAGE_BUTTONS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShowHomePageButtons(boolean newShowHomePageButtons) {
+		eSet(RcplPackage.Literals.HOME_PAGE__SHOW_HOME_PAGE_BUTTONS, newShowHomePageButtons);
 	}
 
 } //HomePageImpl

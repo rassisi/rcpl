@@ -18,7 +18,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 
@@ -41,8 +40,8 @@ public class DefaultPreferencesHomePage extends AbstractHomePage {
 	 * @param title
 	 * @param image
 	 */
-	public DefaultPreferencesHomePage(IRcplUic uic, HomePage modelHomePage, Pane pane) {
-		super(uic, modelHomePage, pane);
+	public DefaultPreferencesHomePage(IRcplUic uic, HomePage modelHomePage) {
+		super(uic, modelHomePage);
 
 	}
 
