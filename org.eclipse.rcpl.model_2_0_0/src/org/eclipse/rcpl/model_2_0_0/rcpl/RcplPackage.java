@@ -7816,13 +7816,22 @@ public interface RcplPackage extends EPackage {
 	int HOME_PAGE__TEXT_REPLACEMENTS = LAYOUTABLE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Navigator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HOME_PAGE__NAVIGATOR = LAYOUTABLE_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Home Page</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HOME_PAGE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 4;
+	int HOME_PAGE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Home Page</em>' class.
@@ -10385,6 +10394,17 @@ public interface RcplPackage extends EPackage {
 	EReference getHomePage_TextReplacements();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#isNavigator <em>Navigator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Navigator</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.HomePage#isNavigator()
+	 * @see #getHomePage()
+	 * @generated
+	 */
+	EAttribute getHomePage_Navigator();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Documents <em>Documents</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12216,6 +12236,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EReference HOME_PAGE__TEXT_REPLACEMENTS = eINSTANCE.getHomePage_TextReplacements();
+
+		/**
+		 * The meta object literal for the '<em><b>Navigator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute HOME_PAGE__NAVIGATOR = eINSTANCE.getHomePage_Navigator();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.DocumentsImpl <em>Documents</em>}' class.

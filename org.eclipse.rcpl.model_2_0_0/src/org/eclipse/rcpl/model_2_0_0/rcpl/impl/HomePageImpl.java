@@ -24,6 +24,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#getPerspective <em>Perspective</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#getDocuments <em>Documents</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#getTextReplacements <em>Text Replacements</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.HomePageImpl#isNavigator <em>Navigator</em>}</li>
  * </ul>
  *
  * @generated
@@ -102,6 +103,24 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	@SuppressWarnings("unchecked")
 	public EList<KeyValue> getTextReplacements() {
 		return (EList<KeyValue>)eGet(RcplPackage.Literals.HOME_PAGE__TEXT_REPLACEMENTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isNavigator() {
+		return (Boolean)eGet(RcplPackage.Literals.HOME_PAGE__NAVIGATOR, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNavigator(boolean newNavigator) {
+		eSet(RcplPackage.Literals.HOME_PAGE__NAVIGATOR, newNavigator);
 	}
 
 } //HomePageImpl

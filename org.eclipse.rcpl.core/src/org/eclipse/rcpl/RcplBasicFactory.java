@@ -22,6 +22,7 @@ import org.eclipse.rcpl.homepages.DefaultHTMLEditorHomePage;
 import org.eclipse.rcpl.homepages.DefaultHomePage;
 import org.eclipse.rcpl.homepages.DefaultNewHomePage;
 import org.eclipse.rcpl.homepages.DefaultOverviewHomePage;
+import org.eclipse.rcpl.homepages.DefaultOverviewWithNavigatorHomePage;
 import org.eclipse.rcpl.homepages.DefaultPerspectiveHomePage;
 import org.eclipse.rcpl.homepages.DefaultPreferencesHomePage;
 import org.eclipse.rcpl.homepages.DefaultSamplesHomePage;
@@ -231,38 +232,41 @@ public class RcplBasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public IHomePage createHomePage(IRcplUic uic, HomePage modelHomePage) {
+	public IHomePage createHomePage(IRcplUic uic, HomePage model) {
 
-		HomePageType type = modelHomePage.getType();
+		HomePageType type = model.getType();
 		switch (type) {
 		case ABOUT:
-			return new DefaultAboutHomePage(uic, modelHomePage, null);
+			return new DefaultAboutHomePage(uic, model, null);
 		case CONTACT_US:
-			return new DefaultContactUsHomePage(uic, modelHomePage, null);
+			return new DefaultContactUsHomePage(uic, model, null);
 		case DOCUMENT:
-			return new DefaultDocumentHomePage(uic, modelHomePage, null);
+			return new DefaultDocumentHomePage(uic, model, null);
 //		case DONAT:
 //			return new DefaultDonationsHomePage(uic, modelHomePage, null);
 		case HTML_EDITOR:
-			return new DefaultHTMLEditorHomePage(uic, modelHomePage, null);
+			return new DefaultHTMLEditorHomePage(uic, model, null);
 		case NEWS:
-			return new DefaultNewHomePage(uic, modelHomePage, null);
+			return new DefaultNewHomePage(uic, model, null);
 		case OVERVIEW:
-			return new DefaultOverviewHomePage(uic, modelHomePage, null);
+			if (model.isNavigator()) {
+				return new DefaultOverviewWithNavigatorHomePage(uic, model, null);
+			}
+			return new DefaultOverviewHomePage(uic, model, null);
 		case PERSPECTIVES:
-			return new DefaultPerspectiveHomePage(uic, modelHomePage, null);
+			return new DefaultPerspectiveHomePage(uic, model, null);
 		case PREFERENCES:
-			return new DefaultPreferencesHomePage(uic, modelHomePage, null);
+			return new DefaultPreferencesHomePage(uic, model, null);
 		case SAMPLES:
-			return new DefaultSamplesHomePage(uic, modelHomePage, null);
+			return new DefaultSamplesHomePage(uic, model, null);
 		case TEMPLATES:
-			return new DefaultTemplatesHomePage(uic, modelHomePage, null);
+			return new DefaultTemplatesHomePage(uic, model, null);
 		case TUTORIALS:
-			return new DefaultTutorialsHomePage(uic, modelHomePage, null);
+			return new DefaultTutorialsHomePage(uic, model, null);
 		case WHATS_NEW:
-			return new DefaultWhatsNewHomePage(uic, modelHomePage, null); // TODO
+			return new DefaultWhatsNewHomePage(uic, model, null); // TODO
 		default:
-			return new DefaultHomePage(uic, modelHomePage, null);
+			return new DefaultHomePage(uic, model, null);
 
 		}
 	}

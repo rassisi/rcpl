@@ -49,6 +49,7 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 			addPerspectivePropertyDescriptor(object);
 			addDocumentsPropertyDescriptor(object);
 			addTextReplacementsPropertyDescriptor(object);
+			addNavigatorPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -142,6 +143,28 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Navigator feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNavigatorPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_HomePage_navigator_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HomePage_navigator_feature", "_UI_HomePage_type"),
+				 RcplPackage.Literals.HOME_PAGE__NAVIGATOR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns HomePage.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -181,6 +204,7 @@ public class HomePageItemProvider extends LayoutableItemProvider {
 		switch (notification.getFeatureID(HomePage.class)) {
 			case RcplPackage.HOME_PAGE__TYPE:
 			case RcplPackage.HOME_PAGE__TEXT_REPLACEMENTS:
+			case RcplPackage.HOME_PAGE__NAVIGATOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

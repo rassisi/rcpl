@@ -11,19 +11,15 @@
 package org.eclipse.rcpl.homepages;
 
 import org.eclipse.rcpl.IDocument;
-import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Side;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.SwipeEvent;
@@ -34,7 +30,6 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -104,20 +99,14 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 	 */
 	@Override
 	public void setDetailNode(Node detailNode) {
-		detailsArea.getChildren().clear();
-		if (detailNode != null) {
-			detailsArea.getChildren().add(detailNode);
-		}
-	}
-
-	public void hideSplash() {
-		detailsArea.setBackground(null);
+		getContentPane().getChildren().clear();
+		getContentPane().getChildren().add(detailNode);
 	}
 
 	/**
 	 * @param imageIndex
 	 */
-	private void showSplash(int imageIndex) {
+	protected void showSplash(int imageIndex) {
 
 		if (homeImages == null) {
 			return;
@@ -170,6 +159,7 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 					});
 				} else {
 					detailsArea.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
 						@Override
 						public void handle(MouseEvent event) {
 							uic.showErrorPage();
@@ -185,59 +175,6 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
-
-		SplitPane splitPane = new SplitPane();
-		getContentPane().getChildren().add(splitPane);
-
-		INavigatorAddon navigatorAddon = Rcpl.UIC.getNavigator(null);
-
-		if (navigatorAddon != null) {
-			Node n = navigatorAddon.createPart(detailsArea, null, false).getNode();
-			if (n != null) {
-				splitPane.getItems().add(n);
-			}
-		}
-
-		detailsArea = new StackPane();
-		splitPane.getItems().add(detailsArea);
-		splitPane.setDividerPositions(0.3f);
-
-		uic.getTopToolBar().showPerspective(null);
-
-		if (!Rcpl.isMobile()) {
-			showSplash(1);
-		}
-
-		if (Rcpl.isMobile()) {
-			VBox vBox = new VBox();
-			vBox.setSpacing(5);
-
-			vBox.setSpacing(5);
-			Button b = new Button("New");
-			b.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					uic.showHomePage(HomePageType.NEW);
-				}
-			});
-			b.setPrefWidth(100);
-			vBox.getChildren().add(b);
-
-			b = new Button("Samples");
-			b.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					uic.showHomePage(HomePageType.SAMPLES);
-				}
-			});
-			b.setPrefWidth(100);
-			vBox.getChildren().add(b);
-
-			setDetailNode(vBox);
-
-		}
 
 	}
 
