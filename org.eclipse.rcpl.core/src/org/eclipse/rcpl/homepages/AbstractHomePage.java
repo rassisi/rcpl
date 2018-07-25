@@ -51,6 +51,14 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	private StackPane contentPane;
 
+	private static HBox homeButtonsPane;
+
+	private HBox header;
+
+	/**
+	 * @param uic
+	 * @param modelHomePage
+	 */
 	public AbstractHomePage(final IRcplUic uic, HomePage modelHomePage) {
 		this.uic = uic;
 		this.model = modelHomePage;
@@ -75,20 +83,46 @@ public abstract class AbstractHomePage implements IHomePage {
 
 		// if (!Rcpl.isMobile())
 		{
+			// ---------- header container
 
-			HBox header = new HBox();
+			header = new HBox();
 			header.setSpacing(20);
 			header.setPrefHeight(80);
 			header.setAlignment(Pos.CENTER_LEFT);
-			if (modelHomePage.getImage() != null) {
-				Node imageView = Rcpl.resources().getImage(modelHomePage.getImage(), 32, 32).getNode();
-				if (imageView != null) {
-					header.getChildren().add(imageView);
-					HBox.setMargin(imageView, new Insets(0, 0, 0, 20));
+			int headerHeight = 80;
+			header.setPrefHeight(headerHeight);
+			header.setMinHeight(headerHeight);
+			header.setMaxHeight(headerHeight);
+
+			header.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					Rcpl.UIC.expandAllToolBars();
 				}
+			});
+
+			// ---------- header image
+
+			String imageName = "error";
+			if (modelHomePage.getImage() != null) {
+				imageName = modelHomePage.getImage();
 			}
+			StackPane sp = new StackPane();
+			sp.setPrefSize(32, 32);
+			sp.setMinSize(32, 32);
+			sp.setMaxSize(32, 32);
+
+			Node imageView = Rcpl.resources().getImage(imageName, 32, 32).getNode();
+			if (imageView != null) {
+				sp.getChildren().add(imageView);
+				HBox.setMargin(sp, new Insets(0, 0, 0, 20));
+			}
+			header.getChildren().add(sp);
 
 			header.setId("homeHeader"); // Style("-fx-background-color: white");
+
+			// ---------- header text
+
 			TextFlow headerText = new TextFlow();
 			vBox.setEffect(new InnerShadow());
 			InnerShadow is = new InnerShadow();
@@ -111,26 +145,18 @@ public abstract class AbstractHomePage implements IHomePage {
 			headerText.layout();
 
 			headerText.setMaxHeight(28);
-
+			headerText.setMinWidth(300);
 			header.getChildren().add(headerText);
 
-			// samplesHeader.setPadding(new Insets(10, 0, 0, 30));
+			// ---------- header home buttons
 
-			if (getModel().isShowHomePageButtons()) {
-				Rcpl.UIC.createAllHomeButtons(header);
+			if (homeButtonsPane == null) {
+				homeButtonsPane = new HBox();
+				homeButtonsPane.setSpacing(20);
+				homeButtonsPane.setAlignment(Pos.CENTER_LEFT);
+				Rcpl.UIC.createAllHomeButtons(homeButtonsPane);
 			}
 
-			int headerHeight = 80;
-			header.setPrefHeight(headerHeight);
-			header.setMinHeight(headerHeight);
-			header.setMaxHeight(headerHeight);
-
-			header.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					Rcpl.UIC.expandAllToolBars();
-				}
-			});
 			vBox.getChildren().add(header);
 		}
 
@@ -142,12 +168,14 @@ public abstract class AbstractHomePage implements IHomePage {
 		// ---------- CONTENT PANE -----------------------------------
 
 		contentPane = new StackPane();
-		contentPane.setPrefHeight(10000);
+		contentPane.setId("homePageContentPane");
 		vBox.getChildren().add(contentPane);
 		VBox.setVgrow(contentPane, Priority.ALWAYS);
 
 		doCreateContent(contentPane);
 		vBox.layout();
+//		vBox.setId("redBorder");
+
 	}
 
 	@Override
@@ -157,6 +185,19 @@ public abstract class AbstractHomePage implements IHomePage {
 	}
 
 	protected abstract void doCreateContent(StackPane contentPane);
+
+	@Override
+	public void showHomeButtons() {
+		if (getModel().isShowHomePageButtons()) {
+			if (!header.getChildren().contains(homeButtonsPane)) {
+				header.getChildren().add(homeButtonsPane);
+			} else if (header.getChildren().contains(homeButtonsPane)) {
+				header.getChildren().remove(homeButtonsPane);
+
+			}
+
+		}
+	}
 
 	@Override
 	public StackPane getContentPane() {

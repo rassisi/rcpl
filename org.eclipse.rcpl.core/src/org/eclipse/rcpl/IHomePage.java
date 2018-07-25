@@ -12,6 +12,8 @@ import javafx.scene.layout.StackPane;
  */
 public interface IHomePage {
 
+	void showHomeButtons();
+
 	StackPane getContentPane();
 
 	Node getNode();

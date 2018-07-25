@@ -969,7 +969,11 @@
 	-fx-background-color: radial-gradient(radius 100.0%, white, derive(-fx-base, -1.0%));
 	-fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
 }
-
+#homePageContentPane{
+	-fx-background-color: white;
+	-fx-background-insets: 1.0;
+	
+}
 .modal-dialog-glass {
 	-fx-effect: dropshadow(three-pass-box, derive(cadetblue, -20%), 10, 0, 4,
 		4);

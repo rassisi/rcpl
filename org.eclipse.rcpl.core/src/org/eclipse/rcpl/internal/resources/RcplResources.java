@@ -19,10 +19,10 @@ import java.util.HashMap;
 import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.images.SVGImage;
 import org.eclipse.rcpl.model.IImage;
+import org.eclipse.rcpl.model.IImageProvider;
 import org.eclipse.rcpl.model.IResources;
-import org.eclipse.rcpl.model_2_0_0.IImageProvider;
-import org.eclipse.rcpl.model_2_0_0.ITextProvider;
-import org.eclipse.rcpl.model_2_0_0.JOfficeModelGeneratedPlugin;
+import org.eclipse.rcpl.model.ITextProvider;
+import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.Node;
@@ -32,11 +32,11 @@ import javafx.scene.image.ImageView;
  * @author Ramin Assisi
  * 
  */
-public class JOResources implements IResources, IImageProvider, ITextProvider {
+public class RcplResources implements IResources, IImageProvider, ITextProvider {
 
-	public JOResources() {
-		JOfficeModelGeneratedPlugin.imageProvider = this;
-		JOfficeModelGeneratedPlugin.textProvider = this;
+	public RcplResources() {
+		RCPLModel.imageProvider = this;
+		RCPLModel.textProvider = this;
 	}
 
 	private HashMap<String, IImage> imageRegistry = new HashMap<String, IImage>();
@@ -44,10 +44,8 @@ public class JOResources implements IResources, IImageProvider, ITextProvider {
 	/**
 	 * Delegate method which puts an image in the registry
 	 * 
-	 * @param key
-	 *            the key to match to
-	 * @param image
-	 *            the image
+	 * @param key   the key to match to
+	 * @param image the image
 	 */
 	public void put(String key, IImage image) {
 		imageRegistry.put(key + image.getWidth() + image.getHeight(), image);
@@ -151,7 +149,7 @@ public class JOResources implements IResources, IImageProvider, ITextProvider {
 
 	@Override
 	public ImageView getImageView(String imageName) {
-		return (ImageView)getImageNode(imageName, 16, 16);
+		return (ImageView) getImageNode(imageName, 16, 16);
 	}
 
 }

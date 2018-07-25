@@ -11,6 +11,10 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
  */
 public class RCPLModel {
 
+	public static IImageProvider imageProvider;
+
+	public static ITextProvider textProvider;
+
 	public static IMobileProvider mobileProvider;
 
 	public static StringBuilder errorBuf = new StringBuilder();

@@ -32,7 +32,7 @@ import org.eclipse.rcpl.homepages.DefaultWhatsNewHomePage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.resources.JOColorProvider;
-import org.eclipse.rcpl.internal.resources.JOResources;
+import org.eclipse.rcpl.internal.resources.RcplResources;
 import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.internal.tools.JORibbonGroup;
 import org.eclipse.rcpl.internal.tools.UndoRedoTool;
@@ -193,7 +193,7 @@ public class RcplBasicFactory implements IRcplFactory {
 
 	@Override
 	public IResources createResources() {
-		return new JOResources();
+		return new RcplResources();
 	}
 
 	@Override

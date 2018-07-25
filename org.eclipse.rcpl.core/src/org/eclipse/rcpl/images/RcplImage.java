@@ -152,7 +152,12 @@ public class RcplImage implements IImage {
 			// ---------- load from input stream
 
 			if (is != null) {
-				node = createNodeFromInputStream(is, width, height);
+				image = createSvgImage(is, width, height);
+				ImageView iv = new ImageView(image);
+				iv.setFitWidth(width);
+				iv.setFitHeight(height);
+				node = iv;
+
 			} else {
 
 				// ---------- id must not be null
@@ -164,7 +169,7 @@ public class RcplImage implements IImage {
 
 				// ---------- first check if it exists as resource
 
-				if (getImageFromResource() != null) {
+				if (createImageFromResource() != null) {
 					if (image != null) {
 						node = new ImageView(image);
 						return node;
@@ -191,7 +196,13 @@ public class RcplImage implements IImage {
 				// ---------- check if can be loaded from remote as svg
 
 				else if (findSvgRemoteImage()) {
-					node = createSvgNode(SvgUrl, width, height);
+					image = createSvgImage(SvgUrl.openStream(), width, height);
+					ImageView iv = new ImageView(image);
+					iv.setFitWidth(width);
+					iv.setFitHeight(height);
+					svg = true;
+					node = iv;
+
 				}
 			}
 			return node;
@@ -229,11 +240,11 @@ public class RcplImage implements IImage {
 				return false;
 			}
 			for (String codeBase : RcplSession.getImageCodeBases()) {
-				
-				if("Information_icon".equals(id)) {
+
+				if ("Information_icon".equals(id)) {
 					System.out.println();
 				}
-				
+
 				if (codeBase != null) {
 					URL url;
 					if (RcplSession.BASE_IMAGE_URL.equals(codeBase)) {
@@ -285,103 +296,102 @@ public class RcplImage implements IImage {
 		return false;
 	}
 
-	/**
-	 * @param svgUrl
-	 * @param pngFile
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	private ImageView createSvgNode(URL url, double width, double height) {
+//	/**
+//	 * @param svgUrl
+//	 * @param pngFile
+//	 * @param width
+//	 * @param height
+//	 * @return
+//	 */
+//	private ImageView createSvgNode(URL url, double width, double height) {
+//
+//		ImageView iv = null;
+//
+//		if (url.toString().endsWith(".svg")) {
+//			svg = true;
+//		}
+//
+//		if (getPngFile().exists()) {
+//			iv = new ImageView(getPngFile().toURI().toString());
+//		} else if (getErrorPngFile().exists()) {
+//			iv = getErrorNode();
+//		} else {
+//			try {
+//				InputStream is = url.openStream();
+//				iv = createBatikNode(is, width, height);
+//				if (iv == null) {
+//					try {
+//						image = new Image(pngUrl.toString());
+//					} catch (Throwable ex) {
+//						writeErrorPngFile();
+//						return getErrorNode();
+//					}
+//					if (image.isError()) {
+//						writeErrorPngFile();
+//						return getErrorNode();
+//					}
+//					iv = new ImageView(image);
+//
+//				}
+//				is.close();
+//
+//			} catch (Throwable ex) {
+//				iv = getErrorNode();
+//				writeErrorPngFile();
+//			}
+//		}
+//		iv.setFitWidth(width);
+//		iv.setFitHeight(height);
+//		return iv;
+//	}
 
-		ImageView iv = null;
+//	/**
+//	 * Diese Methode wird aus JOImage aufgerufen, um ein Image aus einem PackagePart
+//	 * (OOXML) auszulesen.
+//	 * 
+//	 * @param is
+//	 * @param fileName
+//	 * @param width
+//	 * @param height
+//	 * @return
+//	 */
+//	private ImageView createSvgNodeFromInputStream(InputStream is, double width, double height) {
+//
+//		if (isSvg()) {
+//			ImageView node;
+//			try {
+//				node = createBatikNode(is, width, height);
+//				if (node != null) {
+//					return node;
+//				}
+//			} catch (TranscoderException e) {
+//			} catch (IOException e) {
+//			}
+//			return getErrorNode();
+//		} else {
+//			try {
+//				image = new Image(is);
+//				ImageView iv = new ImageView();
+//				if (image != null) {
+//					iv.setImage(image);
+//					iv.setFitWidth(width);
+//					iv.setFitHeight(height);
+//				}
+//				try {
+//					is.close();
+//				} catch (Exception ex) {
+//					// ignore as all images wrong will be saved under the
+//					// __ERROR__ folder
+//				}
+//				return iv;
+//			} catch (Exception ex) {
+//				return null;
+//			}
+//		}
+//
+//	}
 
-		if (url.toString().endsWith(".svg")) {
-			svg = true;
-		}
-
-		if (getPngFile().exists()) {
-			iv = new ImageView(getPngFile().toURI().toString());
-		} else if (getErrorPngFile().exists()) {
-			iv = getErrorNode();
-		} else {
-			try {
-				InputStream is = url.openStream();
-				iv = createBatikNode(is, width, height);
-				if (iv == null) {
-					try {
-						image = new Image(pngUrl.toString());
-					} catch (Throwable ex) {
-						writeErrorPngFile();
-						return getErrorNode();
-					}
-					if (image.isError()) {
-						writeErrorPngFile();
-						return getErrorNode();
-					}
-					iv = new ImageView(image);
-
-				}
-				is.close();
-
-			} catch (Throwable ex) {
-				iv = getErrorNode();
-				writeErrorPngFile();
-			}
-		}
-		iv.setFitWidth(width);
-		iv.setFitHeight(height);
-		return iv;
-	}
-
-	/**
-	 * Diese Methode wird aus JOImage aufgerufen, um ein Image aus einem PackagePart
-	 * (OOXML) auszulesen.
-	 * 
-	 * @param is
-	 * @param fileName
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	private ImageView createNodeFromInputStream(InputStream is, double width, double height) {
-
-		if (isSvg()) {
-			ImageView node;
-			try {
-				node = createBatikNode(is, width, height);
-				if (node != null) {
-					return node;
-				}
-			} catch (TranscoderException e) {
-			} catch (IOException e) {
-			}
-			return getErrorNode();
-		} else {
-			try {
-				image = new Image(is);
-				ImageView iv = new ImageView();
-				if (image != null) {
-					iv.setImage(image);
-					iv.setFitWidth(width);
-					iv.setFitHeight(height);
-				}
-				try {
-					is.close();
-				} catch (Exception ex) {
-					// ignore as all images wrong will be saved under the
-					// __ERROR__ folder
-				}
-				return iv;
-			} catch (Exception ex) {
-				return null;
-			}
-		}
-
-	}
-
-	private ImageView createBatikNode(InputStream is, double width, double height)
-			throws TranscoderException, IOException {
+	private Image createSvgImage(InputStream is, double width, double height) throws TranscoderException, IOException {
 		OutputStream png_ostream;
 
 		TranscoderInput transIn = new TranscoderInput(is);
@@ -396,6 +406,9 @@ public class RcplImage implements IImage {
 		png_ostream.close();
 		ByteArrayInputStream isImage = new ByteArrayInputStream(((ByteArrayOutputStream) png_ostream).toByteArray());
 		image = new Image(isImage);
+		if (image != null) {
+			svg = true;
+		}
 		isImage.close();
 		isImage = new ByteArrayInputStream(((ByteArrayOutputStream) png_ostream).toByteArray());
 		FileOutputStream fos = new FileOutputStream(getPngFile());
@@ -414,7 +427,7 @@ public class RcplImage implements IImage {
 
 		isImage.close();
 		put(id, width, height);
-		return new ImageView(image);
+		return image;
 
 	}
 
@@ -456,6 +469,10 @@ public class RcplImage implements IImage {
 
 	private String createPngPath() {
 		return width + "_" + height + "/" + id + ".png";
+	}
+
+	private String createSvgPath() {
+		return "svg/" + id + ".svg";
 	}
 
 	public double getSaturation() {
@@ -556,9 +573,7 @@ public class RcplImage implements IImage {
 
 	public static void main(String[] args) {
 		RCPLModel.mobileProvider = new DefaultMobileProvider();
-
 		String path = "http://joffice.eu/svg/shape_parallelogram.svg";
-
 		new RcplImage(path, 15, 15).getNode();
 
 	}
@@ -572,9 +587,28 @@ public class RcplImage implements IImage {
 
 	}
 
-	private Image getImageFromResource() {
+	private Image createImageFromResource() {
 		String resourcePath = createPngPath();
-		return getImageFromResource(resourcePath);
+		Image img = getImageFromResource(resourcePath);
+		if (img == null) {
+			resourcePath = createSvgPath();
+			InputStream is = RcplImage.class.getResourceAsStream(resourcePath);
+			if (is != null) {
+				try {
+					img = createSvgImage(is, width, height);
+				} catch (TranscoderException | IOException e) {
+				}
+			}
+			try {
+				if (is != null) {
+					is.close();
+				}
+			} catch (IOException e) {
+				// ignore as all images wrong will be saved under the __ERROR__
+				// folder
+			}
+		}
+		return img;
 	}
 
 	private Image getImageFromResource(String resourcePath) {

@@ -1167,6 +1167,7 @@ public class RcplUic implements IRcplUic {
 			return;
 		}
 		setContent(homePage.getNode());
+		homePage.showHomeButtons();
 		updateButtons(true);
 		activeHomePage = homePage;
 		HomePage model = homePage.getModel();
@@ -1459,8 +1460,8 @@ public class RcplUic implements IRcplUic {
 		IButton homeButton = new RcplButton(homePage.getType().getName(), homePage.getName(), homePage.getToolTip(),
 				homePage.getImage(), true);
 		homeButton.setData(homePage);
-		homeButton.setWidth(20);
-		homeButton.setHeight(20);
+		homeButton.setWidth(32);
+		homeButton.setHeight(32);
 		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
 		pane.getChildren().add(homeButton.getNode());
 	}

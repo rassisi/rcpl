@@ -3,13 +3,9 @@ package org.eclipse.rcpl.model_2_0_0;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-public class JOfficeModelGeneratedPlugin implements BundleActivator {
+public class RcplModelGeneratedPlugin implements BundleActivator {
 
 	private static BundleContext context;
-
-	public static IImageProvider imageProvider;
-
-	public static ITextProvider textProvider;
 
 	static BundleContext getContext() {
 		return context;
@@ -19,11 +15,11 @@ public class JOfficeModelGeneratedPlugin implements BundleActivator {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
-	 * )
+	 * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext )
 	 */
+	@Override
 	public void start(BundleContext bundleContext) throws Exception {
-		JOfficeModelGeneratedPlugin.context = bundleContext;
+		RcplModelGeneratedPlugin.context = bundleContext;
 	}
 
 	/*
@@ -32,8 +28,9 @@ public class JOfficeModelGeneratedPlugin implements BundleActivator {
 	 * @see
 	 * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
+	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
-		JOfficeModelGeneratedPlugin.context = null;
+		RcplModelGeneratedPlugin.context = null;
 	}
 
 }

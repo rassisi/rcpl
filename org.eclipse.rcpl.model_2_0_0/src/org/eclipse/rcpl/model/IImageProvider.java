@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.model_2_0_0;
+package org.eclipse.rcpl.model;
 
 import javafx.scene.Node;
 
