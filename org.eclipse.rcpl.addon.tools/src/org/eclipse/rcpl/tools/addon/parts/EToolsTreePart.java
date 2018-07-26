@@ -19,11 +19,7 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
-import org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
-import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuToolGroups;
-import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuTools;
-import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroups;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
 import org.eclipse.rcpl.tools.addon.EToolsAddon;
 import org.eclipse.rcpl.tools.addon.UCToolsPlugin;
@@ -113,7 +109,8 @@ public class EToolsTreePart {
 			});
 		}
 
-		adapterFactoryTreeItem = new AdapterFactoryTreeItem(rootGroup, UCToolsPlugin.getDefault().getToolsManager().getAdapterFactory());
+		adapterFactoryTreeItem = new AdapterFactoryTreeItem(rootGroup,
+				UCToolsPlugin.getDefault().getToolsManager().getAdapterFactory());
 
 		refresh();
 
@@ -135,44 +132,12 @@ public class EToolsTreePart {
 		});
 
 		//
-		treeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-
-				TreeItem<?> item = treeView.getSelectionModel().getSelectedItem();
-
-				if (item != null) {
-
-					if (item instanceof AdapterFactoryTreeItem) {
-
-						getUseCase().getController().unbindAll();
-
-						Object value = ((AdapterFactoryTreeItem) item).getValue();
-
-						if (value instanceof ToolGroups) {
-
-						} else if (value instanceof Tools) {
-
-						} else if (value instanceof StartMenuToolGroups) {
-
-						} else if (value instanceof StartMenuTools) {
-
-						} else if (value instanceof QuickTools) {
-
-						} else {
-							selectedObject = value instanceof EObject ? (EObject) value : null;
-							processBindung((AdapterFactoryTreeItem) item);
-						}
-					}
-				}
-			}
-		});
 
 		treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
 
+			@Override
 			public void changed(ObservableValue<? extends Object> arg0, Object oldItem, Object newItem) {
 
 				getUseCase().getController().unbindAll();
@@ -188,37 +153,6 @@ public class EToolsTreePart {
 
 		});
 
-	}
-
-	private void processBindung(TreeItem<?> newItem) {
-		if (newItem instanceof AdapterFactoryTreeItem) {
-
-			Object value = ((AdapterFactoryTreeItem) newItem).getValue();
-
-			selectedObject = value instanceof EObject ? (EObject) value : null;
-
-			if (newItem instanceof Tools) {
-				return;
-			}
-
-			if (newItem instanceof StartMenuToolGroups) {
-				return;
-			}
-
-			if (newItem instanceof StartMenuTools) {
-				return;
-			}
-
-			if (newItem instanceof QuickTools) {
-				return;
-			}
-
-			if (value instanceof EObject) {
-
-				useCase.getController().updateBindings(selectedObject,
-						UCToolsPlugin.getDefault().getToolsManager().getEditingDomain());
-			}
-		}
 	}
 
 	private void refresh() {
