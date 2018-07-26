@@ -18,7 +18,6 @@ import java.util.Map;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IApplicationWindow;
 import org.eclipse.rcpl.IMonitor;
-import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
@@ -29,7 +28,6 @@ import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.service.RcplAbstractService;
 
 import javafx.application.Application;
@@ -485,32 +483,6 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 	@Override
 	public void centerWindow() {
 		primaryStage.centerOnScreen();
-	}
-
-	@Override
-	public INavigatorAddon findNavigatorAddon(Tool tool) {
-		if (tool != null) {
-			for (IRcplAddon p : rcplAddons.values()) {
-				Class<?>[] interfaces = p.getClass().getInterfaces();
-				for (Class<?> inf : interfaces) {
-					if (inf.getName().equals(INavigatorAddon.class.getName())) {
-						if (p.getTool() != null && p.getTool().getId().equals(tool.getId())) {
-							return (INavigatorAddon) p;
-						}
-					}
-				}
-			}
-		}
-
-		// ---------- fall back to default navigator
-
-		for (IRcplAddon p : rcplAddons.values()) {
-			if ("org.eclipse.rcpl.navigator.addon.DefaultNavigatorAddon".equals(p.getClass().getName())) {
-				return (INavigatorAddon) p;
-			}
-		}
-
-		return null;
 	}
 
 }

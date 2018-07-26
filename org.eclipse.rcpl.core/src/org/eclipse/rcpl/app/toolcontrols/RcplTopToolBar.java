@@ -291,7 +291,7 @@ public class RcplTopToolBar implements ITopToolbar {
 	}
 
 	@Override
-	public void showPerspective(Perspective perspective) {
+	public void showPerspective(final Perspective perspective) {
 
 		javafx.application.Platform.runLater(new Runnable() {
 

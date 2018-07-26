@@ -11,7 +11,6 @@
 package org.eclipse.rcpl.homepages;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
@@ -28,8 +27,6 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 
 	private StackPane detailsArea;
 
-	private INavigatorAddon navigatorAddon;
-
 	/**
 	 * @param uic
 	 * @param title
@@ -45,28 +42,22 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 		getContentPane().getChildren().add(splitPane);
 		detailsArea = new StackPane();
 
-		navigatorAddon = Rcpl.UIC.getNavigator(null);
-
-		if (navigatorAddon != null) {
-			Node n = navigatorAddon.createPart(detailsArea, null, false).getNode();
-			if (n != null) {
-				splitPane.getItems().add(n);
-			}
-			navigatorAddon.setRoot(getRoot());
+		Node n = Rcpl.UIC.getTreepart().getNode();
+		if (n != null) {
+			splitPane.getItems().add(n);
 		}
+		Rcpl.UIC.getTreepart().setRoot(getRoot());
 
 		splitPane.getItems().add(detailsArea);
 		splitPane.setDividerPositions(0.3f);
 
 		uic.getTopToolBar().showPerspective(null);
 
-		if (!Rcpl.isMobile()) {
+		if (!Rcpl.isMobile())
+
+		{
 			showSplash(1);
 		}
-	}
-
-	public INavigatorAddon getNavigatorAddon() {
-		return navigatorAddon;
 	}
 
 	public StackPane getDetailsArea() {

@@ -19,6 +19,10 @@ import javafx.scene.layout.StackPane;
  */
 public interface IRcplFactory {
 
+	INavigatorTreeManager createTreeManager();
+
+	ITreePart createTreePart();
+
 	IStyleTemplate createStyleTemplate();
 
 	IButton createButton(String id, String name, String toolTip, String imageName, boolean toggle,

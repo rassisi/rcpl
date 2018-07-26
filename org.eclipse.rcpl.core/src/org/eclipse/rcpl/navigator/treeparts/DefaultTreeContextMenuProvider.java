@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.fx.emf.edit.ui.AdapterFactoryCellFactory.ICellUpdateListener;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.IImage;
-import org.eclipse.rcpl.navigator.tree.handlers.AbstractEmfHandler;
+import org.eclipse.rcpl.navigator.handlers.AbstractEmfHandler;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

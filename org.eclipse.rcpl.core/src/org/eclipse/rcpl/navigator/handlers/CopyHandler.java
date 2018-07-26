@@ -15,9 +15,15 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.CopyToClipboardCommand;
-import org.eclipse.rcpl.navigator.addon.DefaultNavigatorAddon;
+import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
 
 public class CopyHandler {
+
+	private DefaultNavigatorTreePart treePart;
+
+	public CopyHandler(DefaultNavigatorTreePart treePart) {
+		this.treePart = treePart;
+	}
 
 	Command command;
 
@@ -27,8 +33,7 @@ public class CopyHandler {
 	public boolean canExecute(List<?> selection) {
 		try {
 			if (selection != null) {
-				command = CopyToClipboardCommand
-						.create(DefaultNavigatorAddon.getDefault().getManager().getEditingDomain(), selection);
+				command = CopyToClipboardCommand.create(treePart.getManager().getEditingDomain(), selection);
 				return command.canExecute();
 			}
 		} catch (Exception ex) {
@@ -39,7 +44,7 @@ public class CopyHandler {
 
 	public void execute() {
 		if (command != null && command.canExecute())
-			DefaultNavigatorAddon.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
+			treePart.getManager().getEditingDomain().getCommandStack().execute(command);
 	}
 
 }

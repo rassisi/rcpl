@@ -19,7 +19,6 @@ import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IButtonListener;
 import org.eclipse.rcpl.IEditor;
-import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
@@ -782,10 +781,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			if (toolGroup.getTools().size() == 1 && ToolType.NAVIGATOR.equals(mainSideToolGroupType)) {
 
 				try {
-					INavigatorAddon navigatorAddon = Rcpl.UIC.getNavigator(toolGroup.getTools().get(0));
-					if (navigatorAddon != null) {
-						scrollPane.setContent(navigatorAddon.getNode());
-					}
+					scrollPane.setContent(Rcpl.UIC.getTreepart().getNode());
 				} catch (Throwable ex) {
 					RCPLModel.logError(ex);
 				}

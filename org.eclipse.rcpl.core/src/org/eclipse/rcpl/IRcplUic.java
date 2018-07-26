@@ -7,7 +7,6 @@ import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -25,6 +24,8 @@ import javafx.stage.Stage;
  *
  */
 public interface IRcplUic {
+
+	ITreePart getTreepart();
 
 	public void createAllHomeButtons(Pane pane);
 
@@ -77,8 +78,6 @@ public interface IRcplUic {
 	HBox getMainTopArea();
 
 	StackPane getMainTopStack();
-
-	INavigatorAddon getNavigator(Tool tool);
 
 	Perspective getPerspective();
 

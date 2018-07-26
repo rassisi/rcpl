@@ -31,12 +31,12 @@ import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IEditorListener;
 import org.eclipse.rcpl.IHomePage;
-import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IParagraphFigure;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITopToolbar;
+import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.WaitThread;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
@@ -50,7 +50,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.w3c.dom.Document;
@@ -139,6 +138,8 @@ public class RcplUic implements IRcplUic {
 	protected Node onlineOfflineView;
 
 	private List<IHomePage> homepages = new ArrayList<IHomePage>();
+
+	private ITreePart treePart;
 
 	@FXML
 	protected Button startMenuButton;
@@ -709,19 +710,6 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public StackPane getMainTopStack() {
 		return mainTopStack;
-	}
-
-	@Override
-	public INavigatorAddon getNavigator(Tool tool) {
-		IRcplAddon addon = Rcpl.rcplApplicationProvider.findNavigatorAddon(tool);
-		if (addon instanceof INavigatorAddon) {
-			Parent parent = addon.getNode().getParent();
-			if (parent instanceof Pane) {
-				((Pane) parent).getChildren().remove(addon.getNode());
-			}
-			return (INavigatorAddon) addon;
-		}
-		return null;
 	}
 
 	@Override
@@ -1503,7 +1491,7 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
-	protected Tab createNewTab(Tab tab, String title) {
+	protected Tab createNewTab(final Tab tab, String title) {
 		if (title == null) {
 			title = "-";
 		}
@@ -2102,6 +2090,14 @@ public class RcplUic implements IRcplUic {
 		} else if (!collapse && !mainTopArea.getChildren().contains(mainTopStack)) {
 			mainTopArea.getChildren().add(2, mainTopStack);
 		}
+	}
+
+	@Override
+	public ITreePart getTreepart() {
+		if (treePart == null) {
+			treePart = Rcpl.getFactory().createTreePart();
+		}
+		return treePart;
 	}
 
 }

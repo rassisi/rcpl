@@ -48,6 +48,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
+import org.eclipse.rcpl.navigator.details.NavigatorTreeManagerImpl;
+import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 import org.eclipse.rcpl.ui.font.RcplFontProvider;
 
@@ -272,6 +274,16 @@ public class RcplBasicFactory implements IRcplFactory {
 			return new DefaultHomePage(uic, model);
 
 		}
+	}
+
+	@Override
+	public ITreePart createTreePart() {
+		return new DefaultNavigatorTreePart();
+	}
+
+	@Override
+	public INavigatorTreeManager createTreeManager() {
+		return new NavigatorTreeManagerImpl();
 	}
 
 }

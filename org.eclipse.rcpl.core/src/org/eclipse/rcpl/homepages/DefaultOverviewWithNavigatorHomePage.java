@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.rcpl.homepages;
 
-import org.eclipse.rcpl.INavigatorAddon;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
@@ -46,13 +45,9 @@ public class DefaultOverviewWithNavigatorHomePage extends DefaultOverviewHomePag
 		SplitPane splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
 
-		INavigatorAddon navigatorAddon = Rcpl.UIC.getNavigator(null);
-
-		if (navigatorAddon != null) {
-			Node n = navigatorAddon.createPart(detailsArea, null, false).getNode();
-			if (n != null) {
-				splitPane.getItems().add(n);
-			}
+		Node n = Rcpl.UIC.getTreepart().getNode();
+		if (n != null) {
+			splitPane.getItems().add(n);
 		}
 
 		detailsArea = new StackPane();

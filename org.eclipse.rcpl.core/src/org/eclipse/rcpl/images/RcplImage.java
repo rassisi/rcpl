@@ -144,6 +144,7 @@ public class RcplImage implements IImage {
 		IImage img = get();
 		if (img != null) {
 			node = img.getNode();
+			Rcpl.println("Image loaded from repository: " + id);
 			return node;
 		}
 
@@ -157,12 +158,14 @@ public class RcplImage implements IImage {
 				iv.setFitWidth(width);
 				iv.setFitHeight(height);
 				node = iv;
+				Rcpl.println("SVG Image loaded from stream: " + id);
 
 			} else {
 
 				// ---------- id must not be null
 
 				if (id == null) {
+					Rcpl.println("Image loaded from error: (id==null)");
 					node = getErrorNode();
 					return node;
 				}
@@ -181,12 +184,15 @@ public class RcplImage implements IImage {
 				if (findPngRemoteImage()) {
 					try {
 						image = new Image(pngUrl.toString());
+						Rcpl.println("Image loaded from Remote: " + id);
 					} catch (Throwable ex) {
 						writeErrorPngFile();
+						Rcpl.println("Image loaded from Resource -> ERROR!: " + id);
 						return getErrorNode();
 					}
 					if (image.isError()) {
 						writeErrorPngFile();
+						Rcpl.println("Image loaded from Resource -> ERROR (image is error)!: " + id);
 						node = getErrorNode();
 					}
 					node = new ImageView(image);
@@ -596,6 +602,7 @@ public class RcplImage implements IImage {
 			if (is != null) {
 				try {
 					img = createSvgImage(is, width, height);
+					Rcpl.println("SVG Image loaded from Resource: " + id);
 				} catch (TranscoderException | IOException e) {
 				}
 			}
@@ -607,6 +614,8 @@ public class RcplImage implements IImage {
 				// ignore as all images wrong will be saved under the __ERROR__
 				// folder
 			}
+		} else {
+			Rcpl.println("Image loaded from Resource: " + id);
 		}
 		return img;
 	}

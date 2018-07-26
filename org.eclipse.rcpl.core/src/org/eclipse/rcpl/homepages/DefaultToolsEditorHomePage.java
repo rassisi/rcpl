@@ -41,13 +41,12 @@ public class DefaultToolsEditorHomePage extends AbstractNavigatorHomePage {
 
 	@Override
 	protected EObject getRoot() {
-		return RcplSession.getDefault().getRcpl().getAllPerspectives();
+		return RcplSession.getDefault().getRcpl().getAllTools(); // getAllPerspectives();
 	}
 
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
 		super.doCreateContent(contentPane);
-
 		ToolsDetailPage detailPane = new ToolsDetailPage();
 		getDetailsArea().getChildren().add(detailPane.getNode());
 	}

@@ -15,20 +15,22 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.CutToClipboardCommand;
-import org.eclipse.rcpl.navigator.addon.DefaultNavigatorAddon;
+import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
 
 public class CutHandler {
 
 	Command command;
 
-	public CutHandler() {
+	private DefaultNavigatorTreePart treePart;
+
+	public CutHandler(DefaultNavigatorTreePart treePart) {
+		this.treePart = treePart;
 	}
 
 	public boolean canExecute(List<?> selection) {
 		try {
 			if (selection != null) {
-				command = CutToClipboardCommand
-						.create(DefaultNavigatorAddon.getDefault().getManager().getEditingDomain(), selection);
+				command = CutToClipboardCommand.create(treePart.getManager().getEditingDomain(), selection);
 				return command.canExecute();
 			}
 		} catch (Exception ex) {
@@ -39,7 +41,7 @@ public class CutHandler {
 
 	public void execute() {
 		if (command != null && command.canExecute())
-			DefaultNavigatorAddon.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
+			treePart.getManager().getEditingDomain().getCommandStack().execute(command);
 	}
 
 }

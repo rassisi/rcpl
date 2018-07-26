@@ -46,9 +46,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuToolGroups;
 import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
-import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroups;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
-import org.eclipse.rcpl.navigator.details.NavigatorTreeManagerImpl;
 import org.eclipse.rcpl.navigator.handlers.AbstractEmfHandler;
 import org.eclipse.rcpl.navigator.handlers.AddOfficeFolderHandler;
 import org.eclipse.rcpl.navigator.handlers.AddPreferenceHandler;
@@ -105,7 +103,6 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 			registerHandlers();
 			getNode();
 			treeView.setPrefHeight(10);
-			manager = new NavigatorTreeManagerImpl();
 			refresh();
 			treeView.setShowRoot(showRoot);
 			treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -131,6 +128,9 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 			@Override
 			public void changed(ObservableValue<? extends Object> arg0, Object oldItem, Object newItem) {
 				if (newItem instanceof AdapterFactoryTreeItem) {
+
+					TreeItem it = null;
+
 					Object value = ((AdapterFactoryTreeItem) newItem).getValue();
 					if (value instanceof EObject) {
 						selectedObject = (EObject) value;
@@ -169,53 +169,49 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 			if (value instanceof EObject) {
 
-				useCase.getController().updateBindings(selectedObject,
-						UCToolsPlugin.getDefault().getToolsManager().getEditingDomain());
+//				useCase.getController().updateBindings(selectedObject,
+//						UCToolsPlugin.getDefault().getToolsManager().getEditingDomain());
 			}
 		}
 	}
 
-	
-	
-	treeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-		@Override
-		public void handle(MouseEvent event) {
-
+	public INavigatorTreeManager getManager() {
+		if (manager == null) {
+			manager = Rcpl.getFactory().createTreeManager();
 		}
-	});
+		return manager;
+	}
 
 	private void addMouseListener() {
 		treeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 
-				TreeItem<?> item = treeView.getSelectionModel().getSelectedItem();
-
-				if (item != null) {
-
-					if (item instanceof AdapterFactoryTreeItem) {
-
-						getUseCase().getController().unbindAll();
-
-						Object value = ((AdapterFactoryTreeItem) item).getValue();
-
-						if (value instanceof ToolGroups) {
-
-						} else if (value instanceof Tools) {
-
-						} else if (value instanceof StartMenuToolGroups) {
-
-						} else if (value instanceof StartMenuTools) {
-
-						} else if (value instanceof QuickTools) {
-
-						} else {
-							selectedObject = value instanceof EObject ? (EObject) value : null;
-							processBinding(item);
-						}
-					}
-				}
+//				TreeItem<?> item = treeView.getSelectionModel().getSelectedItem();
+//				if (item != null) {
+//
+//					if (item instanceof AdapterFactoryTreeItem) {
+//
+//						getUseCase().getController().unbindAll();
+//
+//						Object value = ((AdapterFactoryTreeItem) item).getValue();
+//
+//						if (value instanceof ToolGroups) {
+//
+//						} else if (value instanceof Tools) {
+//
+//						} else if (value instanceof StartMenuToolGroups) {
+//
+//						} else if (value instanceof StartMenuTools) {
+//
+//						} else if (value instanceof QuickTools) {
+//
+//						} else {
+//							selectedObject = value instanceof EObject ? (EObject) value : null;
+//							processBinding(item);
+//						}
+//					}
+//				}
 
 				if (mouseEvent.isSecondaryButtonDown() || mouseEvent.isMiddleButtonDown()) {
 					return;
@@ -359,10 +355,10 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		try {
 			if (adapterFactoryTreeItem2 == null) {
 
-				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(getRoot(), manager.getAdapterFactory());
+				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(getRoot(), getManager().getAdapterFactory());
 				treeView.setRoot(adapterFactoryTreeItem2);
 				AdapterFactoryTreeCellFactory treeCellFactory = new AdapterFactoryTreeCellFactory(
-						manager.getAdapterFactory());
+						getManager().getAdapterFactory());
 
 				// ---------- add edit support ----------------------
 
@@ -417,13 +413,12 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	}
 
 	public EditingDomain getEditingDomain() {
-		return ((NavigatorTreeManagerImpl) manager).getEditingDomain();
+		return getManager().getEditingDomain();
 	}
 
 	@Override
 	public Node createNode() {
 		treeView = new TreeView<Object>();
-
 		treeView.getStyleClass().add("emfTreeView");
 		return treeView;
 	}

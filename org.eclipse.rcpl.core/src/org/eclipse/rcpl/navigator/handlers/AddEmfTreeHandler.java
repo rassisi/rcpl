@@ -19,32 +19,31 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
-import org.eclipse.rcpl.navigator.addon.DefaultNavigatorAddon;
 import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
 
 public class AddEmfTreeHandler {
 
-	private DefaultNavigatorTreePart eEmfTreeTreePart;
+	private DefaultNavigatorTreePart treePart;
 
-	public AddEmfTreeHandler(DefaultNavigatorTreePart eEmfTreeTreePart) {
-		this.eEmfTreeTreePart = eEmfTreeTreePart;
+	public AddEmfTreeHandler(DefaultNavigatorTreePart treePart) {
+		this.treePart = treePart;
 	}
 
 	public void execute() {
-		if (eEmfTreeTreePart.getSelectedObject() instanceof ToolGroup) {
+		if (treePart.getSelectedObject() instanceof ToolGroup) {
 			Tool tool = RcplFactory.eINSTANCE.createTool();
-			ToolGroup rootGroup = ((ToolGroup) eEmfTreeTreePart.getSelectedObject());
-			Command command = AddCommand.create(DefaultNavigatorAddon.getDefault().getManager().getEditingDomain(),
-					rootGroup, RcplPackage.Literals.TOOL_GROUP, tool);
+			ToolGroup rootGroup = ((ToolGroup) treePart.getSelectedObject());
+			Command command = AddCommand.create(treePart.getManager().getEditingDomain(), rootGroup,
+					RcplPackage.Literals.TOOL_GROUP, tool);
 			if (command != null && command.canExecute())
-				DefaultNavigatorAddon.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
-		} else if (eEmfTreeTreePart.getSelectedObject() instanceof FavoritesGroup) {
+				treePart.getManager().getEditingDomain().getCommandStack().execute(command);
+		} else if (treePart.getSelectedObject() instanceof FavoritesGroup) {
 			Favorite item = RcplFactory.eINSTANCE.createFavorite();
-			FavoritesGroup rootGroup = ((FavoritesGroup) eEmfTreeTreePart.getSelectedObject());
-			Command command = AddCommand.create(DefaultNavigatorAddon.getDefault().getManager().getEditingDomain(),
-					rootGroup, RcplPackage.Literals.FAVORITE, item);
+			FavoritesGroup rootGroup = ((FavoritesGroup) treePart.getSelectedObject());
+			Command command = AddCommand.create(treePart.getManager().getEditingDomain(), rootGroup,
+					RcplPackage.Literals.FAVORITE, item);
 			if (command != null && command.canExecute())
-				DefaultNavigatorAddon.getDefault().getManager().getEditingDomain().getCommandStack().execute(command);
+				treePart.getManager().getEditingDomain().getCommandStack().execute(command);
 		}
 
 	}
