@@ -12,6 +12,7 @@ package org.eclipse.rcpl.homepages;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
@@ -42,7 +43,9 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 		getContentPane().getChildren().add(splitPane);
 		detailsArea = new StackPane();
 
-		Node n = Rcpl.UIC.getTreepart().getNode();
+		ITreePart treePart = Rcpl.UIC.getTreepart();
+		treePart.setContainer(detailsArea);
+		Node n = treePart.getNode();
 		if (n != null) {
 			splitPane.getItems().add(n);
 		}

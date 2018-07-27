@@ -3,9 +3,8 @@ package org.eclipse.rcpl.ui.parts.contacts;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
-import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.contacts.addon.RcplContactsAddon;
-import org.eclipse.rcpl.navigator.EViewController;
+import org.eclipse.rcpl.navigator.AbstractDetailPaneController;
 
 import javafx.beans.property.Property;
 import javafx.fxml.FXML;
@@ -19,7 +18,7 @@ import javafx.scene.layout.VBox;
  * @author ramin
  *
  */
-public class EContactsAddonController extends EViewController {
+public class EContactsAddonController extends AbstractDetailPaneController {
 
 	@FXML
 	private ImageView imageView;
@@ -148,12 +147,6 @@ public class EContactsAddonController extends EViewController {
 	public void doInit(AbstractRcplAddon uc) {
 		Node node1 = new EContactsTreePart((RcplContactsAddon) uc).getNode();
 		getViewerBox().getChildren().add(node1);
-
-	}
-
-	@Override
-	public void init(IRcplAddon rcplAddon) {
-		// TODO Auto-generated method stub
 
 	}
 

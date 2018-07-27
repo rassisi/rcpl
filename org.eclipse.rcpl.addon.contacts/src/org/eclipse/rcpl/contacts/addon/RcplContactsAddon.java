@@ -2,10 +2,9 @@ package org.eclipse.rcpl.contacts.addon;
 
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IRcplAddon;
+import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.RcplAddon;
 import org.eclipse.rcpl.migration.RcplAbstractMigration;
-import org.eclipse.rcpl.navigator.EViewController;
-import org.eclipse.rcpl.ui.parts.contacts.EContactsAddonController;
 import org.eclipse.rcpl.ui.parts.contacts.EContactsMigration;
 
 /**
@@ -22,16 +21,6 @@ public class RcplContactsAddon extends AbstractRcplAddon implements IRcplAddon {
 	}
 
 	@Override
-	protected EViewController createController() {
-		return new EContactsAddonController();
-	}
-
-	@Override
-	public EContactsAddonController getController() {
-		return (EContactsAddonController) super.getController();
-	}
-
-	@Override
 	public String getDisplayName() {
 		return "Contacts";
 	}
@@ -44,6 +33,12 @@ public class RcplContactsAddon extends AbstractRcplAddon implements IRcplAddon {
 	@Override
 	public boolean isCustomApplication() {
 		return false;
+	}
+
+	@Override
+	protected IRcplPluginControler createController() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -8,7 +8,7 @@
  * Contributors: 
  *     Torsten Sommer <torsten.sommer@tesis.de> - initial API and implementation 
  *******************************************************************************/
-package org.eclipse.rcpl.navigator.tree.details;
+package org.eclipse.rcpl.navigator.details;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.EnCustomToolIds;
-import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.control.IntegerField;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
@@ -27,7 +26,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
-import org.eclipse.rcpl.navigator.EViewController;
+import org.eclipse.rcpl.navigator.AbstractDetailPaneController;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
@@ -47,7 +46,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class EToolsAddonController extends EViewController {
+public class ToolsDetailPaneController extends AbstractDetailPaneController {
 
 	@FXML
 	private ImageView imageView;
@@ -539,11 +538,6 @@ public class EToolsAddonController extends EViewController {
 
 	public GridPane getGridPane() {
 		return gridPane;
-	}
-
-	@Override
-	public void init(IRcplAddon addon) {
-
 	}
 
 }

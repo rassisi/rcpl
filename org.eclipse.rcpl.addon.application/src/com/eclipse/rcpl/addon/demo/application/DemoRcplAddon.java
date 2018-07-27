@@ -2,9 +2,9 @@ package com.eclipse.rcpl.addon.demo.application;
 
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IRcplAddon;
+import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.RcplAddon;
 import org.eclipse.rcpl.migration.RcplAbstractMigration;
-import org.eclipse.rcpl.navigator.EViewController;
 
 /**
  * @author Ramin
@@ -26,13 +26,14 @@ public class DemoRcplAddon extends AbstractRcplAddon implements IRcplAddon {
 	}
 
 	@Override
-	protected EViewController createController() {
-		return null;
+	public boolean isCustomApplication() {
+		return false;
 	}
 
 	@Override
-	public boolean isCustomApplication() {
-		return false;
+	protected IRcplPluginControler createController() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

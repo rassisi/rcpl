@@ -14,7 +14,12 @@ package org.eclipse.rcpl.navigator.treeparts;
 import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 
+import org.eclipse.emf.cdo.common.id.CDOID;
+import org.eclipse.emf.cdo.common.revision.CDORevisionKey;
+import org.eclipse.emf.cdo.session.CDOSessionInvalidationEvent;
+import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.fx.emf.edit.ui.AdapterFactoryTreeCellFactory;
@@ -24,6 +29,7 @@ import org.eclipse.fx.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleException;
+import org.eclipse.rcpl.IDetailPane;
 import org.eclipse.rcpl.INavigatorListener;
 import org.eclipse.rcpl.INavigatorTreeManager;
 import org.eclipse.rcpl.IOfficeUIC;
@@ -47,6 +53,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuToolGroups;
 import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
+import org.eclipse.rcpl.navigator.details.PreferencesDetailsPage;
+import org.eclipse.rcpl.navigator.details.ToolsDetailPage;
 import org.eclipse.rcpl.navigator.handlers.AbstractEmfHandler;
 import org.eclipse.rcpl.navigator.handlers.AddOfficeFolderHandler;
 import org.eclipse.rcpl.navigator.handlers.AddPreferenceHandler;
@@ -86,23 +94,28 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private HashMap<String, File> documentRegistry = new HashMap<String, File>();
 
-	private Pane detailPane;
+	private IDetailPane detailPane;
 
 	private EObject root;
 
+	private Pane containerPane;
+
+	private HashMap<EObject, IDetailPane> detailPanes = new HashMap<EObject, IDetailPane>();
+
 	public DefaultNavigatorTreePart() {
+		init(null, true);
 	}
 
 	@Override
-	public void init(Pane detailPane, Tool tool, boolean showRoot) {
+	public void init(Tool tool, boolean showRoot) {
 		this.tool = tool;
 		Rcpl.getEditorListeners().add(this);
 
-		this.detailPane = detailPane;
 		try {
 			registerHandlers();
 			getNode();
 			treeView.setPrefHeight(10);
+			treeView.setId("redBorder");
 			refresh();
 			treeView.setShowRoot(showRoot);
 			treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -128,20 +141,52 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 			@Override
 			public void changed(ObservableValue<? extends Object> arg0, Object oldItem, Object newItem) {
 				if (newItem instanceof AdapterFactoryTreeItem) {
-
-					TreeItem it = null;
-
-					Object value = ((AdapterFactoryTreeItem) newItem).getValue();
+					Object value = ((AdapterFactoryTreeItem<?>) newItem).getValue();
 					if (value instanceof EObject) {
 						selectedObject = (EObject) value;
 						for (INavigatorListener l : Rcpl.navigatorListeners) {
 							l.selected(selectedObject);
 						}
+
+						adaptDetailPane((EObject) value);
 					}
 				}
+				updateDetailPane();
 			}
 
 		});
+	}
+
+	private void updateDetailPane() {
+		if (detailPane != null) {
+			if (containerPane != null) {
+				if (!containerPane.getChildren().contains(detailPane.getNode())) {
+					containerPane.getChildren().add(detailPane.getNode());
+				}
+			} else {
+				containerPane.getChildren().clear();
+			}
+		} else {
+			containerPane.getChildren().clear();
+		}
+
+	}
+
+	private void adaptDetailPane(EObject eObject) {
+
+		IDetailPane detailPane = detailPanes.get(eObject);
+
+		if (detailPane == null) {
+			if (eObject instanceof Tool) {
+				detailPane = new ToolsDetailPage();
+				detailPanes.put(eObject, detailPane);
+			}
+			if (eObject instanceof Preferences) {
+				detailPane = new PreferencesDetailsPage();
+				detailPanes.put(eObject, detailPane);
+			}
+		}
+		this.detailPane = detailPane;
 	}
 
 	private void processBinding(TreeItem<?> newItem) {
@@ -318,21 +363,20 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 				public void notifyEvent(IEvent event) {
 					// TODO Auto-generated method stub
 
-					// if (event instanceof CDOSessionInvalidationEvent) {
-					//
-					// CDOSessionInvalidationEvent ev =
-					// (CDOSessionInvalidationEvent) event;
-					//
-					// List<CDORevisionKey> list = ev.getChangedObjects();
-					// CDOTransaction trans = ev.getLocalTransaction();
-					// if (trans != null) {
-					// for (CDORevisionKey cdoRevisionKey : list) {
-					// CDOID id = cdoRevisionKey.getID();
-					// // cdoobj = ((CDOView) trans).getObject(id,
-					// // true);
-					// }
-					// }
-					// }
+					if (event instanceof CDOSessionInvalidationEvent) {
+
+						CDOSessionInvalidationEvent ev = (CDOSessionInvalidationEvent) event;
+
+						List<CDORevisionKey> list = ev.getChangedObjects();
+						CDOTransaction trans = ev.getLocalTransaction();
+						if (trans != null) {
+							for (CDORevisionKey cdoRevisionKey : list) {
+								CDOID id = cdoRevisionKey.getID();
+								// cdoobj = ((CDOView) trans).getObject(id,
+								// true);
+							}
+						}
+					}
 
 					javafx.application.Platform.runLater(new Runnable() {
 
@@ -346,6 +390,56 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 				}
 			});
 		}
+
+//		if (RcplSession.getDefault().getSession() != null) {
+//			RcplSession.getDefault().getSession().addListener(new IListener() {
+//
+//				@Override
+//				public void notifyEvent(IEvent event) {
+//
+//					if (event instanceof CDOSessionInvalidationEvent) {
+//
+//						CDOSessionInvalidationEvent ev = (CDOSessionInvalidationEvent) event;
+//
+//						List<CDORevisionKey> list = ev.getChangedObjects();
+//						CDOTransaction trans = ev.getLocalTransaction();
+//						if (trans != null) {
+//							for (CDORevisionKey cdoRevisionKey : list) {
+//								CDOID id = cdoRevisionKey.getID();
+//								cdoobj = ((CDOView) trans).getObject(id, true);
+//							}
+//						}
+//					}
+//					javafx.application.Platform.runLater(new Runnable() {
+//
+//						@Override
+//						public void run() {
+//							refresh();
+//
+//							if (cdoobj instanceof AbstractTool) {
+//
+//								ObservableList<TreeItem<Object>> list2 = adapterFactoryTreeItem.getChildren();
+//
+//								for (TreeItem<Object> treeItem : list2) {
+//
+//									if (cdoobj == treeItem.getValue()) {
+//										treeView.requestFocus();
+//										treeItem.setExpanded(true);
+//										treeView.getSelectionModel().select(treeItem);
+//										break;
+//									}
+//
+//								}
+//
+//							}
+//
+//						}
+//					});
+//
+//				}
+//			});
+//		}
+
 	}
 
 	@Override
@@ -476,10 +570,6 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		return false;
 	}
 
-	public Pane getDetailPane() {
-		return detailPane;
-	}
-
 	@Override
 	public EObject getRoot() {
 		if (root == null) {
@@ -493,6 +583,11 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		this.root = root;
 		adapterFactoryTreeItem2 = null;
 		refresh();
+	}
+
+	@Override
+	public void setContainer(Pane pane) {
+		this.containerPane = pane;
 	}
 
 }

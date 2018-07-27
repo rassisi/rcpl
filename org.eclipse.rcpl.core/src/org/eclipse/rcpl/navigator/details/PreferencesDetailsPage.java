@@ -13,9 +13,12 @@ package org.eclipse.rcpl.navigator.details;
 
 import java.util.Locale;
 
+import org.eclipse.rcpl.IDetailPane;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
+import org.eclipse.rcpl.navigator.IDetailPaneControler;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -33,17 +36,18 @@ import javafx.scene.text.FontWeight;
  * @author ramin
  *
  */
-public class JOPreferencesDetails {
+public class PreferencesDetailsPage implements IDetailPane {
 
 	private final Parent node;
 
 	/**
 	 * @param preferences
 	 */
-	public JOPreferencesDetails(Preferences preferences) {
+	public PreferencesDetailsPage() {
 
 		node = new GridPane();
 
+		Preferences preferences = RcplSession.getDefault().getRcpl().getAllPreferences();
 		Label l = new Label(getDisplayName(preferences));
 		l.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		getNode().add(l, 0, 0);
@@ -93,6 +97,7 @@ public class JOPreferencesDetails {
 	/**
 	 * @return
 	 */
+	@Override
 	public GridPane getNode() {
 		return (GridPane) node;
 	}
@@ -117,5 +122,10 @@ public class JOPreferencesDetails {
 
 		return new TextField(pref.getValue());
 
+	}
+
+	@Override
+	public IDetailPaneControler getControler() {
+		return null;
 	}
 }

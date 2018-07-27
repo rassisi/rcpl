@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IRcplAddon;
-import org.eclipse.rcpl.IRcplPluginControler;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.emf.util.EMFEditFXProperties;
 
@@ -39,7 +38,7 @@ import jfxtras.labs.scene.control.BigDecimalField;
  * @author Ramin
  * 
  */
-abstract public class EViewController implements ITreePartControler, IRcplPluginControler {
+abstract public class AbstractDetailPaneController implements IDetailPaneControler {
 
 	protected ScrollPane internalDetailsScrollPane;
 
@@ -51,7 +50,7 @@ abstract public class EViewController implements ITreePartControler, IRcplPlugin
 
 	protected ITreePart treePart;
 
-	public EViewController() {
+	public AbstractDetailPaneController() {
 		diagramPane = new TabPane();
 		// diagramPane.setPrefSize(1000, 1000);
 		diagramPane.setStyle("-fx-background-color: lightyellow");
@@ -286,7 +285,6 @@ abstract public class EViewController implements ITreePartControler, IRcplPlugin
 		return null;
 	}
 
-	@Override
 	public abstract void updateBindings(EObject contact, EditingDomain editingDomain);
 
 	protected void addCustomFields() {

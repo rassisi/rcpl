@@ -15,10 +15,6 @@ import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
-import org.eclipse.rcpl.navigator.details.JOPreferencesDetails;
-
-import javafx.scene.layout.StackPane;
 
 /**
  * @author ramin
@@ -43,13 +39,6 @@ public class DefaultPreferencesHomePage extends AbstractNavigatorHomePage {
 	@Override
 	protected EObject getRoot() {
 		return RcplSession.getDefault().getRcpl().getAllPreferences();
-	}
-
-	@Override
-	protected void doCreateContent(StackPane contentPane) {
-		super.doCreateContent(contentPane);
-		JOPreferencesDetails detailPane = new JOPreferencesDetails((Preferences) getRoot());
-		getDetailsArea().getChildren().add(detailPane.getNode());
 	}
 
 }

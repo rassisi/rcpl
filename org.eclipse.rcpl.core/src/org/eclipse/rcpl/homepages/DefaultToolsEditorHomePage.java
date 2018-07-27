@@ -15,7 +15,6 @@ import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
-import org.eclipse.rcpl.navigator.tree.details.ToolsDetailPage;
 
 import javafx.scene.layout.StackPane;
 
@@ -47,8 +46,6 @@ public class DefaultToolsEditorHomePage extends AbstractNavigatorHomePage {
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
 		super.doCreateContent(contentPane);
-		ToolsDetailPage detailPane = new ToolsDetailPage();
-		getDetailsArea().getChildren().add(detailPane.getNode());
 	}
 
 }
