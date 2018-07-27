@@ -9,4 +9,6 @@ public interface IDetailPaneControler {
 	ITreePart getTreePart();
 
 	void updateBindings(EObject contact, EditingDomain editingDomain);
+
+	void unbindAll();
 }

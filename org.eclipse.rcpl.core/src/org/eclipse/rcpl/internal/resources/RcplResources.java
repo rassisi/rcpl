@@ -61,17 +61,20 @@ public class RcplResources implements IResources, IImageProvider, ITextProvider 
 	 */
 	@Override
 	public IImage getImage(String id, double width, double height) {
-		if (id == null) {
-			id = "error_ID";
-		}
-		IImage img = get(id, width, height);
-		if (img != null) {
-			return img;
-		}
 
-		img = new RcplImage(id, width, height);
-		put(id, img);
-		return img;
+		return new RcplImage(id, width, height);
+
+//		if (id == null) {
+//			id = "error_ID";
+//		}
+//		IImage img = get(id, width, height);
+//		if (img != null) {
+//			return img;
+//		}
+//
+//		img = new RcplImage(id, width, height);
+//		put(id, img);
+//		return img;
 	}
 
 	/**

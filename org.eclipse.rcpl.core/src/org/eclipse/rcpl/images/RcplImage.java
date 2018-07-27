@@ -103,7 +103,7 @@ public class RcplImage implements IImage {
 		this.width = width;
 		this.height = height;
 
-		if (id.startsWith("http")) {
+		if (id != null && id.startsWith("http")) {
 			try {
 				SvgUrl = new URL(id);
 				String idTemp = SvgUrl.getFile();

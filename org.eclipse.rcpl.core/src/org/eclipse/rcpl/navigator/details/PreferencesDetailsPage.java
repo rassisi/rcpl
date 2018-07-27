@@ -13,7 +13,6 @@ package org.eclipse.rcpl.navigator.details;
 
 import java.util.Locale;
 
-import org.eclipse.rcpl.IDetailPane;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
@@ -36,7 +35,7 @@ import javafx.scene.text.FontWeight;
  * @author ramin
  *
  */
-public class PreferencesDetailsPage implements IDetailPane {
+public class PreferencesDetailsPage extends AbstractDetailPane {
 
 	private final Parent node;
 
@@ -127,5 +126,10 @@ public class PreferencesDetailsPage implements IDetailPane {
 	@Override
 	public IDetailPaneControler getControler() {
 		return null;
+	}
+
+	@Override
+	IDetailPaneControler createControler() {
+		return new PreferenceDetailsControler();
 	}
 }

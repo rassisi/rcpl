@@ -121,6 +121,7 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 
 	private Property<Boolean> labeledProperty;
 
+	@Override
 	public void unbindAll() {
 		if (notImplementedProperty != null)
 			notImplementedProperty.unbind();
@@ -190,8 +191,8 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 						editingDomain);
 			}
 
-			labeledProperty = rebind(labeled, labeledProperty, eObject, RcplPackage.eINSTANCE.getAbstractTool_Labeled(),
-					editingDomain);
+//			labeledProperty = rebind(labeled, labeledProperty, eObject, RcplPackage.eINSTANCE.getAbstractTool_Labeled(),
+//					editingDomain);
 
 			if (eObject instanceof ToolGroup) {
 				gridPane.getChildren().remove(getToolType());

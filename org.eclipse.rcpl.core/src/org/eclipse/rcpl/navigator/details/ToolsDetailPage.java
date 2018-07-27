@@ -3,8 +3,6 @@ package org.eclipse.rcpl.navigator.details;
 import java.io.IOException;
 import java.net.URL;
 
-import org.eclipse.rcpl.IDetailPane;
-import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.navigator.IDetailPaneControler;
 
 import javafx.fxml.FXMLLoader;
@@ -14,18 +12,16 @@ import javafx.scene.layout.VBox;
  * @author ramin
  *
  */
-public class ToolsDetailPage implements IDetailPane {
+public class ToolsDetailPage extends AbstractDetailPane {
 
 	private VBox node;
-
-	private IDetailPaneControler controler;
 
 	public ToolsDetailPage() {
 		super();
 
 		URL location = getClass().getResource("/org/eclipse/rcpl/navigator/details/tools_editor_detailpage.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
-		fxmlLoader.setController(Rcpl.UIC);
+		fxmlLoader.setController(getControler());
 
 		try {
 			node = fxmlLoader.load();
@@ -34,7 +30,6 @@ public class ToolsDetailPage implements IDetailPane {
 			e.printStackTrace();
 			// System.exit(1);
 		}
-
 	}
 
 	@Override
@@ -43,11 +38,8 @@ public class ToolsDetailPage implements IDetailPane {
 	}
 
 	@Override
-	public IDetailPaneControler getControler() {
-		if (controler == null) {
-			controler = new ToolsDetailPaneController();
-		}
-		return controler;
+	IDetailPaneControler createControler() {
+		return new ToolsDetailPaneController();
 	}
 
 }

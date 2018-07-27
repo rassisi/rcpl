@@ -46,13 +46,9 @@ import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
-import org.eclipse.rcpl.model_2_0_0.rcpl.QuickTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
-import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuToolGroups;
-import org.eclipse.rcpl.model_2_0_0.rcpl.StartMenuTools;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
 import org.eclipse.rcpl.navigator.details.PreferencesDetailsPage;
 import org.eclipse.rcpl.navigator.details.ToolsDetailPage;
 import org.eclipse.rcpl.navigator.handlers.AbstractEmfHandler;
@@ -100,7 +96,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private Pane containerPane;
 
-	private HashMap<EObject, IDetailPane> detailPanes = new HashMap<EObject, IDetailPane>();
+	private HashMap<Class<? extends EObject>, IDetailPane> detailPanes = new HashMap<Class<? extends EObject>, IDetailPane>();
 
 	public DefaultNavigatorTreePart() {
 		init(null, true);
@@ -173,50 +169,24 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private void adaptDetailPane(EObject eObject) {
 
-		IDetailPane detailPane = detailPanes.get(eObject);
+		if (detailPane != null) {
+			detailPane.getControler().unbindAll();
+		}
+		IDetailPane detailPane = detailPanes.get(eObject.getClass());
 
 		if (detailPane == null) {
 			if (eObject instanceof Tool) {
 				detailPane = new ToolsDetailPage();
-				detailPanes.put(eObject, detailPane);
-			}
-			if (eObject instanceof Preferences) {
+				detailPanes.put(eObject.getClass(), detailPane);
+				detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
+			} else if (eObject instanceof Preferences) {
 				detailPane = new PreferencesDetailsPage();
-				detailPanes.put(eObject, detailPane);
+				detailPanes.put(eObject.getClass(), detailPane);
 			}
+		} else {
+			detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
 		}
 		this.detailPane = detailPane;
-	}
-
-	private void processBinding(TreeItem<?> newItem) {
-		if (newItem instanceof AdapterFactoryTreeItem) {
-
-			Object value = ((AdapterFactoryTreeItem) newItem).getValue();
-
-			selectedObject = value instanceof EObject ? (EObject) value : null;
-
-			if (newItem instanceof Tools) {
-				return;
-			}
-
-			if (newItem instanceof StartMenuToolGroups) {
-				return;
-			}
-
-			if (newItem instanceof StartMenuTools) {
-				return;
-			}
-
-			if (newItem instanceof QuickTools) {
-				return;
-			}
-
-			if (value instanceof EObject) {
-
-//				useCase.getController().updateBindings(selectedObject,
-//						UCToolsPlugin.getDefault().getToolsManager().getEditingDomain());
-			}
-		}
 	}
 
 	public INavigatorTreeManager getManager() {

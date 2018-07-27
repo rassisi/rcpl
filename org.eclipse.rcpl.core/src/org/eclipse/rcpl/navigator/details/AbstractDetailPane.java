@@ -9,11 +9,20 @@ import org.eclipse.rcpl.navigator.IDetailPaneControler;
  */
 public abstract class AbstractDetailPane implements IDetailPane {
 
+	private IDetailPaneControler controler;
+
 	public AbstractDetailPane() {
 		super();
 	}
 
+	abstract IDetailPaneControler createControler();
+
 	@Override
-	public abstract IDetailPaneControler getControler();
+	public IDetailPaneControler getControler() {
+		if (controler == null) {
+			controler = createControler();
+		}
+		return controler;
+	}
 
 }
