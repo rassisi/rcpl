@@ -28,6 +28,10 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 
 	private StackPane detailsArea;
 
+	private SplitPane splitPane;
+
+	private StackPane treeViewPane;
+
 	/**
 	 * @param uic
 	 * @param title
@@ -39,21 +43,13 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
-		SplitPane splitPane = new SplitPane();
+		splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
+		treeViewPane = new StackPane();
+		splitPane.getItems().add(treeViewPane);
 		detailsArea = new StackPane();
-
-		ITreePart treePart = Rcpl.UIC.getTreepart();
-		treePart.setContainer(detailsArea);
-		Node n = treePart.getNode();
-		if (n != null) {
-			splitPane.getItems().add(n);
-		}
-		Rcpl.UIC.getTreepart().setRoot(getRoot());
-
 		splitPane.getItems().add(detailsArea);
 		splitPane.setDividerPositions(0.3f);
-
 		uic.getTopToolBar().showPerspective(null);
 
 		if (!Rcpl.isMobile())
@@ -61,6 +57,8 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 		{
 			showSplash(1);
 		}
+
+		refresh();
 	}
 
 	public StackPane getDetailsArea() {
@@ -68,4 +66,18 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 	}
 
 	protected abstract EObject getRoot();
+
+	@Override
+	public void refresh() {
+		super.refresh();
+		ITreePart treePart = Rcpl.UIC.getTreepart();
+		treePart.setContainer(detailsArea);
+		Node n = treePart.getNode();
+		if (n != null) {
+			treeViewPane.getChildren().clear();
+			treeViewPane.getChildren().add(n);
+		}
+		Rcpl.UIC.getTreepart().setRoot(getRoot());
+
+	}
 }

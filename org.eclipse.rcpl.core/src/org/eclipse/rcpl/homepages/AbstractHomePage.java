@@ -41,7 +41,6 @@ import javafx.scene.text.TextFlow;
 
 /**
  * @author ramin
- * 
  */
 public abstract class AbstractHomePage implements IHomePage {
 
@@ -194,11 +193,11 @@ public abstract class AbstractHomePage implements IHomePage {
 		if (getModel().isShowHomePageButtons()) {
 			if (!header.getChildren().contains(homeButtonsPane)) {
 				header.getChildren().add(homeButtonsPane);
-			} else if (header.getChildren().contains(homeButtonsPane)) {
-				header.getChildren().remove(homeButtonsPane);
-
 			}
-
+		} else if (header.getChildren().contains(homeButtonsPane)) {
+			if (header.getChildren().contains(homeButtonsPane)) {
+				header.getChildren().remove(homeButtonsPane);
+			}
 		}
 	}
 
@@ -214,6 +213,7 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	@Override
 	public void refresh() {
+		showHomeButtons();
 	}
 
 	@Override

@@ -1154,7 +1154,7 @@ public class RcplUic implements IRcplUic {
 			return;
 		}
 		setContent(homePage.getNode());
-		homePage.showHomeButtons();
+		homePage.refresh();
 		updateButtons(true);
 		activeHomePage = homePage;
 		HomePage model = homePage.getModel();
