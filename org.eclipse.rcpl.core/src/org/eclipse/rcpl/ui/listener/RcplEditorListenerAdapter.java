@@ -34,9 +34,6 @@ public class RcplEditorListenerAdapter implements IEditorListener {
 	public void doSave() {
 	}
 
-	/**
-	 * @see org.eclipse.rcpl.IEditorListener.ui.draw2d.wysiwyg.figures.IEditorListener#textChanged(java.lang.String)
-	 */
 	@Override
 	public void textChanged(String formattedText) {
 	}

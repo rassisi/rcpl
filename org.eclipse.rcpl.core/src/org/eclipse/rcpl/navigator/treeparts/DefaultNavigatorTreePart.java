@@ -112,7 +112,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 			getNode();
 			treeView.setPrefHeight(10);
 			refresh();
-			treeView.setShowRoot(showRoot);
+			treeView.setShowRoot(false); // showRoot);
 			treeView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 			addSelectionListener();
 			addCDOListener();

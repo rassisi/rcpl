@@ -150,4 +150,10 @@ public class EContactsAddonController extends AbstractDetailPaneController {
 
 	}
 
+	@Override
+	public void unbindAll() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

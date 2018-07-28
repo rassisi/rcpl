@@ -146,13 +146,21 @@ public class RcplImage implements IImage {
 				return node;
 			}
 
+			if (width > 60) {
+				System.out.println();
+			}
+
 			try {
 
 				// ---------- load from input stream
 
 				if (is != null) {
-					image = createSvgImage(is, width, height);
-					Rcpl.println("SVG Image loaded from stream: " + id);
+					if (isSvg()) {
+						image = createSvgImage(is, width, height);
+						Rcpl.println("SVG Image loaded from stream: " + id);
+					} else {
+						image = new Image(is);
+					}
 				}
 
 				// error image (id==null)
@@ -204,7 +212,9 @@ public class RcplImage implements IImage {
 			}
 		}
 
-		if (image != null) {
+		if (image != null)
+
+		{
 			ImageView iv = new ImageView(image);
 			iv.setFitWidth(width);
 			iv.setFitHeight(height);

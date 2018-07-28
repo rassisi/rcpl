@@ -35,8 +35,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 	@SuppressWarnings("nls")
 	public static String getFilePartWithoutExtension(String fileName) {
@@ -70,8 +69,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 	@SuppressWarnings("unused")
 	public static byte[] loadFile(String file) {
@@ -101,8 +99,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 	@SuppressWarnings("unused")
 	public static String loadFileAsString(File file) {
@@ -130,8 +127,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 
 	public static String loadFileAsString(String file) {
@@ -143,8 +139,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 	@SuppressWarnings("cast")
 	public static Object loadObject(String fileName) {
@@ -159,7 +154,7 @@ public class AResource {
 				// GZIPInputStream gzis = new GZIPInputStream( fis );
 				ObjectInputStream ino = new ObjectInputStream(fis);
 				// ino. useProtocolVersion(ino.PROTOCOL_VERSION_2);
-				result = (Object) ino.readObject();
+				result = ino.readObject();
 				fis.close();
 
 			} catch (Exception e) {
@@ -174,8 +169,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked", "null", "nls" })
 	public static Object[] loadObjects(String fileName) {
@@ -210,15 +204,13 @@ public class AResource {
 	 * Haupteingangspunkt - Startet die Komponente, wenn sie als Anwendung
 	 * ausgeführt wird
 	 * 
-	 * @param args
-	 *            java.lang.String[]
+	 * @param args java.lang.String[]
 	 */
 	@SuppressWarnings("nls")
-	public static void main(java.lang.String[] args) {
+	public static void main(String[] args) {
 		try {
 
-			AResource.saveResourceAs("c:\\opt\\migsys\\bin\\", "WordAPI.exe",
-					"lib/WordAPI.exe");
+			AResource.saveResourceAs("c:\\opt\\migsys\\bin\\", "WordAPI.exe", "lib/WordAPI.exe");
 
 		} catch (Throwable exception) {
 			// System. err
@@ -231,8 +223,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 	@SuppressWarnings({ "unused", "nls" })
 	public static String makeFileDirName(String dirs) {
@@ -261,8 +252,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 	public static String mkDirs(String dirs) {
 
@@ -350,8 +340,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 	@SuppressWarnings({ "unused", "nls", "null" })
 	public static void saveObject(String fileName, Object[] objects) {
@@ -374,9 +363,7 @@ public class AResource {
 					outo.writeObject(objects[i]);
 				} catch (IOException e2) {
 
-					System.out
-							.println("@@@ error: xxxx : could not write object "
-									+ objects[i].getClass().getName());
+					System.out.println("@@@ error: xxxx : could not write object " + objects[i].getClass().getName());
 
 					Object newObject = new Object();
 					try {
@@ -411,8 +398,7 @@ public class AResource {
 	 * Die Methode getHtmlTemplateText ausführen.
 	 * 
 	 * @return java.lang.String
-	 * @param file
-	 *            java.lang.String
+	 * @param file java.lang.String
 	 */
 	@SuppressWarnings("nls")
 	public static void saveObject(String fileName_, Object object_) {
@@ -453,8 +439,7 @@ public class AResource {
 			return;
 		} catch (IOException e) {
 
-			System.out
-					.println("@@@ error: xxxx : write object to " + fileName_);
+			System.out.println("@@@ error: xxxx : write object to " + fileName_);
 
 			return;
 		}
@@ -484,8 +469,7 @@ public class AResource {
 	}
 
 	@SuppressWarnings({ "rawtypes", "nls", "unused" })
-	public static boolean saveResourceAs(String dir, String fileName,
-			String resourceName) {
+	public static boolean saveResourceAs(String dir, String fileName, String resourceName) {
 
 		try {
 			Class clazz = resourceName.getClass();
