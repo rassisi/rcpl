@@ -214,7 +214,7 @@ public class RcplSideToolBar implements ISideToolBar {
 	 * @param perspectiveId
 	 */
 	private void processPerspectiveGroups(String perspectiveId) {
-		Perspective perspective = RcplSession.getDefault().findPerspective(perspectiveId);
+		Perspective perspective = RcplSession.getDefault().getModelUtil().findPerspective(perspectiveId);
 		if (perspective != null) {
 			ToolBar groupsToolBar = new ToolBar();
 			StackPane.setMargin(groupsToolBar, new Insets(0, 0, 0, 0));

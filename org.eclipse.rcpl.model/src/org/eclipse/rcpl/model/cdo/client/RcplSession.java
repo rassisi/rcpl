@@ -77,7 +77,7 @@ import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
 import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
+import org.eclipse.rcpl.model.RcplModelUtil;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
@@ -85,10 +85,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
-import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
-import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
-import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory;
 
 /**
@@ -213,6 +209,8 @@ public class RcplSession implements ISession {
 
 	private boolean launchedByJnlp;
 
+	private RcplModelUtil modelUtil;
+
 	public void addAdditionalImageCodebases(String... additionalCodeBases) {
 		if (additionalCodeBases != null) {
 			getImageCodeBases().addAll(Arrays.asList(additionalCodeBases));
@@ -233,6 +231,7 @@ public class RcplSession implements ISession {
 	public RcplSession() throws SecurityException {
 
 		INSTANCE = this;
+		modelUtil = new RcplModelUtil(this);
 
 		testReachable(getImageCodeBases().get(0));
 
@@ -295,20 +294,6 @@ public class RcplSession implements ISession {
 			reachable = false;
 		}
 		return reachable;
-	}
-
-	public void addDocument(RCPL joffice, Resource eNewDocument) {
-		findMyDocumentsFolder(joffice).getResources().add(eNewDocument);
-		getOpenedResources(joffice).add(eNewDocument);
-	}
-
-	public void addUserToGroup(Group group, User... users) {
-		for (User user : users) {
-			if (!group.getUsers().contains(user)) {
-				group.getUsers().add(user);
-				user.getGroups().add(group);
-			}
-		}
 	}
 
 	/**
@@ -434,22 +419,35 @@ public class RcplSession implements ISession {
 		return new SimpleDateFormat("EEEE MMMM DD, YYYY").format(date);
 	}
 
+	@SuppressWarnings("unused")
+	private EObject findEObject(String table, String idName, String id) {
+		List<EObject> eObjects = findEObjects(table, idName, id);
+		if (eObjects.size() > 1) {
+			// TODO: ERROR
+			return eObjects.get(0);
+		}
+		if (eObjects.size() == 1) {
+			return eObjects.get(0);
+		}
+		return null;
+	}
+
 	public Resource createNewOfficeDocument(RCPL joffice, String templateName) {
-		Resource template = findDocument(joffice, templateName);
+		Resource template = modelUtil.findDocument(joffice, templateName);
 		if (template != null) {
 
-			if (findOpenedDocument(joffice, templateName) == null) {
-				getOpenedResources(joffice).add(template);
+			if (modelUtil.findOpenedDocument(joffice, templateName) == null) {
+				modelUtil.getOpenedResources(joffice).add(template);
 			}
 			commit();
 			return template;
 		}
-		for (Resource doc : findTemplatesFolder(joffice).getResources()) {
+		for (Resource doc : modelUtil.findTemplatesFolder(joffice).getResources()) {
 			if (doc instanceof Resource && templateName.equals(doc.getId())) {
 				Resource eNewDocument = EcoreUtil.copy(doc);
-				eNewDocument.setMainPerspective(findPerspective(perspektiveType));
+				eNewDocument.setMainPerspective(modelUtil.findPerspective(perspektiveType));
 				// eNewDocument.layout();
-				addDocument(joffice, eNewDocument);
+				modelUtil.addDocument(joffice, eNewDocument);
 				commit();
 				return eNewDocument;
 
@@ -539,255 +537,6 @@ public class RcplSession implements ISession {
 		// }
 	}
 
-	public AbstractTool findAbstractTool(RCPL joffice, String id) {
-		try {
-			for (ToolGroup g : joffice.getAllTools().getToolgroupChildren()) {
-				AbstractTool t = findAbstractTool2(g, id);
-				if (t != null) {
-					return t;
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return null;
-	}
-
-	public AbstractTool findAbstractTool2(AbstractTool tool, String id) {
-		if (tool == null) {
-			return null;
-		}
-		if (tool.getId() == null) {
-			println("Tool without ID!:" + tool.getName());
-			return null;
-		}
-		try {
-			if (tool.getId().equals(id)) {
-				return tool;
-			}
-			if (tool instanceof ToolGroup) {
-
-				ToolGroup tg = (ToolGroup) tool;
-				for (ToolGroup g : tg.getToolGroups()) {
-					if (g.getId() != null && g.getId().equals(id)) {
-						return g;
-					}
-					AbstractTool at = findAbstractTool2(g, id);
-					if (at != null) {
-						return at;
-					}
-				}
-				for (Tool t : tg.getTools()) {
-					if (t.getId() != null && t.getId().equals(id)) {
-						return t;
-					}
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return null;
-	}
-
-	public Resource findDocument(RCPL joffice, String name) {
-		for (Folder folder : joffice.getAllResources().getChildren()) {
-			for (Resource doc : folder.getResources()) {
-				if (doc instanceof Resource && doc.getId().equals(name)) {
-					return doc;
-				}
-			}
-			for (Resource doc : folder.getLinkedResources()) {
-				if (doc instanceof Resource && doc.getId().equals(name)) {
-					return doc;
-				}
-			}
-		}
-		return null;
-	}
-
-	@SuppressWarnings("unused")
-	private EObject findEObject(String table, String idName, String id) {
-		List<EObject> eObjects = findEObjects(table, idName, id);
-		if (eObjects.size() > 1) {
-			// TODO: ERROR
-			return eObjects.get(0);
-		}
-		if (eObjects.size() == 1) {
-			return eObjects.get(0);
-		}
-		return null;
-	}
-
-	public List<EObject> findEObjects(String table) {
-		return findEObjects(table, null, null);
-	}
-
-	/**
-	 * @param table
-	 * @param idName
-	 * @param id
-	 * @return
-	 */
-	public List<EObject> findEObjects(String table, String idName, String id) {
-		List<EObject> eObjects = new ArrayList<EObject>();
-		Statement s = null;
-		try {
-			s = createStatement();
-			String sqlString = "SELECT * FROM " + DB_NAME + "." + table;
-			if (id != null && id.length() > 0) {
-				sqlString += " where " + idName + " = '" + id + "'";
-			}
-			s.executeQuery(sqlString);
-			ResultSet rs = s.getResultSet();
-			while (rs.next()) {
-				int idVal = (int) rs.getDouble("cdo_id");
-				EObject eObject = xmiCDO.getEObject("L" + idVal);
-				eObjects.add(eObject);
-			}
-			rs.close();
-			s.close();
-		} catch (SQLException e) {
-		} catch (Exception e) {
-			//
-			if (s == null || connection == null) {
-				// connect();
-				if (connection != null) {
-					return findEObjects(table, idName, id);
-				}
-			}
-		}
-		return eObjects;
-	}
-
-	public Folder findMyDocumentsFolder() {
-		return findMyDocumentsFolder(rcpl);
-	}
-
-	public Folder findMyDocumentsFolder(RCPL joffice) {
-		for (Folder e : joffice.getAllResources().getChildren()) {
-			if (RcplModelFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
-				return e;
-			}
-		}
-		return null;
-	}
-
-	public Resource findOfficeDocumentTemplate(RCPL joffice, String id) {
-		for (Resource doc : findTemplatesFolder(joffice).getResources()) {
-			if (doc instanceof Resource && id.equals(doc.getId())) {
-				return doc;
-			}
-		}
-		return null;
-	}
-
-	private RCPL findOfficeTemplate(String id) {
-		for (EObject o : getContents()) {
-			if (o instanceof RCPL) {
-				RCPL jo = (RCPL) o;
-				if (id.equals(jo.getId())) {
-					return jo;
-				}
-			}
-		}
-		return null;
-	}
-
-	public Resource findOpenedDocument(RCPL joffice, String name) {
-		for (Resource doc : getOpenedResources(joffice)) {
-			if (doc instanceof Resource && doc.getId().equals(name)) {
-				return doc;
-			}
-		}
-		return null;
-	}
-
-	public Resource findOpenedDocument(String name) {
-		return findOpenedDocument(rcpl, name);
-	}
-
-	public Resource findOpenedDocumentByUri(RCPL joffice, String uri) {
-		for (Resource doc : getOpenedResources(joffice)) {
-			if (doc instanceof Resource && doc.getUri().equals(uri)) {
-				return doc;
-			}
-		}
-		return null;
-	}
-
-	public Resource findOpenedDocumentByUri(String uri) {
-		return findOpenedDocumentByUri(rcpl, uri);
-	}
-
-	@Override
-	public Perspective findPerspective(String id) {
-		for (Perspective p : rcpl.getAllPerspectives().getChildren()) {
-			if (id.equalsIgnoreCase(p.getId())) {
-				return p;
-			}
-		}
-		return null;
-	}
-
-	public Folder findTemplatesFolder(RCPL joffice) {
-		for (Folder e : joffice.getAllResources().getChildren()) {
-			if (RcplModelFactory.TEMPLATE_FOLDER.equals(e.getId())) {
-				return e;
-			}
-		}
-		return null;
-	}
-
-	public Tool findTool(RCPL joffice, String id) {
-		AbstractTool t = findAbstractTool(joffice, id);
-		if (t instanceof Tool) {
-			return (Tool) t;
-		}
-		return null;
-	}
-
-	@Override
-	public ToolGroup findToolGroup(RCPL joffice, String id) {
-		AbstractTool t = findAbstractTool(joffice, id);
-		if (t instanceof ToolGroup) {
-			return (ToolGroup) t;
-		}
-		return null;
-	}
-
-	/**
-	 * @param sideToolBar
-	 * @param id
-	 * @return
-	 */
-	@Override
-	public ToolGroup findToolGroup(SideToolBar sideToolBar, String id) {
-		for (ToolGroup g : sideToolBar.getToolGroups()) {
-			String gid = g.getId();
-			if (id.equals(gid)) {
-				return g;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * @param topToolBar
-	 * @param id
-	 * @return
-	 */
-	@Override
-	public ToolGroup findToolGroup(TopToolBar topToolBar, String id) {
-		if (topToolBar != null) {
-			for (ToolGroup g : topToolBar.getToolGroups()) {
-				if (id.equals(g.getId())) {
-					return g;
-				}
-			}
-		}
-		return null;
-	}
-
 	public User findUser(String id) {
 		return getRealm().getUser(id);
 	}
@@ -811,23 +560,6 @@ public class RcplSession implements ISession {
 		return cacheDir;
 	}
 
-	/**
-	*
-	*/
-	public EObject getCdoObject(String key) {
-		String uriFragment = cdoIds.get(key);
-		EObject eo = getResource().getEObject(uriFragment);
-		return eo;
-	}
-
-	/**
-	*
-	*/
-	public EObject getCdoObjectFromId(String id) {
-		EObject eObject = getResource().getEObject("L" + id);
-		return eObject;
-	}
-
 	@Override
 	public List<String> getImageCodeBases() {
 		if (imageCodeBases.isEmpty()) {
@@ -836,7 +568,6 @@ public class RcplSession implements ISession {
 		return imageCodeBases;
 	}
 
-	@Override
 	public EList<EObject> getContents() {
 		if (getResource() == null) {
 			return null;
@@ -944,35 +675,6 @@ public class RcplSession implements ISession {
 	// }
 	// }
 
-	public List<Resource> getOpenedResources() {
-		return getOpenedResources(rcpl);
-	}
-
-	public List<Resource> getOpenedResources(RCPL joffice) {
-		for (Folder f : joffice.getAllResources().getChildren()) {
-			for (Resource e : f.getResources()) {
-				if (RcplModelFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
-					return e.getLinkedResources();
-				}
-			}
-			for (Resource e : f.getLinkedResources()) {
-				if (RcplModelFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
-					return e.getLinkedResources();
-				}
-			}
-		}
-		return null;
-	}
-
-	public Group getOrCreateGroup(String id) {
-		Group g = getRealm().getGroup(id);
-		if (g == null) {
-			g = getRealm().addGroup(id);
-			commit();
-		}
-		return g;
-	}
-
 	/**
 	 * @param id
 	 * @return
@@ -1024,7 +726,7 @@ public class RcplSession implements ISession {
 
 	public Perspective getPresentationPerspective() {
 		if (presentationPerspective == null) {
-			presentationPerspective = findPerspective("PRESENTATION");
+			presentationPerspective = modelUtil.findPerspective("PRESENTATION");
 		}
 		return presentationPerspective;
 	}
@@ -1100,7 +802,7 @@ public class RcplSession implements ISession {
 
 	public Perspective getSettingsPerspective() {
 		if (settingsPerspective == null) {
-			settingsPerspective = findPerspective("SETTINGS");
+			settingsPerspective = modelUtil.findPerspective("SETTINGS");
 		}
 		return settingsPerspective;
 	}
@@ -1119,7 +821,7 @@ public class RcplSession implements ISession {
 
 	public Perspective getSpreadsheetPerspective() {
 		if (spreadsheetPerspective == null) {
-			spreadsheetPerspective = findPerspective("SPREADSHEET");
+			spreadsheetPerspective = modelUtil.findPerspective("SPREADSHEET");
 		}
 		return spreadsheetPerspective;
 	}
@@ -1134,14 +836,14 @@ public class RcplSession implements ISession {
 
 	public Perspective getWebPerspective() {
 		if (webPerspective == null) {
-			webPerspective = findPerspective("WEB");
+			webPerspective = modelUtil.findPerspective("WEB");
 		}
 		return webPerspective;
 	}
 
 	public Perspective getWordPerspective() {
 		if (wordPerspective == null) {
-			wordPerspective = findPerspective("WORD");
+			wordPerspective = modelUtil.findPerspective("WORD");
 		}
 		return wordPerspective;
 	}
@@ -1211,10 +913,12 @@ public class RcplSession implements ISession {
 		return !transaction.isClosed() && transaction.isDirty();
 	}
 
+	@Override
 	public boolean isOnline() {
 		return transaction != null && !transaction.isClosed();
 	}
 
+	@Override
 	public boolean isValid() {
 		if (xmiCDO != null) {
 			return transaction == null || !transaction.isClosed();
@@ -1448,6 +1152,7 @@ public class RcplSession implements ISession {
 		this.logins = logins;
 	}
 
+	@Override
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -1507,6 +1212,7 @@ public class RcplSession implements ISession {
 	 * @param register
 	 * @throws Throwable
 	 */
+	@Override
 	public boolean start() throws Throwable {
 
 		loadJOfficeXMI_Local();
@@ -1642,5 +1348,76 @@ public class RcplSession implements ISession {
 	@Override
 	public String getUserId() {
 		return userId;
+	}
+
+	public List<EObject> findEObjects(String table) {
+		return findEObjects(table, null, null);
+	}
+
+	/**
+	*
+	*/
+	public EObject getCdoObject(String key) {
+		String uriFragment = cdoIds.get(key);
+		EObject eo = getResource().getEObject(uriFragment);
+		return eo;
+	}
+
+	/**
+	*
+	*/
+	public EObject getCdoObjectFromId(String id) {
+		EObject eObject = getResource().getEObject("L" + id);
+		return eObject;
+	}
+
+	public Group getOrCreateGroup(String id) {
+		Group g = getRealm().getGroup(id);
+		if (g == null) {
+			g = getRealm().addGroup(id);
+			commit();
+		}
+		return g;
+	}
+
+	/**
+	 * @param table
+	 * @param idName
+	 * @param id
+	 * @return
+	 */
+	public List<EObject> findEObjects(String table, String idName, String id) {
+		List<EObject> eObjects = new ArrayList<EObject>();
+		Statement s = null;
+		try {
+			s = createStatement();
+			String sqlString = "SELECT * FROM " + DB_NAME + "." + table;
+			if (id != null && id.length() > 0) {
+				sqlString += " where " + idName + " = '" + id + "'";
+			}
+			s.executeQuery(sqlString);
+			ResultSet rs = s.getResultSet();
+			while (rs.next()) {
+				int idVal = (int) rs.getDouble("cdo_id");
+				EObject eObject = xmiCDO.getEObject("L" + idVal);
+				eObjects.add(eObject);
+			}
+			rs.close();
+			s.close();
+		} catch (SQLException e) {
+		} catch (Exception e) {
+			//
+			if (s == null || connection == null) {
+				// connect();
+				if (connection != null) {
+					return findEObjects(table, idName, id);
+				}
+			}
+		}
+		return eObjects;
+	}
+
+	public RcplModelUtil getModelUtil() {
+		return modelUtil;
 	}
 }

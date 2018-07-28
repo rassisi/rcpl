@@ -182,7 +182,7 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	private void processTopBarMainGroups(String type, IRcplAddon useCase) {
 		HBox pane = new HBox();
-		Perspective perspective = RcplSession.getDefault().findPerspective(type);
+		Perspective perspective = RcplSession.getDefault().getModelUtil().findPerspective(type);
 		pane.setId("topBarHBox");
 		pane.setPadding(new Insets(3, 0, 0, 7));
 		Rcpl.UIC.getMainTopStack().getChildren().add(pane);

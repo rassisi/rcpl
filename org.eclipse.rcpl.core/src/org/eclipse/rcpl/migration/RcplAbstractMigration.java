@@ -64,7 +64,7 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	}
 
 	protected Perspective findOrCreatePerspective(String id, String name, String image) {
-		Perspective perspective = RcplSession.getDefault().findPerspective(id);
+		Perspective perspective = RcplSession.getDefault().getModelUtil().findPerspective(id);
 		if (perspective == null) {
 			perspective = RcplFactory.eINSTANCE.createPerspective();
 			perspective.setId(id);
@@ -128,7 +128,7 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	 * @param index
 	 */
 	protected void addGroupToTopBar(String perspectiveType, String id, String name, String image, int index) {
-		Perspective perspective = RcplSession.getDefault().findPerspective(perspectiveType);
+		Perspective perspective = RcplSession.getDefault().getModelUtil().findPerspective(perspectiveType);
 		addGroupToTopBar(perspective.getTopToolBar(), id, name, image, index);
 	}
 
@@ -138,9 +138,9 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	 * @param index
 	 */
 	private void addGroupToTopBar(TopToolBar topToolBar, String id, String name, String image, int index) {
-		ToolGroup g = RcplSession.getDefault().findToolGroup(topToolBar, id);
+		ToolGroup g = RcplSession.getDefault().getModelUtil().findToolGroup(topToolBar, id);
 		if (g == null) {
-			g = RcplSession.getDefault().findToolGroup(RcplSession.getDefault().getRcpl(), id);
+			g = RcplSession.getDefault().getModelUtil().findToolGroup(RcplSession.getDefault().getRcpl(), id);
 		}
 		if (g == null) {
 			g = RcplFactory.eINSTANCE.createToolGroup();
@@ -166,9 +166,9 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	 * @param index
 	 */
 	private void addGroupToSideBar(SideToolBar sideToolBar, String id, String name, String image, int index) {
-		ToolGroup g = RcplSession.getDefault().findToolGroup(sideToolBar, id);
+		ToolGroup g = RcplSession.getDefault().getModelUtil().findToolGroup(sideToolBar, id);
 		if (g == null) {
-			g = RcplSession.getDefault().findToolGroup(RcplSession.getDefault().getRcpl(), id);
+			g = RcplSession.getDefault().getModelUtil().findToolGroup(RcplSession.getDefault().getRcpl(), id);
 		}
 		if (g == null) {
 			g = RcplFactory.eINSTANCE.createToolGroup();
@@ -243,7 +243,7 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	// }
 
 	protected void removeGroupFromTopBar(TopToolBar topToolBar, String id) {
-		ToolGroup g = RcplSession.getDefault().findToolGroup(topToolBar, id);
+		ToolGroup g = RcplSession.getDefault().getModelUtil().findToolGroup(topToolBar, id);
 		if (g != null) {
 			topToolBar.getToolGroups().remove(g);
 		}
@@ -288,9 +288,9 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	 * @param index
 	 */
 	private void addGroupToSideBar(SideToolBar sideToolBar, String id, String image, int index) {
-		ToolGroup g = RcplSession.getDefault().findToolGroup(sideToolBar, id);
+		ToolGroup g = RcplSession.getDefault().getModelUtil().findToolGroup(sideToolBar, id);
 		if (g == null) {
-			g = RcplSession.getDefault().findToolGroup(RcplSession.getDefault().getRcpl(), id);
+			g = RcplSession.getDefault().getModelUtil().findToolGroup(RcplSession.getDefault().getRcpl(), id);
 			if (g != null) {
 				if (index >= 0) {
 					sideToolBar.getToolGroups().add(index, g);
@@ -302,13 +302,13 @@ public abstract class RcplAbstractMigration extends RCPLModel {
 	}
 
 	protected void removeGroupFromSideBar(String perspectiveType, String id) {
-		Perspective wordPerspective = RcplSession.getDefault().findPerspective(perspectiveType);
+		Perspective wordPerspective = RcplSession.getDefault().getModelUtil().findPerspective(perspectiveType);
 		SideToolBar sideToolBar = wordPerspective.getSideToolBar();
 		removeGroupFromSideBar(sideToolBar, id);
 	}
 
 	private void removeGroupFromSideBar(SideToolBar sideToolBar, String id) {
-		ToolGroup g = RcplSession.getDefault().findToolGroup(sideToolBar, id);
+		ToolGroup g = RcplSession.getDefault().getModelUtil().findToolGroup(sideToolBar, id);
 		if (g != null) {
 			sideToolBar.getToolGroups().remove(g);
 		}

@@ -5,11 +5,7 @@ import java.util.List;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
-import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
-import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
-import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 
 /**
  * @author ramin
@@ -28,6 +24,8 @@ public interface ISession {
 	boolean isStandalone();
 
 	RCPL getRcpl();
+
+	EList<EObject> getContents();
 
 	void commit();
 
@@ -51,15 +49,6 @@ public interface ISession {
 
 	void setPassword(String pw);
 
-	// ======= nach irgendeiner ModelUtil
+	RcplModelUtil getModelUtil();
 
-	Perspective findPerspective(String id);
-
-	ToolGroup findToolGroup(TopToolBar topToolBar, String id);
-
-	ToolGroup findToolGroup(SideToolBar sideToolBar, String id);
-
-	ToolGroup findToolGroup(RCPL rcpl, String id);
-
-	EList<EObject> getContents();
 }

@@ -53,7 +53,7 @@ abstract public class RcplAbstractToolBarInitializer {
 	}
 
 	protected ToolGroup createToolGroup(RCPL joffice, Perspective perspective, String id) {
-		ToolGroup group = session.findToolGroup(joffice, id);
+		ToolGroup group = session.getModelUtil().findToolGroup(joffice, id);
 		if (group != null) {
 			perspective.getSideToolBar().getToolGroups().add(group);
 		} else {
