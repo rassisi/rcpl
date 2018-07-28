@@ -249,7 +249,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 							try {
 								File file = documentRegistry.get(id);
 								if (file == null) {
-									file = new DownloadClient().download(RcplSession.getDefault().userId, id);
+									file = new DownloadClient().download(RcplSession.getDefault().getUserId(), id);
 									documentRegistry.put(id, file);
 								}
 								((IOfficeUIC) Rcpl.UIC).openDocument(file);

@@ -284,7 +284,7 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			Map<String, String> map = rcplApplication.getParameters().getNamed();
 			for (String key : map.keySet()) {
 				if ("cdo".equals(key)) {
-					RcplSession.getDefault().CDO_SERVER = map.get(key);
+					RcplSession.getDefault().setCDOServer(map.get(key));
 					// JO.log("CDO Server: " + JOSession.CDO_SERVER);
 				}
 			}

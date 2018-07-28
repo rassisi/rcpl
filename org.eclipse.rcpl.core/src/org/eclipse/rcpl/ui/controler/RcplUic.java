@@ -1573,8 +1573,8 @@ public class RcplUic implements IRcplUic {
 	}
 
 	private void createTitelArea() {
-		titleText = new Text(getApplicationStarter().getVersionString() + " - " + RcplSession.getDefault().userId + " ("
-				+ (RcplSession.getDefault().isOnline() ? "Online" : "Offline") + ")");
+		titleText = new Text(getApplicationStarter().getVersionString() + " - " + RcplSession.getDefault().getUserId()
+				+ " (" + (RcplSession.getDefault().isOnline() ? "Online" : "Offline") + ")");
 		titleText.setId("joffice_title_version");
 		titleText.setOpacity(0.8);
 		if (Rcpl.isMobile()) {

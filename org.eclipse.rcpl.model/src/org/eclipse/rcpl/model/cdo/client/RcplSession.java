@@ -75,6 +75,7 @@ import org.eclipse.net4j.util.om.trace.PrintTraceHandler;
 import org.eclipse.net4j.util.security.IPasswordCredentialsProvider;
 import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
 import org.eclipse.rcpl.libs.util.AUtil;
+import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
@@ -94,7 +95,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory
  * @author Ramin
  * 
  */
-public class RcplSession {
+public class RcplSession implements ISession {
 
 	public static boolean FORCE_NEW_XMI = false;
 	public static final String USER_TEMPLATES = "templates";
@@ -135,7 +136,7 @@ public class RcplSession {
 
 	public static boolean connectionFailed = false;
 
-	private static RcplSession INSTANCE;
+	private static ISession INSTANCE;
 
 	public static String BASE_IMAGE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 
@@ -143,8 +144,6 @@ public class RcplSession {
 
 	private static List<String> imageCodeBases = new ArrayList<String>();
 	protected final String COMM1;
-
-	public String CDO_SERVER;
 
 	public final String DEFAULT_PASSWORD;
 
@@ -196,7 +195,7 @@ public class RcplSession {
 
 	protected String COMM2;
 
-	public String userId;
+	private String userId;
 
 	public String password;
 
@@ -220,7 +219,7 @@ public class RcplSession {
 		}
 	}
 
-	public static RcplSession getDefault() {
+	public static ISession getDefault() {
 		if (INSTANCE == null) {
 			INSTANCE = new RcplSession();
 		}
@@ -237,7 +236,7 @@ public class RcplSession {
 
 		testReachable(getImageCodeBases().get(0));
 
-		this.CDO_SERVER = null; // "85.25.100.163:80";
+		setCDOServer(null); // "85.25.100.163:80";
 		this.DEFAULT_PASSWORD = "joffice";
 		this.COMM1 = "b86645f289952e618043e5f2f70c";
 		this.SOURCE_PORT = 2037;
@@ -330,6 +329,7 @@ public class RcplSession {
 	/**
 	 * 
 	 */
+	@Override
 	public void close(boolean commit, boolean close) {
 
 		if (session != null) {
@@ -379,6 +379,7 @@ public class RcplSession {
 		// }
 	}
 
+	@Override
 	public void commit() {
 		if (session != null) {
 			try {
@@ -718,6 +719,7 @@ public class RcplSession {
 		return findOpenedDocumentByUri(rcpl, uri);
 	}
 
+	@Override
 	public Perspective findPerspective(String id) {
 		for (Perspective p : rcpl.getAllPerspectives().getChildren()) {
 			if (id.equalsIgnoreCase(p.getId())) {
@@ -744,6 +746,7 @@ public class RcplSession {
 		return null;
 	}
 
+	@Override
 	public ToolGroup findToolGroup(RCPL joffice, String id) {
 		AbstractTool t = findAbstractTool(joffice, id);
 		if (t instanceof ToolGroup) {
@@ -757,6 +760,7 @@ public class RcplSession {
 	 * @param id
 	 * @return
 	 */
+	@Override
 	public ToolGroup findToolGroup(SideToolBar sideToolBar, String id) {
 		for (ToolGroup g : sideToolBar.getToolGroups()) {
 			String gid = g.getId();
@@ -772,6 +776,7 @@ public class RcplSession {
 	 * @param id
 	 * @return
 	 */
+	@Override
 	public ToolGroup findToolGroup(TopToolBar topToolBar, String id) {
 		if (topToolBar != null) {
 			for (ToolGroup g : topToolBar.getToolGroups()) {
@@ -823,6 +828,7 @@ public class RcplSession {
 		return eObject;
 	}
 
+	@Override
 	public List<String> getImageCodeBases() {
 		if (imageCodeBases.isEmpty()) {
 			imageCodeBases.add(BASE_IMAGE_URL);
@@ -830,6 +836,7 @@ public class RcplSession {
 		return imageCodeBases;
 	}
 
+	@Override
 	public EList<EObject> getContents() {
 		if (getResource() == null) {
 			return null;
@@ -1025,6 +1032,7 @@ public class RcplSession {
 	/**
 	 * @return
 	 */
+	@Override
 	public RCPL getRcpl() {
 		if (rcpl == null) {
 			try {
@@ -1060,6 +1068,7 @@ public class RcplSession {
 		return realm;
 	}
 
+	@Override
 	public org.eclipse.emf.ecore.resource.Resource getResource() {
 		if (xmiCDO != null) {
 			return xmiCDO;
@@ -1084,6 +1093,7 @@ public class RcplSession {
 		return result;
 	}
 
+	@Override
 	public CDOSession getSession() {
 		return session;
 	}
@@ -1189,6 +1199,7 @@ public class RcplSession {
 		return false;
 	}
 
+	@Override
 	public boolean isDemo() {
 		return "demo".equals(userId);
 	}
@@ -1289,7 +1300,7 @@ public class RcplSession {
 			TCPUtil.prepareContainer(container);
 			CDONet4jUtil.prepareContainer(container);
 			container.activate();
-			IConnector connector = TCPUtil.getConnector(container, CDO_SERVER); // $NON-NLS-1$
+			IConnector connector = TCPUtil.getConnector(container, getCDOServer()); // $NON-NLS-1$
 			configuration = CDONet4jUtil.createNet4jSessionConfiguration();
 
 			configuration.setConnector(connector);
@@ -1598,4 +1609,38 @@ public class RcplSession {
 	//
 	// }
 
+	private String cdoServer;
+
+	@Override
+	public String getCDOServer() {
+		return cdoServer;
+	}
+
+	@Override
+	public void setCDOServer(String host) {
+		this.cdoServer = host;
+	}
+
+	@Override
+	public void addAdditionalImageCodebases(String url) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private boolean standalone;
+
+	@Override
+	public void setStandalone(boolean standalone) {
+		this.standalone = standalone;
+	}
+
+	@Override
+	public boolean isStandalone() {
+		return standalone;
+	}
+
+	@Override
+	public String getUserId() {
+		return userId;
+	}
 }

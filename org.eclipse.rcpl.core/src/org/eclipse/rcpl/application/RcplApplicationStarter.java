@@ -111,7 +111,7 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 	protected abstract void doInitApplicationWithModel();
 
 	private boolean beforeSession(final RcplLogin login) {
-		RcplSession.getDefault().STANDALONE = true;
+		RcplSession.getDefault().setStandalone(true);
 		Rcpl.setFactory(createRcplFactory());
 		Rcpl.setToolFactory(createToolFactory());
 		Rcpl.progressMessage("Collapse All");
