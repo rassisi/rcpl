@@ -49,7 +49,7 @@ public class EContactsModelManagerImpl implements EContactsModelManager {
 
 			try {
 				editingDomain.getResourceSet().getResources()
-						.add(RcplSession.getDefault().getResource());
+						.add(RcplSession.getDefault().getRcplEmfResource());
 			} catch (Exception ex) {
 				// System. out.println();
 			}

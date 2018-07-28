@@ -53,7 +53,7 @@ public class NavigatorTreeManagerImpl implements INavigatorTreeManager {
 			// editingDomain = new AdapterFactoryEditingDomain(adapterFactory,
 			// new BasicCommandStack());
 
-			Resource cdoResource = RcplSession.getDefault().getResource();
+			Resource cdoResource = RcplSession.getDefault().getRcplEmfResource();
 
 			try {
 				editingDomain.getResourceSet().getResources().add(cdoResource);

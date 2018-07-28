@@ -17,6 +17,7 @@ import org.eclipse.rcpl.application.RcplApplicationProvider;
 import org.eclipse.rcpl.model.DefaultSessionFactory;
 import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.client.AbstractSession;
 import org.eclipse.rcpl.model.client.RcplSession;
 
 /**
@@ -25,6 +26,8 @@ import org.eclipse.rcpl.model.client.RcplSession;
  */
 public class DemoRcplApplication extends RcplApplication {
 
+	private final static String APPLICATION_ID = "demorcpl";
+
 	public static void main(String[] args) {
 		RcplApplicationProvider.init(args);
 		launch(args);
@@ -32,6 +35,7 @@ public class DemoRcplApplication extends RcplApplication {
 
 	@Override
 	protected IRcplApplicationProvider createApplicationProvider() {
+		AbstractSession.applicationId = this;
 		return new RcplApplicationProvider(this);
 	}
 
@@ -46,11 +50,6 @@ public class DemoRcplApplication extends RcplApplication {
 	}
 
 	@Override
-	protected String getXmiName() {
-		return "demorcpl";
-	}
-
-	@Override
 	public IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication) {
 		return new DemoRcplApplicationStarter(getApplicationProvider());
 	}
@@ -60,5 +59,15 @@ public class DemoRcplApplication extends RcplApplication {
 		ISessionFacory factory = new DefaultSessionFactory();
 		RcplSession.sessionFactory = factory;
 		return factory;
+	}
+
+	@Override
+	public String getId() {
+		return APPLICATION_ID;
+	}
+
+	@Override
+	protected void doInitApplication() {
+
 	}
 }

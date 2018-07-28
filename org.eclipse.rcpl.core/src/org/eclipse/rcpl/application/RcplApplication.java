@@ -11,6 +11,7 @@
 package org.eclipse.rcpl.application;
 
 import org.eclipse.rcpl.IApplicationStarter;
+import org.eclipse.rcpl.IRcplApplication;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.ISessionFacory;
@@ -44,7 +45,7 @@ import javafx.util.Duration;
  * @author ramin
  *
  */
-public abstract class RcplApplication extends Application {
+public abstract class RcplApplication extends Application implements IRcplApplication {
 
 	private ProgressBar loadProgress;
 
@@ -66,14 +67,13 @@ public abstract class RcplApplication extends Application {
 
 	protected abstract Class<? extends RCPLModel> getRcplModel();
 
-	protected abstract String getXmiName();
-
 	protected abstract ISessionFacory createSessionFactory();
 
 	private IApplicationStarter applicationStarter;
 
 	private IRcplApplicationProvider applicationProvider;
 
+	@Override
 	public IRcplApplicationProvider getApplicationProvider() {
 		if (applicationProvider == null) {
 			applicationProvider = createApplicationProvider();
@@ -83,6 +83,7 @@ public abstract class RcplApplication extends Application {
 
 	public abstract IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication);
 
+	@Override
 	public IApplicationStarter getApplicationStarter() {
 		if (applicationStarter == null) {
 			applicationStarter = createApplicationStarter(getApplicationProvider());
@@ -155,10 +156,12 @@ public abstract class RcplApplication extends Application {
 
 		Rcpl.rcplApplicationProvider = createApplicationProvider();
 		Rcpl.setMobile(isMobile());
-		RCPLModel.XMIName = getXmiName();
 		RCPLModel.modelClass = getRcplModel();
+		doInitApplication();
 
 	}
+
+	abstract protected void doInitApplication();
 
 	/**
 	 * Starting the splash screen

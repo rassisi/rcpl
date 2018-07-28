@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 
 /**
@@ -14,6 +15,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 public interface ISession {
 
 	CDOSession getSession();
+
+	EObject getApplicationRootObject();
 
 	List<String> getImageCodeBases();
 
@@ -35,7 +38,9 @@ public interface ISession {
 
 	void setCDOServer(String host);
 
-	org.eclipse.emf.ecore.resource.Resource getResource();
+	Resource getRcplEmfResource();
+
+	Resource getApplicationEmfResource();
 
 	String getUserId();
 

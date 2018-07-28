@@ -52,6 +52,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -72,21 +73,23 @@ import org.eclipse.net4j.util.security.IPasswordCredentialsProvider;
 import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
 import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.model.DefaultSessionFactory;
+import org.eclipse.rcpl.model.IIdProvider;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.RcplModelUtil;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
+//import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 
 /**
  * @author ramin
  *
  */
-public abstract class AbstractSession implements ISession {
+public abstract class AbstractSession<T extends EObject> implements ISession {
+
+	public static IIdProvider applicationId;
 
 	public static String BASE_IMAGE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 	public static boolean connectionFailed = false;
@@ -204,8 +207,13 @@ public abstract class AbstractSession implements ISession {
 
 	private String userId;
 
-	private org.eclipse.emf.ecore.resource.Resource xmiCDO;
-	private org.eclipse.emf.ecore.resource.Resource xmiLocal;
+	private Resource xmiCDO;
+
+	private Resource xmiLocal;
+
+	private Resource xmiCDOApplication;
+
+	private Resource xmiLocalApplication;
 
 	/**
 	 * @param port
@@ -488,7 +496,7 @@ public abstract class AbstractSession implements ISession {
 	*/
 	public EObject getCdoObject(String key) {
 		String uriFragment = cdoIds.get(key);
-		EObject eo = getResource().getEObject(uriFragment);
+		EObject eo = getRcplEmfResource().getEObject(uriFragment);
 		return eo;
 	}
 
@@ -496,7 +504,7 @@ public abstract class AbstractSession implements ISession {
 	*
 	*/
 	public EObject getCdoObjectFromId(String id) {
-		EObject eObject = getResource().getEObject("L" + id);
+		EObject eObject = getRcplEmfResource().getEObject("L" + id);
 		return eObject;
 	}
 
@@ -519,10 +527,10 @@ public abstract class AbstractSession implements ISession {
 
 	@Override
 	public EList<EObject> getContents() {
-		if (getResource() == null) {
+		if (getRcplEmfResource() == null) {
 			return null;
 		}
-		return getResource().getContents();
+		return getRcplEmfResource().getContents();
 	}
 
 	// public double getDouble(JOKey key) {
@@ -602,17 +610,6 @@ public abstract class AbstractSession implements ISession {
 		return modelUtil;
 	}
 
-	public List<Resource> getMyResources(RCPL joffice) {
-		for (Folder e : joffice.getAllResources().getChildren()) {
-			if (e instanceof Folder) {
-				if (IModelFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
-					return e.getResources();
-				}
-			}
-		}
-		return null;
-	}
-
 	public Group getOrCreateGroup(String id) {
 		Group g = getRealm().getGroup(id);
 		if (g == null) {
@@ -689,18 +686,25 @@ public abstract class AbstractSession implements ISession {
 	@Override
 	public RCPL getRcpl() {
 		if (rcpl == null) {
-			try {
-				for (EObject eo : getResource().getContents()) {
-					if (eo instanceof RCPL) {
-						rcpl = (RCPL) eo;
-						break;
-					}
-				}
-			} catch (Exception ex) {
-
-			}
+			rcpl = (RCPL) getRcplEmfResource().getContents().get(0);
+//			try {
+//				for (EObject eo : getRcplEmfResource().getContents()) {
+//					if (eo instanceof RCPL) {
+//						rcpl = (RCPL) eo;
+//						break;
+//					}
+//				}
+//			} catch (Exception ex) {
+//
+//			}
 		}
 		return rcpl;
+	}
+
+	@Override
+	public T getApplicationRootObject() {
+		T result = (T) getApplicationEmfResource().getContents().get(0);
+		return result;
 	}
 
 	protected Realm getRealm() {
@@ -723,11 +727,19 @@ public abstract class AbstractSession implements ISession {
 	}
 
 	@Override
-	public org.eclipse.emf.ecore.resource.Resource getResource() {
+	public Resource getRcplEmfResource() {
 		if (xmiCDO != null) {
 			return xmiCDO;
 		}
 		return xmiLocal;
+	}
+
+	@Override
+	public Resource getApplicationEmfResource() {
+		if (xmiCDOApplication != null) {
+			return xmiCDOApplication;
+		}
+		return xmiLocalApplication;
 	}
 
 	public List<String> getRoleIds() {
@@ -958,7 +970,7 @@ public abstract class AbstractSession implements ISession {
 	*
 	*/
 	public void putCdoId(String key, EObject eObject) {
-		String uriFragment = getResource().getURIFragment(eObject);
+		String uriFragment = getRcplEmfResource().getURIFragment(eObject);
 		cdoIds.put(key, uriFragment);
 	}
 
@@ -1042,7 +1054,7 @@ public abstract class AbstractSession implements ISession {
 					}
 					File localXMIFile = new File(
 							"C:/Users/ramin/Documents/wss/rcpl/org.eclipse.rcpl.model_2_0_0/src/org/eclipse/rcpl/model/"
-									+ RCPLModel.XMIName + RCPLModel.XMI_EXTENSION);
+									+ AbstractSession.applicationId.getId() + RCPLModel.XMI_EXTENSION);
 					// System.getProperty("user.home"), "joffice.xmi");
 					URI xmiURI = URI.createFileURI(localXMIFile.getAbsolutePath());
 					xmiLocal.setURI(xmiURI);
@@ -1147,8 +1159,8 @@ public abstract class AbstractSession implements ISession {
 				// user has no right
 			}
 
-			xmiCDO = transaction
-					.getOrCreateResource("/home/" + userId + "/" + RCPLModel.XMIName + RCPLModel.XMI_EXTENSION); //$NON-NLS-1$
+			xmiCDO = transaction.getOrCreateResource(
+					"/home/" + userId + "/" + AbstractSession.applicationId.getId() + RCPLModel.XMI_EXTENSION); //$NON-NLS-1$
 
 		} catch (CDOException ex) {
 			return false;
@@ -1251,7 +1263,7 @@ public abstract class AbstractSession implements ISession {
 			rs = domain.getResourceSet();
 
 			File localXMIFile = new File(RCPLModel.mobileProvider.getApplicationDir(),
-					RCPLModel.XMIName + RCPLModel.XMI_EXTENSION);
+					AbstractSession.applicationId.getId() + RCPLModel.XMI_EXTENSION);
 			if (FORCE_NEW_XMI) {
 				localXMIFile.delete();
 			}
@@ -1260,9 +1272,8 @@ public abstract class AbstractSession implements ISession {
 
 				try {
 
-					AUtil.copyInputStream(
-							RCPLModel.modelClass.getResourceAsStream(RCPLModel.XMIName + RCPLModel.XMI_EXTENSION),
-							localXMIFile);
+					AUtil.copyInputStream(RCPLModel.modelClass.getResourceAsStream(
+							AbstractSession.applicationId.getId() + RCPLModel.XMI_EXTENSION), localXMIFile);
 				} catch (Throwable ex) {
 					RCPLModel.logError(ex);
 				}

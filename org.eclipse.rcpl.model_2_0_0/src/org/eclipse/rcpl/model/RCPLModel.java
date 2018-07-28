@@ -27,11 +27,7 @@ public class RCPLModel {
 
 	public static IConfig configuration;
 
-	public static final String DEFAULT_XMI_NAME = "rcpl";
-
 	public static final String XMI_EXTENSION = ".xmi";
-
-	public static String XMIName = DEFAULT_XMI_NAME;
 
 	public static Class<? extends RCPLModel> modelClass = RCPLModel.class;
 

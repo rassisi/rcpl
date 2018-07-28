@@ -29,6 +29,17 @@ public class RcplModelUtil {
 		getOpenedResources(joffice).add(eNewDocument);
 	}
 
+	public List<Resource> getMyResources(RCPL joffice) {
+		for (Folder e : joffice.getAllResources().getChildren()) {
+			if (e instanceof Folder) {
+				if (IModelFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
+					return e.getResources();
+				}
+			}
+		}
+		return null;
+	}
+
 	public void addUserToGroup(Group group, User... users) {
 		for (User user : users) {
 			if (!group.getUsers().contains(user)) {
