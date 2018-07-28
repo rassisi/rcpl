@@ -98,11 +98,11 @@ public abstract class RcplApplicationStarter implements IApplicationStarter {
 	protected abstract void registerServices();
 
 	private void initApplicationWithModel() {
+		doInitApplicationWithModel();
 		for (String url : RcplSession.getDefault().getRcpl().getImageUrls()) {
-			RcplSession.addAdditionalImageCodebases(url);
+			RcplSession.getDefault().addAdditionalImageCodebases(url);
 
 		}
-		doInitApplicationWithModel();
 		Rcpl.progressMessage("Bind Plugins to Model");
 		applicationProvider.bindAddonsToModel();
 

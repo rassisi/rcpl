@@ -13,7 +13,6 @@ import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -45,17 +44,17 @@ public class RcplService extends RcplAbstractService implements IService {
 				if (tool != null) {
 					if (id != null) {
 
-						if (id.startsWith(RcplSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED)) {
-							String persp = id.substring(
-									RcplSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED.length(),
-									id.length());
-							IService serv = getServiceBySimpleName("New" + persp.toUpperCase() + "DocumentService");
-							if (serv != null) {
-								serv.doExecute(command);
-								return true;
-							}
-							return true;
-						}
+//						if (id.startsWith(RcplSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED)) {
+//							String persp = id.substring(
+//									RcplSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED.length(),
+//									id.length());
+//							IService serv = getServiceBySimpleName("New" + persp.toUpperCase() + "DocumentService");
+//							if (serv != null) {
+//								serv.doExecute(command);
+//								return true;
+//							}
+//							return true;
+//						}
 
 						if (id.startsWith("insert_shape") || id.startsWith("shape")) {
 							IService serv = getService(EnServiceId.INSERT_SERVICE);

@@ -138,23 +138,16 @@ public class RcplSession {
 
 	private static RcplSession INSTANCE;
 
-	public final static String SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED = "SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED";
-
-	public static void println(String msg) {
-		System.out.println(msg);
-	}
-
 	public static String BASE_IMAGE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 
 	public static String HOME_URL = "http://rcpl.org";
 
 	private static List<String> imageCodeBases = new ArrayList<String>();
+	protected final String COMM1;
 
 	public String CDO_SERVER;
 
 	public final String DEFAULT_PASSWORD;
-
-	protected final String COMM1;
 
 	public final int SOURCE_PORT;
 
@@ -220,7 +213,9 @@ public class RcplSession {
 
 	private boolean reachable;
 
-	public static void addAdditionalImageCodebases(String... additionalCodeBases) {
+	private boolean launchedByJnlp;
+
+	public void addAdditionalImageCodebases(String... additionalCodeBases) {
 		if (additionalCodeBases != null) {
 			getImageCodeBases().addAll(Arrays.asList(additionalCodeBases));
 		}
@@ -261,28 +256,31 @@ public class RcplSession {
 		this.factory = new RcplModelFactoryImpl(this);
 		this.cdoIds = new Hashtable<String, String>();
 
-		// BasicService basicService = null;
-		// try {
-		// try {
-		// basicService = (BasicService)
-		// ServiceManager.lookup("javax.jnlp.BasicService");
-		// LAUNCHED_BY_JNLP = true;
-		// println("Launched By JNLP");
-		// } catch (UnavailableServiceException e) {
-		// LAUNCHED_BY_JNLP = false;
-		// println("Launched Standalone");
-		// }
-		//
-		// if (basicService != null) {
-		// codeBase = basicService.getCodeBase().toString();
-		// println("codeBase: " + codeBase);
-		// } else {
-		// println("codeBase not determined");
-		// }
-		// } catch (Exception ex) {
-		// // ignore
-		// }
+		prepareJnlp();
 
+	}
+
+	protected void prepareJnlp() {
+//		BasicService basicService = null;
+//		try {
+//			try {
+//				basicService = (BasicService) ServiceManager.lookup("javax.jnlp.BasicService");
+//				LAUNCHED_BY_JNLP = true;
+//				println("Launched By JNLP");
+//			} catch (UnavailableServiceException e) {
+//				LAUNCHED_BY_JNLP = false;
+//				println("Launched Standalone");
+//			}
+//
+//			if (basicService != null) {
+//				String codeBase = basicService.getCodeBase().toString();
+//				println("codeBase: " + codeBase);
+//			} else {
+//				println("codeBase not determined");
+//			}
+//		} catch (Exception ex) {
+//			// ignore
+//		}
 	}
 
 	private boolean testReachable(String urlString) {
@@ -800,17 +798,6 @@ public class RcplSession {
 		String result = numberFormat.format(amount);
 		return result;
 	}
-	//
-	// public static void main(String[] args) {
-	// // try {
-	// // RapCDOSession session = new RapCDOSession();
-	// // session.initCdoSession();
-	// // session.createLogin("ramin_" + System.currentTimeMillis(), "123");
-	// // session.close(true);
-	// // } catch (CommitException e) {
-	// // }
-	//
-	// }
 
 	public String getCacheDir() {
 		if (cacheDir == null) {
@@ -837,7 +824,7 @@ public class RcplSession {
 		return eObject;
 	}
 
-	public static List<String> getImageCodeBases() {
+	public List<String> getImageCodeBases() {
 		if (imageCodeBases.isEmpty()) {
 			imageCodeBases.add(BASE_IMAGE_URL);
 		}
@@ -1615,4 +1602,25 @@ public class RcplSession {
 		fos.close();
 		return result;
 	}
+
+	public boolean isLaunchedByJnlp() {
+		return launchedByJnlp;
+	}
+
+	public static void println(String msg) {
+		System.out.println(msg);
+	}
+
+	//
+	// public static void main(String[] args) {
+	// // try {
+	// // RapCDOSession session = new RapCDOSession();
+	// // session.initCdoSession();
+	// // session.createLogin("ramin_" + System.currentTimeMillis(), "123");
+	// // session.close(true);
+	// // } catch (CommitException e) {
+	// // }
+	//
+	// }
+
 }

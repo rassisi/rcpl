@@ -27,7 +27,7 @@ public class ContactUsClient {
 
 	public static String getURL() {
 		try {
-			URL url = new URL(RcplSession.getImageCodeBases().get(0));
+			URL url = new URL(RcplSession.getDefault().getImageCodeBases().get(0));
 			if ("localhost".equals(url.getHost())) {
 				String res = url.getHost() + ":8080";
 				return res;

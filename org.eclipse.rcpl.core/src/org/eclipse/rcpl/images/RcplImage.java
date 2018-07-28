@@ -256,7 +256,7 @@ public class RcplImage implements IImage {
 				}
 				return false;
 			}
-			for (String codeBase : RcplSession.getImageCodeBases()) {
+			for (String codeBase : RcplSession.getDefault().getImageCodeBases()) {
 
 				if ("Information_icon".equals(id)) {
 					System.out.println();
@@ -292,7 +292,7 @@ public class RcplImage implements IImage {
 				}
 				return false;
 			}
-			for (String codeBase : RcplSession.getImageCodeBases()) {
+			for (String codeBase : RcplSession.getDefault().getImageCodeBases()) {
 				if (codeBase != null) {
 					URL url;
 					if (RcplSession.BASE_IMAGE_URL.equals(codeBase)) {

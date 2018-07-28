@@ -81,21 +81,6 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 			RCPLModel.mobileProvider = new DefaultMobileProvider();
 		}
 
-		for (String arg : args) {
-
-			if (arg.startsWith("-cdo")) {
-				String[] splits = arg.split("=");
-				if (splits.length == 2) {
-					RcplSession.getDefault().CDO_SERVER = splits[1].trim();
-				}
-			} else if (arg.startsWith("-codebase")) {
-				String[] splits = arg.split("=");
-				if (splits.length == 2) {
-					RcplSession.addAdditionalImageCodebases(splits[1].trim());
-				}
-			}
-		}
-
 	}
 
 	private boolean started = false;
