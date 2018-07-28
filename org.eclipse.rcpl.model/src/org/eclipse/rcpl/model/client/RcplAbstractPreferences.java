@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.model.cdo.client;
+package org.eclipse.rcpl.model.client;
 
 import java.io.File;
 import java.util.HashMap;

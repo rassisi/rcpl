@@ -5,7 +5,8 @@ import java.util.List;
 import org.eclipse.emf.cdo.security.Group;
 import org.eclipse.emf.cdo.security.User;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.rcpl.model.cdo.client.RcplModelFactory;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.rcpl.model.client.IModelFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -43,7 +44,7 @@ public class RcplModelUtil {
 
 	public Folder findMyDocumentsFolder(RCPL joffice) {
 		for (Folder e : joffice.getAllResources().getChildren()) {
-			if (RcplModelFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
+			if (IModelFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
 				return e;
 			}
 		}
@@ -108,7 +109,7 @@ public class RcplModelUtil {
 
 	public Folder findTemplatesFolder(RCPL joffice) {
 		for (Folder e : joffice.getAllResources().getChildren()) {
-			if (RcplModelFactory.TEMPLATE_FOLDER.equals(e.getId())) {
+			if (IModelFactory.TEMPLATE_FOLDER.equals(e.getId())) {
 				return e;
 			}
 		}
@@ -235,12 +236,12 @@ public class RcplModelUtil {
 	public List<Resource> getOpenedResources(RCPL joffice) {
 		for (Folder f : joffice.getAllResources().getChildren()) {
 			for (Resource e : f.getResources()) {
-				if (RcplModelFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
+				if (IModelFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
 					return e.getLinkedResources();
 				}
 			}
 			for (Resource e : f.getLinkedResources()) {
-				if (RcplModelFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
+				if (IModelFactory.RECENTLY_OPENED_DOCUMENTS_FOLDER.equals(e.getId())) {
 					return e.getLinkedResources();
 				}
 			}
@@ -248,4 +249,65 @@ public class RcplModelUtil {
 		return null;
 	}
 
+	public Perspective getSettingsPerspective() {
+		if (settingsPerspective == null) {
+			settingsPerspective = findPerspective("SETTINGS");
+		}
+		return settingsPerspective;
+	}
+
+	public Perspective getSpreadsheetPerspective() {
+		if (spreadsheetPerspective == null) {
+			spreadsheetPerspective = findPerspective("SPREADSHEET");
+		}
+		return spreadsheetPerspective;
+	}
+
+	private Perspective webPerspective;
+	private Perspective spreadsheetPerspective;
+	private Perspective wordPerspective;
+	private Perspective presentationPerspective;
+	private Perspective settingsPerspective;
+
+	public Perspective getWebPerspective() {
+		if (webPerspective == null) {
+			webPerspective = findPerspective("WEB");
+		}
+		return webPerspective;
+	}
+
+	public Perspective getWordPerspective() {
+		if (wordPerspective == null) {
+			wordPerspective = findPerspective("WORD");
+		}
+		return wordPerspective;
+	}
+
+	public Perspective getPresentationPerspective() {
+		if (presentationPerspective == null) {
+			presentationPerspective = findPerspective("PRESENTATION");
+		}
+		return presentationPerspective;
+	}
+
+	public Resource createNewDocument(RCPL rcpl, String templateName) {
+		Resource template = findDocument(rcpl, templateName);
+		if (template != null) {
+			if (findOpenedDocument(rcpl, templateName) == null) {
+				getOpenedResources(rcpl).add(template);
+			}
+			return template;
+		}
+		for (Resource doc : findTemplatesFolder(rcpl).getResources()) {
+			if (doc instanceof Resource && templateName.equals(doc.getId())) {
+				Resource eNewDocument = EcoreUtil.copy(doc);
+//				eNewDocument.setMainPerspective(findPerspective(perspektiveType));
+				// eNewDocument.layout();
+				addDocument(rcpl, eNewDocument);
+
+				return eNewDocument;
+			}
+		}
+		return null;
+	}
 }

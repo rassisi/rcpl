@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.model.cdo.client;
+package org.eclipse.rcpl.model.client;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,12 +13,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Currency;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -61,8 +59,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.connector.IConnector;
 import org.eclipse.net4j.tcp.TCPUtil;
@@ -80,20 +76,17 @@ import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.RcplModelUtil;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
-import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory;
 
 /**
- * @author Ramin
- * 
+ * @author ramin
+ *
  */
-public class RcplSession implements ISession {
+public abstract class AbstractSession implements ISession {
 
 	public static String BASE_IMAGE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 	public static boolean connectionFailed = false;
@@ -132,6 +125,8 @@ public class RcplSession implements ISession {
 
 	public static final String ROLE_TEMPLATES_WRITER = "ROLE_TEMPLATES_WRITER";
 
+	public static ISessionFacory sessionFactory = new DefaultSessionFactory();
+
 	public static final String USER_ADMINISTRATOR = "Administrator";
 
 	public static final String USER_COMPANY_1 = "user1@company.com";
@@ -142,17 +137,11 @@ public class RcplSession implements ISession {
 
 	public static final String USER_TEMPLATES = "templates";
 
-	public static ISessionFacory sessionFactory = new DefaultSessionFactory();
-
 	public static ISession getDefault() {
 		if (INSTANCE == null) {
 			INSTANCE = sessionFactory.createSession();
 		}
 		return INSTANCE;
-	}
-
-	public static void println(String msg) {
-		System.out.println(msg);
 	}
 
 	private String cacheDir;
@@ -183,7 +172,7 @@ public class RcplSession implements ISession {
 
 	public boolean ENV_DEV;
 
-	private RcplModelFactory factory;
+	private IModelFactory factory;
 
 	private boolean launchedByJnlp;
 
@@ -195,8 +184,6 @@ public class RcplSession implements ISession {
 
 	private String perspektiveType;
 
-	private Perspective presentationPerspective;
-
 	private RCPL rcpl;
 
 	private boolean reachable;
@@ -205,13 +192,9 @@ public class RcplSession implements ISession {
 
 	protected final String REPOSITORY;
 
-	protected CDOSession session;
-
-	private Perspective settingsPerspective;
+	protected CDOSession cdoSession;
 
 	public final int SOURCE_PORT;
-
-	private Perspective spreadsheetPerspective;
 
 	private boolean standalone;
 
@@ -221,19 +204,14 @@ public class RcplSession implements ISession {
 
 	private String userId;
 
-	private Perspective webPerspective;
-
-	private Perspective wordPerspective;
-
 	private org.eclipse.emf.ecore.resource.Resource xmiCDO;
-
 	private org.eclipse.emf.ecore.resource.Resource xmiLocal;
 
 	/**
 	 * @param port
 	 * @param ePackage
 	 */
-	public RcplSession() throws SecurityException {
+	public AbstractSession() throws SecurityException {
 
 		INSTANCE = this;
 		modelUtil = new RcplModelUtil(this);
@@ -262,16 +240,11 @@ public class RcplSession implements ISession {
 
 	}
 
+	@Override
 	public void addAdditionalImageCodebases(String... additionalCodeBases) {
 		if (additionalCodeBases != null) {
 			getImageCodeBases().addAll(Arrays.asList(additionalCodeBases));
 		}
-	}
-
-	@Override
-	public void addAdditionalImageCodebases(String url) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -295,7 +268,7 @@ public class RcplSession implements ISession {
 	@Override
 	public void close(boolean commit, boolean close) {
 
-		if (session != null) {
+		if (cdoSession != null) {
 
 			if (hasTemplatesWriterRole()) {
 				saveXMI_Local();
@@ -319,8 +292,8 @@ public class RcplSession implements ISession {
 					//
 				}
 				try {
-					session.close();
-					session = null;
+					cdoSession.close();
+					cdoSession = null;
 				} catch (Exception ex) {
 					//
 				}
@@ -332,42 +305,9 @@ public class RcplSession implements ISession {
 		xmiLocal = null;
 	}
 
-	// /**
-	// * @param message
-	// */
-	// public void communicate(String message) {
-	// User u = null;
-	// for (EObject eo : xmiCommunication.getContents()) {
-	// if (eo instanceof User) {
-	// if (((User) eo).getId().equals(userId)) {
-	// u = (User) eo;
-	// break;
-	// }
-	// }
-	// }
-	//
-	// if (u == null) {
-	// u = SecurityFactory.eINSTANCE.createUser();
-	// u.setId(userId);
-	// u.setEmail(message);
-	// xmiCommunication.getContents().add(u);
-	// commit();
-	// }
-	// }
-
-	public void closeConnection() {
-		// try {
-		// connection.close();
-		// connection = null;
-		// } catch (SQLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-	}
-
 	@Override
 	public void commit() {
-		if (session != null) {
+		if (cdoSession != null) {
 			try {
 				// IProgressMonitor m = CDOObjectImpl.progressTask;
 				transaction.commit(null); // m);
@@ -387,7 +327,7 @@ public class RcplSession implements ISession {
 				}
 			}
 		}
-		sleep(10);
+		AUtil.sleep(10);
 	}
 
 	/**
@@ -395,30 +335,6 @@ public class RcplSession implements ISession {
 	*/
 	public String createDisplayDate(Date date) {
 		return new SimpleDateFormat("EEEE MMMM DD, YYYY").format(date);
-	}
-
-	public Resource createNewOfficeDocument(RCPL joffice, String templateName) {
-		Resource template = modelUtil.findDocument(joffice, templateName);
-		if (template != null) {
-
-			if (modelUtil.findOpenedDocument(joffice, templateName) == null) {
-				modelUtil.getOpenedResources(joffice).add(template);
-			}
-			commit();
-			return template;
-		}
-		for (Resource doc : modelUtil.findTemplatesFolder(joffice).getResources()) {
-			if (doc instanceof Resource && templateName.equals(doc.getId())) {
-				Resource eNewDocument = EcoreUtil.copy(doc);
-				eNewDocument.setMainPerspective(modelUtil.findPerspective(perspektiveType));
-				// eNewDocument.layout();
-				modelUtil.addDocument(joffice, eNewDocument);
-				commit();
-				return eNewDocument;
-
-			}
-		}
-		return null;
 	}
 
 	/**
@@ -458,12 +374,11 @@ public class RcplSession implements ISession {
 	}
 
 	private CDOResource createResource(CDOTransaction cdoTransaction) throws CommitException {
-		// CDOResource cdoResource = transaction.createResource("/res1");
-		// cdoTransaction.commit();
-		// factory.initRepository();
-		// cdoTransaction.commit();
-		// return cdoResource;
-		return null;
+		CDOResource cdoResource = transaction.createResource("/res1");
+		cdoTransaction.commit();
+//		factory.initRepository();
+		cdoTransaction.commit();
+		return cdoResource;
 	}
 
 	private Statement createStatement() {
@@ -560,17 +475,6 @@ public class RcplSession implements ISession {
 		return getRealm().getUser(id);
 	}
 
-	/**
-	*
-	*/
-	public String formatAmount(double amount, String currency) {
-		NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
-		Currency curr = Currency.getInstance(currency);
-		numberFormat.setCurrency(curr);
-		String result = numberFormat.format(amount);
-		return result;
-	}
-
 	public String getCacheDir() {
 		if (cacheDir == null) {
 			cacheDir = System.getProperty("user.home") + "/.rcpl/cache";
@@ -587,15 +491,6 @@ public class RcplSession implements ISession {
 		EObject eo = getResource().getEObject(uriFragment);
 		return eo;
 	}
-
-	// private EOfficeVersion findVersion() {
-	// for (EObject o : getContents()) {
-	// if (o instanceof EOfficeVersion) {
-	// return (EOfficeVersion) o;
-	// }
-	// }
-	// return null;
-	// }
 
 	/**
 	*
@@ -668,7 +563,7 @@ public class RcplSession implements ISession {
 		return directory;
 	}
 
-	public RcplModelFactory getFactory() {
+	public IModelFactory getFactory() {
 		return factory;
 	}
 
@@ -710,16 +605,12 @@ public class RcplSession implements ISession {
 	public List<Resource> getMyResources(RCPL joffice) {
 		for (Folder e : joffice.getAllResources().getChildren()) {
 			if (e instanceof Folder) {
-				if (RcplModelFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
+				if (IModelFactory.MY_DOCUMENTS_FOLDER.equals(e.getId())) {
 					return e.getResources();
 				}
 			}
 		}
 		return null;
-	}
-
-	public EList<Addon> getOfficeParts(RCPL joffice) {
-		return joffice.getAllAddons().getChildren();
 	}
 
 	public Group getOrCreateGroup(String id) {
@@ -792,13 +683,6 @@ public class RcplSession implements ISession {
 		return perspektiveType;
 	}
 
-	public Perspective getPresentationPerspective() {
-		if (presentationPerspective == null) {
-			presentationPerspective = modelUtil.findPerspective("PRESENTATION");
-		}
-		return presentationPerspective;
-	}
-
 	/**
 	 * @return
 	 */
@@ -865,21 +749,7 @@ public class RcplSession implements ISession {
 
 	@Override
 	public CDOSession getSession() {
-		return session;
-	}
-
-	public Perspective getSettingsPerspective() {
-		if (settingsPerspective == null) {
-			settingsPerspective = modelUtil.findPerspective("SETTINGS");
-		}
-		return settingsPerspective;
-	}
-
-	public Perspective getSpreadsheetPerspective() {
-		if (spreadsheetPerspective == null) {
-			spreadsheetPerspective = modelUtil.findPerspective("SPREADSHEET");
-		}
-		return spreadsheetPerspective;
+		return cdoSession;
 	}
 
 	public CDOTransaction getTransaction() {
@@ -893,20 +763,6 @@ public class RcplSession implements ISession {
 	@Override
 	public String getUserId() {
 		return userId;
-	}
-
-	public Perspective getWebPerspective() {
-		if (webPerspective == null) {
-			webPerspective = modelUtil.findPerspective("WEB");
-		}
-		return webPerspective;
-	}
-
-	public Perspective getWordPerspective() {
-		if (wordPerspective == null) {
-			wordPerspective = modelUtil.findPerspective("WORD");
-		}
-		return wordPerspective;
 	}
 
 	public boolean hasRole(String roleId) {
@@ -1043,61 +899,6 @@ public class RcplSession implements ISession {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void loadJOfficeXMI_Local() {
-
-		try {
-			ResourceSet rs = new ResourceSetImpl();
-			ComposedAdapterFactory adapterFactory;
-			adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-			adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-			adapterFactory.addAdapterFactory(new RcplItemProviderAdapterFactory());
-
-			adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-			AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(adapterFactory,
-					new BasicCommandStack());
-
-			rs = domain.getResourceSet();
-
-			File localXMIFile = new File(RCPLModel.mobileProvider.getApplicationDir(),
-					RCPLModel.XMIName + RCPLModel.XMI_EXTENSION);
-			if (FORCE_NEW_XMI) {
-				localXMIFile.delete();
-			}
-
-			if (FORCE_NEW_XMI || !localXMIFile.exists()) {
-
-				try {
-
-					AUtil.copyInputStream(
-							RCPLModel.modelClass.getResourceAsStream(RCPLModel.XMIName + RCPLModel.XMI_EXTENSION),
-							localXMIFile);
-				} catch (Throwable ex) {
-					RCPLModel.logError(ex);
-				}
-			}
-
-			if (localXMIFile.exists()) {
-				RCPLModel.log(this, "XMI File: " + localXMIFile.getAbsolutePath() + " exists");
-			}
-
-			URI xmiURI = URI.createFileURI(localXMIFile.getAbsolutePath());
-			rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
-			xmiLocal = rs.createResource(xmiURI);
-			xmiLocal.setURI(xmiURI);
-			// for performance reason, don't ask
-			((ResourceImpl) xmiLocal).setIntrinsicIDToEObjectMap(new HashMap());
-			// xmiLocal = new XMIResourceImpl();
-
-			xmiLocal.load(new FileInputStream(localXMIFile), new HashMap<Object, Object>());
-		} catch (Throwable e) {
-			String msg = e.getMessage();
-			if (msg.indexOf("Feature 'version' not found") != -1) {
-				return;
-			}
-			RCPLModel.logError(e);
-		}
-
-	}
 
 	/**
 	 * @param user
@@ -1122,9 +923,9 @@ public class RcplSession implements ISession {
 			configuration.setRepositoryName(REPOSITORY); // $NON-NLS-1$
 			IPasswordCredentialsProvider credentialsProvider = new PasswordCredentialsProvider(id, password);
 			configuration.setCredentialsProvider(credentialsProvider);
-			session = configuration.openNet4jSession();
+			cdoSession = configuration.openNet4jSession();
 			registerPackages();
-			transaction = session.openTransaction();
+			transaction = cdoSession.openTransaction();
 		} catch (LifecycleException ex) {
 			// Server is not running
 		}
@@ -1170,13 +971,13 @@ public class RcplSession implements ISession {
 		// SdPackage.eINSTANCE.eClass();
 		SecurityPackage.eINSTANCE.eClass();
 
-		if (session != null) {
-			session.getPackageRegistry().putEPackage(RcplPackage.eINSTANCE);
+		if (cdoSession != null) {
+			cdoSession.getPackageRegistry().putEPackage(RcplPackage.eINSTANCE);
 			// session.getPackageRegistry().putEPackage(SdPackage.eINSTANCE);
-			session.getPackageRegistry().putEPackage(SecurityPackage.eINSTANCE);
-			session.getPackageRegistry().putEPackage(EcorePackage.eINSTANCE);
-			session.getPackageRegistry().putEPackage(ExpressionsPackage.eINSTANCE);
-			session.getPackageRegistry().putEPackage(EtypesPackage.eINSTANCE);
+			cdoSession.getPackageRegistry().putEPackage(SecurityPackage.eINSTANCE);
+			cdoSession.getPackageRegistry().putEPackage(EcorePackage.eINSTANCE);
+			cdoSession.getPackageRegistry().putEPackage(ExpressionsPackage.eINSTANCE);
+			cdoSession.getPackageRegistry().putEPackage(EtypesPackage.eINSTANCE);
 		}
 
 	}
@@ -1297,20 +1098,19 @@ public class RcplSession implements ISession {
 		commit();
 	}
 
-	// private void createPermissionFilter(Assignee role, String path,
-	// PatternStyle patternStyle, Access access, boolean clear) {
-	// EList<Permission> permissions = role.getPermissions();
-	// if (clear) {
-	// permissions.clear();
-	// }
-	// FilterPermission permission = SecurityFactory.eINSTANCE
-	// .createFilterPermission();
-	// ResourceFilter resourceFilter = SecurityFactory.eINSTANCE
-	// .createResourceFilter(path, patternStyle);
-	// permission.getFilters().add(resourceFilter);
-	// permission.setAccess(access);
-	// permissions.add(permission);
-	// }
+	private void createPermissionFilter(Assignee role, String path, PatternStyle patternStyle, Access access,
+			boolean clear) {
+//		EList<Permission> permissions = role.getPermissions();
+//		if (clear) {
+//			permissions.clear();
+//		}
+//		FilterPermission permission = SecurityFactory.eINSTANCE.createFilterPermission();
+//		ResourceFilter resourceFilter = SecurityFactory.eINSTANCE.createResourceFilter(path, patternStyle);
+//		permission.getFilters().add(resourceFilter);
+//		permission.setAccess(access);
+//		permissions.add(permission);
+	}
+
 	protected void setUserPasswordIfNotSet(String userId, String pass) {
 		User user = getRealm().getUser(userId);
 		UserPassword password = user.getPassword();
@@ -1322,15 +1122,6 @@ public class RcplSession implements ISession {
 		}
 	}
 
-	public void sleep(long millis) {
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * @param register
 	 * @throws Throwable
@@ -1338,7 +1129,7 @@ public class RcplSession implements ISession {
 	@Override
 	public boolean start() throws Throwable {
 
-		loadJOfficeXMI_Local();
+		loadLocalXMI();
 		if ("demo".equals(userId) || "".equals(userId)) {
 			return true;
 		}
@@ -1380,9 +1171,7 @@ public class RcplSession implements ISession {
 				getContents().remove(0);
 			}
 			EList<EObject> cont = null;
-
 			cont = xmiLocal.getContents();
-
 			for (EObject eo : cont) {
 				EObject eo2 = EcoreUtil.copy(eo);
 				if (eo2 instanceof RCPL) {
@@ -1417,7 +1206,7 @@ public class RcplSession implements ISession {
 	 * @return
 	 */
 	protected boolean valid() {
-		if (session == null) {
+		if (cdoSession == null) {
 			return false;
 		}
 		if (getContents() == null) {
@@ -1425,4 +1214,83 @@ public class RcplSession implements ISession {
 		}
 		return true;
 	}
+
+	/**
+	 * @param message
+	 */
+	public void communicate(String message) {
+		// User u = null;
+		// for (EObject eo : xmiCommunication.getContents()) {
+		// if (eo instanceof User) {
+		// if (((User) eo).getId().equals(userId)) {
+		// u = (User) eo;
+		// break;
+		// }
+		// }
+		// }
+		//
+		// if (u == null) {
+		// u = SecurityFactory.eINSTANCE.createUser();
+		// u.setId(userId);
+		// u.setEmail(message);
+		// xmiCommunication.getContents().add(u);
+		// commit();
+		// }
+	}
+
+	private void loadLocalXMI() {
+
+		try {
+			ResourceSet rs = new ResourceSetImpl();
+			ComposedAdapterFactory composedAdapterFactory;
+			composedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+			addAdapterFactories(composedAdapterFactory);
+			AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(composedAdapterFactory,
+					new BasicCommandStack());
+
+			rs = domain.getResourceSet();
+
+			File localXMIFile = new File(RCPLModel.mobileProvider.getApplicationDir(),
+					RCPLModel.XMIName + RCPLModel.XMI_EXTENSION);
+			if (FORCE_NEW_XMI) {
+				localXMIFile.delete();
+			}
+
+			if (FORCE_NEW_XMI || !localXMIFile.exists()) {
+
+				try {
+
+					AUtil.copyInputStream(
+							RCPLModel.modelClass.getResourceAsStream(RCPLModel.XMIName + RCPLModel.XMI_EXTENSION),
+							localXMIFile);
+				} catch (Throwable ex) {
+					RCPLModel.logError(ex);
+				}
+			}
+
+			if (localXMIFile.exists()) {
+				RCPLModel.log(this, "XMI File: " + localXMIFile.getAbsolutePath() + " exists");
+			}
+
+			URI xmiURI = URI.createFileURI(localXMIFile.getAbsolutePath());
+			rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
+			xmiLocal = rs.createResource(xmiURI);
+			xmiLocal.setURI(xmiURI);
+			// for performance reason, don't ask
+			((ResourceImpl) xmiLocal).setIntrinsicIDToEObjectMap(new HashMap());
+			// xmiLocal = new XMIResourceImpl();
+
+			xmiLocal.load(new FileInputStream(localXMIFile), new HashMap<Object, Object>());
+		} catch (Throwable e) {
+			String msg = e.getMessage();
+			if (msg.indexOf("Feature 'version' not found") != -1) {
+				return;
+			}
+			RCPLModel.logError(e);
+		}
+
+	}
+
+	abstract protected void addAdapterFactories(ComposedAdapterFactory composedFactory);
+
 }

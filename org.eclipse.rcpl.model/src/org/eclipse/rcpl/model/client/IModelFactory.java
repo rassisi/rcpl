@@ -1,9 +1,9 @@
-package org.eclipse.rcpl.model.cdo.client;
+package org.eclipse.rcpl.model.client;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 
-public interface RcplModelFactory {
+public interface IModelFactory {
 
 	Perspective createPerspective(RCPL office, String id, String name);
 

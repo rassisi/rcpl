@@ -13,7 +13,7 @@ package org.eclipse.rcpl.navigator.details;
 
 import java.util.Locale;
 
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;

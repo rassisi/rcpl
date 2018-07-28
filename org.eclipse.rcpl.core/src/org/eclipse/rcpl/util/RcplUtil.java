@@ -26,7 +26,7 @@ import org.eclipse.rcpl.internal.config.RcplConfig;
 import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.libs.util.StringOutputStream;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 import org.w3c.dom.Node;
 
 public class RcplUtil {

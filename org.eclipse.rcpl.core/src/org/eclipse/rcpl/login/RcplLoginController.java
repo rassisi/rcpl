@@ -17,7 +17,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 

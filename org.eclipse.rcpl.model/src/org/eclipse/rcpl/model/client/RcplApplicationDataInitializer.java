@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.model.cdo.client;
+package org.eclipse.rcpl.model.client;
 
 
 public class RcplApplicationDataInitializer {

@@ -18,7 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.eclipse.rcpl.IJOUpload;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 

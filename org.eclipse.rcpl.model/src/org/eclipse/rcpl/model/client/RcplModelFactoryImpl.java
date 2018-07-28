@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.model.cdo.client;
+package org.eclipse.rcpl.model.client;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
@@ -14,14 +15,14 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 
-public class RcplModelFactoryImpl implements RcplModelFactory {
+public class RcplModelFactoryImpl implements IModelFactory {
 
-	private RcplSession session;
+	private ISession session;
 
 	public static RcplModelFactoryImpl INSTANCE;
 
-	public RcplModelFactoryImpl(RcplSession cdoSession) {
-		this.session = (RcplSession) cdoSession;
+	public RcplModelFactoryImpl(ISession session) {
+		this.session = session;
 		INSTANCE = this;
 	}
 
@@ -108,6 +109,7 @@ public class RcplModelFactoryImpl implements RcplModelFactory {
 		return perspective;
 	}
 
+	@Override
 	public RCPL copyOfficeFromTemplate(String name) {
 		for (EObject o : session.getContents()) {
 			if (o instanceof RCPL) {

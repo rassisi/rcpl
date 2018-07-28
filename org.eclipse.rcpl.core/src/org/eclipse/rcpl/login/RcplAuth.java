@@ -8,7 +8,7 @@ import java.net.URLEncoder;
 import java.security.SecureRandom;
 
 import org.apache.commons.codec.binary.Base32;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import com.google.zxing.BarcodeFormat;

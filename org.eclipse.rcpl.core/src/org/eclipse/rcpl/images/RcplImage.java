@@ -30,7 +30,7 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.application.DefaultMobileProvider;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.geometry.Rectangle2D;

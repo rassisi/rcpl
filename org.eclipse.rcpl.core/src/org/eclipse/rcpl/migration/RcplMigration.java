@@ -11,7 +11,7 @@
 package org.eclipse.rcpl.migration;
 
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Favorites;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 

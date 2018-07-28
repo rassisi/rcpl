@@ -17,7 +17,7 @@ public interface ISession {
 
 	List<String> getImageCodeBases();
 
-	void addAdditionalImageCodebases(String url);
+	void addAdditionalImageCodebases(String... url);
 
 	void setStandalone(boolean standalone);
 

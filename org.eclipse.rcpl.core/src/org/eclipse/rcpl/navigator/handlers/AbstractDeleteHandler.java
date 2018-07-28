@@ -15,7 +15,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
 
 public abstract class AbstractDeleteHandler<T> extends AbstractEmfHandler<T> {

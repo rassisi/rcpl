@@ -24,9 +24,11 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Currency;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
@@ -1752,4 +1754,27 @@ public class AUtil {
 		return s;
 	}
 
+	public static void println(String msg) {
+		System.out.println(msg);
+	}
+
+	public static void sleep(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	*
+	*/
+	public String formatAmount(double amount, String currency) {
+		NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+		Currency curr = Currency.getInstance(currency);
+		numberFormat.setCurrency(curr);
+		String result = numberFormat.format(amount);
+		return result;
+	}
 }

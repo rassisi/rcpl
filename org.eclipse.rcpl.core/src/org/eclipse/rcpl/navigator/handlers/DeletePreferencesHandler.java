@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.navigator.handlers;
 
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
 
