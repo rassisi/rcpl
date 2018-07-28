@@ -41,16 +41,18 @@ public class RcplInfoTabService extends RcplService {
 		// }
 		// }
 		//
-		//		if (getId(command).startsWith("infotab/actions/setup/setup_")) { //$NON-NLS-1$
+		// if (getId(command).startsWith("infotab/actions/setup/setup_")) {
+		// //$NON-NLS-1$
 		// JO.officePane.showInfoAreaSubGroup(getId(command));
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/open_last_browser_tabs")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/open_last_browser_tabs")) {
+		// //$NON-NLS-1$
 		// String lastUrls = JOUtil2
 		// .getString(JO.REGISTRY_LAST_OPENED_BROWSER_TABS);
 		// if (lastUrls != null && lastUrls.length() > 0) {
-		//				String[] urls = lastUrls.split(","); //$NON-NLS-1$
+		// String[] urls = lastUrls.split(","); //$NON-NLS-1$
 		// for (String url : urls) {
 		// JO.officePane.addBrowserTab(url, null, true, false);
 		// }
@@ -66,7 +68,8 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/open_last_document")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/open_last_document")) {
+		// //$NON-NLS-1$
 		// String fName = JOUtil2.getString(getId(command));
 		// if (fName != null && fName.length() > 0) {
 		// JO.officePane.load(new File(fName), false);
@@ -74,20 +77,20 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/manual_activation")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/manual_activation")) { //$NON-NLS-1$
 		//
 		// // if (JOUtil.isEclipse()) {
 		// // return true;
 		// // }
 		// // InputDialog dlg = new InputDialog(Display.getCurrent()
 		// // .getActiveShell(),
-		//			//					"", Messages.JOInfoTabService_EnterTheActivationCode, //$NON-NLS-1$
-		//			//					"", new JOActivationCodeValidator()); //$NON-NLS-1$
+		// // "", Messages.JOInfoTabService_EnterTheActivationCode, //$NON-NLS-1$
+		// // "", new JOActivationCodeValidator()); //$NON-NLS-1$
 		// // if (dlg.open() == Window.OK) {
 		// // // User clicked OK; update the label with the input
 		// // String s = dlg.getValue();
 		// // final Browser browser = (Browser) JO.officePane.getBrowser();
-		//			//				if (s.equals("deactivate")) { //$NON-NLS-1$
+		// // if (s.equals("deactivate")) { //$NON-NLS-1$
 		// // JOActivation.deActivate(
 		// // JOActivation.ACTIVATION_JOFFICE_SUBSCRIPTION, true);
 		// // String activationHtml = JOActivation.createActivationHtml();
@@ -112,7 +115,7 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/update")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/update")) { //$NON-NLS-1$
 		// // if (JOUtil.isEclipse()) {
 		// // return true;
 		// // }
@@ -120,7 +123,7 @@ public class RcplInfoTabService extends RcplService {
 		// // toolButton.setEnable(false);
 		// // File f = JOUtil.downloadUpdate(false);
 		// // if (f != null) {
-		//			//				JO.officePane.setProgressMessage(""); //$NON-NLS-1$
+		// // JO.officePane.setProgressMessage(""); //$NON-NLS-1$
 		// // System.exit(99);
 		// // } else {
 		// // toolButton.setEnable(true);
@@ -131,7 +134,7 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/major_update")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/major_update")) { //$NON-NLS-1$
 		// // if (JOUtil.isEclipse()) {
 		// // return true;
 		// // }
@@ -143,13 +146,14 @@ public class RcplInfoTabService extends RcplService {
 		// // // "Update",
 		// // //
 		// //
-		// "A Major Update is available. During this process some functions are not available"
+		// "A Major Update is available. During this process some functions are not
+		// available"
 		// // // + "\n" + "Do you want to install now?")) {
 		// // toolButton.setEnable(false);
 		// // JO.officePane.setMajorUpdateActive(true);
 		// // File f = JOUtil.downloadUpdate(true);
 		// // if (f != null) {
-		//			//				JO.officePane.setProgressMessage(""); //$NON-NLS-1$
+		// // JO.officePane.setProgressMessage(""); //$NON-NLS-1$
 		// // System.exit(99);
 		// // } else {
 		// // toolButton.setEnable(true);
@@ -160,7 +164,7 @@ public class RcplInfoTabService extends RcplService {
 		// // }
 		//
 		// // JO.officePane
-		//			//					.setUrl("http://www.joffice.eu/htdocs/index.html"); //$NON-NLS-1$
+		// // .setUrl("http://www.joffice.eu/htdocs/index.html"); //$NON-NLS-1$
 		// // MessageDialog
 		// // .openInformation(
 		// // JOUtil.getShell(),
@@ -171,14 +175,14 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/profile")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/profile")) { //$NON-NLS-1$
 		// // Point loc = (Point)event.getNewData()[0];
 		// // JO.officePane.getStartDialog().toggle(loc.x,
 		// // loc.y);
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/web_browser")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/web_browser")) { //$NON-NLS-1$
 		//
 		// // if (firstTimeOpenWebBrowser) {
 		// // firstTimeOpenWebBrowser = false;
@@ -207,14 +211,14 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/my_web_windows")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/my_web_windows")) { //$NON-NLS-1$
 		// boolean selected = (Boolean) command.getNewData()[0];
 		// if (selected) {
 		//
 		// // String host = JOUtil
-		//				//						.getString("infotab/actions/setup/setup_my_web_host"); //$NON-NLS-1$
+		// // .getString("infotab/actions/setup/setup_my_web_host"); //$NON-NLS-1$
 		// // int port = JOUtil
-		//				//						.getInteger("infotab/actions/setup/setup_my_web_port"); //$NON-NLS-1$
+		// // .getInteger("infotab/actions/setup/setup_my_web_port"); //$NON-NLS-1$
 		//
 		// // TODO
 		// // if (!JO.officePane.showWWindows(host, port)) {
@@ -225,29 +229,30 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/color/show_background_images")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/color/show_background_images")) {
+		// //$NON-NLS-1$
 		// // TODO
 		// // JO.officePane
 		// // .setShowBackgroundImages((Boolean) command.getNewData()[0]);
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/new")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/new")) { //$NON-NLS-1$
 		// createNewWordDocument();
 		// return true;
 		// }
 		//
-		//		//		if (match(event, "infotab/actions/setup_editor")) { //$NON-NLS-1$
+		// // if (match(event, "infotab/actions/setup_editor")) { //$NON-NLS-1$
 		// // return true;
 		// // }
-		//		//		if (match(event, "infotab/actions/setup_document")) { //$NON-NLS-1$
+		// // if (match(event, "infotab/actions/setup_document")) { //$NON-NLS-1$
 		// // return true;
 		// // }
-		//		//		if (match(event, "infotab/actions/setup_browser")) { //$NON-NLS-1$
+		// // if (match(event, "infotab/actions/setup_browser")) { //$NON-NLS-1$
 		// // return true;
 		// // }
 		//
-		//		if (match(command, "infotab/actions/help/open_1")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/open_1")) { //$NON-NLS-1$
 		//
 		// if (JO.officePane.isInfoAreaOpen()) {
 		// JO.officePane.doLoad();
@@ -258,13 +263,13 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/openDocumentDialog")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/openDocumentDialog")) { //$NON-NLS-1$
 		//
 		// JO.officePane.doLoad();
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/close")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/close")) { //$NON-NLS-1$
 		//
 		// // if (JO.officePane != null) {
 		// // if (MessageDialog.openQuestion(
@@ -277,15 +282,16 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		//		if (event.getKey().equals("actions/startmenu/what_is_new")) { //$NON-NLS-1$
+		// // if (event.getKey().equals("actions/startmenu/what_is_new")) {
+		// //$NON-NLS-1$
 		// // ((OOXMLOfficePane) editorPane).getStartDialog().getShell()
 		// // .setVisible(false);
 		// // ((OOXMLOfficePane) editorPane)
-		//		//					.loadTemplateDocument("what_is_new.docx"); //$NON-NLS-1$
+		// // .loadTemplateDocument("what_is_new.docx"); //$NON-NLS-1$
 		// // return true;
 		// // }
 		//
-		//		if (match(command, "infotab/actions/help/save")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/save")) { //$NON-NLS-1$
 		//
 		// // if (getEditorFigure() != null) {
 		// // getEditorFigure().getDocument().save();
@@ -293,13 +299,14 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/save_as")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/save_as")) { //$NON-NLS-1$
 		// JO.officePane.saveAs();
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/new_blank_workbook")) { //$NON-NLS-1$
-		//			JO.officePane.loadTemplateDocument("blank_workbook.xlsx"); //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/new_blank_workbook")) {
+		// //$NON-NLS-1$
+		// JO.officePane.loadTemplateDocument("blank_workbook.xlsx"); //$NON-NLS-1$
 		//
 		// // getEditor(command).setShowGrid(true);
 		//
@@ -314,18 +321,19 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/new_blank_presentation")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/new_blank_presentation")) {
+		// //$NON-NLS-1$
 		//
-		//			JO.officePane.loadTemplateDocument("blank_presentation.pptx"); //$NON-NLS-1$
+		// JO.officePane.loadTemplateDocument("blank_presentation.pptx"); //$NON-NLS-1$
 		// return true;
 		// }
 		//
-		//		if (match(command, "actions/startmenu/open")) { //$NON-NLS-1$
+		// if (match(command, "actions/startmenu/open")) { //$NON-NLS-1$
 		//
 		// JO.officePane.doLoad();
 		// return true;
 		// }
-		//		if (match(command, "actions/startmenu/close")) { //$NON-NLS-1$
+		// if (match(command, "actions/startmenu/close")) { //$NON-NLS-1$
 		//
 		// // if (MessageDialog.openQuestion((Shell) JO.officePane.getShell(),
 		// // Messages.OOXMLInfoTabService_CloseOffice,
@@ -335,31 +343,31 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/groups")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/groups")) { //$NON-NLS-1$
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help")) { //$NON-NLS-1$
 		//
 		// JO.officePane.showInfoArea();
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/what_is_new")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/what_is_new")) { //$NON-NLS-1$
 		//
-		//			JO.officePane.loadTemplateDocument("what_is_new.docx"); //$NON-NLS-1$
+		// JO.officePane.loadTemplateDocument("what_is_new.docx"); //$NON-NLS-1$
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/help_content")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/help_content")) { //$NON-NLS-1$
 		//
-		//			JO.officePane.setUrl("http://help.joffice.eu/help/index.jsp"); //$NON-NLS-1$
+		// JO.officePane.setUrl("http://help.joffice.eu/help/index.jsp"); //$NON-NLS-1$
 		// return true;
 		// }
 		//
 		// // ---------- avtivate modules
 		// // -----------------------------------------
 		//
-		//		if (match(command, "infotab/actions/help/activation")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/activation")) { //$NON-NLS-1$
 		// showActivationPage();
 		// return true;
 		// }
@@ -367,37 +375,41 @@ public class RcplInfoTabService extends RcplService {
 		// // ---------- forum
 		// // ----------------------------------------------------
 		//
-		//		if (match(command, "infotab/actions/help/ooxml_forum")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/ooxml_forum")) { //$NON-NLS-1$
 		//
-		//			JO.officePane.setUrl(JOSession.codeBase + "/phPBB3/index.php"); //$NON-NLS-1$
+		// JO.officePane.setUrl(JOSession.codeBase + "/phPBB3/index.php"); //$NON-NLS-1$
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/web_page_assisi_home")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/web_page_assisi_home")) {
+		// //$NON-NLS-1$
 		//
-		//			JO.officePane.setUrl("JOSession.codeBase); //$NON-NLS-1$
+		// JO.officePane.setUrl("JOSession.codeBase); //$NON-NLS-1$
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/web_page_ooxml_ecma")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/web_page_ooxml_ecma")) {
+		// //$NON-NLS-1$
 		//
 		// JO.officePane
-		//					.setUrl("http://www.ecma-international.org/publications/standards/Ecma-376.htm"); //$NON-NLS-1$
+		// .setUrl("http://www.ecma-international.org/publications/standards/Ecma-376.htm");
+		// //$NON-NLS-1$
 		// return true;
 		// }
 		//
-		//		if (match(command, "infotab/actions/help/contact_us")) { //$NON-NLS-1$
+		// if (match(command, "infotab/actions/help/contact_us")) { //$NON-NLS-1$
 		//
 		// JO.officePane
-		//					.setUrl(JOSession.codeBase + "/htdocs/contact_us/contact-form.php"); //$NON-NLS-1$
+		// .setUrl(JOSession.codeBase + "/htdocs/contact_us/contact-form.php");
+		// //$NON-NLS-1$
 		// return true;
 		// }
 		//
-		//		if (match(command, "actions/startmenu2/pinned")) { //$NON-NLS-1$
+		// if (match(command, "actions/startmenu2/pinned")) { //$NON-NLS-1$
 		//
 		// }
 		//
-		//		if (match(command, "actions/startmenu/save")) { //$NON-NLS-1$
+		// if (match(command, "actions/startmenu/save")) { //$NON-NLS-1$
 		//
 		// if (getEditor(command) != null) {
 		// getEditor(command).getDocument().save();
@@ -405,7 +417,7 @@ public class RcplInfoTabService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(command, "actions/startmenu/save_as")) { //$NON-NLS-1$
+		// if (match(command, "actions/startmenu/save_as")) { //$NON-NLS-1$
 		// JO.officePane.saveAs();
 		// return true;
 		// }
@@ -434,24 +446,25 @@ public class RcplInfoTabService extends RcplService {
 		// @Override
 		// public void changed(LocationEvent e) {
 		// // String s = browser.getText();
-		//				//				if ((s.indexOf("Click to view purchase details") != -1 //$NON-NLS-1$
-		//				//						|| s.indexOf("Your purchase was successful") != -1 //$NON-NLS-1$
-		//				//				|| s.indexOf("Log in to complete your checkout") != -1 //$NON-NLS-1$
+		// // if ((s.indexOf("Click to view purchase details") != -1 //$NON-NLS-1$
+		// // || s.indexOf("Your purchase was successful") != -1 //$NON-NLS-1$
+		// // || s.indexOf("Log in to complete your checkout") != -1 //$NON-NLS-1$
 		// // )) {
-		//				//					if (s.indexOf("joffice_subscription") != -1) { //$NON-NLS-1$
+		// // if (s.indexOf("joffice_subscription") != -1) { //$NON-NLS-1$
 		// // activationType = 1;
-		//				//					} else if (s.indexOf("joffice_subscription") != -1) { //$NON-NLS-1$
+		// // } else if (s.indexOf("joffice_subscription") != -1) { //$NON-NLS-1$
 		// // activationType = 1;
-		//				//					} else if (s.indexOf("joffice_subscription") != -1) { //$NON-NLS-1$
+		// // } else if (s.indexOf("joffice_subscription") != -1) { //$NON-NLS-1$
 		// // activationType = 1;
 		// // }
 		// // }
 		// //
 		// // switch (activationType) {
 		// // case JOActivation.ACTIVATION_JOFFICE_SUBSCRIPTION:
-		//				//					if ((s.indexOf("Congratulations - your payment was sent.") != -1) //$NON-NLS-1$
-		//				//							|| s.indexOf("Thank you") != -1 //$NON-NLS-1$
-		//				//							|| s.indexOf("Your purchase was successful") != -1) {//$NON-NLS-1$
+		// // if ((s.indexOf("Congratulations - your payment was sent.") != -1)
+		// //$NON-NLS-1$
+		// // || s.indexOf("Thank you") != -1 //$NON-NLS-1$
+		// // || s.indexOf("Your purchase was successful") != -1) {//$NON-NLS-1$
 		// // JOActivation.activate(activationType, true);
 		// // activationType = 0;
 		// // JO.officePane.setHtml(JOActivation
@@ -459,8 +472,10 @@ public class RcplInfoTabService extends RcplService {
 		// // }
 		// // break;
 		// // case JOActivation.ACTIVATION_JOFFICE_SVG_INTEGRATION:
-		//				//					if (s.indexOf("Congratulations - your payment was sent.") != -1 //$NON-NLS-1$
-		//				//							|| (s.indexOf("Thank you") != -1 && s.indexOf("$1.20") != -1)) { //$NON-NLS-1$ //$NON-NLS-2$
+		// // if (s.indexOf("Congratulations - your payment was sent.") != -1
+		// //$NON-NLS-1$
+		// // || (s.indexOf("Thank you") != -1 && s.indexOf("$1.20") != -1)) {
+		// //$NON-NLS-1$ //$NON-NLS-2$
 		// // JOActivation.activate(activationType, true);
 		// // JO.officePane.setHtml(JOActivation
 		// // .createActivationHtml());
@@ -468,8 +483,10 @@ public class RcplInfoTabService extends RcplService {
 		// // }
 		// // break;
 		// // case JOActivation.ACTIVATION_JOFFICE_SDK:
-		//				//					if (s.indexOf("Congratulations - your payment was sent.") != -1 //$NON-NLS-1$
-		//				//							|| (s.indexOf("Thank you") != -1 && s.indexOf("$99") != -1)) { //$NON-NLS-1$ //$NON-NLS-2$
+		// // if (s.indexOf("Congratulations - your payment was sent.") != -1
+		// //$NON-NLS-1$
+		// // || (s.indexOf("Thank you") != -1 && s.indexOf("$99") != -1)) {
+		// //$NON-NLS-1$ //$NON-NLS-2$
 		// // JOActivation.activate(activationType, true);
 		// // JO.officePane.setHtml(JOActivation
 		// // .createActivationHtml());
@@ -504,14 +521,13 @@ public class RcplInfoTabService extends RcplService {
 	}
 
 	public void createNewWordDocument() {
-		int index = RcplUtil
-				.getInteger("infotab/actions/editor/default_page_size"); //$NON-NLS-1$
+		int index = RcplUtil.getInteger("infotab/actions/editor/default_page_size"); //$NON-NLS-1$
 		EnPageSize defaultPageSize = EnPageSize.valueOf(index);
 
 		// if (defaultPageSize.equals(EnPageSize.LETTER)) {
-		//			JO.officePane.loadTemplateDocument("blank_letter.docx"); //$NON-NLS-1$
+		// JO.officePane.loadTemplateDocument("blank_letter.docx"); //$NON-NLS-1$
 		// } else {
-		//			JO.officePane.loadTemplateDocument("blank_A4.docx"); //$NON-NLS-1$
+		// JO.officePane.loadTemplateDocument("blank_A4.docx"); //$NON-NLS-1$
 		// }
 	}
 

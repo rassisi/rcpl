@@ -726,13 +726,11 @@ public class JOColorProvider implements IColorProvider {
 	}
 
 	/**
-	 * Retrieve a Color instance for a specific id from the
-	 * {@link ColorRegistry}. The first call to this method will initialize the
-	 * ColorRegstry.
+	 * Retrieve a Color instance for a specific id from the {@link ColorRegistry}.
+	 * The first call to this method will initialize the ColorRegstry.
 	 * 
-	 * @param id
-	 *            id of the font to be retrieved. Preferably use constants from
-	 *            ColorProvider.
+	 * @param id id of the font to be retrieved. Preferably use constants from
+	 *           ColorProvider.
 	 * @return the {@link Color} instance for the provided id.
 	 */
 	@Override
@@ -885,8 +883,7 @@ public class JOColorProvider implements IColorProvider {
 	}
 
 	/**
-	 * @param brightness
-	 *            makes the color brighter when its too dark
+	 * @param brightness makes the color brighter when its too dark
 	 * @return
 	 */
 	@Override

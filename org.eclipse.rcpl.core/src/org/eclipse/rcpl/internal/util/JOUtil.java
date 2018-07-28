@@ -34,7 +34,7 @@ import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IResource;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.images.RcplImage;
-import org.eclipse.rcpl.util.RcplUtil;
+import org.eclipse.rcpl.libs.util.AUtil;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -203,7 +203,7 @@ public class JOUtil {
 
 	public static void startInkscape(String filePath) {
 		// shutDownInskapeThread = new ShutDown();
-		File inkscapeProgram = RcplUtil.getInkscapeProgram();
+		File inkscapeProgram = AUtil.getInkscapeProgram();
 
 		File workingDir = inkscapeProgram.getAbsoluteFile().getParentFile();
 		String inkScapeName = inkscapeProgram.getName();

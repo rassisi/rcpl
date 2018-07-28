@@ -2,9 +2,7 @@ package org.eclipse.rcpl.model.cdo.client;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -76,6 +74,7 @@ import org.eclipse.net4j.util.om.log.PrintLogHandler;
 import org.eclipse.net4j.util.om.trace.PrintTraceHandler;
 import org.eclipse.net4j.util.security.IPasswordCredentialsProvider;
 import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
+import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
@@ -1242,7 +1241,8 @@ public class RcplSession {
 			if (FORCE_NEW_XMI || !localXMIFile.exists()) {
 
 				try {
-					copyInputStream(
+
+					AUtil.copyInputStream(
 							RCPLModel.modelClass.getResourceAsStream(RCPLModel.XMIName + RCPLModel.XMI_EXTENSION),
 							localXMIFile);
 				} catch (Throwable ex) {
@@ -1576,31 +1576,6 @@ public class RcplSession {
 
 	public void setReachable(boolean reachable) {
 		this.reachable = reachable;
-	}
-
-	/**
-	 * @param in
-	 * @param out
-	 * @throws IOException
-	 */
-	public static final String copyInputStream(InputStream in, File outFile) throws IOException {
-		if (in == null) {
-			return null;
-		}
-		byte[] buffer = new byte[1024];
-
-		FileOutputStream fos = new FileOutputStream(outFile);
-
-		int len;
-		while ((len = in.read(buffer)) >= 0) {
-			fos.write(buffer, 0, len);
-		}
-
-		String result = "";
-
-		in.close();
-		fos.close();
-		return result;
 	}
 
 	public boolean isLaunchedByJnlp() {

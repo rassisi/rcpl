@@ -212,10 +212,6 @@ public class Rcpl {
 		return editorListeners;
 	}
 
-	private static boolean isProfile() {
-		return true;
-	}
-
 	public static final String OPEN_RECENTLY_OPENED_DOCUMENT = "actions/document/openRecentlyUsedDocument"; //$NON-NLS-1$
 
 	public static final String CONTENT_TYPE_IMAGE_SVG = "image/svg"; //$NON-NLS-1$
@@ -449,126 +445,8 @@ public class Rcpl {
 	public static final String COMMENT_RELATION_TYPE = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/comments"; //$NON-NLS-1$
 	// map.put("http://schemas.openxmlformats.org/drawingml/2006/main", "a");
 
-	private static long time = 0;
-	private static String className = ""; //$NON-NLS-1$
-	private static String methodName = ""; //$NON-NLS-1$
-	private static int counter = 10000000;
-
 	public enum ResourceType {
 		IMAGE, SVG
-	}
-
-	private static List<String> profileStack = new ArrayList<String>();
-
-	public static void profile() {
-		profile(null);
-	}
-
-	public static long profileEnd() {
-		return profileEnd(false);
-	}
-
-	public static long profileEnd(boolean force) {
-		if (!DEBUG) {
-			return 0;
-		}
-
-		if (!force) {
-			if (!isProfile()) {
-				return 0;
-			}
-		}
-		long diff = 0;
-		try {
-			String msg = ""; //$NON-NLS-1$
-			if (profileStack.size() > 0) {
-				int index = profileStack.size() - 1;
-				msg = profileStack.get(index);
-				profileStack.remove(profileStack.size() - 1);
-			}
-			// if (time != 0)
-			{
-				diff = System.currentTimeMillis() - time;
-				// if (diff > 0 && (diff > profileTrigger() || force))
-
-				System.out.format("%10d %20s ", diff, msg);
-				System.out.println();
-
-				// {
-				// msg += " t = " + diff; //$NON-NLS-1$
-				// println(msg);
-				// // LOGGER.info(msg);
-				//
-				// }
-
-				// else {
-				// }
-				time = System.currentTimeMillis();
-			}
-		} catch (Exception ex) {
-			// ignore
-		}
-		return diff;
-	}
-
-	public static void profile(String text) {
-		profile(text, false);
-	}
-
-	/**
-	 * 
-	 */
-	public static void profile(String text, boolean force) {
-		if (!DEBUG) {
-			return;
-		}
-		if (!force && !isProfile()) {
-			return;
-		}
-		// profileEnd();
-		time = System.currentTimeMillis();
-
-		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-		int index = 0;
-		for (; index < 10; index++) {
-			String m = stackTraceElements[index].getMethodName();
-			if (!m.equals("profile") //$NON-NLS-1$
-					&& !m.equals("getStackTrace")) { //$NON-NLS-1$
-				break;
-			}
-		}
-		if (index == 10) {
-			return;
-		}
-		StackTraceElement se = stackTraceElements[index];
-
-		className = normalizeProfileName(se.getClassName());
-		methodName = normalizeProfileName(se.getMethodName());
-		String className0 = normalizeProfileName(stackTraceElements[index + 1].getClassName());
-		String methodName0 = normalizeProfileName(stackTraceElements[index + 1].getMethodName());
-		String msg = String.format("%12d %-60s", //$NON-NLS-1$
-				counter++, className0 + " -> " + className + " Method = " + methodName0 + " -> " + methodName); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-
-		if (profileStack == null) {
-			profileStack = new ArrayList<String>();
-		}
-		if (text != null) {
-			profileStack.add(msg + " (" + text + ")"); //$NON-NLS-1$ //$NON-NLS-2$
-		} else {
-			profileStack.add(msg);
-		}
-	}
-
-	/**
-	 * @param s
-	 * @return
-	 */
-	private static String normalizeProfileName(String s) {
-		int pos = s.lastIndexOf("."); //$NON-NLS-1$
-		if (pos != -1) {
-			s = s.substring(pos + 1, s.length());
-		}
-		return s;
 	}
 
 	/**

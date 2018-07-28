@@ -14,9 +14,8 @@ package org.eclipse.rcpl.internal.services;
 import java.math.BigInteger;
 
 import org.eclipse.rcpl.ICommand;
-import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.internal.util.JOUtil;
+import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTBorder;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTPBdr;
@@ -360,7 +359,7 @@ public class RcplObjectService extends RcplService {
 
 	@SuppressWarnings("hiding")
 	private void setShadow(RcplCommand command) {
-		Rcpl.profile();
+		AUtil.profile();
 		// initSelectedObjects();
 
 		// for (JOObject l : JOUtil
@@ -426,7 +425,7 @@ public class RcplObjectService extends RcplService {
 	 * @param type
 	 */
 	private void setBorder(RcplCommand command, int type, boolean set) {
-		Rcpl.profile();
+		AUtil.profile();
 		// initSelectedObjects();
 		// for (JOObject l : JOUtil
 		// .getEditor()
