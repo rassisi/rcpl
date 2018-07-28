@@ -14,7 +14,10 @@ import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.application.RcplApplication;
 import org.eclipse.rcpl.application.RcplApplicationProvider;
+import org.eclipse.rcpl.model.DefaultSessionFactory;
+import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.cdo.client.RcplSession;
 
 /**
  * @author ramin
@@ -50,5 +53,12 @@ public class DemoRcplApplication extends RcplApplication {
 	@Override
 	public IApplicationStarter createApplicationStarter(IRcplApplicationProvider rcplApplication) {
 		return new DemoRcplApplicationStarter(getApplicationProvider());
+	}
+
+	@Override
+	protected ISessionFacory createSessionFactory() {
+		ISessionFacory factory = new DefaultSessionFactory();
+		RcplSession.sessionFactory = factory;
+		return factory;
 	}
 }

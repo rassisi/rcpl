@@ -38,6 +38,7 @@ import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.internal.tools.JORibbonGroup;
 import org.eclipse.rcpl.internal.tools.UndoRedoTool;
 import org.eclipse.rcpl.model.IResources;
+import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.cdo.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
@@ -286,4 +287,7 @@ public class RcplBasicFactory implements IRcplFactory {
 		return new NavigatorTreeManagerImpl();
 	}
 
+	ISession createSession() {
+		return new RcplSession();
+	}
 }

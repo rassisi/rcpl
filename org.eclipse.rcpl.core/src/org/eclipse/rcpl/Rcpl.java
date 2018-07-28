@@ -127,7 +127,7 @@ public class Rcpl {
 
 	public static IStyleTemplate globalStyleTemplate() {
 		if (globalStyleTemplate == null) {
-			globalStyleTemplate = Rcpl.getFactory().createStyleTemplate();
+			globalStyleTemplate = getFactory().createStyleTemplate();
 		}
 		return globalStyleTemplate;
 	}

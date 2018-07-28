@@ -13,6 +13,7 @@ package org.eclipse.rcpl.application;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.jpedal.examples.viewer.OpenViewerFX;
 
@@ -66,6 +67,8 @@ public abstract class RcplApplication extends Application {
 	protected abstract Class<? extends RCPLModel> getRcplModel();
 
 	protected abstract String getXmiName();
+
+	protected abstract ISessionFacory createSessionFactory();
 
 	private IApplicationStarter applicationStarter;
 

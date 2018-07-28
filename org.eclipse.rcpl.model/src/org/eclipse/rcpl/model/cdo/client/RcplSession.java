@@ -75,7 +75,9 @@ import org.eclipse.net4j.util.om.trace.PrintTraceHandler;
 import org.eclipse.net4j.util.security.IPasswordCredentialsProvider;
 import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
 import org.eclipse.rcpl.libs.util.AUtil;
+import org.eclipse.rcpl.model.DefaultSessionFactory;
 import org.eclipse.rcpl.model.ISession;
+import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.RcplModelUtil;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
@@ -93,136 +95,139 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory
  */
 public class RcplSession implements ISession {
 
+	public static String BASE_IMAGE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
+	public static boolean connectionFailed = false;
 	public static boolean FORCE_NEW_XMI = false;
-	public static final String USER_TEMPLATES = "templates";
-	public static final String USER_ADMINISTRATOR = "Administrator";
-	public static final String USER_COMPANY_1 = "user1@company.com";
-	public static final String USER_COMPANY_2 = "user2@company.com";
-	public static final String USER_COMPANY_3 = "user3@company.com";
-
-	public static final String ROLE_TEMPLATES_WRITER = "ROLE_TEMPLATES_WRITER";
-	public static final String ROLE_TEMPLATES_READER = "ROLE_TEMPLATES_READER";
-	public static final String ROLE_SECURITY_READER = "ROLE_SECURITY_READER";
-	public static final String ROLE_COMMUNICATION = "ROLE_COMMUNICATION";
-	public static final String ROLE_HOME = "Home Folder /home";
-	public static final String ROLE_ADMINISTRATION = "Administration";
-	public static final String ROLE_IT_ARCHITECT = "ROLE_IT_ARCHITECT";
-	public static final String ROLE_PRODUCT_TECH_COORDINATER = "ROLE_PKT";
-	public static final String ROLE_PROJECT_LEADER = "ROLE_PL";
-
 	public static final String GROUP_ADMINISTRATORS = "Administrators";
-	public static final String GROUP_TEMPLATES_READER = "GROUP_TR";
-	public static final String GROUP_TEMPLATES_WRITER = "GROUP_TW";
 	public static final String GROUP_COMPANY = "GROUP_COMPANY";
 	public static final String GROUP_IT_ARCHITECTS = "GROUP_ITA";
-	public static final String GROUP_PRODUCT_TECH_COORDINATERS = "GROUP_PKT";
-	public static final String GROUP_Users = "Users";
-	public static final String GROUP_PROJECT_LEADERS = "GROUP_PL";
 
+	public static final String GROUP_PRODUCT_TECH_COORDINATERS = "GROUP_PKT";
+	public static final String GROUP_PROJECT_LEADERS = "GROUP_PL";
+	public static final String GROUP_TEMPLATES_READER = "GROUP_TR";
+	public static final String GROUP_TEMPLATES_WRITER = "GROUP_TW";
+	public static final String GROUP_Users = "Users";
 	// Ist in Wirklichkeit ein user!
 	public static final String GROUPCOMM = "GROUPCOMM";
 	// Ist in Wirklichkeit eine Rolle!
 	public static final String GROUPCOMM2 = "GROUPCOMM2";
-
-	public static final String MESSAGE_REGISTRATION = "kxlklqp&78dn(xLGGc0whka_registration";
-
-	public static final String MESSAGE_CONFIRMATION_1_SEND = "qwelkxlx7klqp&78dn(xLGGc0whka_conf_1";
-
-	public static final String MESSAGE_CONFIRMATION_2_SEND = "qweHHwxn77klqp&78dn(xLGGc0whka_conf2";
-
-	public static boolean connectionFailed = false;
+	public static String HOME_URL = "http://rcpl.org";
+	private static List<String> imageCodeBases = new ArrayList<String>();
 
 	private static ISession INSTANCE;
+	public static final String MESSAGE_CONFIRMATION_1_SEND = "qwelkxlx7klqp&78dn(xLGGc0whka_conf_1";
+	public static final String MESSAGE_CONFIRMATION_2_SEND = "qweHHwxn77klqp&78dn(xLGGc0whka_conf2";
+	public static final String MESSAGE_REGISTRATION = "kxlklqp&78dn(xLGGc0whka_registration";
+	public static final String ROLE_ADMINISTRATION = "Administration";
+	public static final String ROLE_COMMUNICATION = "ROLE_COMMUNICATION";
+	public static final String ROLE_HOME = "Home Folder /home";
+	public static final String ROLE_IT_ARCHITECT = "ROLE_IT_ARCHITECT";
 
-	public static String BASE_IMAGE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
+	public static final String ROLE_PRODUCT_TECH_COORDINATER = "ROLE_PKT";
+	public static final String ROLE_PROJECT_LEADER = "ROLE_PL";
 
-	public static String HOME_URL = "http://rcpl.org";
+	public static final String ROLE_SECURITY_READER = "ROLE_SECURITY_READER";
 
-	private static List<String> imageCodeBases = new ArrayList<String>();
-	protected final String COMM1;
+	public static final String ROLE_TEMPLATES_READER = "ROLE_TEMPLATES_READER";
 
-	public final String DEFAULT_PASSWORD;
+	public static final String ROLE_TEMPLATES_WRITER = "ROLE_TEMPLATES_WRITER";
 
-	public final int SOURCE_PORT;
+	public static final String USER_ADMINISTRATOR = "Administrator";
 
-	public final int DESTINATION_PORT;
+	public static final String USER_COMPANY_1 = "user1@company.com";
 
-	private final String DB_NAME;
+	public static final String USER_COMPANY_2 = "user2@company.com";
 
-	protected final String REPOSITORY;
+	public static final String USER_COMPANY_3 = "user3@company.com";
 
-	public boolean DEBUG_RECREATE;
+	public static final String USER_TEMPLATES = "templates";
 
-	public boolean ENV_DEV;
+	public static ISessionFacory sessionFactory = new DefaultSessionFactory();
 
-	public boolean STANDALONE;
+	public static ISession getDefault() {
+		if (INSTANCE == null) {
+			INSTANCE = sessionFactory.createSession();
+		}
+		return INSTANCE;
+	}
 
-	protected CDOSession session;
-
-	protected CDOTransaction transaction;
-
-	private RcplModelFactory factory;
-
-	private org.eclipse.emf.ecore.resource.Resource xmiCDO;
-
-	private org.eclipse.emf.ecore.resource.Resource xmiLocal;
-
-	protected CDONet4jSessionConfiguration configuration;
-
-	public Hashtable<String, Object> coreDataTable;
-
-	private Connection connection;
-
-	private RCPL rcpl;
-
-	private Perspective wordPerspective;
-
-	private Perspective spreadsheetPerspective;
-
-	private Perspective presentationPerspective;
-
-	private Perspective webPerspective;
-
-	private Perspective settingsPerspective;
-
-	private String perspektiveType;
-
-	private Logins logins;
-
-	protected String COMM2;
-
-	private String userId;
-
-	public String password;
+	public static void println(String msg) {
+		System.out.println(msg);
+	}
 
 	private String cacheDir;
 
 	private Hashtable<String, String> cdoIds;
 
-	private User user;
+	private String cdoServer;
 
-	private Realm realm;
+	protected final String COMM1;
+
+	protected String COMM2;
+
+	protected CDONet4jSessionConfiguration configuration;
+
+	private Connection connection;
+
+	public Hashtable<String, Object> coreDataTable;
+
+	private final String DB_NAME;
+
+	public boolean DEBUG_RECREATE;
+
+	public final String DEFAULT_PASSWORD;
+
+	public final int DESTINATION_PORT;
 
 	private Directory directory;
 
-	private boolean reachable;
+	public boolean ENV_DEV;
+
+	private RcplModelFactory factory;
 
 	private boolean launchedByJnlp;
 
+	private Logins logins;
+
 	private RcplModelUtil modelUtil;
 
-	public void addAdditionalImageCodebases(String... additionalCodeBases) {
-		if (additionalCodeBases != null) {
-			getImageCodeBases().addAll(Arrays.asList(additionalCodeBases));
-		}
-	}
+	public String password;
 
-	public static ISession getDefault() {
-		if (INSTANCE == null) {
-			INSTANCE = new RcplSession();
-		}
-		return INSTANCE;
-	}
+	private String perspektiveType;
+
+	private Perspective presentationPerspective;
+
+	private RCPL rcpl;
+
+	private boolean reachable;
+
+	private Realm realm;
+
+	protected final String REPOSITORY;
+
+	protected CDOSession session;
+
+	private Perspective settingsPerspective;
+
+	public final int SOURCE_PORT;
+
+	private Perspective spreadsheetPerspective;
+
+	private boolean standalone;
+
+	protected CDOTransaction transaction;
+
+	private User user;
+
+	private String userId;
+
+	private Perspective webPerspective;
+
+	private Perspective wordPerspective;
+
+	private org.eclipse.emf.ecore.resource.Resource xmiCDO;
+
+	private org.eclipse.emf.ecore.resource.Resource xmiLocal;
 
 	/**
 	 * @param port
@@ -244,7 +249,7 @@ public class RcplSession implements ISession {
 		this.REPOSITORY = "joffice";
 		this.DEBUG_RECREATE = false;
 		this.ENV_DEV = false;
-		this.STANDALONE = false;
+		this.standalone = false;
 		this.perspektiveType = "WORD";
 		this.COMM2 = "2a647b6a1184d48d712042f946420cc48280";
 		this.userId = "";
@@ -257,43 +262,16 @@ public class RcplSession implements ISession {
 
 	}
 
-	protected void prepareJnlp() {
-//		BasicService basicService = null;
-//		try {
-//			try {
-//				basicService = (BasicService) ServiceManager.lookup("javax.jnlp.BasicService");
-//				LAUNCHED_BY_JNLP = true;
-//				println("Launched By JNLP");
-//			} catch (UnavailableServiceException e) {
-//				LAUNCHED_BY_JNLP = false;
-//				println("Launched Standalone");
-//			}
-//
-//			if (basicService != null) {
-//				String codeBase = basicService.getCodeBase().toString();
-//				println("codeBase: " + codeBase);
-//			} else {
-//				println("codeBase not determined");
-//			}
-//		} catch (Exception ex) {
-//			// ignore
-//		}
+	public void addAdditionalImageCodebases(String... additionalCodeBases) {
+		if (additionalCodeBases != null) {
+			getImageCodeBases().addAll(Arrays.asList(additionalCodeBases));
+		}
 	}
 
-	private boolean testReachable(String urlString) {
-		URL url;
-		try {
-			url = new URL(urlString);
-			InetAddress[] ia = Inet4Address.getAllByName(url.getHost());
-			reachable = ia[0].isReachable(3000);
-		} catch (MalformedURLException e) {
-			reachable = false;
-		} catch (UnknownHostException e) {
-			reachable = false;
-		} catch (IOException e) {
-			reachable = false;
-		}
-		return reachable;
+	@Override
+	public void addAdditionalImageCodebases(String url) {
+		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -354,6 +332,29 @@ public class RcplSession implements ISession {
 		xmiLocal = null;
 	}
 
+	// /**
+	// * @param message
+	// */
+	// public void communicate(String message) {
+	// User u = null;
+	// for (EObject eo : xmiCommunication.getContents()) {
+	// if (eo instanceof User) {
+	// if (((User) eo).getId().equals(userId)) {
+	// u = (User) eo;
+	// break;
+	// }
+	// }
+	// }
+	//
+	// if (u == null) {
+	// u = SecurityFactory.eINSTANCE.createUser();
+	// u.setId(userId);
+	// u.setEmail(message);
+	// xmiCommunication.getContents().add(u);
+	// commit();
+	// }
+	// }
+
 	public void closeConnection() {
 		// try {
 		// connection.close();
@@ -389,47 +390,11 @@ public class RcplSession implements ISession {
 		sleep(10);
 	}
 
-	// /**
-	// * @param message
-	// */
-	// public void communicate(String message) {
-	// User u = null;
-	// for (EObject eo : xmiCommunication.getContents()) {
-	// if (eo instanceof User) {
-	// if (((User) eo).getId().equals(userId)) {
-	// u = (User) eo;
-	// break;
-	// }
-	// }
-	// }
-	//
-	// if (u == null) {
-	// u = SecurityFactory.eINSTANCE.createUser();
-	// u.setId(userId);
-	// u.setEmail(message);
-	// xmiCommunication.getContents().add(u);
-	// commit();
-	// }
-	// }
-
 	/**
 	*
 	*/
 	public String createDisplayDate(Date date) {
 		return new SimpleDateFormat("EEEE MMMM DD, YYYY").format(date);
-	}
-
-	@SuppressWarnings("unused")
-	private EObject findEObject(String table, String idName, String id) {
-		List<EObject> eObjects = findEObjects(table, idName, id);
-		if (eObjects.size() > 1) {
-			// TODO: ERROR
-			return eObjects.get(0);
-		}
-		if (eObjects.size() == 1) {
-			return eObjects.get(0);
-		}
-		return null;
 	}
 
 	public Resource createNewOfficeDocument(RCPL joffice, String templateName) {
@@ -537,6 +502,60 @@ public class RcplSession implements ISession {
 		// }
 	}
 
+	@SuppressWarnings("unused")
+	private EObject findEObject(String table, String idName, String id) {
+		List<EObject> eObjects = findEObjects(table, idName, id);
+		if (eObjects.size() > 1) {
+			// TODO: ERROR
+			return eObjects.get(0);
+		}
+		if (eObjects.size() == 1) {
+			return eObjects.get(0);
+		}
+		return null;
+	}
+
+	public List<EObject> findEObjects(String table) {
+		return findEObjects(table, null, null);
+	}
+
+	/**
+	 * @param table
+	 * @param idName
+	 * @param id
+	 * @return
+	 */
+	public List<EObject> findEObjects(String table, String idName, String id) {
+		List<EObject> eObjects = new ArrayList<EObject>();
+		Statement s = null;
+		try {
+			s = createStatement();
+			String sqlString = "SELECT * FROM " + DB_NAME + "." + table;
+			if (id != null && id.length() > 0) {
+				sqlString += " where " + idName + " = '" + id + "'";
+			}
+			s.executeQuery(sqlString);
+			ResultSet rs = s.getResultSet();
+			while (rs.next()) {
+				int idVal = (int) rs.getDouble("cdo_id");
+				EObject eObject = xmiCDO.getEObject("L" + idVal);
+				eObjects.add(eObject);
+			}
+			rs.close();
+			s.close();
+		} catch (SQLException e) {
+		} catch (Exception e) {
+			//
+			if (s == null || connection == null) {
+				// connect();
+				if (connection != null) {
+					return findEObjects(table, idName, id);
+				}
+			}
+		}
+		return eObjects;
+	}
+
 	public User findUser(String id) {
 		return getRealm().getUser(id);
 	}
@@ -560,20 +579,68 @@ public class RcplSession implements ISession {
 		return cacheDir;
 	}
 
-	@Override
-	public List<String> getImageCodeBases() {
-		if (imageCodeBases.isEmpty()) {
-			imageCodeBases.add(BASE_IMAGE_URL);
-		}
-		return imageCodeBases;
+	/**
+	*
+	*/
+	public EObject getCdoObject(String key) {
+		String uriFragment = cdoIds.get(key);
+		EObject eo = getResource().getEObject(uriFragment);
+		return eo;
 	}
 
+	// private EOfficeVersion findVersion() {
+	// for (EObject o : getContents()) {
+	// if (o instanceof EOfficeVersion) {
+	// return (EOfficeVersion) o;
+	// }
+	// }
+	// return null;
+	// }
+
+	/**
+	*
+	*/
+	public EObject getCdoObjectFromId(String id) {
+		EObject eObject = getResource().getEObject("L" + id);
+		return eObject;
+	}
+
+	@Override
+	public String getCDOServer() {
+		return cdoServer;
+	}
+
+	// public Company getCompany() {
+	// if (company == null) {
+	// for (EObject o : getContents()) {
+	// if (o instanceof Company) {
+	// company = (Company) o;
+	// break;
+	// }
+	// }
+	// }
+	// return company;
+	// }
+
+	@Override
 	public EList<EObject> getContents() {
 		if (getResource() == null) {
 			return null;
 		}
 		return getResource().getContents();
 	}
+
+	// public double getDouble(JOKey key) {
+	// String v = getString(key);
+	// if (v == null) {
+	// return 0;
+	// }
+	// try {
+	// return Double.valueOf(v);
+	// } catch (Exception ex) {
+	// return 0;
+	// }
+	// }
 
 	protected Directory getDirectory() {
 		if (directory == null) {
@@ -605,18 +672,17 @@ public class RcplSession implements ISession {
 		return factory;
 	}
 
+	@Override
+	public List<String> getImageCodeBases() {
+		if (imageCodeBases.isEmpty()) {
+			imageCodeBases.add(BASE_IMAGE_URL);
+		}
+		return imageCodeBases;
+	}
+
 	public org.eclipse.emf.ecore.resource.Resource getLocalResource() {
 		return xmiLocal;
 	}
-
-	// private EOfficeVersion findVersion() {
-	// for (EObject o : getContents()) {
-	// if (o instanceof EOfficeVersion) {
-	// return (EOfficeVersion) o;
-	// }
-	// }
-	// return null;
-	// }
 
 	/**
 	 * @return
@@ -636,6 +702,11 @@ public class RcplSession implements ISession {
 		return logins;
 	}
 
+	@Override
+	public RcplModelUtil getModelUtil() {
+		return modelUtil;
+	}
+
 	public List<Resource> getMyResources(RCPL joffice) {
 		for (Folder e : joffice.getAllResources().getChildren()) {
 			if (e instanceof Folder) {
@@ -647,33 +718,18 @@ public class RcplSession implements ISession {
 		return null;
 	}
 
-	// public Company getCompany() {
-	// if (company == null) {
-	// for (EObject o : getContents()) {
-	// if (o instanceof Company) {
-	// company = (Company) o;
-	// break;
-	// }
-	// }
-	// }
-	// return company;
-	// }
-
 	public EList<Addon> getOfficeParts(RCPL joffice) {
 		return joffice.getAllAddons().getChildren();
 	}
 
-	// public double getDouble(JOKey key) {
-	// String v = getString(key);
-	// if (v == null) {
-	// return 0;
-	// }
-	// try {
-	// return Double.valueOf(v);
-	// } catch (Exception ex) {
-	// return 0;
-	// }
-	// }
+	public Group getOrCreateGroup(String id) {
+		Group g = getRealm().getGroup(id);
+		if (g == null) {
+			g = getRealm().addGroup(id);
+			commit();
+		}
+		return g;
+	}
 
 	/**
 	 * @param id
@@ -715,6 +771,18 @@ public class RcplSession implements ISession {
 		}
 		return u;
 	}
+
+	// public String getString(JOKey key) {
+	// if (getJoffice() == null) {
+	// return key.toString();
+	// }
+	// for (EPreference pref : getJoffice().getPreferences().getChildren()) {
+	// if (key.name().equals(pref.getKey())) {
+	// return pref.getValue();
+	// }
+	// }
+	// return null;
+	// }
 
 	public String getPassword() {
 		return password;
@@ -807,18 +875,6 @@ public class RcplSession implements ISession {
 		return settingsPerspective;
 	}
 
-	// public String getString(JOKey key) {
-	// if (getJoffice() == null) {
-	// return key.toString();
-	// }
-	// for (EPreference pref : getJoffice().getPreferences().getChildren()) {
-	// if (key.name().equals(pref.getKey())) {
-	// return pref.getValue();
-	// }
-	// }
-	// return null;
-	// }
-
 	public Perspective getSpreadsheetPerspective() {
 		if (spreadsheetPerspective == null) {
 			spreadsheetPerspective = modelUtil.findPerspective("SPREADSHEET");
@@ -832,6 +888,11 @@ public class RcplSession implements ISession {
 
 	public User getUser() {
 		return user;
+	}
+
+	@Override
+	public String getUserId() {
+		return userId;
 	}
 
 	public Perspective getWebPerspective() {
@@ -873,6 +934,43 @@ public class RcplSession implements ISession {
 		return false;
 	}
 
+	// JOSession.xmiFile = new File(System.getProperty("user.dir"),
+	// "joffice.xmi");
+	//
+	// LOGGER.debug(JOSession.xmiFile.toString());
+	//
+	// if (!JOSession.xmiFile.exists()) {
+	// // copy
+	//
+	// InputStream stream = JOfficeStandalone.class
+	// .getResourceAsStream("/com/joffice/templates/joffice.xmi");
+	// if (stream == null) {
+	// // send your exception or warning
+	// }
+	// OutputStream resStreamOut = null;
+	// int readBytes;
+	// byte[] buffer = new byte[4096];
+	// try {
+	// resStreamOut = new FileOutputStream(JOSession.xmiFile);
+	// while ((readBytes = stream.read(buffer)) > 0) {
+	// resStreamOut.write(buffer, 0, readBytes);
+	// }
+	// } catch (IOException e1) {
+	// // TODO Auto-generated catch block
+	// e1.printStackTrace();
+	// } finally {
+	// try {
+	// stream.close();
+	// if (resStreamOut != null) {
+	// resStreamOut.close();
+	// }
+	// } catch (IOException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
+	// }
+
 	private boolean hasTemplatesWriterRole() {
 
 		if ("templates".equals(userId)) {
@@ -913,9 +1011,22 @@ public class RcplSession implements ISession {
 		return !transaction.isClosed() && transaction.isDirty();
 	}
 
+	public boolean isLaunchedByJnlp() {
+		return launchedByJnlp;
+	}
+
 	@Override
 	public boolean isOnline() {
 		return transaction != null && !transaction.isClosed();
+	}
+
+	public boolean isReachable() {
+		return reachable;
+	}
+
+	@Override
+	public boolean isStandalone() {
+		return standalone;
 	}
 
 	@Override
@@ -1019,6 +1130,29 @@ public class RcplSession implements ISession {
 		}
 	}
 
+	protected void prepareJnlp() {
+//		BasicService basicService = null;
+//		try {
+//			try {
+//				basicService = (BasicService) ServiceManager.lookup("javax.jnlp.BasicService");
+//				LAUNCHED_BY_JNLP = true;
+//				println("Launched By JNLP");
+//			} catch (UnavailableServiceException e) {
+//				LAUNCHED_BY_JNLP = false;
+//				println("Launched Standalone");
+//			}
+//
+//			if (basicService != null) {
+//				String codeBase = basicService.getCodeBase().toString();
+//				println("codeBase: " + codeBase);
+//			} else {
+//				println("codeBase not determined");
+//			}
+//		} catch (Exception ex) {
+//			// ignore
+//		}
+	}
+
 	/**
 	*
 	*/
@@ -1047,43 +1181,6 @@ public class RcplSession implements ISession {
 
 	}
 
-	// JOSession.xmiFile = new File(System.getProperty("user.dir"),
-	// "joffice.xmi");
-	//
-	// LOGGER.debug(JOSession.xmiFile.toString());
-	//
-	// if (!JOSession.xmiFile.exists()) {
-	// // copy
-	//
-	// InputStream stream = JOfficeStandalone.class
-	// .getResourceAsStream("/com/joffice/templates/joffice.xmi");
-	// if (stream == null) {
-	// // send your exception or warning
-	// }
-	// OutputStream resStreamOut = null;
-	// int readBytes;
-	// byte[] buffer = new byte[4096];
-	// try {
-	// resStreamOut = new FileOutputStream(JOSession.xmiFile);
-	// while ((readBytes = stream.read(buffer)) > 0) {
-	// resStreamOut.write(buffer, 0, readBytes);
-	// }
-	// } catch (IOException e1) {
-	// // TODO Auto-generated catch block
-	// e1.printStackTrace();
-	// } finally {
-	// try {
-	// stream.close();
-	// if (resStreamOut != null) {
-	// resStreamOut.close();
-	// }
-	// } catch (IOException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
-	// }
-
 	public void removeCdoId(String key) {
 		cdoIds.remove(key);
 	}
@@ -1107,6 +1204,18 @@ public class RcplSession implements ISession {
 	public void rollback() {
 		transaction.rollback();
 	}
+
+	//
+	// public static void main(String[] args) {
+	// // try {
+	// // RapCDOSession session = new RapCDOSession();
+	// // session.initCdoSession();
+	// // session.createLogin("ramin_" + System.currentTimeMillis(), "123");
+	// // session.close(true);
+	// // } catch (CommitException e) {
+	// // }
+	//
+	// }
 
 	private void saveXMI_Local() {
 
@@ -1148,6 +1257,11 @@ public class RcplSession implements ISession {
 		}
 	}
 
+	@Override
+	public void setCDOServer(String host) {
+		this.cdoServer = host;
+	}
+
 	public void setLogins(Logins logins) {
 		this.logins = logins;
 	}
@@ -1159,6 +1273,15 @@ public class RcplSession implements ISession {
 
 	public void setPerspektiveType(String perspektiveType) {
 		this.perspektiveType = perspektiveType;
+	}
+
+	public void setReachable(boolean reachable) {
+		this.reachable = reachable;
+	}
+
+	@Override
+	public void setStandalone(boolean standalone) {
+		this.standalone = standalone;
 	}
 
 	public void setUser(User user) {
@@ -1274,6 +1397,22 @@ public class RcplSession implements ISession {
 		return true;
 	}
 
+	private boolean testReachable(String urlString) {
+		URL url;
+		try {
+			url = new URL(urlString);
+			InetAddress[] ia = Inet4Address.getAllByName(url.getHost());
+			reachable = ia[0].isReachable(3000);
+		} catch (MalformedURLException e) {
+			reachable = false;
+		} catch (UnknownHostException e) {
+			reachable = false;
+		} catch (IOException e) {
+			reachable = false;
+		}
+		return reachable;
+	}
+
 	/**
 	 * @return
 	 */
@@ -1285,139 +1424,5 @@ public class RcplSession implements ISession {
 			return false;
 		}
 		return true;
-	}
-
-	public boolean isReachable() {
-		return reachable;
-	}
-
-	public void setReachable(boolean reachable) {
-		this.reachable = reachable;
-	}
-
-	public boolean isLaunchedByJnlp() {
-		return launchedByJnlp;
-	}
-
-	public static void println(String msg) {
-		System.out.println(msg);
-	}
-
-	//
-	// public static void main(String[] args) {
-	// // try {
-	// // RapCDOSession session = new RapCDOSession();
-	// // session.initCdoSession();
-	// // session.createLogin("ramin_" + System.currentTimeMillis(), "123");
-	// // session.close(true);
-	// // } catch (CommitException e) {
-	// // }
-	//
-	// }
-
-	private String cdoServer;
-
-	@Override
-	public String getCDOServer() {
-		return cdoServer;
-	}
-
-	@Override
-	public void setCDOServer(String host) {
-		this.cdoServer = host;
-	}
-
-	@Override
-	public void addAdditionalImageCodebases(String url) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private boolean standalone;
-
-	@Override
-	public void setStandalone(boolean standalone) {
-		this.standalone = standalone;
-	}
-
-	@Override
-	public boolean isStandalone() {
-		return standalone;
-	}
-
-	@Override
-	public String getUserId() {
-		return userId;
-	}
-
-	public List<EObject> findEObjects(String table) {
-		return findEObjects(table, null, null);
-	}
-
-	/**
-	*
-	*/
-	public EObject getCdoObject(String key) {
-		String uriFragment = cdoIds.get(key);
-		EObject eo = getResource().getEObject(uriFragment);
-		return eo;
-	}
-
-	/**
-	*
-	*/
-	public EObject getCdoObjectFromId(String id) {
-		EObject eObject = getResource().getEObject("L" + id);
-		return eObject;
-	}
-
-	public Group getOrCreateGroup(String id) {
-		Group g = getRealm().getGroup(id);
-		if (g == null) {
-			g = getRealm().addGroup(id);
-			commit();
-		}
-		return g;
-	}
-
-	/**
-	 * @param table
-	 * @param idName
-	 * @param id
-	 * @return
-	 */
-	public List<EObject> findEObjects(String table, String idName, String id) {
-		List<EObject> eObjects = new ArrayList<EObject>();
-		Statement s = null;
-		try {
-			s = createStatement();
-			String sqlString = "SELECT * FROM " + DB_NAME + "." + table;
-			if (id != null && id.length() > 0) {
-				sqlString += " where " + idName + " = '" + id + "'";
-			}
-			s.executeQuery(sqlString);
-			ResultSet rs = s.getResultSet();
-			while (rs.next()) {
-				int idVal = (int) rs.getDouble("cdo_id");
-				EObject eObject = xmiCDO.getEObject("L" + idVal);
-				eObjects.add(eObject);
-			}
-			rs.close();
-			s.close();
-		} catch (SQLException e) {
-		} catch (Exception e) {
-			//
-			if (s == null || connection == null) {
-				// connect();
-				if (connection != null) {
-					return findEObjects(table, idName, id);
-				}
-			}
-		}
-		return eObjects;
-	}
-
-	public RcplModelUtil getModelUtil() {
-		return modelUtil;
 	}
 }
