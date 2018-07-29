@@ -12,6 +12,8 @@ package org.eclipse.rcpl.homepages;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.ITreePart;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
@@ -46,6 +48,11 @@ public class DefaultToolsEditorHomePage extends AbstractNavigatorHomePage {
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
 		super.doCreateContent(contentPane);
+	}
+
+	@Override
+	protected ITreePart getTreePart() {
+		return Rcpl.UIC.getRcplTreepart();
 	}
 
 }

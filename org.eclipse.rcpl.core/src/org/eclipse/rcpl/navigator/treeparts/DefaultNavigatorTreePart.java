@@ -431,10 +431,10 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		try {
 			if (adapterFactoryTreeItem2 == null) {
 
-				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(getRoot(), getRcplManager().getAdapterFactory());
+				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(getRoot(), getTreeManager().getAdapterFactory());
 				treeView.setRoot(adapterFactoryTreeItem2);
 				AdapterFactoryTreeCellFactory treeCellFactory = new AdapterFactoryTreeCellFactory(
-						getRcplManager().getAdapterFactory());
+						getTreeManager().getAdapterFactory());
 
 				// ---------- add edit support ----------------------
 
@@ -474,6 +474,10 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 			//
 		}
 
+	}
+
+	protected INavigatorTreeManager getTreeManager() {
+		return getRcplManager();
 	}
 
 	private void addCellHandler(AdapterFactoryTreeCellFactory treeCellFactory, EClass cl) {
