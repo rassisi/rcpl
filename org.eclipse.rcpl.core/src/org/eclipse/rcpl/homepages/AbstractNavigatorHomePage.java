@@ -16,8 +16,8 @@ import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
-import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -43,9 +43,10 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
+		treeViewPane = new StackPane();
+
 		splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
-		treeViewPane = new StackPane();
 		splitPane.getItems().add(treeViewPane);
 		detailsArea = new StackPane();
 		splitPane.getItems().add(detailsArea);
@@ -72,10 +73,10 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 		super.refresh();
 		ITreePart treePart = Rcpl.UIC.getTreepart();
 		treePart.setContainer(detailsArea);
-		Node n = treePart.getNode();
-		if (n != null) {
+		TreeView<Object> tv = (TreeView<Object>) treePart.getNode();
+		if (tv != null) {
 			treeViewPane.getChildren().clear();
-			treeViewPane.getChildren().add(n);
+			treeViewPane.getChildren().add(tv);
 		}
 		Rcpl.UIC.getTreepart().setRoot(getRoot());
 

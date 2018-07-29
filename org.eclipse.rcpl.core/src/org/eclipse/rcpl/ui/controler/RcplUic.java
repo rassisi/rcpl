@@ -42,7 +42,6 @@ import org.eclipse.rcpl.WaitThread;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.login.RcplLogin;
-import org.eclipse.rcpl.migration.RcplMigration;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.client.RcplSession;
@@ -911,8 +910,8 @@ public class RcplUic implements IRcplUic {
 //			}
 		}
 
-		Rcpl.progressMessage("Migrate Model");
-		new RcplMigration().migrate();
+//		Rcpl.progressMessage("Migrate Model");
+//		new RcplMigration().migrate();
 
 		Rcpl.progressMessage("Register Services");
 		registerServices();
