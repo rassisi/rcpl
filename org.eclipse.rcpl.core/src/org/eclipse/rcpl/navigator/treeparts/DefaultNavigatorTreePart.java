@@ -20,6 +20,7 @@ import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.revision.CDORevisionKey;
 import org.eclipse.emf.cdo.session.CDOSessionInvalidationEvent;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.fx.emf.edit.ui.AdapterFactoryTreeCellFactory;
@@ -460,6 +461,11 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		} catch (LifecycleException ex) {
 			//
 		}
+
+	}
+
+	private void addCellHandler(AdapterFactoryTreeCellFactory treeCellFactory, EClass cl) {
+		treeCellFactory.addCellEditHandler(new EAttributeCellEditHandler(cl.getEIDAttribute(), getEditingDomain()));
 
 	}
 
