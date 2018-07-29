@@ -32,7 +32,7 @@ public interface IRcplFactory {
 
 	Node createRibbonGroup(ToolGroup group, IRcplAddon useCase, boolean first, boolean dialogButton);
 
-	ICommand createCommand(IEditor editor, ITool tool);
+	ICommand createCommand(ITool tool);
 
 	IUndoRedoListener createUndoRedoTool();
 
@@ -56,10 +56,9 @@ public interface IRcplFactory {
 
 	IService createService();
 
-	ICommand createCommand(IEditor editor, EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData,
-			Object... newData);
+	ICommand createCommand(EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData, Object... newData);
 
-	ICommand createCommand(IEditor editor, ITool tool, ILayoutObject layoutObject, Object[] oldData, Object... newData);
+	ICommand createCommand(ITool tool, ILayoutObject layoutObject, Object[] oldData, Object... newData);
 
 	IToolFactory createOfficeToolFactory();
 

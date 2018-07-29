@@ -7,7 +7,6 @@ import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnServiceId;
 import org.eclipse.rcpl.IColorTool;
 import org.eclipse.rcpl.ICommand;
-import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.ITool;
@@ -148,9 +147,7 @@ public class RcplService extends RcplAbstractService implements IService {
 		if (service == null) {
 			return null;
 		}
-		IEditor editor = getEditor(command);
-		setEditor(editor);
-		service.setEditor(editor);
+
 		try {
 			return service.doExecute(command);
 		} catch (Exception e) {
@@ -166,7 +163,7 @@ public class RcplService extends RcplAbstractService implements IService {
 				String id = command.getTool().getTool().getId();
 				for (EnCommandId e : EnCommandId.values()) {
 					if (id == e.getId()) {
-						return new RcplCommand(command.getEditor(), e, command.getNewData());
+						return new RcplCommand(e, command.getNewData());
 					}
 				}
 			}
@@ -186,7 +183,7 @@ public class RcplService extends RcplAbstractService implements IService {
 	}
 
 	public Object execute(ITool tool) {
-		ICommand command = Rcpl.getFactory().createCommand(null, tool);
+		ICommand command = Rcpl.getFactory().createCommand(tool);
 		IService service = getService(command);
 		try {
 			return service.doExecute(command);
@@ -228,8 +225,8 @@ public class RcplService extends RcplAbstractService implements IService {
 	}
 
 	public void showOutLine(ICommand command, boolean show) {
-		if (getEditor(command) != null) {
-			getEditor(command).setShowOutlineParagraph(show);
+		if (Rcpl.UIC.getEditor() != null) {
+			Rcpl.UIC.getEditor().setShowOutlineParagraph(show);
 			Iterator<ILayoutObject> it = getDocument(command).layoutObjects();
 			while (it.hasNext()) {
 				ILayoutObject lo = it.next();

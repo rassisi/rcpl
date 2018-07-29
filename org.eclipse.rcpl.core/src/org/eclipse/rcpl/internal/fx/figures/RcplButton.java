@@ -94,7 +94,7 @@ public class RcplButton extends RcplTool implements IButton {
 		try {
 
 			getTool().setData(RcplButton.this);
-			ICommand command = Rcpl.getFactory().createCommand(getEditor(), RcplButton.this);
+			ICommand command = Rcpl.getFactory().createCommand(RcplButton.this);
 			Object result = Rcpl.service().execute(command);
 			if (result instanceof Boolean) {
 				if (!((Boolean) result)) {

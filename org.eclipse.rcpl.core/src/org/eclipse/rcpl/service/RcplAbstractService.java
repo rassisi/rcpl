@@ -67,26 +67,12 @@ public abstract class RcplAbstractService {
 		}
 	}
 
-	protected IEditor getEditor(ICommand command) {
-		if (command.getEditor() != null) {
-			return command.getEditor();
-		}
-		ILayoutObject lo = command.getLayoutObject();
-		if (lo != null) {
-			IDocument doc = lo.getDocument();
-			if (doc != null) {
-				return doc.getEditor();
-			}
-		}
-		return null;
-	}
-
 	protected IDocument getDocument(ICommand command) {
 		ILayoutObject lo = command.getLayoutObject();
 		if (lo != null) {
 			return lo.getDocument();
 		}
-		return command.getEditor().getDocument();
+		return Rcpl.UIC.getEditor().getDocument();
 	}
 
 	// protected boolean match(JOCommand event, String key) {
@@ -169,7 +155,7 @@ public abstract class RcplAbstractService {
 	 * @param figure
 	 */
 	protected boolean simulateSelection(ICommand command, IParagraph paragraph) {
-		if (!(paragraph.hasSelection() && command.getEditor().getSelectedParagraph() == paragraph)) {
+		if (!(paragraph.hasSelection() && Rcpl.UIC.getEditor().getSelectedParagraph() == paragraph)) {
 			selectionSimulation = true;
 			paragraph.selectAll();
 			return true;
@@ -286,20 +272,6 @@ public abstract class RcplAbstractService {
 
 	public RcplCommandService getCommandService() {
 		return (RcplCommandService) getService(RcplCommandService.class);
-	}
-
-	public IEditor getEditor() {
-		if (editor == null) {
-			editor = Rcpl.UIC.getEditor();
-		}
-		return editor;
-	}
-
-	public void setEditor(IEditor editor) {
-		for (IService srv : services.values()) {
-			((RcplAbstractService) srv).editor = null;
-		}
-		this.editor = editor;
 	}
 
 }

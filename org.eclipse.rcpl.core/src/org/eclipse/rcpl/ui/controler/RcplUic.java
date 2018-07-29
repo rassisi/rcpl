@@ -29,7 +29,6 @@ import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
-import org.eclipse.rcpl.IEditorListener;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IParagraphFigure;
 import org.eclipse.rcpl.IRcplAddon;
@@ -379,19 +378,18 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public void actionAddWebBrowserTab() {
-		final Tab newTab = createNewTab(new Tab(), "Google");
+		final Tab newTab = createNewTab("Google");
 		newTab.setClosable(true);
 		newTab.setId("webBrowserTab");
 		final WebView newWebView = new WebView();
 		newWebView.getEngine().setJavaScriptEnabled(true);
 		newWebView.setEffect(new InnerShadow());
-		TabInfo tabInfo = new TabInfo();
+		TabInfo tabInfo = getTabInfo(newTab);
 		tabInfo.setNode(newWebView);
 		newWebView.getEngine().load("http://www.google.com");
 		urlAddressTool.addWebListener(newTab, newWebView);
 		setContent(newWebView);
 		newWebView.setUserData(newTab);
-		newTab.setUserData(tabInfo);
 		tabPane.getSelectionModel().select(newTab);
 		newTab.setOnSelectionChanged(new EventHandler<Event>() {
 
@@ -428,70 +426,65 @@ public class RcplUic implements IRcplUic {
 
 	public void closeTab(final Tab tab) {
 
-		Object o = tab.getUserData();
+		TabInfo tabInfo = getTabInfo(tab);
+
 		tab.setUserData(null);
-		if (o instanceof TabInfo) {
-			TabInfo tabInfo = (TabInfo) o;
-			if (tabInfo.getEditor() != null) {
-				final IEditor editor = tabInfo.getEditor();
-				final IDocument doc = editor.getDocument();
 
-				if (internalTabPane.getTabs().isEmpty()) {
-					showHomePage(HomePageType.OVERVIEW);
-				}
+		if (tabInfo.getEditor() != null) {
+			final IEditor editor = tabInfo.getEditor();
+			final IDocument doc = editor.getDocument();
 
-				new DelayedExecution(200) {
-					@Override
-					protected void execute() {
-						new Thread() {
-							@Override
-							public void run() {
-								setName("CLOSE TAB");
-								if (internalTabPane.getTabs().isEmpty()) {
+			if (internalTabPane.getTabs().isEmpty()) {
+				showHomePage(HomePageType.OVERVIEW);
+			}
 
-									new WaitThread(editor) {
+			new DelayedExecution(200) {
+				@Override
+				protected void execute() {
+					new Thread() {
+						@Override
+						public void run() {
+							setName("CLOSE TAB");
+							if (internalTabPane.getTabs().isEmpty()) {
 
-										@Override
-										public void doRun() {
-											showHomePage(HomePageType.OVERVIEW);
-										}
-									};
-
-									RcplSession.getDefault().commit();
-								}
-
-								new DelayedExecution(200) {
+								new WaitThread(editor) {
 
 									@Override
-									protected void execute() {
-										if (editor != null && editor.getDocument() != null) {
-											editor.showPageGroup(false);
-											closeEditor(editor);
-											Rcpl.showProgress(false);
-
-											new Thread("SAVE & CLOSE DOCUMENT") {
-												@Override
-												public void run() {
-													doc.save();
-													doc.dispose();
-
-													printMemory("nach doc.dispose()    ");
-
-												};
-											}.start();
-										}
+									public void doRun() {
+										showHomePage(HomePageType.OVERVIEW);
 									}
 								};
 
+								RcplSession.getDefault().commit();
+							}
+
+							new DelayedExecution(200) {
+
+								@Override
+								protected void execute() {
+									if (editor != null && editor.getDocument() != null) {
+										editor.showPageGroup(false);
+										closeEditor(editor);
+										Rcpl.showProgress(false);
+
+										new Thread("SAVE & CLOSE DOCUMENT") {
+											@Override
+											public void run() {
+												doc.save();
+												doc.dispose();
+
+												printMemory("nach doc.dispose()    ");
+
+											};
+										}.start();
+									}
+								}
 							};
-						}.start();
-					}
-
-				};
-			}
-
+						};
+					}.start();
+				}
+			};
 		}
-
 	}
 
 	@Override
@@ -658,11 +651,9 @@ public class RcplUic implements IRcplUic {
 		if (internalTabPane.getSelectionModel().getSelectedItem() == null) {
 			return null;
 		}
-		Object o = internalTabPane.getSelectionModel().getSelectedItem().getUserData();
-		if (o instanceof IEditor) {
-			return (IEditor) o;
-		}
-		return null;
+		Tab tab = internalTabPane.getSelectionModel().getSelectedItem();
+		TabInfo tabInfo = getTabInfo(tab);
+		return tabInfo.getEditor();
 	}
 
 	@Override
@@ -1306,11 +1297,9 @@ public class RcplUic implements IRcplUic {
 			if (tab == null) {
 				return;
 			}
-			Object o = tab.getUserData();
-			if (o instanceof TabInfo) {
-				TabInfo tabInfo = (TabInfo) o;
-				showPerspective(tabInfo.getPerspective());
-			}
+			TabInfo tabInfo = getTabInfo(tab);
+			showPerspective(tabInfo.getPerspective());
+
 //			if (getBrowser() != null) {
 //				urlAddressTool.setText(getBrowser().getEngine().getLocation());
 //			}
@@ -1460,10 +1449,6 @@ public class RcplUic implements IRcplUic {
 		editor.dispose();
 		getSideToolBarControl().setEditor(null);
 		getTopToolbarControl().setEditor(null);
-		for (IEditorListener l : Rcpl.getEditorListeners()) {
-			l.setEditor(null);
-		}
-		System.gc();
 	}
 
 	protected void copyFXToInternal() {
@@ -1493,7 +1478,16 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
-	protected Tab createNewTab(final Tab tab, String title) {
+	protected TabInfo getTabInfo(Tab tab) {
+		return (TabInfo) tab.getUserData();
+	}
+
+	protected Tab createNewTab(String title) {
+
+		final Tab tab = new Tab();
+		TabInfo tabInfo = new TabInfo();
+		tab.setUserData(tabInfo);
+
 		if (title == null) {
 			title = "-";
 		}
@@ -1781,60 +1775,16 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
-	protected void setEditor(IEditor editor) {
+	@Override
+	public void setEditor(IEditor editor) {
 		getTopToolbarControl().setEditor(editor);
 		getTopToolbarControl().setEditor(editor);
-		for (IEditorListener l : Rcpl.getEditorListeners()) {
-			l.setEditor(editor);
-		}
 		if (editor == null) {
 			setContent((Node) null);
 			return;
 		}
 		setContent(editor.getMainPane());
 	}
-
-//	private void initEcoreFile_OSGi() {
-//
-//		String installDir = "";
-//
-//		 try {
-//		 if (JOSession.ENV_DEV) {
-//		
-//		 File f = new
-//		 File(ResourcesPlugi.getWorkspace().getRoot().getLocation().toOSString());
-//		
-//		 f = new File(f.getParentFile(),
-//		 "joffice_migration_1/org.eclipse.rcpl.build/installer/components/conf");
-//		
-//		 installDir = f.getAbsolutePath() + "/";
-//		
-//		 } else {
-//		 try {
-//		 installDir =
-//		 org.eclipse.core.runtime.Platform.getInstallLocation().getDataArea("/").getPath();
-//		
-//		 } catch (IOException e1) {
-//		
-//		 }
-//		 }
-//		 } catch (Throwable ex) {
-//		
-//		 }
-//
-//	}
-
-//	private void showHomeButtons(boolean show) {
-//
-//		if (show) {
-//			if (homeButtonsArea.getChildren().isEmpty()) {
-//				doCreateHomeButtons();
-//			}
-//		} else {
-//			homeButtonsArea.getChildren().clear();
-//		}
-//
-//	}
 
 	private boolean showHtmlEditor() {
 		WebView webView = getBrowser();
@@ -1885,14 +1835,7 @@ public class RcplUic implements IRcplUic {
 
 	protected void showTab(final Tab tab) {
 		try {
-			final TabInfo tabInfo;
-
-			Object o = tab.getUserData();
-			if (o instanceof TabInfo) {
-				tabInfo = (TabInfo) o;
-			} else {
-				return;
-			}
+			final TabInfo tabInfo = getTabInfo(tab);
 
 			final IEditor editor = tabInfo.getEditor();
 			final Node node = tabInfo.getNode();

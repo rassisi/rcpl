@@ -20,6 +20,7 @@ import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.IWordDocument;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTbl;
@@ -54,21 +55,19 @@ public class RcplCommand implements ICommand {
 
 	private XmlObject oldXmlObject;
 
-	private IEditor editor;
-
-	public RcplCommand(IEditor editor, EnCommandId commandId, Object[] newData) {
-		this(editor, commandId, null, null, newData);
+	public RcplCommand(EnCommandId commandId, Object[] newData) {
+		this(commandId, null, null, newData);
 	}
 
 	/**
 	 * 
 	 */
-	public RcplCommand(IEditor editor, EnCommandId commandId, ILayoutObject layoutObject, ITool tool, Object[] oldData,
+	public RcplCommand(EnCommandId commandId, ILayoutObject layoutObject, ITool tool, Object[] oldData,
 			Object... newData) {
 		this.oldData = oldData;
 		this.newData = newData;
 		this.layoutObject = layoutObject;
-		this.editor = editor;
+		IEditor editor = Rcpl.UIC.getEditor();
 		if (layoutObject == null && editor != null) {
 			this.layoutObject = editor.getSelectedLayoutObject();
 		}
@@ -221,11 +220,6 @@ public class RcplCommand implements ICommand {
 		// LOGGER.error("Should not happen!"); //$NON-NLS-1$
 		// }
 		// }
-	}
-
-	@Override
-	public IEditor getEditor() {
-		return editor;
 	}
 
 	@Override

@@ -609,68 +609,68 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	}
 
-	private void processTool(final Tool tool, Pane pane, final AccordionColorTitlePane titlePane) {
+	private void processTool(final Tool model, Pane pane, final AccordionColorTitlePane titlePane) {
 
 		try {
-			String image = tool.getImage();
+			String image = model.getImage();
 			if (image == null || image.length() == 0) {
-				image = tool.getId();
+				image = model.getId();
 			}
 
-			final ITool node;
+			final ITool tool;
 
-			if ("fontName".equals(tool.getId())) {
-				node = Rcpl.getToolFactory().createTool(tool);
-			} else if ("fontSize".equals(tool.getId())) {
-				node = Rcpl.getToolFactory().createTool(tool);
+			if ("fontName".equals(model.getId())) {
+				tool = Rcpl.getToolFactory().createTool(model);
+			} else if ("fontSize".equals(model.getId())) {
+				tool = Rcpl.getToolFactory().createTool(model);
 			} else {
-				switch (tool.getType()) {
+				switch (model.getType()) {
 				case COLOR_CHOOSER:
-					node = createColorTool(tool, pane, titlePane);
+					tool = createColorTool(model, pane, titlePane);
 					break;
 
 				case OTHER:
-					node = Rcpl.getToolFactory().createTool(tool);
+					tool = Rcpl.getToolFactory().createTool(model);
 					break;
 				default:
-					node = Rcpl.getToolFactory().createTool(tool);
+					tool = Rcpl.getToolFactory().createTool(model);
 					break;
 				}
 			}
 
-			final ITool nodeCreated = node;
-			if (node != null) {
+			final ITool nodeCreated = tool;
+			if (tool != null) {
 				if (pane instanceof GridPane) {
-					int x = tool.getGridX();
-					int y = tool.getGridY();
-					int spanX = tool.getSpanX();
-					int spanY = tool.getSpanY();
-					if (tool.isLabeled()) {
-						Label label = new Label(tool.getName());
+					int x = model.getGridX();
+					int y = model.getGridY();
+					int spanX = model.getSpanX();
+					int spanY = model.getSpanY();
+					if (model.isLabeled()) {
+						Label label = new Label(model.getName());
 						((GridPane) pane).add(label, x, y, 1, 1);
 						x++;
 					}
 
 					try {
-						((GridPane) pane).add(node.getNode(), x, y, spanX, spanY);
+						((GridPane) pane).add(tool.getNode(), x, y, spanX, spanY);
 					} catch (Exception ex) {
 						RCPLModel.logError(ex);
 					}
-					GridPane.setMargin(node.getNode(), new Insets(5));
+					GridPane.setMargin(tool.getNode(), new Insets(5));
 				} else {
-					FlowPane.setMargin(node.getNode(), new Insets(3));
+					FlowPane.setMargin(tool.getNode(), new Insets(3));
 					try {
-						pane.getChildren().add(node.getNode());
+						pane.getChildren().add(tool.getNode());
 					} catch (Exception ex) {
 						RCPLModel.logError(ex);
 					}
 				}
-				node.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
+				tool.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent arg0) {
 						if (nodeCreated instanceof ListView<?>) {
 							if (arg0.getClickCount() == 2) {
-								Rcpl.service().execute(Rcpl.getFactory().createCommand(getEditor(), node));
+								Rcpl.service().execute(Rcpl.getFactory().createCommand(tool));
 							}
 						}
 					}

@@ -104,23 +104,22 @@ public class RcplBasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public ICommand createCommand(IEditor editor, EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData,
+	public ICommand createCommand(EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData,
 			Object... newData) {
-		return new RcplCommand(editor, commandId, layoutObject, null, oldData, newData);
+		return new RcplCommand(commandId, layoutObject, null, oldData, newData);
 	}
 
 	@Override
-	public ICommand createCommand(IEditor editor, ITool tool) {
+	public ICommand createCommand(ITool tool) {
 		ILayoutObject l = null;
-		if (editor != null) {
-			l = editor.getSelectedLayoutObject();
+		if (Rcpl.UIC.getEditor() != null) {
+			l = Rcpl.UIC.getEditor().getSelectedLayoutObject();
 		}
-		return createCommand(editor, tool, l, new Object[0], new Object[0]);
+		return createCommand(tool, l, new Object[0], new Object[0]);
 	}
 
 	@Override
-	public ICommand createCommand(IEditor editor, ITool tool, ILayoutObject layoutObject, Object[] oldData,
-			Object... newData) {
+	public ICommand createCommand(ITool tool, ILayoutObject layoutObject, Object[] oldData, Object... newData) {
 
 		try {
 			String sId = tool.getTool().getService();
@@ -150,7 +149,7 @@ public class RcplBasicFactory implements IRcplFactory {
 
 			commandId = EnCommandId.findCommandId(id);
 
-			return new RcplCommand(editor, commandId, layoutObject, tool, oldData, newData);
+			return new RcplCommand(commandId, layoutObject, tool, oldData, newData);
 		} catch (Exception ex) {
 			RCPLModel.logError(ex);
 			return null;

@@ -1,12 +1,14 @@
 package org.eclipse.rcpl;
 
+/**
+ * @author ramin
+ *
+ */
 public interface ICommand {
 
 	EnCommandId getCommandId();
 
 	ITool getTool();
-
-	IEditor getEditor();
 
 	Object[] getNewData();
 

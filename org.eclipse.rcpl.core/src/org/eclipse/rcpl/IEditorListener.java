@@ -19,8 +19,6 @@ import org.eclipse.rcpl.ui.listener.RcplEvent;
  */
 public interface IEditorListener {
 
-	void setEditor(IEditor editor);
-
 	public void setActivePage(IPage page);
 
 	public void setTabs(Object tabs);

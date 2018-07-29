@@ -30,8 +30,6 @@ public abstract class RcplTool implements ITool {
 
 	protected boolean selected;
 
-	private IEditor editor;
-
 	private Object data;
 
 	public RcplTool(String id, String name, String toolTip, String imageName, boolean toggle) {
@@ -239,18 +237,6 @@ public abstract class RcplTool implements ITool {
 	@Override
 	public void update(RcplEvent event) {
 
-	}
-
-	public IEditor getEditor() {
-		if (editor == null) {
-			editor = Rcpl.UIC.getEditor();
-		}
-		return editor;
-	}
-
-	@Override
-	public void setEditor(IEditor editor) {
-		this.editor = editor;
 	}
 
 	@Override

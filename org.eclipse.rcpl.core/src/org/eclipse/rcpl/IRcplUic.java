@@ -67,6 +67,8 @@ public interface IRcplUic {
 
 	IEditor getEditor();
 
+	void setEditor(IEditor editor);
+
 	Node getFocusOwner();
 
 	HBox getMainBottomArea();

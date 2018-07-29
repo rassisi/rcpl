@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.rcpl.ui.listener;
 
-import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IEditorListener;
 import org.eclipse.rcpl.IPage;
 
@@ -130,12 +129,6 @@ public class RcplEditorListenerAdapter implements IEditorListener {
 
 	@Override
 	public void update(RcplEvent event) {
-	}
-
-	@Override
-	public void setEditor(IEditor editor) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

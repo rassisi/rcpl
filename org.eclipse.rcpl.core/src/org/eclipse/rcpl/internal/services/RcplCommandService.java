@@ -12,6 +12,7 @@
 package org.eclipse.rcpl.internal.services;
 
 import org.eclipse.rcpl.ICommand;
+import org.eclipse.rcpl.Rcpl;
 
 /**
  * @author eclipse
@@ -27,10 +28,10 @@ public class RcplCommandService extends RcplService {
 
 		switch (command.getCommandId()) {
 		case undo:
-			getEditor(command).undo();
+			Rcpl.UIC.getEditor().undo();
 			return true;
 		case redo:
-			getEditor(command).redo();
+			Rcpl.UIC.getEditor().redo();
 			return true;
 		default:
 			break;

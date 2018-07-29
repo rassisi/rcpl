@@ -18,8 +18,8 @@ import org.eclipse.rcpl.IFont;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IStyle;
-import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.font.RcplFont;
@@ -122,11 +122,10 @@ public class FontNameTool extends RcplTool {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
-				if (getEditor() != null) {
-					IParagraph paragraph = getEditor().getSelectedParagraph();
+				if (Rcpl.UIC.getEditor() != null) {
+					IParagraph paragraph = Rcpl.UIC.getEditor().getSelectedParagraph();
 					String fontName = node.getSelectionModel().getSelectedItem();
-					ICommand command = Rcpl.getFactory().createCommand(getEditor(), FontNameTool.this, paragraph, null,
-							fontName);
+					ICommand command = Rcpl.getFactory().createCommand(FontNameTool.this, paragraph, null, fontName);
 					Rcpl.service().execute(command);
 				}
 			}

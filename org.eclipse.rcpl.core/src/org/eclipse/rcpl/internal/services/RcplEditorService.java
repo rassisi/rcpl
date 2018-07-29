@@ -44,14 +44,14 @@ public class RcplEditorService extends RcplService {
 			// Rcpl.UIC.saveAs();
 			break;
 		case test_layout:
-			IParagraph sel = getEditor().getSelectedParagraph();
+			IParagraph sel = Rcpl.UIC.getEditor().getSelectedParagraph();
 			if (sel != null) {
 				sel.setDirtyLayout(true);
 				sel.getDocument().getEditor().layoutDocument();
 			}
 			break;
 		case test_z_order:
-			getEditor().getPage(1).zOrder();
+			Rcpl.UIC.getEditor().getPage(1).zOrder();
 			break;
 		default:
 			break;

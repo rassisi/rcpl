@@ -6,8 +6,6 @@ package org.eclipse.rcpl;
  */
 public interface IService {
 
-	void setEditor(IEditor editor);
-
 	Object execute(ICommand command);
 
 	void selectGroup(String id, int shelfIndex, boolean b);
