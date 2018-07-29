@@ -493,10 +493,12 @@ public class RcplImage implements IImage {
 
 	public void saveToFile(Image image, File path) {
 		BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
-		try {
-			ImageIO.write(bImage, "png", path);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
+		if (bImage != null) {
+			try {
+				ImageIO.write(bImage, "png", path);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 
