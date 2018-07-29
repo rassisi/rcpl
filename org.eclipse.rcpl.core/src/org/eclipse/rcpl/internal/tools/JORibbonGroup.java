@@ -122,6 +122,12 @@ public class JORibbonGroup extends RcplTool {
 					}
 				};
 			};
+			showSideBarButton.setWidth(6);
+			showSideBarButton.setHeight(6);
+
+			showSideBarButton.getNode().setPrefSize(6, 6);
+			showSideBarButton.getNode().setMaxSize(6, 6);
+			showSideBarButton.getNode().setMaxHeight(6);
 
 			GridPane.setValignment(showSideBarButton.getNode(), VPos.BOTTOM);
 			GridPane.setMargin(showSideBarButton.getNode(), new Insets(5, 0, 0, 5));
