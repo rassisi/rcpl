@@ -78,7 +78,7 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 			treeViewPane.getChildren().clear();
 			treeViewPane.getChildren().add(tv);
 		}
-		Rcpl.UIC.getRcplTreepart().setRoot(getRoot());
+		getTreePart().setRoot(getRoot());
 	}
 
 	protected ITreePart getTreePart() {

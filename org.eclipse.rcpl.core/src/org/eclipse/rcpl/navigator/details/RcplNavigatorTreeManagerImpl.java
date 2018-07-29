@@ -70,4 +70,9 @@ public class RcplNavigatorTreeManagerImpl extends AbstractNavigatorTreeManagerIm
 		return new AdapterFactory[] { new RcplItemProviderAdapterFactory() };
 	}
 
+	@Override
+	public AdapterFactory getAdapterFactory() {
+		return super.getAdapterFactory();
+	}
+
 }

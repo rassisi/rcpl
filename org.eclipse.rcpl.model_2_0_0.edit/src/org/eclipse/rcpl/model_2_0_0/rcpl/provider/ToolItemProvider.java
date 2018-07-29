@@ -88,6 +88,8 @@ public class ToolItemProvider extends AbstractToolItemProvider {
 	@Override
 	public Object getImage(Object object) {
 		Tool tool = (Tool) object;
+//		return RCPLModel.resources.getSvgImage(tool.getImage(), 16, 16).getNode();
+
 		return RCPLModel.resources.getImage(tool.getImage(), 16, 16).getNode();
 
 	}

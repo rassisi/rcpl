@@ -27,8 +27,8 @@ import org.eclipse.rcpl.INavigatorTreeManager;
  */
 public abstract class AbstractNavigatorTreeManagerImpl implements INavigatorTreeManager {
 
-	public static EditingDomain editingDomain;
-	public static ComposedAdapterFactory adapterFactory;
+	public EditingDomain editingDomain;
+	public ComposedAdapterFactory adapterFactory;
 
 	public AbstractNavigatorTreeManagerImpl() {
 
