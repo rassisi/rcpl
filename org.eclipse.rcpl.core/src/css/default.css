@@ -616,6 +616,10 @@
 	-fx-background-radius: 3;
 }
 
+#homePageButton {
+    -fx-background-color: transparent;
+}
+
 #back_button .button {
 	-fx-background-color: white, white;
 	-fx-background-radius: 16.4, 15;

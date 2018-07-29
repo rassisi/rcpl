@@ -29,7 +29,7 @@ public interface IRcplUic {
 
 	public void createAllHomeButtons(Pane pane);
 
-	void addHomeButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup);
+	void addHomePageButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup);
 
 	void collapseMainTopArea(boolean collapse);
 

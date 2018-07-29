@@ -192,7 +192,7 @@ public class RcplTopToolBar implements ITopToolbar {
 	}
 
 	private void createCustomRibbonGroup(HBox pane, String name, String toolTip, String toolId, String toolImage,
-			boolean firstGroup, IRcplAddon useCase) {
+			boolean firstGroup, IRcplAddon addon) {
 		ToolGroup group = null;
 
 		try {
@@ -206,7 +206,7 @@ public class RcplTopToolBar implements ITopToolbar {
 			RCPLModel.logError(ex);
 
 		}
-		Node ng = Rcpl.getFactory().createRibbonGroup(group, useCase, firstGroup, false);
+		Node ng = Rcpl.getFactory().createRibbonGroup(group, addon, firstGroup, false);
 		pane.getChildren().add(ng);
 
 		homeRibbons.add(ng);

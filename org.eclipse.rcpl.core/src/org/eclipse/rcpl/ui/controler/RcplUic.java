@@ -1442,12 +1442,13 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void addHomeButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup) {
+	public void addHomePageButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup) {
 		IButton homeButton = new RcplButton(homePage.getType().getName(), homePage.getName(), homePage.getToolTip(),
 				homePage.getImage(), true);
 		homeButton.setData(homePage);
 		homeButton.setWidth(32);
 		homeButton.setHeight(32);
+		homeButton.getNode().setId("homePageButton");
 		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
 		pane.getChildren().add(homeButton.getNode());
 	}
@@ -1695,7 +1696,7 @@ public class RcplUic implements IRcplUic {
 
 		for (HomePage homePage : rcpl.getHomepages().getChildren()) {
 			if (!HomePageType.OVERVIEW.equals(homePage.getType())) {
-				addHomeButton(homePage, pane, toggleGroup);
+				addHomePageButton(homePage, pane, toggleGroup);
 			}
 
 		}

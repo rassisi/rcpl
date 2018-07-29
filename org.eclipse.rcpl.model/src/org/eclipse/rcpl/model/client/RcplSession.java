@@ -9,7 +9,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory
  * @author Ramin
  * 
  */
-public class RcplSession extends AbstractSession {
+public class RcplSession<EObject> extends AbstractSession<org.eclipse.emf.ecore.EObject> {
 
 	@Override
 	protected void addAdapterFactories(ComposedAdapterFactory composedAdapterFactory) {

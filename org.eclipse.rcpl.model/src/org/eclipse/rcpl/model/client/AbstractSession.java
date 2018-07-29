@@ -689,16 +689,6 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	public RCPL getRcpl() {
 		if (rcpl == null) {
 			rcpl = (RCPL) getRcplEmfResource().getContents().get(0);
-//			try {
-//				for (EObject eo : getRcplEmfResource().getContents()) {
-//					if (eo instanceof RCPL) {
-//						rcpl = (RCPL) eo;
-//						break;
-//					}
-//				}
-//			} catch (Exception ex) {
-//
-//			}
 		}
 		return rcpl;
 	}
