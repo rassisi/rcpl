@@ -1,7 +1,7 @@
 package org.eclipse.rcpl.application;
 
 import org.eclipse.rcpl.images.RcplImage;
-import org.eclipse.rcpl.model.cdo.client.RcplSession;
+import org.eclipse.rcpl.model.client.RcplSession;
 
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -58,7 +58,7 @@ public class FXTest extends Application {
 	}
 
 	void test_1() {
-		RcplSession.addAdditionalImageCodebases("https://upload.wikimedia.org/wikipedia/commons/d/d3/");
+		RcplSession.getDefault().addAdditionalImageCodebases("https://upload.wikimedia.org/wikipedia/commons/d/d3/");
 		img = new RcplImage("Microsoft_Account", 300, 300);
 		imageView = img.getNode();
 	}
@@ -76,21 +76,16 @@ public class FXTest extends Application {
 	}
 
 	void test_4() {
-		RcplSession.addAdditionalImageCodebases(
+		RcplSession.getDefault().addAdditionalImageCodebases(
 				"https://raw.githubusercontent.com/rassisi/worldreservesystem/master/org.wrs.resources/svg/");
 		img = new RcplImage("account", 200, 200);
 		imageView = img.getNode();
 	}
 
 	void test_5() {
-		RcplSession.addAdditionalImageCodebases(
-				"https://de.m.wikipedia.org/wiki/Datei:");
+		RcplSession.getDefault().addAdditionalImageCodebases("https://de.m.wikipedia.org/wiki/Datei:");
 		img = new RcplImage("Information_icon", 200, 200);
 		imageView = img.getNode();
 	}
 
-
-	
-	
-	
 }
