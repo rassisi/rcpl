@@ -33,17 +33,17 @@ public class AddEmfTreeHandler {
 		if (treePart.getSelectedObject() instanceof ToolGroup) {
 			Tool tool = RcplFactory.eINSTANCE.createTool();
 			ToolGroup rootGroup = ((ToolGroup) treePart.getSelectedObject());
-			Command command = AddCommand.create(treePart.getManager().getEditingDomain(), rootGroup,
+			Command command = AddCommand.create(treePart.getRcplManager().getEditingDomain(), rootGroup,
 					RcplPackage.Literals.TOOL_GROUP, tool);
 			if (command != null && command.canExecute())
-				treePart.getManager().getEditingDomain().getCommandStack().execute(command);
+				treePart.getRcplManager().getEditingDomain().getCommandStack().execute(command);
 		} else if (treePart.getSelectedObject() instanceof FavoritesGroup) {
 			Favorite item = RcplFactory.eINSTANCE.createFavorite();
 			FavoritesGroup rootGroup = ((FavoritesGroup) treePart.getSelectedObject());
-			Command command = AddCommand.create(treePart.getManager().getEditingDomain(), rootGroup,
+			Command command = AddCommand.create(treePart.getRcplManager().getEditingDomain(), rootGroup,
 					RcplPackage.Literals.FAVORITE, item);
 			if (command != null && command.canExecute())
-				treePart.getManager().getEditingDomain().getCommandStack().execute(command);
+				treePart.getRcplManager().getEditingDomain().getCommandStack().execute(command);
 		}
 
 	}

@@ -20,20 +20,34 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.rcpl.INavigatorTreeManager;
-import org.eclipse.rcpl.model.client.RcplSession;
-import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory;
 
-public class NavigatorTreeManagerImpl implements INavigatorTreeManager {
+/**
+ * @author ramin
+ *
+ */
+public abstract class AbstractNavigatorTreeManagerImpl implements INavigatorTreeManager {
 
 	public static EditingDomain editingDomain;
 	public static ComposedAdapterFactory adapterFactory;
 
-	public NavigatorTreeManagerImpl() {
+	public AbstractNavigatorTreeManagerImpl() {
 
 	}
 
-	public EObject getRoot() {
-		return RcplSession.getDefault().getRcpl();
+	@Override
+	public abstract EObject getRoot();
+
+	protected abstract Resource getResource();
+
+	public abstract AdapterFactory[] createAdapterFactories();
+
+	private AdapterFactory[] adapterFactories;
+
+	private AdapterFactory[] getAdapterFactories() {
+		if (adapterFactories == null) {
+			adapterFactories = createAdapterFactories();
+		}
+		return adapterFactories;
 	}
 
 	@Override
@@ -41,22 +55,22 @@ public class NavigatorTreeManagerImpl implements INavigatorTreeManager {
 		if (adapterFactory == null) {
 			adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 			adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-			adapterFactory.addAdapterFactory(new RcplItemProviderAdapterFactory());
+			adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+
+			for (AdapterFactory adapter : getAdapterFactories()) {
+				adapterFactory.addAdapterFactory(adapter);
+			}
 
 			// adapterFactory
 			// .addAdapterFactory(new SdItemProviderAdapterFactory());
 
-			adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-
-			editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(RcplSession.getDefault().getRcpl());
+			editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(getRoot());
 
 			// editingDomain = new AdapterFactoryEditingDomain(adapterFactory,
 			// new BasicCommandStack());
 
-			Resource cdoResource = RcplSession.getDefault().getRcplEmfResource();
-
 			try {
-				editingDomain.getResourceSet().getResources().add(cdoResource);
+				editingDomain.getResourceSet().getResources().add(getResource());
 			} catch (Exception ex) {
 				// System. out.println();
 			}

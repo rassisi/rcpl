@@ -26,7 +26,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
-import org.eclipse.rcpl.navigator.AbstractDetailPaneController;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;

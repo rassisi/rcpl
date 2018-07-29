@@ -84,9 +84,12 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private EObject selectedObject;
 
-	private INavigatorTreeManager manager;
+	private INavigatorTreeManager rcplManager;
+
+	private INavigatorTreeManager applicationManager;
 
 	private HashMap<Class<? extends EObject>, AbstractEmfHandler<?>> addHandlerRegistry = new HashMap<Class<? extends EObject>, AbstractEmfHandler<?>>();
+
 	private HashMap<Class<? extends EObject>, AbstractEmfHandler<?>> deleteHandlerRegistry = new HashMap<Class<? extends EObject>, AbstractEmfHandler<?>>();
 
 	private HashMap<String, File> documentRegistry = new HashMap<String, File>();
@@ -190,11 +193,20 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		this.detailPane = detailPane;
 	}
 
-	public INavigatorTreeManager getManager() {
-		if (manager == null) {
-			manager = Rcpl.getFactory().createTreeManager();
+	@Override
+	public INavigatorTreeManager getRcplManager() {
+		if (rcplManager == null) {
+			rcplManager = Rcpl.getFactory().createRcplTreeManager();
 		}
-		return manager;
+		return rcplManager;
+	}
+
+	@Override
+	public INavigatorTreeManager getApplicationTreeManager() {
+		if (applicationManager == null) {
+			applicationManager = Rcpl.getFactory().createApplicationTreeManager();
+		}
+		return applicationManager;
 	}
 
 	private void addMouseListener() {
@@ -419,10 +431,10 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		try {
 			if (adapterFactoryTreeItem2 == null) {
 
-				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(getRoot(), getManager().getAdapterFactory());
+				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(getRoot(), getRcplManager().getAdapterFactory());
 				treeView.setRoot(adapterFactoryTreeItem2);
 				AdapterFactoryTreeCellFactory treeCellFactory = new AdapterFactoryTreeCellFactory(
-						getManager().getAdapterFactory());
+						getRcplManager().getAdapterFactory());
 
 				// ---------- add edit support ----------------------
 
@@ -482,7 +494,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	}
 
 	public EditingDomain getEditingDomain() {
-		return getManager().getEditingDomain();
+		return getRcplManager().getEditingDomain();
 	}
 
 	@Override

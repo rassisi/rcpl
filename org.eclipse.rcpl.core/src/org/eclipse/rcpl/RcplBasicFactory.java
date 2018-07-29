@@ -49,7 +49,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
-import org.eclipse.rcpl.navigator.details.NavigatorTreeManagerImpl;
+import org.eclipse.rcpl.navigator.details.RcplNavigatorTreeManagerImpl;
 import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 import org.eclipse.rcpl.ui.font.RcplFontProvider;
@@ -276,17 +276,34 @@ public class RcplBasicFactory implements IRcplFactory {
 		}
 	}
 
+	private ITreePart rcplTreePart;
+
 	@Override
-	public ITreePart createTreePart() {
-		return new DefaultNavigatorTreePart();
+	public ITreePart createRcplTreePart() {
+		rcplTreePart = new DefaultNavigatorTreePart();
+		return rcplTreePart;
 	}
 
 	@Override
-	public INavigatorTreeManager createTreeManager() {
-		return new NavigatorTreeManagerImpl();
+	public ITreePart createApplicationTreePart() {
+		return rcplTreePart;
+	}
+
+	INavigatorTreeManager rcplTreeManager;
+
+	@Override
+	public INavigatorTreeManager createRcplTreeManager() {
+		rcplTreeManager = new RcplNavigatorTreeManagerImpl();
+		return rcplTreeManager;
 	}
 
 	ISession createSession() {
 		return new RcplSession();
 	}
+
+	@Override
+	public INavigatorTreeManager createApplicationTreeManager() {
+		return rcplTreeManager;
+	}
+
 }

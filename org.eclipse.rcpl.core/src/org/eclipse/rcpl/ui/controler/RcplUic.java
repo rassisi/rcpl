@@ -137,7 +137,9 @@ public class RcplUic implements IRcplUic {
 
 	private List<IHomePage> homepages = new ArrayList<IHomePage>();
 
-	private ITreePart treePart;
+	private ITreePart rcplTreePart;
+
+	private ITreePart applicationTreePart;
 
 	@FXML
 	protected Button startMenuButton;
@@ -2038,11 +2040,18 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public ITreePart getTreepart() {
-		if (treePart == null) {
-			treePart = Rcpl.getFactory().createTreePart();
+	public ITreePart getRcplTreepart() {
+		if (rcplTreePart == null) {
+			rcplTreePart = Rcpl.getFactory().createRcplTreePart();
 		}
-		return treePart;
+		return rcplTreePart;
 	}
 
+	@Override
+	public ITreePart getApplicationTreepart() {
+		if (applicationTreePart == null) {
+			applicationTreePart = Rcpl.getFactory().createApplicationTreePart();
+		}
+		return applicationTreePart;
+	}
 }

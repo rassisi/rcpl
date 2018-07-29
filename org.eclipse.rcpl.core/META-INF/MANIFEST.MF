@@ -172,6 +172,8 @@ Export-Package: org.eclipse.rcpl;
    org.eclipse.emf.edit.domain,
    org.eclipse.rcpl.model_2_0_0.rcpl,
    org.eclipse.rcpl.navigator",
+ org.eclipse.rcpl.navigator.handlers,
+ org.eclipse.rcpl.navigator.treeparts,
  org.eclipse.rcpl.service;
   uses:="org.eclipse.rcpl.internal.services,
    org.eclipse.rcpl,

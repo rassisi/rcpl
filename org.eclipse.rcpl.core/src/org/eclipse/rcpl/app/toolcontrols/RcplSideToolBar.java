@@ -781,7 +781,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			if (toolGroup.getTools().size() == 1 && ToolType.NAVIGATOR.equals(mainSideToolGroupType)) {
 
 				try {
-					scrollPane.setContent(Rcpl.UIC.getTreepart().getNode());
+					scrollPane.setContent(Rcpl.UIC.getRcplTreepart().getNode());
 				} catch (Throwable ex) {
 					RCPLModel.logError(ex);
 				}

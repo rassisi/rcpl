@@ -8,7 +8,7 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl.navigator;
+package org.eclipse.rcpl.navigator.details;
 
 import java.math.BigDecimal;
 
@@ -19,6 +19,7 @@ import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.emf.util.EMFEditFXProperties;
+import org.eclipse.rcpl.navigator.IDetailPaneControler;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;

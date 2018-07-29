@@ -50,7 +50,7 @@ public class PasteHandler {
 
 	public void execute() {
 		if (command != null && command.canExecute())
-			treePart.getManager().getEditingDomain().getCommandStack().execute(command);
+			treePart.getRcplManager().getEditingDomain().getCommandStack().execute(command);
 	}
 
 }

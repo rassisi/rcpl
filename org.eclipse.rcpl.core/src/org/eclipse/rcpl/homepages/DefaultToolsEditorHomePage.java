@@ -40,7 +40,7 @@ public class DefaultToolsEditorHomePage extends AbstractNavigatorHomePage {
 
 	@Override
 	protected EObject getRoot() {
-		return RcplSession.getDefault().getRcpl().getAllTools(); // getAllPerspectives();
+		return RcplSession.getDefault().getRcpl().getAllTools();
 	}
 
 	@Override

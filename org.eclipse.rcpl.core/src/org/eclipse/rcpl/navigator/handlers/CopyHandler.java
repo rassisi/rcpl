@@ -33,7 +33,7 @@ public class CopyHandler {
 	public boolean canExecute(List<?> selection) {
 		try {
 			if (selection != null) {
-				command = CopyToClipboardCommand.create(treePart.getManager().getEditingDomain(), selection);
+				command = CopyToClipboardCommand.create(treePart.getRcplManager().getEditingDomain(), selection);
 				return command.canExecute();
 			}
 		} catch (Exception ex) {
@@ -44,7 +44,7 @@ public class CopyHandler {
 
 	public void execute() {
 		if (command != null && command.canExecute())
-			treePart.getManager().getEditingDomain().getCommandStack().execute(command);
+			treePart.getRcplManager().getEditingDomain().getCommandStack().execute(command);
 	}
 
 }

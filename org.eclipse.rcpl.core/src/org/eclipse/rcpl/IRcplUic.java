@@ -25,7 +25,9 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
-	ITreePart getTreepart();
+	ITreePart getRcplTreepart();
+
+	ITreePart getApplicationTreepart();
 
 	public void createAllHomeButtons(Pane pane);
 

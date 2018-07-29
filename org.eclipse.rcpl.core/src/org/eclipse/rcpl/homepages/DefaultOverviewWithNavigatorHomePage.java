@@ -45,7 +45,7 @@ public class DefaultOverviewWithNavigatorHomePage extends DefaultOverviewHomePag
 		SplitPane splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
 
-		Node n = Rcpl.UIC.getTreepart().getNode();
+		Node n = Rcpl.UIC.getRcplTreepart().getNode();
 		if (n != null) {
 			splitPane.getItems().add(n);
 		}

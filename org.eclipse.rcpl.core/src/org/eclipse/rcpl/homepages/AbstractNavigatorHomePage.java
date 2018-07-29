@@ -71,14 +71,18 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 	@Override
 	public void refresh() {
 		super.refresh();
-		ITreePart treePart = Rcpl.UIC.getTreepart();
+		ITreePart treePart = getTreePart();
 		treePart.setContainer(detailsArea);
 		TreeView<Object> tv = (TreeView<Object>) treePart.getNode();
 		if (tv != null) {
 			treeViewPane.getChildren().clear();
 			treeViewPane.getChildren().add(tv);
 		}
-		Rcpl.UIC.getTreepart().setRoot(getRoot());
-
+		Rcpl.UIC.getRcplTreepart().setRoot(getRoot());
 	}
+
+	protected ITreePart getTreePart() {
+		return Rcpl.UIC.getRcplTreepart();
+	}
+
 }

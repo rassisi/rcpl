@@ -24,7 +24,7 @@ public class RedoHandler {
 
 	public boolean canUndo() {
 		try {
-			CommandStack commandStack = treePart.getManager().getEditingDomain().getCommandStack();
+			CommandStack commandStack = treePart.getRcplManager().getEditingDomain().getCommandStack();
 			return commandStack.canRedo();
 		} catch (Exception ex) {
 
@@ -33,7 +33,7 @@ public class RedoHandler {
 	}
 
 	public void undo() {
-		CommandStack commandStack = treePart.getManager().getEditingDomain().getCommandStack();
+		CommandStack commandStack = treePart.getRcplManager().getEditingDomain().getCommandStack();
 		if (commandStack.canRedo())
 			commandStack.redo();
 	}

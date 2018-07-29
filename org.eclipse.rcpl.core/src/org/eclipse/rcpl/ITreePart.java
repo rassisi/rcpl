@@ -12,6 +12,10 @@ import javafx.scene.layout.Pane;
  */
 public interface ITreePart extends ITool {
 
+	INavigatorTreeManager getRcplManager();
+
+	INavigatorTreeManager getApplicationTreeManager();
+
 	void init(Tool tool, boolean showRoot);
 
 	@Override
