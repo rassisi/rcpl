@@ -82,8 +82,8 @@
         <VBox id="mainTopArea" fx:id="topArea" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
           <children>
             <HBox id="mainTopArea" fx:id="titleArea" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="10">
-              <children><HBox fx:id="homeButtonsArea" />
-                <TabPane fx:id="tabPane" maxHeight="26.0" minHeight="26.0" prefHeight="26.0" tabClosingPolicy="ALL_TABS" tabMaxHeight="20.0" tabMinHeight="20.0" tabMinWidth="20.0" HBox.hgrow="ALWAYS">
+              <children><HBox id="mainTopArea" fx:id="homeButtonsArea" />
+                <TabPane id="mainTopArea" fx:id="tabPane" maxHeight="26.0" minHeight="26.0" prefHeight="26.0" tabClosingPolicy="ALL_TABS" tabMaxHeight="20.0" tabMinHeight="20.0" tabMinWidth="20.0" HBox.hgrow="ALWAYS">
                  </TabPane>
               </children>
             </HBox>

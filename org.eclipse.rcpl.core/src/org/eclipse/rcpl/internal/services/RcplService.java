@@ -44,19 +44,9 @@ public class RcplService extends RcplAbstractService implements IService {
 				if (tool != null) {
 					if (id != null) {
 
-//						if (id.startsWith(RcplSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED)) {
-//							String persp = id.substring(
-//									RcplSession.SWITCH_TO_PERSPECTIVE_AND_CREATE_DOCUMENT_IF_NEEDED.length(),
-//									id.length());
-//							IService serv = getServiceBySimpleName("New" + persp.toUpperCase() + "DocumentService");
-//							if (serv != null) {
-//								serv.doExecute(command);
-//								return true;
-//							}
-//							return true;
-//						}
+						String id2 = tool.getId();
 
-						if (id.startsWith("insert_shape") || id.startsWith("shape")) {
+						if (id2.startsWith("insert_shape") || id2.startsWith("shape")) {
 							IService serv = getService(EnServiceId.INSERT_SERVICE);
 							serv.doExecute(command);
 							return true;
@@ -147,8 +137,6 @@ public class RcplService extends RcplAbstractService implements IService {
 
 		if (EnCommandId.NO_COMMAND.equals(command0.getCommandId())) {
 			try {
-				IEditor editor = getEditor(command);
-				setEditor(editor);
 				doExecute(command);
 			} catch (Exception e) {
 				RCPLModel.logError(e);

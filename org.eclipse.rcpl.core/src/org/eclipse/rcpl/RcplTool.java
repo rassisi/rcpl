@@ -242,6 +242,9 @@ public abstract class RcplTool implements ITool {
 	}
 
 	public IEditor getEditor() {
+		if (editor == null) {
+			editor = Rcpl.UIC.getEditor();
+		}
 		return editor;
 	}
 

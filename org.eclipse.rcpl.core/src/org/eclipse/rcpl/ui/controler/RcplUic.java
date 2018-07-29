@@ -1448,6 +1448,8 @@ public class RcplUic implements IRcplUic {
 		homeButton.setData(homePage);
 		homeButton.setWidth(32);
 		homeButton.setHeight(32);
+		homeButton.getNode().setGraphicTextGap(2);
+		homeButton.getNode().setText(homePage.getName());
 		homeButton.getNode().setId("homePageButton");
 		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
 		pane.getChildren().add(homeButton.getNode());

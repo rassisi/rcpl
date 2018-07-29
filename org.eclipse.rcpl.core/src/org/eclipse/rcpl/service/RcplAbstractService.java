@@ -21,6 +21,7 @@ import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IService;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.services.RcplCommandService;
 import org.eclipse.rcpl.internal.services.RcplObjectService;
@@ -288,6 +289,9 @@ public abstract class RcplAbstractService {
 	}
 
 	public IEditor getEditor() {
+		if (editor == null) {
+			editor = Rcpl.UIC.getEditor();
+		}
 		return editor;
 	}
 

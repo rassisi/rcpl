@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.rcpl.images;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -22,6 +23,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
+
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
@@ -33,6 +36,7 @@ import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.util.RcplUtil;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -72,8 +76,6 @@ public class RcplImage implements IImage {
 	private boolean svg;
 
 	private ImageView errorImageNode;
-
-	private Image errorImage;
 
 	private static HashMap<String, IImage> imageRepository = new HashMap<String, IImage>();
 
@@ -121,8 +123,8 @@ public class RcplImage implements IImage {
 				this.id = idTemp;
 
 			} catch (MalformedURLException e) {
-				image = getErrorImage();
 				node = getErrorNode();
+
 			}
 		} else {
 			this.id = id;
@@ -146,10 +148,6 @@ public class RcplImage implements IImage {
 				return node;
 			}
 
-			if (width > 60) {
-				System.out.println();
-			}
-
 			try {
 
 				// ---------- load from input stream
@@ -167,7 +165,9 @@ public class RcplImage implements IImage {
 
 				else if (id == null) {
 					Rcpl.println("Image loaded from error: (id==null)");
-					image = getErrorImage();
+					node = getErrorNode();
+					put(id, width, height);
+					return node;
 				}
 
 				// ---------- image from resource
@@ -184,14 +184,16 @@ public class RcplImage implements IImage {
 						image = new Image(pngUrl.toString());
 						Rcpl.println("Image loaded from Remote: " + id);
 					} catch (Throwable ex) {
-						writeErrorPngFile();
-						image = getErrorImage();
 						Rcpl.println("Image loaded from Resource -> ERROR!: " + id);
+						node = getErrorNode();
+						put(id, width, height);
+						return node;
 					}
 					if (image.isError()) {
-						writeErrorPngFile();
-						image = getErrorImage();
 						Rcpl.println("Image loaded from Resource -> ERROR (image is error)!: " + id);
+						node = getErrorNode();
+						put(id, width, height);
+						return node;
 					}
 				}
 
@@ -202,12 +204,9 @@ public class RcplImage implements IImage {
 					svg = true;
 				}
 
-				put(id, width, height);
-
 			} catch (Throwable ex) {
-				image = getErrorImage();
-				writeErrorPngFile();
-				put(id, width, height);
+				node = getErrorNode();
+				return node;
 
 			}
 		}
@@ -220,9 +219,11 @@ public class RcplImage implements IImage {
 			iv.setFitHeight(height);
 			node = iv;
 			Rcpl.println("Image could be loaded: " + id);
+			put(id, width, height);
+			saveToFile(image, getPngFile());
 		} else {
-			image = getErrorImage();
 			node = getErrorNode();
+			put(id, width, height);
 			Rcpl.println("Image could not be loaded!: " + id);
 		}
 
@@ -239,7 +240,7 @@ public class RcplImage implements IImage {
 			iv.setFitHeight(height);
 			return iv;
 		}
-		ImageView iv = new ImageView(getErrorImage());
+		ImageView iv = getErrorNode();
 		iv.setFitWidth(width);
 		iv.setFitHeight(height);
 		return iv;
@@ -312,101 +313,6 @@ public class RcplImage implements IImage {
 		}
 		return false;
 	}
-
-//	/**
-//	 * @param svgUrl
-//	 * @param pngFile
-//	 * @param width
-//	 * @param height
-//	 * @return
-//	 */
-//	private ImageView createSvgNode(URL url, double width, double height) {
-//
-//		ImageView iv = null;
-//
-//		if (url.toString().endsWith(".svg")) {
-//			svg = true;
-//		}
-//
-//		if (getPngFile().exists()) {
-//			iv = new ImageView(getPngFile().toURI().toString());
-//		} else if (getErrorPngFile().exists()) {
-//			iv = getErrorNode();
-//		} else {
-//			try {
-//				InputStream is = url.openStream();
-//				iv = createBatikNode(is, width, height);
-//				if (iv == null) {
-//					try {
-//						image = new Image(pngUrl.toString());
-//					} catch (Throwable ex) {
-//						writeErrorPngFile();
-//						return getErrorNode();
-//					}
-//					if (image.isError()) {
-//						writeErrorPngFile();
-//						return getErrorNode();
-//					}
-//					iv = new ImageView(image);
-//
-//				}
-//				is.close();
-//
-//			} catch (Throwable ex) {
-//				iv = getErrorNode();
-//				writeErrorPngFile();
-//			}
-//		}
-//		iv.setFitWidth(width);
-//		iv.setFitHeight(height);
-//		return iv;
-//	}
-
-//	/**
-//	 * Diese Methode wird aus JOImage aufgerufen, um ein Image aus einem PackagePart
-//	 * (OOXML) auszulesen.
-//	 * 
-//	 * @param is
-//	 * @param fileName
-//	 * @param width
-//	 * @param height
-//	 * @return
-//	 */
-//	private ImageView createSvgNodeFromInputStream(InputStream is, double width, double height) {
-//
-//		if (isSvg()) {
-//			ImageView node;
-//			try {
-//				node = createBatikNode(is, width, height);
-//				if (node != null) {
-//					return node;
-//				}
-//			} catch (TranscoderException e) {
-//			} catch (IOException e) {
-//			}
-//			return getErrorNode();
-//		} else {
-//			try {
-//				image = new Image(is);
-//				ImageView iv = new ImageView();
-//				if (image != null) {
-//					iv.setImage(image);
-//					iv.setFitWidth(width);
-//					iv.setFitHeight(height);
-//				}
-//				try {
-//					is.close();
-//				} catch (Exception ex) {
-//					// ignore as all images wrong will be saved under the
-//					// __ERROR__ folder
-//				}
-//				return iv;
-//			} catch (Exception ex) {
-//				return null;
-//			}
-//		}
-//
-//	}
 
 	private Image createSvgImage(InputStream is, double width, double height) throws TranscoderException, IOException {
 		OutputStream png_ostream;
@@ -579,10 +485,25 @@ public class RcplImage implements IImage {
 		}
 	}
 
+	private void writePngFile(Image img) {
+
+		getPngFile().getParentFile().mkdirs();
+		saveToFile(img, getPngFile());
+	}
+
+	public void saveToFile(Image image, File path) {
+		BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+		try {
+			ImageIO.write(bImage, "png", path);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	@Override
 	public Image getImage() {
 		if (image == null) {
-			image = getErrorImage();
+			image = getErrorNode().getImage();
 		}
 		return image;
 	}
@@ -603,15 +524,41 @@ public class RcplImage implements IImage {
 
 	}
 
+	private Image createSvgImageFromResource(String svgFilePath) {
+		Image img = null;
+		InputStream is = RcplImage.class.getResourceAsStream(svgFilePath);
+		if (is != null) {
+			try {
+				img = createSvgImage(is, width, height);
+				Rcpl.println("SVG Image loaded from Resource: " + id);
+			} catch (TranscoderException | IOException e) {
+			}
+		}
+		try {
+			if (is != null) {
+				is.close();
+			}
+		} catch (IOException e) {
+			// ignore as all images wrong will be saved under the __ERROR__
+			// folder
+			Rcpl.println("Image could not be loaded from Resource: " + id);
+		}
+		return img;
+	}
+
 	private Image createImageFromResource() {
+		if (isSvg()) {
+			image = createSvgImageFromResource(createSvgPath());
+			return image;
+		}
 		String resourcePath = createPngPath();
-		Image img = getImageFromResource(resourcePath);
-		if (img == null) {
+		image = getImageFromResource(resourcePath);
+		if (image == null) {
 			resourcePath = createSvgPath();
 			InputStream is = RcplImage.class.getResourceAsStream(resourcePath);
 			if (is != null) {
 				try {
-					img = createSvgImage(is, width, height);
+					image = createSvgImage(is, width, height);
 					Rcpl.println("SVG Image loaded from Resource: " + id);
 				} catch (TranscoderException | IOException e) {
 				}
@@ -627,7 +574,7 @@ public class RcplImage implements IImage {
 		} else {
 			Rcpl.println("Image loaded from Resource: " + id);
 		}
-		return img;
+		return image;
 	}
 
 	private Image getImageFromResource(String resourcePath) {
@@ -648,27 +595,17 @@ public class RcplImage implements IImage {
 
 	}
 
-	private Image getErrorImage() {
-		if (errorImage == null) {
-			errorImage = getImageFromResource("16.0_16.0/error.png");
-		}
-		return errorImage;
-	}
-
 	private ImageView getErrorNode() {
 		if (errorImageNode == null) {
-			errorImageNode = new ImageView(getErrorImage());
+			image = createSvgImageFromResource("svg/broken_image.svg");
+			errorImageNode = new ImageView(image);
 			errorImageNode.setFitHeight(height);
 			errorImageNode.setFitWidth(width);
-		} else {
-			errorImageNode = new ImageView(getErrorImage());
+			put(id, width, height);
+			writeErrorPngFile();
+
 		}
-		try {
-			if (is != null) {
-				is.close();
-			}
-		} catch (IOException e) {
-		}
+
 		return errorImageNode;
 
 	}
