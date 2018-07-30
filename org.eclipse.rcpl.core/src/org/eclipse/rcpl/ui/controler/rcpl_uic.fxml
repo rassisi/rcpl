@@ -82,7 +82,7 @@
         <VBox fx:id="topArea" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
           <children>
             <HBox id="transparentBorder" fx:id="titleArea" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="10" VBox.vgrow="ALWAYS">
-              <children><HBox id="redBorder" fx:id="homeButtonsArea">
+              <children><HBox id="transparentBorder" fx:id="homeButtonsArea">
                                  <HBox.margin>
                                     <Insets right="30.0" />
                                  </HBox.margin></HBox>
