@@ -46,6 +46,7 @@ import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
+import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
@@ -179,11 +180,17 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		IDetailPane detailPane = detailPanes.get(eObject.getClass());
 
 		if (detailPane == null) {
+
+			// ========== Tool
+
 			if (eObject instanceof Tool) {
 				detailPane = new ToolsDetailPage();
 				detailPanes.put(eObject.getClass(), detailPane);
 				detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
-			} else if (eObject instanceof Preferences) {
+
+				// ========== Preference Group
+
+			} else if (eObject instanceof PreferenceGroup) {
 				detailPane = new PreferencesDetailsPage();
 				detailPanes.put(eObject.getClass(), detailPane);
 			}
