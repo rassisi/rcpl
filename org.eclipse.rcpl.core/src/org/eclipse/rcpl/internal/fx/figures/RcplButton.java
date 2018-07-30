@@ -182,7 +182,7 @@ public class RcplButton extends RcplTool implements IButton {
 		}
 
 		node.setId("toolButton");
-		image = Rcpl.resources().getSvgImage(imageName,
+		image = Rcpl.resources().getImage(imageName,
 
 				getWidth(), getHeight());
 

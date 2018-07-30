@@ -65,7 +65,7 @@ public class JORibbonGroup extends RcplTool {
 	/**
 	 * Default Constructor.
 	 */
-	public JORibbonGroup(ToolGroup toolGroup, boolean first, boolean dialogButton) {
+	public JORibbonGroup(ToolGroup toolGroup, boolean first, boolean isDialogButton) {
 		super(toolGroup.getId(), toolGroup.getName(), toolGroup.getToolTip(), toolGroup.getImage(), false);
 		this.toolGroup = toolGroup;
 		this.mainGridPane = new GridPane();
@@ -110,9 +110,8 @@ public class JORibbonGroup extends RcplTool {
 		gridPane.setStyle("-fx-padding: 5 0 0 0");
 		VBox.setMargin(gridPane, new Insets(0, 0, 5, 0));
 
-		if (dialogButton) {
-			RcplButton showSideBarButton = new RcplButton("showSideBar", "", "Show Side Bar Dialog", "dialog_button",
-					true) {
+		if (isDialogButton) {
+			RcplButton dialogButton = new RcplButton("showSideBar", "", "Show Side Bar Dialog", "dialog_button", true) {
 				@Override
 				protected void doAction() {
 					if (isSelected()) {
@@ -122,17 +121,17 @@ public class JORibbonGroup extends RcplTool {
 					}
 				};
 			};
-			showSideBarButton.setWidth(6);
-			showSideBarButton.setHeight(6);
+			dialogButton.setWidth(6);
+			dialogButton.setHeight(6);
+			dialogButton.getNode().setPrefSize(6, 6);
+			dialogButton.getNode().setMaxSize(6, 6);
+			dialogButton.getNode().setMaxHeight(6);
+			dialogButton.getNode().setId("dialogButton");
 
-			showSideBarButton.getNode().setPrefSize(6, 6);
-			showSideBarButton.getNode().setMaxSize(6, 6);
-			showSideBarButton.getNode().setMaxHeight(6);
-
-			GridPane.setValignment(showSideBarButton.getNode(), VPos.BOTTOM);
-			GridPane.setMargin(showSideBarButton.getNode(), new Insets(5, 0, 0, 5));
+			GridPane.setValignment(dialogButton.getNode(), VPos.BOTTOM);
+			GridPane.setMargin(dialogButton.getNode(), new Insets(5, 0, 0, 5));
 			// showSideBarButton.setPadding(new Insets(15, 0, 0, 0));
-			gridPane.add(showSideBarButton.getNode(), 1, 0);
+			gridPane.add(dialogButton.getNode(), 1, 0);
 		}
 
 		HBox.setHgrow(label, Priority.NEVER);

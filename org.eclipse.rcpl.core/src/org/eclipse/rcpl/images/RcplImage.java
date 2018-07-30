@@ -75,8 +75,6 @@ public class RcplImage implements IImage {
 
 	private boolean svg;
 
-	private ImageView errorImageNode;
-
 	private static HashMap<String, Image> imageRepository = new HashMap<String, Image>();
 
 	private File pngFile;
@@ -123,8 +121,7 @@ public class RcplImage implements IImage {
 				this.id = idTemp;
 
 			} catch (MalformedURLException e) {
-				node = getErrorNode();
-
+				createErrorNode();
 			}
 		} else {
 			this.id = id;
@@ -135,18 +132,17 @@ public class RcplImage implements IImage {
 	@Override
 	public ImageView getNode() {
 
+		// ---------- check if already loaded
+
 		if (node != null) {
 			return node;
 		}
-
-		// ---------- check if already loaded
 
 		// ---------- check if Images is already in the repository
 
 		image = get();
 		if (image != null) {
 			createImageView();
-			Rcpl.println("Image loaded from repository: " + id);
 			return node;
 		}
 
@@ -156,27 +152,36 @@ public class RcplImage implements IImage {
 
 			if (is != null) {
 				if (isSvg()) {
-					image = createSvgImage(is, width, height);
-					Rcpl.println("SVG Image loaded from stream: " + id);
+					createSvgImage(is, width, height);
 				} else {
 					image = new Image(is);
 				}
 			}
 
-			// error image (id==null)
+			// ---------- id==null !!! -> should never happen!!!
 
 			else if (id == null) {
-				Rcpl.println("Image loaded from error: (id==null)");
-				node = getErrorNode();
-				put(id, width, height);
+				Rcpl.printErrorln("Image could not be loeaded (id == null): ");
+				createErrorNode();
 				return node;
+			}
+
+			// ---------- image from resource
+
+			else if (getPngFile().exists()) {
+				URL url = getPngFile().toURI().toURL();
+				Rcpl.println("Image loaded from cache: " + id);
+				InputStream is = url.openStream();
+				if (is != null) {
+					image = new Image(is);
+					is.close();
+				}
 			}
 
 			// ---------- image from resource
 
 			else if (createImageFromResource() != null) {
 				Rcpl.println("Image loaded from resouce: " + id);
-
 			}
 
 			// ---------- load image from remote
@@ -186,15 +191,13 @@ public class RcplImage implements IImage {
 					image = new Image(pngUrl.toString());
 					Rcpl.println("Image loaded from Remote: " + id);
 				} catch (Throwable ex) {
-					Rcpl.println("Image loaded from Resource -> ERROR!: " + id);
-					node = getErrorNode();
-					put(id, width, height);
+					Rcpl.printErrorln("Image not loaded from Resource -> ERROR!: " + id, ex);
+					createErrorNode();
 					return node;
 				}
 				if (image.isError()) {
-					Rcpl.println("Image loaded from Resource -> ERROR (image is error)!: " + id);
-					node = getErrorNode();
-					put(id, width, height);
+					Rcpl.printErrorln("Image not loaded from Resource -> ERROR (image is error)!: " + id);
+					createErrorNode();
 					return node;
 				}
 			}
@@ -202,27 +205,24 @@ public class RcplImage implements IImage {
 			// ---------- check if can be loaded from remote as svg
 
 			else if (findSvgRemoteImage()) {
-				image = createSvgImage(SvgUrl.openStream(), width, height);
+				createSvgImage(SvgUrl.openStream(), width, height);
 				svg = true;
 			}
 
 		} catch (Throwable ex) {
-			node = getErrorNode();
+			Rcpl.printErrorln("Image not be loaded!: " + id, ex);
+			createErrorNode();
 			return node;
 
 		}
 
-		if (image != null)
-
-		{
+		if (image != null) {
 			createImageView();
-			Rcpl.println("Image could be loaded: " + id);
 			put(id, width, height);
 			saveToFile(image, getPngFile());
 		} else {
-			node = getErrorNode();
-			put(id, width, height);
-			Rcpl.println("Image could not be loaded!: " + id);
+			Rcpl.printErrorln("Image not be loaded (image==null!");
+			createErrorNode();
 		}
 
 		return node;
@@ -238,13 +238,7 @@ public class RcplImage implements IImage {
 	@Override
 	public ImageView getCopyNode() {
 		getNode();
-		if (image != null) {
-			ImageView iv = new ImageView(image);
-			iv.setFitWidth(width);
-			iv.setFitHeight(height);
-			return iv;
-		}
-		ImageView iv = getErrorNode();
+		ImageView iv = new ImageView(image);
 		iv.setFitWidth(width);
 		iv.setFitHeight(height);
 		return iv;
@@ -318,7 +312,7 @@ public class RcplImage implements IImage {
 		return false;
 	}
 
-	private Image createSvgImage(InputStream is, double width, double height) throws TranscoderException, IOException {
+	private void createSvgImage(InputStream is, double width, double height) throws TranscoderException, IOException {
 		OutputStream png_ostream;
 
 		TranscoderInput transIn = new TranscoderInput(is);
@@ -353,7 +347,6 @@ public class RcplImage implements IImage {
 		fos.close();
 
 		isImage.close();
-		return image;
 
 	}
 
@@ -490,7 +483,6 @@ public class RcplImage implements IImage {
 	}
 
 	private void writePngFile(Image img) {
-
 		getPngFile().getParentFile().mkdirs();
 		saveToFile(img, getPngFile());
 	}
@@ -509,7 +501,8 @@ public class RcplImage implements IImage {
 	@Override
 	public Image getImage() {
 		if (image == null) {
-			image = getErrorNode().getImage();
+			Rcpl.printErrorln("Image could not be loeaded in getImage() ");
+			createErrorNode();
 		}
 		return image;
 	}
@@ -530,12 +523,11 @@ public class RcplImage implements IImage {
 
 	}
 
-	private Image createSvgImageFromResource(String svgFilePath) {
-		Image img = null;
+	private void createSvgImageFromResource(String svgFilePath) {
 		InputStream is = RcplImage.class.getResourceAsStream(svgFilePath);
 		if (is != null) {
 			try {
-				img = createSvgImage(is, width, height);
+				createSvgImage(is, width, height);
 				Rcpl.println("SVG Image loaded from Resource: " + id);
 			} catch (TranscoderException | IOException e) {
 			}
@@ -549,12 +541,12 @@ public class RcplImage implements IImage {
 			// folder
 			Rcpl.println("Image could not be loaded from Resource: " + id);
 		}
-		return img;
 	}
 
 	private Image createImageFromResource() {
+
 		if (isSvg()) {
-			image = createSvgImageFromResource(createSvgPath());
+			createSvgImageFromResource(createSvgPath());
 			return image;
 		}
 		String resourcePath = createPngPath();
@@ -564,7 +556,7 @@ public class RcplImage implements IImage {
 			InputStream is = RcplImage.class.getResourceAsStream(resourcePath);
 			if (is != null) {
 				try {
-					image = createSvgImage(is, width, height);
+					createSvgImage(is, width, height);
 					Rcpl.println("SVG Image loaded from Resource: " + id);
 				} catch (TranscoderException | IOException e) {
 				}
@@ -601,20 +593,17 @@ public class RcplImage implements IImage {
 
 	}
 
-	private ImageView getErrorNode() {
-		if (errorImageNode == null) {
-			image = createSvgImageFromResource("svg/broken_image.svg");
-			errorImageNode = new ImageView(image);
-			errorImageNode.setFitHeight(height);
-			errorImageNode.setFitWidth(width);
-			node = errorImageNode;
-			put(id, width, height);
-			writeErrorPngFile();
+	private void createErrorNode() {
+		createErrorImage();
+		node = new ImageView(image);
+		node.setFitHeight(height);
+		node.setFitWidth(width);
+		put(id, width, height);
+		writeErrorPngFile();
+	}
 
-		}
-
-		return errorImageNode;
-
+	private void createErrorImage() {
+		createSvgImageFromResource("svg/broken_image.svg");
 	}
 
 	private boolean existsAtUrl(URL url) {

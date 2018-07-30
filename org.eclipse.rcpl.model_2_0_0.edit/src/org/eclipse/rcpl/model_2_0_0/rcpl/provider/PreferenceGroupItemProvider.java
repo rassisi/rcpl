@@ -57,26 +57,22 @@ public class PreferenceGroupItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addLinkedPreferencesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PreferenceGroup_linkedPreferences_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PreferenceGroup_linkedPreferences_feature", "_UI_PreferenceGroup_type"),
-				 RcplPackage.Literals.PREFERENCE_GROUP__LINKED_PREFERENCES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_PreferenceGroup_linkedPreferences_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_PreferenceGroup_linkedPreferences_feature",
+								"_UI_PreferenceGroup_type"),
+						RcplPackage.Literals.PREFERENCE_GROUP__LINKED_PREFERENCES, true, false, true, null, null,
+						null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an
+	 * appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,11 +87,13 @@ public class PreferenceGroupItemProvider extends LayoutableItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper feature to
+		// use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -108,7 +106,7 @@ public class PreferenceGroupItemProvider extends LayoutableItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return RCPLModel.resources.getSvgImage("folder", 16, 16).getNode();
+		return RCPLModel.resources.getImage("folder", 16, 16).getNode();
 	}
 
 	/**
@@ -123,9 +121,10 @@ public class PreferenceGroupItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update
+	 * any cached children and by creating a viewer notification, which it passes to
+	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,34 +132,30 @@ public class PreferenceGroupItemProvider extends LayoutableItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PreferenceGroup.class)) {
-			case RcplPackage.PREFERENCE_GROUP__PREFERENCES:
-			case RcplPackage.PREFERENCE_GROUP__PREFERENCEGROUPS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case RcplPackage.PREFERENCE_GROUP__PREFERENCES:
+		case RcplPackage.PREFERENCE_GROUP__PREFERENCEGROUPS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
+	 * the children that can be created under this object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RcplPackage.Literals.PREFERENCE_GROUP__PREFERENCES,
-				 RcplFactory.eINSTANCE.createPreference()));
+		newChildDescriptors.add(createChildParameter(RcplPackage.Literals.PREFERENCE_GROUP__PREFERENCES,
+				RcplFactory.eINSTANCE.createPreference()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(RcplPackage.Literals.PREFERENCE_GROUP__PREFERENCEGROUPS,
-				 RcplFactory.eINSTANCE.createPreferenceGroup()));
+		newChildDescriptors.add(createChildParameter(RcplPackage.Literals.PREFERENCE_GROUP__PREFERENCEGROUPS,
+				RcplFactory.eINSTANCE.createPreferenceGroup()));
 	}
 
 }

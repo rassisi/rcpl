@@ -70,47 +70,35 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This adds a property descriptor for the Layout X feature.
-	 * <!-- begin-user-doc
+	 * This adds a property descriptor for the Layout X feature. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLayoutXPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_layoutX_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_layoutX_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__LAYOUT_X,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_layoutX_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_layoutX_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__LAYOUT_X, true, false, false,
+						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Layout Y feature.
-	 * <!-- begin-user-doc
+	 * This adds a property descriptor for the Layout Y feature. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLayoutYPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_layoutY_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_layoutY_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__LAYOUT_Y,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_layoutY_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_layoutY_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__LAYOUT_Y, true, false, false,
+						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -120,19 +108,13 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addLayoutWidthPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_layoutWidth_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_layoutWidth_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__LAYOUT_WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_layoutWidth_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_layoutWidth_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__LAYOUT_WIDTH, true, false, false,
+						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -142,41 +124,29 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addLayoutHeightPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_layoutHeight_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_layoutHeight_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__LAYOUT_HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_layoutHeight_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_layoutHeight_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__LAYOUT_HEIGHT, true, false, false,
+						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_name_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_name_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_name_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -186,85 +156,61 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_description_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_description_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_description_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__DESCRIPTION, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Id feature.
-	 * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Id feature. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_id_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_id_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_id_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__ID, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Image feature.
-	 * <!-- begin-user-doc
+	 * This adds a property descriptor for the Image feature. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addImagePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_image_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_image_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__IMAGE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_image_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_image_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__IMAGE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Tool Tip feature.
-	 * <!-- begin-user-doc
+	 * This adds a property descriptor for the Tool Tip feature. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addToolTipPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_toolTip_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_toolTip_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__TOOL_TIP,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_toolTip_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_toolTip_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__TOOL_TIP, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -274,19 +220,13 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addCreateDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_createDate_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_createDate_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__CREATE_DATE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_createDate_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_createDate_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__CREATE_DATE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -296,67 +236,50 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	 * @generated
 	 */
 	protected void addBeginDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_beginDate_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_beginDate_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__BEGIN_DATE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_beginDate_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_beginDate_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__BEGIN_DATE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the End Date feature.
-	 * <!-- begin-user-doc
+	 * This adds a property descriptor for the End Date feature. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addEndDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_endDate_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_endDate_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__END_DATE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_endDate_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_endDate_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__END_DATE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Leaf feature.
-	 * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Leaf feature. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLeafPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Layoutable_leaf_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_leaf_feature", "_UI_Layoutable_type"),
-				 RcplPackage.Literals.LAYOUTABLE__LEAF,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Layoutable_leaf_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Layoutable_leaf_feature",
+								"_UI_Layoutable_type"),
+						RcplPackage.Literals.LAYOUTABLE__LEAF, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -378,9 +301,10 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update
+	 * any cached children and by creating a viewer notification, which it passes to
+	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -388,30 +312,30 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Layoutable.class)) {
-			case RcplPackage.LAYOUTABLE__LAYOUT_X:
-			case RcplPackage.LAYOUTABLE__LAYOUT_Y:
-			case RcplPackage.LAYOUTABLE__LAYOUT_WIDTH:
-			case RcplPackage.LAYOUTABLE__LAYOUT_HEIGHT:
-			case RcplPackage.LAYOUTABLE__NAME:
-			case RcplPackage.LAYOUTABLE__DESCRIPTION:
-			case RcplPackage.LAYOUTABLE__ID:
-			case RcplPackage.LAYOUTABLE__IMAGE:
-			case RcplPackage.LAYOUTABLE__TOOL_TIP:
-			case RcplPackage.LAYOUTABLE__CREATE_DATE:
-			case RcplPackage.LAYOUTABLE__BEGIN_DATE:
-			case RcplPackage.LAYOUTABLE__END_DATE:
-			case RcplPackage.LAYOUTABLE__LEAF:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case RcplPackage.LAYOUTABLE__LAYOUT_X:
+		case RcplPackage.LAYOUTABLE__LAYOUT_Y:
+		case RcplPackage.LAYOUTABLE__LAYOUT_WIDTH:
+		case RcplPackage.LAYOUTABLE__LAYOUT_HEIGHT:
+		case RcplPackage.LAYOUTABLE__NAME:
+		case RcplPackage.LAYOUTABLE__DESCRIPTION:
+		case RcplPackage.LAYOUTABLE__ID:
+		case RcplPackage.LAYOUTABLE__IMAGE:
+		case RcplPackage.LAYOUTABLE__TOOL_TIP:
+		case RcplPackage.LAYOUTABLE__CREATE_DATE:
+		case RcplPackage.LAYOUTABLE__BEGIN_DATE:
+		case RcplPackage.LAYOUTABLE__END_DATE:
+		case RcplPackage.LAYOUTABLE__LEAF:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
+	 * the children that can be created under this object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -431,7 +355,7 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	protected Object getImage() {
-		return RCPLModel.resources.getSvgImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
+		return RCPLModel.resources.getImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
 				.getNode();
 	}
 }

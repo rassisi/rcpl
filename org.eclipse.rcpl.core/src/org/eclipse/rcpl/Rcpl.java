@@ -460,11 +460,17 @@ public class Rcpl {
 	}
 
 	public static void println(String msg) {
-		System.out.println(msg);
+		if (DEBUG) {
+			System.out.println(msg);
+		}
 	}
 
-	public static void println(Exception ex) {
-		println(ex.getMessage());
+	public static void printErrorln(String msg) {
+		System.err.println(msg);
+	}
+
+	public static void printErrorln(String msg, Throwable ex) {
+		printErrorln(msg + ": " + ex.getMessage());
 	}
 
 	public static void setDebugText(String text) {

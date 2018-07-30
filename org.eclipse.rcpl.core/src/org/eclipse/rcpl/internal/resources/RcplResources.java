@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.eclipse.rcpl.images.RcplImage;
-import org.eclipse.rcpl.images.SVGImage;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.IImageProvider;
 import org.eclipse.rcpl.model.IResources;
@@ -26,7 +25,6 @@ import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 
 /**
  * @author Ramin Assisi
@@ -62,27 +60,6 @@ public class RcplResources implements IResources, IImageProvider, ITextProvider 
 	@Override
 	public IImage getImage(String id, double width, double height) {
 		return new RcplImage(id, width, height);
-	}
-
-	/**
-	 * @param id
-	 * @return
-	 */
-	@Override
-	public IImage getSvgImage(String id, double width, double height) {
-		if (id == null) {
-			return new RcplImage("error", width, height);
-		}
-
-		IImage img = imageRegistry.get(id);
-
-		if (img != null) {
-			return img;
-		}
-
-		img = new SVGImage(id, width, height);
-		put(id, img);
-		return img;
 	}
 
 	/**
@@ -135,11 +112,6 @@ public class RcplResources implements IResources, IImageProvider, ITextProvider 
 	@Override
 	public Node getImageNode(String id, double width, double height) {
 		return getImage(id, width, height).getNode();
-	}
-
-	@Override
-	public ImageView getImageView(String imageName) {
-		return (ImageView) getImageNode(imageName, 16, 16);
 	}
 
 }

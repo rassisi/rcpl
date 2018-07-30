@@ -16,9 +16,10 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Person;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Person} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a
+ * {@link org.eclipse.rcpl.model_2_0_0.rcpl.Person} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PersonItemProvider extends LayoutableItemProvider {
@@ -58,19 +59,13 @@ public class PersonItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addLastNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Person_lastName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Person_lastName_feature", "_UI_Person_type"),
-				 RcplPackage.Literals.PERSON__LAST_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Person_lastName_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Person_lastName_feature",
+								"_UI_Person_type"),
+						RcplPackage.Literals.PERSON__LAST_NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -80,19 +75,13 @@ public class PersonItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addMiddleNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Person_middleName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Person_middleName_feature", "_UI_Person_type"),
-				 RcplPackage.Literals.PERSON__MIDDLE_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Person_middleName_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Person_middleName_feature",
+								"_UI_Person_type"),
+						RcplPackage.Literals.PERSON__MIDDLE_NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -102,19 +91,13 @@ public class PersonItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addFirstNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Person_firstName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Person_firstName_feature", "_UI_Person_type"),
-				 RcplPackage.Literals.PERSON__FIRST_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Person_firstName_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Person_firstName_feature",
+								"_UI_Person_type"),
+						RcplPackage.Literals.PERSON__FIRST_NAME, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -124,19 +107,12 @@ public class PersonItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addAddressesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Person_addresses_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Person_addresses_feature", "_UI_Person_type"),
-				 RcplPackage.Literals.PERSON__ADDRESSES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Person_addresses_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Person_addresses_feature",
+								"_UI_Person_type"),
+						RcplPackage.Literals.PERSON__ADDRESSES, true, false, true, null, null, null));
 	}
 
 	/**
@@ -146,13 +122,13 @@ public class PersonItemProvider extends LayoutableItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return RCPLModel.resources.getSvgImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
+		return RCPLModel.resources.getImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
 				.getNode();
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -162,10 +138,10 @@ public class PersonItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update
+	 * any cached children and by creating a viewer notification, which it passes to
+	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,19 +149,19 @@ public class PersonItemProvider extends LayoutableItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Person.class)) {
-			case RcplPackage.PERSON__LAST_NAME:
-			case RcplPackage.PERSON__MIDDLE_NAME:
-			case RcplPackage.PERSON__FIRST_NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case RcplPackage.PERSON__LAST_NAME:
+		case RcplPackage.PERSON__MIDDLE_NAME:
+		case RcplPackage.PERSON__FIRST_NAME:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
+	 * the children that can be created under this object. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
