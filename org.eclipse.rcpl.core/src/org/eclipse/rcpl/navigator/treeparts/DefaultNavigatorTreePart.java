@@ -161,6 +161,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		if (detailPane != null) {
 			if (containerPane != null) {
 				if (!containerPane.getChildren().contains(detailPane.getNode())) {
+					containerPane.getChildren().clear();
 					containerPane.getChildren().add(detailPane.getNode());
 				}
 			} else {
@@ -174,9 +175,6 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private void adaptDetailPane(EObject eObject) {
 
-		if (detailPane != null) {
-			detailPane.getControler().unbindAll();
-		}
 		IDetailPane detailPane = detailPanes.get(eObject.getClass());
 
 		if (detailPane == null) {
@@ -436,9 +434,9 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	public void refresh() {
 
 		try {
-			if (adapterFactoryTreeItem2 == null) {
+			if (adapterFactoryTreeItem2 == null && root != null) {
 
-				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(getRoot(), getTreeManager().getAdapterFactory());
+				adapterFactoryTreeItem2 = new AdapterFactoryTreeItem(root, getTreeManager().getAdapterFactory());
 				treeView.setRoot(adapterFactoryTreeItem2);
 				AdapterFactoryTreeCellFactory treeCellFactory = new AdapterFactoryTreeCellFactory(
 						getTreeManager().getAdapterFactory());
@@ -568,18 +566,29 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 		return false;
 	}
 
-	@Override
-	public EObject getRoot() {
-		if (root == null) {
-			return RcplSession.getDefault().getRcpl().getAllResources();
-		}
-		return root;
-	}
+//	@Override
+//	public EObject getRoot() {
+//		if (root == null) {
+//			return RcplSession.getDefault().getRcpl().getAllResources();
+//		}
+//		return root;
+//	}
 
 	@Override
 	public void setRoot(EObject root) {
 		this.root = root;
 		adapterFactoryTreeItem2 = null;
+		if (detailPane != null) {
+			if (detailPane != null) {
+				try {
+					detailPane.getControler().unbindAll();
+				} catch (Exception ex) {
+					Rcpl.printErrorln("", ex);
+				}
+			}
+		}
+
+		detailPane = null;
 		refresh();
 	}
 
