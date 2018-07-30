@@ -91,12 +91,12 @@ public class JORibbonGroup extends RcplTool {
 		Text label = new Text();
 		label.setEffect(is);
 		label.setId("ribbonLabel");
-
 		label.setText(toolGroup.getName());
-
 		label.setFill(Color.LIGHTGRAY);
 		label.setFont(javafx.scene.text.Font.font("Arial", FontWeight.BOLD, 10));
 		label.setOpacity(0.7);
+
+		// ---------- grid container
 
 		GridPane gridPane = new GridPane();
 		VBox.setVgrow(gridPane, Priority.NEVER);
@@ -106,6 +106,7 @@ public class JORibbonGroup extends RcplTool {
 		gridPane.add(label, 0, 0);
 		GridPane.setHgrow(label, Priority.ALWAYS);
 		GridPane.setHalignment(label, HPos.CENTER);
+		GridPane.setValignment(label, VPos.BOTTOM);
 		gridPane.setAlignment(Pos.BOTTOM_CENTER);
 		gridPane.setStyle("-fx-padding: 5 0 0 0");
 		VBox.setMargin(gridPane, new Insets(0, 0, 5, 0));
@@ -157,6 +158,7 @@ public class JORibbonGroup extends RcplTool {
 	 */
 	protected int processRibbonGroup() {
 		try {
+
 			if (toolGroup == null) {
 				IButton b = Rcpl.getFactory().createButton("error", "error", "error", null, false, null, false);
 				b.getNode().setMinWidth(2);
@@ -167,11 +169,10 @@ public class JORibbonGroup extends RcplTool {
 			} else if (toolGroup.getToolGroups().isEmpty() && toolGroup.getTools().isEmpty()) {
 
 				String image = toolGroup.getImage();
+				String id = toolGroup.getId();
 
-				IButton b = Rcpl.getFactory().createButton(toolGroup.getId(), "", toolGroup.getToolTip(), image, false,
-						null, false);
+				IButton b = Rcpl.getFactory().createButton(id, "", toolGroup.getToolTip(), image, false, null, false);
 				b.getNode().setMinWidth(2);
-				;
 				b.setWidth(48);
 				b.setHeight(48);
 				add(b.getNode(), 0, 0);
@@ -179,11 +180,15 @@ public class JORibbonGroup extends RcplTool {
 			}
 
 			for (ToolGroup g : toolGroup.getToolGroups()) {
+				String image = toolGroup.getImage();
+				String id = toolGroup.getId();
 				processSubGroup(g);
 			}
 
 			int lastX = 0;
 			for (Tool t : toolGroup.getTools()) {
+				String imageId = toolGroup.getImage();
+				String id = toolGroup.getId();
 				double width = 16;
 				double height = 16;
 				if (toolGroup.getTools().size() == 1) {

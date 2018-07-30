@@ -78,7 +78,7 @@ public class JewelViewer extends Application {
 
 				ObservableFloatArray flt = tm.getTexCoords();
 
-				System.out.println();
+//				Rcpl.println()
 			}
 		}
 

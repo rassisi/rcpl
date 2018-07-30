@@ -1,15 +1,17 @@
 package org.eclipse.rcpl;
 
-import javafx.animation.*;
-import javafx.util.Duration;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.util.Duration;
 
 public class AnimationDemoFX extends Application {
 	@Override
@@ -44,7 +46,7 @@ public class AnimationDemoFX extends Application {
 				blinking_ball.setFill(Color.CYAN);
 			}
 
-			System.out.print("\n on_finished executed. ");
+//			Rcpl.println("\n on_finished executed. ");
 		};
 
 		// Next we specify a KeyFrame whose execution takes 1 second.
@@ -75,7 +77,7 @@ public class AnimationDemoFX extends Application {
  * Color.CYAN ) { blinking_ball.setFill( Color.TRANSPARENT ) ; } else {
  * blinking_ball.setFill( Color.CYAN ) ; }
  * 
- * System.out.print( " jee " ) ; } };
+ * Rcpl.println()( " jee " ) ; } };
  * 
  * 
  * The following were useful pages when I developed this program:

@@ -98,8 +98,7 @@ public class EContactsContextMenuProvider implements ICellUpdateListener {
 					addContactHandler.setSelectedItem(item2);
 					addContactGroupHandler.setSelectedItem(item2);
 				} catch (Exception ex) {
-					// TODO
-					// System. out.println();
+					Rcpl.printErrorln("", ex);
 				}
 			}
 

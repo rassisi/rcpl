@@ -5,9 +5,15 @@
 	-fx-text-fill: darkblue;
 }
 
+/* 
 #joEditor .tab-pane {
 	-fx-background-color: derive(-fx-base, -50.0%);
 	-fx-tab-min-height:35px;
+}
+*/
+.tab-pane *.tab-header-background {
+    -fx-background-color: transparent; /*-fx-outer-border, -fx-inner-border, derive(-fx-color, -20%);*/
+/* -fx-effect: innershadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);*/
 }
 
 .tab .tab-label { 
@@ -1124,7 +1130,7 @@
 #redBorder{
 	-fx-border-style: solid;
 	-fx-border-color: red;
-	-fx-border-width: 3;
+	-fx-border-width: 1;
 }
 
 #dialogButton {

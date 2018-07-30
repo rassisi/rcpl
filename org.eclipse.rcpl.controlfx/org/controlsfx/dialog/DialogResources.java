@@ -60,7 +60,7 @@ class DialogResources {
         } catch (MissingResourceException ex) {
             // Do not trace this exception, because the key could be
             // an already translated string.
-//            System. out.println("Failed to get string for key '" + key + "'");
+//            Rcpl.println()("Failed to get string for key '" + key + "'");
             return key;
         }
     }
@@ -74,7 +74,7 @@ class DialogResources {
         } catch (MissingResourceException mre) {
             // Do not trace this exception, because the key could be
             // an already translated string.
-//            System. out.println("Failed to get string for key '" + key + "'");
+//            Rcpl.println()("Failed to get string for key '" + key + "'");
             return key;
         }
     }
@@ -108,7 +108,7 @@ class DialogResources {
         String resourceName = getString(key);
         URL url = DialogResources.class.getResource(resourceName);
         if (url == null) {
-//            System. out.println("Can't create ImageView for key '" + key + 
+//            Rcpl.println()("Can't create ImageView for key '" + key + 
 //                    "', which has resource name '" + resourceName + 
 //                    "' and URL 'null'");
             return null;

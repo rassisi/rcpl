@@ -38,6 +38,7 @@ import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.WaitThread;
+import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.login.RcplLogin;
@@ -185,6 +186,9 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	protected HBox collapseButtonHBox;
+
+	@FXML
+	private VBox tabPaneContainer;
 
 	private Timeline blinkingTimeline;
 
@@ -1667,10 +1671,11 @@ public class RcplUic implements IRcplUic {
 
 			topArea.getChildren().remove(titleArea);
 			topArea.getChildren().remove(titleText);
-
 			internalBorderPane.setTop(titleArea);
 			internalBorderPane.setBottom(null);
-
+		} else {
+			topArea.setPadding(new Insets(RcplTopToolBar.RIBBON_GROUP_PADDING, 0, 0, 0));
+			tabPaneContainer.setAlignment(Pos.BOTTOM_LEFT);
 		}
 
 		startMenuButton.setOnAction(new EventHandler<ActionEvent>() {

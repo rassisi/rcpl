@@ -31,7 +31,7 @@
     </HBox>
   </bottom>
   <left>
-    <VBox fx:id="mainLeftBox" minHeight="0.0" minWidth="0.0" prefHeight="-1.0" prefWidth="-1.0" style="/*-fx-border-color:blue;-fx-border-width:1;*/">
+    <VBox fx:id="mainLeftBox" minHeight="48.0" minWidth="48.0" prefHeight="-1.0" prefWidth="-1.0" style="/*-fx-border-color:blue;-fx-border-width:1;*/">
       <children>
         <HBox fx:id="mainLeftArea" minHeight="10.0" minWidth="0.0" prefHeight="-1.0" prefWidth="10.0" VBox.vgrow="ALWAYS">
           <VBox.margin>
@@ -65,7 +65,7 @@
 </padding>
 <top><StackPane prefHeight="23.0" prefWidth="200.0">
 <children>
-    <HBox id="mainTopArea" fx:id="mainTopArea" alignment="TOP_RIGHT" maxWidth="5000.0" minWidth="10.0" prefHeight="31.0" prefWidth="10000.0" BorderPane.alignment="TOP_LEFT">
+    <HBox fx:id="mainTopArea" alignment="TOP_RIGHT" maxWidth="5000.0" minWidth="10.0" prefHeight="31.0" prefWidth="10000.0" BorderPane.alignment="TOP_LEFT">
       <children><Button fx:id="startMenuButton" mnemonicParsing="false">
 <VBox.margin>
 <Insets top="10.0" />
@@ -79,12 +79,16 @@
                         </ToggleButton>
                      </children>
                   </HBox>
-        <VBox id="mainTopArea" fx:id="topArea" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
+        <VBox fx:id="topArea" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
           <children>
-            <HBox id="mainTopArea" fx:id="titleArea" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="10">
-              <children><HBox id="mainTopArea" fx:id="homeButtonsArea" />
-                <TabPane id="mainTopArea" fx:id="tabPane" maxHeight="26.0" minHeight="26.0" prefHeight="26.0" tabClosingPolicy="ALL_TABS" tabMaxHeight="20.0" tabMinHeight="20.0" tabMinWidth="20.0" HBox.hgrow="ALWAYS">
+            <HBox id="mainTopArea" fx:id="titleArea" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="10" VBox.vgrow="ALWAYS">
+              <children><HBox fx:id="homeButtonsArea" />
+                              <VBox fx:id="tabPaneContainer" alignment="BOTTOM_LEFT" minWidth="100.0" prefHeight="1000.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                      <TabPane fx:id="tabPane" maxHeight="26.0" minHeight="26.0" prefHeight="26.0" tabClosingPolicy="ALL_TABS" tabMaxHeight="20.0" tabMinHeight="20.0" tabMinWidth="20.0">
                  </TabPane>
+                                 </children>
+                              </VBox>
               </children>
             </HBox>
             <StackPane fx:id="mainTopStack" alignment="TOP_LEFT" maxHeight="-1.0" minWidth="-1.0">
@@ -96,6 +100,9 @@
               </VBox.margin>
             </StackPane>
           </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
         </VBox>
       </children>
 <BorderPane.margin>

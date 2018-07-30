@@ -121,6 +121,7 @@ public class EContactsTreePart {
 
 		treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
 
+			@Override
 			public void changed(ObservableValue<? extends Object> arg0, Object oldItem, Object newItem) {
 
 				if (newItem instanceof AdapterFactoryTreeItem) {
@@ -192,7 +193,7 @@ public class EContactsTreePart {
 					treeView.setEditable(true);
 				}
 			} catch (Exception ex) {
-				// System. out.println(ex.getMessage());
+				// Rcpl.println().println(ex.getMessage());
 			}
 		}
 	}

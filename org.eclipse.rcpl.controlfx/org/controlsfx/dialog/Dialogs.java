@@ -1155,7 +1155,7 @@ public final class Dialogs {
         }
         
         private void refreshSample() {
-//            System. out.println(getFont());
+//            Rcpl.println()(getFont());
             sample.setFont(getFont());
         }
         

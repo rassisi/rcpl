@@ -43,13 +43,15 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	private HashMap<String, HBox> toolPaneRegistry = new HashMap<String, HBox>();
 
-	private static final int RIBBON_HEIGHT = 122;
+	private static final int RIBBON_HEIGHT = 110;
 
 	private static final int BROWSER_HEIGHT = 63;
 
-	private static final int COLLAPSED_HEIGHT = 30;
+	private static final int COLLAPSED_HEIGHT = 55;
 
 	private IEditor editor;
+
+	public static double RIBBON_GROUP_PADDING = 20;
 
 	public RcplTopToolBar(StackPane parent) {
 		Rcpl.topToolbar = this;
@@ -188,6 +190,7 @@ public class RcplTopToolBar implements ITopToolbar {
 		Rcpl.UIC.getMainTopStack().getChildren().add(pane);
 		Rcpl.UIC.getMainTopStack().layout();
 		registerToolPane(type, pane);
+		pane.setPadding(new Insets(RIBBON_GROUP_PADDING, 0, 0, 0));
 		processTopBar(pane, perspective.getTopToolBar(), useCase);
 	}
 
