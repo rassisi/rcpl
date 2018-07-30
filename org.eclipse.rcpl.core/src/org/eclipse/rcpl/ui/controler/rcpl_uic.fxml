@@ -65,7 +65,7 @@
 </padding>
 <top><StackPane prefHeight="23.0" prefWidth="200.0">
 <children>
-    <HBox fx:id="mainTopArea" alignment="TOP_RIGHT" maxWidth="5000.0" minWidth="10.0" prefHeight="31.0" prefWidth="10000.0" BorderPane.alignment="TOP_LEFT">
+    <HBox id="redBorder" fx:id="mainTopArea" alignment="TOP_RIGHT" maxWidth="5000.0" minWidth="10.0" prefHeight="31.0" prefWidth="10000.0" BorderPane.alignment="TOP_LEFT">
       <children><Button fx:id="startMenuButton" mnemonicParsing="false">
 <VBox.margin>
 <Insets top="10.0" />
