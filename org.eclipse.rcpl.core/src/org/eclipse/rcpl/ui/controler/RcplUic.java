@@ -1016,14 +1016,6 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void setContent(Node node) {
-		for (IHomePage h : homepages) {
-			if (node == h.getNode()) {
-//				showHomeButtons(true);
-				doSetContent(node);
-				return;
-			}
-		}
-//		showHomeButtons(false);
 		doSetContent(node);
 	}
 
@@ -1034,10 +1026,10 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void doRun() {
 				if (node == null) {
-					editorArea.getChildren().clear();
 					return;
 				}
 				if (!editorArea.getChildren().contains(node)) {
+					editorArea.getChildren().clear();
 					editorArea.getChildren().add(node);
 				}
 				node.toFront();
