@@ -51,6 +51,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.w3c.dom.Document;
@@ -151,13 +152,10 @@ public class RcplUic implements IRcplUic {
 	protected Button startMenuButton;
 
 	@FXML
-	protected VBox topArea;
+	protected HBox topArea;
 
 	@FXML
 	protected HBox homeHeaderHBox;
-
-	@FXML
-	protected HBox homeButtonsArea;
 
 	@FXML
 	protected HBox mainLeftArea;
@@ -169,7 +167,7 @@ public class RcplUic implements IRcplUic {
 	protected HBox mainTopArea;
 
 	@FXML
-	protected StackPane mainTopStack;
+	private StackPane mainTopStack;
 
 	@FXML
 	protected HBox mainBottomArea;
@@ -194,6 +192,12 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	private VBox tabPaneContainer;
+
+	@FXML
+	private HBox quickToolsArea;
+
+	@FXML
+	private VBox topVBox;
 
 	private Timeline blinkingTimeline;
 
@@ -228,8 +232,6 @@ public class RcplUic implements IRcplUic {
 	protected ISideToolBar internalSideToolbarControl;
 
 	private StackPane internalLeftTrimBar;
-
-	protected BorderPane internalBorderPane;
 
 	private SplitPane internalSideToolBarSplitPane;
 
@@ -276,6 +278,8 @@ public class RcplUic implements IRcplUic {
 	boolean requestCancel;
 
 	protected long lastUsedMemory;
+
+	private BorderPane borderPane;
 
 	protected class TabInfo {
 		public TabInfo() {
@@ -337,6 +341,7 @@ public class RcplUic implements IRcplUic {
 		this.applicationStarter = rcplApplicationStarter;
 		this.name = id;
 		this.editorArea = new StackPane();
+
 		this.logPage = new VBox();
 		this.errorTextArea = new TextArea();
 		this.errorTextArea.setPrefSize(600, 800);
@@ -432,7 +437,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void addtoApplicationStack(StackPane contentGroup) {
 		contentGroup.getChildren().clear();
-		contentGroup.getChildren().add(internalBorderPane);
+		contentGroup.getChildren().add(borderPane);
 	}
 
 	public void closeTab(final Tab tab) {
@@ -495,6 +500,7 @@ public class RcplUic implements IRcplUic {
 					}.start();
 				}
 			};
+
 		}
 	}
 
@@ -543,6 +549,7 @@ public class RcplUic implements IRcplUic {
 		}
 
 		initStyles();
+
 		doCreateContent();
 
 	}
@@ -568,9 +575,9 @@ public class RcplUic implements IRcplUic {
 	public void expandBottomAra(final boolean expand) {
 
 		if (!expand) {
-			internalBorderPane.setBottom(null);
+			borderPane.setBottom(null);
 		} else {
-			internalBorderPane.setBottom(internalMainBottomArea);
+			borderPane.setBottom(internalMainBottomArea);
 		}
 		internalMainBottomArea.layout();
 
@@ -639,7 +646,7 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public WebView getBrowser() {
-		if (internalBorderPane.getCenter() == getInternalWebView()) {
+		if (borderPane.getCenter() == getInternalWebView()) {
 			return getInternalWebView();
 		}
 		if (internalTabPane != null) {
@@ -882,7 +889,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void init(BorderPane parent) {
 		copyFXToInternal();
-		internalBorderPane = parent;
+		borderPane = parent;
 		internalTabPane = tabPane;
 		internalMainBottomArea = mainBottomArea;
 		// internalTabPane.setStyle("-fx-open-tab-animation: NONE;
@@ -1111,22 +1118,22 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void setTopAreaHeight(double height) {
-		mainTopArea.setMaxHeight(height);
-		mainTopArea.setMinHeight(height);
-		mainTopArea.setPrefHeight(height);
-		mainTopStack.setMaxHeight(height);
-		mainTopStack.setMinHeight(height);
-		mainTopStack.setPrefHeight(height);
+		topVBox.setMaxHeight(height);
+		topVBox.setMinHeight(height);
+		topVBox.setPrefHeight(height);
+		topVBox.setMaxHeight(height);
+		topVBox.setMinHeight(height);
+		topVBox.setPrefHeight(height);
 
 		switch ((int) height) {
 		case RcplTopToolBar.COLLAPSED_HEIGHT:
-			tabPane.setPadding(new Insets(0, 0, 0, 0));
+//			tabPane.setPadding(new Insets(0, 0, 0, 0));
 			break;
 		case RcplTopToolBar.COLLAPSED_HEIGHT_WITH_EDITOR:
-			tabPane.setPadding(new Insets(-6, 0, 0, 0));
+//			tabPane.setPadding(new Insets(-6, 0, 0, 0));
 			break;
 		case RcplTopToolBar.RIBBON_HEIGHT:
-			tabPane.setPadding(new Insets(0, 0, 0, 0));
+//			tabPane.setPadding(new Insets(0, 0, 0, 0));
 			break;
 		}
 
@@ -1134,7 +1141,7 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void setTopContent(Node content) {
-		internalBorderPane.setTop(content);
+		borderPane.setTop(content);
 	}
 
 	@Override
@@ -1273,8 +1280,21 @@ public class RcplUic implements IRcplUic {
 		Rcpl.UIC.setPerspective(perspective);
 		getSideToolBarControl().showPerspective(perspective);
 		getTopToolBar().showPerspective(perspective);
+		updateQuickToolsArea();
 		this.perspective = perspective;
 		return false;
+	}
+
+	private void updateQuickToolsArea() {
+		quickToolsArea.getChildren().clear();
+		if (!Rcpl.isMobile()) {
+			if (perspective.getQuickToolBar() != null) {
+				for (Tool tool : perspective.getQuickToolBar().getTools()) {
+					IButton q = Rcpl.getFactory().createButton(tool);
+					quickToolsArea.getChildren().add(q.getNode());
+				}
+			}
+		}
 	}
 
 	@Override
@@ -1476,7 +1496,7 @@ public class RcplUic implements IRcplUic {
 
 	private void createBorderDragger() {
 		if (!Rcpl.isMobile()) {
-			internalBorderPane.setOnMousePressed(new EventHandler<MouseEvent>() {
+			borderPane.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 
@@ -1485,7 +1505,7 @@ public class RcplUic implements IRcplUic {
 				}
 			});
 
-			internalBorderPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			borderPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 					Stage w = getStage();
@@ -1648,20 +1668,20 @@ public class RcplUic implements IRcplUic {
 		fxmlLoader.setController(Rcpl.UIC);
 
 		try {
-			internalBorderPane = fxmlLoader.load();
-			internalBorderPane.setCenter(editorArea);
-			init(internalBorderPane);
+			borderPane = fxmlLoader.load();
+			borderPane.setCenter(editorArea);
+			init(borderPane);
 		} catch (IOException e) {
 			e.printStackTrace();
 			// System.exit(1);
 		}
 
-		internalBorderPane.setRight(null);
+		borderPane.setRight(null);
 
 		if (viewer) {
-			internalBorderPane.setTop(null);
-			internalBorderPane.setBottom(null);
-			internalBorderPane.setLeft(null);
+			borderPane.setTop(null);
+			borderPane.setBottom(null);
+			borderPane.setLeft(null);
 			return;
 		}
 
@@ -1681,13 +1701,14 @@ public class RcplUic implements IRcplUic {
 
 		if (Rcpl.isMobile()) {
 
-			topArea.getChildren().remove(titleArea);
-			topArea.getChildren().remove(titleText);
-			internalBorderPane.setTop(titleArea);
-			internalBorderPane.setBottom(null);
+//			topArea.getChildren().remove(titleArea);
+//			topArea.getChildren().remove(titleText);
+			borderPane.setTop(titleArea);
+			borderPane.setBottom(null);
 		} else {
-			topArea.setPadding(new Insets(RcplTopToolBar.RIBBON_GROUP_PADDING, 0, 0, 0));
+//			topArea.setPadding(new Insets(RcplTopToolBar.RIBBON_GROUP_PADDING, 0, 0, 0));
 			tabPaneContainer.setAlignment(Pos.BOTTOM_LEFT);
+			tabPaneContainer.setPadding(new Insets(-20, 0, 0, 0));
 		}
 
 		startMenuButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -1700,8 +1721,6 @@ public class RcplUic implements IRcplUic {
 
 		Rcpl.showProgress(false);
 
-		// DEBUG
-		// collapseButtonHBox.setId("redBorder");
 	}
 
 	@Override
@@ -2049,10 +2068,10 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void collapseMainTopArea(boolean collapse) {
-		if (collapse && mainTopArea.getChildren().contains(mainTopStack)) {
-			mainTopArea.getChildren().remove(mainTopStack);
-		} else if (!collapse && !mainTopArea.getChildren().contains(mainTopStack)) {
-			mainTopArea.getChildren().add(2, mainTopStack);
+		if (collapse && topArea.getChildren().contains(mainTopStack)) {
+			topArea.getChildren().remove(mainTopStack);
+		} else if (!collapse && !topArea.getChildren().contains(mainTopStack)) {
+			topArea.getChildren().add(0, mainTopStack);
 		}
 	}
 

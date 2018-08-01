@@ -65,28 +65,41 @@
 </padding>
 <top><StackPane prefHeight="23.0" prefWidth="200.0">
 <children>
-    <HBox id="transparentBorder" fx:id="mainTopArea" alignment="TOP_RIGHT" maxWidth="5000.0" minWidth="10.0" prefHeight="31.0" prefWidth="10000.0" BorderPane.alignment="TOP_LEFT">
-      <children><Button fx:id="startMenuButton" mnemonicParsing="false">
+    <HBox id="transparentBorder" fx:id="mainTopArea" maxWidth="5000.0" minWidth="10.0" prefHeight="31.0" prefWidth="10000.0" BorderPane.alignment="TOP_LEFT">
+      <children><Button fx:id="startMenuButton" mnemonicParsing="false" HBox.hgrow="NEVER">
 <VBox.margin>
 <Insets top="10.0" />
 </VBox.margin></Button>
-                  <HBox id="transparentBorder" fx:id="collapseButtonHBox" alignment="TOP_RIGHT" minHeight="0.0" minWidth="30.0" prefHeight="100.0" prefWidth="30.0">
+                  <VBox fx:id="topVBox" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ToggleButton fx:id="topBarCollapseButton" alignment="CENTER_RIGHT" maxHeight="10.0" maxWidth="10.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#handleTopBarCollapseButton" prefHeight="10.0" prefWidth="10.0" text="t">
-                           <font>
-                              <Font size="5.0" />
-                           </font>
-                        </ToggleButton>
-                     </children>
-                  </HBox>
-        <VBox fx:id="topArea" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS">
-          <children>
-            <HBox id="transparentBorder" fx:id="titleArea" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="10" VBox.vgrow="ALWAYS">
-              <children><HBox id="transparentBorder" fx:id="homeButtonsArea">
+                        <HBox fx:id="collapseQuickTitleArea" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="18.0" prefWidth="200.0" spacing="3.0">
+                           <children>
+                              <ToggleButton fx:id="topBarCollapseButton" alignment="CENTER_RIGHT" maxHeight="10.0" maxWidth="10.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#handleTopBarCollapseButton" prefHeight="10.0" prefWidth="10.0" text="t">
+                                 <font>
+                                    <Font size="5.0" />
+                                 </font>
+                              </ToggleButton>
+                              <HBox fx:id="quickToolsArea">
                                  <HBox.margin>
-                                    <Insets right="30.0" />
+                                    <Insets left="5.0" />
                                  </HBox.margin></HBox>
-                              <VBox fx:id="tabPaneContainer" alignment="BOTTOM_LEFT" minWidth="100.0" prefHeight="1000.0" HBox.hgrow="ALWAYS">
+                              <HBox fx:id="titleArea" prefHeight="100.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin></HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </HBox>
+            <HBox id="transparentBorder" fx:id="topArea" alignment="BOTTOM_LEFT" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="10">
+              <children>
+                  <StackPane id="transparentBorder" fx:id="mainTopStack" alignment="TOP_LEFT" maxHeight="-1.0" minWidth="-1.0" HBox.hgrow="NEVER">
+                    <padding>
+                      <Insets fx:id="x2" />
+                    </padding>
+                  </StackPane>
+                              <VBox id="transparentBorder" fx:id="tabPaneContainer" alignment="BOTTOM_LEFT" minWidth="100.0" prefHeight="1000.0" HBox.hgrow="SOMETIMES">
                                  <children>
                       <TabPane fx:id="tabPane" maxHeight="26.0" minHeight="26.0" prefHeight="26.0" tabClosingPolicy="ALL_TABS" tabMaxHeight="20.0" tabMinHeight="20.0" tabMinWidth="20.0">
                  </TabPane>
@@ -94,19 +107,8 @@
                               </VBox>
               </children>
             </HBox>
-            <StackPane id="transparentBorder" fx:id="mainTopStack" alignment="TOP_LEFT" maxHeight="-1.0" minWidth="-1.0">
-              <padding>
-                <Insets fx:id="x2" />
-              </padding>
-              <VBox.margin>
-                <Insets top="2.0" fx:id="x2" />
-              </VBox.margin>
-            </StackPane>
-          </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-        </VBox>
+                     </children>
+                  </VBox>
       </children>
 <BorderPane.margin>
 <Insets right="120.0" />

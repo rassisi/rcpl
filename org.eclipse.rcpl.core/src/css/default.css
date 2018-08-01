@@ -1157,6 +1157,18 @@
 	-fx-border-width: 1;
 }
 
+#greenBorder{
+	-fx-border-style: solid;
+	-fx-border-color: green;
+	-fx-border-width: 1;
+}
+
+#blueBorder{
+	-fx-border-style: solid;
+	-fx-border-color: blue;
+	-fx-border-width: 1;
+}
+
 #transparentBorder{
 	-fx-border-style: solid;
 	-fx-border-color: transparent;

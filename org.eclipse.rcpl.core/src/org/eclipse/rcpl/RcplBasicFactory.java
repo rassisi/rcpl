@@ -47,6 +47,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 import org.eclipse.rcpl.navigator.details.RcplNavigatorTreeManagerImpl;
@@ -192,6 +193,11 @@ public class RcplBasicFactory implements IRcplFactory {
 	@Override
 	public IButton createButton(ToolGroup g, boolean toggle, boolean systemButton, IButtonListener buttonListener) {
 		return createButton(g.getId(), g.getName(), g.getToolTip(), g.getImage(), toggle, buttonListener, systemButton);
+	}
+
+	@Override
+	public IButton createButton(Tool tool) {
+		return createButton(tool.getId(), tool.getName(), tool.getToolTip(), tool.getImage(), false, null, false);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 
 import javafx.scene.Node;
@@ -33,6 +34,8 @@ public interface IRcplFactory {
 			IButtonListener buttonListener, boolean systemButton);
 
 	IButton createButton(ToolGroup g, boolean toggle, boolean systemButton, IButtonListener buttonListener);
+
+	IButton createButton(Tool t);
 
 	Node createRibbonGroup(ToolGroup group, IRcplAddon useCase, boolean first, boolean dialogButton);
 

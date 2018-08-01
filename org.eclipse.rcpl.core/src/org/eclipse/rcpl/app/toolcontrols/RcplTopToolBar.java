@@ -46,13 +46,13 @@ public class RcplTopToolBar implements ITopToolbar {
 
 //	private static final int BROWSER_HEIGHT = 63;
 
-	public static final int COLLAPSED_HEIGHT_WITH_EDITOR = 42;
+	public static final int COLLAPSED_HEIGHT_WITH_EDITOR = 50;
 
-	public static final int COLLAPSED_HEIGHT = 28;
+	public static final int COLLAPSED_HEIGHT = 10;
 
 	private IEditor editor;
 
-	public static double RIBBON_GROUP_PADDING = 20;
+//	public static double RIBBON_GROUP_PADDING = 0;
 
 	public RcplTopToolBar(StackPane parent) {
 		Rcpl.topToolbar = this;
@@ -67,28 +67,22 @@ public class RcplTopToolBar implements ITopToolbar {
 		try {
 			if (RcplSession.getDefault().getRcpl() != null) {
 				for (Perspective p : RcplSession.getDefault().getRcpl().getAllPerspectives().getChildren()) {
-
-					IRcplAddon useCase = null;
-					if ("USECASE".equals(p.getId())) {
-						for (IRcplAddon u : Rcpl.rcplApplicationProvider.getRcplAddons()) {
-							if (u.getModel() != null) {
-								if (u.getModel().getDefaultPerspective() == p) {
-									useCase = u;
-									break;
-								}
+					IRcplAddon addon = null;
+					for (IRcplAddon u : Rcpl.rcplApplicationProvider.getRcplAddons()) {
+						if (u.getModel() != null) {
+							if (u.getModel().getDefaultPerspective() == p) {
+								addon = u;
+								break;
 							}
 						}
 					}
-					if (useCase == null) {
-						processTopBarMainGroups(p.getId(), useCase);
-					}
+					processTopBarMainGroups(p.getId(), addon);
 				}
 			}
 		} catch (Throwable ex) {
 			RCPLModel.logError(ex);
 		}
 
-		processTopBarHomeGroups();
 	}
 
 	@Override
@@ -100,99 +94,20 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	}
 
-	public void registerToolPane(String perspectiveId, HBox flowPane) {
-		toolPaneRegistry.put(perspectiveId, flowPane);
-	}
-
-	public HBox getToolPane(String perspective) {
-		return toolPaneRegistry.get(perspective);
-	}
-
 	private List<Node> homeRibbons = new ArrayList<Node>();
 
 	private boolean inHomeRibbonChange = false;
 
-	/**
-	 * Home Tab
-	 */
-	private void processTopBarHomeGroups() {
-//		final HBox pane = new HBox();
-//
-//		pane.setPrefWidth(0);
-//		pane.setMinWidth(0);
-//
-//		pane.setId("topBarHBox");
-//		Rcpl.UIC.getMainTopStack().getChildren().add(pane);
-//
-//		registerToolPane(RcplKey.HOME_TAB.name(), pane);
-//
-//		createCustomRibbonGroup(pane, "My Cloud", "Show Documents in the Cloud", EnCommandId.HOME_PAGE_OVERVIEW.name(),
-//				"internet_cloud", true, null);
-//
-//		createCustomRibbonGroup(pane, "New", "New Document", "homeShowNew", "office_new", false, null);
-//		createCustomRibbonGroup(pane, "Samples", "Show Samples Page", EnCommandId.HOME_PAGE_SAMPLES.name(),
-//				"office_samples", false, null);
-//
-//		if (Rcpl.isBigDisplay()) {
-//			if (!Rcpl.isMobile()) {
-//				createCustomRibbonGroup(pane, "What's New", "What's New", EnCommandId.HOME_PAGE_WHATS_NEW.name(),
-//						"office_whatsnew", false, null);
-//			}
-//			createCustomRibbonGroup(pane, "Preferences", "Preferences", EnCommandId.HOME_PAGE_PREFERENCES.name(),
-//					"office_preferences", false, null);
-//			createCustomRibbonGroup(pane, "Contact Us", "Contact Us", EnCommandId.HOME_PAGE_CONTACT_US.name(),
-//					"contact_us", false, null);
-//			if (!Rcpl.isMobile()) {
-//				createCustomRibbonGroup(pane, "Donation", "Show Donation Page", EnCommandId.HOME_PAGE_DONATIONS.name(),
-//						"donation", false, null);
-//			}
-//			createCustomRibbonGroup(pane, "Help", "Show Help Page", EnCommandId.HOME_PAGE_TUTORIALS.name(),
-//					"office_help", false, null);
-//			createCustomRibbonGroup(pane, "About", "About", EnCommandId.HOME_PAGE_ABOUT.name(), "joffice", false, null);
-//		}
-//
-//		pane.boundsInParentProperty().addListener(new ChangeListener<Bounds>() {
-//
-//			@Override
-//			public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
-//
-//				if (inHomeRibbonChange) {
-//					return;
-//				}
-//
-//				inHomeRibbonChange = true;
-//
-//				double ribbonWidth = homeRibbons.get(0).getBoundsInParent().getWidth() + 6;
-//
-//				pane.getChildren().clear();
-//
-//				double x = 25;
-//
-//				for (Node n : homeRibbons) {
-//					x += ribbonWidth;
-//					if (x <= newValue.getWidth()) {
-//						pane.getChildren().add(n);
-//						pane.layout();
-//						x += 12;
-//					}
-//
-//				}
-//				inHomeRibbonChange = false;
-//
-//			}
-//		});
-	}
-
-	private void processTopBarMainGroups(String type, IRcplAddon useCase) {
+	private void processTopBarMainGroups(String perspectiveId, IRcplAddon addon) {
 		HBox pane = new HBox();
-		Perspective perspective = RcplSession.getDefault().getModelUtil().findPerspective(type);
+		Perspective perspective = RcplSession.getDefault().getModelUtil().findPerspective(perspectiveId);
 		pane.setId("topBarHBox");
 		pane.setPadding(new Insets(3, 0, 0, 7));
 		Rcpl.UIC.getMainTopStack().getChildren().add(pane);
 		Rcpl.UIC.getMainTopStack().layout();
-		registerToolPane(type, pane);
-		pane.setPadding(new Insets(RIBBON_GROUP_PADDING, 0, 0, 0));
-		processTopBar(pane, perspective.getTopToolBar(), useCase);
+		toolPaneRegistry.put(perspectiveId, pane);
+//		pane.setPadding(new Insets(RIBBON_GROUP_PADDING, 0, 0, 0));
+		processTopBar(pane, perspective.getTopToolBar(), addon);
 	}
 
 	private void createCustomRibbonGroup(HBox pane, String name, String toolTip, String toolId, String toolImage,
@@ -265,21 +180,15 @@ public class RcplTopToolBar implements ITopToolbar {
 	public void collapse(boolean collapse) {
 		collapsed = collapse;
 		Rcpl.UIC.collapseMainTopArea(collapse);
-//		if (collapse) {
-//			mainTopArea = null;
-//			Rcpl.UIC.setTopContent(null);
-//		} else {
-//			if (mainTopArea != null) {
-//				Rcpl.UIC.setTopContent(mainTopArea);
-//			}
-//			mainTopArea = null;
-//		}
 		updateHeight();
 	}
 
 	@Override
 	public void updateHeight() {
 		if (collapsed) {
+
+//			Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+
 			if (Rcpl.UIC.getEditor() != null) {
 				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
 			} else {
