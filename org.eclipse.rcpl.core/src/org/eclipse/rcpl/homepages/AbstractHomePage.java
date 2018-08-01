@@ -26,6 +26,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.SwipeEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
@@ -54,7 +55,7 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	private StackPane contentPane;
 
-	private static HBox homeButtonsPane;
+	private static FlowPane homeButtonsPane;
 
 	private HBox header;
 
@@ -122,7 +123,8 @@ public abstract class AbstractHomePage implements IHomePage {
 			}
 			header.getChildren().add(sp);
 
-			header.setId("homeHeader"); // Style("-fx-background-color: white");
+//			header.setId("homeHeader"); 
+			header.setStyle("-fx-background-color: white");
 
 			// ---------- header text
 
@@ -134,30 +136,32 @@ public abstract class AbstractHomePage implements IHomePage {
 			Text t = new Text(modelHomePage.getName().substring(0, 1).toUpperCase());
 			headerText.getChildren().add(t);
 			t.setCache(true);
-			t.setFont(Font.font(null, FontWeight.NORMAL, 28));
+			t.setFont(Font.font(null, FontWeight.NORMAL, 24));
 			t.setId("homeHeaderText");
 			t.setEffect(is);
 			t = new Text(modelHomePage.getName().substring(1).toUpperCase());
 			headerText.getChildren().add(t);
 			t.setCache(true);
-			t.setFont(Font.font(null, FontWeight.NORMAL, 20));
+			t.setFont(Font.font(null, FontWeight.NORMAL, 18));
 			t.setId("homeHeaderText");
 			t.setEffect(is);
 
-			headerText.textAlignmentProperty().setValue(TextAlignment.CENTER);
+			headerText.textAlignmentProperty().setValue(TextAlignment.LEFT);
 			headerText.layout();
 
 			headerText.setMaxHeight(28);
-			headerText.setMinWidth(300);
+			headerText.setMinWidth(150);
 			header.getChildren().add(headerText);
 
 			// ---------- header home buttons
 
 			if (homeButtonsPane == null) {
-				homeButtonsPane = new HBox();
-				homeButtonsPane.setSpacing(20);
+				homeButtonsPane = new FlowPane();
+				homeButtonsPane.setVgap(5);
 				homeButtonsPane.setAlignment(Pos.CENTER_LEFT);
 				Rcpl.UIC.createAllHomeButtons(homeButtonsPane);
+				homeButtonsPane.setHgap(5);
+				homeButtonsPane.setPrefWrapLength(1000);
 			}
 
 			vBox.getChildren().add(header);

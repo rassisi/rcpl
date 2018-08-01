@@ -51,6 +51,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.navigator.details.PreferencesDetailsPage;
 import org.eclipse.rcpl.navigator.details.ToolsDetailPage;
 import org.eclipse.rcpl.navigator.handlers.AbstractEmfHandler;
@@ -181,7 +182,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 			// ========== Tool
 
-			if (eObject instanceof Tool) {
+			if (eObject instanceof Tool || eObject instanceof ToolGroup) {
 				detailPane = new ToolsDetailPage();
 				detailPanes.put(eObject.getClass(), detailPane);
 				detailPane.getControler().updateBindings(selectedObject, getEditingDomain());

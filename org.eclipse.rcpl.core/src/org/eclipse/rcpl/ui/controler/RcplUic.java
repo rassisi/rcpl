@@ -86,6 +86,7 @@ import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -1433,12 +1434,18 @@ public class RcplUic implements IRcplUic {
 		IButton homeButton = new RcplButton(homePage.getType().getName(), homePage.getName(), homePage.getToolTip(),
 				homePage.getImage(), true);
 		homeButton.setData(homePage);
-		homeButton.setWidth(32);
-		homeButton.setHeight(32);
+		homeButton.setWidth(20);
+		homeButton.setHeight(22);
 		homeButton.getNode().setGraphicTextGap(2);
 		homeButton.getNode().setText(homePage.getName());
 		homeButton.getNode().setId("homePageButton");
+		homeButton.getNode().setPrefSize(110, 22);
+		homeButton.getNode().setMinSize(110, 24);
+		homeButton.getNode().setMaxSize(110, 24);
 		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
+
+		FlowPane.setMargin(homeButton.getNode(), new Insets(0, 0, 0, 5));
+
 		pane.getChildren().add(homeButton.getNode());
 	}
 

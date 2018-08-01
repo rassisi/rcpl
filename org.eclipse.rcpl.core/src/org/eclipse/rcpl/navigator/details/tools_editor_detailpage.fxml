@@ -9,20 +9,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <!-- 
 <?import jfxtras.labs.scene.control.BigDecimalField?>
 -->
-
 
 <VBox prefHeight="540.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -41,7 +40,6 @@
               <Label text="Image" GridPane.columnIndex="0" GridPane.rowIndex="4" />
               <Label text="Type" GridPane.columnIndex="0" GridPane.rowIndex="5" />
               <Label text="Format" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-              <ImageView fx:id="imageView" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
               <HBox id="verticalGradientPane" prefHeight="22.0" prefWidth="220.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
                 <children>
                   <Text id="useCaseSectionHeader" strokeType="OUTSIDE" strokeWidth="0.0" text="Tool Settings" textOrigin="BASELINE" HBox.hgrow="NEVER">
@@ -78,6 +76,7 @@
                         <CheckBox fx:id="checkBoxNotImplemented" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                         <Label text="Service Class" GridPane.rowIndex="14" />
                         <TextField fx:id="textFieldServiceClass" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                        <StackPane fx:id="iconPane" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             </children>
             <columnConstraints>
               <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="80.0" prefWidth="100.0" />

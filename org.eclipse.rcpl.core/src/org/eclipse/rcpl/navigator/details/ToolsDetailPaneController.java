@@ -19,6 +19,7 @@ import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.EnCustomToolIds;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.control.IntegerField;
+import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
@@ -26,6 +27,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
+import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
@@ -40,15 +42,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class ToolsDetailPaneController extends AbstractDetailPaneController {
 
 	@FXML
-	private ImageView imageView;
+	private StackPane iconPane;
 
 	@FXML
 	private TextField image;
@@ -239,19 +241,24 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 				});
 				notImplementedProperty = rebind(checkBoxNotImplemented, notImplementedProperty, eObject,
 						RcplPackage.eINSTANCE.getAbstractTool_NotImplemented(), editingDomain);
+
+				ImageView imageView = new RcplImage(RcplUtil.getImageId(tool), 24, 24).getNode();
+				iconPane.getChildren().clear();
+				iconPane.getChildren().add(imageView);
+				imageSize.setText(tool.getWidth() + " / " + tool.getHeight());
+
+//				Image image = Rcpl.resources().getImage(, 16, 16).getImage();
+//				imageView.setImage(image);
+//				if (image != null) {
+//					double height = image.getHeight();
+//					double width = image.getWidth();
+//					imageView.setFitHeight(height);
+//					imageView.setFitWidth(width);
+//					imageSize.setText(width + " / " + height);
+//				}
 			} else {
 				tool = null;
 				toolType.getSelectionModel().select(-1);
-			}
-
-			Image image = Rcpl.resources().getImage(((AbstractTool) eObject).getImage(), 16, 16).getImage();
-			imageView.setImage(image);
-			if (image != null) {
-				double height = image.getHeight();
-				double width = image.getWidth();
-				imageView.setFitHeight(height);
-				imageView.setFitWidth(width);
-				imageSize.setText(width + " / " + height);
 			}
 
 //			gridXFieldProperty = rebind(gridXField, gridXFieldProperty, eObject,
@@ -379,20 +386,24 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 	}
 
 	private void addToolIdListener() {
+		removeToolIdListener();
 		toolsIdChangeListener = new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				removeToolIdListener();
-				if (oldValue != null && Tool.ids.contains(oldValue)) {
-					Tool.ids.remove(oldValue);
+				try {
+					if (oldValue != null && Tool.ids.contains(oldValue)) {
+						Tool.ids.remove(oldValue);
+					}
+					if (Tool.ids.contains(newValue)) {
+						newValue += "_" + Tool.ids.size();
+						toolId.valueProperty().setValue(newValue);
+					}
+					updateToolItems(newValue);
+					addToolIdListener();
+				} catch (Exception ex) {
+					Rcpl.printErrorln("", ex);
 				}
-				if (Tool.ids.contains(newValue)) {
-					newValue += "_" + Tool.ids.size();
-					toolId.valueProperty().setValue(newValue);
-				}
-				updateToolItems(newValue);
-				addToolIdListener();
 			}
 		};
 		toolId.valueProperty().addListener(toolsIdChangeListener);
@@ -470,8 +481,12 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 				@Override
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 					if (prop == imageProperty) {
-						Image image = Rcpl.resources().getImage(newValue, 16, 16).getImage();
-						imageView.setImage(image);
+//						Image image = Rcpl.resources().getImage(newValue, 16, 16).getImage();
+//						imageView.setImage(image);
+
+						System.out.println();
+//						iconPane.getChildren().clear();
+//						iconPane.getChildren().add(new RcplImage(newValue, width, height))
 					}
 
 					// JO.UIC.recreateSideBar();

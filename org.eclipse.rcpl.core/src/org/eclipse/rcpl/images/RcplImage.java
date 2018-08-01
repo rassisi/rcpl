@@ -79,6 +79,8 @@ public class RcplImage implements IImage {
 
 	private File pngFile;
 
+	private File errorImagePngFile;
+
 	private File errorPngFile;
 
 	/**
@@ -166,7 +168,19 @@ public class RcplImage implements IImage {
 				return node;
 			}
 
-			// ---------- image from resource
+			// ---------- image from cache
+
+			else if (getErrorImagePngFile().exists()) {
+				URL url = getErrorImagePngFile().toURI().toURL();
+				Rcpl.println("Image loaded from cache: " + id);
+				InputStream is = url.openStream();
+				if (is != null) {
+					image = new Image(is);
+					is.close();
+				}
+			}
+
+			// ---------- image from cache
 
 			else if (getPngFile().exists()) {
 				URL url = getPngFile().toURI().toURL();
@@ -223,6 +237,7 @@ public class RcplImage implements IImage {
 		} else {
 			Rcpl.printErrorln("Image not be loaded (image==null!");
 			createErrorNode();
+			saveToFile(image, getErrorImagePngFile());
 		}
 
 		return node;
@@ -383,6 +398,15 @@ public class RcplImage implements IImage {
 			pngFile.getParentFile().mkdirs();
 		}
 		return pngFile;
+
+	}
+
+	private File getErrorImagePngFile() {
+		if (errorPngFile == null) {
+			errorPngFile = new File(RcplUtil.getUserLocalCacheDir(), "images/BROKEN_IMAGE_" + createPngPath());
+			errorPngFile.getParentFile().mkdirs();
+		}
+		return errorPngFile;
 
 	}
 

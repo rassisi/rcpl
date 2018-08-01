@@ -27,6 +27,7 @@ import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.libs.util.StringOutputStream;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.client.RcplSession;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.w3c.dom.Node;
 
 public class RcplUtil {
@@ -813,5 +814,13 @@ public class RcplUtil {
 			}
 		}
 		folder.delete();
+	}
+
+	public static String getImageId(Tool tool) {
+		String id = tool.getImage();
+		if (id == null) {
+			id = tool.getId();
+		}
+		return id;
 	}
 }

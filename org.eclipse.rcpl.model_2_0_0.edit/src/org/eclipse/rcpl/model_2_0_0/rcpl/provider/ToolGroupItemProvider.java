@@ -141,7 +141,15 @@ public class ToolGroupItemProvider extends AbstractToolItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return RCPLModel.resources.getImage("folder", 16, 16).getNode();
+		ToolGroup tool = (ToolGroup) object;
+		String id = tool.getImage();
+		if (id == null) {
+			id = tool.getId();
+		}
+		if (id == null) {
+			return RCPLModel.resources.getImage("tools", 20, 20).getNode();
+		}
+		return RCPLModel.resources.getImage(id, 20, 20).getNode();
 	}
 
 	/**

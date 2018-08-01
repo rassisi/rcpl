@@ -18,7 +18,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Layoutable;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
@@ -347,15 +346,15 @@ public class LayoutableItemProvider extends ItemProviderAdapter implements IEdit
 	 * Return the resource locator for this item provider's resources. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return RCPLEditPlugin.INSTANCE;
 	}
 
-	protected Object getImage() {
-		return RCPLModel.resources.getImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
-				.getNode();
-	}
+//	protected Object getImage() {
+//		return RCPLModel.resources.getImage(getClass().getSimpleName().replaceAll("ItemProvider", ""), 16, 16)
+//				.getNode();
+//	}
 }
