@@ -52,51 +52,69 @@ public class PreferenceItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Key feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Key feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addKeyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Preference_key_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Preference_key_feature",
-								"_UI_Preference_type"),
-						RcplPackage.Literals.PREFERENCE__KEY, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Preference_key_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Preference_key_feature", "_UI_Preference_type"),
+				 RcplPackage.Literals.PREFERENCE__KEY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Value feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Value feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Preference_value_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Preference_value_feature",
-								"_UI_Preference_type"),
-						RcplPackage.Literals.PREFERENCE__VALUE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Preference_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Preference_value_feature", "_UI_Preference_type"),
+				 RcplPackage.Literals.PREFERENCE__VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Preference_type_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Preference_type_feature",
-								"_UI_Preference_type"),
-						RcplPackage.Literals.PREFERENCE__TYPE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Preference_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Preference_type_feature", "_UI_Preference_type"),
+				 RcplPackage.Literals.PREFERENCE__TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -122,10 +140,9 @@ public class PreferenceItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update
-	 * any cached children and by creating a viewer notification, which it passes to
-	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -133,20 +150,20 @@ public class PreferenceItemProvider extends LayoutableItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Preference.class)) {
-		case RcplPackage.PREFERENCE__KEY:
-		case RcplPackage.PREFERENCE__VALUE:
-		case RcplPackage.PREFERENCE__TYPE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case RcplPackage.PREFERENCE__KEY:
+			case RcplPackage.PREFERENCE__VALUE:
+			case RcplPackage.PREFERENCE__TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-	 * the children that can be created under this object. <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

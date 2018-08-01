@@ -160,6 +160,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/topToolBar"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/quickToolBar"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspective/ribbonToolBar"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Perspective/overview"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Preference">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Preference/key"/>

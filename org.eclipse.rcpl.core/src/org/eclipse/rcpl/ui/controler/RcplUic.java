@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.transform.OutputKeys;
@@ -27,6 +28,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IButton;
+import org.eclipse.rcpl.IDetailPage;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
@@ -142,6 +144,8 @@ public class RcplUic implements IRcplUic {
 	private ITreePart rcplTreePart;
 
 	private ITreePart applicationTreePart;
+
+	private HashMap<String, IDetailPage> detailPages = new HashMap<String, IDetailPage>();
 
 	@FXML
 	protected Button startMenuButton;
@@ -1113,6 +1117,19 @@ public class RcplUic implements IRcplUic {
 		mainTopStack.setMaxHeight(height);
 		mainTopStack.setMinHeight(height);
 		mainTopStack.setPrefHeight(height);
+
+		switch ((int) height) {
+		case RcplTopToolBar.COLLAPSED_HEIGHT:
+			tabPane.setPadding(new Insets(0, 0, 0, 0));
+			break;
+		case RcplTopToolBar.COLLAPSED_HEIGHT_WITH_EDITOR:
+			tabPane.setPadding(new Insets(-6, 0, 0, 0));
+			break;
+		case RcplTopToolBar.RIBBON_HEIGHT:
+			tabPane.setPadding(new Insets(0, 0, 0, 0));
+			break;
+		}
+
 	}
 
 	@Override
@@ -1147,9 +1164,8 @@ public class RcplUic implements IRcplUic {
 		updateButtons(true);
 		activeHomePage = homePage;
 		HomePage model = homePage.getModel();
-		if (model.getPerspective() != null) {
-			showPerspective(model.getPerspective());
-		}
+		showPerspective(model.getPerspective());
+
 	}
 
 	@Override
@@ -1251,15 +1267,12 @@ public class RcplUic implements IRcplUic {
 	 */
 	@Override
 	public boolean showPerspective(Perspective perspective) {
-		if (perspective == this.perspective) {
+		if (perspective != null && perspective == this.perspective) {
 			return false;
 		}
-
-		if (perspective != null) {
-			Rcpl.UIC.setPerspective(perspective);
-			getSideToolBarControl().showPerspective(perspective);
-			getTopToolBar().showPerspective(perspective);
-		}
+		Rcpl.UIC.setPerspective(perspective);
+		getSideToolBarControl().showPerspective(perspective);
+		getTopToolBar().showPerspective(perspective);
 		this.perspective = perspective;
 		return false;
 	}
@@ -2057,5 +2070,22 @@ public class RcplUic implements IRcplUic {
 			applicationTreePart = Rcpl.getFactory().createApplicationTreePart();
 		}
 		return applicationTreePart;
+	}
+
+	@Override
+	public IDetailPage getDetailPage(String className) {
+		if (detailPages == null) {
+			detailPages = new HashMap<String, IDetailPage>();
+		}
+
+		return detailPages.get(className);
+	}
+
+	@Override
+	public void putDetailPage(String className, IDetailPage detailPage) {
+		if (detailPages == null) {
+			detailPages = new HashMap<String, IDetailPage>();
+		}
+		detailPages.put(className, detailPage);
 	}
 }

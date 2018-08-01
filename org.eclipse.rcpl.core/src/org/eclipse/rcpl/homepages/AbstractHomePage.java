@@ -128,7 +128,10 @@ public abstract class AbstractHomePage implements IHomePage {
 
 			// ---------- header text
 
+			StackPane textContainer = new StackPane();
+			textContainer.setEffect(new InnerShadow());
 			TextFlow headerText = new TextFlow();
+			StackPane.setMargin(headerText, new Insets(3));
 			vBox.setEffect(new InnerShadow());
 			InnerShadow is = new InnerShadow();
 			is.setOffsetX(2.0f);
@@ -145,13 +148,12 @@ public abstract class AbstractHomePage implements IHomePage {
 			t.setFont(Font.font(null, FontWeight.NORMAL, 18));
 			t.setId("homeHeaderText");
 			t.setEffect(is);
-
 			headerText.textAlignmentProperty().setValue(TextAlignment.LEFT);
 			headerText.layout();
-
 			headerText.setMaxHeight(28);
 			headerText.setMinWidth(150);
-			header.getChildren().add(headerText);
+			textContainer.getChildren().add(headerText);
+			header.getChildren().add(textContainer);
 
 			// ---------- header home buttons
 

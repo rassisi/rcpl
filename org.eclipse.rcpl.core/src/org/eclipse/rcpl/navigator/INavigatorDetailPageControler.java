@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.ITreePart;
 
-public interface IDetailPaneControler {
+public interface INavigatorDetailPageControler {
 
 	ITreePart getTreePart();
 

@@ -54,60 +54,76 @@ public class ToolGroupItemProvider extends AbstractToolItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Grid feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Grid feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addGridPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ToolGroup_grid_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ToolGroup_grid_feature",
-								"_UI_ToolGroup_type"),
-						RcplPackage.Literals.TOOL_GROUP__GRID, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ToolGroup_grid_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ToolGroup_grid_feature", "_UI_ToolGroup_type"),
+				 RcplPackage.Literals.TOOL_GROUP__GRID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ToolGroup_type_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ToolGroup_type_feature",
-								"_UI_ToolGroup_type"),
-						RcplPackage.Literals.TOOL_GROUP__TYPE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ToolGroup_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ToolGroup_type_feature", "_UI_ToolGroup_type"),
+				 RcplPackage.Literals.TOOL_GROUP__TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Format feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Format feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addFormatPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_ToolGroup_format_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ToolGroup_format_feature",
-								"_UI_ToolGroup_type"),
-						RcplPackage.Literals.TOOL_GROUP__FORMAT, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ToolGroup_format_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ToolGroup_format_feature", "_UI_ToolGroup_type"),
+				 RcplPackage.Literals.TOOL_GROUP__FORMAT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an
-	 * appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,13 +138,11 @@ public class ToolGroupItemProvider extends AbstractToolItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to
-		// use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -164,10 +178,9 @@ public class ToolGroupItemProvider extends AbstractToolItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update
-	 * any cached children and by creating a viewer notification, which it passes to
-	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -175,35 +188,39 @@ public class ToolGroupItemProvider extends AbstractToolItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ToolGroup.class)) {
-		case RcplPackage.TOOL_GROUP__GRID:
-		case RcplPackage.TOOL_GROUP__FORMAT:
-		case RcplPackage.TOOL_GROUP__TYPE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case RcplPackage.TOOL_GROUP__TOOL_GROUPS:
-		case RcplPackage.TOOL_GROUP__TOOLS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case RcplPackage.TOOL_GROUP__GRID:
+			case RcplPackage.TOOL_GROUP__FORMAT:
+			case RcplPackage.TOOL_GROUP__TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case RcplPackage.TOOL_GROUP__TOOL_GROUPS:
+			case RcplPackage.TOOL_GROUP__TOOLS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-	 * the children that can be created under this object. <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(RcplPackage.Literals.TOOL_GROUP__TOOL_GROUPS,
-				RcplFactory.eINSTANCE.createToolGroup()));
+		newChildDescriptors.add
+			(createChildParameter
+				(RcplPackage.Literals.TOOL_GROUP__TOOL_GROUPS,
+				 RcplFactory.eINSTANCE.createToolGroup()));
 
-		newChildDescriptors
-				.add(createChildParameter(RcplPackage.Literals.TOOL_GROUP__TOOLS, RcplFactory.eINSTANCE.createTool()));
+		newChildDescriptors.add
+			(createChildParameter
+				(RcplPackage.Literals.TOOL_GROUP__TOOLS,
+				 RcplFactory.eINSTANCE.createTool()));
 	}
 
 }

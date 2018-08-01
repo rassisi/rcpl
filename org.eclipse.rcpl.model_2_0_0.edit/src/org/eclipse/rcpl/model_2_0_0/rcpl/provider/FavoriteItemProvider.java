@@ -60,51 +60,69 @@ public class FavoriteItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Link feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Link feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addLinkPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_link_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_link_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__LINK, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_link_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_link_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__LINK,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the URI feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the URI feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addURIPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_URI_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_URI_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__URI, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_URI_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_URI_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__URI,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the URL feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the URL feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addURLPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_URL_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_URL_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__URL, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_URL_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_URL_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__URL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -114,13 +132,19 @@ public class FavoriteItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addCreationDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_creationDate_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_creationDate_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__CREATION_DATE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_creationDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_creationDate_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__CREATION_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -130,29 +154,41 @@ public class FavoriteItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addDocumentCreationDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_documentCreationDate_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_documentCreationDate_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__DOCUMENT_CREATION_DATE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_documentCreationDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_documentCreationDate_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__DOCUMENT_CREATION_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Rating feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Rating feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addRatingPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_rating_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_rating_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__RATING, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_rating_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_rating_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__RATING,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -162,13 +198,19 @@ public class FavoriteItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addLastUsedDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_lastUsedDate_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_lastUsedDate_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__LAST_USED_DATE, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_lastUsedDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_lastUsedDate_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__LAST_USED_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -178,45 +220,63 @@ public class FavoriteItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addFrequencyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_frequency_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_frequency_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__FREQUENCY, true, false, false,
-						ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_frequency_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_frequency_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__FREQUENCY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Password feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Password feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addPasswordPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_password_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_password_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__PASSWORD, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_password_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_password_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__PASSWORD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Format feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Format feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addFormatPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_format_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_format_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__FORMAT, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_format_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_format_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__FORMAT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -226,13 +286,19 @@ public class FavoriteItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addShowOnToolBarPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Favorite_showOnToolBar_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Favorite_showOnToolBar_feature",
-								"_UI_Favorite_type"),
-						RcplPackage.Literals.FAVORITE__SHOW_ON_TOOL_BAR, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Favorite_showOnToolBar_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Favorite_showOnToolBar_feature", "_UI_Favorite_type"),
+				 RcplPackage.Literals.FAVORITE__SHOW_ON_TOOL_BAR,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -258,10 +324,9 @@ public class FavoriteItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update
-	 * any cached children and by creating a viewer notification, which it passes to
-	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -269,28 +334,28 @@ public class FavoriteItemProvider extends LayoutableItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Favorite.class)) {
-		case RcplPackage.FAVORITE__LINK:
-		case RcplPackage.FAVORITE__URI:
-		case RcplPackage.FAVORITE__URL:
-		case RcplPackage.FAVORITE__CREATION_DATE:
-		case RcplPackage.FAVORITE__DOCUMENT_CREATION_DATE:
-		case RcplPackage.FAVORITE__RATING:
-		case RcplPackage.FAVORITE__LAST_USED_DATE:
-		case RcplPackage.FAVORITE__FREQUENCY:
-		case RcplPackage.FAVORITE__PASSWORD:
-		case RcplPackage.FAVORITE__FORMAT:
-		case RcplPackage.FAVORITE__SHOW_ON_TOOL_BAR:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case RcplPackage.FAVORITE__LINK:
+			case RcplPackage.FAVORITE__URI:
+			case RcplPackage.FAVORITE__URL:
+			case RcplPackage.FAVORITE__CREATION_DATE:
+			case RcplPackage.FAVORITE__DOCUMENT_CREATION_DATE:
+			case RcplPackage.FAVORITE__RATING:
+			case RcplPackage.FAVORITE__LAST_USED_DATE:
+			case RcplPackage.FAVORITE__FREQUENCY:
+			case RcplPackage.FAVORITE__PASSWORD:
+			case RcplPackage.FAVORITE__FORMAT:
+			case RcplPackage.FAVORITE__SHOW_ON_TOOL_BAR:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-	 * the children that can be created under this object. <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

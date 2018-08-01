@@ -30,7 +30,8 @@ import org.eclipse.fx.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleException;
-import org.eclipse.rcpl.IDetailPane;
+import org.eclipse.rcpl.IDetailPage;
+import org.eclipse.rcpl.INavigatorDetailPage;
 import org.eclipse.rcpl.INavigatorListener;
 import org.eclipse.rcpl.INavigatorTreeManager;
 import org.eclipse.rcpl.IOfficeUIC;
@@ -96,13 +97,11 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private HashMap<String, File> documentRegistry = new HashMap<String, File>();
 
-	private IDetailPane detailPane;
+	private INavigatorDetailPage detailPane;
 
 	private EObject root;
 
 	private Pane containerPane;
-
-	private HashMap<Class<? extends EObject>, IDetailPane> detailPanes = new HashMap<Class<? extends EObject>, IDetailPane>();
 
 	public DefaultNavigatorTreePart() {
 		init(null, true);
@@ -176,27 +175,32 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private void adaptDetailPane(EObject eObject) {
 
-		IDetailPane detailPane = detailPanes.get(eObject.getClass());
+		IDetailPage detailPage = Rcpl.UIC.getDetailPage(eObject.getClass().getName());
 
-		if (detailPane == null) {
+		if (detailPage == null) {
 
 			// ========== Tool
 
 			if (eObject instanceof Tool || eObject instanceof ToolGroup) {
-				detailPane = new ToolsDetailPage();
-				detailPanes.put(eObject.getClass(), detailPane);
-				detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
+				this.detailPane = new ToolsDetailPage();
+				Rcpl.UIC.putDetailPage(eObject.getClass().getName(), detailPage);
+				this.detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
 
 				// ========== Preference Group
 
 			} else if (eObject instanceof PreferenceGroup) {
-				detailPane = new PreferencesDetailsPage();
-				detailPanes.put(eObject.getClass(), detailPane);
+				this.detailPane = new PreferencesDetailsPage();
+				Rcpl.UIC.putDetailPage(eObject.getClass().getName(), detailPage);
 			}
+
+		} else if (detailPage instanceof INavigatorDetailPage) {
+			this.detailPane = (INavigatorDetailPage) detailPage;
+			this.detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
+
 		} else {
-			detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
+			this.detailPane = null;
 		}
-		this.detailPane = detailPane;
+
 	}
 
 	@Override

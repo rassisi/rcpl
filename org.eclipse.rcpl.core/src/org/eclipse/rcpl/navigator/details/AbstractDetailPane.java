@@ -1,28 +1,38 @@
 package org.eclipse.rcpl.navigator.details;
 
-import org.eclipse.rcpl.IDetailPane;
-import org.eclipse.rcpl.navigator.IDetailPaneControler;
+import org.eclipse.rcpl.IDetailPage;
+
+import javafx.scene.Node;
+import javafx.scene.layout.StackPane;
 
 /**
  * @author ramin
  *
  */
-public abstract class AbstractDetailPane implements IDetailPane {
+public abstract class AbstractDetailPane implements IDetailPage {
 
-	private IDetailPaneControler controler;
+	private StackPane stackPane;
+
+	@Override
+	public Node getNode() {
+		if (stackPane == null) {
+			stackPane = new StackPane();
+			create(stackPane);
+		}
+		return stackPane;
+	}
 
 	public AbstractDetailPane() {
 		super();
-	}
 
-	abstract IDetailPaneControler createControler();
+	}
 
 	@Override
-	public IDetailPaneControler getControler() {
-		if (controler == null) {
-			controler = createControler();
-		}
-		return controler;
-	}
+	abstract public void create(StackPane stackPane);
 
+	@Override
+	public String getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

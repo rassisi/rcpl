@@ -19,7 +19,7 @@ import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.emf.util.EMFEditFXProperties;
-import org.eclipse.rcpl.navigator.IDetailPaneControler;
+import org.eclipse.rcpl.navigator.INavigatorDetailPageControler;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -39,7 +39,7 @@ import jfxtras.labs.scene.control.BigDecimalField;
  * @author Ramin
  * 
  */
-abstract public class AbstractDetailPaneController implements IDetailPaneControler {
+abstract public class AbstractDetailPaneController implements INavigatorDetailPageControler {
 
 	protected ScrollPane internalDetailsScrollPane;
 

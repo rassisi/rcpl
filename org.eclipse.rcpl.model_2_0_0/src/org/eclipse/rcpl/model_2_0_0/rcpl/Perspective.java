@@ -16,6 +16,7 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getTopToolBar <em>Top Tool Bar</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getQuickToolBar <em>Quick Tool Bar</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#getRibbonToolBar <em>Ribbon Tool Bar</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#isOverview <em>Overview</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getPerspective()
@@ -126,5 +127,31 @@ public interface Perspective extends Layoutable {
 	 * @generated
 	 */
 	void setRibbonToolBar(RibbonToolBar value);
+
+	/**
+	 * Returns the value of the '<em><b>Overview</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Overview</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Overview</em>' attribute.
+	 * @see #setOverview(boolean)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getPerspective_Overview()
+	 * @model
+	 * @generated
+	 */
+	boolean isOverview();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#isOverview <em>Overview</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Overview</em>' attribute.
+	 * @see #isOverview()
+	 * @generated
+	 */
+	void setOverview(boolean value);
 
 } // Perspective

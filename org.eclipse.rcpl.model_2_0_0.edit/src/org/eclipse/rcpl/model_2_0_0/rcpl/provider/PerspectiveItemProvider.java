@@ -10,7 +10,9 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -45,8 +47,31 @@ public class PerspectiveItemProvider extends LayoutableItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addOverviewPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Overview feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOverviewPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Perspective_overview_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Perspective_overview_feature", "_UI_Perspective_type"),
+				 RcplPackage.Literals.PERSPECTIVE__OVERVIEW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -120,6 +145,9 @@ public class PerspectiveItemProvider extends LayoutableItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Perspective.class)) {
+			case RcplPackage.PERSPECTIVE__OVERVIEW:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case RcplPackage.PERSPECTIVE__SIDE_TOOL_BAR:
 			case RcplPackage.PERSPECTIVE__TOP_TOOL_BAR:
 			case RcplPackage.PERSPECTIVE__QUICK_TOOL_BAR:

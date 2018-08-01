@@ -836,13 +836,22 @@ public interface RcplPackage extends EPackage {
 	int PERSPECTIVE__RIBBON_TOOL_BAR = LAYOUTABLE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Overview</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSPECTIVE__OVERVIEW = LAYOUTABLE_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Perspective</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERSPECTIVE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 4;
+	int PERSPECTIVE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Perspective</em>' class.
@@ -8790,6 +8799,17 @@ public interface RcplPackage extends EPackage {
 	EReference getPerspective_RibbonToolBar();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#isOverview <em>Overview</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Overview</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Perspective#isOverview()
+	 * @see #getPerspective()
+	 * @generated
+	 */
+	EAttribute getPerspective_Overview();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Preference <em>Preference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10998,6 +11018,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PERSPECTIVE__RIBBON_TOOL_BAR = eINSTANCE.getPerspective_RibbonToolBar();
+
+		/**
+		 * The meta object literal for the '<em><b>Overview</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PERSPECTIVE__OVERVIEW = eINSTANCE.getPerspective_Overview();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PreferenceImpl <em>Preference</em>}' class.

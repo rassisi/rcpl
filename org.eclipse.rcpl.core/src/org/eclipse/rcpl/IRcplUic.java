@@ -25,6 +25,10 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	IDetailPage getDetailPage(String className);
+
+	void putDetailPage(String className, IDetailPage detailPage);
+
 	ITreePart getRcplTreepart();
 
 	ITreePart getApplicationTreepart();

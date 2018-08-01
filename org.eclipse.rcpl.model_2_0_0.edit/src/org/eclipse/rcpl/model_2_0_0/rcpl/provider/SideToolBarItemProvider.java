@@ -54,27 +54,41 @@ public class SideToolBarItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addToolGroupsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SideToolBar_toolGroups_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SideToolBar_toolGroups_feature",
-								"_UI_SideToolBar_type"),
-						RcplPackage.Literals.SIDE_TOOL_BAR__TOOL_GROUPS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SideToolBar_toolGroups_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SideToolBar_toolGroups_feature", "_UI_SideToolBar_type"),
+				 RcplPackage.Literals.SIDE_TOOL_BAR__TOOL_GROUPS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Tools feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Tools feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addToolsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_SideToolBar_tools_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_SideToolBar_tools_feature",
-								"_UI_SideToolBar_type"),
-						RcplPackage.Literals.SIDE_TOOL_BAR__TOOLS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SideToolBar_tools_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SideToolBar_tools_feature", "_UI_SideToolBar_type"),
+				 RcplPackage.Literals.SIDE_TOOL_BAR__TOOLS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -100,10 +114,9 @@ public class SideToolBarItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update
-	 * any cached children and by creating a viewer notification, which it passes to
-	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -113,10 +126,10 @@ public class SideToolBarItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-	 * the children that can be created under this object. <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -189,24 +189,28 @@ public class RcplSideToolBar implements ISideToolBar {
 	 */
 	@Override
 	public void showPerspective(Perspective perspective) {
-		System.out.println("Show " + perspective.getId() + " Perspective");
+
 		toolbarStack.getChildren().clear();
-//		Rcpl.UIC.showStartMenuButton(!isPerspectivesOverview);
-		try {
-			if (!processedList.contains(perspective.getId())) {
-				processedList.add(perspective.getId());
-				processPerspectiveGroups(perspective.getId());
-			}
 
-			ToolBar n = toolbarRegistry.get(getKey(perspective.getId()));
-			if (n != null) {
-				toolbarStack.getChildren().add(n);
-				n.setVisible(true);
-			}
-			collapseToolPane();
+		if (perspective != null) {
+			Rcpl.UIC.showStartMenuButton(!perspective.isOverview());
 
-		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			try {
+				if (!processedList.contains(perspective.getId())) {
+					processedList.add(perspective.getId());
+					processPerspectiveGroups(perspective.getId());
+				}
+
+				ToolBar n = toolbarRegistry.get(getKey(perspective.getId()));
+				if (n != null) {
+					toolbarStack.getChildren().add(n);
+					n.setVisible(true);
+				}
+				collapseToolPane();
+
+			} catch (Throwable ex) {
+				RCPLModel.logError(ex);
+			}
 		}
 	}
 
@@ -558,10 +562,10 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	/**
 	 * @param toolGroupToolBar
-	 * @param perspectiveType
+	 * @param perspective
 	 * @param toolGroup
 	 */
-	private void processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspectiveType,
+	private void processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspective,
 			final ToolGroup toolGroup) {
 
 		String imageName = toolGroup.getImage();
@@ -683,6 +687,10 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	private void processToolGroups(final List<ToolGroup> toolGroups, final Perspective perspective, boolean startMenu) {
 
+		if (toolGroups.isEmpty()) {
+			return;
+		}
+
 		this.startMenu = startMenu;
 
 		final double screenHeight = Screen.getPrimary().getBounds().getHeight();
@@ -694,13 +702,6 @@ public class RcplSideToolBar implements ISideToolBar {
 				for (ToolGroup toolGroup_0 : toolGroups) {
 
 					EList<ToolGroup> mainGroups = toolGroup_0.getToolGroups();
-
-					// Es kann auch nur ein Tool geben
-					if (mainGroups.isEmpty()) {
-
-//						System.out.println();
-//						continue;
-					}
 
 					try {
 						VBox sideToolsVbox = new VBox(2);

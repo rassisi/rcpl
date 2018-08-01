@@ -902,6 +902,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPerspective_Overview() {
+		return (EAttribute)perspectiveEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPreference() {
 		return preferenceEClass;
 	}
@@ -2526,6 +2535,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(perspectiveEClass, PERSPECTIVE__TOP_TOOL_BAR);
 		createEReference(perspectiveEClass, PERSPECTIVE__QUICK_TOOL_BAR);
 		createEReference(perspectiveEClass, PERSPECTIVE__RIBBON_TOOL_BAR);
+		createEAttribute(perspectiveEClass, PERSPECTIVE__OVERVIEW);
 
 		preferenceEClass = createEClass(PREFERENCE);
 		createEAttribute(preferenceEClass, PREFERENCE__KEY);
@@ -2866,6 +2876,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getPerspective_TopToolBar(), this.getTopToolBar(), null, "topToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPerspective_QuickToolBar(), this.getQuickToolBar(), null, "quickToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPerspective_RibbonToolBar(), this.getRibbonToolBar(), null, "ribbonToolBar", null, 1, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPerspective_Overview(), ecorePackage.getEBoolean(), "overview", null, 0, 1, Perspective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(preferenceEClass, Preference.class, "Preference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPreference_Key(), ecorePackage.getEString(), "key", null, 0, 1, Preference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -22,6 +22,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectiveImpl#getTopToolBar <em>Top Tool Bar</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectiveImpl#getQuickToolBar <em>Quick Tool Bar</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectiveImpl#getRibbonToolBar <em>Ribbon Tool Bar</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectiveImpl#isOverview <em>Overview</em>}</li>
  * </ul>
  *
  * @generated
@@ -116,6 +117,24 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 */
 	public void setRibbonToolBar(RibbonToolBar newRibbonToolBar) {
 		eSet(RcplPackage.Literals.PERSPECTIVE__RIBBON_TOOL_BAR, newRibbonToolBar);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isOverview() {
+		return (Boolean)eGet(RcplPackage.Literals.PERSPECTIVE__OVERVIEW, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOverview(boolean newOverview) {
+		eSet(RcplPackage.Literals.PERSPECTIVE__OVERVIEW, newOverview);
 	}
 
 } //PerspectiveImpl

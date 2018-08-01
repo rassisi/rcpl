@@ -20,7 +20,6 @@ import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.client.RcplKey;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -43,11 +42,13 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	private HashMap<String, HBox> toolPaneRegistry = new HashMap<String, HBox>();
 
-	private static final int RIBBON_HEIGHT = 110;
+	public static final int RIBBON_HEIGHT = 110;
 
-	private static final int BROWSER_HEIGHT = 63;
+//	private static final int BROWSER_HEIGHT = 63;
 
-	private static final int COLLAPSED_HEIGHT = 55;
+	public static final int COLLAPSED_HEIGHT_WITH_EDITOR = 42;
+
+	public static final int COLLAPSED_HEIGHT = 28;
 
 	private IEditor editor;
 
@@ -279,7 +280,11 @@ public class RcplTopToolBar implements ITopToolbar {
 	@Override
 	public void updateHeight() {
 		if (collapsed) {
-			Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+			if (Rcpl.UIC.getEditor() != null) {
+				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
+			} else {
+				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+			}
 			return;
 		}
 		if (Rcpl.UIC.getPerspective() != null) {
@@ -287,7 +292,11 @@ public class RcplTopToolBar implements ITopToolbar {
 			if (!p.getTopToolBar().getToolGroups().isEmpty()) {
 				Rcpl.UIC.setTopAreaHeight(RIBBON_HEIGHT);
 			} else {
-				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+				if (Rcpl.UIC.getEditor() != null) {
+					Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
+				} else {
+					Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+				}
 			}
 
 		}
@@ -301,21 +310,15 @@ public class RcplTopToolBar implements ITopToolbar {
 			@Override
 			public void run() {
 				Rcpl.UIC.getMainTopStack().getChildren().clear();
-				String key = null;
-				if (perspective == null) {
-					key = RcplKey.HOME_TAB.name();
-				} else {
-					key = perspective.getId();
+				if (perspective != null) {
+					Node n = toolPaneRegistry.get(perspective.getId());
+					if (n != null) {
+						Rcpl.UIC.getMainTopStack().getChildren().add(n);
+					}
+					collapsed = false;
+					updateHeight();
+					collapse(false);
 				}
-
-				Node n = toolPaneRegistry.get(key);
-				if (n != null) {
-					Rcpl.UIC.getMainTopStack().getChildren().add(n);
-				}
-
-				collapsed = false;
-				updateHeight();
-				collapse(false);
 
 			}
 		});

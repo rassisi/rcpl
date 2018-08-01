@@ -53,35 +53,47 @@ public class ResourceItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Uri feature. <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Uri feature.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addUriPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Resource_uri_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Resource_uri_feature",
-								"_UI_Resource_type"),
-						RcplPackage.Literals.RESOURCE__URI, true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Resource_uri_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Resource_uri_feature", "_UI_Resource_type"),
+				 RcplPackage.Literals.RESOURCE__URI,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Template feature. <!-- begin-user-doc
+	 * This adds a property descriptor for the Template feature.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addTemplatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Resource_template_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Resource_template_feature",
-								"_UI_Resource_type"),
-						RcplPackage.Literals.RESOURCE__TEMPLATE, true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Resource_template_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Resource_template_feature", "_UI_Resource_type"),
+				 RcplPackage.Literals.RESOURCE__TEMPLATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -91,12 +103,19 @@ public class ResourceItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addLinkedResourcesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Resource_linkedResources_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Resource_linkedResources_feature",
-								"_UI_Resource_type"),
-						RcplPackage.Literals.RESOURCE__LINKED_RESOURCES, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Resource_linkedResources_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Resource_linkedResources_feature", "_UI_Resource_type"),
+				 RcplPackage.Literals.RESOURCE__LINKED_RESOURCES,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -106,12 +125,19 @@ public class ResourceItemProvider extends LayoutableItemProvider {
 	 * @generated
 	 */
 	protected void addMainPerspectivePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Resource_mainPerspective_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Resource_mainPerspective_feature",
-								"_UI_Resource_type"),
-						RcplPackage.Literals.RESOURCE__MAIN_PERSPECTIVE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Resource_mainPerspective_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Resource_mainPerspective_feature", "_UI_Resource_type"),
+				 RcplPackage.Literals.RESOURCE__MAIN_PERSPECTIVE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -154,10 +180,9 @@ public class ResourceItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update
-	 * any cached children and by creating a viewer notification, which it passes to
-	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -165,19 +190,19 @@ public class ResourceItemProvider extends LayoutableItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Resource.class)) {
-		case RcplPackage.RESOURCE__URI:
-		case RcplPackage.RESOURCE__TEMPLATE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case RcplPackage.RESOURCE__URI:
+			case RcplPackage.RESOURCE__TEMPLATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-	 * the children that can be created under this object. <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,15 +1,18 @@
 package org.eclipse.rcpl;
 
 import javafx.scene.Node;
+import javafx.scene.layout.StackPane;
 
 /**
- * @author Ramin
+ * @author ramin
  *
  */
 public interface IDetailPage {
 
-	Node create();
-	
+	Node getNode();
+
+	void create(StackPane stackPane);
+
 	String getId();
-	
+
 }

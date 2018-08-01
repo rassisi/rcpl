@@ -17,16 +17,16 @@ import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
-import org.eclipse.rcpl.navigator.IDetailPaneControler;
+import org.eclipse.rcpl.navigator.INavigatorDetailPageControler;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -35,39 +35,12 @@ import javafx.scene.text.FontWeight;
  * @author ramin
  *
  */
-public class PreferencesDetailsPage extends AbstractDetailPane {
-
-	private final Parent node;
+public class PreferencesDetailsPage extends AbstractNavigatorDetailPage {
 
 	/**
 	 * @param preferences
 	 */
 	public PreferencesDetailsPage() {
-
-		node = new GridPane();
-
-		Preferences preferences = RcplSession.getDefault().getRcpl().getAllPreferences();
-		Label l = new Label(getDisplayName(preferences));
-		l.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 20));
-		getNode().add(l, 0, 0);
-		GridPane.setColumnSpan(l, 2);
-		l.setPadding(new Insets(10, 0, 30, 10));
-		int rowIndex = 1;
-
-		for (PreferenceGroup g : preferences.getChildren()) {
-			for (Preference pref : g.getPreferences()) {
-				l = new Label(getDisplayName(pref));
-				l.setPadding(new Insets(10));
-				l.setAlignment(Pos.TOP_LEFT);
-
-				// getNode().setAlignment(Pos.TOP_LEFT);
-				GridPane.setValignment(l, VPos.TOP);
-				getNode().add(l, 0, rowIndex);
-				Node editor = createEditor(pref);
-				getNode().add(editor, 1, rowIndex);
-				rowIndex++;
-			}
-		}
 
 	}
 
@@ -93,14 +66,6 @@ public class PreferencesDetailsPage extends AbstractDetailPane {
 		return pref.getId();
 	}
 
-	/**
-	 * @return
-	 */
-	@Override
-	public GridPane getNode() {
-		return (GridPane) node;
-	}
-
 	private Node createEditor(Preference pref) {
 		String type = "java.lang.String";
 		if (pref.getType() != null) {
@@ -124,12 +89,42 @@ public class PreferencesDetailsPage extends AbstractDetailPane {
 	}
 
 	@Override
-	public IDetailPaneControler getControler() {
+	public INavigatorDetailPageControler getControler() {
 		return null;
 	}
 
 	@Override
-	IDetailPaneControler createControler() {
+	INavigatorDetailPageControler createControler() {
 		return new PreferenceDetailsControler();
 	}
+
+	@Override
+	public void create(StackPane stackPane) {
+		GridPane node = new GridPane();
+
+		Preferences preferences = RcplSession.getDefault().getRcpl().getAllPreferences();
+		Label l = new Label(getDisplayName(preferences));
+		l.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 20));
+		node.add(l, 0, 0);
+		GridPane.setColumnSpan(l, 2);
+		l.setPadding(new Insets(10, 0, 30, 10));
+		int rowIndex = 1;
+
+		for (PreferenceGroup g : preferences.getChildren()) {
+			for (Preference pref : g.getPreferences()) {
+				l = new Label(getDisplayName(pref));
+				l.setPadding(new Insets(10));
+				l.setAlignment(Pos.TOP_LEFT);
+
+				// getNode().setAlignment(Pos.TOP_LEFT);
+				GridPane.setValignment(l, VPos.TOP);
+				node.add(l, 0, rowIndex);
+				Node editor = createEditor(pref);
+				node.add(editor, 1, rowIndex);
+				rowIndex++;
+			}
+		}
+		stackPane.getChildren().add(node);
+	}
+
 }
