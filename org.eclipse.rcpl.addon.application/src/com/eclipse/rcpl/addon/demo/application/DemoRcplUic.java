@@ -9,7 +9,6 @@ import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.geometry.Orientation;
-import javafx.scene.Node;
 import javafx.scene.control.Separator;
 
 public class DemoRcplUic extends RcplUic {
@@ -62,16 +61,17 @@ public class DemoRcplUic extends RcplUic {
 			return result;
 		}
 
-		if (internalBorderPane != null) {
-			Node n = internalBorderPane.getCenter();
-			if (n != null) {
-				Object o = n.getUserData();
-//				if (o instanceof DocumentHomePage) {
-//					return ((DocumentHomePage) o).getDocument().getEditor();
-//				}
-			}
-		}
+//		if (borderPane != null) {
+//			Node n = borderPane.getCenter();
+//			if (n != null) {
+//				Object o = n.getUserData();
+////				if (o instanceof DocumentHomePage) {
+////					return ((DocumentHomePage) o).getDocument().getEditor();
+////				}
+//			}
+//	}
 		return result;
+
 	}
 
 	@Override

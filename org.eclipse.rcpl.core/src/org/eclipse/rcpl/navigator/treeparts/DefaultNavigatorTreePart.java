@@ -97,7 +97,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private HashMap<String, File> documentRegistry = new HashMap<String, File>();
 
-	private INavigatorDetailPage detailPane;
+	protected INavigatorDetailPage detailPane;
 
 	private EObject root;
 
@@ -173,7 +173,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	}
 
-	private void adaptDetailPane(EObject eObject) {
+	protected void adaptDetailPane(EObject eObject) {
 
 		IDetailPage detailPage = Rcpl.UIC.getDetailPage(eObject.getClass().getName());
 

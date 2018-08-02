@@ -23,7 +23,7 @@
 <?import jfxtras.labs.scene.control.BigDecimalField?>
 -->
 
-<VBox prefHeight="540.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="568.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/1.8.0-181" xmlns:fx="http://javafx.com/fxml/1">
    <children>
   <ScrollPane fitToWidth="true" prefHeight="10000.0" prefWidth="10000.0">
     <content>

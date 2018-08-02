@@ -24,7 +24,7 @@ public class ToolsDetailPage extends AbstractNavigatorDetailPage implements INav
 	}
 
 	@Override
-	INavigatorDetailPageControler createControler() {
+	protected INavigatorDetailPageControler createControler() {
 		return new ToolsDetailPaneController();
 	}
 

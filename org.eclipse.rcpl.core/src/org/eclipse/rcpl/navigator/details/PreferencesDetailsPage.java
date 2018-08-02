@@ -94,7 +94,7 @@ public class PreferencesDetailsPage extends AbstractNavigatorDetailPage {
 	}
 
 	@Override
-	INavigatorDetailPageControler createControler() {
+	protected INavigatorDetailPageControler createControler() {
 		return new PreferenceDetailsControler();
 	}
 

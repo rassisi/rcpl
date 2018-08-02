@@ -7,7 +7,7 @@ public abstract class AbstractNavigatorDetailPage extends AbstractDetailPane imp
 
 	private INavigatorDetailPageControler controler;
 
-	abstract INavigatorDetailPageControler createControler();
+	abstract protected INavigatorDetailPageControler createControler();
 
 	@Override
 	public INavigatorDetailPageControler getControler() {
