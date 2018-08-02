@@ -2,11 +2,8 @@ package org.eclipse.rcpl.navigator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.rcpl.ITreePart;
 
-public interface INavigatorDetailPageControler {
-
-	ITreePart getTreePart();
+public interface IModelDetailPageControler {
 
 	void updateBindings(EObject contact, EditingDomain editingDomain);
 

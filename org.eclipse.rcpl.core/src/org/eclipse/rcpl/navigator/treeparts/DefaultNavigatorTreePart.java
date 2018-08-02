@@ -31,9 +31,9 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleException;
 import org.eclipse.rcpl.IDetailPage;
-import org.eclipse.rcpl.INavigatorDetailPage;
+import org.eclipse.rcpl.IModelDetailPage;
 import org.eclipse.rcpl.INavigatorListener;
-import org.eclipse.rcpl.INavigatorTreeManager;
+import org.eclipse.rcpl.IModelManager;
 import org.eclipse.rcpl.IOfficeUIC;
 import org.eclipse.rcpl.IResourceEntry;
 import org.eclipse.rcpl.IToolComponent;
@@ -87,9 +87,9 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private EObject selectedObject;
 
-	private INavigatorTreeManager rcplManager;
+	private IModelManager rcplManager;
 
-	private INavigatorTreeManager applicationManager;
+	private IModelManager applicationManager;
 
 	private HashMap<Class<? extends EObject>, AbstractEmfHandler<?>> addHandlerRegistry = new HashMap<Class<? extends EObject>, AbstractEmfHandler<?>>();
 
@@ -97,7 +97,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	private HashMap<String, File> documentRegistry = new HashMap<String, File>();
 
-	protected INavigatorDetailPage detailPane;
+	protected IModelDetailPage detailPane;
 
 	private EObject root;
 
@@ -193,8 +193,8 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 				Rcpl.UIC.putDetailPage(eObject.getClass().getName(), detailPage);
 			}
 
-		} else if (detailPage instanceof INavigatorDetailPage) {
-			this.detailPane = (INavigatorDetailPage) detailPage;
+		} else if (detailPage instanceof IModelDetailPage) {
+			this.detailPane = (IModelDetailPage) detailPage;
 			this.detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
 
 		} else {
@@ -204,7 +204,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	}
 
 	@Override
-	public INavigatorTreeManager getRcplManager() {
+	public IModelManager getRcplManager() {
 		if (rcplManager == null) {
 			rcplManager = Rcpl.getFactory().createRcplTreeManager();
 		}
@@ -212,7 +212,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 	}
 
 	@Override
-	public INavigatorTreeManager getApplicationTreeManager() {
+	public IModelManager getApplicationTreeManager() {
 		if (applicationManager == null) {
 			applicationManager = Rcpl.getFactory().createApplicationTreeManager();
 		}
@@ -486,7 +486,7 @@ public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
 
 	}
 
-	protected INavigatorTreeManager getTreeManager() {
+	protected IModelManager getTreeManager() {
 		return getRcplManager();
 	}
 

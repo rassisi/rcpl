@@ -20,9 +20,9 @@ import javafx.scene.layout.StackPane;
  */
 public interface IRcplFactory {
 
-	INavigatorTreeManager createRcplTreeManager();
+	IModelManager createRcplTreeManager();
 
-	INavigatorTreeManager createApplicationTreeManager();
+	IModelManager createApplicationTreeManager();
 
 	ITreePart createRcplTreePart();
 

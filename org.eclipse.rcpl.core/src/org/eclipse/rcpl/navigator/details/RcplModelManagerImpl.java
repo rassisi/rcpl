@@ -14,7 +14,7 @@ package org.eclipse.rcpl.navigator.details;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.rcpl.INavigatorTreeManager;
+import org.eclipse.rcpl.IModelManager;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory;
 
@@ -22,43 +22,15 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.provider.RcplItemProviderAdapterFactory
  * @author ramin
  *
  */
-public class RcplNavigatorTreeManagerImpl extends AbstractNavigatorTreeManagerImpl implements INavigatorTreeManager {
+public class RcplModelManagerImpl extends AbstractModelManagerImpl implements IModelManager {
 
-	public RcplNavigatorTreeManagerImpl() {
+	public RcplModelManagerImpl() {
 	}
 
 	@Override
 	public EObject getRoot() {
 		return RcplSession.getDefault().getRcpl();
 	}
-
-//	@Override
-//	public AdapterFactory getAdapterFactory() {
-//		if (adapterFactory == null) {
-//			adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-//			adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-//			adapterFactory.addAdapterFactory(new RcplItemProviderAdapterFactory());
-//
-//			// adapterFactory
-//			// .addAdapterFactory(new SdItemProviderAdapterFactory());
-//
-//			adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-//			editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(RcplSession.getDefault().getRcpl());
-//
-//			// editingDomain = new AdapterFactoryEditingDomain(adapterFactory,
-//			// new BasicCommandStack());
-//
-//			Resource cdoResource = RcplSession.getDefault().getRcplEmfResource();
-//
-//			try {
-//				editingDomain.getResourceSet().getResources().add(cdoResource);
-//			} catch (Exception ex) {
-//				// System. out.println();
-//			}
-//
-//		}
-//		return adapterFactory;
-//	}
 
 	@Override
 	public Resource getResource() {

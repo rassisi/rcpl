@@ -3,8 +3,8 @@ package org.eclipse.rcpl.navigator.details;
 import java.io.IOException;
 import java.net.URL;
 
-import org.eclipse.rcpl.INavigatorDetailPage;
-import org.eclipse.rcpl.navigator.INavigatorDetailPageControler;
+import org.eclipse.rcpl.IModelDetailPage;
+import org.eclipse.rcpl.navigator.IModelDetailPageControler;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
  * @author ramin
  *
  */
-public class ToolsDetailPage extends AbstractNavigatorDetailPage implements INavigatorDetailPage {
+public class ToolsDetailPage extends AbstractModelDetailPage implements IModelDetailPage {
 
 	private VBox node;
 
@@ -24,7 +24,7 @@ public class ToolsDetailPage extends AbstractNavigatorDetailPage implements INav
 	}
 
 	@Override
-	protected INavigatorDetailPageControler createControler() {
+	protected IModelDetailPageControler createControler() {
 		return new ToolsDetailPaneController();
 	}
 

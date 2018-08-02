@@ -50,7 +50,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
-import org.eclipse.rcpl.navigator.details.RcplNavigatorTreeManagerImpl;
+import org.eclipse.rcpl.navigator.details.RcplModelManagerImpl;
 import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 import org.eclipse.rcpl.ui.font.RcplFontProvider;
@@ -295,11 +295,11 @@ public class RcplBasicFactory implements IRcplFactory {
 		return rcplTreePart;
 	}
 
-	INavigatorTreeManager rcplTreeManager;
+	IModelManager rcplTreeManager;
 
 	@Override
-	public INavigatorTreeManager createRcplTreeManager() {
-		rcplTreeManager = new RcplNavigatorTreeManagerImpl();
+	public IModelManager createRcplTreeManager() {
+		rcplTreeManager = new RcplModelManagerImpl();
 		return rcplTreeManager;
 	}
 
@@ -308,7 +308,7 @@ public class RcplBasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public INavigatorTreeManager createApplicationTreeManager() {
+	public IModelManager createApplicationTreeManager() {
 		return rcplTreeManager;
 	}
 

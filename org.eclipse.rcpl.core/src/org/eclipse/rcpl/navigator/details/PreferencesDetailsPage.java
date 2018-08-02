@@ -17,7 +17,7 @@ import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
-import org.eclipse.rcpl.navigator.INavigatorDetailPageControler;
+import org.eclipse.rcpl.navigator.IModelDetailPageControler;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -35,7 +35,7 @@ import javafx.scene.text.FontWeight;
  * @author ramin
  *
  */
-public class PreferencesDetailsPage extends AbstractNavigatorDetailPage {
+public class PreferencesDetailsPage extends AbstractModelDetailPage {
 
 	/**
 	 * @param preferences
@@ -89,12 +89,12 @@ public class PreferencesDetailsPage extends AbstractNavigatorDetailPage {
 	}
 
 	@Override
-	public INavigatorDetailPageControler getControler() {
+	public IModelDetailPageControler getControler() {
 		return null;
 	}
 
 	@Override
-	protected INavigatorDetailPageControler createControler() {
+	protected IModelDetailPageControler createControler() {
 		return new PreferenceDetailsControler();
 	}
 

@@ -19,7 +19,7 @@ import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.emf.util.EMFEditFXProperties;
-import org.eclipse.rcpl.navigator.INavigatorDetailPageControler;
+import org.eclipse.rcpl.navigator.IModelDetailPageControler;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -39,7 +39,7 @@ import jfxtras.labs.scene.control.BigDecimalField;
  * @author Ramin
  * 
  */
-abstract public class AbstractDetailPaneController implements INavigatorDetailPageControler {
+abstract public class AbstractDetailPaneController implements IModelDetailPageControler {
 
 	protected ScrollPane internalDetailsScrollPane;
 
@@ -286,6 +286,7 @@ abstract public class AbstractDetailPaneController implements INavigatorDetailPa
 		return null;
 	}
 
+	@Override
 	public abstract void updateBindings(EObject contact, EditingDomain editingDomain);
 
 	protected void addCustomFields() {
@@ -294,11 +295,6 @@ abstract public class AbstractDetailPaneController implements INavigatorDetailPa
 
 	protected void refreshDiagram(AbstractRcplAddon uc, Object selectedObject) {
 
-	}
-
-	@Override
-	public ITreePart getTreePart() {
-		return treePart;
 	}
 
 	public void refresh() {

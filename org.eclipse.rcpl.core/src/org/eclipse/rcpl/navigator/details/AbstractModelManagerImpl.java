@@ -19,18 +19,18 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.rcpl.INavigatorTreeManager;
+import org.eclipse.rcpl.IModelManager;
 
 /**
  * @author ramin
  *
  */
-public abstract class AbstractNavigatorTreeManagerImpl implements INavigatorTreeManager {
+public abstract class AbstractModelManagerImpl implements IModelManager {
 
 	public EditingDomain editingDomain;
 	public ComposedAdapterFactory adapterFactory;
 
-	public AbstractNavigatorTreeManagerImpl() {
+	public AbstractModelManagerImpl() {
 
 	}
 

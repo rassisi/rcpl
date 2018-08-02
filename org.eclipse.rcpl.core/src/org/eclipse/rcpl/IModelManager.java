@@ -8,7 +8,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * @author Ramin
  *
  */
-public interface INavigatorTreeManager {
+public interface IModelManager {
 
 	EObject getRoot();
 
