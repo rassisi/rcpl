@@ -63,20 +63,10 @@ public class RcplTopToolBar implements ITopToolbar {
 	public void init() {
 		toolPaneRegistry.clear();
 		Rcpl.UIC.getMainTopStack().getChildren().clear();
-
 		try {
 			if (RcplSession.getDefault().getRcpl() != null) {
 				for (Perspective p : RcplSession.getDefault().getRcpl().getAllPerspectives().getChildren()) {
-					IRcplAddon addon = null;
-					for (IRcplAddon u : Rcpl.rcplApplicationProvider.getRcplAddons()) {
-						if (u.getModel() != null) {
-							if (u.getModel().getDefaultPerspective() == p) {
-								addon = u;
-								break;
-							}
-						}
-					}
-					processTopBarMainGroups(p.getId(), addon);
+					processTopBarMainGroups(p.getId(), null);
 				}
 			}
 		} catch (Throwable ex) {

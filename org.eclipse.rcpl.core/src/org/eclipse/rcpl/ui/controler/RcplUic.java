@@ -1274,6 +1274,11 @@ public class RcplUic implements IRcplUic {
 	 */
 	@Override
 	public boolean showPerspective(Perspective perspective) {
+
+		topBarCollapseButton.setVisible(perspective != null && perspective.getTopToolBar() != null
+				&& (!perspective.getTopToolBar().getToolGroups().isEmpty()
+						|| !perspective.getTopToolBar().getTools().isEmpty()));
+
 		if (perspective != null && perspective == this.perspective) {
 			return false;
 		}

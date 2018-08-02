@@ -701,8 +701,9 @@ public class RcplSideToolBar implements ISideToolBar {
 			public void run() {
 				for (ToolGroup toolGroup_0 : toolGroups) {
 
-					EList<ToolGroup> mainGroups = toolGroup_0.getToolGroups();
-
+					if (toolGroup_0.getToolGroups().isEmpty() || toolGroup_0.getTools().isEmpty()) {
+						return;
+					}
 					try {
 						VBox sideToolsVbox = new VBox(2);
 						sideToolsVbox.setPrefHeight(100);
