@@ -203,7 +203,7 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 						editingDomain);
 
 				toolGroup = (ToolGroup) eObject;
-				GroupType tt = toolGroup.getType();
+				GroupType tt = toolGroup.getGroupType();
 				groupType.getSelectionModel().clearSelection();
 				groupType.getSelectionModel().select(tt.getValue());
 				groupType.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<GroupType>() {
@@ -211,7 +211,7 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 					public void changed(ObservableValue<? extends GroupType> observable, GroupType oldValue,
 							GroupType newValue) {
 						if (toolGroup != null) {
-							toolGroup.setType(newValue);
+							toolGroup.setGroupType(newValue);
 						}
 					}
 				});
@@ -350,7 +350,7 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 			public void changed(ObservableValue<? extends GroupType> observable, GroupType oldValue,
 					final GroupType newValue) {
 				if (getToolGroup() != null) {
-					getToolGroup().setType(newValue);
+					getToolGroup().setGroupType(newValue);
 				}
 
 			}

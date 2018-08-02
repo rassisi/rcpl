@@ -231,17 +231,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/labeled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/notImplemented"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/service"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/detailPaneClassName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/type"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Tool">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Tool/format"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Tool/type"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//ToolGroup">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//ToolGroup/toolGroups"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//ToolGroup/grid"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//ToolGroup/format"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//ToolGroup/tools"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//ToolGroup/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//ToolGroup/groupType"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Tools">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Tools/toolgroupChildren"/>

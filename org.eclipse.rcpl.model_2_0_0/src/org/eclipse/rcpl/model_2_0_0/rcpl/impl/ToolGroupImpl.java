@@ -10,8 +10,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Tool Group</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Tool
+ * Group</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -20,7 +20,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolGroupImpl#isGrid <em>Grid</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolGroupImpl#getFormat <em>Format</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolGroupImpl#getTools <em>Tools</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolGroupImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolGroupImpl#getGroupType <em>Group Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +47,7 @@ public class ToolGroupImpl extends AbstractToolImpl implements ToolGroup {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EList<ToolGroup> getToolGroups() {
 		return (EList<ToolGroup>)eGet(RcplPackage.Literals.TOOL_GROUP__TOOL_GROUPS, true);
@@ -56,15 +57,35 @@ public class ToolGroupImpl extends AbstractToolImpl implements ToolGroup {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EList<Tool> getTools() {
 		return (EList<Tool>)eGet(RcplPackage.Literals.TOOL_GROUP__TOOLS, true);
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GroupType getGroupType() {
+		return (GroupType)eGet(RcplPackage.Literals.TOOL_GROUP__GROUP_TYPE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGroupType(GroupType newGroupType) {
+		eSet(RcplPackage.Literals.TOOL_GROUP__GROUP_TYPE, newGroupType);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGrid() {
 		return (Boolean)eGet(RcplPackage.Literals.TOOL_GROUP__GRID, true);
 	}
@@ -73,6 +94,7 @@ public class ToolGroupImpl extends AbstractToolImpl implements ToolGroup {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGrid(boolean newGrid) {
 		eSet(RcplPackage.Literals.TOOL_GROUP__GRID, newGrid);
 	}
@@ -81,22 +103,7 @@ public class ToolGroupImpl extends AbstractToolImpl implements ToolGroup {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GroupType getType() {
-		return (GroupType)eGet(RcplPackage.Literals.TOOL_GROUP__TYPE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(GroupType newType) {
-		eSet(RcplPackage.Literals.TOOL_GROUP__TYPE, newType);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public String getFormat() {
 		return (String)eGet(RcplPackage.Literals.TOOL_GROUP__FORMAT, true);
 	}
@@ -105,6 +112,7 @@ public class ToolGroupImpl extends AbstractToolImpl implements ToolGroup {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFormat(String newFormat) {
 		eSet(RcplPackage.Literals.TOOL_GROUP__FORMAT, newFormat);
 	}

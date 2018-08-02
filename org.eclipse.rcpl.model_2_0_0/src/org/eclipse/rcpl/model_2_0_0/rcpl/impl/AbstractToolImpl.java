@@ -3,14 +3,13 @@
 package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Abstract Tool</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Abstract Tool</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -26,14 +25,15 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isLabeled <em>Labeled</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isNotImplemented <em>Not Implemented</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getService <em>Service</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getDetailPaneClassName <em>Detail Pane Class Name</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class AbstractToolImpl extends LayoutableImpl implements AbstractTool {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected AbstractToolImpl() {
@@ -41,8 +41,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -51,192 +50,219 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getX() {
 		return (Double)eGet(RcplPackage.Literals.ABSTRACT_TOOL__X, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setX(double newX) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__X, newX);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getY() {
 		return (Double)eGet(RcplPackage.Literals.ABSTRACT_TOOL__Y, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setY(double newY) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__Y, newY);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getWidth() {
 		return (Double)eGet(RcplPackage.Literals.ABSTRACT_TOOL__WIDTH, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWidth(double newWidth) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__WIDTH, newWidth);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getHeight() {
 		return (Double)eGet(RcplPackage.Literals.ABSTRACT_TOOL__HEIGHT, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHeight(double newHeight) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__HEIGHT, newHeight);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getGridX() {
 		return (Integer)eGet(RcplPackage.Literals.ABSTRACT_TOOL__GRID_X, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGridX(int newGridX) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__GRID_X, newGridX);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getGridY() {
 		return (Integer)eGet(RcplPackage.Literals.ABSTRACT_TOOL__GRID_Y, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGridY(int newGridY) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__GRID_Y, newGridY);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSpanX() {
 		return (Integer)eGet(RcplPackage.Literals.ABSTRACT_TOOL__SPAN_X, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSpanX(int newSpanX) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__SPAN_X, newSpanX);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSpanY() {
 		return (Integer)eGet(RcplPackage.Literals.ABSTRACT_TOOL__SPAN_Y, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSpanY(int newSpanY) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__SPAN_Y, newSpanY);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLabeled() {
 		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__LABELED, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabeled(boolean newLabeled) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__LABELED, newLabeled);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNotImplemented() {
 		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__NOT_IMPLEMENTED, true);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNotImplemented(boolean newNotImplemented) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__NOT_IMPLEMENTED, newNotImplemented);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getService() {
 		return (String)eGet(RcplPackage.Literals.ABSTRACT_TOOL__SERVICE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setService(String newService) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__SERVICE, newService);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getDetailPaneClassName() {
+		return (String)eGet(RcplPackage.Literals.ABSTRACT_TOOL__DETAIL_PANE_CLASS_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDetailPaneClassName(String newDetailPaneClassName) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__DETAIL_PANE_CLASS_NAME, newDetailPaneClassName);
 	}
 
 	/**
@@ -244,8 +270,40 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setService(String newService) {
-		eSet(RcplPackage.Literals.ABSTRACT_TOOL__SERVICE, newService);
+	public ToolType getType() {
+		return (ToolType)eGet(RcplPackage.Literals.ABSTRACT_TOOL__TYPE, true);
 	}
 
-} //AbstractToolImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(ToolType newType) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__TYPE, newType);
+	}
+
+	private Object data;
+
+	/*
+	 * @generated NOT (non-Javadoc)
+	 * 
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getData()
+	 */
+	@Override
+	public Object getData() {
+		return data;
+	}
+
+	/*
+	 * @generated NOT
+	 * 
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#setData(java.lang.Object)
+	 */
+	@Override
+	public void setData(Object data) {
+		this.data = data;
+	}
+} // AbstractToolImpl

@@ -44,7 +44,6 @@ public class ToolItemProvider extends AbstractToolItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addFormatPropertyDescriptor(object);
-			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -63,28 +62,6 @@ public class ToolItemProvider extends AbstractToolItemProvider {
 				 getString("_UI_Tool_format_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Tool_format_feature", "_UI_Tool_type"),
 				 RcplPackage.Literals.TOOL__FORMAT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Tool_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Tool_type_feature", "_UI_Tool_type"),
-				 RcplPackage.Literals.TOOL__TYPE,
 				 true,
 				 false,
 				 false,
@@ -135,7 +112,6 @@ public class ToolItemProvider extends AbstractToolItemProvider {
 
 		switch (notification.getFeatureID(Tool.class)) {
 			case RcplPackage.TOOL__FORMAT:
-			case RcplPackage.TOOL__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

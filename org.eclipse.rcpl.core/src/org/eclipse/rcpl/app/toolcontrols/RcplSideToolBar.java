@@ -17,8 +17,8 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IButton;
-import org.eclipse.rcpl.IButtonListener;
 import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
@@ -204,7 +204,16 @@ public class RcplSideToolBar implements ISideToolBar {
 				ToolBar n = toolbarRegistry.get(getKey(perspective.getId()));
 				if (n != null) {
 					toolbarStack.getChildren().add(n);
-					n.setVisible(true);
+
+					if (Rcpl.UIC.getEditor() != null) {
+						toolbarStack.setPadding(new Insets(-14, 0, 0, 0));
+					} else if (Rcpl.UIC.getActiveHomePage() != null) {
+						toolbarStack.setPadding(new Insets(IHomePage.HOMEPAGE_HEADER_HEIGHT, 0, 0, 0));
+					} else {
+						toolbarStack.setPadding(new Insets(0, 0, 0, 0));
+					}
+
+//					n.setVisible(true);
 				}
 				collapseToolPane();
 
@@ -215,6 +224,8 @@ public class RcplSideToolBar implements ISideToolBar {
 	}
 
 	/**
+	 * Highest Level: Creates Buttons on the sidebar toolbar
+	 * 
 	 * @param perspectiveId
 	 */
 	private void processPerspectiveGroups(String perspectiveId) {
@@ -517,8 +528,7 @@ public class RcplSideToolBar implements ISideToolBar {
 
 		String imageName = tool.getImage();
 
-		IButton b = Rcpl.getFactory().createButton(tool.getId(), tool.getName(), tool.getToolTip(), imageName, false,
-				null, false);
+		IButton b = Rcpl.getFactory().createButton(tool);
 
 		if (!Rcpl.isBigDisplay()) {
 			b.setWidth(16);
@@ -529,29 +539,30 @@ public class RcplSideToolBar implements ISideToolBar {
 			b.setHeight(18);
 		}
 
-		b.setButtonListener(new IButtonListener() {
-
-			@Override
-			public void doAction() {
-				try {
-
-					String groupId0 = tool.getId();
-
-					if ("logout".equals(groupId0)) {
-						Rcpl.UIC.actionLogout();
-						return;
-					}
-
-					if (groupId0.equals(activeGroupId)) {
-						collapseToolPane();
-					} else {
-						showSideTools(groupId0, true);
-					}
-				} catch (Throwable ex) {
-					RCPLModel.logError(ex);
-				}
-			}
-		});
+		// !!!
+//		b.setButtonListener(new IButtonListener() {
+//
+//			@Override
+//			public void doAction() {
+//				try {
+//
+//					String groupId0 = tool.getId();
+//
+//					if ("logout".equals(groupId0)) {
+//						Rcpl.UIC.actionLogout();
+//						return;
+//					}
+//
+//					if (groupId0.equals(activeGroupId)) {
+//						collapseToolPane();
+//					} else {
+//						showSideTools(groupId0, true);
+//					}
+//				} catch (Throwable ex) {
+//					RCPLModel.logError(ex);
+//				}
+//			}
+//		});
 
 		Tooltip toolTip = new Tooltip(tool.getToolTip() != null ? tool.getToolTip() : tool.getName());
 		toolTip.setId("joffice_tooltip");
@@ -568,10 +579,7 @@ public class RcplSideToolBar implements ISideToolBar {
 	private void processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspective,
 			final ToolGroup toolGroup) {
 
-		String imageName = toolGroup.getImage();
-
-		IButton b = Rcpl.getFactory().createButton(toolGroup.getId(), toolGroup.getName(), toolGroup.getToolTip(),
-				imageName, false, null, false);
+		IButton b = Rcpl.getFactory().createButton(toolGroup);
 
 		if (!Rcpl.isBigDisplay()) {
 			b.setWidth(16);
@@ -582,29 +590,31 @@ public class RcplSideToolBar implements ISideToolBar {
 			b.setHeight(18);
 		}
 
-		b.setButtonListener(new IButtonListener() {
+		// !!!
 
-			@Override
-			public void doAction() {
-				try {
-
-					String groupId0 = toolGroup.getId();
-
-					if ("logout".equals(groupId0)) {
-						Rcpl.UIC.actionLogout();
-						return;
-					}
-
-					if (groupId0.equals(activeGroupId)) {
-						collapseToolPane();
-					} else {
-						showSideTools(groupId0, true);
-					}
-				} catch (Throwable ex) {
-					RCPLModel.logError(ex);
-				}
-			}
-		});
+//		b.setButtonListener(new IButtonListener() {
+//
+//			@Override
+//			public void doAction() {
+//				try {
+//
+//					String groupId0 = toolGroup.getId();
+//
+//					if ("logout".equals(groupId0)) {
+//						Rcpl.UIC.actionLogout();
+//						return;
+//					}
+//
+//					if (groupId0.equals(activeGroupId)) {
+//						collapseToolPane();
+//					} else {
+//						showSideTools(groupId0, true);
+//					}
+//				} catch (Throwable ex) {
+//					RCPLModel.logError(ex);
+//				}
+//			}
+//		});
 
 		Tooltip toolTip = new Tooltip(toolGroup.getToolTip() != null ? toolGroup.getToolTip() : toolGroup.getName());
 		toolTip.setId("joffice_tooltip");

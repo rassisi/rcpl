@@ -214,10 +214,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="labeled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="notImplemented" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="service" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="detailPaneClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ToolType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Tool" eSuperTypes="#//AbstractTool">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ToolType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ToolGroup" eSuperTypes="#//AbstractTool">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toolGroups" upperBound="-1"
@@ -226,7 +227,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tools" upperBound="-1"
         eType="#//Tool" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//GroupType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupType" eType="#//GroupType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Tools" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="toolgroupChildren" upperBound="-1"

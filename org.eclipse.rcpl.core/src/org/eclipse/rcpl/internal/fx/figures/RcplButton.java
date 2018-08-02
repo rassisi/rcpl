@@ -14,7 +14,6 @@ import org.eclipse.rcpl.AlignType;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IAlignment;
 import org.eclipse.rcpl.IButton;
-import org.eclipse.rcpl.IButtonListener;
 import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
@@ -27,7 +26,7 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
@@ -51,43 +50,22 @@ public class RcplButton extends RcplTool implements IButton {
 
 	private Node imageNode;
 
-	private boolean toggle;
-
-	private IButtonListener buttonListener;
-
-	private boolean systemButton;
-
 	private double width;
 
 	private double height;
 
 	private IImage image;
 
-	public RcplButton(String id, String name, String toolTip, String imageName, boolean toggle) {
-		super(id, name, toolTip, imageName, toggle);
-		this.toggle = toggle;
-	}
+//	public RcplButton(String id, String name, String toolTip, String imageName, boolean toggle) {
+//		super(id, name, toolTip, imageName, toggle);
+//	}
 
 	public boolean isToggle() {
-		return toggle;
+		return ToolType.TOGGLEBUTTON.equals(getTool().getType());
 	}
 
-	public void setToggle(boolean toggle) {
-		this.toggle = toggle;
-		try {
-			if (toggle) {
-				getTool().setType(ToolType.TOGGLEBUTTON);
-			} else {
-				getTool().setType(ToolType.BUTTON);
-			}
-		} catch (Exception ex) {
-			//
-		}
-	}
-
-	public RcplButton(Tool tool) {
+	public RcplButton(AbstractTool tool) {
 		super(tool);
-		toggle = ToolType.TOGGLEBUTTON.equals(tool.getType());
 	}
 
 	private void performAction() {
@@ -101,9 +79,6 @@ public class RcplButton extends RcplTool implements IButton {
 					doAction();
 				}
 			}
-			if (buttonListener != null) {
-				buttonListener.doAction();
-			}
 
 		} catch (Throwable ex) {
 			RCPLModel.logError(ex);
@@ -116,7 +91,7 @@ public class RcplButton extends RcplTool implements IButton {
 	}
 
 	public boolean isSelected() {
-		if (toggle) {
+		if (isToggle()) {
 			return ((ToggleButton) getNode()).isSelected();
 		}
 		return selected;
@@ -124,7 +99,7 @@ public class RcplButton extends RcplTool implements IButton {
 
 	@Override
 	public void setSelected(boolean selected) {
-		if (toggle) {
+		if (isToggle()) {
 			removeToggleButtonListener();
 			((ToggleButton) getNode()).setSelected(selected);
 			addToggleButtonListener();
@@ -150,7 +125,7 @@ public class RcplButton extends RcplTool implements IButton {
 	@Override
 	public ButtonBase createNode() {
 
-		if (toggle) {
+		if (isToggle()) {
 			node = new ToggleButton();
 			((ToggleButton) node).setMinWidth(2);
 			node.setPickOnBounds(false);
@@ -230,33 +205,18 @@ public class RcplButton extends RcplTool implements IButton {
 		return (ButtonBase) node;
 	}
 
-	@Override
-	public void setButtonListener(IButtonListener buttonListener) {
-		this.buttonListener = buttonListener;
-	}
+//	@Override
+//	public void setButtonListener(IButtonListener buttonListener) {
+//		this.buttonListener = buttonListener;
+//	}
 
-	@Override
-	public void setImage(String imageName) {
-		imageNode = Rcpl.resources().getImage(imageName, 16, 16).getNode();
-	}
-
-	@Override
-	public void setToolTip(String toolTip) {
-		Tooltip t = new Tooltip(toolTip);
-		t.setId("joffice_tooltip");
-		Tooltip.install(imageNode, t);
-
-	}
-
-	@Override
-	public boolean isSystemButton() {
-		return systemButton;
-	}
-
-	@Override
-	public void setSystemButton() {
-		this.systemButton = true;
-	}
+//	@Override
+//	public void setToolTip(String toolTip) {
+//		Tooltip t = new Tooltip(toolTip);
+//		t.setId("joffice_tooltip");
+//		Tooltip.install(imageNode, t);
+//
+//	}
 
 	@Override
 	public IToolRegistry getToolRegistry() {

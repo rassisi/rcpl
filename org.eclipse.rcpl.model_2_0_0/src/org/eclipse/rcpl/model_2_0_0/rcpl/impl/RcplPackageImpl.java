@@ -1451,6 +1451,24 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAbstractTool_DetailPaneClassName() {
+		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractTool_Type() {
+		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTool() {
 		return toolEClass;
 	}
@@ -1462,15 +1480,6 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 */
 	public EAttribute getTool_Format() {
 		return (EAttribute)toolEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTool_Type() {
-		return (EAttribute)toolEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1523,7 +1532,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getToolGroup_Type() {
+	public EAttribute getToolGroup_GroupType() {
 		return (EAttribute)toolGroupEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2606,17 +2615,18 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__LABELED);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__NOT_IMPLEMENTED);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__SERVICE);
+		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__DETAIL_PANE_CLASS_NAME);
+		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__TYPE);
 
 		toolEClass = createEClass(TOOL);
 		createEAttribute(toolEClass, TOOL__FORMAT);
-		createEAttribute(toolEClass, TOOL__TYPE);
 
 		toolGroupEClass = createEClass(TOOL_GROUP);
 		createEReference(toolGroupEClass, TOOL_GROUP__TOOL_GROUPS);
 		createEAttribute(toolGroupEClass, TOOL_GROUP__GRID);
 		createEAttribute(toolGroupEClass, TOOL_GROUP__FORMAT);
 		createEReference(toolGroupEClass, TOOL_GROUP__TOOLS);
-		createEAttribute(toolGroupEClass, TOOL_GROUP__TYPE);
+		createEAttribute(toolGroupEClass, TOOL_GROUP__GROUP_TYPE);
 
 		toolsEClass = createEClass(TOOLS);
 		createEReference(toolsEClass, TOOLS__TOOLGROUP_CHILDREN);
@@ -2947,17 +2957,18 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEAttribute(getAbstractTool_Labeled(), ecorePackage.getEBoolean(), "labeled", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTool_NotImplemented(), ecorePackage.getEBoolean(), "notImplemented", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTool_Service(), ecorePackage.getEString(), "service", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractTool_DetailPaneClassName(), ecorePackage.getEString(), "detailPaneClassName", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractTool_Type(), this.getToolType(), "type", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(toolEClass, Tool.class, "Tool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTool_Format(), ecorePackage.getEString(), "format", null, 0, 1, Tool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTool_Type(), this.getToolType(), "type", null, 0, 1, Tool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(toolGroupEClass, ToolGroup.class, "ToolGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getToolGroup_ToolGroups(), this.getToolGroup(), null, "toolGroups", null, 0, -1, ToolGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToolGroup_Grid(), ecorePackage.getEBoolean(), "grid", null, 0, 1, ToolGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToolGroup_Format(), ecorePackage.getEString(), "format", null, 0, 1, ToolGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToolGroup_Tools(), this.getTool(), null, "tools", null, 0, -1, ToolGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getToolGroup_Type(), this.getGroupType(), "type", null, 0, 1, ToolGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getToolGroup_GroupType(), this.getGroupType(), "groupType", null, 0, 1, ToolGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(toolsEClass, Tools.class, "Tools", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTools_ToolgroupChildren(), this.getToolGroup(), null, "toolgroupChildren", null, 0, -1, Tools.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

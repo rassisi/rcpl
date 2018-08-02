@@ -27,7 +27,7 @@ import org.eclipse.rcpl.internal.services.RcplCommandService;
 import org.eclipse.rcpl.internal.services.RcplObjectService;
 import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.internal.services.RcplStartButtonService;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
@@ -103,7 +103,7 @@ public abstract class RcplAbstractService {
 	// return false;
 	// }
 
-	public boolean getBoolean(Tool tool) {
+	public boolean getBoolean(AbstractTool tool) {
 		if (tool.getData() instanceof Boolean) {
 			return ((Boolean) tool.getData()).booleanValue();
 		} else if (tool.getData() instanceof RcplButton) {

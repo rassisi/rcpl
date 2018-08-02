@@ -1,6 +1,6 @@
 package org.eclipse.rcpl;
 
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 
 import javafx.scene.Node;
 
@@ -10,7 +10,7 @@ public interface ITool extends IEditorListener {
 
 	Node getNode();
 
-	Tool getTool();
+	AbstractTool getTool();
 
 	IToolRegistry getToolRegistry();
 

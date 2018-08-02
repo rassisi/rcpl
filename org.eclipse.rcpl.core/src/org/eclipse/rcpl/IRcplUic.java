@@ -25,6 +25,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	StackPane getEditorArea();
+
 	IDetailPage getDetailPage(String className);
 
 	void putDetailPage(String className, IDetailPage detailPage);
@@ -164,4 +166,6 @@ public interface IRcplUic {
 	IApplicationStarter getApplicationStarter();
 
 	void showHomePage(HomePageType id);
+
+	IHomePage getActiveHomePage();
 }

@@ -1,5 +1,8 @@
 package org.eclipse.rcpl.internal.fx.figures;
 
+import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
@@ -20,7 +23,9 @@ public class SVGButtonTest extends Application {
 
 		// JOSVG joSVG = new JOSVG();
 
-		RcplButton b = new RcplButton("save", "save", "", "16/save", false);
+		Tool tool = RcplFactory.eINSTANCE.createTool();
+		tool.setId("save");
+		RcplButton b = new RcplButton(tool);
 
 		// WebView webView = joSVG.createPng("http://localhost/svg/save.svg",
 		// null, 16d, 16d);

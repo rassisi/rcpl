@@ -16,8 +16,6 @@ import javafx.scene.layout.VBox;
  */
 public class ToolsDetailPage extends AbstractModelDetailPage implements IModelDetailPage {
 
-	private VBox node;
-
 	public ToolsDetailPage() {
 		super();
 

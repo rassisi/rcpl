@@ -17,6 +17,8 @@ import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.IUndoRedoListener;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ComboBox;
@@ -132,7 +134,9 @@ public class UndoRedoTool implements IUndoRedoListener {
 
 	private void init() {
 
-		undoButton = Rcpl.getFactory().createButton("undo", "", "Undo", "undo", false, null, true);
+		Tool tool = RcplFactory.eINSTANCE.createTool();
+		tool.setId("undo");
+		undoButton = Rcpl.getFactory().createButton(tool);
 		undoButton.setDisable(true);
 
 		undoCombo = new UndoCombo();
@@ -141,7 +145,10 @@ public class UndoRedoTool implements IUndoRedoListener {
 		redoCombo = new UndoCombo();
 		redoCombo.setDisable(true);
 
-		redoButton = Rcpl.getFactory().createButton("", "", "Redo", "redo", false, null, true);
+		Tool tool2 = RcplFactory.eINSTANCE.createTool();
+		tool2.setId("redo");
+
+		redoButton = Rcpl.getFactory().createButton(tool2);
 		undoButton.setDisable(true);
 
 	}

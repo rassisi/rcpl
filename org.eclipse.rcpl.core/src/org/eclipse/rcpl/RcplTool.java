@@ -11,8 +11,7 @@
 package org.eclipse.rcpl;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
@@ -24,7 +23,7 @@ import javafx.scene.Node;
  */
 public abstract class RcplTool implements ITool {
 
-	protected Tool tool;
+	protected AbstractTool tool;
 
 	protected Node node;
 
@@ -32,13 +31,13 @@ public abstract class RcplTool implements ITool {
 
 	private Object data;
 
-	public RcplTool(String id, String name, String toolTip, String imageName, boolean toggle) {
-		this(RcplFactory.eINSTANCE.createTool());
-		tool.setName(name);
-		tool.setId(id);
-		tool.setImage(imageName);
-		tool.setToolTip(toolTip);
-	}
+//	public RcplTool(String id, String name, String toolTip, String imageName, boolean toggle) {
+//		this(RcplFactory.eINSTANCE.createTool());
+//		tool.setName(name);
+//		tool.setId(id);
+//		tool.setImage(imageName);
+//		tool.setToolTip(toolTip);
+//	}
 
 	/**
 	 * This constructor is for conveniant reflection (e.g. creation of a Navigator)
@@ -46,7 +45,7 @@ public abstract class RcplTool implements ITool {
 	public RcplTool() {
 	}
 
-	public RcplTool(Tool tool) {
+	public RcplTool(AbstractTool tool) {
 		this.tool = tool;
 		Rcpl.getEditorListeners().add(this);
 	}
@@ -63,7 +62,7 @@ public abstract class RcplTool implements ITool {
 	}
 
 	@Override
-	public Tool getTool() {
+	public AbstractTool getTool() {
 		return tool;
 	}
 

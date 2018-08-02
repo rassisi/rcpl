@@ -30,8 +30,6 @@ import org.eclipse.rcpl.IURLAddressTool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.favicon.FavIconHandler;
-import org.eclipse.rcpl.internal.fx.figures.RcplButton;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.w3c.dom.NamedNodeMap;
@@ -79,53 +77,53 @@ public class URLAddressTool extends RcplTool implements IURLAddressTool {
 		this.layout = new GridPane();
 		HBox hBox = new HBox();
 		getNode().getChildren().add(hBox);
-		RcplButton backButton = new RcplButton("", "", "Back", "back", false) {
-			@Override
-			protected void doAction() {
-				if (Rcpl.UIC.getBrowser() != null) {
-					goBack();
-				}
-			};
-		};
-		HBox.setMargin(backButton.getNode(), new Insets(-2, 0, 0, 0));
-
-		// backButton.setStyle("back_button");
-		hBox.getChildren().add(backButton.getNode());
-
-		RcplButton forewardButton = new RcplButton("", "", "Forward", "forward", false) {
-			@Override
-			protected void doAction() {
-				if (Rcpl.UIC.getBrowser() != null) {
-					goForward();
-				}
-			}
-		};
+//		RcplButton backButton = new RcplButton("", "", "Back", "back", false) {
+//			@Override
+//			protected void doAction() {
+//				if (Rcpl.UIC.getBrowser() != null) {
+//					goBack();
+//				}
+//			};
+//		};
+//		HBox.setMargin(backButton.getNode(), new Insets(-2, 0, 0, 0));
+//
+//		// backButton.setStyle("back_button");
+//		hBox.getChildren().add(backButton.getNode());
+//
+//		RcplButton forewardButton = new RcplButton("", "", "Forward", "forward", false) {
+//			@Override
+//			protected void doAction() {
+//				if (Rcpl.UIC.getBrowser() != null) {
+//					goForward();
+//				}
+//			}
+//		};
 
 		// forewardButton.setStyle("foreward_button");
-		hBox.getChildren().add(forewardButton.getNode());
-		HBox.setMargin(forewardButton.getNode(), new Insets(-2, 0, 0, 0));
-
-		RcplButton refreshButton = new RcplButton("", "", "Refresh", "refresh", false) {
-			@Override
-			protected void doAction() {
-				if (Rcpl.UIC.getBrowser() != null) {
-					refreshBrowser();
-				}
-			}
-		};
-		hBox.getChildren().add(refreshButton.getNode());
-		HBox.setMargin(refreshButton.getNode(), new Insets(-2, 0, 0, 0));
-
-		RcplButton browserHomeButton = new RcplButton("", "", "Home", "browser", false) {
-			@Override
-			protected void doAction() {
-				if (Rcpl.UIC.getBrowser() != null) {
-
-				}
-			}
-		};
-		hBox.getChildren().add(browserHomeButton.getNode());
-		HBox.setMargin(browserHomeButton.getNode(), new Insets(-2, 0, 0, 0));
+//		hBox.getChildren().add(forewardButton.getNode());
+//		HBox.setMargin(forewardButton.getNode(), new Insets(-2, 0, 0, 0));
+//
+//		RcplButton refreshButton = new RcplButton("", "", "Refresh", "refresh", false) {
+//			@Override
+//			protected void doAction() {
+//				if (Rcpl.UIC.getBrowser() != null) {
+//					refreshBrowser();
+//				}
+//			}
+//		};
+//		hBox.getChildren().add(refreshButton.getNode());
+//		HBox.setMargin(refreshButton.getNode(), new Insets(-2, 0, 0, 0));
+//
+//		RcplButton browserHomeButton = new RcplButton("", "", "Home", "browser", false) {
+//			@Override
+//			protected void doAction() {
+//				if (Rcpl.UIC.getBrowser() != null) {
+//
+//				}
+//			}
+//		};
+//		hBox.getChildren().add(browserHomeButton.getNode());
+//		HBox.setMargin(browserHomeButton.getNode(), new Insets(-2, 0, 0, 0));
 
 		urlAddress = new TextField();
 		urlAddress.setAlignment(Pos.CENTER_LEFT);
@@ -163,19 +161,19 @@ public class URLAddressTool extends RcplTool implements IURLAddressTool {
 		x.setPadding(new Insets(6, 20, 0, -25));
 		hBox.getChildren().add(x);
 
-		RcplButton b1 = new RcplButton("HTML", "", "Convert To HTML", "24/html_document", true) {
-			@Override
-			protected void doAction() {
-				if (isSelected()) {
-					Rcpl.UIC.showHomePage(HomePageType.HTML_EDITOR);
-				} else {
-					Rcpl.UIC.showBrowser();
-				}
-			};
-		};
+//		RcplButton b1 = new RcplButton("HTML", "", "Convert To HTML", "24/html_document", true) {
+//			@Override
+//			protected void doAction() {
+//				if (isSelected()) {
+//					Rcpl.UIC.showHomePage(HomePageType.HTML_EDITOR);
+//				} else {
+//					Rcpl.UIC.showBrowser();
+//				}
+//			};
+//		};
 
-		HBox.setMargin(b1.getNode(), new Insets(0, 0, 0, -25));
-		hBox.getChildren().add(b1.getNode());
+//		HBox.setMargin(b1.getNode(), new Insets(0, 0, 0, -25));
+//		hBox.getChildren().add(b1.getNode());
 
 		//
 		// JOButton b2 = new JOButton("", "", "Spreadsheet Example",

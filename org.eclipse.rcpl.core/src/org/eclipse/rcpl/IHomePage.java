@@ -12,6 +12,8 @@ import javafx.scene.layout.StackPane;
  */
 public interface IHomePage {
 
+	double HOMEPAGE_HEADER_HEIGHT = 80;
+
 	void showHomeButtons();
 
 	StackPane getContentPane();

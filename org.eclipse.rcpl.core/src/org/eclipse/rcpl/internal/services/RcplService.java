@@ -7,14 +7,15 @@ import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnServiceId;
 import org.eclipse.rcpl.IColorTool;
 import org.eclipse.rcpl.ICommand;
+import org.eclipse.rcpl.IDetailPage;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.service.RcplAbstractService;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
@@ -33,14 +34,26 @@ public class RcplService extends RcplAbstractService implements IService {
 		if (executeHomePages(command0)) {
 			return true;
 		}
+
 		ICommand command = getCommand(command0);
 		String id = getId(command0);
 
 		try {
 			ITool iTool = command.getTool();
 			if (iTool != null) {
-				Tool tool = iTool.getTool();
+				AbstractTool tool = iTool.getTool();
 				if (tool != null) {
+
+					if (tool.getDetailPaneClassName() != null) {
+						IDetailPage detailPage = Rcpl.UIC.getDetailPage(tool.getDetailPaneClassName());
+						if (detailPage != null) {
+							Rcpl.UIC.getActiveHomePage().getContentPane().getChildren().clear();
+							Rcpl.UIC.getActiveHomePage().getContentPane().getChildren().add(detailPage.getNode());
+							return true;
+						}
+						return false;
+					}
+
 					if (id != null) {
 
 						String id2 = tool.getId();

@@ -21,8 +21,10 @@ import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.geometry.HPos;
@@ -66,7 +68,7 @@ public class JORibbonGroup extends RcplTool {
 	 * Default Constructor.
 	 */
 	public JORibbonGroup(ToolGroup toolGroup, boolean first, boolean isDialogButton) {
-		super(toolGroup.getId(), toolGroup.getName(), toolGroup.getToolTip(), toolGroup.getImage(), false);
+		super(toolGroup);
 		this.toolGroup = toolGroup;
 		this.mainGridPane = new GridPane();
 		this.root = new VBox();
@@ -111,8 +113,12 @@ public class JORibbonGroup extends RcplTool {
 		gridPane.setStyle("-fx-padding: 5 0 0 0");
 		VBox.setMargin(gridPane, new Insets(0, 0, 5, 0));
 
+		Tool t = RcplFactory.eINSTANCE.createTool();
+		t.setId("showSideBar");
+		t.setImage("dialog_button");
+		t.setType(ToolType.TOGGLEBUTTON);
 		if (isDialogButton) {
-			RcplButton dialogButton = new RcplButton("showSideBar", "", "Show Side Bar Dialog", "dialog_button", true) {
+			RcplButton dialogButton = new RcplButton(t) {
 				@Override
 				protected void doAction() {
 					if (isSelected()) {
@@ -143,7 +149,9 @@ public class JORibbonGroup extends RcplTool {
 
 		processRibbonGroup();
 
-		if (first) {
+		if (first)
+
+		{
 			HBox.setMargin(root, new Insets(3, 7, 7, 48));
 		} else {
 			HBox.setMargin(root, new Insets(3, 7, 7, 5));
@@ -160,7 +168,10 @@ public class JORibbonGroup extends RcplTool {
 		try {
 
 			if (toolGroup == null) {
-				IButton b = Rcpl.getFactory().createButton("error", "error", "error", null, false, null, false);
+
+				Tool tool = RcplFactory.eINSTANCE.createTool();
+				tool.setId("error");
+				IButton b = Rcpl.getFactory().createButton(tool);
 				b.getNode().setMinWidth(2);
 				;
 				add(b.getNode(), 0, 0);
@@ -171,7 +182,7 @@ public class JORibbonGroup extends RcplTool {
 				String image = toolGroup.getImage();
 				String id = toolGroup.getId();
 
-				IButton b = Rcpl.getFactory().createButton(id, "", toolGroup.getToolTip(), image, false, null, false);
+				IButton b = Rcpl.getFactory().createButton(toolGroup);
 				b.getNode().setMinWidth(2);
 				b.setWidth(48);
 				b.setHeight(48);

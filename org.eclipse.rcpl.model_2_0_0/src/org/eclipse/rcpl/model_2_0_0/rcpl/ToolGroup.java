@@ -5,8 +5,8 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Tool Group</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Tool
+ * Group</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#isGrid <em>Grid</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getFormat <em>Format</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getTools <em>Tools</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getGroupType <em>Group Type</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getToolGroup()
@@ -27,11 +27,10 @@ public interface ToolGroup extends AbstractTool {
 	/**
 	 * Returns the value of the '<em><b>Tool Groups</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup}.
-	 * <!-- begin-user-doc
-	 * -->
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Tool Groups</em>' containment reference list
-	 * isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Tool Groups</em>' containment reference list isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tool Groups</em>' containment reference list.
@@ -56,6 +55,35 @@ public interface ToolGroup extends AbstractTool {
 	 * @generated
 	 */
 	EList<Tool> getTools();
+
+	/**
+	 * Returns the value of the '<em><b>Group Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.rcpl.model_2_0_0.rcpl.GroupType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Group Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Group Type</em>' attribute.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.GroupType
+	 * @see #setGroupType(GroupType)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getToolGroup_GroupType()
+	 * @model
+	 * @generated
+	 */
+	GroupType getGroupType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getGroupType <em>Group Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Group Type</em>' attribute.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.GroupType
+	 * @see #getGroupType()
+	 * @generated
+	 */
+	void setGroupType(GroupType value);
 
 	/**
 	 * Returns the value of the '<em><b>Grid</b></em>' attribute. <!--
@@ -84,40 +112,11 @@ public interface ToolGroup extends AbstractTool {
 	void setGrid(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.rcpl.model_2_0_0.rcpl.GroupType}.
-	 * <!-- begin-user-doc
-	 * -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really
-	 * should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.GroupType
-	 * @see #setType(GroupType)
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getToolGroup_Type()
-	 * @model
-	 * @generated
-	 */
-	GroupType getType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getType <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.GroupType
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(GroupType value);
-
-	/**
 	 * Returns the value of the '<em><b>Format</b></em>' attribute. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Format</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Format</em>' attribute isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -130,13 +129,9 @@ public interface ToolGroup extends AbstractTool {
 	String getFormat();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getFormat
-	 * <em>Format</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Format</em>' attribute.
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getFormat <em>Format</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Format</em>' attribute.
 	 * @see #getFormat()
 	 * @generated
 	 */

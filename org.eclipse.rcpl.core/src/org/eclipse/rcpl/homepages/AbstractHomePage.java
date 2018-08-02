@@ -93,10 +93,10 @@ public abstract class AbstractHomePage implements IHomePage {
 			header.setSpacing(20);
 			header.setPrefHeight(80);
 			header.setAlignment(Pos.CENTER_LEFT);
-			int headerHeight = 80;
-			header.setPrefHeight(headerHeight);
-			header.setMinHeight(headerHeight);
-			header.setMaxHeight(headerHeight);
+
+			header.setPrefHeight(HOMEPAGE_HEADER_HEIGHT);
+			header.setMinHeight(HOMEPAGE_HEADER_HEIGHT);
+			header.setMaxHeight(HOMEPAGE_HEADER_HEIGHT);
 
 			header.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override

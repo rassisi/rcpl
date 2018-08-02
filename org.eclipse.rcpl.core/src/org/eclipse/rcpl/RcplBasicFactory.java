@@ -41,6 +41,7 @@ import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.client.RcplSession;
+import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -49,6 +50,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 import org.eclipse.rcpl.navigator.details.RcplModelManagerImpl;
 import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
@@ -65,17 +67,6 @@ import javafx.scene.layout.StackPane;
  * 
  */
 public class RcplBasicFactory implements IRcplFactory {
-
-	@Override
-	public IButton createButton(String id, String name, String toolTip, String imageName, boolean toggle,
-			IButtonListener buttonListener, boolean systemButton) {
-		IButton b = new RcplButton(id, name, toolTip, imageName, toggle);
-		b.setButtonListener(buttonListener);
-		if (systemButton) {
-			b.setSystemButton();
-		}
-		return b;
-	}
 
 	public final static int NO_TOOLBAR = 1;
 
@@ -134,16 +125,18 @@ public class RcplBasicFactory implements IRcplFactory {
 			}
 			EnCommandId commandId = null;
 
-			switch (tool.getTool().getType()) {
-			case TOGGLEBUTTON:
-				RcplButton b = (RcplButton) tool.getTool().getData();
-				newData = new Object[] { b.isSelected() };
-				oldData = new Object[] { !b.isSelected() };
-				break;
-			case WEBVIEW:
-				break;
-			default:
-				break;
+			if (tool.getTool() instanceof Tool) {
+				switch (((Tool) tool.getTool()).getType()) {
+				case TOGGLEBUTTON:
+					RcplButton b = (RcplButton) tool.getTool().getData();
+					newData = new Object[] { b.isSelected() };
+					oldData = new Object[] { !b.isSelected() };
+					break;
+				case WEBVIEW:
+					break;
+				default:
+					break;
+				}
 			}
 
 			String id = tool.getTool().getId();
@@ -191,13 +184,9 @@ public class RcplBasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public IButton createButton(ToolGroup g, boolean toggle, boolean systemButton, IButtonListener buttonListener) {
-		return createButton(g.getId(), g.getName(), g.getToolTip(), g.getImage(), toggle, buttonListener, systemButton);
-	}
-
-	@Override
-	public IButton createButton(Tool tool) {
-		return createButton(tool.getId(), tool.getName(), tool.getToolTip(), tool.getImage(), false, null, false);
+	public IButton createButton(AbstractTool tool) {
+		IButton b = new RcplButton(tool);
+		return b;
 	}
 
 	@Override
@@ -310,6 +299,49 @@ public class RcplBasicFactory implements IRcplFactory {
 	@Override
 	public IModelManager createApplicationTreeManager() {
 		return rcplTreeManager;
+	}
+
+	@Override
+	public IDetailPage createDetailPage(String className) {
+		try {
+			Class<?> cl = Class.forName(className);
+			Object o = cl.newInstance();
+			if (o instanceof IDetailPage) {
+				return (IDetailPage) o;
+			}
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			Rcpl.printErrorln("", e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public IButton createHomePageButton(HomePage homePage) {
+		Tool tool = RcplFactory.eINSTANCE.createTool();
+		tool.setId(homePage.getName());
+		tool.setName(homePage.getName());
+		tool.setToolTip(homePage.getToolTip());
+		tool.setImage(homePage.getImage());
+		tool.setType(ToolType.TOGGLEBUTTON);
+		tool.setWidth(64);
+		tool.setHeight(64);
+
+		IButton homeButton = new RcplButton(tool);
+		homeButton.getNode().setId("homePageButton");
+
+		homeButton.getNode().setPrefWidth(110);
+		homeButton.getNode().setMinWidth(110);
+		homeButton.getNode().setMaxWidth(110);
+
+		homeButton.getNode().setPrefHeight(32);
+		homeButton.getNode().setMinHeight(32);
+		homeButton.getNode().setMaxHeight(32);
+
+		homeButton.getNode().setText(homePage.getName());
+
+		homeButton.setData(homePage);
+		return homeButton;
 	}
 
 }

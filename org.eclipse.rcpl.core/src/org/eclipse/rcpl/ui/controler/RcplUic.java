@@ -41,7 +41,6 @@ import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.WaitThread;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
-import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.IImage;
@@ -308,6 +307,9 @@ public class RcplUic implements IRcplUic {
 
 		public void setEditor(IEditor editor) {
 			this.editor = editor;
+			if (editor != null) {
+				activeHomePage = null;
+			}
 		}
 
 		public void setNode(Node node) {
@@ -1469,21 +1471,9 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void addHomePageButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup) {
-		IButton homeButton = new RcplButton(homePage.getType().getName(), homePage.getName(), homePage.getToolTip(),
-				homePage.getImage(), true);
-		homeButton.setData(homePage);
-		homeButton.setWidth(20);
-		homeButton.setHeight(22);
-		homeButton.getNode().setGraphicTextGap(2);
-		homeButton.getNode().setText(homePage.getName());
-		homeButton.getNode().setId("homePageButton");
-		homeButton.getNode().setPrefSize(110, 22);
-		homeButton.getNode().setMinSize(110, 24);
-		homeButton.getNode().setMaxSize(110, 24);
+		IButton homeButton = Rcpl.getFactory().createHomePageButton(homePage);
 		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
-
 		FlowPane.setMargin(homeButton.getNode(), new Insets(0, 0, 0, 5));
-
 		pane.getChildren().add(homeButton.getNode());
 	}
 
@@ -2100,9 +2090,14 @@ public class RcplUic implements IRcplUic {
 	public IDetailPage getDetailPage(String className) {
 		if (detailPages == null) {
 			detailPages = new HashMap<String, IDetailPage>();
+
 		}
 
-		return detailPages.get(className);
+		IDetailPage detailPage = detailPages.get(className);
+		if (detailPage == null) {
+			detailPage = Rcpl.getFactory().createDetailPage(className);
+		}
+		return detailPage;
 	}
 
 	@Override
@@ -2111,5 +2106,15 @@ public class RcplUic implements IRcplUic {
 			detailPages = new HashMap<String, IDetailPage>();
 		}
 		detailPages.put(className, detailPage);
+	}
+
+	@Override
+	public IHomePage getActiveHomePage() {
+		return activeHomePage;
+	}
+
+	@Override
+	public StackPane getEditorArea() {
+		return editorArea;
 	}
 }

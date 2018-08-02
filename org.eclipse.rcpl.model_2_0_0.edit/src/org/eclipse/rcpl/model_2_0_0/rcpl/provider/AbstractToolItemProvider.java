@@ -54,6 +54,8 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			addLabeledPropertyDescriptor(object);
 			addNotImplementedPropertyDescriptor(object);
 			addServicePropertyDescriptor(object);
+			addDetailPaneClassNamePropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -301,6 +303,50 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Detail Pane Class Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDetailPaneClassNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTool_detailPaneClassName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTool_detailPaneClassName_feature", "_UI_AbstractTool_type"),
+				 RcplPackage.Literals.ABSTRACT_TOOL__DETAIL_PANE_CLASS_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTool_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTool_type_feature", "_UI_AbstractTool_type"),
+				 RcplPackage.Literals.ABSTRACT_TOOL__TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
@@ -334,6 +380,8 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			case RcplPackage.ABSTRACT_TOOL__LABELED:
 			case RcplPackage.ABSTRACT_TOOL__NOT_IMPLEMENTED:
 			case RcplPackage.ABSTRACT_TOOL__SERVICE:
+			case RcplPackage.ABSTRACT_TOOL__DETAIL_PANE_CLASS_NAME:
+			case RcplPackage.ABSTRACT_TOOL__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
