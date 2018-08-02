@@ -2076,7 +2076,7 @@ public class RcplUic implements IRcplUic {
 		if (collapse && topArea.getChildren().contains(mainTopStack)) {
 			topArea.getChildren().remove(mainTopStack);
 		} else if (!collapse && !topArea.getChildren().contains(mainTopStack)) {
-			topArea.getChildren().add(0, mainTopStack);
+			topArea.getChildren().add(1, mainTopStack);
 		}
 	}
 

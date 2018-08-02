@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="decorationArea" minHeight="10.0" minWidth="10.0" prefHeight="408.0" prefWidth="572.0" style="" xmlns="http://javafx.com/javafx/1.8.0-181" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="decorationArea" minHeight="10.0" minWidth="10.0" prefHeight="408.0" prefWidth="572.0" style="" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <!-- TODO Add Nodes -->
   <bottom>
     <HBox fx:id="mainBottomArea" maxHeight="20.0" minHeight="0.0" prefHeight="20.0">
@@ -74,11 +74,6 @@
                      <children>
                         <HBox fx:id="collapseQuickTitleArea" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="18.0" prefWidth="200.0" spacing="3.0">
                            <children>
-                              <ToggleButton fx:id="topBarCollapseButton" alignment="CENTER_RIGHT" maxHeight="10.0" maxWidth="10.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#handleTopBarCollapseButton" prefHeight="10.0" prefWidth="10.0" text="t">
-                                 <font>
-                                    <Font size="5.0" />
-                                 </font>
-                              </ToggleButton>
                               <HBox fx:id="quickToolsArea">
                                  <HBox.margin>
                                     <Insets left="5.0" />
@@ -94,6 +89,18 @@
                         </HBox>
             <HBox id="transparentBorder" fx:id="topArea" alignment="BOTTOM_LEFT" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="10">
               <children>
+                              <HBox alignment="CENTER" prefWidth="10.0" HBox.hgrow="NEVER">
+                                 <children>
+                                    <ToggleButton fx:id="topBarCollapseButton" alignment="CENTER_RIGHT" maxHeight="10.0" maxWidth="10.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#handleTopBarCollapseButton" prefHeight="10.0" prefWidth="10.0" text="t">
+                                       <font>
+                                          <Font size="5.0" />
+                                       </font>
+                                    </ToggleButton>
+                                 </children>
+                                 <padding>
+                                    <Insets right="5.0" />
+                                 </padding>
+                              </HBox>
                   <StackPane id="transparentBorder" fx:id="mainTopStack" alignment="TOP_LEFT" maxHeight="-1.0" minWidth="-1.0" HBox.hgrow="NEVER">
                     <padding>
                       <Insets fx:id="x2" />
