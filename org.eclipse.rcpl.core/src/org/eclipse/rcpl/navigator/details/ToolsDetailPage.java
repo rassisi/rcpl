@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.eclipse.rcpl.IModelDetailPage;
+import org.eclipse.rcpl.detailpages.AbstractModelDetailPage;
 import org.eclipse.rcpl.navigator.IModelDetailPageControler;
 
 import javafx.fxml.FXMLLoader;
@@ -40,6 +41,17 @@ public class ToolsDetailPage extends AbstractModelDetailPage implements IModelDe
 			// System.exit(1);
 		}
 
+	}
+
+	@Override
+	public String getId() {
+
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		return "Tools Setup";
 	}
 
 }

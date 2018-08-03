@@ -19,6 +19,7 @@ import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.EnCustomToolIds;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.control.IntegerField;
+import org.eclipse.rcpl.detailpages.AbstractDetailPaneController;
 import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;

@@ -27,6 +27,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getService <em>Service</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getDetailPaneClassName <em>Detail Pane Class Name</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isSystem <em>System</em>}</li>
  * </ul>
  *
  * @generated
@@ -281,6 +282,24 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 */
 	public void setType(ToolType newType) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__TYPE, newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSystem() {
+		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__SYSTEM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSystem(boolean newSystem) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__SYSTEM, newSystem);
 	}
 
 	private Object data;

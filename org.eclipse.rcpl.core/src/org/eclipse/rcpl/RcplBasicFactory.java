@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 import org.eclipse.rcpl.app.toolcontrols.RcplSideToolBar;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
+import org.eclipse.rcpl.detailpages.RcplModelManagerImpl;
 import org.eclipse.rcpl.homepages.DefaultAboutHomePage;
 import org.eclipse.rcpl.homepages.DefaultContactUsHomePage;
 import org.eclipse.rcpl.homepages.DefaultDocumentHomePage;
@@ -52,7 +53,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
-import org.eclipse.rcpl.navigator.details.RcplModelManagerImpl;
 import org.eclipse.rcpl.navigator.treeparts.DefaultNavigatorTreePart;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 import org.eclipse.rcpl.ui.font.RcplFontProvider;

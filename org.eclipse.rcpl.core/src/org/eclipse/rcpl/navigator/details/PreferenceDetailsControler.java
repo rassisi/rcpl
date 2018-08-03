@@ -3,6 +3,7 @@ package org.eclipse.rcpl.navigator.details;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
+import org.eclipse.rcpl.detailpages.AbstractDetailPaneController;
 
 public class PreferenceDetailsControler extends AbstractDetailPaneController {
 

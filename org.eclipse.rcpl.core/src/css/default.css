@@ -80,8 +80,8 @@
 	-fx-text-fill: derive(-fx-base, -60.0%);
 }
 
-#useCaseSectionHeader {
-	-fx-font: italic 10pt "Arial";
+#detailPageHeaderText {
+	-fx-font: italic 12pt "Arial";
 	/* -fx-background-color: cornsilk; */
 	-fx-fill: derive(-fx-base, -60.0%);
 	-fx-text-fill: derive(-fx-base, -60.0%);

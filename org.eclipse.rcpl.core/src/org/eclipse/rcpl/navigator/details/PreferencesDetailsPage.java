@@ -13,6 +13,8 @@ package org.eclipse.rcpl.navigator.details;
 
 import java.util.Locale;
 
+import org.eclipse.rcpl.detailpages.AbstractModelDetailPage;
+import org.eclipse.rcpl.detailpages.InputFieldLocale;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
@@ -125,6 +127,17 @@ public class PreferencesDetailsPage extends AbstractModelDetailPage {
 			}
 		}
 		stackPane.getChildren().add(node);
+	}
+
+	@Override
+	public String getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		return "Preferences";
 	}
 
 }

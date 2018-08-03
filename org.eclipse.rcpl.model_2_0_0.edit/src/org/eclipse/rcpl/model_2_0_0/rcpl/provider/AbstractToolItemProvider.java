@@ -56,6 +56,7 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			addServicePropertyDescriptor(object);
 			addDetailPaneClassNamePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
+			addSystemPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -347,6 +348,28 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the System feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSystemPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTool_system_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTool_system_feature", "_UI_AbstractTool_type"),
+				 RcplPackage.Literals.ABSTRACT_TOOL__SYSTEM,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
@@ -382,6 +405,7 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			case RcplPackage.ABSTRACT_TOOL__SERVICE:
 			case RcplPackage.ABSTRACT_TOOL__DETAIL_PANE_CLASS_NAME:
 			case RcplPackage.ABSTRACT_TOOL__TYPE:
+			case RcplPackage.ABSTRACT_TOOL__SYSTEM:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

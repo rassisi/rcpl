@@ -2723,13 +2723,22 @@ public interface RcplPackage extends EPackage {
 	int ABSTRACT_TOOL__TYPE = LAYOUTABLE_FEATURE_COUNT + 12;
 
 	/**
+	 * The feature id for the '<em><b>System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOOL__SYSTEM = LAYOUTABLE_FEATURE_COUNT + 13;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Tool</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TOOL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 13;
+	int ABSTRACT_TOOL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of operations of the '<em>Abstract Tool</em>' class. <!--
@@ -2981,6 +2990,15 @@ public interface RcplPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOOL__TYPE = ABSTRACT_TOOL__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL__SYSTEM = ABSTRACT_TOOL__SYSTEM;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute. <!--
@@ -3250,6 +3268,15 @@ public interface RcplPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOOL_GROUP__TYPE = ABSTRACT_TOOL__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL_GROUP__SYSTEM = ABSTRACT_TOOL__SYSTEM;
 
 	/**
 	 * The feature id for the '<em><b>Tool Groups</b></em>' containment reference list.
@@ -9329,6 +9356,17 @@ public interface RcplPackage extends EPackage {
 	EAttribute getAbstractTool_Type();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem <em>System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>System</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem()
+	 * @see #getAbstractTool()
+	 * @generated
+	 */
+	EAttribute getAbstractTool_System();
+
+	/**
 	 * Returns the meta object for class
 	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool <em>Tool</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -11240,6 +11278,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TOOL__TYPE = eINSTANCE.getAbstractTool_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>System</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_TOOL__SYSTEM = eINSTANCE.getAbstractTool_System();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolImpl <em>Tool</em>}' class.
