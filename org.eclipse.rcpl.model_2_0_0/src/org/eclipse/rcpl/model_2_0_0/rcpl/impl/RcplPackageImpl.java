@@ -3165,6 +3165,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		addEEnumLiteral(groupTypeEEnum, GroupType.TILEPANE);
 		addEEnumLiteral(groupTypeEEnum, GroupType.TITLEDPANE);
 		addEEnumLiteral(groupTypeEEnum, GroupType.TOOLBAR);
+		addEEnumLiteral(groupTypeEEnum, GroupType.EMPTY_GROUP_BUTTON);
 
 		initEEnum(addressTypeEEnum, AddressType.class, "AddressType");
 		addEEnumLiteral(addressTypeEEnum, AddressType.RESIDENCE);

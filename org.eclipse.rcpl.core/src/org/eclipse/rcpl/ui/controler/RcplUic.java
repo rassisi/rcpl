@@ -341,7 +341,7 @@ public class RcplUic implements IRcplUic {
 	public RcplUic(IApplicationStarter rcplApplicationStarter, String id) {
 
 		this.applicationStarter = rcplApplicationStarter;
-		this.name = id;
+		this.name = rcplApplicationStarter.getRcplApplicationProvider().getName();
 		this.editorArea = new StackPane();
 
 		this.logPage = new VBox();
@@ -530,7 +530,9 @@ public class RcplUic implements IRcplUic {
 				+ " -fx-stroke: black; -fx-stroke-width: 0.2;");
 
 		internalTitle.getChildren().addAll(txt_1, txt_2);
-		HBox.setMargin(internalTitle, new Insets(4, 10, 0, -28));
+//		HBox.setMargin(internalTitle, new Insets(4, 10, 0, -28));
+		HBox.setMargin(internalTitle, new Insets(0, 0, 0, 0));
+
 		internalWebView = new WebView();
 
 		if (internalHomeStackPane == null) {
@@ -1713,6 +1715,8 @@ public class RcplUic implements IRcplUic {
 				showHomePage(HomePageType.OVERVIEW);
 			}
 		});
+
+		titleArea.getChildren().add(internalTitle);
 
 		Rcpl.showProgress(false);
 

@@ -61,4 +61,8 @@ public interface IRcplApplicationProvider {
 	void setSize(double width, double height);
 
 	void centerWindow();
+
+	String getName();
+
+	String getImage();
 }

@@ -65,6 +65,7 @@
     <eLiterals name="TILEPANE" value="15"/>
     <eLiterals name="TITLEDPANE" value="16"/>
     <eLiterals name="TOOLBAR" value="17"/>
+    <eLiterals name="EMPTY_GROUP_BUTTON" value="18"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Layoutable" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="layoutX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>

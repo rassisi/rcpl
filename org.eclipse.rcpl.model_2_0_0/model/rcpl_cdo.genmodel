@@ -77,6 +77,7 @@
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//GroupType/TILEPANE"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//GroupType/TITLEDPANE"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//GroupType/TOOLBAR"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//GroupType/EMPTY_GROUP_BUTTON"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//AddressType">
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//AddressType/RESIDENCE"/>

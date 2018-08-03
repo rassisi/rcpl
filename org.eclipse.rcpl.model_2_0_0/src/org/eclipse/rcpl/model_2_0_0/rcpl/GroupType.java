@@ -196,7 +196,15 @@ public enum GroupType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TOOLBAR(17, "TOOLBAR", "TOOLBAR");
+	TOOLBAR(17, "TOOLBAR", "TOOLBAR"), /**
+	 * The '<em><b>EMPTY GROUP BUTTON</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #EMPTY_GROUP_BUTTON_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	EMPTY_GROUP_BUTTON(18, "EMPTY_GROUP_BUTTON", "EMPTY_GROUP_BUTTON");
 
 	/**
 	 * The '<em><b>ACCORDIONITEM</b></em>' literal value.
@@ -469,6 +477,21 @@ public enum GroupType implements Enumerator {
 	public static final int TOOLBAR_VALUE = 17;
 
 	/**
+	 * The '<em><b>EMPTY GROUP BUTTON</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>EMPTY GROUP BUTTON</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #EMPTY_GROUP_BUTTON
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EMPTY_GROUP_BUTTON_VALUE = 18;
+
+	/**
 	 * An array of all the '<em><b>Group Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -494,6 +517,7 @@ public enum GroupType implements Enumerator {
 			TILEPANE,
 			TITLEDPANE,
 			TOOLBAR,
+			EMPTY_GROUP_BUTTON,
 		};
 
 	/**
@@ -568,6 +592,7 @@ public enum GroupType implements Enumerator {
 			case TILEPANE_VALUE: return TILEPANE;
 			case TITLEDPANE_VALUE: return TITLEDPANE;
 			case TOOLBAR_VALUE: return TOOLBAR;
+			case EMPTY_GROUP_BUTTON_VALUE: return EMPTY_GROUP_BUTTON;
 		}
 		return null;
 	}

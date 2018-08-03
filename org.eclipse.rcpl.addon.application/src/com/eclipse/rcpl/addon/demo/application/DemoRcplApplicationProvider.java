@@ -9,4 +9,13 @@ public class DemoRcplApplicationProvider extends RcplApplicationProvider {
 		super(rcplApplication);
 	}
 
+	@Override
+	public String getName() {
+		return "Dmeo Rcpl Application";
+	}
+
+	@Override
+	public String getImage() {
+		return "rcpl";
+	}
 }

@@ -36,7 +36,8 @@ public class DemoRcplApplication extends RcplApplication {
 	@Override
 	protected IRcplApplicationProvider createApplicationProvider() {
 		AbstractSession.applicationId = this;
-		return new RcplApplicationProvider(this);
+		return new DemoRcplApplicationProvider(this);
+
 	}
 
 	@Override
@@ -70,4 +71,5 @@ public class DemoRcplApplication extends RcplApplication {
 	protected void doInitApplication() {
 
 	}
+
 }

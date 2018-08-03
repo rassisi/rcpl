@@ -49,7 +49,7 @@ import javafx.stage.WindowEvent;
  * @author ramin
  *
  */
-public class RcplApplicationProvider implements IRcplApplicationProvider {
+public abstract class RcplApplicationProvider implements IRcplApplicationProvider {
 
 	private boolean LOGIN_DEBUG = false;
 
@@ -470,4 +470,9 @@ public class RcplApplicationProvider implements IRcplApplicationProvider {
 		primaryStage.centerOnScreen();
 	}
 
+	@Override
+	public abstract String getName();
+
+	@Override
+	abstract public String getImage();
 }
