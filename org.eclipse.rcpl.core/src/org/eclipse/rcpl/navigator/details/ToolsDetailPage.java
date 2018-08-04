@@ -44,12 +44,6 @@ public class ToolsDetailPage extends AbstractModelDetailPage implements IModelDe
 	}
 
 	@Override
-	public String getId() {
-
-		return null;
-	}
-
-	@Override
 	public String getName() {
 		return "Tools Setup";
 	}

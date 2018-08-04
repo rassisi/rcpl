@@ -13,8 +13,6 @@ public interface IDetailPage {
 
 	void create(StackPane stackPane);
 
-	String getId();
-
 	String getName();
 
 }

@@ -45,9 +45,6 @@ public abstract class AbstractDetailPane implements IDetailPage {
 	abstract public void create(StackPane stackPane);
 
 	@Override
-	abstract public String getId();
-
-	@Override
 	abstract public String getName();
 
 }

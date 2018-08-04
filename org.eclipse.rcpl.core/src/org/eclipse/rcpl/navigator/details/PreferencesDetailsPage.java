@@ -130,12 +130,6 @@ public class PreferencesDetailsPage extends AbstractModelDetailPage {
 	}
 
 	@Override
-	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getName() {
 		return "Preferences";
 	}
