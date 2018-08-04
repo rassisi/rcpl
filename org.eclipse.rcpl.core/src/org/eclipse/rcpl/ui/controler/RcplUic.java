@@ -950,7 +950,7 @@ public class RcplUic implements IRcplUic {
 		if (activeHomePage == null) {
 			return false;
 		}
-		return HomePageType.OVERVIEW.equals(activeHomePage.getId());
+		return HomePageType.OVERVIEW.equals(activeHomePage.getModel().getType());
 	}
 
 	@Override
@@ -1165,7 +1165,7 @@ public class RcplUic implements IRcplUic {
 			return;
 		}
 		showStartMenuButton(!HomePageType.OVERVIEW.equals(type));
-		IHomePage homePage = findHomePage(type);
+		IHomePage homePage = findHomePage(type, null);
 		if (HomePageType.HTML_EDITOR.equals(type)) {
 			showHtmlEditor();
 			return;
@@ -1180,9 +1180,15 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public IHomePage findHomePage(HomePageType id) {
+	public IHomePage findHomePage(HomePageType type, String id) {
 		for (IHomePage homePage : homepages) {
-			if (id.equals(homePage.getId())) {
+			if (type.equals(homePage.getModel().getType())) {
+				if (id != null) {
+					if (id.equals(homePage.getModel().getId())) {
+						return homePage;
+					}
+					return null;
+				}
 				return homePage;
 			}
 		}
@@ -1200,7 +1206,7 @@ public class RcplUic implements IRcplUic {
 				return true;
 			}
 		} else if ("homeTab".equals(o)) {
-			showHomePage(activeHomePage.getId());
+			showHomePage(activeHomePage.getModel().getType());
 		}
 		return false;
 	}

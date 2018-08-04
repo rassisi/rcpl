@@ -13,7 +13,6 @@ package org.eclipse.rcpl.homepages;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
@@ -50,11 +49,6 @@ public class DefaultOverviewHomePage extends AbstractHomePage {
 
 	public IDocument getDocument() {
 		return document;
-	}
-
-	@Override
-	public HomePageType getId() {
-		return HomePageType.OVERVIEW;
 	}
 
 }

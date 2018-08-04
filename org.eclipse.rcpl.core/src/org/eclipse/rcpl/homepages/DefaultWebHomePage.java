@@ -12,7 +12,6 @@ package org.eclipse.rcpl.homepages;
 
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
@@ -41,8 +40,4 @@ public class DefaultWebHomePage extends AbstractHomePage {
 		webView.getEngine().reload();
 	}
 
-	@Override
-	public HomePageType getId() {
-		return HomePageType.WEBSITE;
-	}
 }

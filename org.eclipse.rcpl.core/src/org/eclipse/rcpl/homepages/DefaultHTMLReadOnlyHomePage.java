@@ -16,7 +16,6 @@ import java.util.HashMap;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.Node;
@@ -110,11 +109,6 @@ public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 
 	public IDocument getDocument() {
 		return document;
-	}
-
-	@Override
-	public HomePageType getId() {
-		return HomePageType.HOME;
 	}
 
 	@Override

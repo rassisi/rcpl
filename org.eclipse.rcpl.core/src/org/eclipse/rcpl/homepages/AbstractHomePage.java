@@ -223,11 +223,6 @@ public abstract class AbstractHomePage implements IHomePage {
 	}
 
 	@Override
-	public String toString() {
-		return "Home Page: " + getId();
-	}
-
-	@Override
 	public HomePage getModel() {
 		return model;
 	}

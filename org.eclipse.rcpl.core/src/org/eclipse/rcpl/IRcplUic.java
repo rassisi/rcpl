@@ -45,7 +45,7 @@ public interface IRcplUic {
 
 	void createHomePages();
 
-	IHomePage findHomePage(HomePageType id);
+	IHomePage findHomePage(HomePageType type, String id);
 
 	void actionAddPresentationTab();
 

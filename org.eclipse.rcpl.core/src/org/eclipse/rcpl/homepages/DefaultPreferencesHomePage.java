@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 /**
  * @author ramin
@@ -29,11 +28,6 @@ public class DefaultPreferencesHomePage extends AbstractNavigatorHomePage {
 	 */
 	public DefaultPreferencesHomePage(IRcplUic uic, HomePage modelHomePage) {
 		super(uic, modelHomePage);
-	}
-
-	@Override
-	public HomePageType getId() {
-		return HomePageType.PREFERENCES;
 	}
 
 	@Override

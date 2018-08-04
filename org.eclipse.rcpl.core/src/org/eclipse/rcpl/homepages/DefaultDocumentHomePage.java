@@ -13,7 +13,6 @@ package org.eclipse.rcpl.homepages;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
-import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -27,11 +26,6 @@ public class DefaultDocumentHomePage extends AbstractHomePage implements IHomePa
 
 	public DefaultDocumentHomePage(IRcplUic uic, HomePage modelHomePage) {
 		super(uic, modelHomePage);
-	}
-
-	@Override
-	public HomePageType getId() {
-		return HomePageType.DOCUMENT;
 	}
 
 	@Override
