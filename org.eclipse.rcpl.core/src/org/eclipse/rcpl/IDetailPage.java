@@ -15,4 +15,5 @@ public interface IDetailPage {
 
 	String getName();
 
+	void setImage(String imageName);
 }

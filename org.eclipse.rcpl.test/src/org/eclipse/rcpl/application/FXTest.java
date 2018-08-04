@@ -22,7 +22,7 @@ public class FXTest extends Application {
 	public void start(Stage stage) throws Exception {
 		final VBox st = new VBox();
 
-		int test = 4;
+		int test = 3;
 
 		switch (test) {
 		case 1:
@@ -71,7 +71,7 @@ public class FXTest extends Application {
 
 	void test_3() {
 		RcplSession.getDefault();
-		img = new RcplImage("word", 300, 300);
+		img = new RcplImage("nodes", 300, 300);
 		imageView = img.getNode();
 	}
 

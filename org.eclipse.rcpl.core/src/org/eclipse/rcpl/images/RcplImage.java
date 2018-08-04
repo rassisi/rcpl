@@ -14,7 +14,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -329,7 +328,6 @@ public class RcplImage implements IImage {
 
 	private void createSvgImage(InputStream is, double width, double height) throws TranscoderException, IOException {
 		OutputStream png_ostream;
-
 		TranscoderInput transIn = new TranscoderInput(is);
 		png_ostream = new ByteArrayOutputStream();
 		TranscoderOutput output_png_image = new TranscoderOutput(png_ostream);
@@ -340,28 +338,20 @@ public class RcplImage implements IImage {
 		pngTranscoder.transcode(transIn, output_png_image);
 		png_ostream.flush();
 		png_ostream.close();
-		ByteArrayInputStream isImage = new ByteArrayInputStream(((ByteArrayOutputStream) png_ostream).toByteArray());
-		image = new Image(isImage);
-		if (image != null) {
-			svg = true;
-		}
-		isImage.close();
-		isImage = new ByteArrayInputStream(((ByteArrayOutputStream) png_ostream).toByteArray());
-		FileOutputStream fos = new FileOutputStream(getPngFile());
-		byte[] data = new byte[10000];
+		byte[] imageData = ((ByteArrayOutputStream) png_ostream).toByteArray();
+		ByteArrayInputStream isImage = new ByteArrayInputStream(imageData);
 
-		do {
-			int length = isImage.read(data);
-			if (length == -1) {
-				break;
+		try {
+			image = new Image(isImage);
+			if (image != null) {
+				svg = true;
 			}
-			fos.write(data, 0, length);
-		} while (true);
+			isImage.close();
 
-		fos.flush();
-		fos.close();
-
-		isImage.close();
+		} catch (Throwable ex) {
+			Rcpl.printErrorln("", ex);
+			isImage.close();
+		}
 
 	}
 
@@ -395,7 +385,6 @@ public class RcplImage implements IImage {
 	public File getPngFile() {
 		if (pngFile == null) {
 			pngFile = new File(RcplUtil.getUserLocalCacheDir(), "images/" + createPngPath());
-			pngFile.getParentFile().mkdirs();
 		}
 		return pngFile;
 
@@ -404,7 +393,6 @@ public class RcplImage implements IImage {
 	private File getErrorImagePngFile() {
 		if (errorPngFile == null) {
 			errorPngFile = new File(RcplUtil.getUserLocalCacheDir(), "images/BROKEN_IMAGE_" + createPngPath());
-			errorPngFile.getParentFile().mkdirs();
 		}
 		return errorPngFile;
 
@@ -506,12 +494,8 @@ public class RcplImage implements IImage {
 		}
 	}
 
-	private void writePngFile(Image img) {
+	private void saveToFile(Image image, File path) {
 		getPngFile().getParentFile().mkdirs();
-		saveToFile(img, getPngFile());
-	}
-
-	public void saveToFile(Image image, File path) {
 		BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
 		if (bImage != null) {
 			try {
@@ -583,6 +567,7 @@ public class RcplImage implements IImage {
 					createSvgImage(is, width, height);
 					Rcpl.println("SVG Image loaded from Resource: " + id);
 				} catch (TranscoderException | IOException e) {
+					Rcpl.printErrorln("", e);
 				}
 			}
 			try {
