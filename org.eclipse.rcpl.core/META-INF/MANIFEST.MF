@@ -67,6 +67,7 @@ Export-Package: org.eclipse.rcpl;
    org.eclipse.rcpl.migration",
  org.eclipse.rcpl.components;uses:="javafx.scene.control",
  org.eclipse.rcpl.control;uses:="javafx.beans.property,javafx.scene.control",
+ org.eclipse.rcpl.detailpages,
  org.eclipse.rcpl.emf.edit.ui.dnd;
   uses:="org.eclipse.emf.common.command,
    javafx.scene.control,

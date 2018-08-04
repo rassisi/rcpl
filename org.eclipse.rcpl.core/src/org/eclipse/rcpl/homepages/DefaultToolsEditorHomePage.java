@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.scene.layout.StackPane;
 
@@ -30,6 +31,7 @@ public class DefaultToolsEditorHomePage extends AbstractNavigatorHomePage {
 	 */
 	public DefaultToolsEditorHomePage(IRcplUic uic, HomePage modelHomePage) {
 		super(uic, modelHomePage);
+		modelHomePage.setType(HomePageType.TOOLS_EDITOR);
 	}
 
 	@Override

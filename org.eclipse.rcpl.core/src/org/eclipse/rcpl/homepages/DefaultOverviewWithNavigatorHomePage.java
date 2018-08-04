@@ -15,13 +15,9 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 /**
  * @author ramin
@@ -38,6 +34,7 @@ public class DefaultOverviewWithNavigatorHomePage extends DefaultOverviewHomePag
 	 */
 	public DefaultOverviewWithNavigatorHomePage(IRcplUic uic, HomePage modelHomePage) {
 		super(uic, modelHomePage);
+		modelHomePage.setType(HomePageType.OVERVIEW);
 	}
 
 	@Override
@@ -60,36 +57,36 @@ public class DefaultOverviewWithNavigatorHomePage extends DefaultOverviewHomePag
 			showSplash(1);
 		}
 
-		if (Rcpl.isMobile()) {
-			VBox vBox = new VBox();
-			vBox.setSpacing(5);
-
-			vBox.setSpacing(5);
-			Button b = new Button("New");
-			b.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					uic.showHomePage(HomePageType.NEW);
-				}
-			});
-			b.setPrefWidth(100);
-			vBox.getChildren().add(b);
-
-			b = new Button("Samples");
-			b.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					uic.showHomePage(HomePageType.SAMPLES);
-				}
-			});
-			b.setPrefWidth(100);
-			vBox.getChildren().add(b);
-
-//			setDetailNode(vBox);
-
-		}
+//		if (Rcpl.isMobile()) {
+//			VBox vBox = new VBox();
+//			vBox.setSpacing(5);
+//
+//			vBox.setSpacing(5);
+//			Button b = new Button("New");
+//			b.setOnAction(new EventHandler<ActionEvent>() {
+//
+//				@Override
+//				public void handle(ActionEvent event) {
+//					uic.showHomePage(HomePageType.NEW, null);
+//				}
+//			});
+//			b.setPrefWidth(100);
+//			vBox.getChildren().add(b);
+//
+//			b = new Button("Samples");
+//			b.setOnAction(new EventHandler<ActionEvent>() {
+//
+//				@Override
+//				public void handle(ActionEvent event) {
+//					uic.showHomePage(HomePageType.SAMPLES, null);
+//				}
+//			});
+//			b.setPrefWidth(100);
+//			vBox.getChildren().add(b);
+//
+////			setDetailNode(vBox);
+//
+//		}
 
 	}
 

@@ -361,7 +361,7 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void handle(ActionEvent event) {
-				showHomePage(HomePageType.OVERVIEW);
+				showHomePage(HomePageType.OVERVIEW, null);
 			}
 		});
 		Button clearButton = new Button("clear");
@@ -453,7 +453,7 @@ public class RcplUic implements IRcplUic {
 			final IDocument doc = editor.getDocument();
 
 			if (internalTabPane.getTabs().isEmpty()) {
-				showHomePage(HomePageType.OVERVIEW);
+				showHomePage(HomePageType.OVERVIEW, null);
 			}
 
 			new DelayedExecution(200) {
@@ -469,7 +469,7 @@ public class RcplUic implements IRcplUic {
 
 									@Override
 									public void doRun() {
-										showHomePage(HomePageType.OVERVIEW);
+										showHomePage(HomePageType.OVERVIEW, null);
 									}
 								};
 
@@ -1159,13 +1159,13 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void showHomePage(HomePageType type) {
+	public void showHomePage(HomePageType type, String id) {
 		if (type == null) {
 			showStartMenuButton(true);
 			return;
 		}
 		showStartMenuButton(!HomePageType.OVERVIEW.equals(type));
-		IHomePage homePage = findHomePage(type, null);
+		IHomePage homePage = findHomePage(type, id);
 		if (HomePageType.HTML_EDITOR.equals(type)) {
 			showHtmlEditor();
 			return;
@@ -1184,12 +1184,13 @@ public class RcplUic implements IRcplUic {
 		for (IHomePage homePage : homepages) {
 			if (type.equals(homePage.getModel().getType())) {
 				if (id != null) {
-					if (id.equals(homePage.getModel().getId())) {
+					String homePageId = homePage.getModel().getId();
+					if (id.equals(homePageId)) {
 						return homePage;
 					}
-					return null;
+				} else {
+					return homePage;
 				}
-				return homePage;
 			}
 		}
 		return null;
@@ -1206,7 +1207,7 @@ public class RcplUic implements IRcplUic {
 				return true;
 			}
 		} else if ("homeTab".equals(o)) {
-			showHomePage(activeHomePage.getModel().getType());
+			showHomePage(activeHomePage.getModel().getType(), activeHomePage.getModel().getId());
 		}
 		return false;
 	}
@@ -1718,7 +1719,7 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void handle(ActionEvent event) {
-				showHomePage(HomePageType.OVERVIEW);
+				showHomePage(HomePageType.OVERVIEW, null);
 			}
 		});
 

@@ -121,15 +121,15 @@ public class RcplService extends RcplAbstractService implements IService {
 
 	private boolean executeHomePages(ICommand command) {
 		if (command.getCommandId().equals(EnCommandId.showStartMenu)) {
-			Rcpl.UIC.showHomePage(HomePageType.OVERVIEW);
+			Rcpl.UIC.showHomePage(HomePageType.OVERVIEW, null);
 			return true;
 		}
 
 		if (command.getTool() != null) {
 			Object data = command.getTool().getData();
 			if (data instanceof HomePage) {
-				HomePageType type = ((HomePage) data).getType();
-				Rcpl.UIC.showHomePage(type);
+				HomePage homePage = (HomePage) data;
+				Rcpl.UIC.showHomePage(homePage.getType(), homePage.getId());
 				return true;
 			}
 		}

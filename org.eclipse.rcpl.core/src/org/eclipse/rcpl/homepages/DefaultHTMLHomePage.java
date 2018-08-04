@@ -16,6 +16,7 @@ import java.util.HashMap;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.layout.StackPane;
@@ -30,6 +31,7 @@ public class DefaultHTMLHomePage extends AbstractHomePage {
 	public DefaultHTMLHomePage(IRcplUic uic, HomePage modelHomePage, String documentTemplate,
 			HashMap<String, String> wordReplacements) {
 		super(uic, modelHomePage);
+		modelHomePage.setType(HomePageType.WEBSITE);
 
 		htmlEditor = new HTMLEditor();
 

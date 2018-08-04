@@ -81,7 +81,7 @@ public abstract class AbstractHomePage implements IHomePage {
 
 			@Override
 			public void handle(SwipeEvent event) {
-				uic.showHomePage(HomePageType.OVERVIEW);
+				uic.showHomePage(HomePageType.OVERVIEW, null);
 			}
 		});
 

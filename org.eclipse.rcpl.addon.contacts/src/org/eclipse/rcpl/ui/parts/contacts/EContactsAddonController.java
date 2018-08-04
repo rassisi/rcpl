@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.rcpl.AbstractRcplAddon;
 import org.eclipse.rcpl.contacts.addon.RcplContactsAddon;
-import org.eclipse.rcpl.navigator.details.AbstractDetailPaneController;
+import org.eclipse.rcpl.detailpages.AbstractDetailPaneController;
 
 import javafx.beans.property.Property;
 import javafx.fxml.FXML;

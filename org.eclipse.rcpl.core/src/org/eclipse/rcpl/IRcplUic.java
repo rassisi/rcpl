@@ -165,7 +165,7 @@ public interface IRcplUic {
 
 	IApplicationStarter getApplicationStarter();
 
-	void showHomePage(HomePageType id);
+	void showHomePage(HomePageType type, String id);
 
 	IHomePage getActiveHomePage();
 }

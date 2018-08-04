@@ -16,6 +16,7 @@ import java.net.URL;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +37,7 @@ public class DefaultContactUsHomePage extends AbstractHomePage {
 
 	public DefaultContactUsHomePage(IRcplUic uic, HomePage modelHomePage) {
 		super(uic, modelHomePage);
-
+		modelHomePage.setType(HomePageType.CONTACT_US);
 	}
 
 	@FXML
