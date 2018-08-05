@@ -38,6 +38,7 @@ import org.eclipse.rcpl.internal.resources.RcplResources;
 import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.internal.tools.JORibbonGroup;
 import org.eclipse.rcpl.internal.tools.UndoRedoTool;
+import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.RCPLModel;
@@ -342,6 +343,11 @@ public class RcplBasicFactory implements IRcplFactory {
 
 		homeButton.setData(homePage);
 		return homeButton;
+	}
+
+	@Override
+	public H2DB createH2DB() {
+		return new H2DB("rcpl");
 	}
 
 }

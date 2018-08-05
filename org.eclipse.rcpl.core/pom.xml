@@ -60,5 +60,10 @@
 			<artifactId>OpenViewerFX</artifactId>
 			<version>7.12.28</version>
 		</dependency>
+		<dependency>
+			<groupId>org.controlsfx</groupId>
+			<artifactId>controlsfx</artifactId>
+			<version>8.40.14</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -226,6 +226,7 @@ Export-Package: .,
  org.apache.xmlbeans.xml.stream,
  org.apache.xmlbeans.xml.stream.events,
  org.apache.xmlbeans.xml.stream.utils,
+ org.eclipse.rcpl.libs.db,
  org.eclipse.rcpl.libs.util;
   uses:="org.apache.poi.openxml4j.opc,
    org.openxmlformats.schemas.drawingml.x2006.main,

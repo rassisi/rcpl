@@ -3,6 +3,7 @@ package org.eclipse.rcpl;
 import java.io.File;
 import java.util.HashMap;
 
+import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
@@ -19,6 +20,8 @@ import javafx.scene.layout.StackPane;
  * 
  */
 public interface IRcplFactory {
+
+	H2DB createH2DB();
 
 	IButton createHomePageButton(HomePage homePage);
 

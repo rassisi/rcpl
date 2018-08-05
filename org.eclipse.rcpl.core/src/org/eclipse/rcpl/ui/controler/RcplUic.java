@@ -42,6 +42,7 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.WaitThread;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
+import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
@@ -146,6 +147,8 @@ public class RcplUic implements IRcplUic {
 	private ITreePart applicationTreePart;
 
 	private HashMap<String, IDetailPage> detailPages = new HashMap<String, IDetailPage>();
+
+	private H2DB h2DB;
 
 	@FXML
 	protected Button startMenuButton;
@@ -2127,5 +2130,13 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public StackPane getEditorArea() {
 		return editorArea;
+	}
+
+	@Override
+	public H2DB getH2DB() {
+		if (h2DB == null) {
+			h2DB = Rcpl.getFactory().createH2DB();
+		}
+		return h2DB;
 	}
 }
