@@ -56,9 +56,7 @@ public class RcplButton extends RcplTool implements IButton {
 
 	private IImage image;
 
-//	public RcplButton(String id, String name, String toolTip, String imageName, boolean toggle) {
-//		super(id, name, toolTip, imageName, toggle);
-//	}
+	protected boolean executeService = true;
 
 	public boolean isToggle() {
 		return ToolType.TOGGLEBUTTON.equals(getTool().getType());
@@ -69,24 +67,22 @@ public class RcplButton extends RcplTool implements IButton {
 	}
 
 	private void performAction() {
-		try {
-
-			getTool().setData(RcplButton.this);
-			ICommand command = Rcpl.getFactory().createCommand(RcplButton.this);
-			Object result = Rcpl.service().execute(command);
-			if (result instanceof Boolean) {
-				if (!((Boolean) result)) {
-					doAction();
-				}
+		if (executeService) {
+			try {
+				getTool().setData(RcplButton.this);
+				ICommand command = Rcpl.getFactory().createCommand(RcplButton.this);
+				Rcpl.service().execute(command);
+			} catch (Throwable ex) {
+				RCPLModel.logError(ex);
 			}
-
-		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+		} else {
+			doAction();
 		}
 
 	}
 
-	protected void doAction() {
+	@Override
+	public void doAction() {
 
 	}
 
@@ -472,6 +468,11 @@ public class RcplButton extends RcplTool implements IButton {
 	@Override
 	public IImage getImage() {
 		return image;
+	}
+
+	@Override
+	public void disableService() {
+		executeService = false;
 	}
 
 }

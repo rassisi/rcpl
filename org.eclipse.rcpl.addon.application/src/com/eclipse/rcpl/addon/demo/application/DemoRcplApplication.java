@@ -12,8 +12,8 @@ package com.eclipse.rcpl.addon.demo.application;
 
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
-import org.eclipse.rcpl.application.RcplApplication;
-import org.eclipse.rcpl.application.RcplApplicationProvider;
+import org.eclipse.rcpl.application.AbstractRcplApplication;
+import org.eclipse.rcpl.application.AbstractApplicationProvider;
 import org.eclipse.rcpl.model.DefaultSessionFactory;
 import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RCPLModel;
@@ -24,12 +24,12 @@ import org.eclipse.rcpl.model.client.RcplSession;
  * @author ramin
  *
  */
-public class DemoRcplApplication extends RcplApplication {
+public class DemoRcplApplication extends AbstractRcplApplication {
 
 	private final static String APPLICATION_ID = "demorcpl";
 
 	public static void main(String[] args) {
-		RcplApplicationProvider.init(args);
+		AbstractApplicationProvider.init(args);
 		launch(args);
 	}
 

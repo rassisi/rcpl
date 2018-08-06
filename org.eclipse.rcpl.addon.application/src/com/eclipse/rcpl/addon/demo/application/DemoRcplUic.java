@@ -4,7 +4,7 @@ import java.io.File;
 import java.net.URL;
 
 import org.eclipse.rcpl.IEditor;
-import org.eclipse.rcpl.application.RcplApplicationStarter;
+import org.eclipse.rcpl.application.AbstractApplicationStarter;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.eclipse.rcpl.util.RcplUtil;
 
@@ -13,7 +13,7 @@ import javafx.scene.control.Separator;
 
 public class DemoRcplUic extends RcplUic {
 
-	public DemoRcplUic(RcplApplicationStarter rcp) {
+	public DemoRcplUic(AbstractApplicationStarter rcp) {
 		super(rcp);
 		// new JOPointToPixelCalculator().init();
 

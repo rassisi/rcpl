@@ -23,6 +23,8 @@ public interface IRcplFactory {
 
 	H2DB createH2DB();
 
+	ILogin createLoginDialog(IRcplApplicationProvider applicationProvider);
+
 	IButton createHomePageButton(HomePage homePage);
 
 	IModelManager createRcplTreeManager();

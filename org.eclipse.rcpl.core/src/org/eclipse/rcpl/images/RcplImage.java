@@ -78,9 +78,11 @@ public class RcplImage implements IImage {
 
 	private File pngFile;
 
-	private File errorImagePngFile;
+//	private File errorImagePngFile;
 
 	private File errorPngFile;
+
+	private Class<?> resourceBaseClass = RcplImage.class;
 
 	/**
 	 * @param is
@@ -95,14 +97,21 @@ public class RcplImage implements IImage {
 		this.height = height;
 	}
 
+	public RcplImage(String id, double width, double height) {
+		this(id, width, height, null);
+	}
+
 	/**
 	 * @param id
 	 * @param width
 	 * @param height
 	 */
-	public RcplImage(String id, double width, double height) {
+	public RcplImage(String id, double width, double height, Class<?> resourceBaseClass) {
 		this.width = width;
 		this.height = height;
+		if (resourceBaseClass != null) {
+			this.resourceBaseClass = resourceBaseClass;
+		}
 
 		if (id != null && id.startsWith("http")) {
 			try {
@@ -532,7 +541,7 @@ public class RcplImage implements IImage {
 	}
 
 	private void createSvgImageFromResource(String svgFilePath) {
-		InputStream is = RcplImage.class.getResourceAsStream(svgFilePath);
+		InputStream is = resourceBaseClass.getResourceAsStream(svgFilePath);
 		if (is != null) {
 			try {
 				createSvgImage(is, width, height);
@@ -561,7 +570,7 @@ public class RcplImage implements IImage {
 		image = getImageFromResource(resourcePath);
 		if (image == null) {
 			resourcePath = createSvgPath();
-			InputStream is = RcplImage.class.getResourceAsStream(resourcePath);
+			InputStream is = resourceBaseClass.getResourceAsStream(resourcePath);
 			if (is != null) {
 				try {
 					createSvgImage(is, width, height);
@@ -586,7 +595,7 @@ public class RcplImage implements IImage {
 
 	private Image getImageFromResource(String resourcePath) {
 
-		InputStream is = RcplImage.class.getResourceAsStream(resourcePath);
+		InputStream is = resourceBaseClass.getResourceAsStream(resourcePath);
 		if (is != null) {
 			image = new Image(is);
 		}

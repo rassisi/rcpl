@@ -515,18 +515,6 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 		return cdoServer;
 	}
 
-	// public Company getCompany() {
-	// if (company == null) {
-	// for (EObject o : getContents()) {
-	// if (o instanceof Company) {
-	// company = (Company) o;
-	// break;
-	// }
-	// }
-	// }
-	// return company;
-	// }
-
 	@Override
 	public EList<EObject> getContents() {
 		if (getRcplEmfResource() == null) {

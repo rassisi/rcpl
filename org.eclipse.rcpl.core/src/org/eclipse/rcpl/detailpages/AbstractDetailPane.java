@@ -2,6 +2,7 @@ package org.eclipse.rcpl.detailpages;
 
 import org.eclipse.rcpl.IDetailPage;
 import org.eclipse.rcpl.images.RcplImage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,6 +26,10 @@ public abstract class AbstractDetailPane implements IDetailPage {
 
 	private StackPane imageStack = new StackPane();
 
+	private AbstractTool tool;
+
+	private Text headerText;
+
 	@Override
 	public Node getNode() {
 		if (node == null) {
@@ -32,12 +37,17 @@ public abstract class AbstractDetailPane implements IDetailPage {
 
 			HBox header = new HBox();
 			TextFlow tf = new TextFlow();
-			Text text = new Text(getName());
-			tf.getChildren().add(text);
+
+			tf.setMinHeight(18);
+			tf.setPrefHeight(18);
+			tf.setMaxHeight(18);
+
+			headerText = new Text(getName());
+			tf.getChildren().add(headerText);
 			tf.setId("detailPageHeaderText");
-			header.setMinHeight(40);
-			header.setPrefHeight(40);
-			header.setMaxHeight(40);
+			header.setMinHeight(60);
+			header.setPrefHeight(60);
+			header.setMaxHeight(60);
 			HBox.setHgrow(tf, Priority.ALWAYS);
 			header.setSpacing(20);
 			header.setAlignment(Pos.CENTER_LEFT);
@@ -45,7 +55,7 @@ public abstract class AbstractDetailPane implements IDetailPage {
 			imageStack.setPrefSize(32, 32);
 			imageStack.setMinSize(32, 32);
 			imageStack.setMaxSize(32, 32);
-			HBox.setMargin(imageStack, new Insets(0, 0, 0, 20));
+			HBox.setMargin(imageStack, new Insets(0, 0, 0, 60));
 			header.getChildren().addAll(imageStack, tf);
 
 			stackPane = new StackPane();
@@ -74,5 +84,19 @@ public abstract class AbstractDetailPane implements IDetailPage {
 
 	@Override
 	abstract public String getName();
+
+	@Override
+	public void setTool(AbstractTool tool) {
+		this.tool = tool;
+	}
+
+	@Override
+	public AbstractTool getTool() {
+		return tool;
+	}
+
+	protected void setTitle(String title) {
+		headerText.setText(title);
+	}
 
 }

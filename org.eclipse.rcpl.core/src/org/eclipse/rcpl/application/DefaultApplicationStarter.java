@@ -1,22 +1,18 @@
 package org.eclipse.rcpl.application;
 
+import org.eclipse.rcpl.ILogin;
 import org.eclipse.rcpl.IRcplApplicationProvider;
-import org.eclipse.rcpl.IRcplFactory;
-import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.IWindowAdvisor;
-import org.eclipse.rcpl.RcplBasicFactory;
-import org.eclipse.rcpl.internal.impl.RcplToolFactory;
-import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 
-public class DefaultApplicationStarter extends RcplApplicationStarter {
+public class DefaultApplicationStarter extends AbstractApplicationStarter {
 
 	public DefaultApplicationStarter(IRcplApplicationProvider applicationProvider) {
 		super(applicationProvider);
 	}
 
 	@Override
-	protected RcplUic createUIC(RcplLogin login) {
+	protected RcplUic createUIC(ILogin login) {
 		return new RcplUic(this);
 	}
 
@@ -24,16 +20,6 @@ public class DefaultApplicationStarter extends RcplApplicationStarter {
 	protected IWindowAdvisor createWindowAdvisor() {
 		return new RcplWindowAdvisor(getRcplApplicationProvider(),
 				getClass().getResource("/css/default.css").toExternalForm());
-	}
-
-	@Override
-	protected IToolFactory createToolFactory() {
-		return new RcplToolFactory();
-	}
-
-	@Override
-	protected IRcplFactory createRcplFactory() {
-		return new RcplBasicFactory();
 	}
 
 	@Override

@@ -25,16 +25,21 @@ public class DefaultWebHomePage extends AbstractHomePage {
 
 	private WebView webView;
 
-	public DefaultWebHomePage(IRcplUic uic, HomePage modelHomePage, String url) {
-		super(uic, modelHomePage);
-		modelHomePage.setType(HomePageType.WEBSITE);
-		webView.getEngine().load(url);
+	public DefaultWebHomePage(IRcplUic uic, HomePage model) {
+		super(uic, model);
+		if (model != null) {
+			model.setType(HomePageType.WEBSITE);
+		}
 	}
 
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
 		webView = new WebView();
 		contentPane.getChildren().add(webView);
+	}
+
+	public void setUrl(String url) {
+		webView.getEngine().load(url);
 	}
 
 	@Override

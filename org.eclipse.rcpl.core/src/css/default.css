@@ -81,7 +81,7 @@
 }
 
 #detailPageHeaderText {
-	-fx-font: italic 12pt "Arial";
+	-fx-font: italic 18pt "Arial";
 	/* -fx-background-color: cornsilk; */
 	-fx-fill: derive(-fx-base, -60.0%);
 	-fx-text-fill: derive(-fx-base, -60.0%);
@@ -1178,3 +1178,36 @@
 #dialogButton {
 	-fx-background-color: transparent;
 }
+
+.world-map .country1 {
+    -fx-fill: orange;
+}
+
+.world-map .country2 {
+    -fx-fill: blue;
+}
+
+.world-map .country3 {
+    -fx-fill: green;
+}
+
+.world-map .country4 {
+    -fx-fill: blueviolet;
+}
+
+.world-map .country5 {
+    -fx-fill: brown;
+}
+
+.world-map .country6 {
+    -fx-fill: darkslategrey;
+}
+
+.world-map .country7 {
+    -fx-fill: darkkhaki;
+}
+
+.world-map .country8 {
+    -fx-fill: lightcoral;
+}
+

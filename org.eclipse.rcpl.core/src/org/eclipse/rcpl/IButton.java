@@ -22,4 +22,8 @@ public interface IButton extends ITool {
 
 	void setHeight(double height);
 
+	void doAction();
+
+	void disableService();
+
 }

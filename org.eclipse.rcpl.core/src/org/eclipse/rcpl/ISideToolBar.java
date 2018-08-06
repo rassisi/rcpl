@@ -25,8 +25,6 @@ public interface ISideToolBar extends IToolbar {
 
 	void init();
 
-	void showGroup(String groupId, boolean collapse);
-
 	void showSideTools();
 
 	void setEditor(IEditor editor);

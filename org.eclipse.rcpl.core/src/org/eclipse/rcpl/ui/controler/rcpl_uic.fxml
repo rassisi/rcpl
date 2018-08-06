@@ -41,6 +41,7 @@
              <Insets top="0.0" />
           </padding>
         </HBox>
+            <StackPane fx:id="logoutButtonArea" prefHeight="32.0" prefWidth="32.0" />
       </children>
       <BorderPane.margin>
         <Insets fx:id="x3" />

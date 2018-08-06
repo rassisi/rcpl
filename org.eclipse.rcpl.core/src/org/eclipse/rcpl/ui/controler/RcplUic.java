@@ -32,6 +32,7 @@ import org.eclipse.rcpl.IDetailPage;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
+import org.eclipse.rcpl.ILogin;
 import org.eclipse.rcpl.IParagraphFigure;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplUic;
@@ -41,9 +42,10 @@ import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.WaitThread;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
+import org.eclipse.rcpl.detailpages.WebBrowserDetailsPage;
+import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.libs.db.H2DB;
-import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.client.RcplSession;
@@ -51,7 +53,9 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.w3c.dom.Document;
@@ -150,6 +154,8 @@ public class RcplUic implements IRcplUic {
 
 	private H2DB h2DB;
 
+	private IDetailPage webDetailPage;
+
 	@FXML
 	protected Button startMenuButton;
 
@@ -200,6 +206,9 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	private VBox topVBox;
+
+	@FXML
+	private StackPane logoutButtonArea;
 
 	private Timeline blinkingTimeline;
 
@@ -905,7 +914,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public boolean initSession(RcplLogin login) {
+	public boolean initSession(ILogin login) {
 
 		Rcpl.progressMessage("Session Start");
 		try {
@@ -1728,6 +1737,17 @@ public class RcplUic implements IRcplUic {
 
 		titleArea.getChildren().add(internalTitle);
 
+		Tool tool = RcplFactory.eINSTANCE.createTool();
+		tool.setId("logout");
+		tool.setType(ToolType.BUTTON);
+		IButton logoutButton = new RcplButton(tool) {
+			@Override
+			public void doAction() {
+				actionLogout();
+			};
+		};
+		logoutButton.disableService();
+		logoutButtonArea.getChildren().add(logoutButton.getNode());
 		Rcpl.showProgress(false);
 
 	}
@@ -2138,5 +2158,13 @@ public class RcplUic implements IRcplUic {
 			h2DB = Rcpl.getFactory().createH2DB();
 		}
 		return h2DB;
+	}
+
+	@Override
+	public IDetailPage getWebBrowserDetailPage() {
+		if (webDetailPage == null) {
+			webDetailPage = new WebBrowserDetailsPage();
+		}
+		return webDetailPage;
 	}
 }

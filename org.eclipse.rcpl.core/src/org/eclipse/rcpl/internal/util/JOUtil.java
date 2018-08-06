@@ -30,7 +30,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.eclipse.rcpl.IDocument;
-import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IResource;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.images.RcplImage;
@@ -1171,22 +1170,21 @@ public class JOUtil {
 	}
 
 	/*
-	 * Here the original recursive version. It is fine unless you pass a big
-	 * string then a Stack Overflow is possible :-(
+	 * Here the original recursive version. It is fine unless you pass a big string
+	 * then a Stack Overflow is possible :-(
 	 * 
 	 * 
-	 * public static final String unescapeHTML(String source, int start){ int
-	 * i,j;
+	 * public static final String unescapeHTML(String source, int start){ int i,j;
 	 * 
-	 * i = source.indexOf("&", start); if (i > -1) { j = source.indexOf(";" ,i);
-	 * if (j > i) { String entityToLookFor = source.substring(i , j + 1); String
-	 * value = (String)htmlEntities.get(entityToLookFor); if (value != null) {
-	 * source = new StringBuffer().append(source.substring(0 , i))
-	 * .append(value) .append(source.substring(j + 1)) .toString(); return
-	 * unescapeHTML(source, i + 1); // recursive call } } } return source; }
+	 * i = source.indexOf("&", start); if (i > -1) { j = source.indexOf(";" ,i); if
+	 * (j > i) { String entityToLookFor = source.substring(i , j + 1); String value
+	 * = (String)htmlEntities.get(entityToLookFor); if (value != null) { source =
+	 * new StringBuffer().append(source.substring(0 , i)) .append(value)
+	 * .append(source.substring(j + 1)) .toString(); return unescapeHTML(source, i +
+	 * 1); // recursive call } } } return source; }
 	 * 
-	 * M. McNeely Jr. has sent a version with do...while()loop which is more
-	 * robust. Thanks to him!
+	 * M. McNeely Jr. has sent a version with do...while()loop which is more robust.
+	 * Thanks to him!
 	 */
 
 	public static final String unescapeHTML(String source) {
@@ -1220,20 +1218,20 @@ public class JOUtil {
 		return source;
 	}
 
-	/**
-	 * @param key
-	 */
-	public static void showGroup(String key) {
-		showGroup(key, -1);
-	}
-
-	/**
-	 * @param key
-	 */
-	public static void showGroup(String key, int shelfIndex) {
-		// JO.service.getGroupButtonService().selectGroup(key, shelfIndex,
-		// true);
-	}
+//	/**
+//	 * @param key
+//	 */
+//	public static void showGroup(String key) {
+//		showGroup(key, -1);
+//	}
+//
+//	/**
+//	 * @param key
+//	 */
+//	public static void showGroup(String key, int shelfIndex) {
+//		// JO.service.getGroupButtonService().selectGroup(key, shelfIndex,
+//		// true);
+//	}
 
 	/**
 	 * @param args
@@ -2980,21 +2978,22 @@ public class JOUtil {
 	// htmlEntities.put("&nbsp;", " "); //$NON-NLS-1$ //$NON-NLS-2$
 	//
 	// htmlEntities.put("&copy;", "\u00a9"); //$NON-NLS-1$ //$NON-NLS-2$
-	// htmlEntities.put("&reg;", "\u00ae"); //$NON-NLS-1$ //$NON-NLS-2$ // // // // //
-																					// //
-																					// //
-																					// //
-																					// //
-																					// //
-																					// //
-																					// //
-																					// //
-																					// htmlEntities.put("&euro;",
-																					// //
-																					// //
-																					// //
-																					// //
-																					// "\u20a0");
+	// htmlEntities.put("&reg;", "\u00ae"); //$NON-NLS-1$ //$NON-NLS-2$ // // // //
+	// //
+	// //
+	// //
+	// //
+	// //
+	// //
+	// //
+	// //
+	// //
+	// htmlEntities.put("&euro;",
+	// //
+	// //
+	// //
+	// //
+	// "\u20a0");
 	// //
 	// //$NON-NLS-1$ // //$NON-NLS-2$
 	// //

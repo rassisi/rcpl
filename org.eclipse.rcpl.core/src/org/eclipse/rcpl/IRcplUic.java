@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 
 import org.eclipse.rcpl.libs.db.H2DB;
-import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -29,6 +28,8 @@ public interface IRcplUic {
 	H2DB getH2DB();
 
 	StackPane getEditorArea();
+
+	IDetailPage getWebBrowserDetailPage();
 
 	IDetailPage getDetailPage(String className);
 
@@ -110,7 +111,7 @@ public interface IRcplUic {
 
 	void init(BorderPane parent);
 
-	public boolean initSession(RcplLogin login);
+	public boolean initSession(ILogin login);
 
 	void initStyles();
 

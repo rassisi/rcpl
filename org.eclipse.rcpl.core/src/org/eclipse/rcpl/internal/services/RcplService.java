@@ -44,6 +44,13 @@ public class RcplService extends RcplAbstractService implements IService {
 				AbstractTool tool = iTool.getTool();
 				if (tool != null) {
 
+					if (tool.getUrl() != null) {
+						Rcpl.UIC.getWebBrowserDetailPage().setTool(tool);
+						Rcpl.UIC.getActiveHomePage().getContentPane().getChildren().clear();
+						Rcpl.UIC.getActiveHomePage().getContentPane().getChildren()
+								.add(Rcpl.UIC.getWebBrowserDetailPage().getNode());
+						return true;
+					}
 					if (tool.getDetailPaneClassName() != null) {
 						IDetailPage detailPage = Rcpl.UIC.getDetailPage(tool.getDetailPaneClassName());
 						if (detailPage != null) {
@@ -94,7 +101,7 @@ public class RcplService extends RcplAbstractService implements IService {
 				getService(EnServiceId.PARAGRAPH_SERVICE).doExecute(command);
 				break;
 			default:
-				String toolId = command.getTool().getTool().getId();
+
 				String service = command.getTool().getService();
 				if (service != null) {
 					IService srv = getServiceBySimpleName(service);
@@ -105,10 +112,7 @@ public class RcplService extends RcplAbstractService implements IService {
 
 				}
 
-				Rcpl.UIC.getSideToolBarControl().showGroup(command.getTool().getTool().getId(), true);
 				return true;
-
-			// return false;
 
 			}
 

@@ -14,6 +14,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplApplicationProvider {
 
+	Class<?> getApplicationResourceBaseClass();
+
 	void setLoginDebug();
 
 	boolean isLoginDebug();

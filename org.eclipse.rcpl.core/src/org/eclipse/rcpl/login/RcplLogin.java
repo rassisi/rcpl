@@ -13,7 +13,10 @@ package org.eclipse.rcpl.login;
 import java.io.IOException;
 import java.net.URL;
 
+import org.eclipse.rcpl.ILogin;
+import org.eclipse.rcpl.ILoginController;
 import org.eclipse.rcpl.IRcplApplicationProvider;
+import org.eclipse.rcpl.Rcpl;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -27,11 +30,11 @@ import javafx.stage.StageStyle;
  * @author ramin
  *
  */
-public class RcplLogin {
+public class RcplLogin implements ILogin {
 
 	private BorderPane node;
 
-	private RcplLoginController controller;
+	private ILoginController controller;
 
 	private IRcplApplicationProvider applicationProvider;
 
@@ -42,7 +45,7 @@ public class RcplLogin {
 	}
 
 	public static void start(IRcplApplicationProvider applicationProvider) {
-		new RcplLogin(applicationProvider);
+		Rcpl.getFactory().createLoginDialog(applicationProvider);
 	}
 
 	/**
@@ -97,6 +100,7 @@ public class RcplLogin {
 				}
 
 				stage.centerOnScreen();
+
 				stage.show();
 			}
 
@@ -108,7 +112,8 @@ public class RcplLogin {
 
 	}
 
-	public RcplLoginController getController() {
+	@Override
+	public ILoginController getController() {
 		return controller;
 	}
 
@@ -130,6 +135,7 @@ public class RcplLogin {
 		controller.enableButtons();
 	}
 
+	@Override
 	public BorderPane getNode() {
 		return node;
 	}

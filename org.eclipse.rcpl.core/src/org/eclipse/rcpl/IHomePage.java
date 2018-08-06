@@ -25,4 +25,6 @@ public interface IHomePage {
 
 	HomePage getModel();
 
+	void setModel(HomePage model);
+
 }

@@ -99,6 +99,9 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 	}
 
 	private void createMainWindow() {
+		applicationProvider.getPrimaryStage().setWidth(1000);
+		applicationProvider.getPrimaryStage().setHeight(800);
+		applicationProvider.getPrimaryStage().centerOnScreen();
 		applicationProvider.getPrimaryStage().show();
 		Rcpl.progressMessage("RCPL.createMainWindow()");
 		Rcpl.progressMessage("Init Use Cases");

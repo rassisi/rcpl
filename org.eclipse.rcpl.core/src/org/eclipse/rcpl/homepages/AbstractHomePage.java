@@ -51,7 +51,7 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	private int row = 0;
 
-	private final HomePage model;
+	private HomePage model;
 
 	private StackPane contentPane;
 
@@ -337,5 +337,9 @@ public abstract class AbstractHomePage implements IHomePage {
 			// "http://apod.nasa.gov/apod/image/1304/NGC1788_davis950.jpg",
 
 	};
+
+	public void setModel(HomePage model) {
+		this.model = model;
+	}
 
 }

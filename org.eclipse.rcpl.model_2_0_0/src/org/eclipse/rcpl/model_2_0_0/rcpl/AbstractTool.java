@@ -24,6 +24,7 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getDetailPaneClassName <em>Detail Pane Class Name</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem <em>System</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl <em>Url</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool()
@@ -398,6 +399,32 @@ public interface AbstractTool extends Layoutable {
 	 * @generated
 	 */
 	void setSystem(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Url</em>' attribute.
+	 * @see #setUrl(String)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_Url()
+	 * @model
+	 * @generated
+	 */
+	String getUrl();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl <em>Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Url</em>' attribute.
+	 * @see #getUrl()
+	 * @generated
+	 */
+	void setUrl(String value);
 
 	/**
 	 * @return

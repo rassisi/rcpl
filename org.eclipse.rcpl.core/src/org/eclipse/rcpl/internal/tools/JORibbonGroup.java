@@ -120,7 +120,7 @@ public class JORibbonGroup extends RcplTool {
 		if (isDialogButton) {
 			RcplButton dialogButton = new RcplButton(t) {
 				@Override
-				protected void doAction() {
+				public void doAction() {
 					if (isSelected()) {
 						Rcpl.UIC.getSideToolBarControl().showSideTools();
 					} else {
@@ -128,6 +128,7 @@ public class JORibbonGroup extends RcplTool {
 					}
 				};
 			};
+			dialogButton.disableService();
 			dialogButton.setWidth(6);
 			dialogButton.setHeight(6);
 			dialogButton.getNode().setPrefSize(6, 6);

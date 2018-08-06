@@ -1,7 +1,5 @@
 package org.eclipse.rcpl;
 
-import org.eclipse.rcpl.login.RcplLogin;
-
 import javafx.stage.Stage;
 
 /**
@@ -10,10 +8,10 @@ import javafx.stage.Stage;
  */
 public interface IApplicationStarter {
 
-	boolean start(final RcplLogin login, final Stage primaryStage);
-
 	IRcplApplicationProvider getRcplApplicationProvider();
 
 	String getVersionString();
+
+	boolean start(final ILogin login, Stage primaryStage);
 
 }

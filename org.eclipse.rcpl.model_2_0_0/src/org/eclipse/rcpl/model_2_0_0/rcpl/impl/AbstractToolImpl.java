@@ -28,6 +28,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getDetailPaneClassName <em>Detail Pane Class Name</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isSystem <em>System</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getUrl <em>Url</em>}</li>
  * </ul>
  *
  * @generated
@@ -300,6 +301,24 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 */
 	public void setSystem(boolean newSystem) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__SYSTEM, newSystem);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUrl() {
+		return (String)eGet(RcplPackage.Literals.ABSTRACT_TOOL__URL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUrl(String newUrl) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__URL, newUrl);
 	}
 
 	private Object data;

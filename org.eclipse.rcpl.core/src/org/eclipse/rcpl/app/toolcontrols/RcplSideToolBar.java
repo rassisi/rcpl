@@ -23,6 +23,7 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.ColorTool;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.client.RcplSession;
@@ -539,31 +540,6 @@ public class RcplSideToolBar implements ISideToolBar {
 			b.setHeight(18);
 		}
 
-		// !!!
-//		b.setButtonListener(new IButtonListener() {
-//
-//			@Override
-//			public void doAction() {
-//				try {
-//
-//					String groupId0 = tool.getId();
-//
-//					if ("logout".equals(groupId0)) {
-//						Rcpl.UIC.actionLogout();
-//						return;
-//					}
-//
-//					if (groupId0.equals(activeGroupId)) {
-//						collapseToolPane();
-//					} else {
-//						showSideTools(groupId0, true);
-//					}
-//				} catch (Throwable ex) {
-//					RCPLModel.logError(ex);
-//				}
-//			}
-//		});
-
 		Tooltip toolTip = new Tooltip(tool.getToolTip() != null ? tool.getToolTip() : tool.getName());
 		toolTip.setId("joffice_tooltip");
 
@@ -579,9 +555,25 @@ public class RcplSideToolBar implements ISideToolBar {
 	private void processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspective,
 			final ToolGroup toolGroup) {
 
-		IButton b = Rcpl.getFactory().createButton(toolGroup);
+		IButton b = new RcplButton(toolGroup) {
+			@Override
+			public void doAction() {
+				String groupId0 = toolGroup.getId();
+				if (groupId0.equals(activeGroupId)) {
+					collapseToolPane();
+				} else {
+					showSideTools(groupId0, true);
+				}
+			}
+		};
 
-		if (!Rcpl.isBigDisplay()) {
+		if (toolGroup.getUrl() == null & toolGroup.getDetailPaneClassName() == null) {
+			b.disableService();
+		}
+
+		if (!Rcpl.isBigDisplay())
+
+		{
 			b.setWidth(16);
 			b.setHeight(16);
 
@@ -589,32 +581,6 @@ public class RcplSideToolBar implements ISideToolBar {
 			b.setWidth(18);
 			b.setHeight(18);
 		}
-
-		// !!!
-
-//		b.setButtonListener(new IButtonListener() {
-//
-//			@Override
-//			public void doAction() {
-//				try {
-//
-//					String groupId0 = toolGroup.getId();
-//
-//					if ("logout".equals(groupId0)) {
-//						Rcpl.UIC.actionLogout();
-//						return;
-//					}
-//
-//					if (groupId0.equals(activeGroupId)) {
-//						collapseToolPane();
-//					} else {
-//						showSideTools(groupId0, true);
-//					}
-//				} catch (Throwable ex) {
-//					RCPLModel.logError(ex);
-//				}
-//			}
-//		});
 
 		Tooltip toolTip = new Tooltip(toolGroup.getToolTip() != null ? toolGroup.getToolTip() : toolGroup.getName());
 		toolTip.setId("joffice_tooltip");
@@ -711,9 +677,12 @@ public class RcplSideToolBar implements ISideToolBar {
 			public void run() {
 				for (ToolGroup toolGroup_0 : toolGroups) {
 
-					if (toolGroup_0.getToolGroups().isEmpty() || toolGroup_0.getTools().isEmpty()) {
-						return;
+					if (ToolType.NAVIGATOR.equals(toolGroup_0.getType())) {
+						// navigator type for tool group is allowed
+					} else if (toolGroup_0.getToolGroups().isEmpty() && toolGroup_0.getTools().isEmpty()) {
+						continue;
 					}
+
 					try {
 						VBox sideToolsVbox = new VBox(2);
 						sideToolsVbox.setPrefHeight(100);
@@ -771,10 +740,6 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	private void processTools(ToolGroup toolGroup, Accordion accordion, int hierarchy) {
 
-		if ("sideBar/file".equals(toolGroup.getId())) {
-			System.out.println();
-		}
-
 		try {
 			final StackPane stackPane = new StackPane();
 
@@ -788,9 +753,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			StackPane.setMargin(scrollPane, new Insets(0));
 			stackPane.getChildren().add(scrollPane);
 
-			ToolType mainSideToolGroupType = toolGroup.getTools().get(0).getType();
-
-			if (toolGroup.getTools().size() == 1 && ToolType.NAVIGATOR.equals(mainSideToolGroupType)) {
+			if (ToolType.NAVIGATOR.equals(toolGroup.getType())) {
 
 				try {
 					scrollPane.setContent(Rcpl.UIC.getRcplTreepart().getNode());
@@ -827,6 +790,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			// scrollPane.setStyle("-fx-background-color: gold");
 
 			for (ToolGroup g : toolGroup.getToolGroups()) {
+
 				if (GroupType.GRIDPANE.equals(g.getType())) {
 					GridPane gp = new GridPane();
 					gp.setId("verticalGradientPane");
@@ -846,6 +810,13 @@ public class RcplSideToolBar implements ISideToolBar {
 						processTool(t, gp, titlePane);
 					}
 				}
+
+				else {
+
+					processTools(g, accordion, ++hierarchy);
+					return;
+				}
+
 			}
 
 			for (Tool tool : toolGroup.getTools()) {
@@ -870,29 +841,8 @@ public class RcplSideToolBar implements ISideToolBar {
 		this.startMenuSelected = startMenuSelected;
 	}
 
-	@Override
 	public void showGroup(String groupId, boolean collapse) {
-
-		// System.out.println("Show " + groupId + " Group");
-		//
-		// try {
-		//
-		// if (groupId != null) {
-		// ToolBar n = toolbarRegistry.get(getKey(groupId));
-		// // toolbarStack.getChildren().clear();
-		// if (n != null) {
-		// toolbarStack.getChildren().remove(n);
-		// toolbarStack.getChildren().add(n);
-		// // if (!toolbarStack.getChildren().contains(n)) {
-		// // toolbarStack.getChildren().add(n);
-		// // }
-		// n.setVisible(true);
-		// }
-		// }
-		//
-		// } catch (Throwable ex) {
-		// RCPLModel.logError(ex);
-		// }
+		showSideTools(groupId, true);
 	}
 
 	@Override
@@ -908,12 +858,6 @@ public class RcplSideToolBar implements ISideToolBar {
 			if (groupId == null || groupId.length() == 0) {
 				return false;
 			}
-//			if (!RcplSession.PERSPECTIVE_OVERVIEW.getId().equals(Rcpl.UIC.getPerspective().getId())) {
-//				if (restoreTab) {
-//					Rcpl.UIC.showTabPane();
-//					Rcpl.UIC.restoreTab();
-//				}
-//			}
 
 			Perspective actualPerspective = Rcpl.UIC.getPerspective();
 			String perspectiveId = actualPerspective.getId();

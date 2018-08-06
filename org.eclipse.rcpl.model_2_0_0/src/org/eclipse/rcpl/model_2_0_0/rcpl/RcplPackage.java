@@ -2732,13 +2732,22 @@ public interface RcplPackage extends EPackage {
 	int ABSTRACT_TOOL__SYSTEM = LAYOUTABLE_FEATURE_COUNT + 13;
 
 	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOOL__URL = LAYOUTABLE_FEATURE_COUNT + 14;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Tool</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TOOL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 14;
+	int ABSTRACT_TOOL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of operations of the '<em>Abstract Tool</em>' class. <!--
@@ -2999,6 +3008,15 @@ public interface RcplPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOOL__SYSTEM = ABSTRACT_TOOL__SYSTEM;
+
+	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL__URL = ABSTRACT_TOOL__URL;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute. <!--
@@ -3277,6 +3295,15 @@ public interface RcplPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOOL_GROUP__SYSTEM = ABSTRACT_TOOL__SYSTEM;
+
+	/**
+	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL_GROUP__URL = ABSTRACT_TOOL__URL;
 
 	/**
 	 * The feature id for the '<em><b>Tool Groups</b></em>' containment reference list.
@@ -9367,6 +9394,17 @@ public interface RcplPackage extends EPackage {
 	EAttribute getAbstractTool_System();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl <em>Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Url</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl()
+	 * @see #getAbstractTool()
+	 * @generated
+	 */
+	EAttribute getAbstractTool_Url();
+
+	/**
 	 * Returns the meta object for class
 	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool <em>Tool</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -11286,6 +11324,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TOOL__SYSTEM = eINSTANCE.getAbstractTool_System();
+
+		/**
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_TOOL__URL = eINSTANCE.getAbstractTool_Url();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolImpl <em>Tool</em>}' class.

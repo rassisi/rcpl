@@ -16,7 +16,9 @@ import java.net.MalformedURLException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+import org.eclipse.rcpl.ILoginController;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -45,7 +47,7 @@ import javafx.scene.web.WebView;
  * @author ramin
  *
  */
-public class RcplLoginController {
+public class RcplLoginController implements ILoginController {
 
 	@FXML
 	private Button buttonSignIn;
@@ -125,9 +127,16 @@ public class RcplLoginController {
 		this.login = login;
 	}
 
+	@Override
 	public void init() {
 
 		buttonCancel.setDisable(false);
+
+		String imageName = login.getApplicationProvider().getImage();
+		RcplImage img = new RcplImage(imageName, 32, 32,
+				login.getApplicationProvider().getApplicationResourceBaseClass());
+		logoArea.getChildren().clear();
+		logoArea.getChildren().add(img.getNode());
 
 		// agreeCheckBox.setVisible(false);
 		// termsAndConditions.setText(
@@ -365,7 +374,8 @@ public class RcplLoginController {
 		// agreeCheckBox.setVisible(false);
 	}
 
-	void enableButtons() {
+	@Override
+	public void enableButtons() {
 		buttonLogin.setDisable(false);
 	}
 
@@ -377,6 +387,7 @@ public class RcplLoginController {
 		return password.getText();
 	}
 
+	@Override
 	public void reset() {
 		userId.setText("");
 		password.setText("");
@@ -464,6 +475,7 @@ public class RcplLoginController {
 		return result;
 	}
 
+	@Override
 	public void setHeaderText(final String text) {
 //		Platform.runLater(new Runnable() {
 //
@@ -474,6 +486,7 @@ public class RcplLoginController {
 //		});
 	}
 
+	@Override
 	public void setErrorInUserId() {
 		Platform.runLater(new Runnable() {
 
@@ -492,6 +505,7 @@ public class RcplLoginController {
 		userId.setStyle("-fx-border-color: #000;");
 	}
 
+	@Override
 	@FXML
 	public void handleGuest() {
 		if (login.getApplicationProvider() != null) {

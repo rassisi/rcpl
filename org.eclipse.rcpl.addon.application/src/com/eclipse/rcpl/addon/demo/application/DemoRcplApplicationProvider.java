@@ -1,11 +1,20 @@
 package com.eclipse.rcpl.addon.demo.application;
 
-import org.eclipse.rcpl.application.RcplApplication;
-import org.eclipse.rcpl.application.RcplApplicationProvider;
+import org.eclipse.rcpl.IRcplFactory;
+import org.eclipse.rcpl.IToolFactory;
+import org.eclipse.rcpl.RcplBasicFactory;
+import org.eclipse.rcpl.application.AbstractRcplApplication;
+import org.eclipse.rcpl.application.AbstractApplicationProvider;
+import org.eclipse.rcpl.images.RcplImage;
+import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 
-public class DemoRcplApplicationProvider extends RcplApplicationProvider {
+/**
+ * @author ramin
+ *
+ */
+public class DemoRcplApplicationProvider extends AbstractApplicationProvider {
 
-	public DemoRcplApplicationProvider(RcplApplication rcplApplication) {
+	public DemoRcplApplicationProvider(AbstractRcplApplication rcplApplication) {
 		super(rcplApplication);
 	}
 
@@ -18,4 +27,20 @@ public class DemoRcplApplicationProvider extends RcplApplicationProvider {
 	public String getImage() {
 		return "rcpl";
 	}
+
+	@Override
+	protected IToolFactory createToolFactory() {
+		return new RcplToolFactory();
+	}
+
+	@Override
+	protected IRcplFactory createRcplFactory() {
+		return new RcplBasicFactory();
+	}
+
+	@Override
+	public Class<?> getApplicationResourceBaseClass() {
+		return RcplImage.class;
+	}
+
 }
