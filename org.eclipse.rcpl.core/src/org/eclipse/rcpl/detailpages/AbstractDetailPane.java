@@ -30,6 +30,8 @@ public abstract class AbstractDetailPane implements IDetailPage {
 
 	private Text headerText;
 
+	private StackPane progressViewArea;
+
 	@Override
 	public Node getNode() {
 		if (node == null) {
@@ -59,6 +61,12 @@ public abstract class AbstractDetailPane implements IDetailPage {
 			header.getChildren().addAll(imageStack, tf);
 
 			stackPane = new StackPane();
+
+			progressViewArea = new StackPane();
+			progressViewArea.setPrefHeight(60);
+			progressViewArea.setMinHeight(60);
+			progressViewArea.setMaxHeight(60);
+
 			node.getChildren().addAll(header, stackPane);
 
 			VBox.setVgrow(header, Priority.NEVER);
@@ -66,6 +74,16 @@ public abstract class AbstractDetailPane implements IDetailPage {
 			create(stackPane);
 		}
 		return node;
+	}
+
+	protected void expandTaskView() {
+		if (!node.getChildren().contains(progressViewArea)) {
+			node.getChildren().add(progressViewArea);
+		}
+	}
+
+	protected void collapseTaskView() {
+		node.getChildren().remove(progressViewArea);
 	}
 
 	public AbstractDetailPane() {
@@ -97,6 +115,11 @@ public abstract class AbstractDetailPane implements IDetailPage {
 
 	protected void setTitle(String title) {
 		headerText.setText(title);
+	}
+
+	@Override
+	public StackPane getProgressViewArea() {
+		return progressViewArea;
 	}
 
 }

@@ -28,34 +28,14 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 
 /**
  * @author ramin
  *
  */
 public class PreferencesDetailsPage extends AbstractModelDetailPage {
-
-	/**
-	 * @param preferences
-	 */
-	public PreferencesDetailsPage() {
-
-	}
-
-	/**
-	 * @param pref
-	 * @return
-	 */
-	private String getDisplayName(Preferences prefs) {
-		if (prefs.getName() != null && prefs.getName().length() > 0) {
-			return prefs.getName();
-		}
-		return prefs.getId();
-	}
 
 	/**
 	 * @param pref
@@ -103,18 +83,14 @@ public class PreferencesDetailsPage extends AbstractModelDetailPage {
 	@Override
 	public void create(StackPane stackPane) {
 		GridPane node = new GridPane();
-
+		node.setId("redBorder");
 		Preferences preferences = RcplSession.getDefault().getRcpl().getAllPreferences();
-		Label l = new Label(getDisplayName(preferences));
-		l.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 20));
-		node.add(l, 0, 0);
-		GridPane.setColumnSpan(l, 2);
-		l.setPadding(new Insets(10, 0, 30, 10));
-		int rowIndex = 1;
+
+		int rowIndex = 0;
 
 		for (PreferenceGroup g : preferences.getChildren()) {
 			for (Preference pref : g.getPreferences()) {
-				l = new Label(getDisplayName(pref));
+				Label l = new Label(getDisplayName(pref));
 				l.setPadding(new Insets(10));
 				l.setAlignment(Pos.TOP_LEFT);
 
@@ -122,7 +98,10 @@ public class PreferencesDetailsPage extends AbstractModelDetailPage {
 				GridPane.setValignment(l, VPos.TOP);
 				node.add(l, 0, rowIndex);
 				Node editor = createEditor(pref);
+
 				node.add(editor, 1, rowIndex);
+				GridPane.setHgrow(editor, Priority.ALWAYS);
+				GridPane.setMargin(editor, new Insets(0, 10, 0, 0));
 				rowIndex++;
 			}
 		}
