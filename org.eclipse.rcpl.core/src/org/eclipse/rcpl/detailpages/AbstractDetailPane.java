@@ -37,6 +37,7 @@ public abstract class AbstractDetailPane extends AbstractTaskViewProvider implem
 			node = new VBox();
 
 			HBox header = new HBox();
+			header.setId("detailPageHeader");
 			TextFlow tf = new TextFlow();
 
 			tf.setMinHeight(18);

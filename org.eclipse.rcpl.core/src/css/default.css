@@ -80,6 +80,12 @@
 	-fx-text-fill: derive(-fx-base, -60.0%);
 }
 
+#detailPageHeader {
+	-fx-background-color: radial-gradient(radius 100.0%, derive(silver, 20.0%),
+		derive(-fx-base, -20.0%));
+	-fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+}
+
 #detailPageHeaderText {
 	-fx-font: italic 18pt "Arial";
 	/* -fx-background-color: cornsilk; */
