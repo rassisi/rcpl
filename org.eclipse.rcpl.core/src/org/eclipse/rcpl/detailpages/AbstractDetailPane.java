@@ -1,13 +1,14 @@
 package org.eclipse.rcpl.detailpages;
 
 import org.eclipse.rcpl.IDetailPage;
+import org.eclipse.rcpl.control.AbstractTaskViewProvider;
 import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -18,7 +19,7 @@ import javafx.scene.text.TextFlow;
  * @author ramin
  *
  */
-public abstract class AbstractDetailPane implements IDetailPage {
+public abstract class AbstractDetailPane extends AbstractTaskViewProvider implements IDetailPage {
 
 	private StackPane stackPane;
 
@@ -30,10 +31,8 @@ public abstract class AbstractDetailPane implements IDetailPage {
 
 	private Text headerText;
 
-	private StackPane progressViewArea;
-
 	@Override
-	public Node getNode() {
+	public Pane getNode() {
 		if (node == null) {
 			node = new VBox();
 
@@ -62,11 +61,6 @@ public abstract class AbstractDetailPane implements IDetailPage {
 
 			stackPane = new StackPane();
 
-			progressViewArea = new StackPane();
-			progressViewArea.setPrefHeight(60);
-			progressViewArea.setMinHeight(60);
-			progressViewArea.setMaxHeight(60);
-
 			node.getChildren().addAll(header, stackPane);
 
 			VBox.setVgrow(header, Priority.NEVER);
@@ -74,16 +68,6 @@ public abstract class AbstractDetailPane implements IDetailPage {
 			create(stackPane);
 		}
 		return node;
-	}
-
-	protected void expandTaskView() {
-		if (!node.getChildren().contains(progressViewArea)) {
-			node.getChildren().add(progressViewArea);
-		}
-	}
-
-	protected void collapseTaskView() {
-		node.getChildren().remove(progressViewArea);
 	}
 
 	public AbstractDetailPane() {

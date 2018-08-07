@@ -16,6 +16,12 @@ import java.util.StringTokenizer;
 import org.eclipse.rcpl.libs.db.H2DB;
 
 /**
+ * You need the file ip2location_db5 from ip2location.com. Place it in this
+ * package.
+ * 
+ * It should be ignored by Git as it is a large file!
+ * 
+ * 
  * @author ramin
  *
  */
