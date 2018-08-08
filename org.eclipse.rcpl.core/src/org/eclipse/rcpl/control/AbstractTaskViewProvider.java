@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.controlsfx.control.TaskProgressView;
+import org.eclipse.rcpl.ITaskViewProvider;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -14,7 +15,7 @@ import javafx.scene.layout.StackPane;
  * @author ramin
  *
  */
-public abstract class AbstractTaskViewProvider {
+public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 	protected StackPane progressViewArea = new StackPane();
 
@@ -33,13 +34,16 @@ public abstract class AbstractTaskViewProvider {
 		progressViewArea.setPrefHeight(60);
 		progressViewArea.setMinHeight(60);
 		progressViewArea.setMaxHeight(60);
+		progressViewArea.getChildren().add(taskProgressView);
 	}
 
-	protected void taskMessage(String message) {
+	@Override
+	public void taskMessage(String message) {
 		task.message(message);
 	}
 
-	protected void taskProgress(String message) {
+	@Override
+	public void taskProgress(String message) {
 		task.message(message);
 	}
 
@@ -164,7 +168,8 @@ public abstract class AbstractTaskViewProvider {
 
 	}
 
-	protected void startTask(String title, int taskNumber) {
+	@Override
+	public void startTask(String title, int taskNumber) {
 		expandTaskView();
 		taskCounter++;
 		expandTaskView();
@@ -173,13 +178,15 @@ public abstract class AbstractTaskViewProvider {
 		executorService.submit(task);
 	}
 
-	protected void expandTaskView() {
+	@Override
+	public void expandTaskView() {
 		if (!getNode().getChildren().contains(progressViewArea)) {
 			getNode().getChildren().add(progressViewArea);
 		}
 	}
 
-	protected void collapseTaskView() {
+	@Override
+	public void collapseTaskView() {
 		getNode().getChildren().remove(progressViewArea);
 	}
 
@@ -187,6 +194,10 @@ public abstract class AbstractTaskViewProvider {
 
 	public TaskProgressView<RcplTask> getTaskProgressView() {
 		return taskProgressView;
+	}
+
+	public StackPane getProgressViewArea() {
+		return progressViewArea;
 	}
 
 }

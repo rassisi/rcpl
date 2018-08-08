@@ -10,7 +10,7 @@ import javafx.scene.Parent;
  * @author ramin
  *
  */
-public interface IEditor extends ICommandProvider {
+public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void updateOutline();
 
