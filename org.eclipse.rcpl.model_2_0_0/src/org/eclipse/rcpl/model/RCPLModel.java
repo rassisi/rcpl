@@ -72,7 +72,9 @@ public class RCPLModel {
 			}
 		}
 		errorBuf.append(sb.toString());
-		mobileProvider.appendLog(sb.toString());
+		if (mobileProvider != null) {
+			mobileProvider.appendLog(sb.toString());
+		}
 	}
 
 	public static void log(Object o, String message) {

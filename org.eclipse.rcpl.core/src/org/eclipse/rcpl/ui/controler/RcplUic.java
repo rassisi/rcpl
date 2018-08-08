@@ -1358,6 +1358,9 @@ public class RcplUic implements IRcplUic {
 				return;
 			}
 			TabInfo tabInfo = getTabInfo(tab);
+			if (tabInfo.getPerspective() == null) {
+				return;
+			}
 			showPerspective(tabInfo.getPerspective());
 
 //			if (getBrowser() != null) {
