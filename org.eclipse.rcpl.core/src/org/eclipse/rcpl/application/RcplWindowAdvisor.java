@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.rcpl.application;
 
+import java.util.List;
+
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IWindowAdvisor;
@@ -18,6 +20,7 @@ import org.eclipse.rcpl.Rcpl;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
@@ -99,12 +102,20 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 	}
 
 	private void createMainWindow() {
-		applicationProvider.getPrimaryStage().setWidth(1000);
-		applicationProvider.getPrimaryStage().setHeight(800);
+//		applicationProvider.getPrimaryStage().setWidth(1000);
+//		applicationProvider.getPrimaryStage().setHeight(800);
+
+		List<Screen> screens = Screen.getScreensForRectangle(100, 100, 100, 100);
+
+		Rectangle2D bounds = screens.get(0).getVisualBounds();
+
+		applicationProvider.getPrimaryStage().setWidth(bounds.getWidth() * 0.75);
+		applicationProvider.getPrimaryStage().setHeight(bounds.getHeight() * 0.75);
+
 		applicationProvider.getPrimaryStage().centerOnScreen();
 		applicationProvider.getPrimaryStage().show();
 		Rcpl.progressMessage("RCPL.createMainWindow()");
-		Rcpl.progressMessage("Init Use Cases");
+		Rcpl.progressMessage("Init Addons");
 		for (IRcplAddon uc : applicationProvider.getRcplAddons()) {
 			Rcpl.UIC.getTopToolBar().processTopBarMainGroups(uc);
 			uc.init();

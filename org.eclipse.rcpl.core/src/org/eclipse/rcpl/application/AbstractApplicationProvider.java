@@ -13,6 +13,7 @@ package org.eclipse.rcpl.application;
 import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.rcpl.IApplicationStarter;
@@ -164,27 +165,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 		final IApplicationStarter applicationsStarter = getRcplApplicationStarter();
 		if (applicationsStarter != null) {
-
-//			final Task<Void> task = new Task<Void>() {
-//				@Override
-//				public Void call() {
-//					boolean success = applicationsStarter.start(joLogin, primaryStage);
-//					if (!success) {
-//						joLogin.getController().setErrorInUserId();
-//						reStart();
-//					} else {
-//						Rcpl.rcplApplicationProvider.registerRcplAddonClasses(getRcplAddonClassNames());
-//						registerAddons();
-//						Rcpl.progressMessage(
-//								"Application " + applicationsStarter.getClass().getSimpleName() + "started");
-//						joLogin.getController().setHeaderText("RCPL is starting.");
-//
-//					}
-//					return null;
-//				}
-//			};
-//			new Thread(task).start();
-
 			boolean success = applicationsStarter.start(joLogin, primaryStage);
 			if (!success) {
 				joLogin.getController().setErrorInUserId();
@@ -369,8 +349,13 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 		primaryStage.setScene(scene);
 		setSimpleDialog();
-		primaryStage.setWidth(1000);
-		primaryStage.setHeight(1000);
+
+		List<Screen> screens = Screen.getScreensForRectangle(100, 100, 100, 100);
+
+		Rectangle2D bounds = screens.get(0).getVisualBounds();
+
+		primaryStage.setWidth(bounds.getWidth() * 0.75);
+		primaryStage.setHeight(bounds.getHeight() * 0.75);
 
 		applicationWindow.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 5;");
 		mainStackPane.setStyle("-fx-background-radius: 10;");
