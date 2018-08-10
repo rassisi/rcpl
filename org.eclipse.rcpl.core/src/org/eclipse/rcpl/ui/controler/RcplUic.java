@@ -40,7 +40,6 @@ import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.WaitThread;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
 import org.eclipse.rcpl.detailpages.WebBrowserDetailsPage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
@@ -58,6 +57,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
+import org.eclipse.rcpl.util.WaitThread;
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLDocument;
 

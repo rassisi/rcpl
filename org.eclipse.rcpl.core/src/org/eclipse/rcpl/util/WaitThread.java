@@ -1,4 +1,6 @@
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.util;
+
+import org.eclipse.rcpl.IEditor;
 
 import javafx.application.Platform;
 

@@ -12,6 +12,8 @@ import javafx.scene.Parent;
  */
 public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
+	public static final int TASK_LAYOUT_DOCUMENT = 1;
+
 	void updateOutline();
 
 	boolean isDisposed();
@@ -20,7 +22,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void updateDocumentInfo();
 
-	void layoutDocument();
+//	void layoutDocument();
 
 	void finishAddPages();
 
