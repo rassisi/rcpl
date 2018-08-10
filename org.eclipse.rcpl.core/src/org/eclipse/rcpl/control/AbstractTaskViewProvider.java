@@ -1,5 +1,6 @@
 package org.eclipse.rcpl.control;
 
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,11 +18,11 @@ import javafx.scene.layout.StackPane;
  */
 public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
+	private final long LONG_TASK_MILLIS = 2000;
+
 	protected StackPane progressViewArea = new StackPane();
 
 	private TaskProgressView<RcplTask> taskProgressView;
-
-	private RcplTask task;
 
 	int taskCounter = 0;
 
@@ -38,16 +39,21 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 	}
 
 	@Override
-	public void taskMessage(String message) {
-		task.message(message);
+	public void taskMessage(int taskNumber, String message) {
+		RcplTask task = tasks.get(taskNumber);
+		if (task != null) {
+			task.message(taskNumber, message);
+		}
 	}
 
 	@Override
-	public void taskProgress(String message) {
-		task.message(message);
+	public void taskProgress(int taskNumber, String message) {
+		tasks.get(taskNumber).message(taskNumber, message);
 	}
 
 	protected class RcplTask extends Task<Void> {
+
+		private long startTime;
 
 		private double maxWork = 100.0;
 
@@ -56,19 +62,31 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 		public RcplTask(String title, int taskNumber) {
 			updateTitle(title);
 			this.taskNumber = taskNumber;
+			this.startTime = System.currentTimeMillis();
 		}
 
-		public void message(String msg) {
-			task.updateMessage(msg);
+		public void message(int taskNumber, String msg) {
+			tasks.get(taskNumber).updateMessage(msg);
+			if (isLongTask()) {
+				expandTaskView();
+			}
 		}
 
-		public void progress(double workDone) {
-			task.updateProgress(workDone, maxWork);
+		public void progress(int taskNumber, double workDone) {
+			tasks.get(taskNumber).updateProgress(workDone, maxWork);
+			if (isLongTask()) {
+				expandTaskView();
+			}
 		}
 
-		public void progress(double workDone, double maxWork) {
+		public boolean isLongTask() {
+			long diff = System.currentTimeMillis() - startTime;
+			return diff > LONG_TASK_MILLIS;
+		}
+
+		public void progress(int taskNumber, double workDone, double maxWork) {
 			this.maxWork = maxWork;
-			progress(workDone);
+			progress(taskNumber, workDone);
 		}
 
 		@Override
@@ -119,6 +137,8 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			taskCounter--;
 			done();
 
+			tasks.remove(taskNumber);
+
 			return null;
 		}
 
@@ -168,14 +188,15 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 	}
 
+	HashMap<Integer, RcplTask> tasks = new HashMap<Integer, RcplTask>();
+
 	@Override
 	public void startTask(String title, int taskNumber) {
-		expandTaskView();
 		taskCounter++;
 		expandTaskView();
-		task = new RcplTask(taskCounter + ". " + title, taskNumber);
-		taskProgressView.getTasks().add(task);
-		executorService.submit(task);
+		tasks.put(taskNumber, new RcplTask(taskCounter + ". " + title, taskNumber));
+		taskProgressView.getTasks().add(tasks.get(taskNumber));
+		executorService.submit(tasks.get(taskNumber));
 	}
 
 	@Override

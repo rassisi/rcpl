@@ -17,17 +17,8 @@ import org.eclipse.rcpl.model.RCPLModel;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -60,9 +51,9 @@ public class Rcpl {
 
 	private static HashMap<String, String> pathRegistry = new HashMap<String, String>();
 
-	private static ProgressBar progressBar;
+//	private static ProgressBar progressBar;
 
-	private static ProgressIndicator progressIndicator;
+//	private static ProgressIndicator progressIndicator;
 
 	private static Text progressText;
 
@@ -561,90 +552,90 @@ public class Rcpl {
 	private static boolean isProgressVisible;
 
 	public static void showProgress(final boolean show) {
-		if (isProgressVisible == show) {
-			return;
-		}
-
-		isProgressVisible = show;
-
-		if (progressText != null) {
-
-			if (Platform.isFxApplicationThread()) {
-				progressText.setVisible(show);
-				progressBar.setVisible(show && showProgressBar);
-				progressIndicator.setVisible(show && !showProgressBar);
-				progressBar.toFront();
-				progressIndicator.toFront();
-				progressText.toFront();
-			} else {
-				Platform.runLater(new Runnable() {
-
-					@Override
-					public void run() {
-						progressText.setVisible(show);
-						progressBar.setVisible(show && showProgressBar);
-						progressIndicator.setVisible(show && !showProgressBar);
-						progressBar.toFront();
-						progressIndicator.toFront();
-						progressText.toFront();
-					}
-				});
-			}
-		}
+//		if (isProgressVisible == show) {
+//			return;
+//		}
+//
+//		isProgressVisible = show;
+//
+//		if (progressText != null) {
+//
+//			if (Platform.isFxApplicationThread()) {
+//				progressText.setVisible(show);
+//				progressBar.setVisible(show && showProgressBar);
+//				progressIndicator.setVisible(show && !showProgressBar);
+//				progressBar.toFront();
+//				progressIndicator.toFront();
+//				progressText.toFront();
+//			} else {
+//				Platform.runLater(new Runnable() {
+//
+//					@Override
+//					public void run() {
+//						progressText.setVisible(show);
+//						progressBar.setVisible(show && showProgressBar);
+//						progressIndicator.setVisible(show && !showProgressBar);
+//						progressBar.toFront();
+//						progressIndicator.toFront();
+//						progressText.toFront();
+//					}
+//				});
+//			}
+//		}
 	}
 
 	public static void createProgress(StackPane progressGroup) {
-		if (progressText == null) {
-
-			progressText = new Text();
-			DropShadow ds = new DropShadow();
-			ds.setOffsetY(3.0f);
-			ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
-
-			progressText.setEffect(ds);
-			progressText.setCache(true);
-			progressText.setFill(Color.CORNFLOWERBLUE);
-			progressText.setFont(Font.font(null, FontWeight.NORMAL, 24));
-
-			StackPane.setMargin(progressText, new Insets(130, 0, 0, 0));
-			task = new Task<Void>() {
-				@Override
-				public Void call() {
-					for (;;) {
-						try {
-							Thread.sleep(100);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-
-						updateProgress(progressValue, 130);
-						progressValue += progressIncrement / 10;
-						updateMessage(progressMessage);
-					}
-				}
-			};
-
-			progressText.textProperty().bind(task.messageProperty());
-			progressBar = new ProgressBar();
-			progressBar.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
-			progressBar.progressProperty().bind(task.progressProperty());
-			Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-			progressBar.setMinWidth(bounds.getWidth() / 2);
-			progressBar.setPrefWidth(bounds.getWidth() / 2);
-			progressIndicator = new ProgressIndicator();
-			progressIndicator.progressProperty().bind(task.progressProperty());
-			double height = Screen.getPrimary().getBounds().getHeight() / 10;
-			progressIndicator.setMaxHeight(height);
-			progressIndicator.setMaxWidth(height);
-			int prio = Thread.currentThread().getPriority();
-			Thread t = new Thread(task);
-			t.setPriority(prio + 1);
-			t.setDaemon(true);
-			t.start();
-
-			progressGroup.getChildren().addAll(progressIndicator, progressBar, progressText);
-
-		}
+//		if (progressText == null) {
+//
+//			progressText = new Text();
+//			DropShadow ds = new DropShadow();
+//			ds.setOffsetY(3.0f);
+//			ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
+//
+//			progressText.setEffect(ds);
+//			progressText.setCache(true);
+//			progressText.setFill(Color.CORNFLOWERBLUE);
+//			progressText.setFont(Font.font(null, FontWeight.NORMAL, 24));
+//
+//			StackPane.setMargin(progressText, new Insets(130, 0, 0, 0));
+//			task = new Task<Void>() {
+//				@Override
+//				public Void call() {
+//					for (;;) {
+//						try {
+//							Thread.sleep(100);
+//						} catch (InterruptedException e) {
+//							e.printStackTrace();
+//						}
+//
+//						updateProgress(progressValue, 130);
+//						progressValue += progressIncrement / 10;
+//						updateMessage(progressMessage);
+//					}
+//				}
+//			};
+//
+//			progressText.textProperty().bind(task.messageProperty());
+//			progressBar = new ProgressBar();
+//			progressBar.setBackground(new Background(new BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
+//			progressBar.progressProperty().bind(task.progressProperty());
+//			Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+//			progressBar.setMinWidth(bounds.getWidth() / 2);
+//			progressBar.setPrefWidth(bounds.getWidth() / 2);
+//			progressIndicator = new ProgressIndicator();
+//			progressIndicator.progressProperty().bind(task.progressProperty());
+//			double height = Screen.getPrimary().getBounds().getHeight() / 10;
+//			progressIndicator.setMaxHeight(height);
+//			progressIndicator.setMaxWidth(height);
+//			int prio = Thread.currentThread().getPriority();
+//			Thread t = new Thread(task);
+//			t.setPriority(prio + 1);
+//			t.setDaemon(true);
+//			t.start();
+//
+//			progressGroup.getChildren().addAll(progressIndicator, progressBar, progressText);
+//
+//		}
 
 	}
 

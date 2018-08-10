@@ -455,9 +455,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public void closeTab(final Tab tab) {
-
 		TabInfo tabInfo = getTabInfo(tab);
-
 		tab.setUserData(null);
 
 		if (tabInfo.getEditor() != null) {
@@ -466,55 +464,16 @@ public class RcplUic implements IRcplUic {
 
 			if (internalTabPane.getTabs().isEmpty()) {
 				showHomePage(HomePageType.OVERVIEW, null);
+				RcplSession.getDefault().commit();
+
 			}
-
-			new DelayedExecution(200) {
-				@Override
-				protected void execute() {
-					new Thread() {
-						@Override
-						public void run() {
-							setName("CLOSE TAB");
-							if (internalTabPane.getTabs().isEmpty()) {
-
-								new WaitThread(editor) {
-
-									@Override
-									public void doRun() {
-										showHomePage(HomePageType.OVERVIEW, null);
-									}
-								};
-
-								RcplSession.getDefault().commit();
-							}
-
-							new DelayedExecution(200) {
-
-								@Override
-								protected void execute() {
-									if (editor != null && editor.getDocument() != null) {
-										editor.showPageGroup(false);
-										closeEditor(editor);
-										Rcpl.showProgress(false);
-
-										new Thread("SAVE & CLOSE DOCUMENT") {
-											@Override
-											public void run() {
-												doc.save();
-												doc.dispose();
-
-												printMemory("nach doc.dispose()    ");
-
-											};
-										}.start();
-									}
-								}
-							};
-						};
-					}.start();
-				}
-			};
-
+			if (editor != null && editor.getDocument() != null) {
+				editor.showPageGroup(false);
+				closeEditor(editor);
+				doc.save();
+				doc.dispose();
+//				printMemory("nach doc.dispose()    ");
+			}
 		}
 	}
 
@@ -1173,6 +1132,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void showHomePage(HomePageType type, String id) {
 		if (type == null) {
+			editorArea.getChildren().clear();
 			showStartMenuButton(true);
 			return;
 		}
