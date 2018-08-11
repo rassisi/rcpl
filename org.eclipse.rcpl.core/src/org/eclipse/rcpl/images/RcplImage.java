@@ -99,6 +99,11 @@ public class RcplImage implements IImage {
 
 	public RcplImage(String id, double width, double height) {
 		this(id, width, height, null);
+
+		if ("style_normal_big".equals(id)) {
+			System.out.println();
+		}
+
 	}
 
 	/**

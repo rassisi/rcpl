@@ -16,6 +16,8 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	public static final int TASK_FINISH_DOCUMENT = 2;
 
+	public static final int TASK_ACTIVATE_FIRST_PARAGRAPH = 3;
+
 	void updateOutline();
 
 	boolean isDisposed();

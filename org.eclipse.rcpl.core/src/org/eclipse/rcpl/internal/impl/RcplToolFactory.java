@@ -78,6 +78,14 @@ public class RcplToolFactory implements IToolFactory {
 		ITool tool = null;
 		String id = model.getId();
 
+		if ("PARAGRAPH_STYLES".equals(model.getId())) {
+			System.out.println();
+		}
+
+		if ("PARAGRAPH_STYLES".equals(model.getFormat())) {
+			System.out.println();
+		}
+
 		if (id != null && !Tool.ids.contains(id)) {
 			Tool.ids.add(id);
 		}
@@ -260,7 +268,7 @@ public class RcplToolFactory implements IToolFactory {
 		return tool;
 	}
 
-	private static double getWidth(Tool tool) {
+	protected double getWidth(Tool tool) {
 		try {
 			String format = tool.getFormat();
 			if (format != null) {
@@ -276,6 +284,19 @@ public class RcplToolFactory implements IToolFactory {
 			// TODO
 		}
 		return -1;
+	}
+
+	protected void updateNode(Tool model, ITool tool) {
+		if (tool != null) {
+			GridPane.setHgrow(tool.getNode(), Priority.ALWAYS);
+			if (tool.getNode() instanceof Control) {
+				double width = getWidth(model);
+				if (width > 0) {
+					((Control) tool.getNode()).setMaxWidth(width);
+				}
+			}
+			tool.getNode().setUserData(model);
+		}
 	}
 
 }

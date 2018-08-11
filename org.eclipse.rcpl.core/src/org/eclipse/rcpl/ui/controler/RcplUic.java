@@ -76,6 +76,7 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -284,6 +285,8 @@ public class RcplUic implements IRcplUic {
 
 	protected StackPane editorArea;
 
+	protected Group editorGroup;
+
 	private Node focusOwner;
 
 	boolean requestCancel;
@@ -355,6 +358,8 @@ public class RcplUic implements IRcplUic {
 		this.applicationStarter = rcplApplicationStarter;
 		this.name = rcplApplicationStarter.getRcplApplicationProvider().getName();
 		this.editorArea = new StackPane();
+		this.editorGroup = new Group();
+		this.editorArea.getChildren().add(editorGroup);
 
 		this.logPage = new VBox();
 		this.errorTextArea = new TextArea();
@@ -458,23 +463,31 @@ public class RcplUic implements IRcplUic {
 		TabInfo tabInfo = getTabInfo(tab);
 		tab.setUserData(null);
 
-		if (tabInfo.getEditor() != null) {
-			final IEditor editor = tabInfo.getEditor();
-			final IDocument doc = editor.getDocument();
+		setContent((Node) null);
+		Platform.runLater(new Runnable() {
 
-			if (internalTabPane.getTabs().isEmpty()) {
-				showHomePage(HomePageType.OVERVIEW, null);
-				RcplSession.getDefault().commit();
+			@Override
+			public void run() {
+				if (tabInfo.getEditor() != null) {
+					final IEditor editor = tabInfo.getEditor();
+					final IDocument doc = editor.getDocument();
 
+					if (internalTabPane.getTabs().isEmpty()) {
+						showHomePage(HomePageType.OVERVIEW, null);
+						RcplSession.getDefault().commit();
+
+					}
+					if (editor != null && editor.getDocument() != null) {
+						editor.showPageGroup(false);
+						closeEditor(editor);
+						doc.save();
+						doc.dispose();
+//						printMemory("nach doc.dispose()    ");
+					}
+				}
 			}
-			if (editor != null && editor.getDocument() != null) {
-				editor.showPageGroup(false);
-				closeEditor(editor);
-				doc.save();
-				doc.dispose();
-//				printMemory("nach doc.dispose()    ");
-			}
-		}
+		});
+
 	}
 
 	@Override
@@ -1007,19 +1020,15 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public void doSetContent(final Node node) {
-
-		new WaitThread(null) {
+		new WaitThread(Rcpl.UIC.getEditor()) {
 
 			@Override
 			public void doRun() {
-				if (node == null) {
-					return;
-				}
-				if (!editorArea.getChildren().contains(node)) {
-					editorArea.getChildren().clear();
+				editorArea.getChildren().clear();
+				if (node != null) {
 					editorArea.getChildren().add(node);
+					node.toFront();
 				}
-				node.toFront();
 			}
 		};
 	}
@@ -1864,51 +1873,29 @@ public class RcplUic implements IRcplUic {
 	}
 
 	protected void showTab(final Tab tab) {
-		try {
-			final TabInfo tabInfo = getTabInfo(tab);
 
-			final IEditor editor = tabInfo.getEditor();
-			final Node node = tabInfo.getNode();
-			final IRcplAddon addon = tabInfo.getAddon();
+		final TabInfo tabInfo = getTabInfo(tab);
+		final IEditor editor = tabInfo.getEditor();
+		final Node node = tabInfo.getNode();
+		final IRcplAddon addon = tabInfo.getAddon();
 
-			new Thread() {
+		Platform.runLater(new Runnable() {
 
-				@Override
-				public void run() {
-					new WaitThread(editor) {
+			@Override
+			public void run() {
+				updatePerspective(tab);
+				if (editor != null) {
+					setContent(editor);
+				} else if (node != null) {
+					setContent(node);
+					setEditor(null);
+				} else if (addon != null) {
+					setContent(addon.getNode());
+					setEditor(null);
+				}
+			}
+		});
 
-						@Override
-						public void doRun() {
-							updatePerspective(tab);
-						}
-					};
-					try {
-						sleep(10);
-					} catch (InterruptedException e) {
-					}
-
-					new WaitThread(editor) {
-
-						@Override
-						public void doRun() {
-							if (editor != null) {
-								setContent(editor);
-							} else if (node != null) {
-								setContent(node);
-								setEditor(null);
-							} else if (addon != null) {
-								setContent(addon.getNode());
-								setEditor(null);
-							}
-						}
-					};
-
-				};
-			}.start();
-
-		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
-		}
 	}
 
 	private void updateEditorListener() {

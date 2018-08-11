@@ -156,13 +156,11 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 	 * 
 	 */
 	private void initApplication() {
-		Rcpl.rcplApplicationProvider = createApplicationProvider();
 		Rcpl.setMobile(isMobile());
 		RCPLModel.modelClass = getRcplModel();
 		File errorCache = new File(RcplUtil.getUserLocalCacheDir(), "images/___ERROR___/");
 		RcplUtil.deleteFolder(errorCache);
 		doInitApplication();
-
 	}
 
 	abstract protected void doInitApplication();

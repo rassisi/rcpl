@@ -50,9 +50,9 @@ public class RcplButton extends RcplTool implements IButton {
 
 	private Node imageNode;
 
-	private double width;
+	private double width = 16.0;
 
-	private double height;
+	private double height = 16.0;
 
 	private IImage image;
 
@@ -64,6 +64,10 @@ public class RcplButton extends RcplTool implements IButton {
 
 	public RcplButton(AbstractTool tool) {
 		super(tool);
+		if (tool.getWidth() > 0 && tool.getHeight() > 0) {
+			width = tool.getWidth();
+			height = tool.getHeight();
+		}
 	}
 
 	private void performAction() {

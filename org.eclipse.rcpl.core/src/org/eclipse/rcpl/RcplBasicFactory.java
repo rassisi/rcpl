@@ -212,7 +212,7 @@ public class RcplBasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public IToolFactory createOfficeToolFactory() {
+	public IToolFactory createToolFactory() {
 		return new RcplToolFactory();
 	}
 
@@ -326,8 +326,8 @@ public class RcplBasicFactory implements IRcplFactory {
 		tool.setToolTip(homePage.getToolTip());
 		tool.setImage(homePage.getImage());
 		tool.setType(ToolType.TOGGLEBUTTON);
-		tool.setWidth(64);
-		tool.setHeight(64);
+		tool.setWidth(24);
+		tool.setHeight(24);
 
 		IButton homeButton = new RcplButton(tool);
 		homeButton.getNode().setId("homePageButton");

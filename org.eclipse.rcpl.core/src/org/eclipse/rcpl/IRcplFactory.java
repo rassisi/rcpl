@@ -37,11 +37,6 @@ public interface IRcplFactory {
 
 	IStyleTemplate createStyleTemplate();
 
-//	IButton createButton(String id, String name, String toolTip, String imageName, boolean toggle,
-//			IButtonListener buttonListener, boolean systemButton);
-//
-//	IButton createButton(ToolGroup g, boolean toggle, boolean systemButton, IButtonListener buttonListener);
-
 	IButton createButton(AbstractTool t);
 
 	Node createRibbonGroup(ToolGroup group, IRcplAddon useCase, boolean first, boolean dialogButton);
@@ -74,7 +69,7 @@ public interface IRcplFactory {
 
 	ICommand createCommand(ITool tool, ILayoutObject layoutObject, Object[] oldData, Object... newData);
 
-	IToolFactory createOfficeToolFactory();
+	IToolFactory createToolFactory();
 
 	IDetailPage createDetailPage(String className);
 }

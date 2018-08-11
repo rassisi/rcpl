@@ -18,7 +18,6 @@ import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
-import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -199,24 +198,23 @@ public class JORibbonGroup extends RcplTool {
 
 			int lastX = 0;
 			for (Tool t : toolGroup.getTools()) {
-				String imageId = toolGroup.getImage();
-				String id = toolGroup.getId();
-				double width = 16;
-				double height = 16;
-				if (toolGroup.getTools().size() == 1) {
-					width = 64;
-					height = 48;
-				}
-				ITool n = new RcplToolFactory().createTool(t, width, height);
+//				String id = toolGroup.getId();
+//				double width = 16;
+//				double height = 16;
+//				if (toolGroup.getTools().size() == 1) {
+//					width = 64;
+//					height = 48;
+//				}
+				ITool n = Rcpl.getToolFactory().createTool(t, t.getWidth(), t.getHeight());
 				registry.put(t, n);
 
 				int spanX = Math.max(1, t.getSpanX());
 				int spanY = Math.max(1, t.getSpanY());
 				String imageName = t.getImage();
 
-				Node image = Rcpl.resources().getImage(imageName, width, height).getNode();
-				if (image != null) {
-					if (n instanceof Labeled) {
+				if (n instanceof Labeled) {
+					Node image = Rcpl.resources().getImage(imageName, 16, 16).getNode();
+					if (image != null) {
 						((Labeled) n).setGraphic(image);
 					}
 				}

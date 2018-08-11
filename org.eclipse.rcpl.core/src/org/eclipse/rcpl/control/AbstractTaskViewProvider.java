@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 
 import org.controlsfx.control.TaskProgressView;
 import org.eclipse.rcpl.ITaskViewProvider;
+import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -18,10 +19,9 @@ import javafx.scene.layout.StackPane;
  */
 public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
-	private final long LONG_TASK_MILLIS = 2000;
+	private final long LONG_TASK_MILLIS = 1000;
 
 	protected StackPane progressViewArea = new StackPane();
-
 	private TaskProgressView<RcplTask> taskProgressView;
 
 	int taskCounter = 0;
@@ -32,9 +32,9 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 		super();
 		taskProgressView = new TaskProgressView<RcplTask>();
 		progressViewArea = new StackPane();
-		progressViewArea.setPrefHeight(60);
-		progressViewArea.setMinHeight(60);
-		progressViewArea.setMaxHeight(60);
+		progressViewArea.setPrefHeight(120);
+		progressViewArea.setMinHeight(120);
+		progressViewArea.setMaxHeight(120);
 		progressViewArea.getChildren().add(taskProgressView);
 	}
 
@@ -46,9 +46,13 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 		}
 	}
 
+	public void taskDone(int taskNumber) {
+		tasks.get(taskNumber).cancel();
+	}
+
 	@Override
-	public void taskProgress(int taskNumber, String message) {
-		tasks.get(taskNumber).message(taskNumber, message);
+	public void taskProgress(int taskNumber, double workDone, double maxWork) {
+		tasks.get(taskNumber).progress(taskNumber, workDone, maxWork);
 	}
 
 	protected class RcplTask extends Task<Void> {
@@ -69,6 +73,13 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			tasks.get(taskNumber).updateMessage(msg);
 			if (isLongTask()) {
 				expandTaskView();
+
+				System.out.println("*** LONG TASK " + taskNumber + " " + msg);
+
+			} else {
+
+				System.out.println("*** NO LONG TASK " + taskNumber + " " + msg);
+
 			}
 		}
 
@@ -81,6 +92,9 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 		public boolean isLongTask() {
 			long diff = System.currentTimeMillis() - startTime;
+
+			System.out.println("diff = " + diff);
+
 			return diff > LONG_TASK_MILLIS;
 		}
 
@@ -202,13 +216,35 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 	@Override
 	public void expandTaskView() {
 		if (!getNode().getChildren().contains(progressViewArea)) {
-			getNode().getChildren().add(progressViewArea);
+
+			Platform.runLater(new Runnable() {
+
+				@Override
+				public void run() {
+					getNode().getChildren().add(progressViewArea);
+				}
+			});
+
 		}
 	}
 
 	@Override
 	public void collapseTaskView() {
-		getNode().getChildren().remove(progressViewArea);
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				getNode().getChildren().remove(progressViewArea);
+			}
+		});
+
+	}
+
+	@Override
+	public void waitForTaskCompletion(int taskNumber) {
+		while (tasks.get(taskNumber) != null && !tasks.get(taskNumber).isDone()) {
+			RcplUtil.sleep(10);
+		}
 	}
 
 	abstract public Pane getNode();

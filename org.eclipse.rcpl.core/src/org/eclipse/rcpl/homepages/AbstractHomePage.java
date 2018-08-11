@@ -93,10 +93,11 @@ public abstract class AbstractHomePage implements IHomePage {
 			header.setSpacing(20);
 			header.setPrefHeight(80);
 			header.setAlignment(Pos.CENTER_LEFT);
-
 			header.setPrefHeight(HOMEPAGE_HEADER_HEIGHT);
 			header.setMinHeight(HOMEPAGE_HEADER_HEIGHT);
 			header.setMaxHeight(HOMEPAGE_HEADER_HEIGHT);
+//			header.setId("homeHeader"); 
+			header.setStyle("-fx-background-color: white");
 
 			header.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
@@ -111,20 +112,19 @@ public abstract class AbstractHomePage implements IHomePage {
 			if (modelHomePage.getImage() != null) {
 				imageName = modelHomePage.getImage();
 			}
-			StackPane sp = new StackPane();
-			sp.setPrefSize(32, 32);
-			sp.setMinSize(32, 32);
-			sp.setMaxSize(32, 32);
 
-			Node imageView = Rcpl.resources().getImage(imageName, 32, 32).getNode();
+			double imageSize = 48;
+			StackPane sp = new StackPane();
+			sp.setPrefSize(imageSize, imageSize);
+			sp.setMinSize(imageSize, imageSize);
+			sp.setMaxSize(imageSize, imageSize);
+
+			Node imageView = Rcpl.resources().getImage(imageName, imageSize, imageSize).getNode();
 			if (imageView != null) {
 				sp.getChildren().add(imageView);
 				HBox.setMargin(sp, new Insets(0, 0, 0, 20));
 			}
 			header.getChildren().add(sp);
-
-//			header.setId("homeHeader"); 
-			header.setStyle("-fx-background-color: white");
 
 			// ---------- header text
 
@@ -338,6 +338,7 @@ public abstract class AbstractHomePage implements IHomePage {
 
 	};
 
+	@Override
 	public void setModel(HomePage model) {
 		this.model = model;
 	}
