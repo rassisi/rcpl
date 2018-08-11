@@ -463,7 +463,6 @@ public class RcplUic implements IRcplUic {
 		TabInfo tabInfo = getTabInfo(tab);
 		tab.setUserData(null);
 
-		setContent((Node) null);
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -482,7 +481,6 @@ public class RcplUic implements IRcplUic {
 						closeEditor(editor);
 						doc.save();
 						doc.dispose();
-//						printMemory("nach doc.dispose()    ");
 					}
 				}
 			}
@@ -1024,9 +1022,11 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void doRun() {
-				editorArea.getChildren().clear();
+//				editorArea.getChildren().clear();
 				if (node != null) {
-					editorArea.getChildren().add(node);
+					if (!editorArea.getChildren().contains(node)) {
+						editorArea.getChildren().add(node);
+					}
 					node.toFront();
 				}
 			}
@@ -1141,7 +1141,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void showHomePage(HomePageType type, String id) {
 		if (type == null) {
-			editorArea.getChildren().clear();
+//			editorArea.getChildren().clear();
 			showStartMenuButton(true);
 			return;
 		}
