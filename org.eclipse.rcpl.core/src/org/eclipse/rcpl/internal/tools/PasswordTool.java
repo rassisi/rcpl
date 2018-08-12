@@ -14,21 +14,29 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 
 /**
  * @author ramin
  *
  */
-public class JOHyperLinkTool extends RcplTool {
+/**
+ * @author ramin
+ *
+ */
+public class PasswordTool extends RcplTool {
 
-	public JOHyperLinkTool(Tool tool) {
+	public PasswordTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public Hyperlink createNode() {
-		return new Hyperlink();
+	public PasswordField createNode() {
+		return new PasswordField();
 	}
 
+	@Override
+	public PasswordField getNode() {
+		return (PasswordField) super.getNode();
+	}
 }

@@ -14,25 +14,21 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Hyperlink;
 
 /**
  * @author ramin
  *
  */
-public class JOImageTool extends RcplTool {
+public class HyperLinkTool extends RcplTool {
 
-	public JOImageTool(Tool tool) {
+	public HyperLinkTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public ImageView createNode() {
-		return new ImageView();
+	public Hyperlink createNode() {
+		return new Hyperlink();
 	}
 
-	@Override
-	public ImageView getNode() {
-		return (ImageView) super.getNode();
-	}
 }

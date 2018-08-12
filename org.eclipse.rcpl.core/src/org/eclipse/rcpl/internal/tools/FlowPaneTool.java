@@ -10,9 +10,9 @@ import javafx.scene.layout.FlowPane;
  * @author ramin
  *
  */
-public class JOFlowPaneTool extends RcplTool {
+public class FlowPaneTool extends RcplTool {
 
-	public JOFlowPaneTool(Tool tool) {
+	public FlowPaneTool(Tool tool) {
 		super(tool);
 	}
 

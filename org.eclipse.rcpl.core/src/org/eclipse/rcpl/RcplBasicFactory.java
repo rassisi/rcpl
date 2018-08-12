@@ -36,7 +36,7 @@ import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.resources.JOColorProvider;
 import org.eclipse.rcpl.internal.resources.RcplResources;
 import org.eclipse.rcpl.internal.services.RcplService;
-import org.eclipse.rcpl.internal.tools.JORibbonGroup;
+import org.eclipse.rcpl.internal.tools.RibbonGroup;
 import org.eclipse.rcpl.internal.tools.UndoRedoTool;
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.login.RcplLogin;
@@ -154,7 +154,7 @@ public class RcplBasicFactory implements IRcplFactory {
 
 	@Override
 	public Node createRibbonGroup(ToolGroup group, IRcplAddon useCase, boolean first, boolean dialogButton) {
-		return new JORibbonGroup(group, first, dialogButton).get();
+		return new RibbonGroup(group, first, dialogButton).get();
 	}
 
 	@Override

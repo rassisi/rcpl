@@ -27,6 +27,4 @@ public interface ISideToolBar extends IToolbar {
 
 	void showSideTools();
 
-	void setEditor(IEditor editor);
-
 }

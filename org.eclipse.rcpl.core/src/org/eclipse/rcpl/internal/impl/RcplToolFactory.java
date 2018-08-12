@@ -26,22 +26,22 @@ import org.eclipse.rcpl.internal.tools.DateTool;
 import org.eclipse.rcpl.internal.tools.FontNameTool;
 import org.eclipse.rcpl.internal.tools.FontSizeTool;
 import org.eclipse.rcpl.internal.tools.GridPaneTool;
-import org.eclipse.rcpl.internal.tools.JOFlowPaneTool;
-import org.eclipse.rcpl.internal.tools.JOHtmlTool;
-import org.eclipse.rcpl.internal.tools.JOHyperLinkTool;
-import org.eclipse.rcpl.internal.tools.JOImageTool;
-import org.eclipse.rcpl.internal.tools.JOListTool;
-import org.eclipse.rcpl.internal.tools.JOMenuButtonTool;
-import org.eclipse.rcpl.internal.tools.JOPasswordTool;
-import org.eclipse.rcpl.internal.tools.JOProgressBarTool;
-import org.eclipse.rcpl.internal.tools.JOProgressIndicatorTool;
-import org.eclipse.rcpl.internal.tools.JORadioButtonTool;
-import org.eclipse.rcpl.internal.tools.JOSeparatorTool;
-import org.eclipse.rcpl.internal.tools.JOSliderTool;
-import org.eclipse.rcpl.internal.tools.JOSplitMenuTool;
-import org.eclipse.rcpl.internal.tools.JOTextAreaTool;
-import org.eclipse.rcpl.internal.tools.JOTextFieldTool;
-import org.eclipse.rcpl.internal.tools.JOWebBrowserTool;
+import org.eclipse.rcpl.internal.tools.FlowPaneTool;
+import org.eclipse.rcpl.internal.tools.HtmlTool;
+import org.eclipse.rcpl.internal.tools.HyperLinkTool;
+import org.eclipse.rcpl.internal.tools.ImageTool;
+import org.eclipse.rcpl.internal.tools.ListTool;
+import org.eclipse.rcpl.internal.tools.MenuButtonTool;
+import org.eclipse.rcpl.internal.tools.PasswordTool;
+import org.eclipse.rcpl.internal.tools.ProgressBarTool;
+import org.eclipse.rcpl.internal.tools.ProgressIndicatorTool;
+import org.eclipse.rcpl.internal.tools.RadioButtonTool;
+import org.eclipse.rcpl.internal.tools.SeparatorTool;
+import org.eclipse.rcpl.internal.tools.SliderTool;
+import org.eclipse.rcpl.internal.tools.SplitMenuTool;
+import org.eclipse.rcpl.internal.tools.TextAreaTool;
+import org.eclipse.rcpl.internal.tools.TextFieldTool;
+import org.eclipse.rcpl.internal.tools.WebBrowserTool;
 import org.eclipse.rcpl.internal.tools.LabelTool;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -162,13 +162,13 @@ public class RcplToolFactory implements IToolFactory {
 			tool = new DateTool(model);
 			break;
 		case PASSWORDFIELD:
-			tool = new JOPasswordTool(model);
+			tool = new PasswordTool(model);
 			break;
 		case RADIOBUTTON:
-			tool = new JORadioButtonTool(model);
+			tool = new RadioButtonTool(model);
 			break;
 		case SPLITMENUBUTTON:
-			JOSplitMenuTool b = new JOSplitMenuTool(model);
+			SplitMenuTool b = new SplitMenuTool(model);
 			b.getNode().setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
 
 			String imName = model.getImage();
@@ -184,7 +184,7 @@ public class RcplToolFactory implements IToolFactory {
 			tool = b;
 			break;
 		case TEXTFIELD:
-			tool = new JOTextFieldTool(model);
+			tool = new TextFieldTool(model);
 			break;
 		case TOGGLEBUTTON:
 			tool = new RcplButton(model);
@@ -195,60 +195,60 @@ public class RcplToolFactory implements IToolFactory {
 		case COLOR_CHOOSER:
 			break;
 		case HTMLEDITOR:
-			tool = new JOHtmlTool(model);
+			tool = new HtmlTool(model);
 			break;
 		case HYPERLINK:
-			tool = new JOHyperLinkTool(model);
+			tool = new HyperLinkTool(model);
 			break;
 		case IMAGEVIEW:
-			tool = new JOImageTool(model);
+			tool = new ImageTool(model);
 			break;
 		case LABEL:
 			tool = new LabelTool(model);
 			break;
 		case LISTVIEW:
-			tool = new JOListTool(model);
+			tool = new ListTool(model);
 			((ListView<?>) tool.getNode()).setMinWidth(2);
 			break;
 		case MENUBAR:
-			tool = new JOMenuButtonTool(model);
+			tool = new MenuButtonTool(model);
 			break;
 		case MENUBUTTON:
-			tool = new JOMenuButtonTool(model);
+			tool = new MenuButtonTool(model);
 			break;
 		case PROGRESSBAR:
-			tool = new JOProgressBarTool(model);
+			tool = new ProgressBarTool(model);
 			break;
 		case PROGRESSINDICATOR:
-			tool = new JOProgressIndicatorTool(model);
+			tool = new ProgressIndicatorTool(model);
 			break;
 		case SEPARATOR_HORIZONTAL:
-			tool = new JOSeparatorTool(model); // (Orientation.HORIZONTAL);
+			tool = new SeparatorTool(model); // (Orientation.HORIZONTAL);
 			break;
 		case SEPARATOR_VERTICAL:
-			tool = new JOSeparatorTool(model); // Orientation.VERTICAL);
+			tool = new SeparatorTool(model); // Orientation.VERTICAL);
 			break;
 		case SLIDER_HORIZONTAL:
-			JOSliderTool sl = new JOSliderTool(model);
+			SliderTool sl = new SliderTool(model);
 			sl.getNode().setOrientation(Orientation.HORIZONTAL);
 			tool = sl;
 			break;
 		case SLIDER_VERTICAL:
-			sl = new JOSliderTool(model);
+			sl = new SliderTool(model);
 			sl.getNode().setOrientation(Orientation.VERTICAL);
 			tool = sl;
 			break;
 		case TEXTAREA:
-			tool = new JOTextAreaTool(model);
+			tool = new TextAreaTool(model);
 			break;
 		case WEBVIEW:
-			tool = new JOWebBrowserTool(model);
+			tool = new WebBrowserTool(model);
 			break;
 		case GRIDPANE:
 			tool = new GridPaneTool(model);
 			break;
 		case FLOWPANE:
-			tool = new JOFlowPaneTool(model);
+			tool = new FlowPaneTool(model);
 			break;
 		default:
 			break;

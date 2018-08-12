@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITopToolbar;
@@ -44,15 +43,9 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	public static final int RIBBON_HEIGHT = 110;
 
-//	private static final int BROWSER_HEIGHT = 63;
-
 	public static final int COLLAPSED_HEIGHT_WITH_EDITOR = 50;
 
 	public static final int COLLAPSED_HEIGHT = 10;
-
-	private IEditor editor;
-
-//	public static double RIBBON_GROUP_PADDING = 0;
 
 	public RcplTopToolBar(StackPane parent) {
 		Rcpl.topToolbar = this;
@@ -85,8 +78,6 @@ public class RcplTopToolBar implements ITopToolbar {
 	}
 
 	private List<Node> homeRibbons = new ArrayList<Node>();
-
-	private boolean inHomeRibbonChange = false;
 
 	private void processTopBarMainGroups(String perspectiveId, IRcplAddon addon) {
 		HBox pane = new HBox();
@@ -122,24 +113,7 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	}
 
-	@Override
-	public void processTopBarMainGroups(IRcplAddon addon) {
-		if (addon.getModel() != null) {
-			// !!!
-			// if (new JOMigration().getUseCaseTopBar(useCase) != null) {
-			// HBox pane = new HBox();
-			// pane.setId("topBarHBox");
-			// JO.UIC.getMainTopStack().getChildren().add(pane);
-			// JO.UIC.getMainTopStack().layout();
-			// registerToolPane(useCase.getId(), pane);
-			// // !!!
-			// // processTopBar(pane,
-			// // new JOMigration().getUseCaseTopBar(useCase), useCase);
-			// }
-		}
-	}
-
-	private void processTopBar(HBox pane, TopToolBar topToolBar, IRcplAddon useCase) {
+	private void processTopBar(HBox pane, TopToolBar topToolBar, IRcplAddon addon) {
 		List<ToolGroup> toolGroups = topToolBar.getToolGroups();
 
 		boolean first = true;
@@ -154,7 +128,7 @@ public class RcplTopToolBar implements ITopToolbar {
 				}
 			} else {
 				Node toolNode = null;
-				toolNode = Rcpl.getFactory().createRibbonGroup((ToolGroup) eAbstractTool, useCase, first, true);
+				toolNode = Rcpl.getFactory().createRibbonGroup((ToolGroup) eAbstractTool, addon, first, true);
 				if (toolNode != null) {
 					pane.getChildren().add(toolNode);
 					HBox.setMargin(toolNode, new Insets(3, 10, 7, 0));
@@ -176,9 +150,6 @@ public class RcplTopToolBar implements ITopToolbar {
 	@Override
 	public void updateHeight() {
 		if (collapsed) {
-
-//			Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
-
 			if (Rcpl.UIC.getEditor() != null) {
 				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
 			} else {
@@ -197,7 +168,6 @@ public class RcplTopToolBar implements ITopToolbar {
 					Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
 				}
 			}
-
 		}
 	}
 
@@ -243,15 +213,6 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	public boolean isCollapsed() {
 		return collapsed;
-	}
-
-	public IEditor getEditor() {
-		return editor;
-	}
-
-	@Override
-	public void setEditor(IEditor editor) {
-		this.editor = editor;
 	}
 
 }

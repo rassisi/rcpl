@@ -11,36 +11,28 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.IResourceEntry;
-import org.eclipse.rcpl.IToolComponent;
-import org.eclipse.rcpl.IToolGroup;
-import org.eclipse.rcpl.IToolRegistry;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.layout.StackPane;
-import javafx.scene.web.WebView;
+import javafx.scene.control.ProgressIndicator;
 
 /**
  * @author ramin
  *
  */
-public class JOWebBrowserTool extends RcplTool {
+public class ProgressIndicatorTool extends RcplTool {
 
-	public JOWebBrowserTool(Tool tool) {
+	public ProgressIndicatorTool(Tool tool) {
 		super(tool);
-		WebView wv = new WebView();
-		getNode().getChildren().add(wv);
-		wv.getEngine().load(tool.getFormat());
 	}
 
 	@Override
-	public StackPane createNode() {
-		return new StackPane();
+	public ProgressIndicator createNode() {
+		return new ProgressIndicator();
 	}
 
 	@Override
-	public StackPane getNode() {
-		return (StackPane) super.getNode();
+	public ProgressIndicator getNode() {
+		return (ProgressIndicator) super.getNode();
 	}
 }

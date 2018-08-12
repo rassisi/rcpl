@@ -6,8 +6,6 @@ package org.eclipse.rcpl;
  */
 public interface ITopToolbar extends IToolbar {
 
-	void processTopBarMainGroups(IRcplAddon useCase);
-
 	void updateHeight();
 
 	void init();
@@ -17,7 +15,5 @@ public interface ITopToolbar extends IToolbar {
 	void expandAll();
 
 	void hideAll();
-
-	void setEditor(IEditor editor);
 
 }

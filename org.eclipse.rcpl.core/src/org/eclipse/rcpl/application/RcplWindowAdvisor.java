@@ -117,7 +117,6 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 		Rcpl.progressMessage("RCPL.createMainWindow()");
 		Rcpl.progressMessage("Init Addons");
 		for (IRcplAddon uc : applicationProvider.getRcplAddons()) {
-			Rcpl.UIC.getTopToolBar().processTopBarMainGroups(uc);
 			uc.init();
 		}
 		Rcpl.progressMessage("Configure Top Area");

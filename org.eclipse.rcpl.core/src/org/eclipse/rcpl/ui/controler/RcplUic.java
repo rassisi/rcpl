@@ -462,29 +462,47 @@ public class RcplUic implements IRcplUic {
 	public void closeTab(final Tab tab) {
 		TabInfo tabInfo = getTabInfo(tab);
 		tab.setUserData(null);
+		if (tabInfo.getEditor() != null) {
+			tabInfo.getEditor().getMainPane().toBack();
 
-		Platform.runLater(new Runnable() {
+			if (tabInfo.getEditor().getDocument() != null) {
+				new Thread() {
+					@Override
+					public void run() {
+						RcplSession.getDefault().commit();
+						final IEditor editor = tabInfo.getEditor();
+						final IDocument doc = editor.getDocument();
+						doc.save();
+						doc.dispose();
+					}
+				}.start();
+
+			}
+
+		}
+
+		new DelayedExecution(30) {
 
 			@Override
-			public void run() {
+			protected void execute() {
 				if (tabInfo.getEditor() != null) {
 					final IEditor editor = tabInfo.getEditor();
 					final IDocument doc = editor.getDocument();
 
 					if (internalTabPane.getTabs().isEmpty()) {
 						showHomePage(HomePageType.OVERVIEW, null);
-						RcplSession.getDefault().commit();
-
+						IHomePage hp = findHomePage(HomePageType.OVERVIEW, null);
+						if (hp != null) {
+							showPerspective(hp.getModel().getPerspective());
+						}
 					}
 					if (editor != null && editor.getDocument() != null) {
 						editor.showPageGroup(false);
 						closeEditor(editor);
-						doc.save();
-						doc.dispose();
 					}
 				}
 			}
-		});
+		};
 
 	}
 
@@ -1008,21 +1026,11 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void setContent(IEditor editor) {
-		setEditor(editor);
-	}
-
-	@Override
 	public void setContent(Node node) {
-		doSetContent(node);
-	}
-
-	public void doSetContent(final Node node) {
 		new WaitThread(Rcpl.UIC.getEditor()) {
 
 			@Override
 			public void doRun() {
-//				editorArea.getChildren().clear();
 				if (node != null) {
 					if (!editorArea.getChildren().contains(node)) {
 						editorArea.getChildren().add(node);
@@ -1140,21 +1148,19 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void showHomePage(HomePageType type, String id) {
-		if (type == null) {
-//			editorArea.getChildren().clear();
-			showStartMenuButton(true);
-			return;
-		}
-		showStartMenuButton(!HomePageType.OVERVIEW.equals(type));
+
+		showStartMenuButton(type == null || !HomePageType.OVERVIEW.equals(type));
 		IHomePage homePage = findHomePage(type, id);
-		if (HomePageType.HTML_EDITOR.equals(type)) {
-			showHtmlEditor();
-			return;
-		}
-		setContent(homePage.getNode());
-		homePage.refresh();
-		updateButtons(true);
 		activeHomePage = homePage;
+
+		if (editorArea.getChildren().contains(homePage.getNode())) {
+			homePage.getNode().toFront();
+		} else {
+			setContent(homePage.getNode());
+			homePage.refresh();
+			updateButtons(true);
+		}
+
 		HomePage model = homePage.getModel();
 		showPerspective(model.getPerspective());
 
@@ -1183,7 +1189,6 @@ public class RcplUic implements IRcplUic {
 		if (o instanceof WebView) {
 			WebView webView = (WebView) internalTabPane.getSelectionModel().getSelectedItem().getUserData();
 			if (webView != null) {
-				setEditor(null);
 				setContent(webView);
 				return true;
 			}
@@ -1285,7 +1290,7 @@ public class RcplUic implements IRcplUic {
 	private void updateQuickToolsArea() {
 		quickToolsArea.getChildren().clear();
 		if (!Rcpl.isMobile()) {
-			if (perspective.getQuickToolBar() != null) {
+			if (perspective == null && perspective.getQuickToolBar() != null) {
 				for (Tool tool : perspective.getQuickToolBar().getTools()) {
 					IButton q = Rcpl.getFactory().createButton(tool);
 					quickToolsArea.getChildren().add(q.getNode());
@@ -1473,8 +1478,6 @@ public class RcplUic implements IRcplUic {
 	protected void closeEditor(IEditor editor) {
 		editorArea.getChildren().remove(editor.getMainPane());
 		editor.dispose();
-		getSideToolBarControl().setEditor(null);
-		getTopToolbarControl().setEditor(null);
 	}
 
 	protected void copyFXToInternal() {
@@ -1814,17 +1817,6 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
-	@Override
-	public void setEditor(IEditor editor) {
-		getTopToolbarControl().setEditor(editor);
-		getTopToolbarControl().setEditor(editor);
-		if (editor == null) {
-			setContent((Node) null);
-			return;
-		}
-		setContent(editor.getMainPane());
-	}
-
 	private boolean showHtmlEditor() {
 		WebView webView = getBrowser();
 		if (webView != null) {
@@ -1885,14 +1877,13 @@ public class RcplUic implements IRcplUic {
 			public void run() {
 				updatePerspective(tab);
 				if (editor != null) {
-					setContent(editor);
+					setContent(editor.getMainPane());
 				} else if (node != null) {
 					setContent(node);
-					setEditor(null);
 				} else if (addon != null) {
 					setContent(addon.getNode());
-					setEditor(null);
 				}
+				tabPane.getSelectionModel().select(tab);
 			}
 		});
 

@@ -27,7 +27,7 @@ import org.eclipse.rcpl.internal.services.RcplActionListener;
  * @author ramin
  * 
  */
-public interface JOToolComponent extends IToolComponent {
+public interface ToolComponent extends IToolComponent {
 
 	public IProperty2 getDatabindingProperty();
 

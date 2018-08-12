@@ -14,25 +14,21 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.ProgressIndicator;
+import javafx.scene.web.HTMLEditor;
 
 /**
  * @author ramin
  *
  */
-public class JOProgressIndicatorTool extends RcplTool {
+public class HtmlTool extends RcplTool {
 
-	public JOProgressIndicatorTool(Tool tool) {
+	public HtmlTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public ProgressIndicator createNode() {
-		return new ProgressIndicator();
+	public HTMLEditor createNode() {
+		return new HTMLEditor();
 	}
 
-	@Override
-	public ProgressIndicator getNode() {
-		return (ProgressIndicator) super.getNode();
-	}
 }

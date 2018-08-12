@@ -14,25 +14,31 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.Slider;
+import javafx.scene.control.ListView;
 
 /**
  * @author ramin
  *
  */
-public class JOSliderTool extends RcplTool {
+/**
+ * @author ramin
+ *
+ */
+public class ListTool extends RcplTool {
 
-	public JOSliderTool(Tool tool) {
+	public ListTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public Slider createNode() {
-		return new Slider();
+	public ListView<String> createNode() {
+		return new ListView<String>();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Slider getNode() {
-		return (Slider) super.getNode();
+	public ListView<String> getNode() {
+		return (ListView<String>) super.getNode();
 	}
+
 }

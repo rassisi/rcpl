@@ -14,31 +14,25 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 
 /**
  * @author ramin
  *
  */
-/**
- * @author ramin
- *
- */
-public class JOListTool extends RcplTool {
+public class ProgressBarTool extends RcplTool {
 
-	public JOListTool(Tool tool) {
+	public ProgressBarTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public ListView<String> createNode() {
-		return new ListView<String>();
+	public ProgressBar createNode() {
+		return new ProgressBar();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public ListView<String> getNode() {
-		return (ListView<String>) super.getNode();
+	public ProgressBar getNode() {
+		return (ProgressBar) super.getNode();
 	}
-
 }

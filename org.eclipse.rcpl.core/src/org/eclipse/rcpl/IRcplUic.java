@@ -79,8 +79,6 @@ public interface IRcplUic {
 
 	IEditor getEditor();
 
-	void setEditor(IEditor editor);
-
 	Node getFocusOwner();
 
 	HBox getMainBottomArea();
@@ -134,8 +132,6 @@ public interface IRcplUic {
 	void setPerspective(Perspective perspective, IRcplAddon useCase);
 
 	void setActiveAddon(IRcplAddon useCase);
-
-	void setContent(IEditor editor);
 
 	void setContent(Node node);
 

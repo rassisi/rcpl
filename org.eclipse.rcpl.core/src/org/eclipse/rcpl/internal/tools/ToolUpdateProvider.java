@@ -15,14 +15,14 @@ package org.eclipse.rcpl.internal.tools;
  * @author ramin
  * 
  */
-public class JOToolUpdateProvider {
+public class ToolUpdateProvider {
 
-	private JOToolComponent toolComponent;
+	private ToolComponent toolComponent;
 
 	/**
 	 * @param toolComponent
 	 */
-	public JOToolUpdateProvider(JOToolComponent toolComponent) {
+	public ToolUpdateProvider(ToolComponent toolComponent) {
 		this.toolComponent = toolComponent;
 	}
 

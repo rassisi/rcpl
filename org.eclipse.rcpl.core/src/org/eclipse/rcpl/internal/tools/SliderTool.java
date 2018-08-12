@@ -14,29 +14,25 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.Slider;
 
 /**
  * @author ramin
  *
  */
-/**
- * @author ramin
- *
- */
-public class JOMenuButtonTool extends RcplTool {
+public class SliderTool extends RcplTool {
 
-	public JOMenuButtonTool(Tool tool) {
+	public SliderTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public MenuButton createNode() {
-		return new MenuButton();
+	public Slider createNode() {
+		return new Slider();
 	}
 
 	@Override
-	public MenuButton getNode() {
-		return (MenuButton) super.getNode();
+	public Slider getNode() {
+		return (Slider) super.getNode();
 	}
 }

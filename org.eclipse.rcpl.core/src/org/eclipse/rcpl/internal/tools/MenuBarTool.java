@@ -14,25 +14,29 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.MenuBar;
 
 /**
  * @author ramin
  *
  */
-public class JOStackPaneTool extends RcplTool {
+/**
+ * @author ramin
+ *
+ */
+public class MenuBarTool extends RcplTool {
 
-	public JOStackPaneTool(Tool tool) {
+	public MenuBarTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public StackPane createNode() {
-		return new StackPane();
+	public MenuBar createNode() {
+		return new MenuBar();
 	}
 
 	@Override
-	public StackPane getNode() {
-		return (StackPane) super.getNode();
+	public MenuBar getNode() {
+		return (MenuBar) super.getNode();
 	}
 }

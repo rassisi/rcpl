@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IButton;
-import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ISideToolBar;
@@ -178,8 +177,6 @@ public class RcplSideToolBar implements ISideToolBar {
 		this.parent = parent;
 		init();
 	}
-
-	private IEditor editor;
 
 	/*
 	 * (non-Javadoc)
@@ -961,15 +958,6 @@ public class RcplSideToolBar implements ISideToolBar {
 		} catch (Throwable ex) {
 			RCPLModel.logError(ex);
 		}
-	}
-
-	public IEditor getEditor() {
-		return editor;
-	}
-
-	@Override
-	public void setEditor(IEditor editor) {
-		this.editor = editor;
 	}
 
 }

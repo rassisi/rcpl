@@ -50,7 +50,7 @@ import javafx.scene.text.Text;
  * @author Ramin
  * 
  */
-public class JORibbonGroup extends RcplTool {
+public class RibbonGroup extends RcplTool {
 
 	private GridPane mainGridPane;
 
@@ -66,7 +66,7 @@ public class JORibbonGroup extends RcplTool {
 	/**
 	 * Default Constructor.
 	 */
-	public JORibbonGroup(ToolGroup toolGroup, boolean first, boolean isDialogButton) {
+	public RibbonGroup(ToolGroup toolGroup, boolean first, boolean isDialogButton) {
 		super(toolGroup);
 		this.toolGroup = toolGroup;
 		this.mainGridPane = new GridPane();

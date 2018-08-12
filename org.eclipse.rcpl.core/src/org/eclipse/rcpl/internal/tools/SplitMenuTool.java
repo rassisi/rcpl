@@ -14,29 +14,25 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.SplitMenuButton;
 
 /**
  * @author ramin
  *
  */
-/**
- * @author ramin
- *
- */
-public class JOPasswordTool extends RcplTool {
+public class SplitMenuTool extends RcplTool {
 
-	public JOPasswordTool(Tool tool) {
+	public SplitMenuTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public PasswordField createNode() {
-		return new PasswordField();
+	public SplitMenuButton createNode() {
+		return new SplitMenuButton();
 	}
 
 	@Override
-	public PasswordField getNode() {
-		return (PasswordField) super.getNode();
+	public SplitMenuButton getNode() {
+		return (SplitMenuButton) super.getNode();
 	}
 }

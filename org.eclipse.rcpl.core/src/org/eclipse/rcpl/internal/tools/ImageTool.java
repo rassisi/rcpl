@@ -14,21 +14,25 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.web.HTMLEditor;
+import javafx.scene.image.ImageView;
 
 /**
  * @author ramin
  *
  */
-public class JOHtmlTool extends RcplTool {
+public class ImageTool extends RcplTool {
 
-	public JOHtmlTool(Tool tool) {
+	public ImageTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public HTMLEditor createNode() {
-		return new HTMLEditor();
+	public ImageView createNode() {
+		return new ImageView();
 	}
 
+	@Override
+	public ImageView getNode() {
+		return (ImageView) super.getNode();
+	}
 }

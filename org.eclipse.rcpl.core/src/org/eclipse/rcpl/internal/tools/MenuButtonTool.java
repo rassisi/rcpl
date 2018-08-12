@@ -14,21 +14,29 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.TextField;
+import javafx.scene.control.MenuButton;
 
 /**
  * @author ramin
  *
  */
-public class JOTextFieldTool extends RcplTool {
+/**
+ * @author ramin
+ *
+ */
+public class MenuButtonTool extends RcplTool {
 
-	public JOTextFieldTool(Tool tool) {
+	public MenuButtonTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public TextField createNode() {
-		return new TextField();
+	public MenuButton createNode() {
+		return new MenuButton();
 	}
 
+	@Override
+	public MenuButton getNode() {
+		return (MenuButton) super.getNode();
+	}
 }

@@ -14,25 +14,25 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.TextArea;
+import javafx.scene.layout.StackPane;
 
 /**
  * @author ramin
  *
  */
-public class JOTextAreaTool extends RcplTool {
+public class StackPaneTool extends RcplTool {
 
-	public JOTextAreaTool(Tool tool) {
+	public StackPaneTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public TextArea createNode() {
-		return new TextArea();
+	public StackPane createNode() {
+		return new StackPane();
 	}
 
 	@Override
-	public TextArea getNode() {
-		return (TextArea) super.getNode();
+	public StackPane getNode() {
+		return (StackPane) super.getNode();
 	}
 }

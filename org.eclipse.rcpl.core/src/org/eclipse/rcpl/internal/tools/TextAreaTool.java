@@ -14,25 +14,25 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 
 /**
  * @author ramin
  *
  */
-public class JOProgressBarTool extends RcplTool {
+public class TextAreaTool extends RcplTool {
 
-	public JOProgressBarTool(Tool tool) {
+	public TextAreaTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
-	public ProgressBar createNode() {
-		return new ProgressBar();
+	public TextArea createNode() {
+		return new TextArea();
 	}
 
 	@Override
-	public ProgressBar getNode() {
-		return (ProgressBar) super.getNode();
+	public TextArea getNode() {
+		return (TextArea) super.getNode();
 	}
 }

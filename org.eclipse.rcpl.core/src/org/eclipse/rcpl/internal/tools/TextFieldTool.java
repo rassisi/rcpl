@@ -14,27 +14,21 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 /**
  * @author ramin
  *
  */
-public class JORadioButtonTool extends RcplTool {
+public class TextFieldTool extends RcplTool {
 
-	public JORadioButtonTool(Tool tool) {
+	public TextFieldTool(Tool tool) {
 		super(tool);
 	}
 
-	final RadioButton node = new RadioButton();
-
 	@Override
-	public RadioButton createNode() {
-		return new RadioButton();
+	public TextField createNode() {
+		return new TextField();
 	}
 
-	@Override
-	public RadioButton getNode() {
-		return (RadioButton) super.getNode();
-	}
 }
