@@ -56,8 +56,6 @@ public class RibbonGroup extends RcplTool {
 
 	private GridPane mainGridPane;
 
-	private VBox root;
-
 	protected ToolGroup toolGroup;
 
 	protected HashMap<AbstractTool, ITool> registry = new HashMap<AbstractTool, ITool>();
@@ -74,16 +72,15 @@ public class RibbonGroup extends RcplTool {
 
 		// ---------- Main VBox Container
 
-		this.root = new VBox();
-		root.setMaxHeight(80);
-		root.setPrefHeight(80);
-		root.setMinHeight(80);
-		this.root.setAlignment(Pos.CENTER);
+		getNode().setMaxHeight(80);
+		getNode().setPrefHeight(80);
+		getNode().setMinHeight(80);
+		getNode().setAlignment(Pos.CENTER);
 		DropShadow dropShadow = new DropShadow(3, Color.GRAY);
 		dropShadow.setOffsetX(1.0);
 		dropShadow.setOffsetY(1.0);
-		root.setEffect(dropShadow);
-		this.root.getStyleClass().add("toolbarContainer");
+		getNode().setEffect(dropShadow);
+		getNode().getStyleClass().add("toolbarContainer");
 
 		// ---------- GridPane
 
@@ -153,17 +150,17 @@ public class RibbonGroup extends RcplTool {
 			gridPane.add(dialogButton.getNode(), 1, 0);
 		}
 
-		this.root.getChildren().addAll(mainGridPane, gridPane);
+		getNode().getChildren().addAll(mainGridPane, gridPane);
 
 		processRibbonGroup();
 
 		if (first) {
-			HBox.setMargin(root, new Insets(3, 7, 7, 48));
+			HBox.setMargin(getNode(), new Insets(3, 7, 7, 48));
 		} else {
-			HBox.setMargin(root, new Insets(3, 7, 7, 5));
+			HBox.setMargin(getNode(), new Insets(3, 7, 7, 5));
 		}
 
-		root.setMinWidth(2);
+		getNode().setMinWidth(2);
 		mainGridPane.setMinWidth(2);
 	}
 
@@ -277,7 +274,7 @@ public class RibbonGroup extends RcplTool {
 	 * @return
 	 */
 	public VBox get() {
-		return this.root;
+		return getNode();
 	}
 
 	public void add(Node node, int col, int row) {
@@ -334,9 +331,13 @@ public class RibbonGroup extends RcplTool {
 	}
 
 	@Override
+	public VBox getNode() {
+		return (VBox) super.getNode();
+	}
+
+	@Override
 	public Node createNode() {
-		// TODO Auto-generated method stub
-		return null;
+		return new VBox();
 	}
 
 }
