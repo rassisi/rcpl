@@ -36,6 +36,8 @@ import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.Separator;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.GridPane;
@@ -69,20 +71,28 @@ public class RibbonGroup extends RcplTool {
 	public RibbonGroup(ToolGroup toolGroup, boolean first, boolean isDialogButton) {
 		super(toolGroup);
 		this.toolGroup = toolGroup;
-		this.mainGridPane = new GridPane();
+
+		// ---------- Main VBox Container
+
 		this.root = new VBox();
 		root.setMaxHeight(80);
 		root.setPrefHeight(80);
 		root.setMinHeight(80);
+		this.root.setAlignment(Pos.CENTER);
 		DropShadow dropShadow = new DropShadow(3, Color.GRAY);
 		dropShadow.setOffsetX(1.0);
 		dropShadow.setOffsetY(1.0);
 		root.setEffect(dropShadow);
+		this.root.getStyleClass().add("toolbarContainer");
 
+		// ---------- GridPane
+
+		this.mainGridPane = new GridPane();
 		this.mainGridPane.setId("clipboard");
 		this.mainGridPane.setGridLinesVisible(false);
 		this.mainGridPane.setVgap(5);
 		this.mainGridPane.setHgap(5);
+		VBox.setVgrow(mainGridPane, Priority.ALWAYS);
 
 		// ---------- label ---------------------------------
 
@@ -96,6 +106,7 @@ public class RibbonGroup extends RcplTool {
 		label.setFill(Color.LIGHTGRAY);
 		label.setFont(javafx.scene.text.Font.font("Arial", FontWeight.BOLD, 10));
 		label.setOpacity(0.7);
+		HBox.setHgrow(label, Priority.NEVER);
 
 		// ---------- grid container
 
@@ -111,6 +122,8 @@ public class RibbonGroup extends RcplTool {
 		gridPane.setAlignment(Pos.BOTTOM_CENTER);
 		gridPane.setStyle("-fx-padding: 5 0 0 0");
 		VBox.setMargin(gridPane, new Insets(0, 0, 5, 0));
+
+		// ---------- Dialog Button ---------------------------
 
 		Tool t = RcplFactory.eINSTANCE.createTool();
 		t.setId("showSideBar");
@@ -137,21 +150,14 @@ public class RibbonGroup extends RcplTool {
 
 			GridPane.setValignment(dialogButton.getNode(), VPos.BOTTOM);
 			GridPane.setMargin(dialogButton.getNode(), new Insets(5, 0, 0, 5));
-			// showSideBarButton.setPadding(new Insets(15, 0, 0, 0));
 			gridPane.add(dialogButton.getNode(), 1, 0);
 		}
 
-		HBox.setHgrow(label, Priority.NEVER);
-		this.root.setAlignment(Pos.CENTER);
 		this.root.getChildren().addAll(mainGridPane, gridPane);
-		VBox.setVgrow(mainGridPane, Priority.ALWAYS);
-		this.root.getStyleClass().add("toolbarContainer");
 
 		processRibbonGroup();
 
-		if (first)
-
-		{
+		if (first) {
 			HBox.setMargin(root, new Insets(3, 7, 7, 48));
 		} else {
 			HBox.setMargin(root, new Insets(3, 7, 7, 5));
@@ -168,46 +174,29 @@ public class RibbonGroup extends RcplTool {
 		try {
 
 			if (toolGroup == null) {
-
 				Tool tool = RcplFactory.eINSTANCE.createTool();
 				tool.setId("error");
 				IButton b = Rcpl.getFactory().createButton(tool);
 				b.getNode().setMinWidth(2);
-				;
-				add(b.getNode(), 0, 0);
-				return 0;
-
-			} else if (toolGroup.getToolGroups().isEmpty() && toolGroup.getTools().isEmpty()) {
-
-				String image = toolGroup.getImage();
-				String id = toolGroup.getId();
-
-				IButton b = Rcpl.getFactory().createButton(toolGroup);
-				b.getNode().setMinWidth(2);
-				b.setWidth(48);
-				b.setHeight(48);
 				add(b.getNode(), 0, 0);
 				return 0;
 			}
 
 			for (ToolGroup g : toolGroup.getToolGroups()) {
-				String image = toolGroup.getImage();
-				String id = toolGroup.getId();
 				processSubGroup(g);
 			}
 
 			int lastX = 0;
+			ToggleGroup toggleGroup = new ToggleGroup();
 			for (Tool t : toolGroup.getTools()) {
-//				String id = toolGroup.getId();
-//				double width = 16;
-//				double height = 16;
-//				if (toolGroup.getTools().size() == 1) {
-//					width = 64;
-//					height = 48;
-//				}
 				ITool n = Rcpl.getToolFactory().createTool(t, t.getWidth(), t.getHeight());
-				registry.put(t, n);
+				if (n instanceof IButton) {
+					if (ToolType.TOGGLEBUTTON.equals(t.getType())) {
+						toggleGroup.getToggles().add(((ToggleButton) n.getNode()));
+					}
+				}
 
+				registry.put(t, n);
 				int spanX = Math.max(1, t.getSpanX());
 				int spanY = Math.max(1, t.getSpanY());
 				String imageName = t.getImage();
@@ -341,38 +330,6 @@ public class RibbonGroup extends RcplTool {
 			// TODO
 
 		}
-		// if ("topBar/styles".equals(toolGroup.getId())) {
-		//
-		// String styleId = event.getLayoutObject().getStyle().getId();
-		// final int index = Math.max(0, styleComboTool.getListAsString()
-		// .indexOf(styleId));
-		//
-		// // System. out.("index: " + index);
-		// Platform.runLater(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// styleComboTool.getSelectionModel().select(index);
-		// }
-		// });
-		//
-		// for (Tool t : toolGroup.getTools()) {
-		//
-		// try {
-		// String id = t.getId();
-		//
-		// JOButton n = (JOButton) registry.get(t);
-		// n.setSelected(styleId.equals(id));
-		//
-		// } catch (Exception ex) {
-		// // TODO
-		//
-		//
-		// }
-		//
-		// }
-		//
-		// }
 
 	}
 
