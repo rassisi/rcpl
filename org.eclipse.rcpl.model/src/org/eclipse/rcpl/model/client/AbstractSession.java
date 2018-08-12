@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.eclipse.emf.cdo.common.util.CDOException;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.etypes.EtypesPackage;
@@ -93,7 +94,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	public static String BASE_IMAGE_URL = "https://raw.githubusercontent.com/rassisi/rcpl/master/org.eclipse.rcpl.resources/";
 	public static boolean connectionFailed = false;
-	public static boolean FORCE_NEW_XMI = false;
+
 	public static final String GROUP_ADMINISTRATORS = "Administrators";
 	public static final String GROUP_COMPANY = "GROUP_COMPANY";
 	public static final String GROUP_IT_ARCHITECTS = "GROUP_ITA";
@@ -207,13 +208,9 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	private String userId;
 
-	private Resource xmiCDO;
+	private Resource xmiRcpl;
 
-	private Resource xmiLocal;
-
-	private Resource xmiCDOApplication;
-
-	private Resource xmiLocalApplication;
+	private Resource xmiApplication;
 
 	/**
 	 * @param port
@@ -226,13 +223,13 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 		testReachable(getImageCodeBases().get(0));
 
-		setCDOServer(null); // "85.25.100.163:80";
+		setCDOServer("localhost"); // "85.25.100.163:80";
 		this.DEFAULT_PASSWORD = "joffice";
 		this.COMM1 = "b86645f289952e618043e5f2f70c";
 		this.SOURCE_PORT = 2037;
 		this.DESTINATION_PORT = 2036;
-		this.DB_NAME = "joffice";
-		this.REPOSITORY = "joffice";
+		this.DB_NAME = "repo1";
+		this.REPOSITORY = "repo1";
 		this.DEBUG_RECREATE = false;
 		this.ENV_DEV = false;
 		this.standalone = false;
@@ -311,8 +308,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			saveXMI_Local(true);
 		}
 
-		xmiLocal = null;
-		xmiLocalApplication = null;
+		xmiRcpl = null;
+		xmiApplication = null;
 	}
 
 	@Override
@@ -463,7 +460,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			ResultSet rs = s.getResultSet();
 			while (rs.next()) {
 				int idVal = (int) rs.getDouble("cdo_id");
-				EObject eObject = xmiCDO.getEObject("L" + idVal);
+				EObject eObject = xmiApplication.getEObject("L" + idVal);
 				eObjects.add(eObject);
 			}
 			rs.close();
@@ -517,10 +514,10 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	@Override
 	public EList<EObject> getContents() {
-		if (getRcplEmfResource() == null) {
+		if (getApplicationEmfResource() == null) {
 			return null;
 		}
-		return getRcplEmfResource().getContents();
+		return getApplicationEmfResource().getContents();
 	}
 
 	// public double getDouble(JOKey key) {
@@ -574,7 +571,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	}
 
 	public org.eclipse.emf.ecore.resource.Resource getLocalResource() {
-		return xmiLocal;
+		return xmiRcpl;
 	}
 
 	/**
@@ -714,18 +711,12 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	@Override
 	public Resource getRcplEmfResource() {
-		if (xmiCDO != null) {
-			return xmiCDO;
-		}
-		return xmiLocal;
+		return xmiRcpl;
 	}
 
 	@Override
 	public Resource getApplicationEmfResource() {
-		if (xmiCDOApplication != null) {
-			return xmiCDOApplication;
-		}
-		return xmiLocalApplication;
+		return xmiApplication;
 	}
 
 	public List<String> getRoleIds() {
@@ -885,10 +876,10 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	@Override
 	public boolean isValid() {
-		if (xmiCDO != null) {
+		if (xmiApplication != null) {
 			return transaction == null || !transaction.isClosed();
 		}
-		return xmiLocal != null;
+		return xmiRcpl != null;
 	}
 
 	public boolean launchedByJNLP() {
@@ -926,6 +917,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			transaction = cdoSession.openTransaction();
 		} catch (LifecycleException ex) {
 			// Server is not running
+			System.out.println();
 		}
 	}
 
@@ -964,21 +956,20 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	 * 
 	 */
 	public void registerPackages() throws Throwable {
-
 		RcplPackage.eINSTANCE.eClass();
-		// SdPackage.eINSTANCE.eClass();
 		SecurityPackage.eINSTANCE.eClass();
-
 		if (cdoSession != null) {
 			cdoSession.getPackageRegistry().putEPackage(RcplPackage.eINSTANCE);
-			// session.getPackageRegistry().putEPackage(SdPackage.eINSTANCE);
 			cdoSession.getPackageRegistry().putEPackage(SecurityPackage.eINSTANCE);
 			cdoSession.getPackageRegistry().putEPackage(EcorePackage.eINSTANCE);
 			cdoSession.getPackageRegistry().putEPackage(ExpressionsPackage.eINSTANCE);
 			cdoSession.getPackageRegistry().putEPackage(EtypesPackage.eINSTANCE);
+			registerApplicationPackages(cdoSession);
 		}
 
 	}
+
+	abstract protected void registerApplicationPackages(CDOSession cdoSession);
 
 	public void removeCdoId(String key) {
 		cdoIds.remove(key);
@@ -1019,9 +1010,9 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	private void saveXMI_Local(boolean application) {
 		Resource resource;
 		if (application) {
-			resource = xmiLocal;
+			resource = xmiRcpl;
 		} else {
-			resource = xmiLocalApplication;
+			resource = xmiApplication;
 		}
 		File localXMIFile = getLocalXmiFile(application);
 		URI xmiURI = URI.createFileURI(localXMIFile.getAbsolutePath());
@@ -1036,7 +1027,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	}
 
 	private void copyFromCDOToLocal() {
-		if (xmiLocal != null)
+		if (xmiRcpl != null)
 
 		// && (xmiLocal.isModified() || hasTemplatesWriterRole())) {
 
@@ -1044,17 +1035,17 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 			try {
 				// copy content from a cdo user to the local user storage
-				if (xmiCDO != null && !xmiCDO.getContents().isEmpty()) { // &&
-																			// !hasTemplatesWriterRole())
-																			// {
+				if (xmiApplication != null && !xmiApplication.getContents().isEmpty()) { // &&
+					// !hasTemplatesWriterRole())
+					// {
 
-					while (!xmiLocal.getContents().isEmpty()) {
-						xmiLocal.getContents().remove(0);
+					while (!xmiRcpl.getContents().isEmpty()) {
+						xmiRcpl.getContents().remove(0);
 					}
 
-					for (EObject eo : xmiCDO.getContents()) {
+					for (EObject eo : xmiApplication.getContents()) {
 						EObject eo2 = EcoreUtil.copy(eo);
-						xmiLocal.getContents().add(eo2);
+						xmiRcpl.getContents().add(eo2);
 					}
 
 				}
@@ -1137,13 +1128,15 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	public boolean start() throws Throwable {
 
 		loadLocalXMI(false);
-		loadLocalXMI(true);
+//		loadLocalXMI(true);
 
-		if ("demo".equals(userId) || "".equals(userId)) {
-			return true;
-		}
+//		if ("demo".equals(userId) || "".equals(userId)) {
+//			return true;
+//		}
 		try {
 
+			userId = "Administrator";
+			password = "rXmLf5262";
 			openSessionAndTransaction(userId, password);
 
 			if (!isOnline()) {
@@ -1156,8 +1149,12 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 				// user has no right
 			}
 
-			xmiCDO = transaction.getOrCreateResource(
+			xmiApplication = transaction.getOrCreateResource(
 					"/home/" + userId + "/" + AbstractSession.applicationId.getId() + RCPLModel.XMI_EXTENSION); //$NON-NLS-1$
+
+			if (getContents().isEmpty()) {
+				createInitialApplicationModel(getContents());
+			}
 
 		} catch (CDOException ex) {
 			return false;
@@ -1168,32 +1165,34 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 				return false;
 			}
 		} catch (Exception ex) {
-			return false;
+			loadLocalXMI(true);
 		}
 
-		if (getContents().isEmpty()) {
-			DEBUG_RECREATE = true;
-		}
-
-		if (DEBUG_RECREATE) {
-			while (!getContents().isEmpty()) {
-				getContents().remove(0);
-			}
-			EList<EObject> cont = null;
-			cont = xmiLocal.getContents();
-			for (EObject eo : cont) {
-				EObject eo2 = EcoreUtil.copy(eo);
-				if (eo2 instanceof RCPL) {
-					getContents().add(eo2);
-					break;
-				}
-			}
-
-			commit();
-		}
+//		if (getContents().isEmpty()) {
+//			DEBUG_RECREATE = true;
+//		}
+//
+//		if (DEBUG_RECREATE) {
+//			while (!getContents().isEmpty()) {
+//				getContents().remove(0);
+//			}
+//			EList<EObject> cont = null;
+//			cont = xmiRcpl.getContents();
+//			for (EObject eo : cont) {
+//				EObject eo2 = EcoreUtil.copy(eo);
+//				if (eo2 instanceof RCPL) {
+//					getContents().add(eo2);
+//					break;
+//				}
+//			}
+//
+//			commit();
+//		}
 
 		return true;
 	}
+
+	abstract protected void createInitialApplicationModel(EList<EObject> contents);
 
 	private boolean testReachable(String urlString) {
 		URL url;
@@ -1262,14 +1261,26 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			String fileName = getLocalXmiFileName(application);
 			File localXMIFile = getLocalXmiFile(application);
 
-			if (FORCE_NEW_XMI) {
-				localXMIFile.delete();
+			// compare local XML File with the resource
+
+			File tempXMIFile = File.createTempFile("rcpl_temp_", "temp");
+
+			try {
+
+				AUtil.copyInputStream(RCPLModel.modelClass.getResourceAsStream(fileName), tempXMIFile);
+			} catch (Throwable ex) {
+				RCPLModel.logError(ex);
 			}
 
-			if (FORCE_NEW_XMI || !localXMIFile.exists()) {
+			boolean forceNewXMI = !localXMIFile.exists() || !FileUtils.contentEquals(tempXMIFile, localXMIFile);
 
+			tempXMIFile.delete();
+
+			if (forceNewXMI) {
+				if (localXMIFile.exists()) {
+					localXMIFile.delete();
+				}
 				try {
-
 					AUtil.copyInputStream(RCPLModel.modelClass.getResourceAsStream(fileName), localXMIFile);
 				} catch (Throwable ex) {
 					RCPLModel.logError(ex);
@@ -1284,14 +1295,14 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
 			Resource resource;
 			if (application) {
-				xmiLocalApplication = rs.createResource(xmiURI);
-				xmiLocalApplication.setURI(xmiURI);
-				resource = xmiLocalApplication;
+				xmiApplication = rs.createResource(xmiURI);
+				xmiApplication.setURI(xmiURI);
+				resource = xmiApplication;
 
 			} else {
-				xmiLocal = rs.createResource(xmiURI);
-				xmiLocal.setURI(xmiURI);
-				resource = xmiLocal;
+				xmiRcpl = rs.createResource(xmiURI);
+				xmiRcpl.setURI(xmiURI);
+				resource = xmiRcpl;
 			}
 			// for performance reason, don't ask
 			((ResourceImpl) resource).setIntrinsicIDToEObjectMap(new HashMap());

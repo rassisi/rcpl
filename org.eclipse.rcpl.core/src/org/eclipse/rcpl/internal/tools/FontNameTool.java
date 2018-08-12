@@ -13,7 +13,6 @@ package org.eclipse.rcpl.internal.tools;
 
 import java.util.List;
 
-import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.IFont;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
@@ -25,8 +24,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.font.RcplFont;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
@@ -42,7 +39,7 @@ import javafx.util.Callback;
  * @author ramin
  *
  */
-public class FontNameTool extends RcplTool {
+public class FontNameTool extends RcplTool<String> {
 
 	private static double LABEL_FONT_SIZE = 12;
 
@@ -91,53 +88,8 @@ public class FontNameTool extends RcplTool {
 
 		addListener();
 
-		// node.setOnAction(new EventHandler<ActionEvent>() {
-		//
-		// @Override
-		// public void handle(ActionEvent arg0) {
-		// IParagraph paragraph = Rcpl.UIC.getEditor().getSelectedParagraph();
-		// // paragraph.getStyle()
-		// String fontName = node.getSelectionModel().getSelectedItem();
-		// if (Rcpl.UIC.getEditor() != null) {
-		// ICommand command = Rcpl.getFactory().createCommand(FontNameTool.this,
-		// paragraph, null, fontName);
-		// Rcpl.service().execute(command);
-		// }
-		// }
-		// });
-
 		node.setMinHeight(26);
-
 		node.setPrefWidth(150);
-	}
-
-	private ChangeListener<String> changeListener;
-
-	/**
-	 * 
-	 */
-	private void addListener() {
-
-		changeListener = new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
-				if (Rcpl.UIC.getEditor() != null) {
-					IParagraph paragraph = Rcpl.UIC.getEditor().getSelectedParagraph();
-					String fontName = node.getSelectionModel().getSelectedItem();
-					ICommand command = Rcpl.getFactory().createCommand(FontNameTool.this, paragraph, null, fontName);
-					Rcpl.service().execute(command);
-				}
-			}
-		};
-		node.valueProperty().addListener(changeListener);
-	}
-
-	private void removeListener() {
-		if (changeListener != null) {
-			node.valueProperty().removeListener(changeListener);
-			changeListener = null;
-		}
 	}
 
 	public void initSelection() {
@@ -145,25 +97,10 @@ public class FontNameTool extends RcplTool {
 			IFont font = Rcpl.globalStyleTemplate().getDefaultStyle().getFont();
 			selectFont(font);
 		}
-		// setFont(font);
 	}
 
 	public void selectFont(IFont font) {
 		node.getSelectionModel().select(font.getName());
-
-		// removeListener();
-		// enableEvents = false;
-		// for (String d : items) {
-		// if (d.doubleValue() >= h) {
-		// getSelectionModel().select(d);
-		// addListener();
-		// return;
-		// }
-		// }
-		// enableEvents = true;
-		// addListener();
-		// }
-
 	}
 
 	public void setStyle(IStyle style) {
@@ -175,9 +112,9 @@ public class FontNameTool extends RcplTool {
 
 				((Labeled) node)
 						.setFont(new RcplFont(style.getFont().getName(), height, style.getFont().getStyle()).getFx());
-				// if (style.getForeGround() != null) {
-				// ((Labeled) node).setTextFill(style.getForeGround().getFx());
-				// }
+				if (style.getForeGround() != null) {
+					((Labeled) node).setTextFill(style.getForeGround().getFx());
+				}
 				break;
 			}
 		}

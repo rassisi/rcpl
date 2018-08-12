@@ -6,9 +6,7 @@ package org.eclipse.rcpl;
  */
 public interface ITaskViewProvider {
 
-	void taskMessage(int taskNumber, String message);
-
-	void taskProgress(int taskNumber, double workDone, double maxWork);
+	void taskProgress(int taskNumber, String message, double workDone, double maxWork);
 
 	void startTask(String title, int taskNumber);
 

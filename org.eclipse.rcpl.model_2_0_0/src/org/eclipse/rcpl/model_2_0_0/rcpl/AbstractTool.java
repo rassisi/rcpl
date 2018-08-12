@@ -25,6 +25,7 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem <em>System</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isToggleGroup <em>Toggle Group</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool()
@@ -425,6 +426,32 @@ public interface AbstractTool extends Layoutable {
 	 * @generated
 	 */
 	void setUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Toggle Group</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Toggle Group</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Toggle Group</em>' attribute.
+	 * @see #setToggleGroup(boolean)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_ToggleGroup()
+	 * @model
+	 * @generated
+	 */
+	boolean isToggleGroup();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isToggleGroup <em>Toggle Group</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Toggle Group</em>' attribute.
+	 * @see #isToggleGroup()
+	 * @generated
+	 */
+	void setToggleGroup(boolean value);
 
 	/**
 	 * @return

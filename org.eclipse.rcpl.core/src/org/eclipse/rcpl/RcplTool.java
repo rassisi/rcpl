@@ -12,16 +12,21 @@ package org.eclipse.rcpl;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 
 /**
  * @author ramin
  *
  */
-public abstract class RcplTool implements ITool {
+public abstract class RcplTool<T> implements ITool {
 
 	protected AbstractTool tool;
 
@@ -31,14 +36,6 @@ public abstract class RcplTool implements ITool {
 
 	private Object data;
 
-//	public RcplTool(String id, String name, String toolTip, String imageName, boolean toggle) {
-//		this(RcplFactory.eINSTANCE.createTool());
-//		tool.setName(name);
-//		tool.setId(id);
-//		tool.setImage(imageName);
-//		tool.setToolTip(toolTip);
-//	}
-
 	/**
 	 * This constructor is for conveniant reflection (e.g. creation of a Navigator)
 	 */
@@ -46,8 +43,49 @@ public abstract class RcplTool implements ITool {
 	}
 
 	public RcplTool(AbstractTool tool) {
+		if (tool == null) {
+			tool = RcplFactory.eINSTANCE.createTool();
+			tool.setType(ToolType.BUTTON);
+			tool.setId("NULL_TOOL");
+		}
 		this.tool = tool;
+		tool.setData(this);
 		Rcpl.getEditorListeners().add(this);
+	}
+
+	private ChangeListener<T> changeListener;
+
+	/**
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	protected void addListener() {
+		changeListener = new ChangeListener<T>() {
+			@Override
+			public void changed(ObservableValue<? extends T> observable, T oldValue, T newValue) {
+				if (Rcpl.UIC.getEditor() != null) {
+					getTool().setData(RcplTool.this);
+					IParagraph paragraph = Rcpl.UIC.getEditor().getSelectedParagraph();
+					ICommand command = Rcpl.getFactory().createCommand(RcplTool.this, paragraph,
+							new Object[] { oldValue }, newValue);
+					Rcpl.service().execute(command);
+				}
+			}
+		};
+		if (getNode() instanceof ComboBox) {
+			((ComboBox<T>) getNode()).valueProperty().addListener(changeListener);
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	protected void removeListener() {
+		if (changeListener != null) {
+			if (getNode() instanceof ComboBox) {
+				((ComboBox<T>) getNode()).valueProperty().removeListener(changeListener);
+			}
+			changeListener = null;
+		}
 	}
 
 	@Override

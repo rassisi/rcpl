@@ -13,6 +13,13 @@ package org.eclipse.rcpl.internal.tools;
 
 import java.util.List;
 
+import org.eclipse.rcpl.EStyleType;
+import org.eclipse.rcpl.IFont;
+import org.eclipse.rcpl.IStyle;
+import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -22,17 +29,6 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
-
-import org.eclipse.rcpl.EStyleType;
-import org.eclipse.rcpl.IFont;
-import org.eclipse.rcpl.IResourceEntry;
-import org.eclipse.rcpl.IStyle;
-import org.eclipse.rcpl.IToolComponent;
-import org.eclipse.rcpl.IToolGroup;
-import org.eclipse.rcpl.IToolRegistry;
-import org.eclipse.rcpl.RcplTool;
-import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 public class CharacterStyleListTool extends RcplTool {
 
@@ -67,15 +63,6 @@ public class CharacterStyleListTool extends RcplTool {
 
 			}
 		});
-
-		// setOnAction(new EventHandler<ActionEvent>() {
-		//
-		// @Override
-		// public void handle(ActionEvent arg0) {
-		// String fontName = getSelectionModel().getSelectedItem();
-		// setFont(new JOFont(fontName, LABEL_FONT_SIZE, 0));
-		// }
-		// });
 
 		getNode().setPrefHeight(1000);
 		getNode().setPrefWidth(1000);

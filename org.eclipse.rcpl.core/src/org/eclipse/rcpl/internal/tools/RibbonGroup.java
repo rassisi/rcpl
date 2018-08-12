@@ -188,7 +188,7 @@ public class RibbonGroup extends RcplTool {
 			for (Tool t : toolGroup.getTools()) {
 				ITool n = Rcpl.getToolFactory().createTool(t, t.getWidth(), t.getHeight());
 				if (n instanceof IButton) {
-					if (ToolType.TOGGLEBUTTON.equals(t.getType())) {
+					if (ToolType.TOGGLEBUTTON.equals(t.getType()) && t.isToggleGroup()) {
 						toggleGroup.getToggles().add(((ToggleButton) n.getNode()));
 					}
 				}
@@ -227,9 +227,17 @@ public class RibbonGroup extends RcplTool {
 		int gridX = t.getGridX();
 		int gridY = t.getGridY();
 		add(hBox, gridX, gridY, spanX, spanY);
+		ToggleGroup toggleGroup = new ToggleGroup();
+
 		for (Tool t2 : t.getTools()) {
 			Node n = Rcpl.getToolFactory().createTool(t2).getNode();
-			n.setStyle("-fx-border-style: none;-fx-background-color: none;");
+
+			if (n instanceof IButton) {
+				if (ToolType.TOGGLEBUTTON.equals(t2.getType()) && t2.isToggleGroup()) {
+					toggleGroup.getToggles().add(((ToggleButton) n));
+				}
+			}
+
 			// String name = t2.getName();
 			String imageName = t2.getImage();
 			if (imageName != null) {

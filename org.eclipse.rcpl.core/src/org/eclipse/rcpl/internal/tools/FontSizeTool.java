@@ -11,7 +11,6 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.IFont;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
@@ -21,11 +20,9 @@ import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ComboBox;
 
-public class FontSizeTool extends RcplTool {
+public class FontSizeTool extends RcplTool<Double> {
 
 	Double[] items = new Double[] { 8.0, 10.0, 11.0, 12.0, 14.0, 16.0, 18.0, 20.0, 22.0, 24.0, 26.0, 28.0, 36.0, 48.0,
 			72.0 };
@@ -38,34 +35,6 @@ public class FontSizeTool extends RcplTool {
 		getNode().setPrefWidth(65);
 		initSelection();
 		addListener();
-	}
-
-	private ChangeListener<Double> changeListener;
-
-	/**
-	 * 
-	 */
-	private void addListener() {
-
-		changeListener = new ChangeListener<Double>() {
-			@Override
-			public void changed(ObservableValue<? extends Double> observable, Double oldValue, Double newValue) {
-
-				if (Rcpl.UIC.getEditor() != null) {
-					getTool().setData(FontSizeTool.this);
-					ICommand command = Rcpl.getFactory().createCommand(FontSizeTool.this);
-					Rcpl.service().execute(command);
-				}
-			}
-		};
-		getNode().valueProperty().addListener(changeListener);
-	}
-
-	private void removeListener() {
-		if (changeListener != null) {
-			getNode().valueProperty().removeListener(changeListener);
-			changeListener = null;
-		}
 	}
 
 	private void initSelection() {

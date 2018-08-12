@@ -19,7 +19,7 @@ import javafx.scene.layout.StackPane;
  */
 public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
-	private final long LONG_TASK_MILLIS = 1000;
+	private final long LONG_TASK_MILLIS = 3000;
 
 	protected StackPane progressViewArea = new StackPane();
 	private TaskProgressView<RcplTask> taskProgressView;
@@ -38,28 +38,21 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 		progressViewArea.getChildren().add(taskProgressView);
 	}
 
-	@Override
-	public void taskMessage(int taskNumber, String message) {
-		RcplTask task = tasks.get(taskNumber);
-		if (task != null) {
-			task.message(taskNumber, message);
-		}
-	}
-
 	public void taskDone(int taskNumber) {
 		tasks.get(taskNumber).cancel();
 	}
 
 	@Override
-	public void taskProgress(int taskNumber, double workDone, double maxWork) {
-		tasks.get(taskNumber).progress(taskNumber, workDone, maxWork);
+	public void taskProgress(int taskNumber, String message, double workDone, double maxWork) {
+		RcplTask task = tasks.get(taskNumber);
+		if (task != null) {
+			task.progress(taskNumber, message, workDone, maxWork);
+		}
 	}
 
 	protected class RcplTask extends Task<Void> {
 
 		private long startTime;
-
-		private double maxWork = 100.0;
 
 		private int taskNumber;
 
@@ -69,38 +62,26 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			this.startTime = System.currentTimeMillis();
 		}
 
-		public void message(int taskNumber, String msg) {
-			tasks.get(taskNumber).updateMessage(msg);
-			if (isLongTask()) {
-				expandTaskView();
-
-				System.out.println("*** LONG TASK " + taskNumber + " " + msg);
-
-			} else {
-
-				System.out.println("*** NO LONG TASK " + taskNumber + " " + msg);
-
+		public void progress(int taskNumber, String message, double workDone, double maxWork) {
+			if (maxWork == 0) {
+				maxWork = 100.0;
 			}
-		}
-
-		public void progress(int taskNumber, double workDone) {
+			System.out.println("workDone = " + workDone + "   maxWork = " + maxWork);
 			tasks.get(taskNumber).updateProgress(workDone, maxWork);
+
+			tasks.get(taskNumber).updateMessage(message);
 			if (isLongTask()) {
 				expandTaskView();
+				System.out.println("*** LONG TASK " + taskNumber + " " + message);
+			} else {
+				System.out.println("*** NO LONG TASK " + taskNumber + " " + message);
+
 			}
 		}
 
 		public boolean isLongTask() {
 			long diff = System.currentTimeMillis() - startTime;
-
-			System.out.println("diff = " + diff);
-
 			return diff > LONG_TASK_MILLIS;
-		}
-
-		public void progress(int taskNumber, double workDone, double maxWork) {
-			this.maxWork = maxWork;
-			progress(taskNumber, workDone);
 		}
 
 		@Override
@@ -154,10 +135,6 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			tasks.remove(taskNumber);
 
 			return null;
-		}
-
-		public void setMaxWork(double maxWork) {
-			this.maxWork = maxWork;
 		}
 
 	}

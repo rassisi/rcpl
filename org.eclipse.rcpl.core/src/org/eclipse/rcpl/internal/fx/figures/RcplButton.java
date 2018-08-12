@@ -151,6 +151,7 @@ public class RcplButton extends RcplTool implements IButton {
 				}
 			});
 		}
+
 		String imageName = getTool().getImage();
 		if (imageName == null) {
 			imageName = getTool().getId();
@@ -290,131 +291,162 @@ public class RcplButton extends RcplTool implements IButton {
 
 	@Override
 	public void update(RcplEvent event) {
-		try {
-			if (getTool() != null) {
-				String id = getTool().getId();
-				if (id == null || "".equals(id)) {
-					return;
-				}
+		if (getTool() != null) {
 
-				removeToggleButtonListener();
-				EnCommandId cmd = EnCommandId.valueOf(id);
-				switch (cmd) {
-				case INSERT_PARAGRAPH:
-					break;
-				case NO_COMMAND:
-					break;
-				case USE_CASE:
-					break;
-				case align_text_center:
-					updateAlign(event, AlignType.CENTER);
-					break;
-				case align_text_justify:
-					updateAlign(event, AlignType.BOTH);
-					break;
-				case align_text_left:
-					updateAlign(event, AlignType.LEFT);
-					break;
-				case align_text_right:
-					updateAlign(event, AlignType.RIGHT);
-					break;
-				case backgroundColor:
-					break;
-				case bold:
-					updateBold(event);
-					break;
-				case characterStyle:
-					break;
-				case collapse_all:
-					break;
-				case expandAfter:
-					break;
-				case expandBefore:
-					break;
+			String id = getTool().getId();
+			if (id == null || "".equals(id)) {
+				return;
+			}
+			if (!ToolType.TOGGLEBUTTON.equals(getTool().getType())) {
+				return;
+			}
 
-				case foregroundColor:
-					break;
-				case insertDrawing:
-					break;
-				case insertText:
-					break;
-				case italic:
-					updateItalic(event);
-					break;
-				case layout:
-					break;
-				case layoutPages:
-					break;
-				case redo:
-					break;
-				case setStyle:
-					break;
-				case showOutline:
-					break;
-				case showRulers:
-					break;
-				case showStartMenu:
-					break;
-				case splitParagraph:
-					break;
-				case strikethrough:
-					break;
-				case textStyleListTool:
-					break;
-				case underline:
-					updateUnderline(event);
-					break;
-				case undo:
-					break;
-				case updateParagraph:
-					break;
-				case style_normal:
-				case style_title:
-				case style_heading_1:
-				case style_heading_2:
-				case style_heading_3:
-				case style_heading_4:
-					if (event.getStyle() != null) {
-						updateStyle(event, cmd);
-					}
-					break;
-				default:
-					break;
-
-				}
+			ToggleButton toggleButton = (ToggleButton) getNode();
+			removeToggleButtonListener();
+			EnCommandId cmd;
+			try {
+				cmd = EnCommandId.valueOf(id);
+			} catch (IllegalArgumentException ex) {
+				// There is no value for this id
+				return;
+			}
+			boolean select = false;
+			boolean found = false;
+			switch (cmd) {
+			case align_text_center:
+				found = true;
+				select = isAlign(event, AlignType.CENTER);
+				break;
+			case align_text_justify:
+				select = isAlign(event, AlignType.BOTH);
+				break;
+			case align_text_left:
+				found = true;
+				select = isAlign(event, AlignType.LEFT);
+				break;
+			case align_text_right:
+				found = true;
+				select = isAlign(event, AlignType.RIGHT);
+				break;
+			case backgroundColor:
+				break;
+			case bold:
+				found = true;
+				select = isBold(event);
+				break;
+			case italic:
+				found = true;
+				select = isItalic(event);
+				break;
+			case underline:
+				found = true;
+				select = isUnderline(event);
+				break;
+			case style_normal:
+				found = true;
+				select = isNormalStyle(event, cmd);
+				break;
+			case style_title:
+				found = true;
+				select = isTitleStyle(event, cmd);
+				break;
+			case style_heading_1:
+				found = true;
+				select = isHeading1Style(event, cmd);
+				break;
+			case style_heading_2:
+				found = true;
+				select = isHeading2Style(event, cmd);
+				break;
+			case style_heading_3:
+				found = true;
+				select = isHeading3Style(event, cmd);
+				break;
+			case style_heading_4:
+				found = true;
+				select = isHeading4Style(event, cmd);
+				break;
+			default:
+				break;
 
 			}
-		} catch (Exception ex) {
-			// ignore
+			if (found) {
+//				if (select) 
+
+				{
+					System.out.println(cmd.getId() + ": " + select);
+					System.out.println("-----------------------------------------");
+					System.out.println();
+					System.out.println();
+					System.out.println();
+				}
+				toggleButton.setSelected(select);
+
+			}
+
 		}
+
 		addToggleButtonListener();
 	}
 
-	private void updateStyle(RcplEvent event, EnCommandId cmd) {
+	private boolean isNormalStyle(RcplEvent event, EnCommandId cmd) {
 		IStyle style = findSelectedStyle(event);
-		switch (cmd) {
-		case style_normal:
-			((ToggleButton) getNode()).setSelected("Normal".equals(style.getName()));
-			break;
-		case style_title:
-			((ToggleButton) getNode()).setSelected("Title".equals(style.getName()));
-			break;
-		case style_heading_1:
-			((ToggleButton) getNode()).setSelected("heading 1".equals(style.getName()));
-			break;
-		case style_heading_2:
-			((ToggleButton) getNode()).setSelected("heading 2".equals(style.getName()));
-			break;
-		case style_heading_3:
-			((ToggleButton) getNode()).setSelected("heading 3".equals(style.getName()));
-			break;
-		case style_heading_4:
-			((ToggleButton) getNode()).setSelected("heading 4".equals(style.getName()));
-			break;
-		default:
-			break;
-		}
+		if (style != null) {
+			String styleName = style.getName();
+			return "Standard".equals(styleName) || "Normal".equals(styleName);
 
+		}
+		return false;
+	}
+
+	private boolean isTitleStyle(RcplEvent event, EnCommandId cmd) {
+		IStyle style = findSelectedStyle(event);
+		if (style != null) {
+			String styleName = style.getName();
+			return "Title".equals(styleName);
+
+		}
+		return false;
+	}
+
+	private boolean isHeading1Style(RcplEvent event, EnCommandId cmd) {
+		IStyle style = findSelectedStyle(event);
+		if (style != null) {
+			String styleName = style.getName();
+			return "heading 1".equals(styleName);
+
+		}
+		return false;
+	}
+
+	private boolean isHeading2Style(RcplEvent event, EnCommandId cmd) {
+		IStyle style = findSelectedStyle(event);
+		if (style != null) {
+			String styleName = style.getName();
+			return "heading 2".equals(styleName);
+
+		}
+		return false;
+	}
+
+	private boolean isHeading3Style(RcplEvent event, EnCommandId cmd) {
+		IStyle style = findSelectedStyle(event);
+		if (style != null) {
+			String styleName = style.getName();
+			return "heading 3".equals(styleName);
+
+		}
+		return false;
+	}
+
+	private boolean isHeading4Style(RcplEvent event, EnCommandId cmd) {
+		IStyle style = findSelectedStyle(event);
+		if (style != null) {
+			String styleName = style.getName();
+			return "heading 4".equals(styleName);
+
+		}
+		return false;
 	}
 
 	private IStyle findSelectedStyle(RcplEvent event) {
@@ -426,47 +458,31 @@ public class RcplButton extends RcplTool implements IButton {
 		return null;
 	}
 
-	// private IStyle getParagraphStyle(JOEvent event) {
-	// ILayoutObject lo = event.getLayoutObject();
-	// if (lo instanceof IParagraph) {
-	// IParagraph p = (IParagraph) lo;
-	// return p.getStyle();
-	// }
-	// return null;
-	// }
-
-	private void updateBold(RcplEvent event) {
+	private boolean isBold(RcplEvent event) {
 		IStyle style = findSelectedStyle(event);
-		if (style != null) {
-			((ToggleButton) getNode()).setSelected(style.isBold());
-		}
+		return style != null && style.isBold();
 	}
 
-	private void updateItalic(RcplEvent event) {
+	private boolean isItalic(RcplEvent event) {
 		IStyle style = findSelectedStyle(event);
-		if (style != null) {
-			((ToggleButton) getNode()).setSelected(style.isItalic());
-		}
+		return style != null && style.isItalic();
 	}
 
-	private void updateUnderline(RcplEvent event) {
+	private boolean isUnderline(RcplEvent event) {
 		IStyle style = findSelectedStyle(event);
-		if (style != null) {
-			((ToggleButton) getNode()).setSelected(style.isUnderline());
-		}
+		return style != null && style.isUnderline();
 	}
 
-	private void updateAlign(RcplEvent event, AlignType type) {
+	private boolean isAlign(RcplEvent event, AlignType type) {
 		ILayoutObject lo = event.getLayoutObject();
 		if (lo instanceof IParagraph) {
 			IParagraph p = (IParagraph) lo;
 			IAlignment al = p.getAlignment();
 			if (al != null) {
-				removeToggleButtonListener();
-				((ToggleButton) getNode()).setSelected(al.getType().equals(type));
-				addToggleButtonListener();
+				return al.getType().equals(type);
 			}
 		}
+		return false;
 	}
 
 	@Override

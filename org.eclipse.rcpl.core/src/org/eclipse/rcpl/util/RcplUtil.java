@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.xmlbeans.XmlObject;
 import org.eclipse.rcpl.EnMeasurementUnits;
 import org.eclipse.rcpl.EnPageSize;
@@ -830,4 +831,13 @@ public class RcplUtil {
 		} catch (InterruptedException e) {
 		}
 	}
+
+	public static boolean compareContent(File file1, File file2) {
+		try {
+			return FileUtils.contentEquals(file1, file2);
+		} catch (IOException e) {
+			return false;
+		}
+	}
+
 }

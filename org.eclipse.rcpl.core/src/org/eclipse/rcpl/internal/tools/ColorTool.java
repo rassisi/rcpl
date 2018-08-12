@@ -20,21 +20,21 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.paint.Color;
 
 /**
  * @author ramin
  *
  */
-public class ColorTool extends RcplTool {
+public class ColorTool extends RcplTool<Color> {
 
 	@Override
 	public ColorPicker getNode() {
 		return (ColorPicker) super.getNode();
 	}
 
-	public ColorTool(Tool eTool) {
-		super(eTool);
-		eTool.setData(this);
+	public ColorTool(Tool model) {
+		super(model);
 
 		getNode().setOnAction(new EventHandler<ActionEvent>() {
 			@Override

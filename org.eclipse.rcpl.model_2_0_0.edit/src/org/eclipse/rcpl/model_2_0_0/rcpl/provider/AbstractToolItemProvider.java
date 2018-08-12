@@ -58,6 +58,7 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			addTypePropertyDescriptor(object);
 			addSystemPropertyDescriptor(object);
 			addUrlPropertyDescriptor(object);
+			addToggleGroupPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -393,6 +394,28 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Toggle Group feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addToggleGroupPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTool_toggleGroup_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTool_toggleGroup_feature", "_UI_AbstractTool_type"),
+				 RcplPackage.Literals.ABSTRACT_TOOL__TOGGLE_GROUP,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
@@ -430,6 +453,7 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			case RcplPackage.ABSTRACT_TOOL__TYPE:
 			case RcplPackage.ABSTRACT_TOOL__SYSTEM:
 			case RcplPackage.ABSTRACT_TOOL__URL:
+			case RcplPackage.ABSTRACT_TOOL__TOGGLE_GROUP:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -29,6 +29,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isSystem <em>System</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isToggleGroup <em>Toggle Group</em>}</li>
  * </ul>
  *
  * @generated
@@ -319,6 +320,24 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 */
 	public void setUrl(String newUrl) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__URL, newUrl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isToggleGroup() {
+		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__TOGGLE_GROUP, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setToggleGroup(boolean newToggleGroup) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__TOGGLE_GROUP, newToggleGroup);
 	}
 
 	private Object data;
