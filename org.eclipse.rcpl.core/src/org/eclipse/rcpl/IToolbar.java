@@ -6,4 +6,6 @@ public interface IToolbar {
 
 	void showPerspective(Perspective perspective);
 
+	void clear();
+
 }

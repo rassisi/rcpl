@@ -32,8 +32,8 @@ import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleException;
 import org.eclipse.rcpl.IDetailPage;
 import org.eclipse.rcpl.IModelDetailPage;
-import org.eclipse.rcpl.INavigatorListener;
 import org.eclipse.rcpl.IModelManager;
+import org.eclipse.rcpl.INavigatorListener;
 import org.eclipse.rcpl.IOfficeUIC;
 import org.eclipse.rcpl.IResourceEntry;
 import org.eclipse.rcpl.IToolComponent;
@@ -79,7 +79,7 @@ import javafx.scene.layout.Pane;
  * @author ramin
  *
  */
-public class DefaultNavigatorTreePart extends RcplTool implements ITreePart {
+public class DefaultNavigatorTreePart extends RcplTool<EObject> implements ITreePart {
 
 	private TreeView<Object> treeView;
 

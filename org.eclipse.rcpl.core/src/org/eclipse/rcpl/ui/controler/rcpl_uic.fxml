@@ -79,7 +79,7 @@
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin></HBox>
-                              <HBox fx:id="titleArea" prefHeight="100.0" prefWidth="200.0">
+                              <HBox fx:id="titleArea" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin></HBox>

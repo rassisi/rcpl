@@ -188,8 +188,6 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	private String perspektiveType;
 
-	private RCPL rcpl;
-
 	private boolean reachable;
 
 	private Realm realm;
@@ -211,6 +209,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	private Resource xmiRcpl;
 
 	private Resource xmiApplication;
+
+	private Resource xmiLocalApplication;
 
 	/**
 	 * @param port
@@ -273,6 +273,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	@Override
 	public void close(boolean commit, boolean close) {
 
+		saveXMI_Local(false);
+
 		if (cdoSession != null) {
 
 			if (hasTemplatesWriterRole()) {
@@ -288,24 +290,18 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			}
 
 			if (close) {
-				try {
-					// if (!transaction.isClosed()) {
-					// transaction.close();
-					// }
-					transaction = null;
-				} catch (Exception ex) {
-					//
-				}
+//				try {
+//					transaction = null;
+//				} catch (Exception ex) {
+//					System.out.println();
+//				}
 				try {
 					cdoSession.close();
 					cdoSession = null;
 				} catch (Exception ex) {
-					//
+					System.err.println(ex.getMessage());
 				}
 			}
-		} else {
-			saveXMI_Local(false);
-			saveXMI_Local(true);
 		}
 
 		xmiRcpl = null;
@@ -672,22 +668,22 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	 */
 	@Override
 	public RCPL getRcpl() {
-		if (rcpl == null) {
-			rcpl = (RCPL) getRcplEmfResource().getContents().get(0);
-		}
-		return rcpl;
+		return (RCPL) getRcplEmfResource().getContents().get(0);
 	}
 
 	@Override
 	public T getApplicationRootObject() {
 
-		EList<EObject> contents = getApplicationEmfResource().getContents();
+		if (getApplicationEmfResource() != null) {
+			EList<EObject> contents = getApplicationEmfResource().getContents();
 
-		if (contents.isEmpty()) {
-			return null;
+			if (contents.isEmpty()) {
+				return null;
+			}
+			T result = (T) contents.get(0);
+			return result;
 		}
-		T result = (T) contents.get(0);
-		return result;
+		return null;
 	}
 
 	protected Realm getRealm() {
@@ -1008,18 +1004,19 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	// }
 
 	private void saveXMI_Local(boolean application) {
-		Resource resource;
-		if (application) {
-			resource = xmiRcpl;
-		} else {
-			resource = xmiApplication;
-		}
-		File localXMIFile = getLocalXmiFile(application);
-		URI xmiURI = URI.createFileURI(localXMIFile.getAbsolutePath());
-		resource.setURI(xmiURI);
 		try {
+			Resource resource;
+			if (application) {
+				resource = xmiApplication;
+			} else {
+				resource = xmiRcpl;
+			}
+			File localXMIFile = getLocalXmiFile(application);
+			URI xmiURI = URI.createFileURI(localXMIFile.getAbsolutePath());
+			resource.setURI(xmiURI);
+
 			resource.save(Collections.EMPTY_MAP);
-		} catch (IOException e1) {
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -1127,8 +1124,9 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	@Override
 	public boolean start() throws Throwable {
 
+		// ---------- load Rcpl model always locally
+
 		loadLocalXMI(false);
-//		loadLocalXMI(true);
 
 //		if ("demo".equals(userId) || "".equals(userId)) {
 //			return true;
@@ -1136,10 +1134,11 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 		try {
 
 			userId = "Administrator";
-			password = "rXmLf5262";
+			password = "0000";
 			openSessionAndTransaction(userId, password);
 
 			if (!isOnline()) {
+				loadLocalXMI(true);
 				return false;
 			}
 
@@ -1153,7 +1152,13 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 					"/home/" + userId + "/" + AbstractSession.applicationId.getId() + RCPLModel.XMI_EXTENSION); //$NON-NLS-1$
 
 			if (getContents().isEmpty()) {
-				createInitialApplicationModel(getContents());
+
+				if (getContents().isEmpty()) {
+					loadLocalXMI(true);
+					getContents().add(xmiLocalApplication.getContents().get(0));
+					commit();
+				}
+//				createInitialApplicationModel(getContents());
 			}
 
 		} catch (CDOException ex) {
@@ -1166,28 +1171,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			}
 		} catch (Exception ex) {
 			loadLocalXMI(true);
+			xmiApplication = xmiLocalApplication;
 		}
-
-//		if (getContents().isEmpty()) {
-//			DEBUG_RECREATE = true;
-//		}
-//
-//		if (DEBUG_RECREATE) {
-//			while (!getContents().isEmpty()) {
-//				getContents().remove(0);
-//			}
-//			EList<EObject> cont = null;
-//			cont = xmiRcpl.getContents();
-//			for (EObject eo : cont) {
-//				EObject eo2 = EcoreUtil.copy(eo);
-//				if (eo2 instanceof RCPL) {
-//					getContents().add(eo2);
-//					break;
-//				}
-//			}
-//
-//			commit();
-//		}
 
 		return true;
 	}
@@ -1261,12 +1246,11 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			String fileName = getLocalXmiFileName(application);
 			File localXMIFile = getLocalXmiFile(application);
 
-			// compare local XML File with the resource
+			// ---------- compare local XML File with the resource
 
 			File tempXMIFile = File.createTempFile("rcpl_temp_", "temp");
 
 			try {
-
 				AUtil.copyInputStream(RCPLModel.modelClass.getResourceAsStream(fileName), tempXMIFile);
 			} catch (Throwable ex) {
 				RCPLModel.logError(ex);
@@ -1295,9 +1279,9 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
 			Resource resource;
 			if (application) {
-				xmiApplication = rs.createResource(xmiURI);
-				xmiApplication.setURI(xmiURI);
-				resource = xmiApplication;
+				xmiLocalApplication = rs.createResource(xmiURI);
+				xmiLocalApplication.setURI(xmiURI);
+				resource = xmiLocalApplication;
 
 			} else {
 				xmiRcpl = rs.createResource(xmiURI);

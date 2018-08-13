@@ -234,10 +234,13 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 	@Override
 	public void reStart() {
+		RcplSession.getDefault().close(true, true);
+		Rcpl.UIC.getTopToolBar().clear();
+		Rcpl.UIC.getSideToolBarControl().clear();
+
 		while (!((Pane) primaryStage.getScene().getRoot()).getChildren().isEmpty()) {
 			((Pane) primaryStage.getScene().getRoot()).getChildren().remove(0);
 		}
-		RcplSession.getDefault().close(true, true);
 		start(primaryStage);
 	}
 

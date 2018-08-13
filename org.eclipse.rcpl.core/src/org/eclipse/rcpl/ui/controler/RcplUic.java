@@ -92,6 +92,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -102,11 +103,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 import javafx.stage.Screen;
@@ -141,7 +138,7 @@ public class RcplUic implements IRcplUic {
 
 	protected IButton buttonHome;
 
-	protected Text titleText;
+	protected Label titleText;
 
 	protected Node onlineOfflineView;
 
@@ -261,8 +258,6 @@ public class RcplUic implements IRcplUic {
 
 	protected IRcplAddon internalActiveAddon;
 
-	protected TextFlow internalTitle;
-
 	protected TabPane internalTabPane;
 
 	protected StackPane internalHomeStackPane;
@@ -349,6 +344,8 @@ public class RcplUic implements IRcplUic {
 		this(rcplApplicationStarter, "Rcpl");
 	}
 
+	private Button returnButton;
+
 	/**
 	 * @param rcplApplicationStarter
 	 * @param id
@@ -373,12 +370,21 @@ public class RcplUic implements IRcplUic {
 		this.logTextArea.setEditable(false);
 		this.logTextArea.setWrapText(true);
 		logPage.getChildren().addAll(new Label("Errors"), errorTextArea, new Label("Logs"), logTextArea);
-		Button returnButton = new Button("return");
+		returnButton = new Button("return");
 		returnButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				showHomePage(HomePageType.OVERVIEW, null);
+			}
+		});
+		returnButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if ("\r".equals(event.getText())) {
+					showHomePage(HomePageType.OVERVIEW, null);
+				}
 			}
 		});
 		Button clearButton = new Button("clear");
@@ -514,24 +520,21 @@ public class RcplUic implements IRcplUic {
 		internalHtmlEditor = new HTMLEditor();
 		internalHtmlEditor.setPrefSize(2000, 2000);
 
-		internalTitle = new TextFlow();
-
-		Text txt_1 = new Text(name.substring(0, 1) + " ");
-		txt_1.setFont(Font.font(null, FontWeight.BOLD, FontPosture.ITALIC, 18));
-		Text txt_2 = new Text(name.substring(1));
-		txt_1.setStyle("-fx-fill:linear-gradient(darkgray, gray)");
-		txt_2.setFont(Font.font(null, FontWeight.BOLD, 16));
-		// txt_2.setStyle("-fx-fill: linear-gradient(from 0% 0% to 100%
-		// 200%,
-		// repeat, green 0%, seagreen 50%);"
-		// + " -fx-stroke: darkgreen; -fx-stroke-width: 1;");
-
-		txt_2.setStyle("-fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, darkgray 0%, gray 50%);"
-				+ " -fx-stroke: black; -fx-stroke-width: 0.2;");
-
-		internalTitle.getChildren().addAll(txt_1, txt_2);
+//		Text txt_1 = new Text(name.substring(0, 1) + " ");
+//		txt_1.setFont(Font.font(null, FontWeight.BOLD, FontPosture.ITALIC, 18));
+//		Text txt_2 = new Text(name.substring(1));
+//		txt_1.setStyle("-fx-fill:linear-gradient(darkgray, gray)");
+//		txt_2.setFont(Font.font(null, FontWeight.BOLD, 16));
+//		// txt_2.setStyle("-fx-fill: linear-gradient(from 0% 0% to 100%
+//		// 200%,
+//		// repeat, green 0%, seagreen 50%);"
+//		// + " -fx-stroke: darkgreen; -fx-stroke-width: 1;");
+//
+//		txt_2.setStyle("-fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, darkgray 0%, gray 50%);"
+//				+ " -fx-stroke: black; -fx-stroke-width: 0.2;");
+//		internalTitle.getChildren().addAll(txt_1, txt_2);
 //		HBox.setMargin(internalTitle, new Insets(4, 10, 0, -28));
-		HBox.setMargin(internalTitle, new Insets(0, 0, 0, 0));
+//		HBox.setMargin(internalTitle, new Insets(0, 0, 0, 0));
 
 		internalWebView = new WebView();
 
@@ -1157,9 +1160,10 @@ public class RcplUic implements IRcplUic {
 			homePage.getNode().toFront();
 		} else {
 			setContent(homePage.getNode());
-			homePage.refresh();
-			updateButtons(true);
 		}
+
+		homePage.refresh();
+		updateButtons(true);
 
 		HomePage model = homePage.getModel();
 		showPerspective(model.getPerspective());
@@ -1203,6 +1207,7 @@ public class RcplUic implements IRcplUic {
 		errorTextArea.setText(RCPLModel.errorBuf.toString());
 		logTextArea.setText(RCPLModel.logBuf.toString());
 		setContent(logPage);
+		returnButton.requestFocus();
 	}
 
 	public void showMessage(final String title, final String message) {
@@ -1598,16 +1603,11 @@ public class RcplUic implements IRcplUic {
 	}
 
 	private void createTitelArea() {
-		titleText = new Text(getApplicationStarter().getVersionString() + " - " + RcplSession.getDefault().getUserId()
+		titleText = new Label(getApplicationStarter().getVersionString() + " - " + RcplSession.getDefault().getUserId()
 				+ " (" + (RcplSession.getDefault().isOnline() ? "Online" : "Offline") + ")");
-		titleText.setId("joffice_title_version");
-		titleText.setOpacity(0.8);
-		if (Rcpl.isMobile()) {
-			titleArea.setAlignment(Pos.CENTER_LEFT);
-		} else {
-			titleArea.setAlignment(Pos.CENTER_RIGHT);
-		}
-
+		titleText.setId("title_version");
+		titleArea.setAlignment(Pos.CENTER_LEFT);
+		HBox.setHgrow(titleText, Priority.ALWAYS);
 		StackPane.setAlignment(titleText, Pos.TOP_LEFT);
 		StackPane.setMargin(titleText, new Insets(7, 0, 0, 55));
 
@@ -1710,7 +1710,7 @@ public class RcplUic implements IRcplUic {
 			}
 		});
 
-		titleArea.getChildren().add(internalTitle);
+		titleArea.getChildren().add(titleText);
 
 		Tool tool = RcplFactory.eINSTANCE.createTool();
 		tool.setId("logout");

@@ -16,8 +16,10 @@ import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -79,6 +81,21 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 			treeViewPane.getChildren().add(tv);
 		}
 		getTreePart().setRoot(getRoot());
+
+		treePart.getNode().requestFocus();
+
+		treePart.getNode().setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if ("x".contentEquals(event.getText())) {
+					if (event.isControlDown()) {
+						uic.showErrorPage();
+					}
+				}
+			}
+		});
+
 	}
 
 	protected ITreePart getTreePart() {

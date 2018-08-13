@@ -69,13 +69,13 @@ public abstract class AbstractHomePage implements IHomePage {
 
 		vBox = new VBox();
 
-		vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				uic.showErrorPage();
-			}
-		});
+//		vBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//
+//			@Override
+//			public void handle(MouseEvent event) {
+//				uic.showErrorPage();
+//			}
+//		});
 
 		vBox.setOnSwipeLeft(new EventHandler<SwipeEvent>() {
 

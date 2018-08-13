@@ -47,6 +47,11 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	public static final int COLLAPSED_HEIGHT = 10;
 
+	@Override
+	public void clear() {
+		toolPaneRegistry.clear();
+	}
+
 	public RcplTopToolBar(StackPane parent) {
 		Rcpl.topToolbar = this;
 		init();
