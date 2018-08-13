@@ -110,6 +110,7 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	private List<Object> processedList = new ArrayList<Object>();
 
+	@Override
 	public void clear() {
 		titlePaneRegistry.clear();
 		toolPaneStackRegistry.clear();
@@ -487,6 +488,10 @@ public class RcplSideToolBar implements ISideToolBar {
 	private void processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspective,
 			final ToolGroup toolGroup) {
 
+		if ("PERSPECTIVE_ACCOUNTS".equals(perspective.getId())) {
+			System.out.println();
+		}
+
 		IButton b = new RcplButton(toolGroup) {
 			@Override
 			public void doAction() {
@@ -499,7 +504,10 @@ public class RcplSideToolBar implements ISideToolBar {
 			}
 		};
 
-		if (toolGroup.getUrl() == null & toolGroup.getDetailPaneClassName() == null) {
+		String url = toolGroup.getUrl();
+		String detailPaneClassName = toolGroup.getDetailPaneClassName();
+
+		if ((url == null || "".contentEquals(url)) && (detailPaneClassName == null || "".equals(detailPaneClassName))) {
 			b.disableService();
 		}
 

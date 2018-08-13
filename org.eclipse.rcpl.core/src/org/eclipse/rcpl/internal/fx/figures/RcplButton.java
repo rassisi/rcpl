@@ -46,7 +46,7 @@ import javafx.scene.input.MouseEvent;
  * @author ramin
  *
  */
-public class RcplButton extends RcplTool implements IButton {
+public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 	private Node imageNode;
 
