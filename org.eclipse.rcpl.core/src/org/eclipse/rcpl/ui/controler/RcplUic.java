@@ -1346,7 +1346,7 @@ public class RcplUic implements IRcplUic {
 //				urlAddressTool.setText(getBrowser().getEngine().getLocation());
 //			}
 		} catch (Exception ex) {
-
+			Rcpl.printErrorln("", ex);
 		}
 	}
 

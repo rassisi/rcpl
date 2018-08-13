@@ -1139,7 +1139,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 			if (!isOnline()) {
 				loadLocalXMI(true);
-				return false;
+				xmiApplication = xmiLocalApplication;
+				return true;
 			}
 
 			try {
