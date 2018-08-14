@@ -290,6 +290,10 @@ public class RcplSideToolBar implements ISideToolBar {
 	private void processAccordion(ToolGroup toolGroup, Accordion accordion, AccordionColorTitlePane titlePane,
 			int hierarchy) {
 
+		if ("TOOLBAR_SHAPES".equals(toolGroup.getId())) {
+			System.out.println();
+		}
+
 		// ---------- If there are no top level groups then process only Tools -
 
 		if (!groupHasAccordionItems(toolGroup)) {
@@ -318,7 +322,8 @@ public class RcplSideToolBar implements ISideToolBar {
 		// ---------- process all groups ---------------------------------------
 
 		for (ToolGroup accordionGroup : toolGroup.getToolGroups()) {
-			if (accordionGroup.getType() == null || GroupType.ACCORDIONITEM.equals(accordionGroup.getType())) {
+			if (accordionGroup.getGroupType() == null
+					|| GroupType.ACCORDIONITEM.equals(accordionGroup.getGroupType())) {
 				processAccordion(accordionGroup, accordion, titlePane, hierarchy + 1);
 			}
 		}
@@ -771,7 +776,7 @@ public class RcplSideToolBar implements ISideToolBar {
 	private boolean groupHasAccordionItems(ToolGroup toolGroup) {
 
 		for (ToolGroup t : toolGroup.getToolGroups()) {
-			if (t.getType() == null || GroupType.ACCORDIONITEM.equals(t.getType())) {
+			if (t.getGroupType() == null || GroupType.ACCORDIONITEM.equals(t.getGroupType())) {
 				return true;
 			}
 		}
