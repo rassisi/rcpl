@@ -52,9 +52,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
-import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
-import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.eclipse.rcpl.util.WaitThread;
@@ -468,7 +466,7 @@ public class RcplUic implements IRcplUic {
 	public void closeTab(final Tab tab) {
 		TabInfo tabInfo = getTabInfo(tab);
 		tab.setUserData(null);
-		if (tabInfo.getEditor() != null) {
+		if (tabInfo != null && tabInfo.getEditor() != null) {
 			tabInfo.getEditor().getMainPane().toBack();
 
 			if (tabInfo.getEditor().getDocument() != null) {
@@ -519,22 +517,6 @@ public class RcplUic implements IRcplUic {
 
 		internalHtmlEditor = new HTMLEditor();
 		internalHtmlEditor.setPrefSize(2000, 2000);
-
-//		Text txt_1 = new Text(name.substring(0, 1) + " ");
-//		txt_1.setFont(Font.font(null, FontWeight.BOLD, FontPosture.ITALIC, 18));
-//		Text txt_2 = new Text(name.substring(1));
-//		txt_1.setStyle("-fx-fill:linear-gradient(darkgray, gray)");
-//		txt_2.setFont(Font.font(null, FontWeight.BOLD, 16));
-//		// txt_2.setStyle("-fx-fill: linear-gradient(from 0% 0% to 100%
-//		// 200%,
-//		// repeat, green 0%, seagreen 50%);"
-//		// + " -fx-stroke: darkgreen; -fx-stroke-width: 1;");
-//
-//		txt_2.setStyle("-fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, darkgray 0%, gray 50%);"
-//				+ " -fx-stroke: black; -fx-stroke-width: 0.2;");
-//		internalTitle.getChildren().addAll(txt_1, txt_2);
-//		HBox.setMargin(internalTitle, new Insets(4, 10, 0, -28));
-//		HBox.setMargin(internalTitle, new Insets(0, 0, 0, 0));
 
 		internalWebView = new WebView();
 
@@ -678,6 +660,9 @@ public class RcplUic implements IRcplUic {
 		}
 		Tab tab = internalTabPane.getSelectionModel().getSelectedItem();
 		TabInfo tabInfo = getTabInfo(tab);
+		if (tabInfo == null) {
+			return null;
+		}
 		return tabInfo.getEditor();
 	}
 
@@ -1160,9 +1145,9 @@ public class RcplUic implements IRcplUic {
 			homePage.getNode().toFront();
 		} else {
 			setContent(homePage.getNode());
+			homePage.refresh();
 		}
 
-		homePage.refresh();
 		updateButtons(true);
 
 		HomePage model = homePage.getModel();
@@ -1712,10 +1697,7 @@ public class RcplUic implements IRcplUic {
 
 		titleArea.getChildren().add(titleText);
 
-		Tool tool = RcplFactory.eINSTANCE.createTool();
-		tool.setId("logout");
-		tool.setType(ToolType.BUTTON);
-		IButton logoutButton = new RcplButton(tool) {
+		IButton logoutButton = new RcplButton("logout") {
 			@Override
 			public void doAction() {
 				actionLogout();

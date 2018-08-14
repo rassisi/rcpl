@@ -27,6 +27,7 @@ import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
@@ -60,6 +61,12 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 	public boolean isToggle() {
 		return ToolType.TOGGLEBUTTON.equals(getTool().getType());
+	}
+
+	public RcplButton(String id) {
+		super(RcplFactory.eINSTANCE.createTool());
+		tool.setId(id);
+		tool.setType(ToolType.BUTTON);
 	}
 
 	public RcplButton(AbstractTool tool) {
