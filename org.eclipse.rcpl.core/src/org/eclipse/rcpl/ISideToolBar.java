@@ -12,16 +12,11 @@ public interface ISideToolBar extends IToolbar {
 	public final static int WIDTH_HIDDEN_BOTTOM = WIDTH_HIDDEN + 6;
 	public final static int WIDTH_COLLAPSED = 44; // 51;
 	public final static int WIDTH_COLLAPSED_MOBILE = 20; // 51;
-
 	public final static int WIDTH_COLLAPSED_BOTTOM = WIDTH_COLLAPSED + 6;
-
 	public final static int WIDTH_EXPANDED_1 = 364;
-
 	public final static int WIDTH_EXPANDED_IMAGES = 364; // 550;
 
 	void collapseToolPane();
-
-	void expandHierarchy2();
 
 	void init();
 

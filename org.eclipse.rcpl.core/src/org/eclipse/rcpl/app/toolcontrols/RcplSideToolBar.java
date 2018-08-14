@@ -25,7 +25,6 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.ColorTool;
 import org.eclipse.rcpl.model.RCPLModel;
-import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -41,19 +40,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -63,12 +57,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
@@ -77,69 +65,6 @@ import javafx.util.Duration;
  *
  */
 public class RcplSideToolBar implements ISideToolBar {
-
-	class AccordionColorTitlePane extends TitledPane {
-		private Pane pane;
-		private Rectangle rect;
-		private ToolGroup toolGroup;
-
-		AccordionColorTitlePane(ToolGroup toolGroup, Node node, int hierarchy) {
-			super(toolGroup.getName(), node);
-			this.toolGroup = toolGroup;
-			titlePaneRegistry.put(toolGroup.getId(), this);
-			setTextAlignment(TextAlignment.CENTER);
-			setGraphicTextGap(10);
-			setAnimated(false);
-			if (hierarchy == 0) {
-				setText("");
-				setUnderline(true);
-			} else if (hierarchy > 1) {
-				setPadding(new Insets(0, 0, 0, 20));
-			}
-
-			if (hierarchy == 0) {
-
-				setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-					@Override
-					public void handle(MouseEvent event) {
-						double y = event.getY();
-
-						if (y < 40) {
-							collapseToolPane();
-						}
-					}
-				});
-			}
-
-		}
-
-		public ToolGroup getToolGroup() {
-			return toolGroup;
-		}
-
-		void setColor(Tool colorTool, Color color, boolean update) {
-			if (rect == null) {
-				pane = new HBox();
-				rect = new Rectangle();
-				pane.getChildren().add(rect);
-				HBox.setMargin(rect, new Insets(8));
-				rect.setWidth(40);
-				rect.setHeight(16);
-				Effect e = new DropShadow();
-				rect.setEffect(e);
-				setGraphic(pane);
-				if (update) {
-
-					// String format = colorTool.getFormat();
-					// colorTool.getColorToolColor().setRed(color.getRed());
-					// colorTool.getColorToolColor().setGreen(color.getGreen());
-					// colorTool.getColorToolColor().setBlue(color.getBlue());
-				}
-			}
-			rect.setFill(color);
-		}
-	}
 
 	private HashMap<String, AccordionColorTitlePane> titlePaneRegistry = new HashMap<String, AccordionColorTitlePane>();
 
@@ -157,10 +82,6 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	double lastMaxWidth = 0;
 
-	private boolean toolsGroupSelected = false;
-
-	private boolean startMenuSelected = false;
-
 	Node firstNode;
 
 	private HBox parent;
@@ -176,276 +97,6 @@ public class RcplSideToolBar implements ISideToolBar {
 	public RcplSideToolBar(HBox parent) {
 		this.parent = parent;
 		init();
-	}
-
-	@Override
-	public void clear() {
-		titlePaneRegistry.clear();
-		toolPaneStackRegistry.clear();
-		toolbarRegistry.clear();
-		processedList.clear();
-	}
-
-	/**
-	 * Nur die Groupbuttons sind zu sehen
-	 */
-	@Override
-	public void collapseToolPane() {
-		parent.setMaxWidth(WIDTH_COLLAPSED);
-		parent.setMinWidth(WIDTH_COLLAPSED);
-		parent.setPrefWidth(WIDTH_COLLAPSED);
-		BorderPane.setMargin(Rcpl.UIC.getMainBottomArea(), new Insets(0, 0, 0, WIDTH_COLLAPSED_BOTTOM));
-		activeGroupId = null;
-		toolPaneStack.getChildren().clear();
-	}
-
-	/**
-	 * Create all accordions
-	 * 
-	 * @param toolGroup
-	 * @param accordion
-	 * @param titlePane
-	 */
-	private void createAccordion(ToolGroup toolGroup, Accordion accordion, AccordionColorTitlePane titlePane,
-			int hierarchy) {
-
-		// ---------- If there are no top level groups then process only Tools -
-
-		if (!groupHasAccordionItems(toolGroup)) {
-			processTools(toolGroup, accordion, hierarchy);
-			return;
-		}
-
-		// ---------- creae new accordion & request Focus ----------------------
-
-		if (!toolGroup.getToolGroups().isEmpty()) {
-			Accordion newAccordion = new Accordion() {
-				@Override
-				public void requestFocus() {
-					try {
-						super.requestFocus();
-					} catch (Exception ex) {
-						RCPLModel.logError(ex);
-					}
-				};
-			};
-			titlePane = new AccordionColorTitlePane(toolGroup, newAccordion, hierarchy);
-			updateImage(toolGroup, titlePane, hierarchy);
-			accordion.getPanes().add(titlePane);
-			accordion = newAccordion;
-		}
-
-		// ---------- process all groups ---------------------------------------
-
-		for (ToolGroup accordionGroup : toolGroup.getToolGroups()) {
-			if (accordionGroup.getType() == null || GroupType.ACCORDIONITEM.equals(accordionGroup.getType())) {
-				createAccordion(accordionGroup, accordion, titlePane, hierarchy + 1);
-			}
-		}
-
-	}
-
-	private ITool createColorTool(final Tool eTool, Pane flowPane, final AccordionColorTitlePane titlePane) {
-
-		final ColorTool ct = new ColorTool(eTool);
-
-		return ct;
-	}
-
-	private void expandAccordion() {
-		try {
-			if (activeToolPane != null) {
-				for (Node n : activeToolPane.getChildren()) {
-
-					if (n instanceof Accordion) {
-
-						final Accordion acc = (Accordion) n;
-						for (TitledPane p : acc.getPanes()) {
-							if (p instanceof AccordionColorTitlePane) {
-								final AccordionColorTitlePane ap = (AccordionColorTitlePane) p;
-
-								Platform.runLater(new Runnable() {
-									@Override
-									public void run() {
-										ap.setExpanded(true);
-										// always expand first child
-
-										acc.layout();
-
-										if (!ap.getToolGroup().getToolGroups().isEmpty()) {
-
-											final AccordionColorTitlePane tp1 = getTitlePane(
-													ap.getToolGroup().getToolGroups().get(0));
-											if (tp1 != null) {
-												new DelayedExecution(10) {
-													@Override
-													protected void execute() {
-														tp1.setExpanded(true);
-														tp1.layout();
-
-													};
-												};
-												if (!tp1.getToolGroup().getToolGroups().isEmpty()) {
-
-													final AccordionColorTitlePane tp2 = getTitlePane(
-															tp1.getToolGroup().getToolGroups().get(0));
-													if (tp2 != null) {
-
-														new DelayedExecution(10) {
-															@Override
-															protected void execute() {
-																tp2.setExpanded(true);
-																tp2.layout();
-
-															};
-														};
-
-													}
-
-													if (tp2 != null && !tp2.getToolGroup().getToolGroups().isEmpty()) {
-
-														final AccordionColorTitlePane tp3 = getTitlePane(
-																tp2.getToolGroup().getToolGroups().get(0));
-														if (tp3 != null) {
-
-															new DelayedExecution(300) {
-																@Override
-																protected void execute() {
-																	tp3.setExpanded(true);
-																	tp3.layout();
-
-																};
-															};
-
-														}
-
-													}
-
-												}
-											}
-
-										}
-
-									}
-								});
-
-							}
-
-							break;
-
-						}
-						// ToolGroup g = (ToolGroup) n.getUserData();
-						// String gid = g.getToolId();
-						break;
-					}
-				}
-			}
-		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
-		}
-
-	}
-
-	@Override
-	public void expandHierarchy2() {
-	}
-
-	/**
-	 * @param groupId
-	 */
-	private void expandToolPane(String groupId) {
-
-		try {
-			try {
-				Pane pane = toolPaneStackRegistry.get(getKey(getPerspectiveId(), groupId));
-				toolPaneStack.getChildren().clear();
-				toolPaneStack.getChildren().add(pane);
-				pane.setVisible(true);
-
-			} catch (Exception ex) {
-				RCPLModel.logError(ex);
-			}
-
-			if ("images".equals(groupId)) {
-				parent.setMaxWidth(WIDTH_EXPANDED_IMAGES);
-				parent.setMinWidth(WIDTH_EXPANDED_IMAGES);
-				parent.setPrefWidth(WIDTH_EXPANDED_IMAGES);
-			} else {
-				parent.setMaxWidth(WIDTH_EXPANDED_1);
-				parent.setMinWidth(WIDTH_EXPANDED_1);
-				parent.setPrefWidth(WIDTH_EXPANDED_1);
-			}
-
-		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
-		}
-	}
-
-	public Node getFirstNode() {
-		return firstNode;
-	}
-
-	/**
-	 * To get a ToolBar for a perspective
-	 * 
-	 * @param perspective
-	 * @param pluginId
-	 * @return
-	 */
-	private String getKey(String perspective) {
-		return "PERSPECTIVE_" + perspective;
-	}
-
-	/**
-	 * To get a tool pane
-	 * 
-	 * @param perspective
-	 * @param pluginId
-	 * @param id
-	 * @return
-	 */
-	private String getKey(String perspective, String groupId) {
-		return "PERSPECTIVE_GROUP_ID_" + perspective + groupId;
-	}
-
-	private String getPerspectiveId() {
-		return Rcpl.UIC.getPerspective().getId();
-	}
-
-	private AccordionColorTitlePane getTitlePane(ToolGroup group) {
-		return titlePaneRegistry.get(group.getId());
-	}
-
-	private EList<ToolGroup> getToolGroups(Perspective perspective) {
-		return perspective.getSideToolBar().getToolGroups();
-	}
-
-	private EList<Tool> getTools(Perspective perspective) {
-		return perspective.getSideToolBar().getTools();
-	}
-
-	private boolean groupHasAccordionItems(ToolGroup toolGroup) {
-
-		for (ToolGroup t : toolGroup.getToolGroups()) {
-			if (t.getType() == null || GroupType.ACCORDIONITEM.equals(t.getType())) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	@Override
-	public void init() {
-		this.parent.getChildren().clear();
-		toolbarStack = new StackPane();
-		HBox.setMargin(toolbarStack, new Insets(0, 0, 0, -6));
-		toolPaneStack = new StackPane();
-		this.parent.getChildren().addAll(toolbarStack, toolPaneStack);
-	}
-
-	public boolean isStartMenuSelected() {
-		return startMenuSelected;
 	}
 
 	/*
@@ -466,7 +117,28 @@ public class RcplSideToolBar implements ISideToolBar {
 			try {
 				if (!processedList.contains(perspective.getId())) {
 					processedList.add(perspective.getId());
-					m01_processPerspectiveGroups(perspective.getId());
+
+					ToolBar groupsToolBar = new ToolBar();
+					StackPane.setMargin(groupsToolBar, new Insets(0, 0, 0, 0));
+					groupsToolBar.setOrientation(Orientation.VERTICAL);
+					groupsToolBar.setMinWidth(WIDTH_COLLAPSED);
+					groupsToolBar.setId("groupVBox");
+					toolbarRegistry.put(getKey(perspective.getId()), groupsToolBar);
+					List<ToolGroup> toolGroups = getToolGroups(perspective);
+
+					// ---------- create the accordions
+
+					processPerspectiveToolGroups(groupsToolBar, toolGroups, perspective, false);
+
+					// ---------- new: sidebar main buttons can also be simple tool buttons
+					// the can be used to open detail panes
+
+					List<Tool> tools = getTools(perspective);
+
+					for (Tool tool : tools) {
+						m04_processMainToolGroupButtons(groupsToolBar, perspective, tool);
+					}
+
 				}
 
 				ToolBar n = toolbarRegistry.get(getKey(perspective.getId()));
@@ -492,90 +164,14 @@ public class RcplSideToolBar implements ISideToolBar {
 	}
 
 	/**
-	 * Highest Level: Creates Buttons on the sidebar toolbar
 	 * 
-	 * @param perspectiveId
-	 */
-	private void m01_processPerspectiveGroups(String perspectiveId) {
-		Perspective perspective = RcplSession.getDefault().getModelUtil().findPerspective(perspectiveId);
-		if (perspective != null) {
-			ToolBar groupsToolBar = new ToolBar();
-			StackPane.setMargin(groupsToolBar, new Insets(0, 0, 0, 0));
-			groupsToolBar.setOrientation(Orientation.VERTICAL);
-			groupsToolBar.setMinWidth(WIDTH_COLLAPSED);
-			groupsToolBar.setId("groupVBox");
-			toolbarRegistry.put(getKey(perspectiveId), groupsToolBar);
-			List<ToolGroup> toolGroups = getToolGroups(perspective);
-
-			// ---------- create the main buttons on the sidebar when they are tool groups
-
-			for (ToolGroup toolGroup : toolGroups) {
-				m02_processMainToolGroupButtons(groupsToolBar, perspective, toolGroup);
-			}
-
-			// ---------- create the accordions
-
-			m03_processToolGroups(toolGroups, perspective, false);
-
-			// ---------- new: sidebar main buttons can also be simple tool buttons
-			// the can be used to open detail panes
-
-			List<Tool> tools = getTools(perspective);
-
-			for (Tool tool : tools) {
-				m04_processMainToolGroupButtons(groupsToolBar, perspective, tool);
-			}
-
-		}
-	}
-
-	/**
-	 * @param toolGroupToolBar
+	 * 
+	 * @param toolGroups
 	 * @param perspective
-	 * @param toolGroup
+	 * @param startMenu
 	 */
-	private void m02_processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspective,
-			final ToolGroup toolGroup) {
-
-		IButton b = new RcplButton(toolGroup) {
-			@Override
-			public void doAction() {
-				String groupId0 = toolGroup.getId();
-				if (groupId0.equals(activeGroupId)) {
-					collapseToolPane();
-				} else {
-					showSideTools(groupId0, true);
-				}
-			}
-		};
-
-		String url = toolGroup.getUrl();
-		String detailPaneClassName = toolGroup.getDetailPaneClassName();
-
-		if ((url == null || "".contentEquals(url)) && (detailPaneClassName == null || "".equals(detailPaneClassName))) {
-			b.disableService();
-		}
-
-		if (!Rcpl.isBigDisplay())
-
-		{
-			b.setWidth(16);
-			b.setHeight(16);
-
-		} else {
-			b.setWidth(18);
-			b.setHeight(18);
-		}
-
-		Tooltip toolTip = new Tooltip(toolGroup.getToolTip() != null ? toolGroup.getToolTip() : toolGroup.getName());
-		toolTip.setId("joffice_tooltip");
-
-		toolGroupToolBar.getItems().add(b.getNode());
-
-	}
-
-	private void m03_processToolGroups(final List<ToolGroup> toolGroups, final Perspective perspective,
-			boolean startMenu) {
+	private void processPerspectiveToolGroups(ToolBar groupsToolBar, final List<ToolGroup> toolGroups,
+			final Perspective perspective, boolean startMenu) {
 
 		if (toolGroups.isEmpty()) {
 			return;
@@ -589,13 +185,51 @@ public class RcplSideToolBar implements ISideToolBar {
 
 			@Override
 			public void run() {
+
 				for (ToolGroup toolGroup_0 : toolGroups) {
+
+					System.out.println("processPerspectiveToolGroups, toolGroup_0 " + toolGroup_0.getId());
+
+					// ---------- create the main toolbar button
+
+					IButton b = new RcplButton(toolGroup_0) {
+						@Override
+						public void doAction() {
+							String groupId0 = toolGroup_0.getId();
+							if (groupId0.equals(activeGroupId)) {
+								collapseToolPane();
+							} else {
+								showSideTools(groupId0);
+							}
+						}
+					};
+
+					String url = toolGroup_0.getUrl();
+					String detailPaneClassName = toolGroup_0.getDetailPaneClassName();
+					if ((url == null || "".contentEquals(url))
+							&& (detailPaneClassName == null || "".equals(detailPaneClassName))) {
+						b.disableService();
+					}
+					if (!Rcpl.isBigDisplay()) {
+						b.setWidth(16);
+						b.setHeight(16);
+
+					} else {
+						b.setWidth(18);
+						b.setHeight(18);
+					}
+					Tooltip toolTip = new Tooltip(
+							toolGroup_0.getToolTip() != null ? toolGroup_0.getToolTip() : toolGroup_0.getName());
+					toolTip.setId("joffice_tooltip");
+					groupsToolBar.getItems().add(b.getNode());
 
 					if (ToolType.NAVIGATOR.equals(toolGroup_0.getType())) {
 						// navigator type for tool group is allowed
 					} else if (toolGroup_0.getToolGroups().isEmpty() && toolGroup_0.getTools().isEmpty()) {
-//						continue;
+						continue;
 					}
+
+					// ---------- create an accordion
 
 					try {
 						VBox sideToolsVbox = new VBox(2);
@@ -632,7 +266,7 @@ public class RcplSideToolBar implements ISideToolBar {
 						accordion.setPrefWidth(WIDTH_EXPANDED_1);
 						sideToolsVbox.getChildren().add(accordion);
 
-						createAccordion(toolGroup_0, accordion, null, 0);
+						processAccordion(toolGroup_0, accordion, null, 0);
 
 						toolGroup_0.setReady(true);
 					} catch (Exception ex) {
@@ -643,6 +277,51 @@ public class RcplSideToolBar implements ISideToolBar {
 				// selectFirstGroup(perspective, useCase, toolGroups, false);
 			}
 		});
+
+	}
+
+	/**
+	 * Create all accordions
+	 * 
+	 * @param toolGroup
+	 * @param accordion
+	 * @param titlePane
+	 */
+	private void processAccordion(ToolGroup toolGroup, Accordion accordion, AccordionColorTitlePane titlePane,
+			int hierarchy) {
+
+		// ---------- If there are no top level groups then process only Tools -
+
+		if (!groupHasAccordionItems(toolGroup)) {
+			processTools(toolGroup, accordion, hierarchy);
+			return;
+		}
+
+		// ---------- creae new accordion & request Focus ----------------------
+
+		if (!toolGroup.getToolGroups().isEmpty()) {
+			Accordion newAccordion = new Accordion() {
+				@Override
+				public void requestFocus() {
+					try {
+						super.requestFocus();
+					} catch (Exception ex) {
+						RCPLModel.logError(ex);
+					}
+				};
+			};
+			titlePane = new AccordionColorTitlePane(this, toolGroup, newAccordion, hierarchy, titlePaneRegistry);
+			accordion.getPanes().add(titlePane);
+			accordion = newAccordion;
+		}
+
+		// ---------- process all groups ---------------------------------------
+
+		for (ToolGroup accordionGroup : toolGroup.getToolGroups()) {
+			if (accordionGroup.getType() == null || GroupType.ACCORDIONITEM.equals(accordionGroup.getType())) {
+				processAccordion(accordionGroup, accordion, titlePane, hierarchy + 1);
+			}
+		}
 
 	}
 
@@ -750,9 +429,9 @@ public class RcplSideToolBar implements ISideToolBar {
 		try {
 			final StackPane stackPane = new StackPane();
 
-			AccordionColorTitlePane titlePane = new AccordionColorTitlePane(toolGroup, stackPane, hierarchy);
+			AccordionColorTitlePane titlePane = new AccordionColorTitlePane(this, toolGroup, stackPane, hierarchy,
+					titlePaneRegistry);
 
-			updateImage(toolGroup, titlePane, hierarchy);
 			accordion.getPanes().add(titlePane);
 			ScrollPane scrollPane = new ScrollPane();
 			scrollPane.setFitToHeight(true);
@@ -834,36 +513,23 @@ public class RcplSideToolBar implements ISideToolBar {
 		}
 	}
 
-	public void selectFirstGroup(final String perspective, IRcplAddon useCase, EList<ToolGroup> tools,
-			boolean restoreTab) {
+	public void selectFirstGroup(final String perspective, IRcplAddon useCase, EList<ToolGroup> tools) {
 		if (!tools.isEmpty()) {
 			for (ToolGroup t : tools) {
-				showSideTools(t.getId(), restoreTab);
+				showSideTools(t.getId());
 				break;
 			}
 		}
-	}
-
-	public void setStartMenuSelected(boolean startMenuSelected) {
-		this.startMenuSelected = startMenuSelected;
-	}
-
-	public void showGroup(String groupId, boolean collapse) {
-		showSideTools(groupId, true);
 	}
 
 	@Override
 	public void showSideTools() {
 		String id = activeGroupId;
 		activeGroupId = "";
-		showSideTools(id, true);
+		showSideTools(id);
 	}
 
-	public boolean isToolsGroupSelected() {
-		return toolsGroupSelected;
-	}
-
-	private boolean showSideTools(final String groupId, boolean restoreTab) {
+	private boolean showSideTools(final String groupId) {
 
 		try {
 			if (groupId == null || groupId.length() == 0) {
@@ -901,77 +567,216 @@ public class RcplSideToolBar implements ISideToolBar {
 		return false;
 	}
 
-	private void updateImage(ToolGroup toolGroup, AccordionColorTitlePane titlePane, int hierarchy) {
+	@Override
+	public void clear() {
+		titlePaneRegistry.clear();
+		toolPaneStackRegistry.clear();
+		toolbarRegistry.clear();
+		processedList.clear();
+	}
+
+	@Override
+	public void init() {
+		this.parent.getChildren().clear();
+		toolbarStack = new StackPane();
+		HBox.setMargin(toolbarStack, new Insets(0, 0, 0, -6));
+		toolPaneStack = new StackPane();
+		this.parent.getChildren().addAll(toolbarStack, toolPaneStack);
+	}
+
+	/**
+	 * Nur die Groupbuttons sind zu sehen
+	 */
+	@Override
+	public void collapseToolPane() {
+		parent.setMaxWidth(WIDTH_COLLAPSED);
+		parent.setMinWidth(WIDTH_COLLAPSED);
+		parent.setPrefWidth(WIDTH_COLLAPSED);
+		BorderPane.setMargin(Rcpl.UIC.getMainBottomArea(), new Insets(0, 0, 0, WIDTH_COLLAPSED_BOTTOM));
+		activeGroupId = null;
+		toolPaneStack.getChildren().clear();
+	}
+
+	private ITool createColorTool(final Tool eTool, Pane flowPane, final AccordionColorTitlePane titlePane) {
+
+		final ColorTool ct = new ColorTool(eTool);
+
+		return ct;
+	}
+
+	private void expandAccordion() {
 		try {
-			if (titlePane != null) {
-				String iconName = toolGroup.getImage();
-				if (iconName == null) {
-					iconName = toolGroup.getId();
-				}
-				String imageName = iconName;
+			if (activeToolPane != null) {
+				for (Node n : activeToolPane.getChildren()) {
 
-				double width;
-				double height;
+					if (n instanceof Accordion) {
 
-				switch (hierarchy) {
-				case 0:
-					width = 32;
-					height = 32;
-					break;
-				case 1:
-					width = 24;
-					height = 24;
-					break;
-				default:
-					width = 16;
-					height = 16;
-					break;
-				}
+						final Accordion acc = (Accordion) n;
+						for (TitledPane p : acc.getPanes()) {
+							if (p instanceof AccordionColorTitlePane) {
+								final AccordionColorTitlePane ap = (AccordionColorTitlePane) p;
 
-				HBox hBox = new HBox();
-				hBox.setAlignment(Pos.CENTER);
+								Platform.runLater(new Runnable() {
+									@Override
+									public void run() {
+										ap.setExpanded(true);
+										// always expand first child
 
-				Node image = Rcpl.resources().getImage(imageName, width, height).getNode();
+										acc.layout();
 
-				if (image != null) {
-					hBox.getChildren().add(image);
-				} else {
+										if (!ap.getToolGroup().getToolGroups().isEmpty()) {
 
-				}
+											final AccordionColorTitlePane tp1 = getTitlePane(
+													ap.getToolGroup().getToolGroups().get(0));
+											if (tp1 != null) {
+												new DelayedExecution(10) {
+													@Override
+													protected void execute() {
+														tp1.setExpanded(true);
+														tp1.layout();
 
-				if (hierarchy == 0) {
-					hBox.setMinHeight(50);
-					Text headerText = new Text(toolGroup.getName());
-					InnerShadow is = new InnerShadow();
-					is.setOffsetX(2.0f);
-					is.setOffsetY(2.0f);
-					headerText.setEffect(is);
-					headerText.setFont(Font.font(null, FontWeight.BOLD, 22));
-					HBox.setMargin(headerText, new Insets(0, 0, 0, 20));
-					hBox.getChildren().add(headerText);
-					headerText.setOpacity(0.8);
+													};
+												};
+												if (!tp1.getToolGroup().getToolGroups().isEmpty()) {
 
-					String format = toolGroup.getFormat();
-					if (!toolGroup.getTools().isEmpty() && format != null && format.indexOf("{HEADER}") != -1) {
-						if (!ToolType.NAVIGATOR.equals(toolGroup.getTools().get(0).getType())) {
-							ITool n = Rcpl.getToolFactory().createTool(toolGroup.getTools().get(0));
-							if (n instanceof ComboBox<?>) {
-								((ComboBox<?>) n).setEditable(true);
+													final AccordionColorTitlePane tp2 = getTitlePane(
+															tp1.getToolGroup().getToolGroups().get(0));
+													if (tp2 != null) {
+
+														new DelayedExecution(10) {
+															@Override
+															protected void execute() {
+																tp2.setExpanded(true);
+																tp2.layout();
+
+															};
+														};
+
+													}
+
+													if (tp2 != null && !tp2.getToolGroup().getToolGroups().isEmpty()) {
+
+														final AccordionColorTitlePane tp3 = getTitlePane(
+																tp2.getToolGroup().getToolGroups().get(0));
+														if (tp3 != null) {
+
+															new DelayedExecution(300) {
+																@Override
+																protected void execute() {
+																	tp3.setExpanded(true);
+																	tp3.layout();
+
+																};
+															};
+
+														}
+
+													}
+
+												}
+											}
+
+										}
+
+									}
+								});
+
 							}
-							HBox.setMargin(n.getNode(), new Insets(0, 0, 0, 10));
-							hBox.getChildren().add(n.getNode());
+
+							break;
+
 						}
+						// ToolGroup g = (ToolGroup) n.getUserData();
+						// String gid = g.getToolId();
+						break;
 					}
-
-					headerText.setFill(Color.WHITE);
-
 				}
-
-				titlePane.setGraphic(hBox);
 			}
 		} catch (Throwable ex) {
 			RCPLModel.logError(ex);
 		}
+
+	}
+
+	/**
+	 * @param groupId
+	 */
+	private void expandToolPane(String groupId) {
+
+		try {
+			try {
+				Pane pane = toolPaneStackRegistry.get(getKey(getPerspectiveId(), groupId));
+				toolPaneStack.getChildren().clear();
+				toolPaneStack.getChildren().add(pane);
+				pane.setVisible(true);
+
+			} catch (Exception ex) {
+				RCPLModel.logError(ex);
+			}
+
+			if ("images".equals(groupId)) {
+				parent.setMaxWidth(WIDTH_EXPANDED_IMAGES);
+				parent.setMinWidth(WIDTH_EXPANDED_IMAGES);
+				parent.setPrefWidth(WIDTH_EXPANDED_IMAGES);
+			} else {
+				parent.setMaxWidth(WIDTH_EXPANDED_1);
+				parent.setMinWidth(WIDTH_EXPANDED_1);
+				parent.setPrefWidth(WIDTH_EXPANDED_1);
+			}
+
+		} catch (Throwable ex) {
+			RCPLModel.logError(ex);
+		}
+	}
+
+	/**
+	 * To get a ToolBar for a perspective
+	 * 
+	 * @param perspective
+	 * @param pluginId
+	 * @return
+	 */
+	private String getKey(String perspective) {
+		return "PERSPECTIVE_" + perspective;
+	}
+
+	/**
+	 * To get a tool pane
+	 * 
+	 * @param perspective
+	 * @param pluginId
+	 * @param id
+	 * @return
+	 */
+	private String getKey(String perspective, String groupId) {
+		return "PERSPECTIVE_GROUP_ID_" + perspective + groupId;
+	}
+
+	private String getPerspectiveId() {
+		return Rcpl.UIC.getPerspective().getId();
+	}
+
+	private AccordionColorTitlePane getTitlePane(ToolGroup group) {
+		return titlePaneRegistry.get(group.getId());
+	}
+
+	private EList<ToolGroup> getToolGroups(Perspective perspective) {
+		return perspective.getSideToolBar().getToolGroups();
+	}
+
+	private EList<Tool> getTools(Perspective perspective) {
+		return perspective.getSideToolBar().getTools();
+	}
+
+	private boolean groupHasAccordionItems(ToolGroup toolGroup) {
+
+		for (ToolGroup t : toolGroup.getToolGroups()) {
+			if (t.getType() == null || GroupType.ACCORDIONITEM.equals(t.getType())) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }
