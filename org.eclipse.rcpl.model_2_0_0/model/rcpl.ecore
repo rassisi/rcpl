@@ -87,7 +87,7 @@
         eType="#//Addons" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allPerspectives" lowerBound="1"
         eType="#//Perspectives" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="allPreferences" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preferences" lowerBound="1"
         eType="#//Preferences" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allTools" lowerBound="1"
         eType="#//Tools" containment="true"/>
@@ -115,6 +115,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ServiceClasses" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="homeURL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" eType="#//Commands"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="services" eType="#//Services"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Perspectives" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
@@ -437,5 +441,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="KeyValues">
     <eStructuralFeatures xsi:type="ecore:EReference" name="keyvalues" upperBound="-1"
         eType="#//KeyValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Command" eSuperTypes="#//Layoutable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#//Service"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Commands">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//Command" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Services">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//Service" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//Layoutable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
