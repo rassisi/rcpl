@@ -89,10 +89,4 @@ public class DemoRcplUic extends RcplUic {
 	public void openDocument(String name, String tabName) {
 
 	}
-
-	@Override
-	protected void registerServices() {
-		super.registerServices();
-//		JO.service().registerService(EnServiceId.COLOR_SERVICE, new JOColorService());
-	}
 }

@@ -47,7 +47,7 @@ public class RcplEditorService extends RcplService {
 			if (sel != null) {
 				sel.setDirtyLayout(true);
 //				sel.getDocument().getEditor().layoutDocument();
-				sel.getDocument().getEditor().startTask("", IEditor.TASK_LAYOUT_DOCUMENT);
+				sel.getDocument().getEditor().startTask("", IEditor.TASK_LAYOUT_DOCUMENT, null);
 
 			}
 			break;

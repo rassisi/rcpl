@@ -234,29 +234,23 @@ public class RcplUic implements IRcplUic {
 
 	private VBox internalToolBarVBox;
 
-	private String internalUserId;
+	protected ISideToolBar sideToolbarControl;
 
-	protected ISideToolBar internalSideToolbarControl;
+	private StackPane leftTrimBar;
 
-	private StackPane internalLeftTrimBar;
+	private SplitPane sideToolBarSplitPane;
 
-	private SplitPane internalSideToolBarSplitPane;
-
-	private WebView internalHomeWebView;
+	private WebView homeWebView;
 
 	protected boolean internalInhibitUI = false;
 
-	public double internalMouseDragOffsetX = 0;
+	public double mouseDragOffsetX = 0;
 
-	public double internalMouseDragOffsetY = 0;
+	public double mouseDragOffsetY = 0;
 
-	private Rectangle2D internalBackupWindowBounds;
+	private Rectangle2D backupWindowBounds;
 
-	protected HTMLEditor internalHtmlEditor;
-
-	protected IRcplAddon internalActiveAddon;
-
-	protected TabPane internalTabPane;
+	protected HTMLEditor htmlEditor;
 
 	protected StackPane internalHomeStackPane;
 
@@ -286,6 +280,14 @@ public class RcplUic implements IRcplUic {
 
 	private BorderPane borderPane;
 
+	private Button returnButton;
+
+	/**
+	 * TabInfo
+	 * 
+	 * @author ramin
+	 *
+	 */
 	protected class TabInfo {
 		public TabInfo() {
 		}
@@ -336,11 +338,14 @@ public class RcplUic implements IRcplUic {
 
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 * @param rcplApplicationStarter
+	 */
 	public RcplUic(IApplicationStarter rcplApplicationStarter) {
 		this(rcplApplicationStarter, "Rcpl");
 	}
-
-	private Button returnButton;
 
 	/**
 	 * @param rcplApplicationStarter
@@ -434,7 +439,6 @@ public class RcplUic implements IRcplUic {
 			}
 		});
 		updatePerspective(newTab);
-		updateButtons(false);
 	}
 
 	@Override
@@ -484,7 +488,7 @@ public class RcplUic implements IRcplUic {
 			protected void execute() {
 				if (tabInfo.getEditor() != null) {
 					final IEditor editor = tabInfo.getEditor();
-					if (internalTabPane.getTabs().isEmpty()) {
+					if (tabPane.getTabs().isEmpty()) {
 						showHomePage(HomePageType.OVERVIEW, null);
 						IHomePage hp = findHomePage(HomePageType.OVERVIEW, null);
 						if (hp != null) {
@@ -497,6 +501,7 @@ public class RcplUic implements IRcplUic {
 					}
 				}
 			}
+
 		};
 
 	}
@@ -506,8 +511,8 @@ public class RcplUic implements IRcplUic {
 
 		Rcpl.progressMessage(this.getClass().getName() + ".createContent()");
 
-		internalHtmlEditor = new HTMLEditor();
-		internalHtmlEditor.setPrefSize(2000, 2000);
+		htmlEditor = new HTMLEditor();
+		htmlEditor.setPrefSize(2000, 2000);
 
 		internalWebView = new WebView();
 
@@ -553,7 +558,6 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void expandBottomAra(final boolean expand) {
-
 		if (!expand) {
 			borderPane.setBottom(null);
 		} else {
@@ -596,25 +600,19 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public IRcplAddon findRcplAddons(String id) {
-		try {
-			String[] splits = id.split("/");
-			String lastSegment = splits[splits.length - 1];
-			for (IRcplAddon uc : applicationStarter.getRcplApplicationProvider().getRcplAddons()) {
 
-				String id2 = uc.getId();
-
-				if (lastSegment.equals(id2)) {
-					return uc;
-				}
-
-				if (uc.getClass().getName().equals(id)) {
-					return uc;
-				}
-
+		String[] splits = id.split("/");
+		String lastSegment = splits[splits.length - 1];
+		for (IRcplAddon addon : applicationStarter.getRcplApplicationProvider().getRcplAddons()) {
+			String id2 = addon.getId();
+			if (lastSegment.equals(id2)) {
+				return addon;
 			}
-		} catch (Exception ex) {
-			// TODO:
+			if (addon.getClass().getName().equals(id)) {
+				return addon;
+			}
 		}
+
 		return null;
 
 	}
@@ -626,11 +624,11 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public WebView getBrowser() {
-		if (borderPane.getCenter() == getInternalWebView()) {
-			return getInternalWebView();
+		if (borderPane.getCenter() == homeWebView) {
+			return homeWebView;
 		}
-		if (internalTabPane != null) {
-			Tab tab = internalTabPane.getSelectionModel().getSelectedItem();
+		if (tabPane != null) {
+			Tab tab = tabPane.getSelectionModel().getSelectedItem();
 			if (tab != null) {
 				Object o = tab.getUserData();
 				if (o instanceof WebView) {
@@ -643,13 +641,13 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public IEditor getEditor() {
-		if (internalTabPane == null) {
+		if (tabPane == null) {
 			return null;
 		}
-		if (internalTabPane.getSelectionModel().getSelectedItem() == null) {
+		if (tabPane.getSelectionModel().getSelectedItem() == null) {
 			return null;
 		}
-		Tab tab = internalTabPane.getSelectionModel().getSelectedItem();
+		Tab tab = tabPane.getSelectionModel().getSelectedItem();
 		TabInfo tabInfo = getTabInfo(tab);
 		if (tabInfo == null) {
 			return null;
@@ -671,7 +669,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public WebView getInternalInternalHomeWebView() {
-		return internalHomeWebView;
+		return homeWebView;
 	}
 
 	@Override
@@ -715,15 +713,15 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public ISideToolBar getSideToolBarControl() {
 
-		if (internalSideToolbarControl == null) {
-			internalSideToolbarControl = Rcpl.getFactory().createSideToolBar(Rcpl.UIC.getMainLeftArea());
+		if (sideToolbarControl == null) {
+			sideToolbarControl = Rcpl.getFactory().createSideToolBar(Rcpl.UIC.getMainLeftArea());
 		}
 
-		return internalSideToolbarControl;
+		return sideToolbarControl;
 	}
 
 	public SplitPane getSideToolBarSplitPane() {
-		return internalSideToolBarSplitPane;
+		return sideToolBarSplitPane;
 	}
 
 	@Override
@@ -742,7 +740,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public TabPane getTabPane() {
-		return internalTabPane;
+		return tabPane;
 	}
 
 	public VBox getToolBarVBox() {
@@ -771,7 +769,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public StackPane getLeftTrimBar() {
-		return internalLeftTrimBar;
+		return leftTrimBar;
 	}
 
 	@FXML
@@ -802,15 +800,14 @@ public class RcplUic implements IRcplUic {
 		Rectangle2D bounds = screen.getVisualBounds();
 		if (bounds.getMinX() == stage.getX() && bounds.getMinY() == stageY && bounds.getWidth() == stage.getWidth()
 				&& bounds.getHeight() == stage.getHeight()) {
-			if (internalBackupWindowBounds != null) {
-				stage.setX(internalBackupWindowBounds.getMinX());
-				stage.setY(internalBackupWindowBounds.getMinY());
-				stage.setWidth(internalBackupWindowBounds.getWidth());
-				stage.setHeight(internalBackupWindowBounds.getHeight());
+			if (backupWindowBounds != null) {
+				stage.setX(backupWindowBounds.getMinX());
+				stage.setY(backupWindowBounds.getMinY());
+				stage.setWidth(backupWindowBounds.getWidth());
+				stage.setHeight(backupWindowBounds.getHeight());
 			}
 		} else {
-			internalBackupWindowBounds = new Rectangle2D(stage.getX(), stage.getY(), stage.getWidth(),
-					stage.getHeight());
+			backupWindowBounds = new Rectangle2D(stage.getX(), stage.getY(), stage.getWidth(), stage.getHeight());
 			final double newStageY = screen.getVisualBounds().getMinY();
 			stage.setX(screen.getVisualBounds().getMinX());
 			stage.setY(newStageY);
@@ -873,9 +870,9 @@ public class RcplUic implements IRcplUic {
 	public void init(BorderPane parent) {
 		copyFXToInternal();
 		borderPane = parent;
-		internalTabPane = tabPane;
+		tabPane = tabPane;
 		internalMainBottomArea = mainBottomArea;
-		// internalTabPane.setStyle("-fx-open-tab-animation: NONE;
+		// tabPane.setStyle("-fx-open-tab-animation: NONE;
 		// -fx-close-tab-animation: NONE;");
 		tabPane.setPrefSize(10, 10);
 	}
@@ -906,7 +903,7 @@ public class RcplUic implements IRcplUic {
 //		new RcplMigration().migrate();
 
 		Rcpl.progressMessage("Register Services");
-		registerServices();
+//		registerServices();
 
 		RcplSession.getDefault().setPassword(null);
 
@@ -1038,7 +1035,7 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void setLeftTrimBar(StackPane leftTrimBar) {
-		this.internalLeftTrimBar = leftTrimBar;
+		this.leftTrimBar = leftTrimBar;
 	}
 
 	@Override
@@ -1139,8 +1136,6 @@ public class RcplUic implements IRcplUic {
 			homePage.refresh();
 		}
 
-		updateButtons(true);
-
 		HomePage model = homePage.getModel();
 		showPerspective(model.getPerspective());
 
@@ -1165,9 +1160,9 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public boolean showBrowser() {
-		Object o = internalTabPane.getSelectionModel().getSelectedItem().getUserData();
+		Object o = tabPane.getSelectionModel().getSelectedItem().getUserData();
 		if (o instanceof WebView) {
-			WebView webView = (WebView) internalTabPane.getSelectionModel().getSelectedItem().getUserData();
+			WebView webView = (WebView) tabPane.getSelectionModel().getSelectedItem().getUserData();
 			if (webView != null) {
 				setContent(webView);
 				return true;
@@ -1298,13 +1293,8 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void showWebView(String url) {
-		updateButtons(false);
-
 		setContent(internalWebView);
 		internalWebView.getEngine().load(url);
-	}
-
-	public void updateButtons(boolean home) {
 	}
 
 	public void updatePerspective(Tab tab) {
@@ -1462,7 +1452,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	protected void copyFXToInternal() {
-		internalTabPane = tabPane;
+		tabPane = tabPane;
 		internalMainBottomArea = mainBottomArea;
 	}
 
@@ -1472,8 +1462,8 @@ public class RcplUic implements IRcplUic {
 				@Override
 				public void handle(MouseEvent event) {
 
-					internalMouseDragOffsetX = event.getSceneX();
-					internalMouseDragOffsetY = event.getSceneY();
+					mouseDragOffsetX = event.getSceneX();
+					mouseDragOffsetY = event.getSceneY();
 				}
 			});
 
@@ -1481,8 +1471,8 @@ public class RcplUic implements IRcplUic {
 				@Override
 				public void handle(MouseEvent event) {
 					Stage w = getStage();
-					w.setX(event.getScreenX() - internalMouseDragOffsetX);
-					w.setY(event.getScreenY() - internalMouseDragOffsetY);
+					w.setX(event.getScreenX() - mouseDragOffsetX);
+					w.setY(event.getScreenY() - mouseDragOffsetY);
 				}
 			});
 		}
@@ -1657,8 +1647,6 @@ public class RcplUic implements IRcplUic {
 			createBorderDragger();
 			updateWebViewDragger();
 			createRecentDocumentList();
-
-			updateTabPane();
 			updateEditorListener();
 
 			statusText.setText(getApplicationStarter().getVersionString());
@@ -1667,13 +1655,9 @@ public class RcplUic implements IRcplUic {
 		}
 
 		if (Rcpl.isMobile()) {
-
-//			topArea.getChildren().remove(titleArea);
-//			topArea.getChildren().remove(titleText);
 			borderPane.setTop(titleArea);
 			borderPane.setBottom(null);
 		} else {
-//			topArea.setPadding(new Insets(RcplTopToolBar.RIBBON_GROUP_PADDING, 0, 0, 0));
 			tabPaneContainer.setAlignment(Pos.BOTTOM_LEFT);
 			tabPaneContainer.setPadding(new Insets(-20, 0, 0, 0));
 		}
@@ -1711,34 +1695,6 @@ public class RcplUic implements IRcplUic {
 			}
 
 		}
-	}
-
-	protected IRcplAddon getInternalActiveUsePlugin() {
-		return internalActiveAddon;
-	}
-
-	protected Rectangle2D getInternalBackupWindowBounds() {
-		return internalBackupWindowBounds;
-	}
-
-	protected ImageView getInternalHomeImageView() {
-		return internalHomeImageView;
-	}
-
-	protected StackPane getInternalHomeStackPane() {
-		return internalHomeStackPane;
-	}
-
-	protected HTMLEditor getInternalHtmlEditor() {
-		return internalHtmlEditor;
-	}
-
-	protected String getInternalUserId() {
-		return internalUserId;
-	}
-
-	protected WebView getInternalWebView() {
-		return internalWebView;
 	}
 
 	protected boolean isInternalDragMode() {
@@ -1779,9 +1735,6 @@ public class RcplUic implements IRcplUic {
 		// System.out.println("Max Memory:" + runtime.maxMemory() / mb);
 		//
 		lastUsedMemory = usedMemory;
-	}
-
-	protected void registerServices() {
 	}
 
 	protected void removeAllStyles() {
@@ -1829,8 +1782,8 @@ public class RcplUic implements IRcplUic {
 			}
 			if (htmlText != null) {
 				final String html = htmlText;
-				setContent(internalHtmlEditor);
-				internalHtmlEditor.setHtmlText(html);
+				setContent(htmlEditor);
+				htmlEditor.setHtmlText(html);
 				return true;
 			}
 		}
@@ -1890,81 +1843,56 @@ public class RcplUic implements IRcplUic {
 		});
 	}
 
-	private void updateTabPane() {
-
-		tabPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if (!internalDragMode) { // && isHome()) {
-					try {
-						updateButtons(false);
-						if (internalActiveAddon != null && !internalActiveAddon.isAsEditor()) {
-							internalActiveAddon.getNode().setVisible(false);
-							internalActiveAddon = null;
-						}
-						Tab tab = internalTabPane.getSelectionModel().getSelectedItem();
-						if (tab == null) {
-							// showHomePage();
-						} else {
-							showTab(tab);
-						}
-
-					} catch (Throwable ex) {
-						RCPLModel.logError(ex);
-					}
-				}
-				internalDragMode = false;
-			}
-		});
-
-		if (Rcpl.isBigDisplay()) {
-
-			tabPane.setOnMousePressed(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					internalMouseDragOffsetX = event.getSceneX();
-					internalMouseDragOffsetY = event.getSceneY();
-
-				}
-			});
-
-			tabPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					internalMouseDragOffsetX = event.getSceneX();
-					internalMouseDragOffsetY = event.getSceneY();
-				}
-			});
-
-			tabPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					Stage w = getStage();
-					w.setX(event.getScreenX() - internalMouseDragOffsetX);
-					w.setY(event.getScreenY() - internalMouseDragOffsetY);
-					internalDragMode = true;
-				}
-			});
-		}
-	}
+//	private void updateTabPane() {
+//
+//		if (Rcpl.isBigDisplay()) {
+//
+//			tabPane.setOnMousePressed(new EventHandler<MouseEvent>() {
+//				@Override
+//				public void handle(MouseEvent event) {
+//					mouseDragOffsetX = event.getSceneX();
+//					mouseDragOffsetY = event.getSceneY();
+//
+//				}
+//			});
+//
+//			tabPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
+//				@Override
+//				public void handle(MouseEvent event) {
+//					mouseDragOffsetX = event.getSceneX();
+//					mouseDragOffsetY = event.getSceneY();
+//				}
+//			});
+//
+//			tabPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
+//				@Override
+//				public void handle(MouseEvent event) {
+//					Stage w = getStage();
+//					w.setX(event.getScreenX() - mouseDragOffsetX);
+//					w.setY(event.getScreenY() - mouseDragOffsetY);
+//					internalDragMode = true;
+//				}
+//			});
+//		}
+//	}
 
 	private void updateWebViewDragger() {
 		if (!Rcpl.isMobile()) {
-			getInternalWebView().setOnMousePressed(new EventHandler<MouseEvent>() {
+			homeWebView.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-					internalMouseDragOffsetX = event.getSceneX();
-					internalMouseDragOffsetY = event.getSceneY();
+					mouseDragOffsetX = event.getSceneX();
+					mouseDragOffsetY = event.getSceneY();
 				}
 			});
 
-			getInternalWebView().setOnMouseDragged(new EventHandler<MouseEvent>() {
+			homeWebView.setOnMouseDragged(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 					if (event.isControlDown()) {
 						Stage w = getStage();
-						w.setX(event.getScreenX() - internalMouseDragOffsetX);
-						w.setY(event.getScreenY() - internalMouseDragOffsetY);
+						w.setX(event.getScreenX() - mouseDragOffsetX);
+						w.setY(event.getScreenY() - mouseDragOffsetY);
 					}
 				}
 			});

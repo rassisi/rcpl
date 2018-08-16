@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 
 import org.controlsfx.control.TaskProgressView;
 import org.eclipse.rcpl.ITaskViewProvider;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.application.Platform;
@@ -53,31 +54,43 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 		}
 	}
 
-	protected class RcplTask extends Task<Void> {
+	/**
+	 * @author ramin
+	 *
+	 */
+	public class RcplTask extends Task<Void> {
 
 		private long startTime;
 
 		private int taskNumber;
 
-		public RcplTask(String title, int taskNumber) {
+		private Object[] parameters;
+
+		private Object result;
+
+		private RcplCompletionListener completionListener;
+
+		public RcplTask(String title, int taskNumber, RcplCompletionListener completionListener, Object... parameters) {
 			updateTitle(title);
 			this.taskNumber = taskNumber;
 			this.startTime = System.currentTimeMillis();
+			this.parameters = parameters;
+			this.completionListener = completionListener;
 		}
 
 		public void progress(int taskNumber, String message, double workDone, double maxWork) {
 			if (maxWork == 0) {
 				maxWork = 100.0;
 			}
-			System.out.println("workDone = " + workDone + "   maxWork = " + maxWork);
+			Rcpl.println("workDone = " + workDone + "   maxWork = " + maxWork);
 			tasks.get(taskNumber).updateProgress(workDone, maxWork);
 
 			tasks.get(taskNumber).updateMessage(message);
 			if (isLongTask()) {
 				expandTaskView();
-				System.out.println("*** LONG TASK " + taskNumber + " " + message);
+				Rcpl.println("*** LONG TASK " + taskNumber + " " + message);
 			} else {
-				System.out.println("*** NO LONG TASK " + taskNumber + " " + message);
+				Rcpl.println("*** NO LONG TASK " + taskNumber + " " + message);
 
 			}
 		}
@@ -92,34 +105,34 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 			switch (taskNumber) {
 			case 1:
-				task_1();
+				result = task_1(this, parameters);
 				break;
 			case 2:
-				task_2();
+				result = task_2(this, parameters);
 				break;
 			case 3:
-				task_3();
+				result = task_3(this, parameters);
 				break;
 			case 4:
-				task_4();
+				result = task_4(this, parameters);
 				break;
 			case 5:
-				task_5();
+				result = task_5(this, parameters);
 				break;
 			case 6:
-				task_6();
+				result = task_6(this, parameters);
 				break;
 			case 7:
-				task_7();
+				result = task_7(this, parameters);
 				break;
 			case 8:
-				task_8();
+				result = task_8(this, parameters);
 				break;
 			case 9:
-				task_9();
+				result = task_9(this, parameters);
 				break;
 			case 10:
-				task_10();
+				result = task_10(this, parameters);
 				break;
 			}
 
@@ -132,6 +145,10 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 				}
 			});
 
+			if (completionListener != null) {
+				completionListener.onCompleted();
+			}
+
 			taskCounter--;
 			done();
 
@@ -140,57 +157,72 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			return null;
 		}
 
-	}
+		public Object getResult() {
+			return result;
+		}
 
-	protected void task_1() {
-
-	}
-
-	protected void task_2() {
-
-	}
-
-	protected void task_3() {
+		public void setCompletionListener(RcplCompletionListener completionListener) {
+			this.completionListener = completionListener;
+		}
 
 	}
 
-	protected void task_4() {
-
+	protected Object task_1(RcplTask task, Object[] parameters) {
+		return null;
 	}
 
-	protected void task_5() {
-
+	protected Object task_2(RcplTask task, Object[] parameters) {
+		return null;
 	}
 
-	protected void task_6() {
-
+	protected Object task_3(RcplTask task, Object[] parameters) {
+		return null;
 	}
 
-	protected void task_7() {
-
+	protected Object task_4(RcplTask task, Object[] parameters) {
+		return null;
 	}
 
-	protected void task_8() {
-
+	protected Object task_5(RcplTask task, Object[] parameters) {
+		return null;
 	}
 
-	protected void task_9() {
-
+	protected Object task_6(RcplTask task, Object[] parameters) {
+		return null;
 	}
 
-	protected void task_10() {
-
+	protected Object task_7(RcplTask task, Object[] parameters) {
+		return null;
 	}
 
-	HashMap<Integer, RcplTask> tasks = new HashMap<Integer, RcplTask>();
+	protected Object task_8(RcplTask task, Object[] parameters) {
+		return null;
+	}
+
+	protected Object task_9(RcplTask task, Object[] parameters) {
+		return null;
+	}
+
+	protected Object task_10(RcplTask task, Object[] parameters) {
+		return null;
+	}
+
+	private HashMap<Integer, RcplTask> tasks = new HashMap<Integer, RcplTask>();
 
 	@Override
-	public void startTask(String title, int taskNumber) {
-		taskCounter++;
-		expandTaskView();
-		tasks.put(taskNumber, new RcplTask(taskCounter + ". " + title, taskNumber));
-		taskProgressView.getTasks().add(tasks.get(taskNumber));
-		executorService.submit(tasks.get(taskNumber));
+	public void startTask(String title, int taskNumber, RcplCompletionListener completionListener,
+			Object... parameters) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				taskCounter++;
+				expandTaskView();
+				tasks.put(taskNumber,
+						new RcplTask(taskCounter + ". " + title, taskNumber, completionListener, parameters));
+				taskProgressView.getTasks().add(tasks.get(taskNumber));
+				executorService.submit(tasks.get(taskNumber));
+			}
+		});
 	}
 
 	@Override
@@ -204,7 +236,6 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 					getNode().getChildren().add(progressViewArea);
 				}
 			});
-
 		}
 	}
 
@@ -235,6 +266,11 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 	public StackPane getProgressViewArea() {
 		return progressViewArea;
+	}
+
+	@Override
+	public RcplTask getTask(int taskNumber) {
+		return tasks.get(taskNumber);
 	}
 
 }
