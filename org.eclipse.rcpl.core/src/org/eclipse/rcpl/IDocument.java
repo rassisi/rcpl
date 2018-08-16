@@ -385,7 +385,7 @@ public interface IDocument {
 
 	EnDocumentType getDocumentType();
 
-	Perspective getPerspective();
+	Perspective getDefaultPerspective();
 
 	IParagraph getFirstDirtyParagraph();
 
