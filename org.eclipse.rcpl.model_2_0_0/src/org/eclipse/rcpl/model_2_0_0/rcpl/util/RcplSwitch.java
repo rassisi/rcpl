@@ -406,6 +406,32 @@ public class RcplSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case RcplPackage.COMMAND: {
+				Command command = (Command)theEObject;
+				T result = caseCommand(command);
+				if (result == null) result = caseLayoutable(command);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RcplPackage.COMMANDS: {
+				Commands commands = (Commands)theEObject;
+				T result = caseCommands(commands);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RcplPackage.SERVICES: {
+				Services services = (Services)theEObject;
+				T result = caseServices(services);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RcplPackage.SERVICE: {
+				Service service = (Service)theEObject;
+				T result = caseService(service);
+				if (result == null) result = caseLayoutable(service);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1142,6 +1168,66 @@ public class RcplSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseKeyValues(KeyValues object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Command</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Command</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCommand(Command object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Commands</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Commands</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCommands(Commands object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Services</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Services</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseServices(Services object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Service</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Service</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseService(Service object) {
 		return null;
 	}
 

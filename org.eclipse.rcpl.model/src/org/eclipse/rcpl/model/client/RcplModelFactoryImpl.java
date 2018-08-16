@@ -75,7 +75,7 @@ public class RcplModelFactoryImpl implements IModelFactory {
 		// create Containers
 
 		office.setAllTools(RcplFactory.eINSTANCE.createTools());
-		office.setAllPreferences(RcplFactory.eINSTANCE.createPreferences());
+		office.setPreferences(RcplFactory.eINSTANCE.createPreferences());
 		office.setAllPerspectives(RcplFactory.eINSTANCE.createPerspectives());
 		office.setAllAddons(RcplFactory.eINSTANCE.createAddons());
 

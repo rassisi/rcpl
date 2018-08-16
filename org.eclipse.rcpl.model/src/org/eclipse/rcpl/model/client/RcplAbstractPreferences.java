@@ -41,7 +41,7 @@ public abstract class RcplAbstractPreferences {
 	 */
 	public double getDouble(RcplKey key) {
 		try {
-			return Double.valueOf((String) getProperties().get(key)).doubleValue();
+			return Double.valueOf(getProperties().get(key)).doubleValue();
 		} catch (Exception ex) {
 			return 0;
 		}
@@ -60,7 +60,7 @@ public abstract class RcplAbstractPreferences {
 	}
 
 	public PreferenceGroup getPreferenceGroup() {
-		Preferences prefs = RcplSession.getDefault().getRcpl().getAllPreferences();
+		Preferences prefs = RcplSession.getDefault().getRcpl().getPreferences();
 		PreferenceGroup userPreferences = null;
 		for (PreferenceGroup p : prefs.getChildren()) {
 			if (USER_PREFERENCES.equals(p.getId())) {
@@ -112,7 +112,7 @@ public abstract class RcplAbstractPreferences {
 	 * @return
 	 */
 	public String getString(RcplKey key) {
-		return (String) getProperties().get(key);
+		return getProperties().get(key);
 	}
 
 	public void init() {
@@ -186,7 +186,7 @@ public abstract class RcplAbstractPreferences {
 	 * @param key
 	 */
 	private PreferenceGroup createPreferences(PreferenceGroup userPreferences, RcplKey key) {
-		for (PreferenceGroup ps : RcplSession.getDefault().getRcpl().getAllPreferences().getChildren()) {
+		for (PreferenceGroup ps : RcplSession.getDefault().getRcpl().getPreferences().getChildren()) {
 			if (key.name().equals(ps.getId())) {
 				return ps;
 			}
@@ -195,7 +195,7 @@ public abstract class RcplAbstractPreferences {
 		prefs.setId(key.name());
 		prefs.setName(key.getName());
 		prefs.setImage(key.getImage());
-		RcplSession.getDefault().getRcpl().getAllPreferences().getChildren().add(prefs);
+		RcplSession.getDefault().getRcpl().getPreferences().getChildren().add(prefs);
 		RcplSession.getDefault().commit();
 		return prefs;
 	}

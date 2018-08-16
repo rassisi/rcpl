@@ -8,7 +8,11 @@ public enum EnCommandId {
 
 	NO_COMMAND(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
 
-	NEW_WORD_DOCUMENT(EnServiceId.NEW_WORD_DOCUMENT, null, "", ""),
+	NEW_WORD_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", ""),
+
+	NEW_SpreadSheet_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", ""),
+
+	NEW_PRESENTATION_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", ""),
 
 	delete(EnServiceId.PICTURE_SERVICE, "delete", "", ""),
 

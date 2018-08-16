@@ -12,6 +12,7 @@
 package org.eclipse.rcpl.internal.services;
 
 import org.eclipse.rcpl.ICommand;
+import org.eclipse.rcpl.Rcpl;
 
 /**
  * @author eclipse
@@ -26,7 +27,21 @@ public class RcplDocumentService extends RcplService {
 	@Override
 	public Object doExecute(ICommand event) throws Exception {
 
-		//		if (match(event, "actions/document/print")) { //$NON-NLS-1$
+		switch (event.getCommandId()) {
+		case NEW_WORD_DOCUMENT:
+			Rcpl.UIC.openDocument("blank_A4.docx", " New Document");
+			break;
+		case NEW_PRESENTATION_DOCUMENT:
+			Rcpl.UIC.openDocument("blank_presentation.pptx", " New Presentation");
+			break;
+		case NEW_SpreadSheet_DOCUMENT:
+			Rcpl.UIC.openDocument("blank_workbook.xlsx", " New Spreadsheet");
+			break;
+		default:
+			break;
+		}
+
+		// if (match(event, "actions/document/print")) { //$NON-NLS-1$
 		// // if (getEditorFigure() != null
 		// // && getEditorFigure().getSelectedPage() != null) {
 		// // JOPrint.openPrintDialog();
@@ -38,7 +53,7 @@ public class RcplDocumentService extends RcplService {
 		// return true;
 		// }
 
-		//		if (match(event, "actions/document/print_settings")) { //$NON-NLS-1$
+		// if (match(event, "actions/document/print_settings")) { //$NON-NLS-1$
 		// // if (getEditorFigure() != null
 		// // && getEditorFigure().getSelectedPage() != null) {
 		// // JOPrint.openPrintDialog();
@@ -51,7 +66,7 @@ public class RcplDocumentService extends RcplService {
 		// return true;
 		// }
 
-		//		if (match(event, "actions/document/save")) { //$NON-NLS-1$
+		// if (match(event, "actions/document/save")) { //$NON-NLS-1$
 		// if (getEditor() != null) {
 		// //
 		// // if (getEditorFigure().getEditorArea().getAdvancedBrowser() !=
@@ -68,19 +83,19 @@ public class RcplDocumentService extends RcplService {
 		// return true;
 		// }
 
-		//		if (match(event, "actions/document/save_as")) { //$NON-NLS-1$
+		// if (match(event, "actions/document/save_as")) { //$NON-NLS-1$
 		// editorPane.saveAs();
 		// return true;
 		// }
 		//
-		//		if (match(event, "actions/document/pdf")) { //$NON-NLS-1$
+		// if (match(event, "actions/document/pdf")) { //$NON-NLS-1$
 		// try {
-		//				String pdfFile = JOUtil2.getUserLocalTempArea() + "/temp_" //$NON-NLS-1$
-		//						+ System.currentTimeMillis() + ".pdf"; //$NON-NLS-1$
+		// String pdfFile = JOUtil2.getUserLocalTempArea() + "/temp_" //$NON-NLS-1$
+		// + System.currentTimeMillis() + ".pdf"; //$NON-NLS-1$
 		// File pdfF = new File(pdfFile);
 		// String s = pdfF.toURI().toString();
 		// // JOEditorUtil.printPdf(editorPane, pdfFile);
-		//				JO.officePane.addSimpleBrowserTab(s, "default.pdf"); //$NON-NLS-1$
+		// JO.officePane.addSimpleBrowserTab(s, "default.pdf"); //$NON-NLS-1$
 		// } catch (Exception ex) {
 		// // LOGG
 		// return true;
@@ -88,7 +103,7 @@ public class RcplDocumentService extends RcplService {
 		// return true;
 		// }
 		//
-		//		if (match(event, "actions/document/open")) { //$NON-NLS-1$
+		// if (match(event, "actions/document/open")) { //$NON-NLS-1$
 		// JO.officePane.doLoad();
 		// return true;
 		// }

@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addons;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Commands;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Documents;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Favorites;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePages;
@@ -17,6 +18,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resources;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Services;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
 
 /**
@@ -29,7 +31,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
  * <ul>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllAddons <em>All Addons</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllPerspectives <em>All Perspectives</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllPreferences <em>All Preferences</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getPreferences <em>Preferences</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllTools <em>All Tools</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getAllFavorites <em>All Favorites</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getVersionMajor <em>Version Major</em>}</li>
@@ -46,6 +48,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getImageUrls <em>Image Urls</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getServiceClasses <em>Service Classes</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getHomeURL <em>Home URL</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getCommands <em>Commands</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getServices <em>Services</em>}</li>
  * </ul>
  *
  * @generated
@@ -111,8 +115,8 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Preferences getAllPreferences() {
-		return (Preferences)eGet(RcplPackage.Literals.RCPL__ALL_PREFERENCES, true);
+	public Preferences getPreferences() {
+		return (Preferences)eGet(RcplPackage.Literals.RCPL__PREFERENCES, true);
 	}
 
 	/**
@@ -120,8 +124,8 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAllPreferences(Preferences newAllPreferences) {
-		eSet(RcplPackage.Literals.RCPL__ALL_PREFERENCES, newAllPreferences);
+	public void setPreferences(Preferences newPreferences) {
+		eSet(RcplPackage.Literals.RCPL__PREFERENCES, newPreferences);
 	}
 
 	/**
@@ -386,6 +390,42 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 */
 	public void setHomeURL(String newHomeURL) {
 		eSet(RcplPackage.Literals.RCPL__HOME_URL, newHomeURL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Commands getCommands() {
+		return (Commands)eGet(RcplPackage.Literals.RCPL__COMMANDS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommands(Commands newCommands) {
+		eSet(RcplPackage.Literals.RCPL__COMMANDS, newCommands);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Services getServices() {
+		return (Services)eGet(RcplPackage.Literals.RCPL__SERVICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServices(Services newServices) {
+		eSet(RcplPackage.Literals.RCPL__SERVICES, newServices);
 	}
 
 } //RCPLImpl

@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllAddons <em>All Addons</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPerspectives <em>All Perspectives</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPreferences <em>All Preferences</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getPreferences <em>Preferences</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllTools <em>All Tools</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllFavorites <em>All Favorites</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getVersionMajor <em>Version Major</em>}</li>
@@ -31,6 +31,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getImageUrls <em>Image Urls</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServiceClasses <em>Service Classes</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomeURL <em>Home URL</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getCommands <em>Commands</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServices <em>Services</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL()
@@ -92,30 +94,30 @@ public interface RCPL extends Layoutable {
 	void setAllPerspectives(Perspectives value);
 
 	/**
-	 * Returns the value of the '<em><b>All Preferences</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Preferences</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>All Preferences</em>' containment reference isn't
-	 * clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Preferences</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>All Preferences</em>' containment reference.
-	 * @see #setAllPreferences(Preferences)
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_AllPreferences()
+	 * @return the value of the '<em>Preferences</em>' containment reference.
+	 * @see #setPreferences(Preferences)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_Preferences()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	Preferences getAllPreferences();
+	Preferences getPreferences();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPreferences <em>All Preferences</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>All Preferences</em>' containment reference.
-	 * @see #getAllPreferences()
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getPreferences <em>Preferences</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Preferences</em>' containment reference.
+	 * @see #getPreferences()
 	 * @generated
 	 */
-	void setAllPreferences(Preferences value);
+	void setPreferences(Preferences value);
 
 	/**
 	 * Returns the value of the '<em><b>All Tools</b></em>' containment reference.
@@ -504,5 +506,57 @@ public interface RCPL extends Layoutable {
 	 * @generated
 	 */
 	void setHomeURL(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Commands</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commands</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commands</em>' containment reference.
+	 * @see #setCommands(Commands)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_Commands()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Commands getCommands();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getCommands <em>Commands</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Commands</em>' containment reference.
+	 * @see #getCommands()
+	 * @generated
+	 */
+	void setCommands(Commands value);
+
+	/**
+	 * Returns the value of the '<em><b>Services</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Services</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Services</em>' containment reference.
+	 * @see #setServices(Services)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_Services()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Services getServices();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServices <em>Services</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Services</em>' containment reference.
+	 * @see #getServices()
+	 * @generated
+	 */
+	void setServices(Services value);
 
 } // RCPL

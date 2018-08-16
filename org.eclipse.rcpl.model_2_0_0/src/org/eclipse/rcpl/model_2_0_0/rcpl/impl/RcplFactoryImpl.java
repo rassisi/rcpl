@@ -104,6 +104,10 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 			case RcplPackage.DOCUMENT: return (EObject)createDocument();
 			case RcplPackage.KEY_VALUE: return (EObject)createKeyValue();
 			case RcplPackage.KEY_VALUES: return (EObject)createKeyValues();
+			case RcplPackage.COMMAND: return (EObject)createCommand();
+			case RcplPackage.COMMANDS: return (EObject)createCommands();
+			case RcplPackage.SERVICES: return (EObject)createServices();
+			case RcplPackage.SERVICE: return (EObject)createService();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -631,6 +635,46 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	public KeyValues createKeyValues() {
 		KeyValuesImpl keyValues = new KeyValuesImpl();
 		return keyValues;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Command createCommand() {
+		CommandImpl command = new CommandImpl();
+		return command;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Commands createCommands() {
+		CommandsImpl commands = new CommandsImpl();
+		return commands;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Services createServices() {
+		ServicesImpl services = new ServicesImpl();
+		return services;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Service createService() {
+		ServiceImpl service = new ServiceImpl();
+		return service;
 	}
 
 	/**

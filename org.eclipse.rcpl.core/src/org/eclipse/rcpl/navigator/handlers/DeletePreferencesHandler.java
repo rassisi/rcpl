@@ -27,7 +27,7 @@ public class DeletePreferencesHandler extends AbstractDeleteHandler<Preferences>
 
 	@Override
 	public boolean canExecute() {
-		if (treePart.getSelectedObject() == RcplSession.getDefault().getRcpl().getAllPreferences()) {
+		if (treePart.getSelectedObject() == RcplSession.getDefault().getRcpl().getPreferences()) {
 			return false;
 		}
 		return true;

@@ -340,12 +340,13 @@ public interface RcplPackage extends EPackage {
 	int RCPL__ALL_PERSPECTIVES = LAYOUTABLE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>All Preferences</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Preferences</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RCPL__ALL_PREFERENCES = LAYOUTABLE_FEATURE_COUNT + 2;
+	int RCPL__PREFERENCES = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>All Tools</b></em>' containment reference.
@@ -485,13 +486,31 @@ public interface RcplPackage extends EPackage {
 	int RCPL__HOME_URL = LAYOUTABLE_FEATURE_COUNT + 18;
 
 	/**
+	 * The feature id for the '<em><b>Commands</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RCPL__COMMANDS = LAYOUTABLE_FEATURE_COUNT + 19;
+
+	/**
+	 * The feature id for the '<em><b>Services</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RCPL__SERVICES = LAYOUTABLE_FEATURE_COUNT + 20;
+
+	/**
 	 * The number of structural features of the '<em>RCPL</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 19;
+	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 21;
 
 	/**
 	 * The number of operations of the '<em>RCPL</em>' class.
@@ -8298,13 +8317,395 @@ public interface RcplPackage extends EPackage {
 	int KEY_VALUES_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl <em>Command</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getCommand()
+	 * @generated
+	 */
+	int COMMAND = 49;
+
+	/**
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+
+	/**
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+
+	/**
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__NAME = LAYOUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__ID = LAYOUTABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__IMAGE = LAYOUTABLE__IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+
+	/**
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__END_DATE = LAYOUTABLE__END_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__LEAF = LAYOUTABLE__LEAF;
+
+	/**
+	 * The feature id for the '<em><b>Service</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__SERVICE = LAYOUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Command</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Command</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl <em>Commands</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getCommands()
+	 * @generated
+	 */
+	int COMMANDS = 50;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMANDS__CHILDREN = 0;
+
+	/**
+	 * The number of structural features of the '<em>Commands</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMANDS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Commands</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMANDS_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServicesImpl <em>Services</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServicesImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getServices()
+	 * @generated
+	 */
+	int SERVICES = 51;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICES__CHILDREN = 0;
+
+	/**
+	 * The number of structural features of the '<em>Services</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICES_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Services</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICES_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServiceImpl <em>Service</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServiceImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getService()
+	 * @generated
+	 */
+	int SERVICE = 52;
+
+	/**
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+
+	/**
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+
+	/**
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__NAME = LAYOUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__ID = LAYOUTABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__IMAGE = LAYOUTABLE__IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+
+	/**
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__END_DATE = LAYOUTABLE__END_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__LEAF = LAYOUTABLE__LEAF;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__CLASS_NAME = LAYOUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Service</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Service</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.ToolType
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolType()
 	 * @generated
 	 */
-	int TOOL_TYPE = 49;
+	int TOOL_TYPE = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.FontStyles <em>Font Styles</em>}' enum.
@@ -8313,7 +8714,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getFontStyles()
 	 * @generated
 	 */
-	int FONT_STYLES = 50;
+	int FONT_STYLES = 54;
 
 	/**
 	 * The meta object id for the
@@ -8325,7 +8726,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolBarReplacementPolicy()
 	 * @generated
 	 */
-	int TOOL_BAR_REPLACEMENT_POLICY = 51;
+	int TOOL_BAR_REPLACEMENT_POLICY = 55;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.GroupType <em>Group Type</em>}' enum.
@@ -8334,7 +8735,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getGroupType()
 	 * @generated
 	 */
-	int GROUP_TYPE = 52;
+	int GROUP_TYPE = 56;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AddressType <em>Address Type</em>}' enum.
@@ -8343,7 +8744,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getAddressType()
 	 * @generated
 	 */
-	int ADDRESS_TYPE = 53;
+	int ADDRESS_TYPE = 57;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType <em>Home Page Type</em>}' enum.
@@ -8352,7 +8753,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getHomePageType()
 	 * @generated
 	 */
-	int HOME_PAGE_TYPE = 54;
+	int HOME_PAGE_TYPE = 58;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType <em>Document Type</em>}' enum.
@@ -8361,7 +8762,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getDocumentType()
 	 * @generated
 	 */
-	int DOCUMENT_TYPE = 55;
+	int DOCUMENT_TYPE = 59;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Layoutable <em>Layoutable</em>}'.
@@ -8534,14 +8935,15 @@ public interface RcplPackage extends EPackage {
 	EReference getRCPL_AllPerspectives();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPreferences <em>All Preferences</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>All Preferences</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllPreferences()
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getPreferences <em>Preferences</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Preferences</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getPreferences()
 	 * @see #getRCPL()
 	 * @generated
 	 */
-	EReference getRCPL_AllPreferences();
+	EReference getRCPL_Preferences();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getAllTools <em>All Tools</em>}'.
@@ -8702,6 +9104,28 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRCPL_HomeURL();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getCommands <em>Commands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Commands</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getCommands()
+	 * @see #getRCPL()
+	 * @generated
+	 */
+	EReference getRCPL_Commands();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServices <em>Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Services</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServices()
+	 * @see #getRCPL()
+	 * @generated
+	 */
+	EReference getRCPL_Services();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspectives <em>Perspectives</em>}'.
@@ -10504,6 +10928,90 @@ public interface RcplPackage extends EPackage {
 	EReference getKeyValues_Keyvalues();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Command <em>Command</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Command</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Command
+	 * @generated
+	 */
+	EClass getCommand();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Command#getService <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Service</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Command#getService()
+	 * @see #getCommand()
+	 * @generated
+	 */
+	EReference getCommand_Service();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Commands <em>Commands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Commands</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Commands
+	 * @generated
+	 */
+	EClass getCommands();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Commands#getChildren <em>Children</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Commands#getChildren()
+	 * @see #getCommands()
+	 * @generated
+	 */
+	EReference getCommands_Children();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Services <em>Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Services</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Services
+	 * @generated
+	 */
+	EClass getServices();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Services#getChildren <em>Children</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Services#getChildren()
+	 * @see #getServices()
+	 * @generated
+	 */
+	EReference getServices_Children();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Service <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Service</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Service
+	 * @generated
+	 */
+	EClass getService();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Service#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Service#getClassName()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_ClassName();
+
+	/**
 	 * Returns the meta object for enum
 	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -10715,11 +11223,12 @@ public interface RcplPackage extends EPackage {
 		EReference RCPL__ALL_PERSPECTIVES = eINSTANCE.getRCPL_AllPerspectives();
 
 		/**
-		 * The meta object literal for the '<em><b>All Preferences</b></em>' containment reference feature.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Preferences</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference RCPL__ALL_PREFERENCES = eINSTANCE.getRCPL_AllPreferences();
+		EReference RCPL__PREFERENCES = eINSTANCE.getRCPL_Preferences();
 
 		/**
 		 * The meta object literal for the '<em><b>All Tools</b></em>' containment reference feature.
@@ -10832,6 +11341,22 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute RCPL__HOME_URL = eINSTANCE.getRCPL_HomeURL();
+
+		/**
+		 * The meta object literal for the '<em><b>Commands</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RCPL__COMMANDS = eINSTANCE.getRCPL_Commands();
+
+		/**
+		 * The meta object literal for the '<em><b>Services</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RCPL__SERVICES = eINSTANCE.getRCPL_Services();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectivesImpl <em>Perspectives</em>}' class.
@@ -12193,6 +12718,78 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EReference KEY_VALUES__KEYVALUES = eINSTANCE.getKeyValues_Keyvalues();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl <em>Command</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getCommand()
+		 * @generated
+		 */
+		EClass COMMAND = eINSTANCE.getCommand();
+
+		/**
+		 * The meta object literal for the '<em><b>Service</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMMAND__SERVICE = eINSTANCE.getCommand_Service();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl <em>Commands</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getCommands()
+		 * @generated
+		 */
+		EClass COMMANDS = eINSTANCE.getCommands();
+
+		/**
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMMANDS__CHILDREN = eINSTANCE.getCommands_Children();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServicesImpl <em>Services</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServicesImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getServices()
+		 * @generated
+		 */
+		EClass SERVICES = eINSTANCE.getServices();
+
+		/**
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICES__CHILDREN = eINSTANCE.getServices_Children();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServiceImpl <em>Service</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServiceImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getService()
+		 * @generated
+		 */
+		EClass SERVICE = eINSTANCE.getService();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__CLASS_NAME = eINSTANCE.getService_ClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.

@@ -17,6 +17,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Address;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AddressType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Building;
 import org.eclipse.rcpl.model_2_0_0.rcpl.City;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Command;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Commands;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Contact;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Country;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Document;
@@ -58,6 +60,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resources;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RibbonToolBar;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Service;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Services;
 import org.eclipse.rcpl.model_2_0_0.rcpl.SideToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Street;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -423,6 +427,34 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass commandEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass commandsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass servicesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass serviceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum toolTypeEEnum = null;
 
 	/**
@@ -686,7 +718,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRCPL_AllPreferences() {
+	public EReference getRCPL_Preferences() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -832,6 +864,24 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 */
 	public EAttribute getRCPL_HomeURL() {
 		return (EAttribute)rcplEClass.getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRCPL_Commands() {
+		return (EReference)rcplEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRCPL_Services() {
+		return (EReference)rcplEClass.getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -2441,6 +2491,78 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCommand() {
+		return commandEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCommand_Service() {
+		return (EReference)commandEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCommands() {
+		return commandsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCommands_Children() {
+		return (EReference)commandsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getServices() {
+		return servicesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getServices_Children() {
+		return (EReference)servicesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getService() {
+		return serviceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ClassName() {
+		return (EAttribute)serviceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getToolType() {
 		return toolTypeEEnum;
 	}
@@ -2545,7 +2667,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		rcplEClass = createEClass(RCPL);
 		createEReference(rcplEClass, RCPL__ALL_ADDONS);
 		createEReference(rcplEClass, RCPL__ALL_PERSPECTIVES);
-		createEReference(rcplEClass, RCPL__ALL_PREFERENCES);
+		createEReference(rcplEClass, RCPL__PREFERENCES);
 		createEReference(rcplEClass, RCPL__ALL_TOOLS);
 		createEReference(rcplEClass, RCPL__ALL_FAVORITES);
 		createEAttribute(rcplEClass, RCPL__VERSION_MAJOR);
@@ -2562,6 +2684,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEAttribute(rcplEClass, RCPL__IMAGE_URLS);
 		createEAttribute(rcplEClass, RCPL__SERVICE_CLASSES);
 		createEAttribute(rcplEClass, RCPL__HOME_URL);
+		createEReference(rcplEClass, RCPL__COMMANDS);
+		createEReference(rcplEClass, RCPL__SERVICES);
 
 		perspectivesEClass = createEClass(PERSPECTIVES);
 		createEReference(perspectivesEClass, PERSPECTIVES__CHILDREN);
@@ -2788,6 +2912,18 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		keyValuesEClass = createEClass(KEY_VALUES);
 		createEReference(keyValuesEClass, KEY_VALUES__KEYVALUES);
 
+		commandEClass = createEClass(COMMAND);
+		createEReference(commandEClass, COMMAND__SERVICE);
+
+		commandsEClass = createEClass(COMMANDS);
+		createEReference(commandsEClass, COMMANDS__CHILDREN);
+
+		servicesEClass = createEClass(SERVICES);
+		createEReference(servicesEClass, SERVICES__CHILDREN);
+
+		serviceEClass = createEClass(SERVICE);
+		createEAttribute(serviceEClass, SERVICE__CLASS_NAME);
+
 		// Create enums
 		toolTypeEEnum = createEEnum(TOOL_TYPE);
 		fontStylesEEnum = createEEnum(FONT_STYLES);
@@ -2870,6 +3006,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		homePageEClass.getESuperTypes().add(this.getLayoutable());
 		documentsEClass.getESuperTypes().add(this.getLayoutable());
 		documentEClass.getESuperTypes().add(this.getLayoutable());
+		commandEClass.getESuperTypes().add(this.getLayoutable());
+		serviceEClass.getESuperTypes().add(this.getLayoutable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(layoutableEClass, Layoutable.class, "Layoutable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2890,7 +3028,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEClass(rcplEClass, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, "RCPL", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRCPL_AllAddons(), this.getAddons(), null, "allAddons", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_AllPerspectives(), this.getPerspectives(), null, "allPerspectives", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRCPL_AllPreferences(), this.getPreferences(), null, "allPreferences", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRCPL_Preferences(), this.getPreferences(), null, "preferences", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_AllTools(), this.getTools(), null, "allTools", null, 1, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_AllFavorites(), this.getFavorites(), null, "allFavorites", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRCPL_VersionMajor(), ecorePackage.getEInt(), "versionMajor", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2907,6 +3045,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEAttribute(getRCPL_ImageUrls(), ecorePackage.getEString(), "imageUrls", null, 0, -1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRCPL_ServiceClasses(), ecorePackage.getEString(), "ServiceClasses", null, 0, -1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRCPL_HomeURL(), ecorePackage.getEString(), "homeURL", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRCPL_Commands(), this.getCommands(), null, "commands", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRCPL_Services(), this.getServices(), null, "services", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(perspectivesEClass, Perspectives.class, "Perspectives", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPerspectives_Children(), this.getPerspective(), null, "children", null, 0, -1, Perspectives.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3132,6 +3272,18 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		initEClass(keyValuesEClass, KeyValues.class, "KeyValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getKeyValues_Keyvalues(), this.getKeyValue(), null, "keyvalues", null, 0, -1, KeyValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCommand_Service(), this.getService(), null, "service", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(commandsEClass, Commands.class, "Commands", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCommands_Children(), this.getCommand(), null, "children", null, 0, -1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(servicesEClass, Services.class, "Services", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getServices_Children(), this.getService(), null, "children", null, 0, -1, Services.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getService_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(toolTypeEEnum, ToolType.class, "ToolType");

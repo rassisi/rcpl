@@ -445,6 +445,42 @@ public interface RcplFactory extends EFactory {
 	KeyValues createKeyValues();
 
 	/**
+	 * Returns a new object of class '<em>Command</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Command</em>'.
+	 * @generated
+	 */
+	Command createCommand();
+
+	/**
+	 * Returns a new object of class '<em>Commands</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Commands</em>'.
+	 * @generated
+	 */
+	Commands createCommands();
+
+	/**
+	 * Returns a new object of class '<em>Services</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Services</em>'.
+	 * @generated
+	 */
+	Services createServices();
+
+	/**
+	 * Returns a new object of class '<em>Service</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Service</em>'.
+	 * @generated
+	 */
+	Service createService();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

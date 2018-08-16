@@ -1153,6 +1153,98 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Command} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CommandItemProvider commandItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Command}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommandAdapter() {
+		if (commandItemProvider == null) {
+			commandItemProvider = new CommandItemProvider(this);
+		}
+
+		return commandItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Commands} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CommandsItemProvider commandsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Commands}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommandsAdapter() {
+		if (commandsItemProvider == null) {
+			commandsItemProvider = new CommandsItemProvider(this);
+		}
+
+		return commandsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Services} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ServicesItemProvider servicesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Services}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createServicesAdapter() {
+		if (servicesItemProvider == null) {
+			servicesItemProvider = new ServicesItemProvider(this);
+		}
+
+		return servicesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Service} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ServiceItemProvider serviceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Service}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createServiceAdapter() {
+		if (serviceItemProvider == null) {
+			serviceItemProvider = new ServiceItemProvider(this);
+		}
+
+		return serviceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1298,6 +1390,10 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 		if (documentItemProvider != null) documentItemProvider.dispose();
 		if (keyValueItemProvider != null) keyValueItemProvider.dispose();
 		if (keyValuesItemProvider != null) keyValuesItemProvider.dispose();
+		if (commandItemProvider != null) commandItemProvider.dispose();
+		if (commandsItemProvider != null) commandsItemProvider.dispose();
+		if (servicesItemProvider != null) servicesItemProvider.dispose();
+		if (serviceItemProvider != null) serviceItemProvider.dispose();
 	}
 
 }

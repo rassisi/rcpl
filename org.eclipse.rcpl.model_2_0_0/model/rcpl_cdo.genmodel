@@ -135,7 +135,7 @@
     <genClasses ecoreClass="rcpl.ecore#//RCPL">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allAddons"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allPerspectives"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allPreferences"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/preferences"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allTools"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/allFavorites"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/versionMajor"/>
@@ -152,6 +152,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/imageUrls"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/ServiceClasses"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/homeURL"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/commands"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/services"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Perspectives">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspectives/children"/>
@@ -372,6 +374,18 @@
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//KeyValues">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//KeyValues/keyvalues"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Command">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Command/service"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Commands">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Commands/children"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Services">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Services/children"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Service">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Service/className"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

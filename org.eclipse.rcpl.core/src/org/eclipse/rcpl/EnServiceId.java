@@ -2,7 +2,7 @@ package org.eclipse.rcpl;
 
 public enum EnServiceId {
 
-	NEW_WORD_DOCUMENT,
+	DOCUMENT_SERVICE,
 
 	BROWSER_SERVICE,
 
@@ -13,8 +13,6 @@ public enum EnServiceId {
 	CONTEXT_MENU_SERVICE,
 
 	DELETE_SERVICE,
-
-	DOCUMENT_SERVICE,
 
 	EDITOR_SERVICE,
 

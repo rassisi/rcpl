@@ -261,6 +261,22 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 				return createKeyValuesAdapter();
 			}
 			@Override
+			public Adapter caseCommand(Command object) {
+				return createCommandAdapter();
+			}
+			@Override
+			public Adapter caseCommands(Commands object) {
+				return createCommandsAdapter();
+			}
+			@Override
+			public Adapter caseServices(Services object) {
+				return createServicesAdapter();
+			}
+			@Override
+			public Adapter caseService(Service object) {
+				return createServiceAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -963,6 +979,62 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createKeyValuesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Command <em>Command</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Command
+	 * @generated
+	 */
+	public Adapter createCommandAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Commands <em>Commands</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Commands
+	 * @generated
+	 */
+	public Adapter createCommandsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Services <em>Services</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Services
+	 * @generated
+	 */
+	public Adapter createServicesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Service <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Service
+	 * @generated
+	 */
+	public Adapter createServiceAdapter() {
 		return null;
 	}
 

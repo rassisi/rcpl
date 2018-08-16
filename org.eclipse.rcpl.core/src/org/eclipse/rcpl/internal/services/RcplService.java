@@ -370,8 +370,6 @@ public class RcplService extends RcplAbstractService implements IService {
 			return getServiceBySimpleName("JOPictureService");
 		case TABLE_SERVICE:
 			return getServiceBySimpleName("JOTableService");
-		case NEW_WORD_DOCUMENT:
-			return getServiceBySimpleName("NewWORDDocumentService");
 		default:
 			break;
 		}

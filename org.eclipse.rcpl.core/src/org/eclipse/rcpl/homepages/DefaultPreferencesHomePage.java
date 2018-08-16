@@ -34,7 +34,7 @@ public class DefaultPreferencesHomePage extends AbstractNavigatorHomePage {
 
 	@Override
 	protected EObject getRoot() {
-		return RcplSession.getDefault().getRcpl().getAllPreferences();
+		return RcplSession.getDefault().getRcpl().getPreferences();
 	}
 
 }

@@ -269,7 +269,7 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_ADDONS);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_PERSPECTIVES);
-			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_PREFERENCES);
+			childrenFeatures.add(RcplPackage.Literals.RCPL__PREFERENCES);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_TOOLS);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_FAVORITES);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__ALL_RESOURCES);
@@ -277,6 +277,8 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			childrenFeatures.add(RcplPackage.Literals.RCPL__HOMEPAGES);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__DOCUMENTS);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__KEYVALUES);
+			childrenFeatures.add(RcplPackage.Literals.RCPL__COMMANDS);
+			childrenFeatures.add(RcplPackage.Literals.RCPL__SERVICES);
 		}
 		return childrenFeatures;
 	}
@@ -338,7 +340,7 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 				return;
 			case RcplPackage.RCPL__ALL_ADDONS:
 			case RcplPackage.RCPL__ALL_PERSPECTIVES:
-			case RcplPackage.RCPL__ALL_PREFERENCES:
+			case RcplPackage.RCPL__PREFERENCES:
 			case RcplPackage.RCPL__ALL_TOOLS:
 			case RcplPackage.RCPL__ALL_FAVORITES:
 			case RcplPackage.RCPL__ALL_RESOURCES:
@@ -346,6 +348,8 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			case RcplPackage.RCPL__HOMEPAGES:
 			case RcplPackage.RCPL__DOCUMENTS:
 			case RcplPackage.RCPL__KEYVALUES:
+			case RcplPackage.RCPL__COMMANDS:
+			case RcplPackage.RCPL__SERVICES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -375,7 +379,7 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RcplPackage.Literals.RCPL__ALL_PREFERENCES,
+				(RcplPackage.Literals.RCPL__PREFERENCES,
 				 RcplFactory.eINSTANCE.createPreferences()));
 
 		newChildDescriptors.add
@@ -412,6 +416,16 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			(createChildParameter
 				(RcplPackage.Literals.RCPL__KEYVALUES,
 				 RcplFactory.eINSTANCE.createKeyValues()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RcplPackage.Literals.RCPL__COMMANDS,
+				 RcplFactory.eINSTANCE.createCommands()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RcplPackage.Literals.RCPL__SERVICES,
+				 RcplFactory.eINSTANCE.createServices()));
 	}
 
 }
