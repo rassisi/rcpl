@@ -20,16 +20,16 @@ public class DemoRcplUic extends RcplUic {
 	}
 
 	public void actionAddWordTab() {
-		openTemplate("blank_A4.docx", "   New Document");
+		openDocument("blank_A4.docx", "   New Document");
 	}
 
 	@Override
-	public void actionOpen() {
+	public void openDocumentWithFileDialog() {
 
 	}
 
 	@Override
-	public void actionOpenLast() {
+	public void openLastDocument() {
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class DemoRcplUic extends RcplUic {
 	}
 
 	@Override
-	public void openTemplate(String name, String tabName) {
+	public void openDocument(String name, String tabName) {
 
 	}
 

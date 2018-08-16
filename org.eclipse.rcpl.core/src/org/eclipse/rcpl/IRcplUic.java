@@ -51,13 +51,11 @@ public interface IRcplUic {
 
 	IHomePage findHomePage(HomePageType type, String id);
 
-	void actionAddPresentationTab();
-
 	void actionLogout();
 
-	void actionOpen();
+	void openDocumentWithFileDialog();
 
-	void actionOpenLast();
+	void openLastDocument();
 
 	void addtoApplicationStack(StackPane contentGroup);
 
@@ -121,7 +119,7 @@ public interface IRcplUic {
 
 	void openDocument(File file);
 
-	void openTemplate(String name, String tabName);
+	void openDocument(String name, String tabName);
 
 	void recreateSideBar();
 

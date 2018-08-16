@@ -409,10 +409,6 @@ public class RcplUic implements IRcplUic {
 
 	}
 
-	@Override
-	public void actionAddPresentationTab() {
-	}
-
 	public void actionAddWebBrowserTab() {
 		final Tab newTab = createNewTab("Google");
 		newTab.setClosable(true);
@@ -447,11 +443,11 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void actionOpen() {
+	public void openDocumentWithFileDialog() {
 	}
 
 	@Override
-	public void actionOpenLast() {
+	public void openLastDocument() {
 	}
 
 	@Override
@@ -959,7 +955,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void openTemplate(String name, String tabName) {
+	public void openDocument(String name, String tabName) {
 	}
 
 	// protected IUndoRedoListener getInternalUndoRedoListener() {
@@ -2108,5 +2104,9 @@ public class RcplUic implements IRcplUic {
 			}
 		}
 		return null;
+	}
+
+	protected void testMemoryConsumption() {
+
 	}
 }

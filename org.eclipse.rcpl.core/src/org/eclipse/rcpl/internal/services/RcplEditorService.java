@@ -31,10 +31,10 @@ public class RcplEditorService extends RcplService {
 
 		switch (command.getCommandId()) {
 		case OPEN_DOCUMENT:
-			Rcpl.UIC.actionOpen();
+			Rcpl.UIC.openDocumentWithFileDialog();
 			break;
 		case open_last_document:
-			Rcpl.UIC.actionOpenLast();
+			Rcpl.UIC.openLastDocument();
 			break;
 		case save:
 			// Rcpl.UIC.save();
