@@ -274,8 +274,6 @@ public class RcplUic implements IRcplUic {
 
 	public boolean internalDragMode;
 
-	private String name;
-
 	protected StackPane editorArea;
 
 	protected Group editorGroup;
@@ -351,7 +349,6 @@ public class RcplUic implements IRcplUic {
 	public RcplUic(IApplicationStarter rcplApplicationStarter, String id) {
 
 		this.applicationStarter = rcplApplicationStarter;
-		this.name = rcplApplicationStarter.getRcplApplicationProvider().getName();
 		this.editorArea = new StackPane();
 		this.editorGroup = new Group();
 		this.editorArea.getChildren().add(editorGroup);
@@ -491,8 +488,6 @@ public class RcplUic implements IRcplUic {
 			protected void execute() {
 				if (tabInfo.getEditor() != null) {
 					final IEditor editor = tabInfo.getEditor();
-					final IDocument doc = editor.getDocument();
-
 					if (internalTabPane.getTabs().isEmpty()) {
 						showHomePage(HomePageType.OVERVIEW, null);
 						IHomePage hp = findHomePage(HomePageType.OVERVIEW, null);
@@ -1799,7 +1794,7 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
-	private boolean showHtmlEditor() {
+	protected boolean showHtmlEditor() {
 		WebView webView = getBrowser();
 		if (webView != null) {
 
@@ -2089,5 +2084,29 @@ public class RcplUic implements IRcplUic {
 			webDetailPage = new WebBrowserDetailsPage();
 		}
 		return webDetailPage;
+	}
+
+	protected Tab searchTab(String name) {
+		String[] splits1 = name.split("\\.");
+
+		for (Tab t : tabPane.getTabs()) {
+			String[] splits = t.getText().split("\\.");
+			if (splits1[0].trim().equals(splits[0].trim())) {
+				return t;
+			}
+		}
+		return null;
+	}
+
+	protected Tab searchTab(File file, Tab excludeTab) {
+		for (Tab tab : tabPane.getTabs()) {
+			TabInfo tabInfo = getTabInfo(tab);
+			IDocument doc = tabInfo.getEditor().getDocument();
+			File f = doc.getFile();
+			if (f.equals(file)) {
+				return tab;
+			}
+		}
+		return null;
 	}
 }
