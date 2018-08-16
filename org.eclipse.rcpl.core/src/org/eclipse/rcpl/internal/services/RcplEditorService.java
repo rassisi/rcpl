@@ -29,10 +29,8 @@ public class RcplEditorService extends RcplService {
 	@Override
 	public Object doExecute(ICommand command) throws Exception {
 
-		// Rcpl.UIC.
-
 		switch (command.getCommandId()) {
-		case open:
+		case OPEN_DOCUMENT:
 			Rcpl.UIC.actionOpen();
 			break;
 		case open_last_document:

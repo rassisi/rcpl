@@ -1,2 +1,7 @@
-1. version Label aus EMF
-2. Navigator Bug (Verdoppelung)
+   Open document verbessern, vereinfachen
+   EnCommandId ins EMF
+   ToolEditor wieder in Gang setzen, Command IDs add delete ergänzen
+   redo, undo verbessern
+   save document
+   Preferences, editor
+   

@@ -47,7 +47,7 @@ public interface IRcplFactory {
 
 	IEditor createEditor(File file, Tab tab, HashMap<String, String> wordReplacements, boolean onePage);
 
-	IEditor createEditor(Tab tab, boolean isBrowser);
+	IEditor createEditor(Tab tab);
 
 	ISideToolBar createSideToolBar(HBox hbox);
 

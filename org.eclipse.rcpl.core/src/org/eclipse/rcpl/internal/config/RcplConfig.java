@@ -34,7 +34,7 @@ public class RcplConfig implements IConfig {
 
 	@Override
 	public double getDefaultZoom() {
-		return 0.75;
+		return 0.6;
 	}
 
 	static {

@@ -1280,7 +1280,7 @@ public class RcplUic implements IRcplUic {
 	private void updateQuickToolsArea() {
 		quickToolsArea.getChildren().clear();
 		if (!Rcpl.isMobile()) {
-			if (perspective == null && perspective.getQuickToolBar() != null) {
+			if (perspective != null && perspective.getQuickToolBar() != null) {
 				for (Tool tool : perspective.getQuickToolBar().getTools()) {
 					IButton q = Rcpl.getFactory().createButton(tool);
 					quickToolsArea.getChildren().add(q.getNode());

@@ -31,6 +31,9 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 	public AbstractTaskViewProvider() {
 		super();
 		taskProgressView = new TaskProgressView<RcplTask>();
+
+//		Node n = taskProgressView.getSkin().getNode();
+
 		progressViewArea = new StackPane();
 		progressViewArea.setPrefHeight(120);
 		progressViewArea.setMinHeight(120);

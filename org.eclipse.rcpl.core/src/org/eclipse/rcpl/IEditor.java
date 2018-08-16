@@ -26,8 +26,6 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void updateDocumentInfo();
 
-//	void layoutDocument();
-
 	void finishAddPages();
 
 	void setActualPage(IPage actualPage);
@@ -191,8 +189,6 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 	void hideAnchor();
 
 	void showAnchor(ILayoutFigure figure);
-
-	void setPerspective(Perspective perspective);
 
 	Perspective getPerspective();
 }

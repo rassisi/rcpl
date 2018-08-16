@@ -222,7 +222,7 @@ public class RcplBasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public IEditor createEditor(Tab tab, boolean isBrowser) {
+	public IEditor createEditor(Tab tab) {
 		return null;
 	}
 
