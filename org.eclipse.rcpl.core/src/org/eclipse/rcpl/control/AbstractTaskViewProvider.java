@@ -32,13 +32,10 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 	public AbstractTaskViewProvider() {
 		super();
 		taskProgressView = new TaskProgressView<RcplTask>();
-
-//		Node n = taskProgressView.getSkin().getNode();
-
 		progressViewArea = new StackPane();
-		progressViewArea.setPrefHeight(120);
-		progressViewArea.setMinHeight(120);
-		progressViewArea.setMaxHeight(120);
+		progressViewArea.setPrefHeight(65);
+		progressViewArea.setMinHeight(65);
+		progressViewArea.setMaxHeight(65);
 		progressViewArea.getChildren().add(taskProgressView);
 	}
 
@@ -47,7 +44,7 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 	}
 
 	@Override
-	public void taskProgress(int taskNumber, String message, double workDone, double maxWork) {
+	public void progress(int taskNumber, String message, double workDone, double maxWork) {
 		RcplTask task = tasks.get(taskNumber);
 		if (task != null) {
 			task.progress(taskNumber, message, workDone, maxWork);
@@ -82,9 +79,11 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			if (maxWork == 0) {
 				maxWork = 100.0;
 			}
+			if (tasks.get(taskNumber) == null) {
+				return;
+			}
 			Rcpl.println("workDone = " + workDone + "   maxWork = " + maxWork);
 			tasks.get(taskNumber).updateProgress(workDone, maxWork);
-
 			tasks.get(taskNumber).updateMessage(message);
 			if (isLongTask()) {
 				expandTaskView();

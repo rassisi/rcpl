@@ -222,8 +222,6 @@ public class RcplUic implements IRcplUic {
 
 	private TextArea logTextArea;
 
-	protected HBox internalMainBottomArea;
-
 	protected File lastDocumentFile = null;
 
 	private IApplicationStarter applicationStarter;
@@ -465,6 +463,10 @@ public class RcplUic implements IRcplUic {
 		tab.setUserData(null);
 		if (tabInfo != null && tabInfo.getEditor() != null) {
 			tabInfo.getEditor().getMainPane().toBack();
+			if (tabPane.getTabs().isEmpty()) {
+//				closeEditor(tabInfo.getEditor());
+				showHomePage(HomePageType.OVERVIEW, null);
+			}
 
 			if (tabInfo.getEditor().getDocument() != null) {
 				new Thread() {
@@ -482,27 +484,17 @@ public class RcplUic implements IRcplUic {
 
 		}
 
-		new DelayedExecution(30) {
-
-			@Override
-			protected void execute() {
-				if (tabInfo.getEditor() != null) {
-					final IEditor editor = tabInfo.getEditor();
-					if (tabPane.getTabs().isEmpty()) {
-						showHomePage(HomePageType.OVERVIEW, null);
-						IHomePage hp = findHomePage(HomePageType.OVERVIEW, null);
-						if (hp != null) {
-							showPerspective(hp.getModel().getPerspective());
-						}
-					}
-					if (editor != null && editor.getDocument() != null) {
-						editor.showPageGroup(false);
-						closeEditor(editor);
-					}
-				}
-			}
-
-		};
+//		new DelayedExecution(30) {
+//
+//			@Override
+//			protected void execute() {
+//				if (tabInfo.getEditor() != null) {
+//					final IEditor editor = tabInfo.getEditor();
+//					closeEditor(editor);
+//				}
+//			}
+//
+//		};
 
 	}
 
@@ -561,9 +553,9 @@ public class RcplUic implements IRcplUic {
 		if (!expand) {
 			borderPane.setBottom(null);
 		} else {
-			borderPane.setBottom(internalMainBottomArea);
+			borderPane.setBottom(mainBottomArea);
 		}
-		internalMainBottomArea.layout();
+		mainBottomArea.layout();
 
 	}
 
@@ -868,12 +860,7 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void init(BorderPane parent) {
-		copyFXToInternal();
 		borderPane = parent;
-		tabPane = tabPane;
-		internalMainBottomArea = mainBottomArea;
-		// tabPane.setStyle("-fx-open-tab-animation: NONE;
-		// -fx-close-tab-animation: NONE;");
 		tabPane.setPrefSize(10, 10);
 	}
 
@@ -899,15 +886,9 @@ public class RcplUic implements IRcplUic {
 //			}
 		}
 
-//		Rcpl.progressMessage("Migrate Model");
-//		new RcplMigration().migrate();
-
 		Rcpl.progressMessage("Register Services");
-//		registerServices();
 
 		RcplSession.getDefault().setPassword(null);
-
-		// new JOPointToPixelCalculator().init();
 
 		return true;
 	}
@@ -1448,12 +1429,7 @@ public class RcplUic implements IRcplUic {
 
 	protected void closeEditor(IEditor editor) {
 		editorArea.getChildren().remove(editor.getMainPane());
-		editor.dispose();
-	}
-
-	protected void copyFXToInternal() {
-		tabPane = tabPane;
-		internalMainBottomArea = mainBottomArea;
+//		editor.dispose();
 	}
 
 	private void createBorderDragger() {

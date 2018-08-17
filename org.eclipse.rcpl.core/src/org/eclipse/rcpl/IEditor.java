@@ -12,13 +12,13 @@ import javafx.scene.Parent;
  */
 public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
-	public static final int TASK_LAYOUT_DOCUMENT = 1;
+	public static final int TASK_LOAD_DOCUMENT = 1;
 
-	public static final int TASK_FINISH_DOCUMENT = 2;
+	public static final int TASK_LAYOUT_DOCUMENT = 2;
 
-	public static final int TASK_ACTIVATE_FIRST_PARAGRAPH = 3;
+	public static final int TASK_FINISH_DOCUMENT = 3;
 
-	public static final int TASK_LOAD_DOCUMENT = 4;
+	public static final int TASK_ACTIVATE_FIRST_PARAGRAPH = 4;
 
 	void updateOutline();
 
@@ -62,7 +62,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void expandVerticalArea();
 
-	IPage findFistPageOfSection();
+	IPage findFirstPageOfSection();
 
 	ILayoutObject getAnchorObject();
 

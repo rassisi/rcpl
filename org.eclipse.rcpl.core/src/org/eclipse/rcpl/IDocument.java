@@ -23,6 +23,8 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTColorSchemeMappi
  */
 public interface IDocument {
 
+	ITaskViewProvider getTaskViewProvider();
+
 	int layoutObjectsSize();
 
 	int layoutObjectIndexOf(ILayoutObject lo);

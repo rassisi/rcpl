@@ -11,7 +11,7 @@ public interface ITaskViewProvider {
 
 	RcplTask getTask(int taskNumber);
 
-	void taskProgress(int taskNumber, String message, double workDone, double maxWork);
+	void progress(int taskNumber, String message, double workDone, double maxWork);
 
 	void startTask(String title, int taskNumber, RcplCompletionListener completionListener, Object... parameters);
 
