@@ -1,6 +1,9 @@
 package org.eclipse.rcpl.ip2location;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -58,9 +61,9 @@ public class Ip2LocationImport {
 	private void importCVS() {
 		PreparedStatement insertPreparedStatement = null;
 
-		String insertQuery = "INSERT INTO ip2location_db5 (IP_FROM, IP_TO, LATITUDE, LONGITUDE, COUNTRY_CODE, COUNTRY_NAME, REGION_NAME, CITY_NAME, POST_CODE)"
-
-				+ "VALUES (?,?,?,?,?,?,?,?,?);";
+		String insertQuery = "INSERT INTO " + Ip2Location.TABLE_IPV4
+				+ " (IP_FROM, IP_TO, LATITUDE, LONGITUDE, COUNTRY_CODE, COUNTRY_NAME, REGION_NAME, CITY_NAME, POST_CODE, TIME_ZONE)"
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?);";
 
 		try {
 			insertPreparedStatement = h2.getConnection().prepareStatement(insertQuery);
@@ -82,11 +85,7 @@ public class Ip2LocationImport {
 				insertPreparedStatement.setString(7, entry.getRegion_name());
 				insertPreparedStatement.setString(8, entry.getCity_name());
 				insertPreparedStatement.setString(9, entry.getPostCode());
-
-				entry.getCity_name();
-				entry.getPostCode();
-				entry.getRegion_name();
-
+				insertPreparedStatement.setString(10, entry.getTimeZone());
 				insertPreparedStatement.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -109,15 +108,43 @@ public class Ip2LocationImport {
 
 	private void dropTable() throws SQLException {
 		Statement stmt = h2.getConnection().createStatement();
-		String dropQ = "DROP TABLE IF EXISTS ip2location_db5";
+		String dropQ = "DROP TABLE IF EXISTS " + Ip2Location.TABLE_IPV4;
+		stmt.executeUpdate(dropQ);
+		dropQ = "DROP TABLE IF EXISTS " + Ip2Location.TABLE_IPV6;
 		stmt.executeUpdate(dropQ);
 		stmt.close();
 	}
 
+// ipv4	
+//	`ip_from` INT(10) UNSIGNED,
+//	`ip_to` INT(10) UNSIGNED,
+//	`country_code` CHAR(2),
+//	`country_name` VARCHAR(64),
+//	`region_name` VARCHAR(128),
+//	`city_name` VARCHAR(128),
+//	`latitude` DOUBLE,
+//	`longitude` DOUBLE,
+//	`zip_code` VARCHAR(30),
+//	`time_zone` VARCHAR(8),
+
+	// ipv6
+
+//	CREATE TABLE [ip2location].[dbo].[ip2location_db11_ipv6](
+//			[ip_from] char(39) NOT NULL,
+//			[ip_to] char(39) NOT NULL,
+//			[country_code] nvarchar(2) NOT NULL,
+//			[country_name] nvarchar(64) NOT NULL,
+//			[region_name] nvarchar(128) NOT NULL,
+//			[city_name] nvarchar(128) NOT NULL,
+//			[latitude] float NOT NULL,
+//			[longitude] float NOT NULL,
+//			[zip_code] nvarchar(30) NOT NULL,
+//			[time_zone] nvarchar(8) NOT NULL
+//		) ON [PRIMARY]
 	private void createTable() throws SQLException {
 		Statement stmt = h2.getConnection().createStatement();
 
-		String sql = "CREATE TABLE IF NOT EXISTS ip2location_db5 ("
+		String sql = "CREATE TABLE IF NOT EXISTS " + Ip2Location.TABLE_IPV4 + "("
 
 				+ "IP_FROM BIGINT UNSIGNED,"
 
@@ -135,7 +162,9 @@ public class Ip2LocationImport {
 
 				+ "CITY_NAME    VARCHAR(128),"
 
-				+ "POST_CODE    VARCHAR(128))"
+				+ "POST_CODE    VARCHAR(30),"
+
+				+ "TIME_ZONE    VARCHAR(8));"
 
 		; // ,"
 
@@ -152,41 +181,45 @@ public class Ip2LocationImport {
 	private List<IPEntry> getIpEntries() {
 		if (ipEntries == null) {
 			ipEntries = new ArrayList<IPEntry>();
-//			if (!load()) {
 			readDb();
-//			}
 		}
 		return ipEntries;
 	}
 
 	private void readDb() {
 
-		InputStream is = getClass().getResourceAsStream("IP2LOCATION-LITE-DB9.CSV");
+		InputStream is;
+		try {
+			File csv = new File("S:/git/joffice_new_2/com.joffice.application/ip2location/IP2LOCATION-LITE-DB11.CSV");
+			is = new FileInputStream(csv);
+			Reader r = new InputStreamReader(is);
+			try (BufferedReader br = new BufferedReader(r)) {
+				String line;
+				int i = 0;
 
-		Reader r = new InputStreamReader(is);
-		try (BufferedReader br = new BufferedReader(r)) {
-			String line;
-			int i = 0;
-
-			while ((line = br.readLine()) != null) {
-				i++;
-				createEntry(line);
-				if (i % 100000 == 0) {
-					System.out.println(i);
+				while ((line = br.readLine()) != null) {
+					i++;
+					createEntry(line);
+					if (i % 100000 == 0) {
+						System.out.println(i);
+					}
 				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			ipEntries.sort(new Comparator<IPEntry>() {
 
-		ipEntries.sort(new Comparator<IPEntry>() {
-
-			@Override
-			public int compare(IPEntry o1, IPEntry o2) {
-				return (int) (o1.getIp_from() - o2.getIp_from());
-			}
-		});
+				@Override
+				public int compare(IPEntry o1, IPEntry o2) {
+					return (int) (o1.getIp_from() - o2.getIp_from());
+				}
+			});
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} // .getResourceAsStream("IP2LOCATION-LITE-DB9.CSV");
 
 	}
 
@@ -220,7 +253,8 @@ public class Ip2LocationImport {
 			s = getNextToken(st);
 			double longitude = Double.valueOf(s).doubleValue();
 
-			// String postCode = st.nextToken();
+			String postCode = getNextToken(st);
+			String timeZone = getNextToken(st);
 
 			entry.setCity_name(city);
 			entry.setCountry_code(countryCode);
@@ -230,6 +264,9 @@ public class Ip2LocationImport {
 			entry.setLongitude(longitude);
 			entry.setRegion_name(region);
 			entry.setCountry_name(countryName);
+			entry.setPostCode(postCode);
+			entry.setTimeZone(timeZone);
+
 			if (entry.getLatitude() != 0 || entry.getLongitude() != 0) {
 				ipEntries.add(entry);
 			}

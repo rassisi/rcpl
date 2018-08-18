@@ -26,7 +26,6 @@ import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.services.RcplCommandService;
 import org.eclipse.rcpl.internal.services.RcplObjectService;
 import org.eclipse.rcpl.internal.services.RcplService;
-import org.eclipse.rcpl.internal.services.RcplStartButtonService;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
@@ -220,10 +219,6 @@ public abstract class RcplAbstractService {
 	}
 
 	public abstract IService getService(EnServiceId serviceId);
-
-	public RcplStartButtonService getStartButtonService() {
-		return (RcplStartButtonService) getService(RcplStartButtonService.class);
-	}
 
 	// public JOTableService getTableService() {
 	// return (JOTableService) getService(JOTableService.class);

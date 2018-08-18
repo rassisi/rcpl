@@ -1,4 +1,4 @@
-   Open document verbessern, vereinfachen
+ 
    EnCommandId ins EMF
    ToolEditor wieder in Gang setzen, Command IDs add delete ergänzen
    redo, undo verbessern

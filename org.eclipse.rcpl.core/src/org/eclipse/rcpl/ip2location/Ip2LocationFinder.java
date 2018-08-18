@@ -39,10 +39,6 @@ public class Ip2LocationFinder {
 
 		try {
 
-			test.findMyIPAddress();
-
-//			test.findLocation("85.13.145.39");
-
 			List<IPEntry> entries = test.findLocation(test.findMyIPAddress());
 			for (IPEntry entry : entries) {
 				System.out.println(longToIp(entry.getIp_from()));
@@ -54,6 +50,7 @@ public class Ip2LocationFinder {
 				System.out.println(entry.getRegion_name());
 				System.out.println(entry.getCity_name());
 				System.out.println(entry.getPostCode());
+				System.out.println(entry.getTimeZone());
 			}
 
 		} catch (SQLException e) {
@@ -72,7 +69,7 @@ public class Ip2LocationFinder {
 		List<IPEntry> result = new ArrayList<IPEntry>();
 
 		long longIp = ipToLong(ipAddress);
-		String sql = "select * from ip2location_db5 where (ip_from <= ?) and (?<=ip_to)";
+		String sql = "select * from " + Ip2Location.TABLE_IPV4 + " where (ip_from <= ?) and (?<=ip_to)";
 
 		PreparedStatement stm = h2.getConnection().prepareStatement(sql);
 
@@ -93,6 +90,7 @@ public class Ip2LocationFinder {
 			entry.setRegion_name(selectRS.getString(7));
 			entry.setCity_name(selectRS.getString(8));
 			entry.setPostCode(selectRS.getString(9));
+			entry.setTimeZone(selectRS.getString(10));
 			result.add(entry);
 		}
 
@@ -187,6 +185,7 @@ public class Ip2LocationFinder {
 			doc = Jsoup.connect("https://whatismyipaddress.com/").timeout(10000).get();
 			Elements el = doc.select("div#section_left");
 			Element e = el.select("a").get(0);
+			System.out.println("My IP: " + e.text());
 			return (e.text());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

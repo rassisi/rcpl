@@ -17,10 +17,12 @@ import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.config.RcplConfig;
+import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.model.RCPLModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Service;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 
 import javafx.application.Platform;
@@ -57,13 +59,13 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 
 		RCPLModel.mobileProvider.appendLog("register services)");
 
-		registerServices();
-
 		RCPLModel.mobileProvider.appendLog("before Session)");
 
 		if (!beforeSession(login)) {
 			return false;
 		}
+
+		// ========== model can be accessed from this point ================
 
 		initApplicationWithModel();
 
@@ -93,7 +95,20 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 		return true;
 	}
 
-	protected abstract void registerServices();
+	protected void registerServices() {
+		for (Service srv : RcplSession.getDefault().getRcpl().getServices().getChildren()) {
+
+			try {
+				@SuppressWarnings("unchecked")
+				Class<? extends RcplService> srvClass = (Class<? extends RcplService>) Class
+						.forName(srv.getClassName());
+				getRcplApplicationProvider().registerService(srvClass);
+			} catch (ClassNotFoundException e) {
+				Rcpl.printErrorln("", e);
+			}
+
+		}
+	}
 
 	private void initApplicationWithModel() {
 		doInitApplicationWithModel();

@@ -398,14 +398,6 @@ public class RcplService extends RcplAbstractService implements IService {
 		return (RcplEditorService) getService(RcplEditorService.class);
 	}
 
-	RcplGroupButtonService getGroupButtonService() {
-		return (RcplGroupButtonService) getService(RcplGroupButtonService.class);
-	}
-
-	RcplInfoTabService getInfoTabService() {
-		return (RcplInfoTabService) getService(RcplInfoTabService.class);
-	}
-
 }
 
 // @Override

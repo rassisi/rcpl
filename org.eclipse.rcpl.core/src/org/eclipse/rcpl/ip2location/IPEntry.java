@@ -49,6 +49,8 @@ public class IPEntry implements Serializable {
 
 	private String postCode;
 
+	private String timeZone;
+
 	public String getCountry_code() {
 		return country_code;
 	}
@@ -119,6 +121,14 @@ public class IPEntry implements Serializable {
 
 	public void setPostCode(String postCode) {
 		this.postCode = postCode;
+	}
+
+	public String getTimeZone() {
+		return timeZone;
+	}
+
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 
 }
