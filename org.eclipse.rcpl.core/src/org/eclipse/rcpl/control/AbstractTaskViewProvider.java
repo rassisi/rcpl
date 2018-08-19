@@ -29,6 +29,8 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 
+	private boolean expanded;
+
 	public AbstractTaskViewProvider() {
 		super();
 		taskProgressView = new TaskProgressView<RcplTask>();
@@ -135,14 +137,7 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 				break;
 			}
 
-			updateProgress(0, 0);
-			Platform.runLater(new Runnable() {
-
-				@Override
-				public void run() {
-					collapseTaskView();
-				}
-			});
+//			updateProgress(0, 0);
 
 			if (completionListener != null) {
 				completionListener.onCompleted();
@@ -226,29 +221,30 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 	@Override
 	public void expandTaskView() {
-		if (!getNode().getChildren().contains(progressViewArea)) {
 
-			Platform.runLater(new Runnable() {
-
-				@Override
-				public void run() {
-					getNode().getChildren().add(progressViewArea);
-				}
-			});
-		}
-	}
-
-	@Override
-	public void collapseTaskView() {
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				getNode().getChildren().remove(progressViewArea);
+			if (!expanded) {
+				expanded = true;
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						getNode().getChildren().add(progressViewArea);
+					}
+				});
 			}
-		});
+		}
 
-	}
+		@Override
+		public void collapseTaskView() {
+			if (expanded) {
+				expanded = false;
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						getNode().getChildren().remove(progressViewArea);
+					}
+				});
+			}
+		}
 
 	@Override
 	public void waitForTaskCompletion(int taskNumber) {
