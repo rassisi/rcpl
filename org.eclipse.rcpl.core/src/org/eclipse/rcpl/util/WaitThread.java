@@ -49,7 +49,7 @@ public abstract class WaitThread {
 
 	private void sleep() {
 		try {
-			Thread.sleep(0, 30);
+			Thread.sleep(0, 1);
 		} catch (InterruptedException e) {
 		}
 	}
