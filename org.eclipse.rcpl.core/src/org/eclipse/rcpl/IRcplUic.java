@@ -119,7 +119,7 @@ public interface IRcplUic {
 
 	void openDocument(File file);
 
-	void openDocument(String name, String tabName);
+	void openTemplateDocument(String name, String tabName);
 
 	void recreateSideBar();
 

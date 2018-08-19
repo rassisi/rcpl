@@ -934,7 +934,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void openDocument(String name, String tabName) {
+	public void openTemplateDocument(String name, String tabName) {
 	}
 
 	// protected IUndoRedoListener getInternalUndoRedoListener() {
