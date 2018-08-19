@@ -21,6 +21,7 @@ import org.eclipse.rcpl.EnMeasurementUnits;
 import org.eclipse.rcpl.EnPageSize;
 import org.eclipse.rcpl.IColorProvider;
 import org.eclipse.rcpl.ILayoutObject;
+import org.eclipse.rcpl.IMonitor;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplCountry;
 import org.eclipse.rcpl.internal.config.RcplConfig;
@@ -31,7 +32,19 @@ import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.w3c.dom.Node;
 
+import javafx.scene.text.Text;
+
+/**
+ * @author Ramin
+ *
+ */
 public class RcplUtil {
+
+	private static double point2PixelFactor = -1;
+
+//	private static double physicalWidth = -1;
+
+	private static IMonitor actualMonitor;
 
 	/**
 	 * 
@@ -840,4 +853,17 @@ public class RcplUtil {
 		}
 	}
 
+	public static double getPoint2PixelFactor() {
+		IMonitor m = Rcpl.getActualMonitor();
+		if (actualMonitor != m) {
+			final Text text = new Text("1234567890abcdefghijklmnopqrstABCDEFGHIJKLMNOPQRSTUVW");
+			final double width = text.getLayoutBounds().getWidth();
+			double widthFac = 438.97705078125 / width;
+			double dpi = m.getDpi();
+			point2PixelFactor = (dpi / widthFac) / 72;
+			// physicalWidth = m.getCmpi();
+		}
+		actualMonitor = m;
+		return point2PixelFactor;
+	}
 }

@@ -460,20 +460,22 @@ public class RcplUic implements IRcplUic {
 
 	public void closeTab(final Tab tab) {
 		TabInfo tabInfo = getTabInfo(tab);
-		tab.setUserData(null);
 		if (tabInfo != null && tabInfo.getEditor() != null) {
-			tabInfo.getEditor().getMainPane().toBack();
+			tab.setUserData(null);
+			final IEditor editor = tabInfo.getEditor();
+
+			editor.getMainPane().toBack();
 			if (tabPane.getTabs().isEmpty()) {
 //				closeEditor(tabInfo.getEditor());
 				showHomePage(HomePageType.OVERVIEW, null);
 			}
 
 			if (tabInfo.getEditor().getDocument() != null) {
-				new Thread() {
+				new Thread("Close Tab: Save Document") {
 					@Override
 					public void run() {
+						tabInfo.setEditor(null);
 						RcplSession.getDefault().commit();
-						final IEditor editor = tabInfo.getEditor();
 						final IDocument doc = editor.getDocument();
 						doc.save();
 						doc.dispose();
@@ -481,7 +483,6 @@ public class RcplUic implements IRcplUic {
 				}.start();
 
 			}
-
 		}
 
 //		new DelayedExecution(30) {

@@ -23,7 +23,7 @@ public class RCPLModel {
 
 	public static IResources resources;
 
-	public static double FONT_HEIGHT_FACTOR = 1.35;
+//	public static double FONT_HEIGHT_FACTOR = 1.35;
 
 	public static IConfig configuration;
 

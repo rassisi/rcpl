@@ -12,7 +12,7 @@ package org.eclipse.rcpl.ui.font;
 
 import org.eclipse.rcpl.IFont;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -63,12 +63,12 @@ public class RcplFont implements IFont {
 		if (fx == null) {
 			if (isBold()) {
 				if (isItalic()) {
-					fx = Font.font(name, FontWeight.BOLD, FontPosture.ITALIC, height * RCPLModel.FONT_HEIGHT_FACTOR);
+					fx = Font.font(name, FontWeight.BOLD, FontPosture.ITALIC, height * RcplUtil.getPoint2PixelFactor());
 				} else {
-					fx = Font.font(name, FontWeight.BOLD, height * RCPLModel.FONT_HEIGHT_FACTOR);
+					fx = Font.font(name, FontWeight.BOLD, height * RcplUtil.getPoint2PixelFactor());
 				}
 			} else {
-				fx = Font.font(name, height * RCPLModel.FONT_HEIGHT_FACTOR);
+				fx = Font.font(name, height * RcplUtil.getPoint2PixelFactor());
 			}
 		}
 		return fx;

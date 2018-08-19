@@ -34,7 +34,7 @@ public class RcplMonitor implements IMonitor {
 
 	@Override
 	public double getWidth() {
-		return screen.getVisualBounds().getWidth();
+		return screen.getBounds().getWidth();
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class RcplMonitor implements IMonitor {
 
 	@Override
 	public double getHeight() {
-		return screen.getVisualBounds().getHeight();
+		return screen.getBounds().getHeight();
 	}
 
 	@Override
@@ -57,6 +57,16 @@ public class RcplMonitor implements IMonitor {
 	@Override
 	public double getPhysicalHeightInCm() {
 		return getHeight() / getCmpi();
+	}
+
+	@Override
+	public double getVisualWidth() {
+		return screen.getVisualBounds().getWidth();
+	}
+
+	@Override
+	public double getVisualHeight() {
+		return screen.getVisualBounds().getHeight();
 	}
 
 }

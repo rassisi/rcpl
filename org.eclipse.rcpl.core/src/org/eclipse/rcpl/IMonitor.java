@@ -14,6 +14,10 @@ public interface IMonitor {
 
 	double getHeight();
 
+	double getVisualWidth();
+
+	double getVisualHeight();
+
 	double getPhysicalWidthInCm();
 
 	double getPhysicalHeightInCm();
