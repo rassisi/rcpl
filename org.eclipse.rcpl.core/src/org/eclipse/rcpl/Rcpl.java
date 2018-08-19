@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  */
 public class Rcpl {
 
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 
 	public static final String COPYRIGHT = "\u00a9";
 	public static final String REGISTERED = "\u00ae";

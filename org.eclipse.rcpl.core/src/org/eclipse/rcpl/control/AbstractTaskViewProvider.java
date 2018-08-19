@@ -6,7 +6,6 @@ import java.util.concurrent.Executors;
 
 import org.controlsfx.control.TaskProgressView;
 import org.eclipse.rcpl.ITaskViewProvider;
-import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.application.Platform;
@@ -35,9 +34,10 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 		super();
 		taskProgressView = new TaskProgressView<RcplTask>();
 		progressViewArea = new StackPane();
-		progressViewArea.setPrefHeight(65);
-		progressViewArea.setMinHeight(65);
-		progressViewArea.setMaxHeight(65);
+		double height = 62.0;
+		progressViewArea.setPrefHeight(height);
+		progressViewArea.setMinHeight(height);
+		progressViewArea.setMaxHeight(height);
 		progressViewArea.getChildren().add(taskProgressView);
 	}
 
@@ -84,14 +84,14 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			if (tasks.get(taskNumber) == null) {
 				return;
 			}
-			Rcpl.println("workDone = " + workDone + "   maxWork = " + maxWork);
+//			Rcpl.println(taskNumber + ".   workDone = " + workDone + "   maxWork = " + maxWork);
 			tasks.get(taskNumber).updateProgress(workDone, maxWork);
 			tasks.get(taskNumber).updateMessage(message);
 			if (isLongTask()) {
 				expandTaskView();
-				Rcpl.println("*** LONG TASK " + taskNumber + " " + message);
+//				Rcpl.println("*** LONG TASK " + taskNumber + " " + message);
 			} else {
-				Rcpl.println("*** NO LONG TASK " + taskNumber + " " + message);
+//				Rcpl.println("*** NO LONG TASK " + taskNumber + " " + message);
 
 			}
 		}
@@ -206,11 +206,12 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			@Override
 			public void run() {
 				taskCounter++;
+				final RcplTask task = new RcplTask(taskNumber + ". " + title, taskNumber, completionListener,
+						parameters);
 				expandTaskView();
-				tasks.put(taskNumber,
-						new RcplTask(taskCounter + ". " + title, taskNumber, completionListener, parameters));
-				taskProgressView.getTasks().add(tasks.get(taskNumber));
-				executorService.submit(tasks.get(taskNumber));
+				tasks.put(taskNumber, task);
+				taskProgressView.getTasks().add(task);
+				executorService.submit(task);
 			}
 		});
 	}
