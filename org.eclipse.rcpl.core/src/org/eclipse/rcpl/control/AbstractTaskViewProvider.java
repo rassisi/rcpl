@@ -49,7 +49,7 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 	public void progress(int taskNumber, String message, double workDone, double maxWork) {
 		RcplTask task = tasks.get(taskNumber);
 		if (task != null) {
-			task.progress(taskNumber, message, workDone, maxWork);
+			task.progress(message, workDone, maxWork);
 		}
 	}
 
@@ -77,7 +77,7 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			this.completionListener = completionListener;
 		}
 
-		public void progress(int taskNumber, String message, double workDone, double maxWork) {
+		public void progress(String message, double workDone, double maxWork) {
 			if (maxWork == 0) {
 				maxWork = 100.0;
 			}
@@ -137,17 +137,13 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 				break;
 			}
 
-//			updateProgress(0, 0);
-
 			if (completionListener != null) {
 				completionListener.onCompleted();
 			}
 
 			taskCounter--;
 			done();
-
 			tasks.remove(taskNumber);
-
 			return null;
 		}
 
@@ -222,29 +218,29 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 	@Override
 	public void expandTaskView() {
 
-			if (!expanded) {
-				expanded = true;
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						getNode().getChildren().add(progressViewArea);
-					}
-				});
-			}
+		if (!expanded) {
+			expanded = true;
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					getNode().getChildren().add(progressViewArea);
+				}
+			});
 		}
+	}
 
-		@Override
-		public void collapseTaskView() {
-			if (expanded) {
-				expanded = false;
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						getNode().getChildren().remove(progressViewArea);
-					}
-				});
-			}
+	@Override
+	public void collapseTaskView() {
+		if (expanded) {
+			expanded = false;
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					getNode().getChildren().remove(progressViewArea);
+				}
+			});
 		}
+	}
 
 	@Override
 	public void waitForTaskCompletion(int taskNumber) {
