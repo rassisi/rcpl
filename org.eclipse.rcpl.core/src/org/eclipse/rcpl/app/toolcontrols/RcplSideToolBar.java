@@ -188,8 +188,6 @@ public class RcplSideToolBar implements ISideToolBar {
 
 				for (ToolGroup toolGroup_0 : toolGroups) {
 
-					System.out.println("processPerspectiveToolGroups, toolGroup_0 " + toolGroup_0.getId());
-
 					// ---------- create the main toolbar button
 
 					IButton b = new RcplButton(toolGroup_0) {
