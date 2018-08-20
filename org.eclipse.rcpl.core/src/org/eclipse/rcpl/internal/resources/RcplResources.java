@@ -21,7 +21,7 @@ import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.IImageProvider;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.ITextProvider;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.Node;
@@ -33,8 +33,8 @@ import javafx.scene.Node;
 public class RcplResources implements IResources, IImageProvider, ITextProvider {
 
 	public RcplResources() {
-		RCPLModel.imageProvider = this;
-		RCPLModel.textProvider = this;
+		RcplModel.imageProvider = this;
+		RcplModel.textProvider = this;
 	}
 
 	private HashMap<String, IImage> imageRegistry = new HashMap<String, IImage>();

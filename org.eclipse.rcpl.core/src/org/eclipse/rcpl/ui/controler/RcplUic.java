@@ -40,13 +40,12 @@ import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
 import org.eclipse.rcpl.detailpages.WebBrowserDetailsPage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model.IImage;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
@@ -392,7 +391,7 @@ public class RcplUic implements IRcplUic {
 			public void handle(ActionEvent event) {
 				errorTextArea.setText("");
 				logTextArea.setText("");
-				RCPLModel.clearLog();
+				RcplModel.clearLog();
 			}
 		});
 		logPage.getChildren().addAll(returnButton, clearButton);
@@ -529,6 +528,14 @@ public class RcplUic implements IRcplUic {
 		initStyles();
 
 		doCreateContent();
+
+		new DelayedExecution(100) {
+
+			@Override
+			protected void execute() {
+				showHomePage(HomePageType.OVERVIEW, null);
+			}
+		};
 
 	}
 
@@ -940,9 +947,6 @@ public class RcplUic implements IRcplUic {
 	// protected IUndoRedoListener getInternalUndoRedoListener() {
 	// if (internalUndoRedoListener == null) {
 	// internalUndoRedoListener = Rcpl.getFactory().createUndoRedoTool();
-	// HBox.setMargin((Node) internalUndoRedoListener, new Insets(0, 10, 0,
-	// 10));
-	// }
 	// return internalUndoRedoListener;
 	// }
 
@@ -1074,19 +1078,6 @@ public class RcplUic implements IRcplUic {
 		topVBox.setMaxHeight(height);
 		topVBox.setMinHeight(height);
 		topVBox.setPrefHeight(height);
-
-		switch ((int) height) {
-		case RcplTopToolBar.COLLAPSED_HEIGHT:
-//			tabPane.setPadding(new Insets(0, 0, 0, 0));
-			break;
-		case RcplTopToolBar.COLLAPSED_HEIGHT_WITH_EDITOR:
-//			tabPane.setPadding(new Insets(-6, 0, 0, 0));
-			break;
-		case RcplTopToolBar.RIBBON_HEIGHT:
-//			tabPane.setPadding(new Insets(0, 0, 0, 0));
-			break;
-		}
-
 	}
 
 	@Override
@@ -1157,8 +1148,8 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void showErrorPage() {
-		errorTextArea.setText(RCPLModel.errorBuf.toString());
-		logTextArea.setText(RCPLModel.logBuf.toString());
+		errorTextArea.setText(RcplModel.errorBuf.toString());
+		logTextArea.setText(RcplModel.logBuf.toString());
 		setContent(logPage);
 		returnButton.requestFocus();
 	}
@@ -1251,6 +1242,7 @@ public class RcplUic implements IRcplUic {
 			if (perspective != null && perspective.getQuickToolBar() != null) {
 				for (Tool tool : perspective.getQuickToolBar().getTools()) {
 					IButton q = Rcpl.getFactory().createButton(tool);
+					q.getNode().setStyle("-fx-background-color: transparent;");
 					quickToolsArea.getChildren().add(q.getNode());
 				}
 			}
@@ -1328,7 +1320,7 @@ public class RcplUic implements IRcplUic {
 			startMenuButton.setGraphic(onlineOfflineView);
 
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 
@@ -1434,8 +1426,19 @@ public class RcplUic implements IRcplUic {
 	}
 
 	private void createBorderDragger() {
+		createBorderDragger(mainTopArea);
+		createBorderDragger(borderPane);
+		createBorderDragger(topVBox);
+		createBorderDragger(quickToolsArea);
+		createBorderDragger(titleArea);
+		createBorderDragger(topArea);
+		createBorderDragger(titleText);
+		createBorderDragger(tabPane);
+	}
+
+	private void createBorderDragger(Node node) {
 		if (!Rcpl.isMobile()) {
-			borderPane.setOnMousePressed(new EventHandler<MouseEvent>() {
+			node.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 
@@ -1444,7 +1447,7 @@ public class RcplUic implements IRcplUic {
 				}
 			});
 
-			borderPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			node.setOnMouseDragged(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 					Stage w = getStage();
@@ -1452,6 +1455,7 @@ public class RcplUic implements IRcplUic {
 					w.setY(event.getScreenY() - mouseDragOffsetY);
 				}
 			});
+
 		}
 	}
 
@@ -1513,7 +1517,7 @@ public class RcplUic implements IRcplUic {
 			tabPane.setTabMinHeight(h);
 
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 		return tab;
 	}
@@ -1552,7 +1556,7 @@ public class RcplUic implements IRcplUic {
 		titleArea.setAlignment(Pos.CENTER_LEFT);
 		HBox.setHgrow(titleText, Priority.ALWAYS);
 		StackPane.setAlignment(titleText, Pos.TOP_LEFT);
-		StackPane.setMargin(titleText, new Insets(7, 0, 0, 55));
+		StackPane.setMargin(titleText, new Insets(0, 0, 0, 55));
 
 	}
 
@@ -1622,13 +1626,11 @@ public class RcplUic implements IRcplUic {
 		try {
 			createTitelArea();
 			createBorderDragger();
-			updateWebViewDragger();
 			createRecentDocumentList();
 			updateEditorListener();
-
 			statusText.setText(getApplicationStarter().getVersionString());
 		} catch (Exception ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 
 		if (Rcpl.isMobile()) {
@@ -1636,7 +1638,6 @@ public class RcplUic implements IRcplUic {
 			borderPane.setBottom(null);
 		} else {
 			tabPaneContainer.setAlignment(Pos.BOTTOM_LEFT);
-			tabPaneContainer.setPadding(new Insets(-20, 0, 0, 0));
 		}
 
 		startMenuButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -1818,62 +1819,6 @@ public class RcplUic implements IRcplUic {
 
 			}
 		});
-	}
-
-//	private void updateTabPane() {
-//
-//		if (Rcpl.isBigDisplay()) {
-//
-//			tabPane.setOnMousePressed(new EventHandler<MouseEvent>() {
-//				@Override
-//				public void handle(MouseEvent event) {
-//					mouseDragOffsetX = event.getSceneX();
-//					mouseDragOffsetY = event.getSceneY();
-//
-//				}
-//			});
-//
-//			tabPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
-//				@Override
-//				public void handle(MouseEvent event) {
-//					mouseDragOffsetX = event.getSceneX();
-//					mouseDragOffsetY = event.getSceneY();
-//				}
-//			});
-//
-//			tabPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
-//				@Override
-//				public void handle(MouseEvent event) {
-//					Stage w = getStage();
-//					w.setX(event.getScreenX() - mouseDragOffsetX);
-//					w.setY(event.getScreenY() - mouseDragOffsetY);
-//					internalDragMode = true;
-//				}
-//			});
-//		}
-//	}
-
-	private void updateWebViewDragger() {
-		if (!Rcpl.isMobile()) {
-			homeWebView.setOnMousePressed(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					mouseDragOffsetX = event.getSceneX();
-					mouseDragOffsetY = event.getSceneY();
-				}
-			});
-
-			homeWebView.setOnMouseDragged(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					if (event.isControlDown()) {
-						Stage w = getStage();
-						w.setX(event.getScreenX() - mouseDragOffsetX);
-						w.setY(event.getScreenY() - mouseDragOffsetY);
-					}
-				}
-			});
-		}
 	}
 
 	private static Timeline getCaretTimeline() {

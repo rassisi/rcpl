@@ -18,7 +18,7 @@ import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.config.RcplConfig;
 import org.eclipse.rcpl.internal.services.RcplService;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
@@ -57,9 +57,9 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 	@Override
 	public boolean start(final ILogin login, final Stage primaryStage) {
 
-		RCPLModel.mobileProvider.appendLog("register services)");
+		RcplModel.mobileProvider.appendLog("register services)");
 
-		RCPLModel.mobileProvider.appendLog("before Session)");
+		RcplModel.mobileProvider.appendLog("before Session)");
 
 		if (!beforeSession(login)) {
 			return false;
@@ -84,7 +84,7 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 				uic.createHomePages();
 				uic.showHomePage(HomePageType.OVERVIEW, null);
 				uic.updateStartMenuButton();
-				RCPLModel.log(this, "User dir: " + RCPLModel.mobileProvider.getApplicationDir().toString());
+				RcplModel.log(this, "User dir: " + RcplModel.mobileProvider.getApplicationDir().toString());
 
 			}
 		});
@@ -127,7 +127,7 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 		RcplSession.getDefault().setStandalone(true);
 
 		Rcpl.progressMessage("Collapse All");
-		RCPLModel.configuration = new RcplConfig();
+		RcplModel.configuration = new RcplConfig();
 
 		Rcpl.progressMessage("Create UIC");
 		uic = createUIC(login);

@@ -27,7 +27,7 @@ import org.eclipse.rcpl.RcplCountry;
 import org.eclipse.rcpl.internal.config.RcplConfig;
 import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.libs.util.StringOutputStream;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.w3c.dom.Node;
@@ -419,7 +419,7 @@ public class RcplUtil {
 			AUtil.copyInputStream(is, outFile, escapeHtml);
 
 		} catch (Throwable e) {
-			RCPLModel.logError(e);
+			RcplModel.logError(e);
 		}
 
 		return outFile;
@@ -790,8 +790,8 @@ public class RcplUtil {
 
 	public static File getUserLocalArea() {
 		if (userLocalArea == null) {
-			if (RCPLModel.mobileProvider != null) {
-				userLocalArea = RCPLModel.mobileProvider.getApplicationDir(); // $NON-NLS-1$
+			if (RcplModel.mobileProvider != null) {
+				userLocalArea = RcplModel.mobileProvider.getApplicationDir(); // $NON-NLS-1$
 			} else {
 				userLocalArea = new File(System.getProperty("user.home"), ".rcpl"); //$NON-NLS-1$
 			}

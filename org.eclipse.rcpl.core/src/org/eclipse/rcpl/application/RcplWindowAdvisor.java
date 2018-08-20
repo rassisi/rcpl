@@ -132,7 +132,6 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 	@Override
 	public void openMainWindow() {
 		applicationProvider.getPrimaryStage().centerOnScreen();
-		applicationProvider.getPrimaryStage().setTitle("RCPL");
 		if (initialStageX <= 0) {
 			applicationProvider.getPrimaryStage().centerOnScreen();
 		} else {

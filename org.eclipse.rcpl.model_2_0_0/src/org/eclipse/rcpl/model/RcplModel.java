@@ -9,7 +9,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
  * @author ramin
  *
  */
-public class RCPLModel {
+public class RcplModel {
 
 	public static IImageProvider imageProvider;
 
@@ -29,7 +29,7 @@ public class RCPLModel {
 
 	public static final String XMI_EXTENSION = ".xmi";
 
-	public static Class<? extends RCPLModel> modelClass = RCPLModel.class;
+	public static Class<? extends RcplModel> modelClass = RcplModel.class;
 
 	public static AbstractTool collectObjectByClass(EObject eo, List<EObject> list, Class<?> cl) {
 		try {
@@ -42,7 +42,7 @@ public class RCPLModel {
 				collectObjectByClass(g, list, cl);
 			}
 		} catch (Exception ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 		return null;
 	}

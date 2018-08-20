@@ -77,7 +77,7 @@ import org.eclipse.rcpl.model.DefaultSessionFactory;
 import org.eclipse.rcpl.model.IIdProvider;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.ISessionFacory;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.RcplModelUtil;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
@@ -1150,7 +1150,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			}
 
 			xmiApplication = transaction.getOrCreateResource(
-					"/home/" + userId + "/" + AbstractSession.applicationId.getId() + RCPLModel.XMI_EXTENSION); //$NON-NLS-1$
+					"/home/" + userId + "/" + AbstractSession.applicationId.getId() + RcplModel.XMI_EXTENSION); //$NON-NLS-1$
 
 			if (getContents().isEmpty()) {
 
@@ -1252,9 +1252,9 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			File tempXMIFile = File.createTempFile("rcpl_temp_", "temp");
 
 			try {
-				AUtil.copyInputStream(RCPLModel.modelClass.getResourceAsStream(fileName), tempXMIFile);
+				AUtil.copyInputStream(RcplModel.modelClass.getResourceAsStream(fileName), tempXMIFile);
 			} catch (Throwable ex) {
-				RCPLModel.logError(ex);
+				RcplModel.logError(ex);
 			}
 
 			boolean forceNewXMI = !localXMIFile.exists() || !FileUtils.contentEquals(tempXMIFile, localXMIFile);
@@ -1266,14 +1266,14 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 					localXMIFile.delete();
 				}
 				try {
-					AUtil.copyInputStream(RCPLModel.modelClass.getResourceAsStream(fileName), localXMIFile);
+					AUtil.copyInputStream(RcplModel.modelClass.getResourceAsStream(fileName), localXMIFile);
 				} catch (Throwable ex) {
-					RCPLModel.logError(ex);
+					RcplModel.logError(ex);
 				}
 			}
 
 			if (localXMIFile.exists()) {
-				RCPLModel.log(this, "XMI File: " + localXMIFile.getAbsolutePath() + " exists");
+				RcplModel.log(this, "XMI File: " + localXMIFile.getAbsolutePath() + " exists");
 			}
 
 			URI xmiURI = URI.createFileURI(localXMIFile.getAbsolutePath());
@@ -1299,18 +1299,18 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			if (msg.indexOf("Feature 'version' not found") != -1) {
 				return;
 			}
-			RCPLModel.logError(e);
+			RcplModel.logError(e);
 		}
 
 	}
 
 	private String getLocalXmiFileName(boolean application) {
 		return AbstractSession.applicationId.getId() + (application ? "_application" : "_rcpl")
-				+ RCPLModel.XMI_EXTENSION;
+				+ RcplModel.XMI_EXTENSION;
 	}
 
 	private File getLocalXmiFile(boolean application) {
-		return new File(RCPLModel.mobileProvider.getApplicationDir(), getLocalXmiFileName(application));
+		return new File(RcplModel.mobileProvider.getApplicationDir(), getLocalXmiFileName(application));
 	}
 
 	abstract protected void addAdapterFactories(ComposedAdapterFactory composedFactory);

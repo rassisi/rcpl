@@ -18,7 +18,7 @@ import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -154,11 +154,11 @@ public class RibbonGroup extends RcplTool {
 
 		processRibbonGroup();
 
-		if (first) {
-			HBox.setMargin(getNode(), new Insets(3, 7, 7, 48));
-		} else {
-			HBox.setMargin(getNode(), new Insets(3, 7, 7, 5));
-		}
+//		if (first) {
+//			HBox.setMargin(getNode(), new Insets(0, 7, 0, 0));
+//		} else {
+//			HBox.setMargin(getNode(), new Insets(0, 7, 0, 0));
+//		}
 
 		getNode().setMinWidth(2);
 		mainGridPane.setMinWidth(2);
@@ -210,7 +210,7 @@ public class RibbonGroup extends RcplTool {
 			}
 			return lastX;
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 			return 0;
 		}
 	}
@@ -324,7 +324,7 @@ public class RibbonGroup extends RcplTool {
 							}
 						}
 					} catch (Exception ex) {
-						RCPLModel.logError(ex);
+						RcplModel.logError(ex);
 					}
 
 				}

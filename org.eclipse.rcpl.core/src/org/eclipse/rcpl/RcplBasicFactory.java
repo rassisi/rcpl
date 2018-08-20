@@ -42,7 +42,7 @@ import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.ISession;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
@@ -147,7 +147,7 @@ public class RcplBasicFactory implements IRcplFactory {
 
 			return new RcplCommand(commandId, layoutObject, tool, oldData, newData);
 		} catch (Exception ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 			return null;
 		}
 	}

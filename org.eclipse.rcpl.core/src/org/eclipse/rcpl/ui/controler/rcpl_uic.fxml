@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TabPane?>
@@ -11,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="decorationArea" minHeight="10.0" minWidth="10.0" prefHeight="408.0" prefWidth="572.0" style="" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="decorationArea" minHeight="10.0" minWidth="10.0" prefHeight="1099.0" prefWidth="1521.0" style="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <!-- TODO Add Nodes -->
   <bottom>
     <HBox fx:id="mainBottomArea" maxHeight="20.0" minHeight="0.0" prefHeight="20.0">
@@ -66,20 +71,20 @@
 </padding>
 <top><StackPane prefHeight="23.0" prefWidth="200.0">
 <children>
-    <HBox id="transparentBorder" fx:id="mainTopArea" maxWidth="5000.0" minWidth="10.0" prefHeight="31.0" prefWidth="10000.0" BorderPane.alignment="TOP_LEFT">
+    <HBox fx:id="mainTopArea" maxWidth="5000.0" minWidth="10.0" prefHeight="31.0" prefWidth="10000.0" BorderPane.alignment="TOP_LEFT">
       <children><Button fx:id="startMenuButton" mnemonicParsing="false" HBox.hgrow="NEVER">
 <VBox.margin>
 <Insets top="10.0" />
 </VBox.margin></Button>
                   <VBox fx:id="topVBox" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox fx:id="collapseQuickTitleArea" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="18.0" prefWidth="200.0" spacing="3.0">
+                        <HBox fx:id="collapseQuickTitleArea" maxHeight="-Infinity" minHeight="20.0" prefWidth="200.0" spacing="3.0">
                            <children>
-                              <HBox fx:id="quickToolsArea">
+                              <HBox fx:id="quickToolsArea" prefWidth="100.0">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin></HBox>
-                              <HBox fx:id="titleArea" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                              <HBox fx:id="titleArea" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin></HBox>
@@ -88,7 +93,7 @@
                               <Insets left="5.0" />
                            </VBox.margin>
                         </HBox>
-            <HBox id="transparentBorder" fx:id="topArea" alignment="BOTTOM_LEFT" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" prefWidth="10">
+            <HBox fx:id="topArea" alignment="BOTTOM_LEFT" maxHeight="-1.0" minHeight="-1.0" prefWidth="10.0">
               <children>
                               <HBox alignment="CENTER" prefWidth="10.0" HBox.hgrow="NEVER">
                                  <children>

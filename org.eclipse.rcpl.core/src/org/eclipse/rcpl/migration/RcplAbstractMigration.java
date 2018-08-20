@@ -12,7 +12,7 @@ package org.eclipse.rcpl.migration;
 
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -26,7 +26,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
  * @author ramin
  *
  */
-public abstract class RcplAbstractMigration extends RCPLModel {
+public abstract class RcplAbstractMigration extends RcplModel {
 
 	protected IRcplAddon addon;
 

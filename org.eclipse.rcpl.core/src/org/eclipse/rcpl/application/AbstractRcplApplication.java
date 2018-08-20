@@ -17,7 +17,7 @@ import org.eclipse.rcpl.IRcplApplication;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.ISessionFacory;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.util.RcplUtil;
 import org.jpedal.examples.viewer.OpenViewerFX;
 
@@ -68,7 +68,7 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 
 	protected abstract boolean isMobile();
 
-	protected abstract Class<? extends RCPLModel> getRcplModel();
+	protected abstract Class<? extends RcplModel> getRcplModel();
 
 	protected abstract ISessionFacory createSessionFactory();
 
@@ -157,7 +157,7 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 	 */
 	private void initApplication() {
 		Rcpl.setMobile(isMobile());
-		RCPLModel.modelClass = getRcplModel();
+		RcplModel.modelClass = getRcplModel();
 		File errorCache = new File(RcplUtil.getUserLocalCacheDir(), "images/___ERROR___/");
 		RcplUtil.deleteFolder(errorCache);
 		doInitApplication();

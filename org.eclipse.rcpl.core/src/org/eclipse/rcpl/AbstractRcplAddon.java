@@ -14,7 +14,7 @@ import java.net.URL;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.migration.RcplAbstractMigration;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -124,7 +124,7 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 				getMigration().migrate();
 			}
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 
 	}
@@ -147,7 +147,7 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 
 			}
 		} catch (Throwable e) {
-			RCPLModel.logError(e);
+			RcplModel.logError(e);
 		}
 	}
 
@@ -158,7 +158,7 @@ public abstract class AbstractRcplAddon implements IRcplAddon {
 			try {
 				controler = createController();
 			} catch (Throwable ex) {
-				RCPLModel.logError(ex);
+				RcplModel.logError(ex);
 			}
 		}
 		return controler;

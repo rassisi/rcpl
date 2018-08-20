@@ -12,7 +12,7 @@ import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
@@ -118,7 +118,7 @@ public class RcplService extends RcplAbstractService implements IService {
 
 			return true;
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 			return false;
 		}
 	}
@@ -155,7 +155,7 @@ public class RcplService extends RcplAbstractService implements IService {
 			try {
 				doExecute(command);
 			} catch (Exception e) {
-				RCPLModel.logError(e);
+				RcplModel.logError(e);
 			}
 			return null;
 		}
@@ -168,7 +168,7 @@ public class RcplService extends RcplAbstractService implements IService {
 		try {
 			return service.doExecute(command);
 		} catch (Exception e) {
-			RCPLModel.logError(e);
+			RcplModel.logError(e);
 		}
 
 		return null;

@@ -12,7 +12,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
@@ -161,9 +161,9 @@ public class ToolGroupItemProvider extends AbstractToolItemProvider {
 			id = tool.getId();
 		}
 		if (id == null) {
-			return RCPLModel.resources.getImage("tools", 20, 20).getNode();
+			return RcplModel.resources.getImage("tools", 20, 20).getNode();
 		}
-		return RCPLModel.resources.getImage(id, 20, 20).getNode();
+		return RcplModel.resources.getImage(id, 20, 20).getNode();
 	}
 
 	/**

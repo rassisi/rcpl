@@ -3,7 +3,7 @@ package org.eclipse.rcpl.application;
 import java.io.File;
 
 import org.eclipse.rcpl.model.IMobileProvider;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 
 /**
  * @author ramin
@@ -18,7 +18,7 @@ public class DefaultMobileProvider implements IMobileProvider {
 			f.mkdirs();
 			return f;
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 		return new File("");
 	}

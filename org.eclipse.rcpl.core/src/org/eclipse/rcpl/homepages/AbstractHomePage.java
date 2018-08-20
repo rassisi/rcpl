@@ -13,7 +13,7 @@ package org.eclipse.rcpl.homepages;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 
@@ -293,7 +293,7 @@ public abstract class AbstractHomePage implements IHomePage {
 
 			}
 		} catch (Exception ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 

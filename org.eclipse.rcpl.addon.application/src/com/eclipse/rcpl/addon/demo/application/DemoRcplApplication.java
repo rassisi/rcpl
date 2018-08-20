@@ -16,7 +16,7 @@ import org.eclipse.rcpl.application.AbstractRcplApplication;
 import org.eclipse.rcpl.application.AbstractApplicationProvider;
 import org.eclipse.rcpl.model.DefaultSessionFactory;
 import org.eclipse.rcpl.model.ISessionFacory;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.AbstractSession;
 import org.eclipse.rcpl.model.client.RcplSession;
 
@@ -46,7 +46,7 @@ public class DemoRcplApplication extends AbstractRcplApplication {
 	}
 
 	@Override
-	protected Class<? extends RCPLModel> getRcplModel() {
+	protected Class<? extends RcplModel> getRcplModel() {
 		return DemoRcplModel.class;
 	}
 

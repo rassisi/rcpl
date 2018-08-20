@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
@@ -83,7 +83,7 @@ public class ToolsItemProvider extends LayoutableItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return RCPLModel.resources.getImage("folder", 16, 16).getNode();
+		return RcplModel.resources.getImage("folder", 16, 16).getNode();
 	}
 
 	/**

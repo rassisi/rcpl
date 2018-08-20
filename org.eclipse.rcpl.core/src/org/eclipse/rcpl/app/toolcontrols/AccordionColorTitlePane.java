@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
@@ -132,7 +132,7 @@ class AccordionColorTitlePane extends TitledPane {
 			setGraphic(hBox);
 
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 
 	}

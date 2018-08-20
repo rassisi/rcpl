@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.rcpl.app.toolcontrols;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,17 +17,14 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
-import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
-import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 
 import javafx.application.Platform;
-import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -68,7 +64,7 @@ public class RcplTopToolBar implements ITopToolbar {
 				}
 			}
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 
 	}
@@ -82,44 +78,15 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	}
 
-	private List<Node> homeRibbons = new ArrayList<Node>();
-
 	private void processTopBarMainGroups(String perspectiveId, IRcplAddon addon) {
 		HBox pane = new HBox();
+		pane.setAlignment(Pos.CENTER_LEFT);
+		pane.setSpacing(4);
 		Perspective perspective = RcplSession.getDefault().getModelUtil().findPerspective(perspectiveId);
 		pane.setId("topBarHBox");
-		pane.setPadding(new Insets(3, 0, 0, 7));
 		Rcpl.UIC.getMainTopStack().getChildren().add(pane);
-		Rcpl.UIC.getMainTopStack().layout();
 		toolPaneRegistry.put(perspectiveId, pane);
-//		pane.setPadding(new Insets(RIBBON_GROUP_PADDING, 0, 0, 0));
-		processTopBar(pane, perspective.getTopToolBar(), addon);
-	}
-
-	private void createCustomRibbonGroup(HBox pane, String name, String toolTip, String toolId, String toolImage,
-			boolean firstGroup, IRcplAddon addon) {
-		ToolGroup group = null;
-
-		try {
-			group = RcplFactory.eINSTANCE.createToolGroup();
-			group.setName(name);
-			Tool t = RcplFactory.eINSTANCE.createTool();
-			t.setId(toolId);
-			t.setImage(toolImage);
-			group.getTools().add(t);
-		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
-
-		}
-		Node ng = Rcpl.getFactory().createRibbonGroup(group, addon, firstGroup, false);
-		pane.getChildren().add(ng);
-
-		homeRibbons.add(ng);
-
-	}
-
-	private void processTopBar(HBox pane, TopToolBar topToolBar, IRcplAddon addon) {
-		List<ToolGroup> toolGroups = topToolBar.getToolGroups();
+		List<ToolGroup> toolGroups = perspective.getTopToolBar().getToolGroups();
 
 		boolean first = true;
 		for (AbstractTool eAbstractTool : toolGroups) {
@@ -129,14 +96,12 @@ public class RcplTopToolBar implements ITopToolbar {
 				toolNode = Rcpl.getToolFactory().createURLAddressTool((ToolGroup) eAbstractTool);
 				if (toolNode != null) {
 					pane.getChildren().add(toolNode.getNode());
-					HBox.setMargin(toolNode.getNode(), new Insets(0, 14, 0, 0));
 				}
 			} else {
 				Node toolNode = null;
 				toolNode = Rcpl.getFactory().createRibbonGroup((ToolGroup) eAbstractTool, addon, first, true);
 				if (toolNode != null) {
 					pane.getChildren().add(toolNode);
-					HBox.setMargin(toolNode, new Insets(3, 10, 7, 0));
 				}
 			}
 			first = false;

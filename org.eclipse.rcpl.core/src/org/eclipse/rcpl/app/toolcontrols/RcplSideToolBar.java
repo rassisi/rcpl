@@ -24,7 +24,7 @@ import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.ColorTool;
-import org.eclipse.rcpl.model.RCPLModel;
+import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -158,7 +158,7 @@ public class RcplSideToolBar implements ISideToolBar {
 				collapseToolPane();
 
 			} catch (Throwable ex) {
-				RCPLModel.logError(ex);
+				RcplModel.logError(ex);
 			}
 		}
 	}
@@ -268,7 +268,7 @@ public class RcplSideToolBar implements ISideToolBar {
 
 						toolGroup_0.setReady(true);
 					} catch (Exception ex) {
-						RCPLModel.logError(ex);
+						RcplModel.logError(ex);
 					}
 				}
 
@@ -308,7 +308,7 @@ public class RcplSideToolBar implements ISideToolBar {
 					try {
 						super.requestFocus();
 					} catch (Exception ex) {
-						RCPLModel.logError(ex);
+						RcplModel.logError(ex);
 					}
 				};
 			};
@@ -394,7 +394,7 @@ public class RcplSideToolBar implements ISideToolBar {
 					try {
 						((GridPane) pane).add(tool.getNode(), x, y, spanX, spanY);
 					} catch (Exception ex) {
-						RCPLModel.logError(ex);
+						RcplModel.logError(ex);
 					}
 					GridPane.setMargin(tool.getNode(), new Insets(5));
 				} else {
@@ -402,7 +402,7 @@ public class RcplSideToolBar implements ISideToolBar {
 					try {
 						pane.getChildren().add(tool.getNode());
 					} catch (Exception ex) {
-						RCPLModel.logError(ex);
+						RcplModel.logError(ex);
 					}
 				}
 				tool.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -417,7 +417,7 @@ public class RcplSideToolBar implements ISideToolBar {
 				});
 			}
 		} catch (Exception ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 
@@ -447,7 +447,7 @@ public class RcplSideToolBar implements ISideToolBar {
 				try {
 					scrollPane.setContent(Rcpl.UIC.getRcplTreepart().getNode());
 				} catch (Throwable ex) {
-					RCPLModel.logError(ex);
+					RcplModel.logError(ex);
 				}
 				return;
 			}
@@ -512,7 +512,7 @@ public class RcplSideToolBar implements ISideToolBar {
 				processTool(tool, pane, titlePane);
 			}
 		} catch (Exception ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 
@@ -565,7 +565,7 @@ public class RcplSideToolBar implements ISideToolBar {
 				activeToolPane = null;
 			}
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 		return false;
 	}
@@ -696,7 +696,7 @@ public class RcplSideToolBar implements ISideToolBar {
 				}
 			}
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 
 	}
@@ -714,7 +714,7 @@ public class RcplSideToolBar implements ISideToolBar {
 				pane.setVisible(true);
 
 			} catch (Exception ex) {
-				RCPLModel.logError(ex);
+				RcplModel.logError(ex);
 			}
 
 			if ("images".equals(groupId)) {
@@ -728,7 +728,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			}
 
 		} catch (Throwable ex) {
-			RCPLModel.logError(ex);
+			RcplModel.logError(ex);
 		}
 	}
 
