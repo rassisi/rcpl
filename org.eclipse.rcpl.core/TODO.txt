@@ -4,4 +4,5 @@
    redo, undo verbessern
    save document
    Preferences, editor
+   Texte übersetzen
    
