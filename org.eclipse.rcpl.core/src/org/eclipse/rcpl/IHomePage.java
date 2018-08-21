@@ -13,8 +13,6 @@ public interface IHomePage {
 
 	double HOMEPAGE_HEADER_HEIGHT = 80;
 
-	void showHomeButtons();
-
 	StackPane getContentPane();
 
 	Node getNode();

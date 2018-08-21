@@ -72,30 +72,31 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 
 	@Override
 	public void refresh() {
-		super.refresh();
-		ITreePart treePart = getTreePart();
-		treePart.setContainer(detailsArea);
-		TreeView<Object> tv = (TreeView<Object>) treePart.getNode();
-		if (tv != null) {
-			treeViewPane.getChildren().clear();
-			treeViewPane.getChildren().add(tv);
-		}
-		getTreePart().setRoot(getRoot());
+		if (getTreePart().getRoot() != getRoot()) {
+			super.refresh();
+			ITreePart treePart = getTreePart();
+			treePart.setContainer(detailsArea);
+			TreeView<Object> tv = (TreeView<Object>) treePart.getNode();
+			if (tv != null) {
+				treeViewPane.getChildren().clear();
+				treeViewPane.getChildren().add(tv);
+			}
+			getTreePart().setRoot(getRoot());
 
-		treePart.getNode().requestFocus();
+			treePart.getNode().requestFocus();
 
-		treePart.getNode().setOnKeyPressed(new EventHandler<KeyEvent>() {
+			treePart.getNode().setOnKeyPressed(new EventHandler<KeyEvent>() {
 
-			@Override
-			public void handle(KeyEvent event) {
-				if ("x".contentEquals(event.getText())) {
-					if (event.isControlDown()) {
-						uic.showErrorPage();
+				@Override
+				public void handle(KeyEvent event) {
+					if ("x".contentEquals(event.getText())) {
+						if (event.isControlDown()) {
+							uic.showErrorPage();
+						}
 					}
 				}
-			}
-		});
-
+			});
+		}
 	}
 
 	protected ITreePart getTreePart() {

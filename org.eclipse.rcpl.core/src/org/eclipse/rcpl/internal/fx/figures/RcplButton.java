@@ -41,7 +41,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 
 /**
  * @author ramin
@@ -192,16 +191,6 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			}
 		});
 
-		if (imageNode != null) {
-			imageNode.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-				@Override
-				public void handle(MouseEvent arg0) {
-					performAction();
-				}
-			});
-		}
-
 		((ButtonBase) node).setGraphic(imageNode);
 		((ButtonBase) node).setCenterShape(true);
 		node.setUserData(this);
@@ -212,19 +201,6 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 		return (ButtonBase) node;
 	}
-
-//	@Override
-//	public void setButtonListener(IButtonListener buttonListener) {
-//		this.buttonListener = buttonListener;
-//	}
-
-//	@Override
-//	public void setToolTip(String toolTip) {
-//		Tooltip t = new Tooltip(toolTip);
-//		t.setId("joffice_tooltip");
-//		Tooltip.install(imageNode, t);
-//
-//	}
 
 	@Override
 	public IToolRegistry getToolRegistry() {

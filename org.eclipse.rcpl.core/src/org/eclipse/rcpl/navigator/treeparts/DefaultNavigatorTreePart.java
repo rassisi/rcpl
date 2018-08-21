@@ -571,13 +571,10 @@ public class DefaultNavigatorTreePart extends RcplTool<EObject> implements ITree
 		return false;
 	}
 
-//	@Override
-//	public EObject getRoot() {
-//		if (root == null) {
-//			return RcplSession.getDefault().getRcpl().getAllResources();
-//		}
-//		return root;
-//	}
+	@Override
+	public EObject getRoot() {
+		return root;
+	}
 
 	@Override
 	public void setRoot(EObject root) {

@@ -1106,8 +1106,8 @@ public class RcplUic implements IRcplUic {
 			homePage.getNode().toFront();
 		} else {
 			setContent(homePage.getNode());
-			homePage.refresh();
 		}
+		homePage.refresh();
 
 		HomePage model = homePage.getModel();
 		showPerspective(model.getPerspective());

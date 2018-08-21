@@ -27,5 +27,7 @@ public interface ITreePart extends ITool {
 
 	void setRoot(EObject root);
 
+	EObject getRoot();
+
 	void setContainer(Pane pane);
 }
