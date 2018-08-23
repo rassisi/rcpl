@@ -194,7 +194,7 @@ public class RcplSideToolBar implements ISideToolBar {
 						@Override
 						public void doAction() {
 							String groupId0 = toolGroup_0.getId();
-							if (groupId0.equals(activeGroupId)) {
+							if (groupId0 == null || groupId0.equals(activeGroupId)) {
 								collapseToolPane();
 							} else {
 								showSideTools(groupId0);
@@ -206,6 +206,10 @@ public class RcplSideToolBar implements ISideToolBar {
 					String detailPaneClassName = toolGroup_0.getDetailPaneClassName();
 					if ((url == null || "".contentEquals(url))
 							&& (detailPaneClassName == null || "".equals(detailPaneClassName))) {
+
+//					if ((url != null && !"".equals(url))
+//							|| (detailPaneClassName != null && !"".equals(detailPaneClassName))) {
+
 						b.disableService();
 					}
 					if (!Rcpl.isBigDisplay()) {

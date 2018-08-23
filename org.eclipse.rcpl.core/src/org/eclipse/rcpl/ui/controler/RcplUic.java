@@ -1771,26 +1771,27 @@ public class RcplUic implements IRcplUic {
 	protected void showTab(final Tab tab) {
 
 		final TabInfo tabInfo = getTabInfo(tab);
-		final IEditor editor = tabInfo.getEditor();
-		final Node node = tabInfo.getNode();
-		final IRcplAddon addon = tabInfo.getAddon();
+		if (tabInfo != null) {
+			final IEditor editor = tabInfo.getEditor();
+			final Node node = tabInfo.getNode();
+			final IRcplAddon addon = tabInfo.getAddon();
 
-		Platform.runLater(new Runnable() {
+			Platform.runLater(new Runnable() {
 
-			@Override
-			public void run() {
-				updatePerspective(tab);
-				if (editor != null) {
-					setContent(editor.getMainPane());
-				} else if (node != null) {
-					setContent(node);
-				} else if (addon != null) {
-					setContent(addon.getNode());
+				@Override
+				public void run() {
+					updatePerspective(tab);
+					if (editor != null) {
+						setContent(editor.getMainPane());
+					} else if (node != null) {
+						setContent(node);
+					} else if (addon != null) {
+						setContent(addon.getNode());
+					}
+					tabPane.getSelectionModel().select(tab);
 				}
-				tabPane.getSelectionModel().select(tab);
-			}
-		});
-
+			});
+		}
 	}
 
 	private void updateEditorListener() {
