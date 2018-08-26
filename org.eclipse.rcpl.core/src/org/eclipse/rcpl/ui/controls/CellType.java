@@ -18,5 +18,7 @@ public enum CellType {
 
 	OBJECT,
 
+	EMPTY,
+
 	DATE;
 }

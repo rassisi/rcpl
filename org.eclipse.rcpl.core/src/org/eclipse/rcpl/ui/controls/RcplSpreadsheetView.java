@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.controlsfx.control.spreadsheet.GridBase;
 import org.controlsfx.control.spreadsheet.Picker;
@@ -40,10 +38,10 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 
 		this.configuration = configuration;
 		grid = new GridBase(configuration.getInitialRows(), configuration.getInitialColumns());
-		grid.setRowHeightCallback(new GridBase.MapBasedRowHeightFactory(createRowHeight()));
+
+//		grid.setRowHeightCallback(new GridBase.MapBasedRowHeightFactory(createRowHeight()));
 
 		buildGrid();
-
 		setGrid(grid);
 		createPickers();
 		getFixedRows().add(0);
@@ -52,7 +50,6 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 		}
 
 //		getColumns().get(0).setFixed(true);
-//		getColumns().get(1).setPrefWidth(250);
 
 		getStylesheets().add(RcplSpreadsheetView.class.getResource("spreadsheet.css").toExternalForm());
 
@@ -169,16 +166,16 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 		});
 	}
 
-	/**
-	 * Specify a custom row height.
-	 *
-	 * @return
-	 */
-	private Map<Integer, Double> createRowHeight() {
-		Map<Integer, Double> rowHeight = new HashMap<>();
-		rowHeight.put(1, 100.0);
-		return rowHeight;
-	}
+//	/**
+//	 * Specify a custom row height.
+//	 *
+//	 * @return
+//	 */
+//	private Map<Integer, Double> createRowHeight() {
+//		Map<Integer, Double> rowHeight = new HashMap<>();
+//		rowHeight.put(1, 100.0);
+//		return rowHeight;
+//	}
 
 	public SpreadsheetCell createCell(CellType type, int row, int column, int rowSpan, int colSpan, Object value,
 			String format, int index) {
@@ -200,28 +197,23 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 			String format, int index, boolean setCell) {
 
 		SpreadsheetCell cell = null;
-		if (CellType.DATE.equals(type)) {
+		if (CellType.EMPTY.equals(type)) {
+			cell = createEmptyCell(row, column);
+		} else if (CellType.DATE.equals(type)) {
 			cell = createDateCell(row, column, rowSpan, colSpan);
-		}
-		if (CellType.DOUBLE.equals(type)) {
+		} else if (CellType.DOUBLE.equals(type)) {
 			cell = createDoubleCell(row, column, rowSpan, colSpan, (double) value, format);
-		}
-		if (CellType.INTEGER.equals(type)) {
+		} else if (CellType.INTEGER.equals(type)) {
 			cell = createIntegerCell(row, column, rowSpan, colSpan, (int) value);
-		}
-		if (CellType.OBJECT.equals(type)) {
+		} else if (CellType.OBJECT.equals(type)) {
 			cell = createStringCell(row, column, rowSpan, colSpan, (String) value);
-		}
-		if (CellType.STRING.equals(type)) {
+		} else if (CellType.STRING.equals(type)) {
 			cell = createStringCell(row, column, rowSpan, colSpan, (String) value);
-		}
-		if (CellType.LIST.equals(type)) {
+		} else if (CellType.LIST.equals(type)) {
 			cell = createListCell(row, column, rowSpan, colSpan, (List<String>) value, index);
-		}
-		if (CellType.DATE.equals(type)) {
+		} else if (CellType.DATE.equals(type)) {
 			cell = createDateCell(row, column, rowSpan, colSpan);
-		}
-		if (CellType.HYPERLINK.equals(type)) {
+		} else if (CellType.HYPERLINK.equals(type)) {
 			cell = createHyperlinkCell(row, column, rowSpan, colSpan, (String) value);
 		}
 
@@ -256,6 +248,11 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 	 */
 	private SpreadsheetCell createStringCell(int row, int column, int rowSpan, int colSpan, String value) {
 		SpreadsheetCell cell = SpreadsheetCellType.STRING.createCell(row, column, rowSpan, colSpan, value);
+		return cell;
+	}
+
+	private SpreadsheetCell createEmptyCell(int row, int column) {
+		SpreadsheetCell cell = new EmptyCell(row, column);
 		return cell;
 	}
 

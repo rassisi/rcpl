@@ -24,15 +24,12 @@ public class EmptyCell implements SpreadsheetCell {
 
 	private int row;
 	private int column;
-	private int rowSpan;
-	private int colSpan;
+	private int rowSpan = 1;
+	private int colSpan = 1;
 
-	public EmptyCell(int row, int column, int rowSpan, int columnSpan) {
+	public EmptyCell(int row, int column) {
 		this.row = row;
 		this.column = column;
-		this.rowSpan = rowSpan;
-		this.colSpan = columnSpan;
-
 	}
 
 	@Override
@@ -156,8 +153,7 @@ public class EmptyCell implements SpreadsheetCell {
 
 	@Override
 	public int getRowSpan() {
-		// TODO Auto-generated method stub
-		return 0;
+		return rowSpan;
 	}
 
 	@Override
