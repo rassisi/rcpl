@@ -17,6 +17,7 @@ import java.util.List;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.eclipse.rcpl.IColor;
 import org.eclipse.rcpl.IColorProvider;
+import org.eclipse.rcpl.IWorkbookPart;
 import org.eclipse.rcpl.RcplColor;
 import org.eclipse.rcpl.util.RcplUtil;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTColor;
@@ -1623,6 +1624,12 @@ public class JOColorProvider implements IColorProvider {
 		int green = (int) (Math.min(255, (rgb.getGreen() * brightness)));
 		int blue = (int) (Math.min(255, (rgb.getBlue() * brightness)));
 		return new RcplColor(red, green, blue);
+	}
+
+	@Override
+	public IColor getIndexedFillColorFromStylesDocument(IWorkbookPart workbook, int index) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

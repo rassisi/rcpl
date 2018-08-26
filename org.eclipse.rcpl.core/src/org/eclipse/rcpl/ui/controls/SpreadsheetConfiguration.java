@@ -8,8 +8,8 @@ public class SpreadsheetConfiguration {
 
 	private int rowStripes = 0;
 
-	private int initialRows = 100;
-	private int initialColumns = 100;
+	private int initialRows = 50;
+	private int initialColumns = 50;
 
 	public int getRowStripes() {
 		return rowStripes;

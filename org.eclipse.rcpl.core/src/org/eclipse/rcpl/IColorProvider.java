@@ -1,7 +1,5 @@
 package org.eclipse.rcpl;
 
-import javafx.scene.paint.Color;
-
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTColorMapping;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTColorScheme;
@@ -21,7 +19,11 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTShd;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STHighlightColor;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STThemeColor;
 
+import javafx.scene.paint.Color;
+
 public interface IColorProvider {
+
+	IColor getIndexedFillColorFromStylesDocument(IWorkbookPart workbook, int index);
 
 	Object loadSwt(IColor color);
 
@@ -51,11 +53,9 @@ public interface IColorProvider {
 
 	IColor getFgColor();
 
-	public IColor getThemeColor(CTColorMapping colorMapping,
-			CTSchemeColor schemeColor);
+	public IColor getThemeColor(CTColorMapping colorMapping, CTSchemeColor schemeColor);
 
-	public IColor get(CTColorMapping colorMapping,
-			CTSolidColorFillProperties fillProperties);
+	public IColor get(CTColorMapping colorMapping, CTSolidColorFillProperties fillProperties);
 
 	String colorToHexString(IColor color);
 
@@ -115,8 +115,7 @@ public interface IColorProvider {
 
 	public IColor getTextSelectionColorForground(IColor fg);
 
-	public IColor getThemeColor(CTColorMapping colorMapping,
-			STThemeColor.Enum themeColor);
+	public IColor getThemeColor(CTColorMapping colorMapping, STThemeColor.Enum themeColor);
 
 	// ///////////////////////////////////////////////////////////////////
 	// /////////////////////// Private From Here /////////////////////////
@@ -127,8 +126,7 @@ public interface IColorProvider {
 	 * @param schemeColor
 	 * @return
 	 */
-	public IColor getThemeColor(CTColorSchemeMapping colorMapping,
-			STThemeColor themeColor);
+	public IColor getThemeColor(CTColorSchemeMapping colorMapping, STThemeColor themeColor);
 
 	/**
 	 * @return
@@ -143,6 +141,5 @@ public interface IColorProvider {
 
 	IColor getOutlineTextColor();
 
-	IColor get(
-			org.openxmlformats.schemas.wordprocessingml.x2006.main.CTColor charStyleCtColor);
+	IColor get(org.openxmlformats.schemas.wordprocessingml.x2006.main.CTColor charStyleCtColor);
 }

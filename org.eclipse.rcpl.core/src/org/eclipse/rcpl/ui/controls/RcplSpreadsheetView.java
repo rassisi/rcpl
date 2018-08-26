@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.controlsfx.control.spreadsheet.GridBase;
 import org.controlsfx.control.spreadsheet.Picker;
@@ -24,6 +26,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.TablePosition;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 /**
@@ -36,15 +41,19 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 
 	private GridBase grid;
 
+	public final static String EMTPTY_CELL_STYLE = "-fx-background-color: ghostwhite;";
+
+	private final static int PREF_COLUMN_WIDTH = 100;
+
 	public RcplSpreadsheetView(SpreadsheetConfiguration configuration) {
 
 		this.configuration = configuration;
 
 		buildGrid();
 		createPickers();
-		getFixedRows().add(0);
+//		getFixedRows().add(0);
 		for (SpreadsheetColumn c : getColumns()) {
-			c.setPrefWidth(100);
+			c.setPrefWidth(PREF_COLUMN_WIDTH);
 		}
 
 //		getColumns().get(0).setFixed(true);
@@ -71,6 +80,46 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 //				event.consume();
 //			}
 //		});
+
+		getSkin().getNode().setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				KeyCode code = event.getCode();
+
+				if (KeyCode.DOWN.equals(code)) {
+
+					ObservableList<TablePosition> list = getSelectionModel().getSelectedCells();
+					if (!list.isEmpty()) {
+						int row = list.get(0).getRow();
+						if (row == grid.getRowCount() - 1) {
+							addRow(CellType.STRING, "");
+						}
+					}
+				}
+				if (KeyCode.RIGHT.equals(code)) {
+
+					ObservableList<TablePosition> list = getSelectionModel().getSelectedCells();
+					if (!list.isEmpty()) {
+						int col = list.get(0).getColumn();
+						System.out.println("Column: " + col + "    col count: " + grid.getColumnCount());
+
+						int colCount = grid.getRows().get(0).size();
+						if (col >= colCount - 1) {
+							addColumn(CellType.STRING, "");
+							addColumn(CellType.STRING, "");
+							System.out.println("Column added, col count: " + grid.getColumnCount());
+							setGrid(null);
+							setGrid(grid);
+
+							scrollToColumn(getColumns().get(getColumns().size() - 1));
+
+						}
+					}
+				}
+
+			}
+		});
 
 	}
 
@@ -367,7 +416,6 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 	 * @param grid
 	 */
 	private void buildGrid() {
-//		grid.setRowHeightCallback(new GridBase.MapBasedRowHeightFactory(createRowHeight()));
 		grid = new GridBase(configuration.getInitialRows(), configuration.getInitialColumns());
 		for (int row = 0; row < configuration.getInitialRows(); ++row) {
 			addRow(CellType.STRING, "");
@@ -382,6 +430,7 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 		StringBuilder sb = new StringBuilder();
 		sb.append("-fx-border-width: " + topBorderWidth + " " + rightBorderWidth + " " + bottomBorderWidth + " "
 				+ leftBorderWidth + ";");
+
 		sb.append(" -fx-border-color: " + RcplUtil.ColorToHexString(topColor) + " "
 				+ RcplUtil.ColorToHexString(rightColor) + " " + RcplUtil.ColorToHexString(bottomColor) + " "
 				+ RcplUtil.ColorToHexString(leftColor) + ";");
@@ -402,6 +451,9 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 					cell.getStyleClass().add("five_rows");
 				}
 			}
+			if (cell.getStyle() == null) {
+				cell.setStyle(EMTPTY_CELL_STYLE);
+			}
 			rowList.add(cell);
 		}
 		grid.getRows().add(row, rowList);
@@ -415,6 +467,8 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 
 		final ObservableList<ObservableList<SpreadsheetCell>> rowsList = FXCollections.observableArrayList();
 
+		rowsList.addAll(grid.getRows());
+
 		int index = column;
 		if (column == -1) {
 			index = grid.getColumnCount();
@@ -426,16 +480,19 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 					cell.getStyleClass().add("five_rows");
 				}
 			}
+			if (cell.getStyle() == null) {
+				cell.setStyle(EMTPTY_CELL_STYLE);
+			}
 			if (column == -1) {
-				grid.getRows().get(row).add(cell);
+				rowsList.get(row).add(cell);
 			} else {
-				grid.getRows().get(row).add(column, cell);
+				rowsList.get(row).add(column, cell);
 			}
 		}
 
-		rowsList.addAll(grid.getRows());
-
 		grid.setRows(rowsList);
+
+		getColumns().get(getColumns().size() - 1).setPrefWidth(PREF_COLUMN_WIDTH);
 
 	}
 
@@ -473,6 +530,13 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 
 	public SpreadsheetConfiguration getConfiguration() {
 		return configuration;
+	}
+
+	private Map<Integer, Double> rowHeights = new HashMap<>();
+
+	public void setRowHeight(int row, double height) {
+		rowHeights.put(row, height);
+		grid.setRowHeightCallback(new GridBase.MapBasedRowHeightFactory(rowHeights));
 	}
 
 }

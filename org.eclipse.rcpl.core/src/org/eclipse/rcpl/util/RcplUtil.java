@@ -869,13 +869,20 @@ public class RcplUtil {
 	}
 
 	public static String ColorToHexString(Color color) {
-
 		String result = color.toString();
-
 		try {
-			result = "#" + Integer.toHexString(color.hashCode()).substring(0, 6).toUpperCase();
+			result = "#" + to2DigitsHex(color.getRed() * 255) + to2DigitsHex(color.getGreen() * 255)
+					+ to2DigitsHex(color.getBlue() * 255);
 		} catch (Exception ex) {
 			System.out.println();
+		}
+		return result;
+	}
+
+	private static String to2DigitsHex(double col) {
+		String result = Integer.toHexString((int) col);
+		if (result.length() < 2) {
+			result = "0" + result;
 		}
 		return result;
 	}
