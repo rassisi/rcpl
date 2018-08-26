@@ -32,6 +32,7 @@ import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.w3c.dom.Node;
 
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
@@ -865,5 +866,17 @@ public class RcplUtil {
 		}
 		actualMonitor = m;
 		return point2PixelFactor;
+	}
+
+	public static String ColorToHexString(Color color) {
+
+		String result = color.toString();
+
+		try {
+			result = "#" + Integer.toHexString(color.hashCode()).substring(0, 6).toUpperCase();
+		} catch (Exception ex) {
+			System.out.println();
+		}
+		return result;
 	}
 }

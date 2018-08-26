@@ -9,6 +9,7 @@ import org.controlsfx.control.spreadsheet.SpreadsheetCellType;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -171,9 +172,14 @@ public class EmptyCell implements SpreadsheetCell {
 		this.colSpan = columnSpan;
 	}
 
+	private ObservableSet<String> styleClass;
+
 	@Override
 	public ObservableSet<String> getStyleClass() {
-		return null;
+		if (styleClass == null) {
+			styleClass = FXCollections.observableSet();
+		}
+		return styleClass;
 	}
 
 	@Override

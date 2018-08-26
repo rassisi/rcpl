@@ -10,19 +10,21 @@ import java.util.List;
 import org.controlsfx.control.spreadsheet.GridBase;
 import org.controlsfx.control.spreadsheet.Picker;
 import org.controlsfx.control.spreadsheet.SpreadsheetCell;
+import org.controlsfx.control.spreadsheet.SpreadsheetCellBase;
 import org.controlsfx.control.spreadsheet.SpreadsheetCellType;
 import org.controlsfx.control.spreadsheet.SpreadsheetColumn;
 import org.controlsfx.control.spreadsheet.SpreadsheetView;
+import org.eclipse.rcpl.util.RcplUtil;
 
-import impl.org.controlsfx.spreadsheet.CellView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventTarget;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 /**
  * @author Ramin
@@ -37,12 +39,8 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 	public RcplSpreadsheetView(SpreadsheetConfiguration configuration) {
 
 		this.configuration = configuration;
-		grid = new GridBase(configuration.getInitialRows(), configuration.getInitialColumns());
-
-//		grid.setRowHeightCallback(new GridBase.MapBasedRowHeightFactory(createRowHeight()));
 
 		buildGrid();
-		setGrid(grid);
 		createPickers();
 		getFixedRows().add(0);
 		for (SpreadsheetColumn c : getColumns()) {
@@ -53,22 +51,26 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 
 		getStylesheets().add(RcplSpreadsheetView.class.getResource("spreadsheet.css").toExternalForm());
 
-		getSkin().getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				EventTarget target = event.getTarget();
-				if (target instanceof CellView) {
-					CellView v = (CellView) target;
-					SpreadsheetCell oldCell = v.getItem();
-					int rowSpan = oldCell.getRowSpan();
-					int colSpan = oldCell.getColumnSpan();
-					createCell(CellType.STRING, oldCell.getRow(), oldCell.getColumn(), rowSpan, colSpan, "", "", 0,
-							true).setEditable(true);
-				}
-
-			}
-		});
+//		getSkin().getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
+//
+//			@Override
+//			public void handle(MouseEvent event) {
+//				EventTarget target = event.getTarget();
+//				if (target instanceof CellView) {
+//					CellView v = (CellView) target;
+//					SpreadsheetCell oldCell = v.getItem();
+//					if (oldCell instanceof EmptyCell) {
+//						int rowSpan = oldCell.getRowSpan();
+//						int colSpan = oldCell.getColumnSpan();
+//						SpreadsheetCell cell = createCell(CellType.STRING, oldCell.getRow(), oldCell.getColumn(),
+//								rowSpan, colSpan, "", "", 0, true);
+//						cell.setEditable(true);
+//						cell.setStyle(oldCell.getStyle());
+//					}
+//				}
+//				event.consume();
+//			}
+//		});
 
 	}
 
@@ -221,7 +223,24 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 			setCell(cell);
 			spanCell(row, column, rowSpan, colSpan);
 		}
+
+		if (cell instanceof SpreadsheetCellBase) {
+			final SpreadsheetCellBase cb = (SpreadsheetCellBase) cell;
+			cb.textProperty().addListener(new ChangeListener<String>() {
+				@Override
+				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+					valueChanged(cb, oldValue, newValue);
+				}
+			});
+
+		}
 		return cell;
+	}
+
+	public void valueChanged(SpreadsheetCell cell, String oldValue, String newValue) {
+
+		System.out.println(cell + ": " + oldValue + " --->   " + newValue);
+
 	}
 
 	/**
@@ -348,9 +367,25 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 	 * @param grid
 	 */
 	private void buildGrid() {
+//		grid.setRowHeightCallback(new GridBase.MapBasedRowHeightFactory(createRowHeight()));
+		grid = new GridBase(configuration.getInitialRows(), configuration.getInitialColumns());
 		for (int row = 0; row < configuration.getInitialRows(); ++row) {
 			addRow(CellType.STRING, "");
 		}
+		setGrid(grid);
+	}
+
+	public String getBorderStyle(SpreadsheetCell cell, double topBorderWidth, double rightBorderWidth,
+			double bottomBorderWidth, double leftBorderWidth, Color topColor, Color rightColor, Color bottomColor,
+			Color leftColor) {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("-fx-border-width: " + topBorderWidth + " " + rightBorderWidth + " " + bottomBorderWidth + " "
+				+ leftBorderWidth + ";");
+		sb.append(" -fx-border-color: " + RcplUtil.ColorToHexString(topColor) + " "
+				+ RcplUtil.ColorToHexString(rightColor) + " " + RcplUtil.ColorToHexString(bottomColor) + " "
+				+ RcplUtil.ColorToHexString(leftColor) + ";");
+		return sb.toString();
 	}
 
 	private void addRow(CellType type, Object value) {
