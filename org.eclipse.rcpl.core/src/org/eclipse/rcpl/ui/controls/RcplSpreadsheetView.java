@@ -18,6 +18,7 @@ import org.controlsfx.control.spreadsheet.SpreadsheetColumn;
 import org.controlsfx.control.spreadsheet.SpreadsheetView;
 import org.eclipse.rcpl.util.RcplUtil;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -102,17 +103,16 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 					ObservableList<TablePosition> list = getSelectionModel().getSelectedCells();
 					if (!list.isEmpty()) {
 						int col = list.get(0).getColumn();
-						System.out.println("Column: " + col + "    col count: " + grid.getColumnCount());
-
+						int row = list.get(0).getRow();
+//						System.out.println("Column: " + col + "    col count: " + grid.getColumnCount());
 						int colCount = grid.getRows().get(0).size();
 						if (col >= colCount - 1) {
 							addColumn(CellType.STRING, "");
-							addColumn(CellType.STRING, "");
-							System.out.println("Column added, col count: " + grid.getColumnCount());
+//							System.out.println("Column added, col count: " + grid.getColumnCount());
 							setGrid(null);
 							setGrid(grid);
-
 							scrollToColumn(getColumns().get(getColumns().size() - 1));
+							getSelectionModel().focus(row, getColumns().get(getColumns().size() - 2));
 
 						}
 					}
@@ -492,7 +492,13 @@ public class RcplSpreadsheetView extends SpreadsheetView {
 
 		grid.setRows(rowsList);
 
-		getColumns().get(getColumns().size() - 1).setPrefWidth(PREF_COLUMN_WIDTH);
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				getColumns().get(getColumns().size() - 1).setPrefWidth(PREF_COLUMN_WIDTH);
+			}
+		});
 
 	}
 
