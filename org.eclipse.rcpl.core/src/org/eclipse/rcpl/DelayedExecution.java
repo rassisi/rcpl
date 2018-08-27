@@ -43,6 +43,7 @@ public abstract class DelayedExecution {
 			}));
 			timeline.setCycleCount(1);
 			timeline.play();
+
 		}
 
 	}

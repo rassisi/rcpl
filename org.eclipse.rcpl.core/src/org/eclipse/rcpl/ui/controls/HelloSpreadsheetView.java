@@ -1,8 +1,7 @@
 package org.eclipse.rcpl.ui.controls;
 
-import org.controlsfx.control.spreadsheet.SpreadsheetView;
-
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.StackPane;
@@ -19,7 +18,7 @@ public class HelloSpreadsheetView extends Application {
 
 		SpreadsheetConfiguration conf = new SpreadsheetConfiguration();
 		conf.setRowStripes(3);
-		spreadSheetView = new RcplSpreadsheetView(conf);
+		spreadSheetView = new RcplSpreadsheetView(conf).getNode();
 
 		StackPane st = new StackPane();
 
@@ -35,7 +34,7 @@ public class HelloSpreadsheetView extends Application {
 		launch(args);
 	}
 
-	private SpreadsheetView spreadSheetView;
+	private Node spreadSheetView;
 
 	private final CheckBox rowHeader = new CheckBox();
 	private final CheckBox columnHeader = new CheckBox();
