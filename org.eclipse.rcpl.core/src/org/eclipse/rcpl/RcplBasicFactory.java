@@ -325,7 +325,7 @@ public class RcplBasicFactory implements IRcplFactory {
 		tool.setName(homePage.getName());
 		tool.setToolTip(homePage.getToolTip());
 		tool.setImage(homePage.getImage());
-		tool.setType(ToolType.TOGGLEBUTTON);
+		tool.setType(ToolType.BUTTON);
 		tool.setWidth(24);
 		tool.setHeight(24);
 

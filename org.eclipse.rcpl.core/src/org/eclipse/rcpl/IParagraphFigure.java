@@ -4,12 +4,15 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.TextFlow;
 
 /**
  * @author ramin
  *
  */
 public interface IParagraphFigure extends ILayoutFigure {
+
+	TextFlow getTextFlow();
 
 	void updateHeightAndLayoutAndWait();
 

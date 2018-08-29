@@ -134,7 +134,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		if (isToggle()) {
 			node = new ToggleButton();
 			((ToggleButton) node).setMinWidth(2);
-			node.setPickOnBounds(false);
+//			node.setPickOnBounds(false);
 			toggleButonListener = new ChangeListener<Boolean>() {
 				@Override
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -148,7 +148,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		} else {
 			node = new Button();
 			((Button) node).setMinWidth(2);
-			node.setPickOnBounds(false);
+//			node.setPickOnBounds(false);
 			((ButtonBase) node).setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override

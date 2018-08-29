@@ -1324,13 +1324,19 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
+	private static Pane pane;
+
 	/**
 	 * 
 	 */
-	public static Rectangle getCaret() {
+	public static Pane getCaret() {
 
-		if (caret == null) {
+		if (pane == null) {
+			pane = new Pane();
 			caret = new Rectangle(3, 0, 1.6, 18);
+			pane.getChildren().add(caret);
+//			StackPane.setAlignment(caret, Pos.TOP_LEFT);
+
 			caret.setX(80);
 			caret.setFill(Color.BLACK);
 			caretTimeline = new Timeline();
@@ -1361,34 +1367,40 @@ public class RcplUic implements IRcplUic {
 			}), new KeyFrame(Duration.seconds(1)));
 			caretTimeline.play();
 		}
-		return caret;
+		return pane;
 	}
 
 	public static double getCaretHeight() {
-		return getCaret().getHeight();
+		getCaret();
+		return caret.getHeight();
 	}
 
 	public static double getCaretX() {
-		return getCaret().getX();
+		getCaret();
+		return caret.getX();
 	}
 
 	public static double getCaretY() {
-		return getCaret().getY();
+		getCaret();
+		return caret.getY();
 	}
 
 	public static void setCaretHeight(double height) {
-		getCaret().setHeight(height);
+		getCaret();
+		caret.setHeight(height);
 	}
 
 	public static void setCaretLocation(double x, double y) {
-		getCaret().setX(x);
-		getCaret().setY(y);
+		getCaret();
+		caret.setX(x);
+		caret.setY(y);
 	}
 
 	// ===================================================
 
 	public static void setCaretWidth(double width) {
-		getCaret().setWidth(width);
+		getCaret();
+		caret.setWidth(width);
 	}
 
 	public static void showCaret(IParagraphFigure figure) {
@@ -1415,7 +1427,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void addHomePageButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup) {
 		IButton homeButton = Rcpl.getFactory().createHomePageButton(homePage);
-		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
+//		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
 		FlowPane.setMargin(homeButton.getNode(), new Insets(0, 0, 0, 5));
 		pane.getChildren().add(homeButton.getNode());
 	}

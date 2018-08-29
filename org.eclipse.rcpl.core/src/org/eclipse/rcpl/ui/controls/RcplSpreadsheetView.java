@@ -42,6 +42,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * @author Ramin
@@ -120,6 +121,16 @@ public class RcplSpreadsheetView {
 					SpreadsheetCell cell = v.getItem();
 					Bounds b = getBounds(cell);
 				}
+
+				if (target instanceof Rectangle) {
+					if (event.getY() > 13 && event.getY() < 37) {
+						System.out.println(event.getX() + "/" + event.getY());
+						columnChanged();
+					} else if (event.getX() > 13 && event.getX() < 37) {
+						System.out.println(event.getX() + "/" + event.getY());
+						columnChanged();
+					}
+				}
 			}
 		});
 
@@ -162,6 +173,9 @@ public class RcplSpreadsheetView {
 			}
 		});
 
+	}
+
+	public void columnChanged() {
 	}
 
 	public SpreadsheetCell getCell(int row, int col) {
@@ -324,6 +338,8 @@ public class RcplSpreadsheetView {
 			});
 
 		}
+		cell.setEditable(true);
+
 		return cell;
 	}
 

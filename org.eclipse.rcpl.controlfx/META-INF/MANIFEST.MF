@@ -8,4 +8,3 @@ Bundle-ClassPath: lib/controlsfx-8.0.3.jar,
  lib/controlsfx-samples-8.0.3.jar,
  lib/fxsampler-1.0.3.jar,
  .
-Require-Bundle: org.eclipse.rcpl.libs;bundle-version="0.1.1"

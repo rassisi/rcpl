@@ -104,8 +104,8 @@ public class RcplCommand implements ICommand {
 							// + oldXmlObject);
 
 							offset = ((IParagraph) rootObject).getCaretOffset();
-							caretX = RcplUic.getCaret().getX();
-							caretY = RcplUic.getCaret().getY();
+							caretX = RcplUic.getCaretX();
+							caretY = RcplUic.getCaretY();
 						} else if (oldXmlObject instanceof CTTbl) {
 							XmlObject oldXmlObjectCopy = CTTbl.Factory.newInstance();
 							oldXmlObjectCopy.set(oldXmlObject);
