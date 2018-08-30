@@ -30,7 +30,6 @@ import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
@@ -79,7 +78,13 @@ public class RcplSpreadsheetView {
 	public RcplSpreadsheetView(SpreadsheetConfiguration configuration) {
 
 		this.configuration = configuration;
-		this.view = new SpreadsheetView();
+		this.view = new SpreadsheetView() {
+			@Override
+			protected void layoutChildren() {
+				super.layoutChildren();
+				doLayout();
+			}
+		};
 
 		mainPane = new StackPane();
 
@@ -119,6 +124,10 @@ public class RcplSpreadsheetView {
 				if (target instanceof CellView) {
 					CellView v = (CellView) target;
 					SpreadsheetCell cell = v.getItem();
+
+					view.getSkin().getNode().requestFocus();
+					cell.setEditable(true);
+
 				}
 
 				if (target instanceof Rectangle) {
@@ -171,6 +180,10 @@ public class RcplSpreadsheetView {
 
 			}
 		});
+
+	}
+
+	public void doLayout() {
 
 	}
 
@@ -287,6 +300,14 @@ public class RcplSpreadsheetView {
 		return createCell(type, row, column, rowSpan, colSpan, value, format, index, false);
 	}
 
+	public int getRowCount() {
+		return grid.getRowCount();
+	}
+
+	public int getColumnCount() {
+		return grid.getColumnCount();
+	}
+
 	/**
 	 * @param type
 	 * @param row
@@ -338,6 +359,8 @@ public class RcplSpreadsheetView {
 
 		}
 		cell.setEditable(true);
+
+		cell.setGraphic(new Label(""));
 
 		return cell;
 	}
@@ -629,7 +652,7 @@ public class RcplSpreadsheetView {
 		grid.setRowHeightCallback(new GridBase.MapBasedRowHeightFactory(getRowHeights()));
 	}
 
-	public Node getNode() {
+	public StackPane getNode() {
 		return mainPane;
 	}
 
@@ -647,16 +670,13 @@ public class RcplSpreadsheetView {
 	}
 
 	public Bounds getBounds(SpreadsheetCell cell) {
-		Node oldGraphic = cell.getGraphic();
-		Node n = new Label("");
-		cell.setGraphic(n);
 		final Bounds[] b = new Bounds[3];
 
 		new WaitThread(null) {
 
 			@Override
 			public void doRun() {
-				Parent p1 = n.getParent();
+				Parent p1 = cell.getGraphic().getParent();
 				if (p1 != null) {
 					p1.requestLayout();
 					p1.layout();
@@ -668,7 +688,7 @@ public class RcplSpreadsheetView {
 
 			@Override
 			public void doRun() {
-				Parent p1 = n.getParent();
+				Parent p1 = cell.getGraphic().getParent();
 				if (p1 != null) {
 					Parent p2 = p1.getParent();
 					Parent p3 = p2.getParent();
@@ -678,7 +698,7 @@ public class RcplSpreadsheetView {
 					b[1] = p2.getBoundsInParent();
 					b[2] = p3.getBoundsInParent();
 				}
-				cell.setGraphic(oldGraphic);
+
 			}
 		};
 
