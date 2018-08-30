@@ -70,16 +70,13 @@ public class RcplSpreadsheetView {
 
 	private StackPane mainPane;
 
+	/**
+	 * @param configuration
+	 */
 	public RcplSpreadsheetView(SpreadsheetConfiguration configuration) {
 
 		this.configuration = configuration;
-		this.view = new SpreadsheetView() {
-			@Override
-			protected void layoutChildren() {
-				super.layoutChildren();
-				doLayout();
-			}
-		};
+		this.view = new SpreadsheetView();
 
 		mainPane = new StackPane();
 
@@ -153,10 +150,8 @@ public class RcplSpreadsheetView {
 						view.setGrid(grid);
 						view.scrollToColumn(view.getColumns().get(view.getColumns().size() - 1));
 						view.getSelectionModel().focus(row, view.getColumns().get(view.getColumns().size() - 2));
-
 					}
 				}
-
 			}
 		});
 
@@ -173,10 +168,6 @@ public class RcplSpreadsheetView {
 			cells.add(getCell(tablePosition.getRow(), tablePosition.getColumn()));
 		}
 		return cells;
-	}
-
-	public void doLayout() {
-
 	}
 
 	public void columnChanged() {
@@ -276,17 +267,6 @@ public class RcplSpreadsheetView {
 		});
 	}
 
-//	/**
-//	 * Specify a custom row height.
-//	 *
-//	 * @return
-//	 */
-//	private Map<Integer, Double> createRowHeight() {
-//		Map<Integer, Double> rowHeight = new HashMap<>();
-//		rowHeight.put(1, 100.0);
-//		return rowHeight;
-//	}
-
 	public SpreadsheetCell createCell(CellType type, int row, int column, int rowSpan, int colSpan, Object value,
 			String format, int index) {
 		return createCell(type, row, column, rowSpan, colSpan, value, format, index, false);
@@ -352,16 +332,11 @@ public class RcplSpreadsheetView {
 
 		}
 		cell.setEditable(true);
-
 		cell.setGraphic(new Pane());
-
 		return cell;
 	}
 
 	public void valueChanged(SpreadsheetCell cell, String oldValue, String newValue) {
-
-		System.out.println(cell + ": " + oldValue + " --->   " + newValue);
-
 	}
 
 	/**
