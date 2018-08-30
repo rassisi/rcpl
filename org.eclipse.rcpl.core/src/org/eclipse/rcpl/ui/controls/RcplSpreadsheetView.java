@@ -62,11 +62,11 @@ public class RcplSpreadsheetView {
 
 	private final static double PREF_ROW_HEIGHT = 33.84;
 
-	private double pickerWidth = 16;
+	public static double pickerWidth = 16;
 
-	private double columnHeaderWidth = 30;
+	public static double columnHeaderWidth = 30;
 
-	private double rowHeaderWidth = 30;
+	public static double rowHeaderWidth = 30;
 
 	private double scrollBarWidth = 19;
 
@@ -119,7 +119,6 @@ public class RcplSpreadsheetView {
 				if (target instanceof CellView) {
 					CellView v = (CellView) target;
 					SpreadsheetCell cell = v.getItem();
-					Bounds b = getBounds(cell);
 				}
 
 				if (target instanceof Rectangle) {
@@ -687,8 +686,9 @@ public class RcplSpreadsheetView {
 			return null;
 		}
 
-		Bounds result = new BoundingBox(b[0].getMinX(), b[1].getMinY() + pickerWidth - 2, b[0].getWidth(),
-				b[0].getHeight());
+		Bounds result = new BoundingBox(b[0].getMinX() + pickerWidth + rowHeaderWidth,
+				b[1].getMinY() + pickerWidth + columnHeaderWidth - b[2].getMinY(), b[0].getWidth(), b[0].getHeight());
+
 //		selectedCellStack.setLayoutX(result.getMinX());
 //		selectedCellStack.setLayoutY(result.getMinY());
 //		selectedCellStack.setPrefSize(result.getWidth(), result.getHeight());
