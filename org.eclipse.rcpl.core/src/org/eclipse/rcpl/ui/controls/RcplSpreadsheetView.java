@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +18,8 @@ import org.controlsfx.control.spreadsheet.SpreadsheetCellType;
 import org.controlsfx.control.spreadsheet.SpreadsheetColumn;
 import org.controlsfx.control.spreadsheet.SpreadsheetView;
 import org.eclipse.rcpl.util.RcplUtil;
-import org.eclipse.rcpl.util.WaitThread;
 
 import impl.org.controlsfx.spreadsheet.CellView;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,6 +29,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
@@ -38,6 +38,7 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -71,10 +72,6 @@ public class RcplSpreadsheetView {
 
 	private StackPane mainPane;
 
-	private Pane cellPane;
-
-	private StackPane selectedCellStack;
-
 	public RcplSpreadsheetView(SpreadsheetConfiguration configuration) {
 
 		this.configuration = configuration;
@@ -86,26 +83,34 @@ public class RcplSpreadsheetView {
 			}
 		};
 
+		view.setOnScroll(new EventHandler<ScrollEvent>() {
+
+			@Override
+			public void handle(ScrollEvent event) {
+				doOnScroll(event);
+			}
+		});
+
+		view.setOnScrollFinished(new EventHandler<ScrollEvent>() {
+
+			@Override
+			public void handle(ScrollEvent event) {
+				doOnScroll(event);
+			}
+		});
+
 		mainPane = new StackPane();
 
 		// ---------- only to have a nice border
 
-//		Pane spreadsheetPane = new Pane();
-//		spreadsheetPane.setStyle("-fx-border-style: solid;-fx-border-color: gray;-fx-border-width: 1;");
-//		spreadsheetPane.setPickOnBounds(false);
-//		StackPane.setMargin(spreadsheetPane, new Insets(pickerWidth, scrollBarWidth, scrollBarWidth, pickerWidth));
+		Pane spreadsheetPane = new Pane();
+		spreadsheetPane.setStyle("-fx-border-style: solid;-fx-border-color: gray;-fx-border-width: 1;");
+		spreadsheetPane.setPickOnBounds(false);
+		StackPane.setMargin(spreadsheetPane, new Insets(pickerWidth, scrollBarWidth, scrollBarWidth, pickerWidth));
 
 		// ---------- the cell area
 
-//		cellPane = new AnchorPane();
-//		cellPane.setPickOnBounds(false);
-//		StackPane.setMargin(cellPane, new Insets(16 + columnHeaderWidth, 0, 0, pickerWidth + rowHeaderWidth));
-		mainPane.getChildren().addAll(view); // , spreadsheetPane, cellPane);
-
-//		selectedCellStack = new StackPane();
-//		selectedCellStack.setPickOnBounds(false);
-//		selectedCellStack.setStyle("-fx-border-style: solid;-fx-border-color: blue;-fx-border-width: 1;");
-//		cellPane.getChildren().add(selectedCellStack);
+		mainPane.getChildren().addAll(view, spreadsheetPane);
 
 		buildGrid();
 		createPickers();
@@ -149,38 +154,46 @@ public class RcplSpreadsheetView {
 				KeyCode code = event.getCode();
 
 				if (KeyCode.DOWN.equals(code)) {
-
-					ObservableList<TablePosition> list = view.getSelectionModel().getSelectedCells();
-					if (!list.isEmpty()) {
-						int row = list.get(0).getRow();
-						if (row == grid.getRowCount() - 1) {
-							addRow(CellType.STRING, "");
-						}
+					int row = getSelectedCells().get(0).getRow();
+					if (row == grid.getRowCount() - 1) {
+						addRow(CellType.STRING, "");
 					}
 				}
 				if (KeyCode.RIGHT.equals(code)) {
 
-					ObservableList<TablePosition> list = view.getSelectionModel().getSelectedCells();
-					if (!list.isEmpty()) {
-						int col = list.get(0).getColumn();
-						int row = list.get(0).getRow();
-//						System.out.println("Column: " + col + "    col count: " + grid.getColumnCount());
-						int colCount = grid.getRows().get(0).size();
-						if (col >= colCount - 1) {
-							addColumn(CellType.STRING, "");
-//							System.out.println("Column added, col count: " + grid.getColumnCount());
-							view.setGrid(null);
-							view.setGrid(grid);
-							view.scrollToColumn(view.getColumns().get(view.getColumns().size() - 1));
-							view.getSelectionModel().focus(row, view.getColumns().get(view.getColumns().size() - 2));
+					List<SpreadsheetCell> cells = getSelectedCells();
+					int col = cells.get(0).getColumn();
+					int row = cells.get(0).getRow();
+					int colCount = grid.getRows().get(0).size();
+					if (col >= colCount - 1) {
+						addColumn(CellType.STRING, "");
+						view.setGrid(null);
+						view.setGrid(grid);
+						view.scrollToColumn(view.getColumns().get(view.getColumns().size() - 1));
+						view.getSelectionModel().focus(row, view.getColumns().get(view.getColumns().size() - 2));
 
-						}
 					}
 				}
 
 			}
 		});
 
+	}
+
+	public void doOnScroll(ScrollEvent event) {
+	}
+
+	/**
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List<SpreadsheetCell> getSelectedCells() {
+		List<SpreadsheetCell> cells = new ArrayList<SpreadsheetCell>();
+		ObservableList<TablePosition> list = view.getSelectionModel().getSelectedCells();
+		for (TablePosition tablePosition : list) {
+			cells.add(getCell(tablePosition.getRow(), tablePosition.getColumn()));
+		}
+		return cells;
 	}
 
 	public void doLayout() {
@@ -319,6 +332,7 @@ public class RcplSpreadsheetView {
 	 * @param index
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public SpreadsheetCell createCell(CellType type, int row, int column, int rowSpan, int colSpan, Object value,
 			String format, int index, boolean setCell) {
 
@@ -500,9 +514,6 @@ public class RcplSpreadsheetView {
 			addRow(CellType.STRING, "");
 		}
 		view.setGrid(grid);
-
-//		setRowHeight(10, 100);
-
 	}
 
 	public String getBorderStyle(SpreadsheetCell cell, double topBorderWidth, double rightBorderWidth,
@@ -548,27 +559,24 @@ public class RcplSpreadsheetView {
 		addColumn(-1, type, value);
 	}
 
+	/**
+	 * @param column
+	 * @param type
+	 * @param value
+	 */
 	private void addColumn(int column, CellType type, Object value) {
-
 		final ObservableList<ObservableList<SpreadsheetCell>> rowsList = FXCollections.observableArrayList();
-
 		rowsList.addAll(grid.getRows());
-
 		int index = column;
 		if (column == -1) {
 			index = grid.getColumnCount();
 		}
 		for (int row = 0; row < grid.getRowCount(); ++row) {
 			SpreadsheetCell cell = createCell(type, row, index, 1, 1, value, null, 0);
-			boolean stripes = false;
 			if (configuration.getRowStripes() > 0) {
 				if (row % configuration.getRowStripes() == 0) {
-					stripes = true;
 					cell.setStyle("five_rows");
 				}
-			}
-			if (!stripes) {
-				cell.getStyleClass().add("five_rows");
 			}
 			if (column == -1) {
 				rowsList.get(row).add(cell);
@@ -576,16 +584,8 @@ public class RcplSpreadsheetView {
 				rowsList.get(row).add(column, cell);
 			}
 		}
-
 		grid.setRows(rowsList);
-
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				view.getColumns().get(view.getColumns().size() - 1).setPrefWidth(PREF_COLUMN_WIDTH);
-			}
-		});
+		view.getColumns().get(view.getColumns().size() - 1).setPrefWidth(PREF_COLUMN_WIDTH);
 
 	}
 
@@ -671,48 +671,27 @@ public class RcplSpreadsheetView {
 
 	public Bounds getBounds(SpreadsheetCell cell) {
 		final Bounds[] b = new Bounds[3];
-
-		new WaitThread(null) {
-
-			@Override
-			public void doRun() {
-				Parent p1 = cell.getGraphic().getParent();
-				if (p1 != null) {
-					p1.requestLayout();
-					p1.layout();
-				}
-			}
-		};
-
-		new WaitThread(null) {
-
-			@Override
-			public void doRun() {
-				Parent p1 = cell.getGraphic().getParent();
-				if (p1 != null) {
-					Parent p2 = p1.getParent();
-					Parent p3 = p2.getParent();
-					p2.requestLayout();
-					p2.layout();
-					b[0] = p1.getBoundsInParent();
-					b[1] = p2.getBoundsInParent();
+		Parent p1 = cell.getGraphic().getParent();
+		if (p1 != null) {
+			Parent p2 = p1.getParent();
+			if (p2 != null) {
+				Parent p3 = p2.getParent();
+				b[0] = p1.getBoundsInParent();
+				b[1] = p2.getBoundsInParent();
+				if (p3 != null) {
 					b[2] = p3.getBoundsInParent();
 				}
-
 			}
-		};
-
+		}
 		if (b[0] == null || b[1] == null) {
 			return null;
 		}
 
-		Bounds result = new BoundingBox(b[0].getMinX() + pickerWidth + rowHeaderWidth,
-				b[1].getMinY() + pickerWidth + columnHeaderWidth - b[2].getMinY(), b[0].getWidth(), b[0].getHeight());
-
-//		selectedCellStack.setLayoutX(result.getMinX());
-//		selectedCellStack.setLayoutY(result.getMinY());
-//		selectedCellStack.setPrefSize(result.getWidth(), result.getHeight());
-
+		double hValue = 0; // view.getHBarValue();
+		double vValue = 0; // view.getVBarValue();
+		double x = b[0].getMinX() + pickerWidth + rowHeaderWidth - hValue;
+		double y = b[1].getMinY() + pickerWidth + columnHeaderWidth - b[2].getMinY() - vValue;
+		Bounds result = new BoundingBox(x, y, b[0].getWidth(), b[0].getHeight());
 		return result;
 	}
 

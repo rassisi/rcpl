@@ -300,9 +300,6 @@ public class RcplUic implements IRcplUic {
 		}
 
 		public Perspective getPerspective() {
-			if (this.perspective == null && editor != null) {
-				this.perspective = editor.getPerspective();
-			}
 			return perspective;
 		}
 
