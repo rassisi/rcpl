@@ -60,7 +60,7 @@ public interface IParagraphFigure extends ILayoutFigure {
 	@Override
 	void setParentFigure(ILayoutFigure node);
 
-	void setText(String text, IStyle style, IStyle[] styles, double width);
+	void setText(String text, IStyle style, IStyle[] styles);
 
 	@Override
 	void setVisible(boolean visible);

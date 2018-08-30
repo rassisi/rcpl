@@ -14,6 +14,10 @@ public abstract class WaitThread {
 
 	private IEditor editor;
 
+	public WaitThread() {
+		this(null);
+	}
+
 	public WaitThread(IEditor editor) {
 		this.editor = editor;
 		if (editor == null || !editor.isDisposed()) {

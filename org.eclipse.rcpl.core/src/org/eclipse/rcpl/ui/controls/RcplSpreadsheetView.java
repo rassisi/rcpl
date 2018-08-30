@@ -33,12 +33,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.TablePosition;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -82,22 +80,6 @@ public class RcplSpreadsheetView {
 				doLayout();
 			}
 		};
-
-		view.setOnScroll(new EventHandler<ScrollEvent>() {
-
-			@Override
-			public void handle(ScrollEvent event) {
-				doOnScroll(event);
-			}
-		});
-
-		view.setOnScrollFinished(new EventHandler<ScrollEvent>() {
-
-			@Override
-			public void handle(ScrollEvent event) {
-				doOnScroll(event);
-			}
-		});
 
 		mainPane = new StackPane();
 
@@ -178,9 +160,6 @@ public class RcplSpreadsheetView {
 			}
 		});
 
-	}
-
-	public void doOnScroll(ScrollEvent event) {
 	}
 
 	/**
@@ -374,7 +353,7 @@ public class RcplSpreadsheetView {
 		}
 		cell.setEditable(true);
 
-		cell.setGraphic(new Label(""));
+		cell.setGraphic(new Pane());
 
 		return cell;
 	}
@@ -683,16 +662,22 @@ public class RcplSpreadsheetView {
 				}
 			}
 		}
-		if (b[0] == null || b[1] == null) {
+		if (b[0] == null) {
 			return null;
 		}
 
-		double hValue = 0; // view.getHBarValue();
-		double vValue = 0; // view.getVBarValue();
-		double x = b[0].getMinX() + pickerWidth + rowHeaderWidth - hValue;
-		double y = b[1].getMinY() + pickerWidth + columnHeaderWidth - b[2].getMinY() - vValue;
+		if (b[1] == null) {
+			return new BoundingBox(0, 0, b[0].getWidth(), b[0].getHeight());
+		}
+
+		double x = b[0].getMinX() + pickerWidth + rowHeaderWidth;
+		double y = b[1].getMinY() + pickerWidth + columnHeaderWidth - b[2].getMinY();
 		Bounds result = new BoundingBox(x, y, b[0].getWidth(), b[0].getHeight());
 		return result;
+	}
+
+	public SpreadsheetView getView() {
+		return view;
 	}
 
 }
