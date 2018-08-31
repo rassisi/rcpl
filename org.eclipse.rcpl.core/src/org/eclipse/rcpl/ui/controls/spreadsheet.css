@@ -100,7 +100,7 @@
 }
 */
 .spreadsheet-cell.empty_cell{
-    -fx-background-color: ghostwhite;
+    -fx-background-color: silver; /*ghostwhite;*/
 }
 
 

@@ -5,4 +5,7 @@
    save document
    Preferences, editor
    Texte übersetzen
+   Mehrere Styles wg. Optik
+   
+   
    

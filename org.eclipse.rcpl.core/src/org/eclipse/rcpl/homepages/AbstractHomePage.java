@@ -22,6 +22,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
@@ -173,14 +174,20 @@ public abstract class AbstractHomePage implements IHomePage {
 
 		// ---------- CONTENT PANE -----------------------------------
 
+		ScrollPane scrollPane = new ScrollPane();
 		contentPane = new StackPane();
 		contentPane.setId("container");
-		vBox.getChildren().add(contentPane);
-		VBox.setVgrow(contentPane, Priority.ALWAYS);
+		scrollPane.setContent(contentPane);
+
+		scrollPane.setFitToHeight(true);
+		scrollPane.setFitToWidth(true);
+
+		vBox.getChildren().add(scrollPane);
+		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
 		doCreateContent(contentPane);
-		vBox.layout();
 
+		vBox.layout();
 	}
 
 	@Override
