@@ -4,6 +4,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.TextFlow;
 
 /**
@@ -11,6 +12,15 @@ import javafx.scene.text.TextFlow;
  *
  */
 public interface IParagraphFigure extends ILayoutFigure {
+
+	Pane getCaretPane();
+
+	/**
+	 * This method is needed for spreadsheets to achive vertical alignments
+	 * 
+	 * @param height
+	 */
+	void setBoxHeight(double height);
 
 	TextFlow getTextFlow();
 

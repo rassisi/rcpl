@@ -879,11 +879,41 @@ public class RcplUtil {
 		return result;
 	}
 
-	private static String to2DigitsHex(double col) {
+	public static String to2DigitsHex(double col) {
 		String result = Integer.toHexString((int) col);
 		if (result.length() < 2) {
 			result = "0" + result;
 		}
 		return result;
 	}
+
+	/**
+	 * @param resourceName
+	 * @param deleteIfNotEqualContent
+	 * @return
+	 */
+	public static boolean compareFileWithResource(String resourceName, boolean deleteIfNotEqualContent) {
+		File file = getCachedFile(resourceName);
+		File tempFile;
+		try {
+			tempFile = File.createTempFile("rcpl_temp_", "temp");
+			AUtil.copyInputStream(RcplModel.modelClass.getResourceAsStream(resourceName), tempFile);
+		} catch (Throwable ex) {
+			RcplModel.logError(ex);
+			return false;
+		}
+		boolean isEqual = false;
+
+		if (file.exists()) {
+			try {
+				isEqual = FileUtils.contentEquals(tempFile, file);
+			} catch (IOException e) {
+			}
+			if (!isEqual && deleteIfNotEqualContent) {
+				file.delete();
+			}
+		}
+		return isEqual;
+	}
+
 }

@@ -1401,14 +1401,15 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public static void showCaret(IParagraphFigure figure) {
-
-		if (!figure.getPane().getChildren().contains(RcplUic.getCaret())) {
-			figure.getPane().getChildren().add(RcplUic.getCaret());
+		if (!figure.getCaretPane().getChildren().contains(RcplUic.getCaret())) {
+			figure.getCaretPane().getChildren().add(RcplUic.getCaret());
 		}
-
 		getCaretTimeline().playFromStart();
 		getCaret().setVisible(true);
+	}
 
+	public static void hideCaret(IParagraphFigure figure) {
+		figure.getCaretPane().getChildren().clear();
 	}
 
 	private void addBlinkingAnimation(Node imageView) {
@@ -1946,8 +1947,17 @@ public class RcplUic implements IRcplUic {
 		String[] splits1 = name.split("\\.");
 
 		for (Tab t : tabPane.getTabs()) {
+
+			TabInfo info = getTabInfo(t);
+
 			String[] splits = t.getText().split("\\.");
 			if (splits1[0].trim().equals(splits[0].trim())) {
+				return t;
+			}
+
+			IDocument doc = info.getEditor().getDocument();
+			String docName = doc.getFile().getName();
+			if (docName.equals(name)) {
 				return t;
 			}
 		}

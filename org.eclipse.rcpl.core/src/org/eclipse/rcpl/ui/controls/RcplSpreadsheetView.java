@@ -23,6 +23,7 @@ import impl.org.controlsfx.spreadsheet.CellView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -54,11 +55,9 @@ public class RcplSpreadsheetView {
 
 	private SpreadsheetView view;
 
-	public final static String EMTPTY_CELL_STYLE = "-fx-background-color: ghostwhite;";
-
 	private final static double PREF_COLUMN_WIDTH = 100;
 
-	private final static double PREF_ROW_HEIGHT = 33.84;
+	private final static double PREF_ROW_HEIGHT = 20;
 
 	public static double pickerWidth = 16;
 
@@ -73,10 +72,21 @@ public class RcplSpreadsheetView {
 	/**
 	 * @param configuration
 	 */
+	@SuppressWarnings("rawtypes")
 	public RcplSpreadsheetView(SpreadsheetConfiguration configuration) {
 
 		this.configuration = configuration;
 		this.view = new SpreadsheetView();
+
+		view.getSelectionModel().getSelectedCells().addListener(new ListChangeListener<TablePosition>() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public void onChanged(Change<? extends TablePosition> c) {
+				doTableSelectionChanged((List<TablePosition>) c.getList());
+			}
+
+		});
 
 		mainPane = new StackPane();
 
@@ -154,6 +164,11 @@ public class RcplSpreadsheetView {
 				}
 			}
 		});
+
+	}
+
+	@SuppressWarnings("rawtypes")
+	protected void doTableSelectionChanged(List<TablePosition> tablePositions) {
 
 	}
 
@@ -501,7 +516,7 @@ public class RcplSpreadsheetView {
 				}
 			}
 			if (!stripes) {
-//				cell.setStyle(EMTPTY_CELL_STYLE);
+				cell.getStyleClass().add("empty_cell");
 			}
 			rowList.add(cell);
 		}
@@ -526,16 +541,21 @@ public class RcplSpreadsheetView {
 			index = grid.getColumnCount();
 		}
 		for (int row = 0; row < grid.getRowCount(); ++row) {
+			boolean stripes = false;
 			SpreadsheetCell cell = createCell(type, row, index, 1, 1, value, null, 0);
 			if (configuration.getRowStripes() > 0) {
 				if (row % configuration.getRowStripes() == 0) {
 					cell.setStyle("five_rows");
+					stripes = true;
 				}
 			}
 			if (column == -1) {
 				rowsList.get(row).add(cell);
 			} else {
 				rowsList.get(row).add(column, cell);
+			}
+			if (!stripes) {
+				cell.getStyleClass().add("empty_cell");
 			}
 		}
 		grid.setRows(rowsList);

@@ -174,7 +174,7 @@ public abstract class AbstractHomePage implements IHomePage {
 		// ---------- CONTENT PANE -----------------------------------
 
 		contentPane = new StackPane();
-		contentPane.setId("homePageContentPane");
+		contentPane.setId("container");
 		vBox.getChildren().add(contentPane);
 		VBox.setVgrow(contentPane, Priority.ALWAYS);
 

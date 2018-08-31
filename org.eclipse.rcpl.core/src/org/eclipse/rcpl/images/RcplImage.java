@@ -111,6 +111,15 @@ public class RcplImage implements IImage {
 	 * @param width
 	 * @param height
 	 */
+	public RcplImage(String id, Class<?> resourceBaseClass) {
+		this(id, 0, 0, resourceBaseClass);
+	}
+
+	/**
+	 * @param id
+	 * @param width
+	 * @param height
+	 */
 	public RcplImage(String id, double width, double height, Class<?> resourceBaseClass) {
 		this.width = width;
 		this.height = height;
@@ -413,6 +422,9 @@ public class RcplImage implements IImage {
 	}
 
 	private String createPngPath() {
+		if (width == 0) {
+			return id + ".png";
+		}
 		return width + "_" + height + "/" + id + ".png";
 	}
 
