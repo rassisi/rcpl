@@ -57,7 +57,7 @@ public class RcplSpreadsheetView {
 
 	public final static double PREF_COLUMN_WIDTH = 100;
 
-	public final static double PREF_ROW_HEIGHT = 25;
+	public final static double PREF_ROW_HEIGHT = 23;
 
 	public static double pickerWidth = 16;
 
@@ -593,6 +593,10 @@ public class RcplSpreadsheetView {
 			}
 		}
 
+	}
+
+	public void select(SpreadsheetCell cell) {
+		view.getSelectionModel().clearAndSelect(cell.getRow(), view.getColumns().get(cell.getColumn()));
 	}
 
 	public SpreadsheetConfiguration getConfiguration() {
