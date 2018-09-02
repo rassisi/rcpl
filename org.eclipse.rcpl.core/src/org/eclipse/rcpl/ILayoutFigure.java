@@ -5,7 +5,7 @@ import java.util.List;
 import org.eclipse.rcpl.ui.action.RcplAction;
 
 import javafx.geometry.Point2D;
-import javafx.scene.Group;
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -16,6 +16,8 @@ import javafx.scene.shape.Rectangle;
  *
  */
 public interface ILayoutFigure extends IPane {
+
+	void setVAlignment(Pos alignment);
 
 	void dispose();
 
