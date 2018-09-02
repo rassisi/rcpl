@@ -8,6 +8,7 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -16,6 +17,8 @@ import javafx.scene.shape.Rectangle;
  *
  */
 public interface ILayoutFigure extends IPane {
+
+	VBox getvAlignBox();
 
 	void setVAlignment(Pos alignment);
 

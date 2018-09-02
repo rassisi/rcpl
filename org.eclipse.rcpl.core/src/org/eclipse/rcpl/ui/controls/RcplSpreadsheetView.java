@@ -55,9 +55,9 @@ public class RcplSpreadsheetView {
 
 	private SpreadsheetView view;
 
-	private final static double PREF_COLUMN_WIDTH = 100;
+	public final static double PREF_COLUMN_WIDTH = 100;
 
-	private final static double PREF_ROW_HEIGHT = 20;
+	public final static double PREF_ROW_HEIGHT = 25;
 
 	public static double pickerWidth = 16;
 

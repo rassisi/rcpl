@@ -15,13 +15,6 @@ public interface IParagraphFigure extends ILayoutFigure {
 
 	Pane getCaretPane();
 
-	/**
-	 * This method is needed for spreadsheets to achive vertical alignments
-	 * 
-	 * @param height
-	 */
-	void setBoxHeight(double height);
-
 	TextFlow getTextFlow();
 
 	void updateHeightAndLayoutAndWait();

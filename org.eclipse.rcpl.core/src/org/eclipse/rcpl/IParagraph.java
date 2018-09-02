@@ -7,6 +7,8 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 
 public interface IParagraph extends ILayoutObject {
 
+	void setIndentation(double pixel);
+
 	void updateOverflowClipping();
 
 	void advanceCaretOffset();
