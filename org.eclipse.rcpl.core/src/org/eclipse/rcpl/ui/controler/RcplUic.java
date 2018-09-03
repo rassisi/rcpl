@@ -205,6 +205,12 @@ public class RcplUic implements IRcplUic {
 	@FXML
 	private StackPane logoutButtonArea;
 
+	@FXML
+	private StackPane progressArea;
+
+	@FXML
+	private StackPane zoomArea;
+
 	private Timeline blinkingTimeline;
 
 	private Label debugLabel;
@@ -1570,42 +1576,42 @@ public class RcplUic implements IRcplUic {
 
 	}
 
-	protected void debugCollapsingAndHiding() {
-
-		final ToggleButton top = new ToggleButton("T");
-		top.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				getTopToolBar().collapse(!top.isSelected());
-			}
-
-		});
-		mainTopArea.getChildren().add(1, top);
-
-		final ToggleButton side = new ToggleButton("S");
-		side.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				if (!side.isSelected()) {
-					getSideToolBarControl().collapseToolPane();
-
-				} else {
-					getSideToolBarControl().showSideTools();
-				}
-			}
-		});
-		mainTopArea.getChildren().add(2, side);
-
-		final ToggleButton bottom = new ToggleButton("B");
-		bottom.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		mainTopArea.getChildren().add(3, bottom);
-	}
+//	protected void debugCollapsingAndHiding() {
+//
+//		final ToggleButton top = new ToggleButton("T");
+//		top.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				getTopToolBar().collapse(!top.isSelected());
+//			}
+//
+//		});
+//		mainTopArea.getChildren().add(1, top);
+//
+//		final ToggleButton side = new ToggleButton("S");
+//		side.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				if (!side.isSelected()) {
+//					getSideToolBarControl().collapseToolPane();
+//
+//				} else {
+//					getSideToolBarControl().showSideTools();
+//				}
+//			}
+//		});
+//		mainTopArea.getChildren().add(2, side);
+//
+//		final ToggleButton bottom = new ToggleButton("B");
+//		bottom.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				// TODO Auto-generated method stub
+//
+//			}
+//		});
+//		mainTopArea.getChildren().add(3, bottom);
+//	}
 
 	protected void doCreateContent() {
 
@@ -1978,5 +1984,15 @@ public class RcplUic implements IRcplUic {
 
 	protected void testMemoryConsumption() {
 
+	}
+
+	@Override
+	public StackPane getProgressArea() {
+		return progressArea;
+	}
+
+	@Override
+	public StackPane getZoomArea() {
+		return zoomArea;
 	}
 }

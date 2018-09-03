@@ -25,6 +25,10 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	StackPane getProgressArea();
+
+	StackPane getZoomArea();
+
 	H2DB getH2DB();
 
 	StackPane getEditorArea();

@@ -1238,3 +1238,7 @@
     -fx-fill: lightcoral;
 }
 
+.progressview-cell-empty {
+	-fx-background-color: transparent;
+    -fx-border-color: transparent;
+}

@@ -23,6 +23,4 @@ public interface IDetailPage {
 
 	AbstractTool getTool();
 
-	StackPane getProgressViewArea();
-
 }

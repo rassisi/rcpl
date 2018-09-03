@@ -6,11 +6,15 @@ import java.util.concurrent.Executors;
 
 import org.controlsfx.control.TaskProgressView;
 import org.eclipse.rcpl.ITaskViewProvider;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.scene.control.Skin;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -22,23 +26,24 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 	private final long LONG_TASK_MILLIS = 3000;
 
 	protected StackPane progressViewArea = new StackPane();
-	private TaskProgressView<RcplTask> taskProgressView;
+	private static TaskProgressView<RcplTask> taskProgressView;
 
 	int taskCounter = 0;
 
 	private ExecutorService executorService = Executors.newCachedThreadPool();
 
-	private boolean expanded;
-
 	public AbstractTaskViewProvider() {
 		super();
-		taskProgressView = new TaskProgressView<RcplTask>();
-		progressViewArea = new StackPane();
-		double height = 62.0;
-		progressViewArea.setPrefHeight(height);
-		progressViewArea.setMinHeight(height);
-		progressViewArea.setMaxHeight(height);
-		progressViewArea.getChildren().add(taskProgressView);
+		if (taskProgressView == null) {
+			taskProgressView = new TaskProgressView<RcplTask>() {
+				@Override
+				protected Skin<?> createDefaultSkin() {
+					return new RcplTaskProgressViewSkin<>(this);
+				}
+			};
+			HBox.setHgrow(taskProgressView, Priority.ALWAYS);
+			Rcpl.UIC.getProgressArea().getChildren().add(taskProgressView);
+		}
 	}
 
 	public void taskDone(int taskNumber) {
@@ -88,7 +93,6 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			tasks.get(taskNumber).updateProgress(workDone, maxWork);
 			tasks.get(taskNumber).updateMessage(message);
 			if (isLongTask()) {
-				expandTaskView();
 //				Rcpl.println("*** LONG TASK " + taskNumber + " " + message);
 			} else {
 //				Rcpl.println("*** NO LONG TASK " + taskNumber + " " + message);
@@ -208,39 +212,11 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 				taskCounter++;
 				final RcplTask task = new RcplTask(taskNumber + ". " + title, taskNumber, completionListener,
 						parameters);
-				expandTaskView();
 				tasks.put(taskNumber, task);
 				taskProgressView.getTasks().add(task);
 				executorService.submit(task);
 			}
 		});
-	}
-
-	@Override
-	public void expandTaskView() {
-
-		if (!expanded) {
-			expanded = true;
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					getNode().getChildren().add(progressViewArea);
-				}
-			});
-		}
-	}
-
-	@Override
-	public void collapseTaskView() {
-		if (expanded) {
-			expanded = false;
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					getNode().getChildren().remove(progressViewArea);
-				}
-			});
-		}
 	}
 
 	@Override

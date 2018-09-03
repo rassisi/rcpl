@@ -15,9 +15,5 @@ public interface ITaskViewProvider {
 
 	void startTask(String title, int taskNumber, RcplCompletionListener completionListener, Object... parameters);
 
-	void expandTaskView();
-
-	void collapseTaskView();
-
 	void waitForTaskCompletion(int taskNumber);
 }
