@@ -19,7 +19,7 @@
 <BorderPane fx:id="decorationArea" minHeight="10.0" minWidth="10.0" prefHeight="1099.0" prefWidth="1521.0" style="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <!-- TODO Add Nodes -->
   <bottom>
-    <HBox fx:id="mainBottomArea" maxHeight="20.0" minHeight="0.0" prefHeight="20.0" spacing="5.0">
+    <HBox fx:id="mainBottomArea" maxHeight="20.0" minHeight="0.0" prefHeight="16.0" prefWidth="16.0" spacing="5.0">
       <children>
         <Text fx:id="statusText" opacity="0.63" rotate="0.0" strokeType="OUTSIDE" strokeWidth="0.0" style="" text="-">
           <HBox.margin>
@@ -27,10 +27,13 @@
           </HBox.margin>
         </Text>
             <StackPane fx:id="progressArea" HBox.hgrow="ALWAYS" />
+            <Button fx:id="minusZoom" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" text="-" />
             <StackPane fx:id="zoomArea" prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Slider value="50.0" />
+                  <Slider fx:id="zoomSlider" max="400.0" value="100.0" />
                </children></StackPane>
+            <Button fx:id="plusZoom" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" text="+" />
+            <Label fx:id="zoomLabel" prefWidth="50.0" />
       </children>
       <padding>
         <Insets left="5.0" right="20.0" />

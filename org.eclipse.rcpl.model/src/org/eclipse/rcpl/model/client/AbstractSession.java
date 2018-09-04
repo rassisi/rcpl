@@ -73,7 +73,7 @@ import org.eclipse.net4j.util.om.trace.PrintTraceHandler;
 import org.eclipse.net4j.util.security.IPasswordCredentialsProvider;
 import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
 import org.eclipse.rcpl.libs.util.AUtil;
-import org.eclipse.rcpl.model.DefaultSessionFactory;
+import org.eclipse.rcpl.model.RcplSessionFactory;
 import org.eclipse.rcpl.model.IIdProvider;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.ISessionFacory;
@@ -129,7 +129,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	public static final String ROLE_TEMPLATES_WRITER = "ROLE_TEMPLATES_WRITER";
 
-	public static ISessionFacory sessionFactory = new DefaultSessionFactory();
+	public static ISessionFacory sessionFactory = new RcplSessionFactory();
 
 	public static final String USER_ADMINISTRATOR = "Administrator";
 

@@ -14,7 +14,7 @@ import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.application.AbstractRcplApplication;
 import org.eclipse.rcpl.application.AbstractApplicationProvider;
-import org.eclipse.rcpl.model.DefaultSessionFactory;
+import org.eclipse.rcpl.model.RcplSessionFactory;
 import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.AbstractSession;
@@ -57,7 +57,7 @@ public class DemoRcplApplication extends AbstractRcplApplication {
 
 	@Override
 	protected ISessionFacory createSessionFactory() {
-		ISessionFacory factory = new DefaultSessionFactory();
+		ISessionFacory factory = new RcplSessionFactory();
 		RcplSession.sessionFactory = factory;
 		return factory;
 	}

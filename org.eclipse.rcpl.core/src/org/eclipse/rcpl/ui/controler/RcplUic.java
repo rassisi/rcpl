@@ -80,6 +80,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -150,6 +151,18 @@ public class RcplUic implements IRcplUic {
 	private H2DB h2DB;
 
 	private IDetailPage webDetailPage;
+
+	@FXML
+	protected Slider zoomSlider;
+
+	@FXML
+	protected Button minusZoom;
+
+	@FXML
+	protected Button plusZoom;
+
+	@FXML
+	protected Label zoomLabel;
 
 	@FXML
 	protected Button startMenuButton;
@@ -470,6 +483,7 @@ public class RcplUic implements IRcplUic {
 			if (tabPane.getTabs().isEmpty()) {
 //				closeEditor(tabInfo.getEditor());
 				showHomePage(HomePageType.OVERVIEW, null);
+				setScale(0);
 			}
 
 			if (tabInfo.getEditor().getDocument() != null) {
@@ -540,6 +554,52 @@ public class RcplUic implements IRcplUic {
 			}
 		};
 
+		zoomSlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				if (Rcpl.UIC.getEditor() != null) {
+					Rcpl.UIC.getEditor().setScale(newValue.doubleValue() / 100);
+					zoomLabel.setText((int) (newValue.doubleValue()) + " %");
+				}
+			}
+		});
+
+		plusZoom.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (Rcpl.UIC.getEditor() != null) {
+					double newValue = Rcpl.UIC.getEditor().getScale() + 0.1;
+					setScale(newValue);
+					Rcpl.UIC.getEditor().setScale(newValue);
+				}
+			}
+		});
+		minusZoom.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (Rcpl.UIC.getEditor() != null) {
+					double newValue = Math.max(0, Rcpl.UIC.getEditor().getScale() - 0.1);
+					setScale(newValue);
+					Rcpl.UIC.getEditor().setScale(newValue);
+				}
+			}
+		});
+
+		zoomSlider.setVisible(false);
+		plusZoom.setVisible(false);
+		minusZoom.setVisible(false);
+	}
+
+	public void setScale(double scale) {
+		zoomSlider.setVisible(scale > 0);
+		plusZoom.setVisible(scale > 0);
+		minusZoom.setVisible(scale > 0);
+		zoomLabel.setVisible(scale > 0);
+		zoomSlider.setValue(scale * 100);
+		zoomLabel.setText((int) (scale * 100) + " %");
 	}
 
 	public void doInitStyles() {

@@ -18,6 +18,7 @@ import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.client.AbstractSession;
 import org.eclipse.rcpl.util.RcplUtil;
 import org.jpedal.examples.viewer.OpenViewerFX;
 
@@ -79,6 +80,8 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 	@Override
 	public IRcplApplicationProvider getApplicationProvider() {
 		if (applicationProvider == null) {
+			AbstractSession.applicationId = this;
+			AbstractSession.sessionFactory = createSessionFactory();
 			applicationProvider = createApplicationProvider();
 		}
 		return applicationProvider;

@@ -25,6 +25,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	void setScale(double scale);
+
 	StackPane getProgressArea();
 
 	StackPane getZoomArea();
