@@ -30,7 +30,7 @@
             <Button fx:id="minusZoom" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" text="-" />
             <StackPane fx:id="zoomArea" prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Slider fx:id="zoomSlider" max="400.0" value="100.0" />
+                  <Slider fx:id="zoomSlider" max="400.0" value="60.0" />
                </children></StackPane>
             <Button fx:id="plusZoom" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" text="+" />
             <Label fx:id="zoomLabel" prefWidth="50.0" />

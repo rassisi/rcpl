@@ -576,6 +576,7 @@ public class RcplUic implements IRcplUic {
 				}
 			}
 		});
+
 		minusZoom.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -593,13 +594,27 @@ public class RcplUic implements IRcplUic {
 		minusZoom.setVisible(false);
 	}
 
+	private double scale = 0.6;
+
+	/*
+	 * 1 = 100 %
+	 * 
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.rcpl.IRcplUic#setScale(double)
+	 */
 	public void setScale(double scale) {
+		this.scale = scale;
 		zoomSlider.setVisible(scale > 0);
 		plusZoom.setVisible(scale > 0);
 		minusZoom.setVisible(scale > 0);
 		zoomLabel.setVisible(scale > 0);
 		zoomSlider.setValue(scale * 100);
 		zoomLabel.setText((int) (scale * 100) + " %");
+	}
+
+	public double getScale() {
+		return scale;
 	}
 
 	public void doInitStyles() {
