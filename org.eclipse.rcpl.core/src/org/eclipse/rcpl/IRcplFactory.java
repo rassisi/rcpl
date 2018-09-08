@@ -1,8 +1,5 @@
 package org.eclipse.rcpl;
 
-import java.io.File;
-import java.util.HashMap;
-
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
@@ -45,7 +42,7 @@ public interface IRcplFactory {
 
 	IUndoRedoListener createUndoRedoTool();
 
-	IEditor createEditor(File file, Tab tab, HashMap<String, String> wordReplacements, boolean onePage);
+//	IEditor createEditor(File file, Tab tab, HashMap<String, String> wordReplacements, boolean onePage);
 
 	IEditor createEditor(Tab tab);
 

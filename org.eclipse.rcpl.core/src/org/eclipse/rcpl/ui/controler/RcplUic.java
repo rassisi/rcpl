@@ -501,6 +501,7 @@ public class RcplUic implements IRcplUic {
 			}
 		}
 
+		tabInfo.getEditor().cancelAllTasks();
 //		new DelayedExecution(30) {
 //
 //			@Override

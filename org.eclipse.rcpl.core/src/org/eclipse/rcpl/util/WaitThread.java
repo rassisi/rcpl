@@ -14,6 +14,30 @@ public abstract class WaitThread {
 
 	private IEditor editor;
 
+	class Waiter extends Thread {
+		private Object ob;
+
+		/**
+		*/
+		public Waiter(Object ob) {
+			this.ob = ob;
+			setName("Waiter");
+		}
+
+		public void run() {
+			// waiter warten sofort
+			synchronized (ob) {
+				try {
+					System.out.println(this.getName() + " waits");
+					ob.wait();
+					System.out.println(this.getName() + " ends waiting");
+				} catch (InterruptedException ex) {
+					System.out.println("interrupted");
+				}
+			}
+		}
+	}
+
 	public WaitThread() {
 		this(null);
 	}
@@ -26,8 +50,13 @@ public abstract class WaitThread {
 	}
 
 	private void run() {
+//		final Object o = new Object();
+//		final Waiter waiter = new Waiter(o);
 		if (Platform.isFxApplicationThread()) {
 			doRun();
+//			synchronized (o) {
+//				o.notifyAll();
+//			}
 		} else {
 			wait = true;
 			Platform.runLater(new Runnable() {
@@ -35,8 +64,15 @@ public abstract class WaitThread {
 				public void run() {
 					doRun();
 					wait = false;
+//					waiter.interrupt();
+//					synchronized (o) {
+//						o.notifyAll();
+//					}
 				}
 			});
+
+//			waiter.start();
+
 			do {
 				if (editor == null || editor.isDisposed()) {
 					break;
@@ -53,7 +89,7 @@ public abstract class WaitThread {
 
 	private void sleep() {
 		try {
-			Thread.sleep(0, 1);
+			Thread.sleep(0, 100);
 		} catch (InterruptedException e) {
 		}
 	}

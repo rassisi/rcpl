@@ -89,7 +89,6 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			if (tasks.get(taskNumber) == null) {
 				return;
 			}
-//			Rcpl.println(taskNumber + ".   workDone = " + workDone + "   maxWork = " + maxWork);
 			tasks.get(taskNumber).updateProgress(workDone, maxWork);
 			tasks.get(taskNumber).updateMessage(message);
 			if (isLongTask()) {
@@ -107,7 +106,7 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 		@Override
 		protected Void call() throws Exception {
-
+			progress("", 1.0, 100.0);
 			switch (taskNumber) {
 			case 1:
 				result = task_1(this, parameters);
@@ -210,8 +209,7 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			@Override
 			public void run() {
 				taskCounter++;
-				final RcplTask task = new RcplTask(taskNumber + ". " + title, taskNumber, completionListener,
-						parameters);
+				final RcplTask task = new RcplTask(title, taskNumber, completionListener, parameters);
 				tasks.put(taskNumber, task);
 				taskProgressView.getTasks().add(task);
 				executorService.submit(task);
@@ -241,4 +239,10 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 		return tasks.get(taskNumber);
 	}
 
+	public void cancelAllTasks() {
+		for (RcplTask task : tasks.values()) {
+			task.cancel();
+		}
+		tasks.clear();
+	}
 }

@@ -9,6 +9,8 @@ import org.eclipse.rcpl.control.RcplCompletionListener;
  */
 public interface ITaskViewProvider {
 
+	void cancelAllTasks();
+
 	RcplTask getTask(int taskNumber);
 
 	void progress(int taskNumber, String message, double workDone, double maxWork);

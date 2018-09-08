@@ -10,9 +10,6 @@
  *******************************************************************************/
 package org.eclipse.rcpl;
 
-import java.io.File;
-import java.util.HashMap;
-
 import org.eclipse.rcpl.app.toolcontrols.RcplSideToolBar;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
 import org.eclipse.rcpl.detailpages.RcplModelManagerImpl;
@@ -216,10 +213,10 @@ public class RcplBasicFactory implements IRcplFactory {
 		return new RcplToolFactory();
 	}
 
-	@Override
-	public IEditor createEditor(File file, Tab tab, HashMap<String, String> wordReplacements, boolean onePage) {
-		return null;
-	}
+//	@Override
+//	public IEditor createEditor(File file, Tab tab, HashMap<String, String> wordReplacements, boolean onePage) {
+//		return null;
+//	}
 
 	@Override
 	public IEditor createEditor(Tab tab) {
