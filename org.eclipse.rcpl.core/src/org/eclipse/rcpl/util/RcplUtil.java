@@ -1,6 +1,7 @@
 package org.eclipse.rcpl.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,8 +33,14 @@ import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.w3c.dom.Node;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * @author Ramin
@@ -662,6 +669,31 @@ public class RcplUtil {
 		return outFile;
 	}
 
+	public static final void copyFromCacheToFile(String fileName, File output) {
+		File cacheFile = new File(getUserLocalCacheDir(), fileName);
+		try {
+			FileInputStream fis = new FileInputStream(cacheFile);
+			output.getParentFile().mkdirs();
+			AUtil.copyInputStream(fis, output);
+		} catch (FileNotFoundException e) {
+			return;
+		} catch (IOException e) {
+			return;
+		}
+	}
+
+	public static final void copyFromFileToFile(File input, File output) {
+		try {
+			FileInputStream fis = new FileInputStream(input);
+			output.getParentFile().mkdirs();
+			AUtil.copyInputStream(fis, output);
+		} catch (FileNotFoundException e) {
+			return;
+		} catch (IOException e) {
+			return;
+		}
+	}
+
 	private static File userLocalCacheDir;
 	private static File userLocalArea;
 	private static File userLocalTempDir;
@@ -957,4 +989,73 @@ public class RcplUtil {
 		}
 		return true;
 	}
+
+	public static boolean showQuestion(String title, String message) {
+		Alert dlg = new Alert(AlertType.CONFIRMATION, "");
+		dlg.initModality(Modality.APPLICATION_MODAL);
+		dlg.initOwner(null);
+		dlg.setTitle(title);
+		dlg.getDialogPane().setContentText(message);
+//		dlg.getDialogPane().getButtonTypes().remove(ButtonType.CANCEL);
+//		configureSampleDialog(dlg, optionalMasthead);
+		dlg.showAndWait();
+		ButtonType result = dlg.getResult();
+		dlg.close();
+		return ButtonType.OK.equals(result);
+	}
+
+	public static File openDocumentWithFileDialog(boolean word, boolean spreadsheet, boolean presentation, boolean all,
+			boolean save) {
+		final FileChooser fileChooser = new FileChooser();
+		if (word) {
+			FileChooser.ExtensionFilter wordExtFilter = new FileChooser.ExtensionFilter("Word Documents", "*.docx");
+			fileChooser.getExtensionFilters().add(wordExtFilter);
+			fileChooser.setSelectedExtensionFilter(wordExtFilter);
+		}
+		if (spreadsheet) {
+			FileChooser.ExtensionFilter spreadsheetExtFilter = new FileChooser.ExtensionFilter("Spreadsheets",
+					"*.xlsx");
+			fileChooser.getExtensionFilters().add(spreadsheetExtFilter);
+			fileChooser.setSelectedExtensionFilter(spreadsheetExtFilter);
+		}
+		if (presentation) {
+			FileChooser.ExtensionFilter presentationExtFilter = new FileChooser.ExtensionFilter("Presentions",
+					"*.pptx");
+			fileChooser.getExtensionFilters().add(presentationExtFilter);
+			fileChooser.setSelectedExtensionFilter(presentationExtFilter);
+		}
+		if (word && spreadsheet && presentation) {
+			FileChooser.ExtensionFilter officeExtFilter = new FileChooser.ExtensionFilter("Office Documents", "*.docx",
+					"*.xlsx", "*.pptx");
+			fileChooser.getExtensionFilters().add(officeExtFilter);
+			fileChooser.setSelectedExtensionFilter(officeExtFilter);
+		}
+		if (all) {
+			FileChooser.ExtensionFilter allExtFilter = new FileChooser.ExtensionFilter("All", "*.*");
+			fileChooser.getExtensionFilters().add(allExtFilter);
+		}
+
+		try {
+//			File dir = RcplSession.getDefault().getSystemPreferences().getFile(RcplKey.FILE_DIALOG_DIR);
+//			if (dir != null && dir.exists()) {
+//				fileChooser.setInitialDirectory(dir);
+//			}
+		} catch (Exception ex) {
+			RcplModel.logError(ex);
+		}
+		File file;
+
+		if (save) {
+			file = fileChooser.showSaveDialog(getStage());
+		} else {
+			file = fileChooser.showOpenDialog(getStage());
+		}
+		RcplSession.getDefault().commit();
+		return file;
+	}
+
+	public static Stage getStage() {
+		return Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getPrimaryStage();
+	}
+
 }

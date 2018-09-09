@@ -473,47 +473,24 @@ public class RcplUic implements IRcplUic {
 		contentGroup.getChildren().add(borderPane);
 	}
 
-	public void closeTab(final Tab tab) {
+	/**
+	 * @param tab
+	 */
+	public boolean closeTab(final Tab tab) {
 		TabInfo tabInfo = getTabInfo(tab);
 		if (tabInfo != null && tabInfo.getEditor() != null) {
-			tab.setUserData(null);
 			final IEditor editor = tabInfo.getEditor();
-
-			editor.getMainPane().toBack();
-			if (tabPane.getTabs().isEmpty()) {
-//				closeEditor(tabInfo.getEditor());
-				showHomePage(HomePageType.OVERVIEW, null);
-				setScale(0);
-			}
-
-			if (tabInfo.getEditor().getDocument() != null) {
-				new Thread("Close Tab: Save Document") {
-					@Override
-					public void run() {
-						tabInfo.setEditor(null);
-						RcplSession.getDefault().commit();
-						final IDocument doc = editor.getDocument();
-						doc.save();
-						doc.dispose();
-					}
-				}.start();
-
+			if (editor.close()) {
+				tab.setUserData(null);
+				if (tabPane.getTabs().size() == 1) {
+					showHomePage(HomePageType.OVERVIEW, null);
+					setScale(0);
+				}
+				RcplSession.getDefault().commit();
+				return true;
 			}
 		}
-
-		tabInfo.getEditor().cancelAllTasks();
-//		new DelayedExecution(30) {
-//
-//			@Override
-//			protected void execute() {
-//				if (tabInfo.getEditor() != null) {
-//					final IEditor editor = tabInfo.getEditor();
-//					closeEditor(editor);
-//				}
-//			}
-//
-//		};
-
+		return false;
 	}
 
 	@Override
@@ -1512,10 +1489,10 @@ public class RcplUic implements IRcplUic {
 		pane.getChildren().add(homeButton.getNode());
 	}
 
-	protected void closeEditor(IEditor editor) {
-		editorArea.getChildren().remove(editor.getMainPane());
+//	protected void closeEditor(IEditor editor) {
+//		editorArea.getChildren().remove(editor.getMainPane());
 //		editor.dispose();
-	}
+//	}
 
 	private void createBorderDragger() {
 		createBorderDragger(mainTopArea);
@@ -1595,10 +1572,12 @@ public class RcplUic implements IRcplUic {
 					}
 				}
 			});
-			tab.setOnClosed(new EventHandler<Event>() {
+			tab.setOnCloseRequest(new EventHandler<Event>() {
 				@Override
 				public void handle(Event arg0) {
-					closeTab(tab);
+					if (!closeTab(tab)) {
+						arg0.consume();
+					}
 				}
 			});
 
@@ -2029,14 +2008,11 @@ public class RcplUic implements IRcplUic {
 		String[] splits1 = name.split("\\.");
 
 		for (Tab t : tabPane.getTabs()) {
-
 			TabInfo info = getTabInfo(t);
-
 			String[] splits = t.getText().split("\\.");
 			if (splits1[0].trim().equals(splits[0].trim())) {
 				return t;
 			}
-
 			IDocument doc = info.getEditor().getDocument();
 			String docName = doc.getFile().getName();
 			if (docName.equals(name)) {

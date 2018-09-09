@@ -58,7 +58,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void collapseHorizontalRuler();
 
-	void dispose();
+	boolean close();
 
 	void expandHorizontalRuler();
 
@@ -176,7 +176,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	ISelectionShape getSelectionEndShape();
 
-	void unselect();
+	void unselectAllParagraphs();
 
 	void updateAllSelections();
 

@@ -1,6 +1,7 @@
 package org.eclipse.rcpl.util;
 
 import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.Rcpl;
 
 import javafx.application.Platform;
 
@@ -45,7 +46,11 @@ public abstract class WaitThread {
 	public WaitThread(IEditor editor) {
 		this.editor = editor;
 		if (editor == null || !editor.isDisposed()) {
-			run();
+			try {
+				run();
+			} catch (Exception ex) {
+				Rcpl.printErrorln("", ex);
+			}
 		}
 	}
 

@@ -7,6 +7,7 @@ import org.eclipse.rcpl.ui.action.RcplAction;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -17,6 +18,16 @@ import javafx.scene.shape.Rectangle;
  *
  */
 public interface ILayoutFigure extends IPane {
+
+	public void handleMouseDragged(MouseEvent me);
+
+	public void handleMousePressed(MouseEvent me);
+
+	public void handleMouseReleased();
+
+	public boolean isActivated();
+
+	void activate();
 
 	VBox getvAlignBox();
 
