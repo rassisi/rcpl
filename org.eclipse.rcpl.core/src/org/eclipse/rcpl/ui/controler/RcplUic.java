@@ -79,7 +79,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
@@ -90,6 +92,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -297,6 +300,8 @@ public class RcplUic implements IRcplUic {
 	private BorderPane borderPane;
 
 	private Button returnButton;
+
+	private List<File> recentDocumentFiles = new ArrayList<File>();
 
 	/**
 	 * TabInfo
@@ -1307,7 +1312,7 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void showStartMenuButton(boolean show) {
-		startMenuButton.setDisable(!show);
+//		startMenuButton.setDisable(!show);
 	}
 
 	/**
@@ -1719,6 +1724,8 @@ public class RcplUic implements IRcplUic {
 			}
 		});
 
+		createStartMenu(startMenuButton);
+
 		titleArea.getChildren().add(titleText);
 
 		IButton logoutButton = new RcplButton("logout") {
@@ -1731,6 +1738,37 @@ public class RcplUic implements IRcplUic {
 		logoutButtonArea.getChildren().add(logoutButton.getNode());
 		Rcpl.showProgress(false);
 
+	}
+
+	private ContextMenu contextMenu;
+
+	private void createStartMenu(Node anchor) {
+		contextMenu = new ContextMenu();
+		anchor.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+			@Override
+			public void handle(ContextMenuEvent event) {
+				contextMenu.getItems().clear();
+
+				int counter = 0;
+				for (File f : recentDocumentFiles) {
+					final MenuItem item1 = new MenuItem(f.getName());
+					item1.setUserData(f);
+					item1.setOnAction(new EventHandler<ActionEvent>() {
+
+						@Override
+						public void handle(ActionEvent event) {
+							openDocument((File) item1.getUserData());
+						}
+					});
+					contextMenu.getItems().add(item1);
+					counter++;
+					if (counter > 10) {
+						break;
+					}
+				}
+				contextMenu.show(anchor, event.getScreenX() + 20, event.getScreenY());
+			}
+		});
 	}
 
 	@Override
@@ -2046,5 +2084,12 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public StackPane getZoomArea() {
 		return zoomArea;
+	}
+
+	@Override
+	public void addRecentDocument(File file) {
+		if (!recentDocumentFiles.contains(file)) {
+			recentDocumentFiles.add(file);
+		}
 	}
 }

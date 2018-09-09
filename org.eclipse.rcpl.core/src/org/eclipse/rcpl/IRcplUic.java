@@ -25,6 +25,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	void addRecentDocument(File file);
+
 	double getScale();
 
 	void setScale(double scale);
