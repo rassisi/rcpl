@@ -301,8 +301,6 @@ public class RcplUic implements IRcplUic {
 
 	private Button returnButton;
 
-	private List<File> recentDocumentFiles = new ArrayList<File>();
-
 	/**
 	 * TabInfo
 	 * 
@@ -461,7 +459,16 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void actionLogout() {
+		saveRcpl();
 		getRcplApplicationStarter().getRcplApplicationProvider().reStart();
+	}
+
+	private void saveRcpl() {
+		doSaveRcpl();
+	}
+
+	protected void doSaveRcpl() {
+
 	}
 
 	@Override
@@ -1744,15 +1751,22 @@ public class RcplUic implements IRcplUic {
 
 	private void createStartMenu(Node anchor) {
 		contextMenu = new ContextMenu();
+		contextMenu.setMinHeight(300);
+		contextMenu.setMinWidth(100);
+
+		contextMenu.setAutoHide(true);
+		contextMenu.setHideOnEscape(true);
 		anchor.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
 			@Override
 			public void handle(ContextMenuEvent event) {
 				contextMenu.getItems().clear();
 
 				int counter = 0;
-				for (File f : recentDocumentFiles) {
-					final MenuItem item1 = new MenuItem(f.getName());
-					item1.setUserData(f);
+				for (String filePath : RcplSession.getDefault()
+						.loadKeys(KeyValueKey.KEY_VALUE_KEY_RECENT_DOCUMENT.name())) {
+					File file = new File(RcplSession.getDefault().getValue(filePath));
+					final MenuItem item1 = new MenuItem(file.getName());
+					item1.setUserData(file);
 					item1.setOnAction(new EventHandler<ActionEvent>() {
 
 						@Override
@@ -1766,7 +1780,7 @@ public class RcplUic implements IRcplUic {
 						break;
 					}
 				}
-				contextMenu.show(anchor, event.getScreenX() + 20, event.getScreenY());
+				contextMenu.show(anchor, event.getScreenX(), event.getScreenY());
 			}
 		});
 	}
@@ -2087,9 +2101,15 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void addRecentDocument(File file) {
-		if (!recentDocumentFiles.contains(file)) {
-			recentDocumentFiles.add(file);
+	public void addRecentDocument(File file, boolean commit) {
+		for (String key : RcplSession.getDefault().loadKeys(KeyValueKey.KEY_VALUE_KEY_RECENT_DOCUMENT.name())) {
+			if (file.getAbsolutePath().equals(RcplSession.getDefault().getValue(key))) {
+				return;
+			}
 		}
+
+		RcplSession.getDefault().putValue(
+				KeyValueKey.KEY_VALUE_KEY_RECENT_DOCUMENT.name() + "_" + System.currentTimeMillis(),
+				file.getAbsolutePath());
 	}
 }

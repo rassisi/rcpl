@@ -73,14 +73,16 @@ import org.eclipse.net4j.util.om.trace.PrintTraceHandler;
 import org.eclipse.net4j.util.security.IPasswordCredentialsProvider;
 import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
 import org.eclipse.rcpl.libs.util.AUtil;
-import org.eclipse.rcpl.model.RcplSessionFactory;
 import org.eclipse.rcpl.model.IIdProvider;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.RcplModelUtil;
+import org.eclipse.rcpl.model.RcplSessionFactory;
+import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 //import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 
@@ -329,7 +331,10 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 					}
 				}
 			}
+		} else {
+			saveXMI_Local(true);
 		}
+		saveXMI_Local(false);
 		AUtil.sleep(10);
 	}
 
@@ -1234,6 +1239,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	private void loadLocalXMI(boolean application) {
 
+		boolean DEBUG_COMPARE_CONTENT = false;
+
 		try {
 			ResourceSet rs = new ResourceSetImpl();
 			ComposedAdapterFactory composedAdapterFactory;
@@ -1257,7 +1264,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 				RcplModel.logError(ex);
 			}
 
-			boolean forceNewXMI = !localXMIFile.exists() || !FileUtils.contentEquals(tempXMIFile, localXMIFile);
+			boolean forceNewXMI = !localXMIFile.exists()
+					|| ((!FileUtils.contentEquals(tempXMIFile, localXMIFile) && DEBUG_COMPARE_CONTENT));
 
 			tempXMIFile.delete();
 
@@ -1294,6 +1302,9 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			// xmiLocal = new XMIResourceImpl();
 
 			resource.load(new FileInputStream(localXMIFile), new HashMap<Object, Object>());
+			if (forceNewXMI) {
+				getRcpl().getKeyvalues().getKeyvalues().clear();
+			}
 		} catch (Throwable e) {
 			String msg = e.getMessage();
 			if (msg.indexOf("Feature 'version' not found") != -1) {
@@ -1314,5 +1325,41 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	}
 
 	abstract protected void addAdapterFactories(ComposedAdapterFactory composedFactory);
+
+	@Override
+	public String getValue(String key) {
+		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
+			if (key.equals(kv.getKey())) {
+				return kv.getValue();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public List<String> loadKeys(String matchKey) {
+		List<String> keys = new ArrayList<String>();
+		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
+			if (kv.getKey().startsWith(matchKey)) {
+				keys.add(kv.getKey());
+			}
+		}
+		return keys;
+	}
+
+	@Override
+	public void putValue(String key, String value) {
+		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
+			if (key.equals(kv.getKey())) {
+				kv.setValue(value);
+				return;
+			}
+		}
+		KeyValue kv = RcplFactory.eINSTANCE.createKeyValue();
+		kv.setKey(key);
+		kv.setValue(value);
+		getRcpl().getKeyvalues().getKeyvalues().add(kv);
+		commit();
+	}
 
 }

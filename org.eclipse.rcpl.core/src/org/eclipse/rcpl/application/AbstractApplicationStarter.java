@@ -65,7 +65,7 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 			return false;
 		}
 
-		// ========== model can be accessed from this point ================
+		// ========== model can be accessed at this point ================
 
 		initApplicationWithModel();
 
@@ -112,6 +112,14 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 
 	private void initApplicationWithModel() {
 		doInitApplicationWithModel();
+
+//		List<String> recentDocuments = new ArrayList<String>();
+//		RcplSession.getDefault().loadKeys(recentDocuments, KeyValueKey.KEY_VALUE_KEY_RECENT_DOCUMENT.name());
+//		for (String string : recentDocuments) {
+//			String filePath = RcplSession.getDefault().getValue(string);
+//			Rcpl.UIC.addRecentDocument(new File(filePath), false);
+//		}
+
 		for (String url : RcplSession.getDefault().getRcpl().getImageUrls()) {
 			RcplSession.getDefault().addAdditionalImageCodebases(url);
 
@@ -123,6 +131,10 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 
 	protected abstract void doInitApplicationWithModel();
 
+	/**
+	 * @param login
+	 * @return
+	 */
 	private boolean beforeSession(final ILogin login) {
 		RcplSession.getDefault().setStandalone(true);
 
@@ -138,6 +150,8 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 			Rcpl.progressMessage("Init Session failed");
 			return false;
 		}
+
+		// ---------- the EMF models are accessible at this point ----------
 
 		return true;
 	}

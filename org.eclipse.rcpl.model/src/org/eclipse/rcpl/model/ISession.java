@@ -14,6 +14,12 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
  */
 public interface ISession {
 
+	List<String> loadKeys(String matchKey);
+
+	String getValue(String key);
+
+	void putValue(String key, String value);
+
 	CDOSession getSession();
 
 	EObject getApplicationRootObject();

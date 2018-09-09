@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
-	void addRecentDocument(File file);
+	void addRecentDocument(File file, boolean commit);
 
 	double getScale();
 
