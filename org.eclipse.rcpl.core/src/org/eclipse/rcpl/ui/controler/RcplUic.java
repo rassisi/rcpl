@@ -73,7 +73,6 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -289,8 +288,6 @@ public class RcplUic implements IRcplUic {
 
 	protected StackPane editorArea;
 
-	protected Group editorGroup;
-
 	private Node focusOwner;
 
 	boolean requestCancel;
@@ -371,8 +368,6 @@ public class RcplUic implements IRcplUic {
 
 		this.applicationStarter = rcplApplicationStarter;
 		this.editorArea = new StackPane();
-		this.editorGroup = new Group();
-		this.editorArea.getChildren().add(editorGroup);
 
 		this.logPage = new VBox();
 		this.errorTextArea = new TextArea();
@@ -494,6 +489,7 @@ public class RcplUic implements IRcplUic {
 			final IEditor editor = tabInfo.getEditor();
 			if (editor.close()) {
 				tab.setUserData(null);
+				getEditorArea().getChildren().remove(editor.getMainPane());
 				if (tabPane.getTabs().size() == 1) {
 					showHomePage(HomePageType.OVERVIEW, null);
 					setScale(0);
@@ -593,6 +589,7 @@ public class RcplUic implements IRcplUic {
 	 * 
 	 * @see org.eclipse.rcpl.IRcplUic#setScale(double)
 	 */
+	@Override
 	public void setScale(double scale) {
 		this.scale = scale;
 		zoomSlider.setVisible(scale > 0);
@@ -603,6 +600,7 @@ public class RcplUic implements IRcplUic {
 		zoomLabel.setText((int) (scale * 100) + " %");
 	}
 
+	@Override
 	public double getScale() {
 		return scale;
 	}
@@ -1590,6 +1588,9 @@ public class RcplUic implements IRcplUic {
 					if (!closeTab(tab)) {
 						arg0.consume();
 					}
+
+					System.out.println();
+
 				}
 			});
 
@@ -2111,5 +2112,9 @@ public class RcplUic implements IRcplUic {
 		RcplSession.getDefault().putValue(
 				KeyValueKey.KEY_VALUE_KEY_RECENT_DOCUMENT.name() + "_" + System.currentTimeMillis(),
 				file.getAbsolutePath());
+	}
+
+	@Override
+	public void layoutDocument(IEditor editor, IDocument document) {
 	}
 }

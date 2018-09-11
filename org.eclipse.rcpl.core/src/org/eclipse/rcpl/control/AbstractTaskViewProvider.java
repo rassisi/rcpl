@@ -239,6 +239,7 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 		return tasks.get(taskNumber);
 	}
 
+	@Override
 	public void cancelAllTasks() {
 		for (RcplTask task : tasks.values()) {
 			task.cancel();

@@ -991,7 +991,7 @@ public class RcplUtil {
 	}
 
 	public static boolean showQuestion(String title, String message) {
-		Alert dlg = new Alert(AlertType.CONFIRMATION, "");
+		Alert dlg = new Alert(AlertType.CONFIRMATION, "", ButtonType.OK, ButtonType.NO, ButtonType.CANCEL);
 		dlg.initModality(Modality.APPLICATION_MODAL);
 		dlg.initOwner(null);
 		dlg.setTitle(title);
