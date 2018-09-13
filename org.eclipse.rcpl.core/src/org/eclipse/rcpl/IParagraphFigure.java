@@ -25,7 +25,9 @@ public interface IParagraphFigure extends ILayoutFigure {
 
 	void processMouseEvent(MouseEvent event);
 
-	void processKeyEvent(KeyEvent event);
+	void processKeyTyped(KeyEvent event);
+
+	void processKeyPressed(KeyEvent event);
 
 	double getFirstLineHeight();
 

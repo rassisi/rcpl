@@ -1058,4 +1058,8 @@ public class RcplUtil {
 		return Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getPrimaryStage();
 	}
 
+	public static boolean isControlCharacter(String c) {
+		byte[] ba = c.getBytes();
+		return c.equals("\r") || c.equals("\b") || ba[0] == 127; // 127 = DEL
+	}
 }
