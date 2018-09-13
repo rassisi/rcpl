@@ -193,6 +193,9 @@ public abstract class RcplAbstractService {
 
 	public IService getService(ICommand command) {
 
+		if (command.getService() != null) {
+			return command.getService();
+		}
 		if (command.getCommandId().getServiceId() != null) {
 			EnServiceId servId = command.getCommandId().getServiceId();
 			if (servId != null) {

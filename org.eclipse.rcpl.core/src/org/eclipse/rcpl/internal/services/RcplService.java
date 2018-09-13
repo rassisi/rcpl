@@ -180,7 +180,7 @@ public class RcplService extends RcplAbstractService implements IService {
 				String id = command.getTool().getTool().getId();
 				for (EnCommandId e : EnCommandId.values()) {
 					if (id == e.getId()) {
-						return new RcplCommand(e, command.getNewData());
+						return new RcplCommand(command.getService(), e, command.getNewData());
 					}
 				}
 			}
@@ -363,7 +363,7 @@ public class RcplService extends RcplAbstractService implements IService {
 		case INSERT_SERVICE:
 			return getServiceBySimpleName("JOInsertService");
 		case LAYOUT_SERVICE:
-			return getServiceBySimpleName("JOLayoutService");
+			return Rcpl.UIC.getEditor().getLayoutService();
 		case PARAGRAPH_SERVICE:
 			return getServiceBySimpleName("JOParagraphService");
 		case PICTURE_SERVICE:

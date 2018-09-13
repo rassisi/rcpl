@@ -38,8 +38,6 @@ public class LayoutData {
 
 	public ISection actualSection;
 
-	public IEditor editor;
-
 	public Point2D layoutResult;
 
 	public List<ILayoutObject> rootObjects;
@@ -54,7 +52,10 @@ public class LayoutData {
 
 	public boolean requestInterrupt;
 
-	public LayoutData() {
+	private ILayoutService layoutService;
+
+	public LayoutData(ILayoutService layoutService) {
+		this.layoutService = layoutService;
 	}
 
 	public void clear() {
@@ -72,7 +73,6 @@ public class LayoutData {
 		y = 0;
 		page = null;
 		actualSection = null;
-		editor = null;
 		layoutResult = null;
 		rootObjects = null;
 		pageBreakOccured = false;
@@ -117,17 +117,11 @@ public class LayoutData {
 	}
 
 	public boolean compleated() {
-		if (rootObjects != null && page != null && editor != null) {
-			return index >= rootObjects.size() || page.getPageNumber() > 1 && editor.getDocument().isOnePage();
+		if (rootObjects != null && page != null && layoutService.getEditor() != null) {
+			return index >= rootObjects.size()
+					|| page.getPageNumber() > 1 && layoutService.getEditor().getDocument().isOnePage();
 		}
 		return false;
-	}
-
-	public IDocument getDocument() {
-		if (editor != null) {
-			return editor.getDocument();
-		}
-		return null;
 	}
 
 }

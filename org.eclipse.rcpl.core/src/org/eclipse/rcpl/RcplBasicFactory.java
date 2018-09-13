@@ -95,9 +95,9 @@ public class RcplBasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public ICommand createCommand(EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData,
+	public ICommand createCommand(IService service, EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData,
 			Object... newData) {
-		return new RcplCommand(commandId, layoutObject, null, oldData, newData);
+		return new RcplCommand(service, commandId, layoutObject, null, oldData, newData);
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class RcplBasicFactory implements IRcplFactory {
 
 			commandId = EnCommandId.findCommandId(id);
 
-			return new RcplCommand(commandId, layoutObject, tool, oldData, newData);
+			return new RcplCommand(null, commandId, layoutObject, tool, oldData, newData);
 		} catch (Exception ex) {
 			RcplModel.logError(ex);
 			return null;

@@ -18,6 +18,7 @@ import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
+import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.IWordDocument;
 import org.eclipse.rcpl.Rcpl;
@@ -55,16 +56,19 @@ public class RcplCommand implements ICommand {
 
 	private XmlObject oldXmlObject;
 
-	public RcplCommand(EnCommandId commandId, Object[] newData) {
-		this(commandId, null, null, newData);
+	private IService service;
+
+	public RcplCommand(IService service, EnCommandId commandId, Object[] newData) {
+		this(service, commandId, null, null, newData);
 	}
 
 	/**
 	 * 
 	 */
-	public RcplCommand(EnCommandId commandId, ILayoutObject layoutObject, ITool tool, Object[] oldData,
-			Object... newData) {
+	public RcplCommand(IService service, EnCommandId commandId, ILayoutObject layoutObject, ITool tool,
+			Object[] oldData, Object... newData) {
 		this.oldData = oldData;
+		this.service = service;
 		this.newData = newData;
 		this.layoutObject = layoutObject;
 		IEditor editor = Rcpl.UIC.getEditor();
@@ -329,6 +333,12 @@ public class RcplCommand implements ICommand {
 		if (getNewData() != null && getNewData().length > 0) {
 			return (String) getNewData()[0];
 		}
+		return null;
+	}
+
+	@Override
+	public IService getService() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

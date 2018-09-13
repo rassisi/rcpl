@@ -19,4 +19,6 @@ public interface ICommand {
 	void setCommandId(EnCommandId id);
 
 	String getNewStringValue();
+
+	IService getService();
 }

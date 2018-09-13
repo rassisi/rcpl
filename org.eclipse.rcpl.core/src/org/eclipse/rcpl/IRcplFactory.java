@@ -38,8 +38,6 @@ public interface IRcplFactory {
 
 	Node createRibbonGroup(ToolGroup group, IRcplAddon useCase, boolean first, boolean dialogButton);
 
-	ICommand createCommand(ITool tool);
-
 	IUndoRedoListener createUndoRedoTool();
 
 //	IEditor createEditor(File file, Tab tab, HashMap<String, String> wordReplacements, boolean onePage);
@@ -62,7 +60,10 @@ public interface IRcplFactory {
 
 	IService createService();
 
-	ICommand createCommand(EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData, Object... newData);
+	ICommand createCommand(ITool tool);
+
+	ICommand createCommand(IService service, EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData,
+			Object... newData);
 
 	ICommand createCommand(ITool tool, ILayoutObject layoutObject, Object[] oldData, Object... newData);
 
