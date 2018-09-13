@@ -16,6 +16,4 @@ public interface ILayoutService extends IService {
 
 	EnLayoutReason getLayoutReason();
 
-//	void setLayoutReason(EnLayoutReason layoutReason);
-
 }
