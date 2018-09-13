@@ -10,9 +10,7 @@ import javafx.geometry.Point2D;
  */
 public class LayoutData {
 
-	public boolean interrupted;
-
-	public int notChangedCounter = 0;
+	public boolean pause;
 
 	public long startTime;
 
@@ -59,8 +57,7 @@ public class LayoutData {
 	}
 
 	public void clear() {
-		interrupted = false;
-		notChangedCounter = 0;
+		pause = false;
 		startTime = 0;
 		headers = null;
 		footers = null;

@@ -12,6 +12,8 @@ import javafx.scene.paint.Color;
  */
 public interface IPage extends ILayoutFigure {
 
+	void updateOverflowParagraphLocation(final ILayoutFigure overflowParagraphFigure, final double x);
+
 	void clipFigures();
 
 	@Override
