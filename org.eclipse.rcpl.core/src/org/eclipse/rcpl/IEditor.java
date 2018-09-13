@@ -28,8 +28,6 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	ILayoutService getLayoutService();
 
-	void layout();
-
 	boolean isLayouted();
 
 	void updateOutline();

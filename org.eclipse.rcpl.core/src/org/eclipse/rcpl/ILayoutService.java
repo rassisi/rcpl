@@ -10,7 +10,12 @@ public interface ILayoutService extends IService {
 
 	IDocument getDocument();
 
-	int layout();
+	int layout(EnLayoutReason layoutReason);
 
 	LayoutData getLayoutData();
+
+	EnLayoutReason getLayoutReason();
+
+//	void setLayoutReason(EnLayoutReason layoutReason);
+
 }
