@@ -18,6 +18,8 @@ public interface ISession {
 
 	String getValue(String key);
 
+	String getValue(String key, String defaultValue);
+
 	void putValue(String key, String value);
 
 	CDOSession getSession();

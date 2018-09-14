@@ -12,7 +12,9 @@ import java.util.List;
 
 import org.eclipse.rcpl.impl.RcplMonitor;
 import org.eclipse.rcpl.model.IResources;
+import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.client.RcplSession;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -701,5 +703,68 @@ public class Rcpl {
 
 	public static void setConfiguration() {
 
+	}
+
+	// ---------- getValues
+
+	public static double getDoubleValue(IEditor editor, KeyValueKey key, double defaultValue) {
+		String value = getValue(editor, key, "" + defaultValue);
+		try {
+			return Double.valueOf(value).doubleValue();
+		} catch (Exception ex) {
+			return defaultValue;
+		}
+	}
+
+	public static int getIntValue(IEditor editor, KeyValueKey key, int defaultValue) {
+		String value = getValue(editor, key, "" + defaultValue);
+		try {
+			return Integer.valueOf(value).intValue();
+		} catch (Exception ex) {
+			return defaultValue;
+		}
+	}
+
+	public static String getValue(IEditor editor, KeyValueKey key) {
+		return getValue(editor, key, null);
+	}
+
+	public static String getValue(IEditor editor, KeyValueKey key, String defaultValue) {
+		String value = RcplSession.getDefault()
+				.getValue("KEY_VALUE_KEY_" + key.name() + editor.getDocument().getFile().getName());
+		if (value == null) {
+			value = defaultValue;
+		}
+		return value;
+	}
+
+	// ---------- puts
+
+	public static void putValue(IEditor editor, KeyValueKey key, int value) {
+		putValue(editor, key, "" + value);
+	}
+
+	public static void putValue(IEditor editor, KeyValueKey key, String value) {
+		RcplSession.getDefault().putValue(key.name() + editor.getDocument().getFile().getName(), value);
+	}
+
+	public static void putIntValue(IEditor editor, KeyValueKey key, int value) {
+		putValue(editor, key, "" + value);
+	}
+
+	public static void putDoubleValue(IEditor editor, KeyValueKey key, double value) {
+		putValue(editor, key, "" + value);
+	}
+
+	public static void putIntValue(KeyValueKey key, int value) {
+		putValue(key, "" + value);
+	}
+
+	public static void putDoubleValue(KeyValueKey key, double value) {
+		putValue(key, "" + value);
+	}
+
+	public static void putValue(KeyValueKey key, String value) {
+		RcplSession.getDefault().putValue(key.name(), value);
 	}
 }

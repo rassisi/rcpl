@@ -1202,6 +1202,14 @@
 	-fx-border-width: 1;
 }
 
+#sliderButton {
+	-fx-background-radius: 5em;
+    -fx-min-width: 10px;
+    -fx-min-height: 10px;
+    -fx-max-width: 10px;
+    -fx-max-height: 10px;
+}
+
 #dialogButton {
 	-fx-background-color: transparent;
 }

@@ -1337,6 +1337,15 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	}
 
 	@Override
+	public String getValue(String key, String defaultValue) {
+		String value = getValue(key);
+		if (value == null) {
+			return defaultValue;
+		}
+		return value;
+	}
+
+	@Override
 	public List<String> loadKeys(String matchKey) {
 		List<String> keys = new ArrayList<String>();
 		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {

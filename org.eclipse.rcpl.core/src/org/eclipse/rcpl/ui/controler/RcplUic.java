@@ -45,6 +45,7 @@ import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model.IImage;
+import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
@@ -156,6 +157,15 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	protected Slider zoomSlider;
+
+	@FXML
+	protected Button onePageButton;
+
+	@FXML
+	protected Button twoPagesButton;
+
+	@FXML
+	protected Button multiPagesButton;
 
 	@FXML
 	protected Button minusZoom;
@@ -545,7 +555,9 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				if (Rcpl.UIC.getEditor() != null) {
-					Rcpl.UIC.getEditor().setScale(newValue.doubleValue() / 100);
+					double scale = newValue.doubleValue() / 100;
+					Rcpl.UIC.getEditor().setScale(scale);
+					Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, scale);
 					zoomLabel.setText((int) (newValue.doubleValue()) + " %");
 				}
 			}
@@ -559,6 +571,7 @@ public class RcplUic implements IRcplUic {
 					double newValue = Rcpl.UIC.getEditor().getScale() + 0.1;
 					setScale(newValue);
 					Rcpl.UIC.getEditor().setScale(newValue);
+					Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, newValue);
 				}
 			}
 		});
@@ -571,6 +584,7 @@ public class RcplUic implements IRcplUic {
 					double newValue = Math.max(0, Rcpl.UIC.getEditor().getScale() - 0.1);
 					setScale(newValue);
 					Rcpl.UIC.getEditor().setScale(newValue);
+					Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, newValue);
 				}
 			}
 		});
@@ -1763,8 +1777,7 @@ public class RcplUic implements IRcplUic {
 				contextMenu.getItems().clear();
 
 				int counter = 0;
-				for (String filePath : RcplSession.getDefault()
-						.loadKeys(KeyValueKey.KEY_VALUE_KEY_RECENT_DOCUMENT.name())) {
+				for (String filePath : RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name())) {
 					File file = new File(RcplSession.getDefault().getValue(filePath));
 					final MenuItem item1 = new MenuItem(file.getName());
 					item1.setUserData(file);
@@ -2103,18 +2116,31 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void addRecentDocument(File file, boolean commit) {
-		for (String key : RcplSession.getDefault().loadKeys(KeyValueKey.KEY_VALUE_KEY_RECENT_DOCUMENT.name())) {
+		for (String key : RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name())) {
 			if (file.getAbsolutePath().equals(RcplSession.getDefault().getValue(key))) {
 				return;
 			}
 		}
-
-		RcplSession.getDefault().putValue(
-				KeyValueKey.KEY_VALUE_KEY_RECENT_DOCUMENT.name() + "_" + System.currentTimeMillis(),
-				file.getAbsolutePath());
+		Rcpl.putValue(getEditor(), KeyValueKey.RECENT_DOCUMENT, file.getAbsolutePath());
 	}
 
 	@Override
 	public void layoutDocument(IEditor editor, IDocument document) {
 	}
+
+	@FXML
+	public void onOnePage() {
+		getEditor().setPageColumns(1);
+	}
+
+	@FXML
+	public void onTwoPages() {
+		getEditor().setPageColumns(2);
+	}
+
+	@FXML
+	public void onMultiPages() {
+		getEditor().setPageColumns(10);
+	}
+
 }
