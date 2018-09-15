@@ -664,22 +664,21 @@ public class RcplUic implements IRcplUic {
 	/**
 	 * @param tab
 	 */
-	public boolean closeTab(final Tab tab) {
+	private void closeTab(final Tab tab, Event event) {
 		TabInfo tabInfo = getTabInfo(tab);
 		if (tabInfo != null && tabInfo.getEditor() != null) {
 			final IEditor editor = tabInfo.getEditor();
 			if (editor.close()) {
 				tab.setUserData(null);
-				getEditorArea().getChildren().remove(editor.getMainPane());
 				if (tabPane.getTabs().size() == 1) {
 					showHomePage(HomePageType.OVERVIEW, null);
 					editorWindowTools.setVisible(false);
 				}
 				RcplSession.getDefault().commit();
-				return true;
+			} else {
+				event.consume();
 			}
 		}
-		return false;
 	}
 
 	@Override
@@ -840,10 +839,6 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void run() {
 
-//				for (File file : lastOpenedDocuments)
-//				
-//				{
-
 				File file = lastOpenedDocuments.get(lastOpenedDocuments.size() - 1);
 				final boolean[] done = new boolean[1];
 				completionListener = new RcplCompletionListener() {
@@ -861,7 +856,6 @@ public class RcplUic implements IRcplUic {
 				RcplUtil.waitForDone(done);
 				completionListener = null;
 			}
-//			}
 		}.start();
 
 	}
@@ -932,9 +926,7 @@ public class RcplUic implements IRcplUic {
 			tab.setOnCloseRequest(new EventHandler<Event>() {
 				@Override
 				public void handle(Event arg0) {
-					if (!closeTab(tab)) {
-						arg0.consume();
-					}
+					closeTab(tab, arg0);
 				}
 			});
 
@@ -2067,27 +2059,29 @@ public class RcplUic implements IRcplUic {
 
 	protected void showTab(final Tab tab) {
 
-		final TabInfo tabInfo = getTabInfo(tab);
-		if (tabInfo != null) {
-			final IEditor editor = tabInfo.getEditor();
-			final Node node = tabInfo.getNode();
-			final IRcplAddon addon = tabInfo.getAddon();
+		if (tab != null) {
+			final TabInfo tabInfo = getTabInfo(tab);
+			if (tabInfo != null) {
+				final IEditor editor = tabInfo.getEditor();
+				final Node node = tabInfo.getNode();
+				final IRcplAddon addon = tabInfo.getAddon();
 
-			Platform.runLater(new Runnable() {
+				Platform.runLater(new Runnable() {
 
-				@Override
-				public void run() {
-					updatePerspective(tab);
-					if (editor != null) {
-						setContent(editor.getMainPane());
-					} else if (node != null) {
-						setContent(node);
-					} else if (addon != null) {
-						setContent(addon.getNode());
+					@Override
+					public void run() {
+						updatePerspective(tab);
+						if (editor != null) {
+							setContent(editor.getMainPane());
+						} else if (node != null) {
+							setContent(node);
+						} else if (addon != null) {
+							setContent(addon.getNode());
+						}
+						tabPane.getSelectionModel().select(tab);
 					}
-					tabPane.getSelectionModel().select(tab);
-				}
-			});
+				});
+			}
 		}
 	}
 
