@@ -449,16 +449,7 @@ public class RcplUic implements IRcplUic {
 		setContent(newWebView);
 		newWebView.setUserData(newTab);
 		tabPane.getSelectionModel().select(newTab);
-		newTab.setOnSelectionChanged(new EventHandler<Event>() {
 
-			@Override
-			public void handle(Event arg0) {
-				if (newTab.isSelected()) {
-					setContent(newWebView);
-					updatePerspective(newTab);
-				}
-			}
-		});
 		updatePerspective(newTab);
 	}
 
@@ -1607,15 +1598,13 @@ public class RcplUic implements IRcplUic {
 					}
 				}
 			});
+
 			tab.setOnCloseRequest(new EventHandler<Event>() {
 				@Override
 				public void handle(Event arg0) {
 					if (!closeTab(tab)) {
 						arg0.consume();
 					}
-
-					System.out.println();
-
 				}
 			});
 
@@ -1769,7 +1758,14 @@ public class RcplUic implements IRcplUic {
 		};
 		logoutButton.disableService();
 		logoutButtonArea.getChildren().add(logoutButton.getNode());
-		Rcpl.showProgress(false);
+
+		tabPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				showTab(tabPane.getSelectionModel().getSelectedItem());
+			}
+		});
 
 	}
 

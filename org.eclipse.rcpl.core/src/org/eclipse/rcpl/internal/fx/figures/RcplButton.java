@@ -56,7 +56,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 	private IImage image;
 
-	protected boolean executeService = true;
+	private boolean executeService = true;
 
 	public boolean isToggle() {
 		return ToolType.TOGGLEBUTTON.equals(getTool().getType());

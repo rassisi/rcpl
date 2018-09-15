@@ -10,21 +10,26 @@
  *******************************************************************************/
 package org.eclipse.rcpl.app.toolcontrols;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
+import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.ColorTool;
 import org.eclipse.rcpl.model.RcplModel;
+import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -204,11 +209,10 @@ public class RcplSideToolBar implements ISideToolBar {
 
 					String url = toolGroup_0.getUrl();
 					String detailPaneClassName = toolGroup_0.getDetailPaneClassName();
-					if ((url == null || "".contentEquals(url))
-							&& (detailPaneClassName == null || "".equals(detailPaneClassName))) {
+					if (ToolType.NAVIGATOR.equals(toolGroup_0.getType()) ||
 
-//					if ((url != null && !"".equals(url))
-//							|| (detailPaneClassName != null && !"".equals(detailPaneClassName))) {
+							((url == null || "".contentEquals(url))
+									&& (detailPaneClassName == null || "".equals(detailPaneClassName)))) {
 
 						b.disableService();
 					}
@@ -434,6 +438,7 @@ public class RcplSideToolBar implements ISideToolBar {
 	private void processTools(ToolGroup toolGroup, Accordion accordion, int hierarchy) {
 
 		try {
+
 			final StackPane stackPane = new StackPane();
 
 			AccordionColorTitlePane titlePane = new AccordionColorTitlePane(this, toolGroup, stackPane, hierarchy,
@@ -449,7 +454,40 @@ public class RcplSideToolBar implements ISideToolBar {
 			if (ToolType.NAVIGATOR.equals(toolGroup.getType())) {
 
 				try {
-					scrollPane.setContent(Rcpl.UIC.getRcplTreepart().getNode());
+
+					String url = toolGroup.getUrl();
+					EObject root = null;
+					String s = null;
+					ITreePart treePart = Rcpl.getFactory().createRcplTreePart();
+
+					if (url.toLowerCase().startsWith("root://")) {
+						if (url.toLowerCase().startsWith("root://rcpl/")) {
+							root = RcplSession.getDefault().getRcpl();
+							s = url.substring(12, url.length());
+						} else if (url.startsWith("root://application/")) {
+							root = RcplSession.getDefault().getApplicationRootObject();
+							s = url.substring(19, url.length());
+						}
+						if (root != null && s != null) {
+							StringTokenizer tok = new StringTokenizer(s, "/");
+
+							while (tok.hasMoreElements()) {
+								String segment = tok.nextToken();
+
+								for (EObject o : root.eContents()) {
+									Type[] types = o.getClass().getGenericInterfaces();
+									if (types.length == 1) {
+										String tn = types[0].getTypeName();
+										if (tn.endsWith("." + segment)) {
+											root = o;
+										}
+									}
+								}
+							}
+							treePart.setRoot(root);
+						}
+					}
+					scrollPane.setContent(treePart.getNode());
 				} catch (Throwable ex) {
 					RcplModel.logError(ex);
 				}

@@ -16,6 +16,7 @@ import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.service.RcplAbstractService;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
@@ -44,7 +45,7 @@ public class RcplService extends RcplAbstractService implements IService {
 				AbstractTool tool = iTool.getTool();
 				if (tool != null) {
 
-					if (tool.getUrl() != null) {
+					if (!ToolType.NAVIGATOR.equals(tool.getType()) && tool.getUrl() != null) {
 						Rcpl.UIC.getWebBrowserDetailPage().setTool(tool);
 						Rcpl.UIC.getActiveHomePage().getContentPane().getChildren().clear();
 						Rcpl.UIC.getActiveHomePage().getContentPane().getChildren()

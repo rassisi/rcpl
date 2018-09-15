@@ -168,7 +168,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	private final String DB_NAME;
 
-	public boolean DEBUG_RECREATE;
+	public static boolean DEBUG_RECREATE;
 
 	public final String DEFAULT_PASSWORD;
 
@@ -232,7 +232,6 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 		this.DESTINATION_PORT = 2036;
 		this.DB_NAME = "repo1";
 		this.REPOSITORY = "repo1";
-		this.DEBUG_RECREATE = false;
 		this.ENV_DEV = false;
 		this.standalone = false;
 		this.perspektiveType = "WORD";
@@ -888,8 +887,6 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 		return true;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-
 	/**
 	 * @param user
 	 * @param password
@@ -1264,7 +1261,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 				RcplModel.logError(ex);
 			}
 
-			boolean forceNewXMI = !localXMIFile.exists()
+			boolean forceNewXMI = DEBUG_RECREATE || !localXMIFile.exists()
 					|| ((!FileUtils.contentEquals(tempXMIFile, localXMIFile) && DEBUG_COMPARE_CONTENT));
 
 			tempXMIFile.delete();

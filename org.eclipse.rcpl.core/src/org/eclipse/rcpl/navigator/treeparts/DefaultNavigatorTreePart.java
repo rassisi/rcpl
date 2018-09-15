@@ -72,6 +72,7 @@ import javafx.scene.Node;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -167,7 +168,7 @@ public class DefaultNavigatorTreePart extends RcplTool<EObject> implements ITree
 			} else {
 				containerPane.getChildren().clear();
 			}
-		} else {
+		} else if (containerPane != null) {
 			containerPane.getChildren().clear();
 		}
 
@@ -515,6 +516,17 @@ public class DefaultNavigatorTreePart extends RcplTool<EObject> implements ITree
 	public Node createNode() {
 		treeView = new TreeView<Object>();
 		treeView.getStyleClass().add("emfTreeView");
+		treeView.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if ("x".contentEquals(event.getText())) {
+					if (event.isControlDown()) {
+						Rcpl.UIC.showErrorPage();
+					}
+				}
+			}
+		});
 		return treeView;
 	}
 
