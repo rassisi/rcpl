@@ -716,6 +716,15 @@ public class Rcpl {
 		}
 	}
 
+	public static double getDoubleValue(KeyValueKey key, double defaultValue) {
+		String value = getValue(key, "" + defaultValue);
+		try {
+			return Double.valueOf(value).doubleValue();
+		} catch (Exception ex) {
+			return defaultValue;
+		}
+	}
+
 	public static int getIntValue(IEditor editor, KeyValueKey key, int defaultValue) {
 		String value = getValue(editor, key, "" + defaultValue);
 		try {
@@ -730,12 +739,23 @@ public class Rcpl {
 	}
 
 	public static String getValue(IEditor editor, KeyValueKey key, String defaultValue) {
-		String value = RcplSession.getDefault()
-				.getValue("KEY_VALUE_KEY_" + key.name() + editor.getDocument().getFile().getName());
+		String value = RcplSession.getDefault().getValue(key.name() + editor.getDocument().getFile().getName());
 		if (value == null) {
 			value = defaultValue;
 		}
 		return value;
+	}
+
+	public static String getValue(KeyValueKey key, String defaultValue) {
+		String value = RcplSession.getDefault().getValue(key.name());
+		if (value == null) {
+			value = defaultValue;
+		}
+		return value;
+	}
+
+	public static String getValue(KeyValueKey key) {
+		return RcplSession.getDefault().getValue(key.name());
 	}
 
 	// ---------- puts

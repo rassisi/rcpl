@@ -13,7 +13,6 @@ package org.eclipse.rcpl.application;
 import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.rcpl.IApplicationStarter;
@@ -34,7 +33,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.service.RcplAbstractService;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -339,6 +337,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 			@Override
 			public void handle(WindowEvent we) {
 				we.consume(); // Do not hide
+				Rcpl.UIC.closeApplication();
 				applicationWindow.setFadeOutTransition();
 			}
 		});
@@ -353,24 +352,8 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		primaryStage.setScene(scene);
 		setSimpleDialog();
 
-		List<Screen> screens = Screen.getScreensForRectangle(100, 100, 100, 100);
-
-		Rectangle2D bounds = screens.get(0).getVisualBounds();
-
-		primaryStage.setWidth(bounds.getWidth() * 0.75);
-		primaryStage.setHeight(bounds.getHeight() * 0.75);
-
 		applicationWindow.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 5;");
 		mainStackPane.setStyle("-fx-background-radius: 10;");
-
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				primaryStage.centerOnScreen();
-				primaryStage.toFront();
-			}
-		});
 
 	}
 

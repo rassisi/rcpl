@@ -16,9 +16,9 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.model.KeyValueKey;
 
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.input.KeyEvent;
@@ -53,91 +53,60 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 		this.cssStyleSheetResource = cssStyleSheetResource;
 	}
 
+	private double storedWidth;
+	private double storedHeight;
+
 	/**
 	 * @param stage
 	 */
 	@Override
 	public void start() {
 
-		// ---------- PREFERENCES ------------------------------------
-
-		String xs = "0";
-		String ys = "0";
-
-//		try {
-//			xs = RcplSession.getDefault().getSystemPreferences().getString(RcplKey.STAGE_X);
-//			ys = RcplSession.getDefault().getSystemPreferences().getString(RcplKey.STAGE_Y);
-//		} catch (Exception ex) {
-//			Rcpl.progressMessage(ex);
-//		}
-		double maxWidth = 0;
-
-		ObservableList<Screen> screens = Screen.getScreens();
-		for (Screen screen : screens) {
-			maxWidth += screen.getBounds().getWidth();
-		}
-
-		if (xs != null && ys != null) {
-			try {
-				initialStageX = Double.valueOf(xs);
-				initialStageY = Double.valueOf(ys);
-				if (initialStageX > (maxWidth - 300)) {
-					initialStageX = -1;
-				}
-			} catch (Exception ex) {
-				// ignore
-			}
-		}
-
-//		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-				createMainWindow();
+				if (Rcpl.getValue(KeyValueKey.WINDOW_WIDTH) == null) {
+					List<Screen> screens = Screen.getScreensForRectangle(100, 100, 100, 100);
+					Rectangle2D bounds = screens.get(0).getVisualBounds();
+					applicationProvider.getPrimaryStage().setWidth(bounds.getWidth() * 0.75);
+					applicationProvider.getPrimaryStage().setHeight(bounds.getHeight() * 0.75);
+					applicationProvider.getPrimaryStage().centerOnScreen();
+					initialStageX = applicationProvider.getPrimaryStage().getX();
+					initialStageY = applicationProvider.getPrimaryStage().getY();
+					Rcpl.putDoubleValue(KeyValueKey.WINDOW_X, initialStageX);
+					Rcpl.putDoubleValue(KeyValueKey.WINDOW_Y, initialStageY);
+
+				} else {
+					applicationProvider.getPrimaryStage().setWidth(Rcpl.getDoubleValue(KeyValueKey.WINDOW_WIDTH, 1000));
+					applicationProvider.getPrimaryStage()
+							.setHeight(Rcpl.getDoubleValue(KeyValueKey.WINDOW_HEIGHT, 800));
+					initialStageX = Rcpl.getDoubleValue(KeyValueKey.WINDOW_X, -1);
+					initialStageY = Rcpl.getDoubleValue(KeyValueKey.WINDOW_Y, -1);
+					applicationProvider.getPrimaryStage().setX(initialStageX);
+					applicationProvider.getPrimaryStage().setY(initialStageY);
+				}
+
+				applicationProvider.getPrimaryStage().show();
+				Rcpl.progressMessage("RCPL.createMainWindow()");
+				Rcpl.progressMessage("Init Addons");
+				for (IRcplAddon uc : applicationProvider.getRcplAddons()) {
+					uc.init();
+				}
+				Rcpl.progressMessage("Configure Top Area");
+				Rcpl.UIC.expandTopAra(true);
+				StackPane stackPane = applicationProvider.getMainContent();
+				stackPane.getChildren().clear();
+				Rcpl.UIC.addtoApplicationStack(applicationProvider.getMainContent());
+				Rcpl.progressMessage("OfficeRCP.createMainWindow()#2");
+				Rcpl.showProgress(false);
 			}
 		});
 
 	}
 
-	private void createMainWindow() {
-//		applicationProvider.getPrimaryStage().setWidth(1000);
-//		applicationProvider.getPrimaryStage().setHeight(800);
-
-		List<Screen> screens = Screen.getScreensForRectangle(100, 100, 100, 100);
-
-		Rectangle2D bounds = screens.get(0).getVisualBounds();
-
-		applicationProvider.getPrimaryStage().setWidth(bounds.getWidth() * 0.75);
-		applicationProvider.getPrimaryStage().setHeight(bounds.getHeight() * 0.75);
-
-		applicationProvider.getPrimaryStage().centerOnScreen();
-		applicationProvider.getPrimaryStage().show();
-		Rcpl.progressMessage("RCPL.createMainWindow()");
-		Rcpl.progressMessage("Init Addons");
-		for (IRcplAddon uc : applicationProvider.getRcplAddons()) {
-			uc.init();
-		}
-		Rcpl.progressMessage("Configure Top Area");
-		Rcpl.UIC.expandTopAra(true);
-		StackPane stackPane = applicationProvider.getMainContent();
-		stackPane.getChildren().clear();
-		Rcpl.UIC.addtoApplicationStack(applicationProvider.getMainContent());
-		Rcpl.progressMessage("OfficeRCP.createMainWindow()#2");
-		Rcpl.showProgress(false);
-
-	}
-
 	@Override
 	public void openMainWindow() {
-		applicationProvider.getPrimaryStage().centerOnScreen();
-		if (initialStageX <= 0) {
-			applicationProvider.getPrimaryStage().centerOnScreen();
-		} else {
-			applicationProvider.getPrimaryStage().setX(initialStageX);
-			applicationProvider.getPrimaryStage().setY(initialStageY);
-		}
 		Rcpl.progressMessage("Create Default Theme");
 		Rcpl.UIC.handleThemeDefault(null);
 		addKeyListener();

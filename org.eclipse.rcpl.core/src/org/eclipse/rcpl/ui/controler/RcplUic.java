@@ -557,7 +557,9 @@ public class RcplUic implements IRcplUic {
 				if (Rcpl.UIC.getEditor() != null) {
 					double scale = newValue.doubleValue() / 100;
 					Rcpl.UIC.getEditor().setScale(scale);
-					Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, scale);
+					if (oldValue.doubleValue() != 0.0) {
+						Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, scale);
+					}
 					zoomLabel.setText((int) (newValue.doubleValue()) + " %");
 				}
 			}
@@ -854,16 +856,25 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	public void handleClose(ActionEvent event) {
-//		RcplSession.getDefault().getSystemPreferences().put(RcplKey.STAGE_X, "" + getStage().getX());
-//		RcplSession.getDefault().getSystemPreferences().put(RcplKey.STAGE_Y, "" + getStage().getY());
-		RcplSession.getDefault().commit();
+		closeApplication();
+	}
 
+	public void closeApplication() {
+
+		Rcpl.putDoubleValue(KeyValueKey.WINDOW_X, getStage().getX());
+		Rcpl.putDoubleValue(KeyValueKey.WINDOW_Y, getStage().getY());
+		Rcpl.putDoubleValue(KeyValueKey.WINDOW_WIDTH, getStage().getWidth());
+		Rcpl.putDoubleValue(KeyValueKey.WINDOW_HEIGHT, getStage().getHeight());
+
+		RcplSession.getDefault().commit();
 		RcplSession.getDefault().close(true, true);
+
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
 				Platform.exit();
+				System.exit(0);
 			}
 		});
 	}
