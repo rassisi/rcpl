@@ -14,6 +14,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
  */
 public interface ISession {
 
+	void deleteAllValues(String matchKey);
+
 	List<String> loadKeys(String matchKey);
 
 	String getValue(String key);

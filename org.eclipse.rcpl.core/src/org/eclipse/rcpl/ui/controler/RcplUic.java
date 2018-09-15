@@ -40,6 +40,7 @@ import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.control.RcplCompletionListener;
 import org.eclipse.rcpl.detailpages.WebBrowserDetailsPage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
@@ -55,6 +56,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
+import org.eclipse.rcpl.util.RcplUtil;
 import org.eclipse.rcpl.util.WaitThread;
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLDocument;
@@ -117,7 +119,58 @@ import javafx.util.Duration;
  */
 public class RcplUic implements IRcplUic {
 
-	private IHomePage activeHomePage;
+	/**
+	 * TabInfo
+	 * 
+	 * @author ramin
+	 *
+	 */
+	protected class TabInfo {
+		private Node node;
+
+		private Perspective perspective;
+		private IEditor editor;
+		private IRcplAddon addon;
+
+		public TabInfo() {
+		}
+
+		public IRcplAddon getAddon() {
+			return addon;
+		}
+
+		public IEditor getEditor() {
+			return editor;
+		}
+
+		public Node getNode() {
+			return node;
+		}
+
+		public Perspective getPerspective() {
+			return perspective;
+		}
+
+		public void setAddon(IRcplAddon addon) {
+			this.addon = addon;
+		}
+
+		public void setEditor(IEditor editor) {
+			this.editor = editor;
+			if (editor != null) {
+				activeHomePage = null;
+			}
+		}
+
+		public void setNode(Node node) {
+			this.node = node;
+		}
+
+		public void setPerspective(Perspective perspective) {
+			this.perspective = perspective;
+		}
+
+	}
 
 	private static Timeline caretTimeline;
 
@@ -130,6 +183,133 @@ public class RcplUic implements IRcplUic {
 	public static String internalStyleWindows7;
 
 	public static String internalStyleDark;
+
+	private static Pane pane;
+
+	/**
+	 * 
+	 */
+	public static Pane getCaret() {
+
+		if (pane == null) {
+			pane = new Pane();
+			caret = new Rectangle(3, 0, 1.6, 18);
+			pane.getChildren().add(caret);
+//			StackPane.setAlignment(caret, Pos.TOP_LEFT);
+
+			caret.setX(80);
+			caret.setFill(Color.BLACK);
+			caretTimeline = new Timeline();
+			caretTimeline.setCycleCount(Timeline.INDEFINITE);
+			caretTimeline.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					Node n = Rcpl.UIC.getFocusOwner();
+					if (n instanceof ComboBox<?>) {
+						caret.setFill(Color.TRANSPARENT);
+						return;
+					}
+					caret.setFill(Color.BLACK);
+					Parent parent = caret.getParent();
+					if (parent != null) {
+						parent.requestFocus();
+					}
+					IEditor editor = Rcpl.UIC.getEditor();
+					if (editor != null) {
+						// editor.updateScrollTargetForCaret();
+					}
+				}
+			}), new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					caret.setFill(Color.TRANSPARENT);
+				}
+			}), new KeyFrame(Duration.seconds(1)));
+			caretTimeline.play();
+		}
+		return pane;
+	}
+
+	public static double getCaretHeight() {
+		getCaret();
+		return caret.getHeight();
+	}
+
+	private static Timeline getCaretTimeline() {
+		return caretTimeline;
+	}
+
+	public static double getCaretX() {
+		getCaret();
+		return caret.getX();
+	}
+
+	public static double getCaretY() {
+		getCaret();
+		return caret.getY();
+	}
+
+	protected static String getInternalStyleDark() {
+		return internalStyleDark;
+	}
+
+	protected static String getInternalStyleMsOffice() {
+		return internalStyleMsOffice;
+	}
+
+	protected static List<String> getInternalStylesRegistry() {
+		return internalStylesRegistry;
+	}
+
+	protected static String getInternalStyleWindows7() {
+		return internalStyleWindows7;
+	}
+
+	public static void hideCaret(IParagraphFigure figure) {
+		figure.getCaretPane().getChildren().clear();
+	}
+
+	public static void setCaretHeight(double height) {
+		getCaret();
+		caret.setHeight(height);
+	}
+
+	public static void setCaretLocation(double x, double y) {
+		getCaret();
+		caret.setX(x);
+		caret.setY(y);
+	}
+
+	public static void setCaretWidth(double width) {
+		getCaret();
+		caret.setWidth(width);
+	}
+
+	protected static void setInternalStyleDark(String internalStyleDark) {
+		RcplUic.internalStyleDark = internalStyleDark;
+	}
+
+	protected static void setInternalStyleMsOffice(String internalStyleMsOffice) {
+		RcplUic.internalStyleMsOffice = internalStyleMsOffice;
+	}
+
+	protected static void setInternalStylesRegistry(List<String> internalStylesRegistry) {
+		RcplUic.internalStylesRegistry = internalStylesRegistry;
+	}
+
+	protected static void setInternalStyleWindows7(String internalStyleWindows7) {
+		RcplUic.internalStyleWindows7 = internalStyleWindows7;
+	}
+
+	public static void showCaret(IParagraphFigure figure) {
+		if (!figure.getCaretPane().getChildren().contains(RcplUic.getCaret())) {
+			figure.getCaretPane().getChildren().add(RcplUic.getCaret());
+		}
+		getCaretTimeline().playFromStart();
+		getCaret().setVisible(true);
+	}
+
+	private IHomePage activeHomePage;
 
 	protected boolean viewer;
 
@@ -154,6 +334,8 @@ public class RcplUic implements IRcplUic {
 	private H2DB h2DB;
 
 	private IDetailPage webDetailPage;
+
+	private RcplCompletionListener completionListener;
 
 	@FXML
 	protected Slider zoomSlider;
@@ -234,7 +416,7 @@ public class RcplUic implements IRcplUic {
 	private StackPane progressArea;
 
 	@FXML
-	private StackPane zoomArea;
+	private HBox editorWindowTools;
 
 	private Timeline blinkingTimeline;
 
@@ -308,58 +490,13 @@ public class RcplUic implements IRcplUic {
 
 	private Button returnButton;
 
-	/**
-	 * TabInfo
-	 * 
-	 * @author ramin
-	 *
-	 */
-	protected class TabInfo {
-		public TabInfo() {
-		}
+	private List<File> recentlyOpenedDocuments = new ArrayList<File>();
 
-		private Node node;
-		private Perspective perspective;
-		private IEditor editor;
+	private List<File> lastOpenedDocuments = new ArrayList<File>();
 
-		private IRcplAddon addon;
+	private double scale = 0.6;
 
-		public Node getNode() {
-			return node;
-		}
-
-		public Perspective getPerspective() {
-			return perspective;
-		}
-
-		public IEditor getEditor() {
-			return editor;
-		}
-
-		public void setEditor(IEditor editor) {
-			this.editor = editor;
-			if (editor != null) {
-				activeHomePage = null;
-			}
-		}
-
-		public void setNode(Node node) {
-			this.node = node;
-		}
-
-		public void setPerspective(Perspective perspective) {
-			this.perspective = perspective;
-		}
-
-		public IRcplAddon getAddon() {
-			return addon;
-		}
-
-		public void setAddon(IRcplAddon addon) {
-			this.addon = addon;
-		}
-
-	}
+	private ContextMenu contextMenu;
 
 	/**
 	 * Constructor
@@ -459,26 +596,69 @@ public class RcplUic implements IRcplUic {
 		getRcplApplicationStarter().getRcplApplicationProvider().reStart();
 	}
 
-	private void saveRcpl() {
-		doSaveRcpl();
-	}
-
-	protected void doSaveRcpl() {
-
+	private void addBlinkingAnimation(Node imageView) {
+		blinkingTimeline = new Timeline();
+		blinkingTimeline.setCycleCount(Timeline.INDEFINITE);
+		blinkingTimeline.setAutoReverse(true);
+		final KeyValue kv = new KeyValue(imageView.opacityProperty(), 0.0);
+		final KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
+		blinkingTimeline.getKeyFrames().add(kf);
+		blinkingTimeline.play();
 	}
 
 	@Override
-	public void openDocumentWithFileDialog() {
+	public void addHomePageButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup) {
+		IButton homeButton = Rcpl.getFactory().createHomePageButton(homePage);
+//		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
+		FlowPane.setMargin(homeButton.getNode(), new Insets(0, 0, 0, 5));
+		pane.getChildren().add(homeButton.getNode());
 	}
 
 	@Override
-	public void openLastDocument() {
+	public void addRecentDocument(File file, boolean commit) {
+		for (String key : RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name())) {
+			if (file.getAbsolutePath().equals(RcplSession.getDefault().getValue(key))) {
+				return;
+			}
+		}
+		Rcpl.putValue(getEditor(), KeyValueKey.RECENT_DOCUMENT, file.getAbsolutePath());
 	}
 
 	@Override
 	public void addtoApplicationStack(StackPane contentGroup) {
 		contentGroup.getChildren().clear();
 		contentGroup.getChildren().add(borderPane);
+	}
+
+	public void closeApplication() {
+
+		Rcpl.putDoubleValue(KeyValueKey.WINDOW_X, getStage().getX());
+		Rcpl.putDoubleValue(KeyValueKey.WINDOW_Y, getStage().getY());
+		Rcpl.putDoubleValue(KeyValueKey.WINDOW_WIDTH, getStage().getWidth());
+		Rcpl.putDoubleValue(KeyValueKey.WINDOW_HEIGHT, getStage().getHeight());
+
+		Rcpl.deleteAllValues(KeyValueKey.LAST_OPENED_DOCUMENT);
+
+		for (Tab tab : tabPane.getTabs()) {
+			TabInfo ti = getTabInfo(tab);
+			IEditor editor = ti.getEditor();
+			if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
+				String fn = editor.getDocument().getFile().getAbsolutePath();
+				Rcpl.putValue(editor, KeyValueKey.LAST_OPENED_DOCUMENT, fn);
+			}
+		}
+
+		RcplSession.getDefault().commit();
+		RcplSession.getDefault().close(true, true);
+
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				Platform.exit();
+				System.exit(0);
+			}
+		});
 	}
 
 	/**
@@ -493,7 +673,7 @@ public class RcplUic implements IRcplUic {
 				getEditorArea().getChildren().remove(editor.getMainPane());
 				if (tabPane.getTabs().size() == 1) {
 					showHomePage(HomePageType.OVERVIEW, null);
-					setScale(0);
+					editorWindowTools.setVisible(false);
 				}
 				RcplSession.getDefault().commit();
 				return true;
@@ -503,9 +683,87 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
+	public void collapseAll() {
+		getTopToolbarControl().collapse(true);
+		expandLeftAra(false);
+		expandTopAra(false);
+		expandBottomAra(false);
+	}
+
+	@Override
+	public void collapseMainTopArea(boolean collapse) {
+		if (collapse && topArea.getChildren().contains(mainTopStack)) {
+			topArea.getChildren().remove(mainTopStack);
+		} else if (!collapse && !topArea.getChildren().contains(mainTopStack)) {
+			topArea.getChildren().add(1, mainTopStack);
+		}
+	}
+
+	@Override
+	public void createAllHomeButtons(Pane pane) {
+		RCPL rcpl = RcplSession.getDefault().getRcpl();
+		ToggleGroup toggleGroup = new ToggleGroup();
+
+		for (HomePage homePage : rcpl.getHomepages().getChildren()) {
+			if (!HomePageType.OVERVIEW.equals(homePage.getType())) {
+				addHomePageButton(homePage, pane, toggleGroup);
+			}
+
+		}
+	}
+
+	private void createBorderDragger() {
+		createBorderDragger(mainTopArea);
+		createBorderDragger(borderPane);
+		createBorderDragger(topVBox);
+		createBorderDragger(quickToolsArea);
+		createBorderDragger(titleArea);
+		createBorderDragger(topArea);
+		createBorderDragger(titleText);
+		createBorderDragger(tabPane);
+	}
+
+	private void createBorderDragger(Node node) {
+		if (!Rcpl.isMobile()) {
+			node.setOnMousePressed(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+
+					mouseDragOffsetX = event.getSceneX();
+					mouseDragOffsetY = event.getSceneY();
+				}
+			});
+
+			node.setOnMouseDragged(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					Stage w = getStage();
+					w.setX(event.getScreenX() - mouseDragOffsetX);
+					w.setY(event.getScreenY() - mouseDragOffsetY);
+				}
+			});
+
+		}
+	}
+
+	@Override
 	public void createContent() {
 
 		Rcpl.progressMessage(this.getClass().getName() + ".createContent()");
+
+		List<String> recentDocumentKeys = RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name());
+
+		List<String> lastDocumentKeys = RcplSession.getDefault().loadKeys(KeyValueKey.LAST_OPENED_DOCUMENT.name());
+
+		for (int i = recentDocumentKeys.size() - 1; i >= 0; i--) {
+			File file = new File(RcplSession.getDefault().getValue(recentDocumentKeys.get(i)));
+			recentlyOpenedDocuments.add(file);
+		}
+
+		for (int i = 0; i < lastDocumentKeys.size(); i++) {
+			File file = new File(RcplSession.getDefault().getValue(lastDocumentKeys.get(i)));
+			lastOpenedDocuments.add(file);
+		}
 
 		htmlEditor = new HTMLEditor();
 		htmlEditor.setPrefSize(2000, 2000);
@@ -546,12 +804,12 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				if (Rcpl.UIC.getEditor() != null) {
-					double scale = newValue.doubleValue() / 100;
+					double scale = computeScale(newValue.doubleValue());
 					Rcpl.UIC.getEditor().setScale(scale);
 					if (oldValue.doubleValue() != 0.0) {
-						Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, scale);
+						Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, newValue.doubleValue());
 					}
-					zoomLabel.setText((int) (newValue.doubleValue()) + " %");
+					zoomLabel.setText("   " + (int) (scale * 100) + " %");
 				}
 			}
 		});
@@ -561,10 +819,8 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void handle(ActionEvent event) {
 				if (Rcpl.UIC.getEditor() != null) {
-					double newValue = Rcpl.UIC.getEditor().getScale() + 0.1;
+					double newValue = zoomSlider.getValue() + 0.05;
 					setScale(newValue);
-					Rcpl.UIC.getEditor().setScale(newValue);
-					Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, newValue);
 				}
 			}
 		});
@@ -574,42 +830,242 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void handle(ActionEvent event) {
 				if (Rcpl.UIC.getEditor() != null) {
-					double newValue = Math.max(0, Rcpl.UIC.getEditor().getScale() - 0.1);
+					double newValue = zoomSlider.getValue() - 0.05;
 					setScale(newValue);
-					Rcpl.UIC.getEditor().setScale(newValue);
-					Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, newValue);
 				}
 			}
 		});
 
-		zoomSlider.setVisible(false);
-		plusZoom.setVisible(false);
-		minusZoom.setVisible(false);
+		new Thread() {
+			@Override
+			public void run() {
+
+//				for (File file : lastOpenedDocuments)
+//				
+//				{
+
+				File file = lastOpenedDocuments.get(lastOpenedDocuments.size() - 1);
+				final boolean[] done = new boolean[1];
+				completionListener = new RcplCompletionListener() {
+					@Override
+					public void onCompleted() {
+						done[0] = true;
+					}
+				};
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						openDocument(file);
+					}
+				});
+				RcplUtil.waitForDone(done);
+				completionListener = null;
+			}
+//			}
+		}.start();
+
 	}
 
-	private double scale = 0.6;
+	private double computeScale(double scale) {
+		double result;
+		if (scale >= 0.5) {
+			result = 1 + (scale - 0.5) * 3;
+		} else {
+			result = 1 - Math.abs(scale - 0.5) * 2;
+		}
 
-	/*
-	 * 1 = 100 %
-	 * 
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.rcpl.IRcplUic#setScale(double)
-	 */
-	@Override
-	public void setScale(double scale) {
-		this.scale = scale;
-		zoomSlider.setVisible(scale > 0);
-		plusZoom.setVisible(scale > 0);
-		minusZoom.setVisible(scale > 0);
-		zoomLabel.setVisible(scale > 0);
-		zoomSlider.setValue(scale * 100);
-		zoomLabel.setText((int) (scale * 100) + " %");
+		return Math.max(result, 0.05);
+
 	}
 
 	@Override
-	public double getScale() {
-		return scale;
+	public void createHomePages() {
+		if (homepages.isEmpty()) {
+			for (HomePage modelHomePage : RcplSession.getDefault().getRcpl().getHomepages().getChildren()) {
+				IHomePage homePage = Rcpl.getFactory().createHomePage(this, modelHomePage);
+				homepages.add(homePage);
+			}
+		}
+	}
+
+	protected Tab createNewTab(String title) {
+
+		final Tab tab = new Tab();
+		TabInfo tabInfo = new TabInfo();
+		tab.setUserData(tabInfo);
+
+		if (title == null) {
+			title = "-";
+		}
+
+		IImage img = null;
+
+		if (title.endsWith("docx")) {
+			img = Rcpl.resources().getImage("word", 16, 16);
+		} else if (title.endsWith("xlsx")) {
+			img = Rcpl.resources().getImage("spreadsheet", 16, 16);
+		} else if (title.endsWith("pptx")) {
+			img = Rcpl.resources().getImage("presentation", 16, 16);
+		}
+
+		title = title.replaceAll("\\.docx", "");
+		title = title.replaceAll("\\.xlsx", "");
+		title = title.replaceAll("\\.pptx", "").trim();
+
+		tab.setText(title);
+
+		if (img != null) {
+			tab.setGraphic(img.getNode());
+		}
+		try {
+
+			tab.selectedProperty().addListener(new ChangeListener<Boolean>() {
+				@Override
+				public void changed(ObservableValue<? extends Boolean> paramObservableValue, Boolean paramT1,
+						Boolean isSelected) {
+					if (isSelected) {
+						showTab(tab);
+					}
+				}
+			});
+
+			tab.setOnCloseRequest(new EventHandler<Event>() {
+				@Override
+				public void handle(Event arg0) {
+					if (!closeTab(tab)) {
+						arg0.consume();
+					}
+				}
+			});
+
+			tabPane.getTabs().add(tab);
+
+			double h = tabPane.getTabMinHeight();
+			tabPane.setTabMinHeight(h + 1);
+			tabPane.setTabMinHeight(h);
+
+		} catch (Throwable ex) {
+			RcplModel.logError(ex);
+		}
+		return tab;
+	}
+
+	private void createStartMenu(Node anchor) {
+		contextMenu = new ContextMenu();
+		contextMenu.setMinHeight(300);
+		contextMenu.setMinWidth(100);
+
+		contextMenu.setAutoHide(true);
+		contextMenu.setHideOnEscape(true);
+		anchor.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+			@Override
+			public void handle(ContextMenuEvent event) {
+				contextMenu.getItems().clear();
+
+				int counter = 0;
+				for (File file : recentlyOpenedDocuments) {
+					final MenuItem item1 = new MenuItem(file.getName());
+					item1.setUserData(file);
+					item1.setOnAction(new EventHandler<ActionEvent>() {
+
+						@Override
+						public void handle(ActionEvent event) {
+							openDocument((File) item1.getUserData());
+						}
+					});
+					contextMenu.getItems().add(item1);
+					counter++;
+					if (counter > 10) {
+						break;
+					}
+				}
+				contextMenu.show(anchor, event.getScreenX(), event.getScreenY());
+			}
+		});
+	}
+
+	private void createTitelArea() {
+		titleText = new Label(getApplicationStarter().getVersionString() + " - " + RcplSession.getDefault().getUserId()
+				+ " (" + (RcplSession.getDefault().isOnline() ? "Online" : "Offline") + ")");
+		titleText.setId("title_version");
+		titleArea.setAlignment(Pos.CENTER_LEFT);
+		HBox.setHgrow(titleText, Priority.ALWAYS);
+		StackPane.setAlignment(titleText, Pos.TOP_LEFT);
+		StackPane.setMargin(titleText, new Insets(0, 0, 0, 55));
+
+	}
+
+	protected void doCreateContent() {
+
+		Rcpl.progressMessage("Rcpl.doCreateContent()");
+
+		URL location = getClass().getResource("/org/eclipse/rcpl/ui/controler/rcpl_uic.fxml");
+		FXMLLoader fxmlLoader = new FXMLLoader(location);
+		fxmlLoader.setController(Rcpl.UIC);
+
+		try {
+			borderPane = fxmlLoader.load();
+			borderPane.setCenter(editorArea);
+			init(borderPane);
+		} catch (IOException e) {
+			e.printStackTrace();
+			// System.exit(1);
+		}
+
+		borderPane.setRight(null);
+
+		if (viewer) {
+			borderPane.setTop(null);
+			borderPane.setBottom(null);
+			borderPane.setLeft(null);
+			return;
+		}
+
+		try {
+			createTitelArea();
+			createBorderDragger();
+			updateEditorListener();
+			statusText.setText(getApplicationStarter().getVersionString());
+		} catch (Exception ex) {
+			RcplModel.logError(ex);
+		}
+
+		if (Rcpl.isMobile()) {
+			borderPane.setTop(titleArea);
+			borderPane.setBottom(null);
+		} else {
+			tabPaneContainer.setAlignment(Pos.BOTTOM_LEFT);
+		}
+
+		startMenuButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				showHomePage(HomePageType.OVERVIEW, null);
+			}
+		});
+
+		createStartMenu(startMenuButton);
+
+		titleArea.getChildren().add(titleText);
+
+		IButton logoutButton = new RcplButton("logout") {
+			@Override
+			public void doAction() {
+				actionLogout();
+			};
+		};
+		logoutButton.disableService();
+		logoutButtonArea.getChildren().add(logoutButton.getNode());
+
+		tabPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				showTab(tabPane.getSelectionModel().getSelectedItem());
+			}
+		});
+
 	}
 
 	public void doInitStyles() {
@@ -619,6 +1075,25 @@ public class RcplUic implements IRcplUic {
 		getInternalStylesRegistry().add(internalStyleWindows7);
 		internalStyleDark = RcplUic.class.getResource("/css/theme_dark.css").toExternalForm();
 		getInternalStylesRegistry().add(internalStyleDark);
+	}
+
+	protected void doOpenDocument(URL file) {
+	}
+
+	protected void doOpenDocument(File file) {
+	}
+
+	protected void doOpenDocumentWithFileDialog() {
+	}
+
+	protected void doOpenLastDocument() {
+	}
+
+	protected void doOpenTemplateDocument(final String docName, String tabName) {
+	}
+
+	protected void doSaveRcpl() {
+
 	}
 
 	@Override
@@ -662,6 +1137,23 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
+	public IHomePage findHomePage(HomePageType type, String id) {
+		for (IHomePage homePage : homepages) {
+			if (type.equals(homePage.getModel().getType())) {
+				if (id != null) {
+					String homePageId = homePage.getModel().getId();
+					if (id.equals(homePageId)) {
+						return homePage;
+					}
+				} else {
+					return homePage;
+				}
+			}
+		}
+		return null;
+	}
+
+	@Override
 	public Perspective findPerspective(String id) {
 		for (Perspective p : RcplSession.getDefault().getRcpl().getAllPerspectives().getChildren()) {
 			if (id.equals(p.getId())) {
@@ -691,8 +1183,26 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
+	public IRcplAddon getActiveAddon() {
+		return activeAddon;
+	}
+
+	@Override
+	public IHomePage getActiveHomePage() {
+		return activeHomePage;
+	}
+
+	@Override
 	public IApplicationStarter getApplicationStarter() {
 		return applicationStarter;
+	}
+
+	@Override
+	public ITreePart getApplicationTreepart() {
+		if (applicationTreePart == null) {
+			applicationTreePart = Rcpl.getFactory().createApplicationTreePart();
+		}
+		return applicationTreePart;
 	}
 
 	@Override
@@ -712,6 +1222,24 @@ public class RcplUic implements IRcplUic {
 		return null;
 	}
 
+	public RcplCompletionListener getCompletionListener() {
+		return completionListener;
+	}
+
+	@Override
+	public IDetailPage getDetailPage(String className) {
+		if (detailPages == null) {
+			detailPages = new HashMap<String, IDetailPage>();
+
+		}
+
+		IDetailPage detailPage = detailPages.get(className);
+		if (detailPage == null) {
+			detailPage = Rcpl.getFactory().createDetailPage(className);
+		}
+		return detailPage;
+	}
+
 	@Override
 	public IEditor getEditor() {
 		if (tabPane == null) {
@@ -729,20 +1257,40 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
+	public StackPane getEditorArea() {
+		return editorArea;
+	}
+
+	@Override
+	public HBox getEditorWindowTools() {
+		return editorWindowTools;
+	}
+
+	@Override
 	public Node getFocusOwner() {
 		return focusOwner;
 	}
 
 	@Override
-	public void collapseAll() {
-		getTopToolbarControl().collapse(true);
-		expandLeftAra(false);
-		expandTopAra(false);
-		expandBottomAra(false);
+	public H2DB getH2DB() {
+		if (h2DB == null) {
+			h2DB = Rcpl.getFactory().createH2DB();
+		}
+		return h2DB;
 	}
+
+	// protected IUndoRedoListener getInternalUndoRedoListener() {
+	// if (internalUndoRedoListener == null) {
+	// internalUndoRedoListener = Rcpl.getFactory().createUndoRedoTool();
+	// return internalUndoRedoListener;
+	// }
 
 	public WebView getInternalInternalHomeWebView() {
 		return homeWebView;
+	}
+
+	public StackPane getLeftTrimBar() {
+		return leftTrimBar;
 	}
 
 	@Override
@@ -779,8 +1327,56 @@ public class RcplUic implements IRcplUic {
 		return perspective;
 	}
 
+	@Override
+	public StackPane getProgressArea() {
+		return progressArea;
+	}
+
 	public IApplicationStarter getRcplApplicationStarter() {
 		return applicationStarter;
+	}
+
+	// private void initEcoreFile_OSGi() {
+	//
+	// String installDir = "";
+	//
+	// try {
+	// if (JOSession.ENV_DEV) {
+	//
+	// File f = new
+	// File(ResourcesPlugi.getWorkspace().getRoot().getLocation().toOSString());
+	//
+	// f = new File(f.getParentFile(),
+	// "joffice_migration_1/org.eclipse.rcpl.build/installer/components/conf");
+	//
+	// installDir = f.getAbsolutePath() + "/";
+	//
+	// } else {
+	// try {
+	// installDir =
+	// org.eclipse.core.runtime.Platform.getInstallLocation().getDataArea("/").getPath();
+	//
+	// } catch (IOException e1) {
+	//
+	// }
+	// }
+	// } catch (Throwable ex) {
+	//
+	// }
+	//
+	// }
+
+	@Override
+	public ITreePart getRcplTreepart() {
+		if (rcplTreePart == null) {
+			rcplTreePart = Rcpl.getFactory().createRcplTreePart();
+		}
+		return rcplTreePart;
+	}
+
+	@Override
+	public double getScale() {
+		return scale;
 	}
 
 	@Override
@@ -812,12 +1408,21 @@ public class RcplUic implements IRcplUic {
 		return internalStylesRegistry;
 	}
 
+	protected TabInfo getTabInfo(Tab tab) {
+		return (TabInfo) tab.getUserData();
+	}
+
 	public TabPane getTabPane() {
 		return tabPane;
 	}
 
 	public VBox getToolBarVBox() {
 		return internalToolBarVBox;
+	}
+
+	@Override
+	public ITopToolbar getTopToolBar() {
+		return getTopToolbarControl();
 	}
 
 	public ITopToolbar getTopToolbarControl() {
@@ -827,47 +1432,21 @@ public class RcplUic implements IRcplUic {
 		return internalTopToolBar;
 	}
 
-	@Override
-	public ITopToolbar getTopToolBar() {
-		return getTopToolbarControl();
-	}
-
 	public HBox getTopTrimBar() {
 		return internalTopTrimBar;
 	}
 
 	@Override
-	public IRcplAddon getActiveAddon() {
-		return activeAddon;
-	}
-
-	public StackPane getLeftTrimBar() {
-		return leftTrimBar;
+	public IDetailPage getWebBrowserDetailPage() {
+		if (webDetailPage == null) {
+			webDetailPage = new WebBrowserDetailsPage();
+		}
+		return webDetailPage;
 	}
 
 	@FXML
 	public void handleClose(ActionEvent event) {
 		closeApplication();
-	}
-
-	public void closeApplication() {
-
-		Rcpl.putDoubleValue(KeyValueKey.WINDOW_X, getStage().getX());
-		Rcpl.putDoubleValue(KeyValueKey.WINDOW_Y, getStage().getY());
-		Rcpl.putDoubleValue(KeyValueKey.WINDOW_WIDTH, getStage().getWidth());
-		Rcpl.putDoubleValue(KeyValueKey.WINDOW_HEIGHT, getStage().getHeight());
-
-		RcplSession.getDefault().commit();
-		RcplSession.getDefault().close(true, true);
-
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				Platform.exit();
-				System.exit(0);
-			}
-		});
 	}
 
 	public void handleCollapseAll(ActionEvent event) {
@@ -954,6 +1533,8 @@ public class RcplUic implements IRcplUic {
 		tabPane.setPrefSize(10, 10);
 	}
 
+	// ===================================================
+
 	@Override
 	public boolean initSession(ILogin login) {
 
@@ -1005,6 +1586,27 @@ public class RcplUic implements IRcplUic {
 		return internalInhibitUI;
 	}
 
+	protected boolean isInternalDragMode() {
+		return internalDragMode;
+	}
+
+//	protected void closeEditor(IEditor editor) {
+//		editorArea.getChildren().remove(editor.getMainPane());
+//		editor.dispose();
+//	}
+
+	protected boolean isInternalFirstTimeHomePage() {
+		return internalFirstTimeHomePage;
+	}
+
+	protected boolean isInternalInhibitUI() {
+		return internalInhibitUI;
+	}
+
+	protected boolean isInternalRemoteCDOServer() {
+		return internalRemoteCDOServer;
+	}
+
 	public boolean isRemoteCDOServer() {
 		return internalRemoteCDOServer;
 	}
@@ -1014,23 +1616,58 @@ public class RcplUic implements IRcplUic {
 		return viewer;
 	}
 
+	@Override
+	public void layoutDocument(IEditor editor, IDocument document) {
+	}
+
 	public void logout() {
 
 	}
 
+	@FXML
+	public void onMultiPages() {
+		getEditor().setPageColumns(10);
+	}
+
+	@FXML
+	public void onOnePage() {
+		getEditor().setPageColumns(1);
+	}
+
+	@FXML
+	public void onTwoPages() {
+		getEditor().setPageColumns(2);
+	}
+
+	@Override
+	public void openDocument(URL url) {
+		editorWindowTools.setVisible(true);
+		doOpenDocument(url);
+	}
+
 	@Override
 	public void openDocument(File file) {
+		editorWindowTools.setVisible(true);
+		doOpenDocument(file);
+	}
+
+	@Override
+	public void openDocumentWithFileDialog() {
+		editorWindowTools.setVisible(true);
+		doOpenDocumentWithFileDialog();
+	}
+
+	@Override
+	public void openLastDocument() {
+		editorWindowTools.setVisible(true);
+		doOpenLastDocument();
 	}
 
 	@Override
 	public void openTemplateDocument(String name, String tabName) {
+		editorWindowTools.setVisible(true);
+		doOpenTemplateDocument(name, tabName);
 	}
-
-	// protected IUndoRedoListener getInternalUndoRedoListener() {
-	// if (internalUndoRedoListener == null) {
-	// internalUndoRedoListener = Rcpl.getFactory().createUndoRedoTool();
-	// return internalUndoRedoListener;
-	// }
 
 	public void preDestroy() {
 		try {
@@ -1038,6 +1675,29 @@ public class RcplUic implements IRcplUic {
 		} catch (Exception ex) {
 		} catch (Throwable ex) {
 		}
+	}
+
+	protected void printMemory(String message) {
+		int mb = 1024 * 1024;
+		Runtime runtime = Runtime.getRuntime();
+
+		long usedMemory = (runtime.totalMemory() - runtime.freeMemory()) / mb;
+		long dif = usedMemory - lastUsedMemory;
+		System.out.println(message + "   Used:" + usedMemory + " / " + dif + "     Free:" + runtime.freeMemory() / mb);
+
+		// System.out.println("Total Memory:" + runtime.totalMemory() / mb);
+		//
+		// System.out.println("Max Memory:" + runtime.maxMemory() / mb);
+		//
+		lastUsedMemory = usedMemory;
+	}
+
+	@Override
+	public void putDetailPage(String className, IDetailPage detailPage) {
+		if (detailPages == null) {
+			detailPages = new HashMap<String, IDetailPage>();
+		}
+		detailPages.put(className, detailPage);
 	}
 
 	@Override
@@ -1057,6 +1717,15 @@ public class RcplUic implements IRcplUic {
 		getTopToolbarControl().showPerspective(Rcpl.UIC.getPerspective());
 	}
 
+	// protected IUndoRedoListener getInternalUndoRedoListener() {
+	// if (internalUndoRedoListener == null) {
+	// internalUndoRedoListener = Rcpl.getFactory().createUndoRedoTool();
+	// HBox.setMargin((Node) internalUndoRedoListener, new Insets(0, 10, 0,
+	// 10));
+	// }
+	// return internalUndoRedoListener;
+	// }
+
 	public void removeAllSideToolBars() {
 		internalToolBarVBox.getChildren().remove(1);
 		while (internalToolBarVBox.getChildren().size() > 1) {
@@ -1064,9 +1733,54 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
+	protected void removeAllStyles() {
+		for (String style : internalStylesRegistry) {
+			getStage().getScene().getStylesheets().remove(style);
+		}
+	}
+
 	@Override
 	public void restorePerspective() {
 		updatePerspective(tabPane.getSelectionModel().getSelectedItem());
+	}
+
+	private void saveRcpl() {
+		doSaveRcpl();
+	}
+
+	protected Tab searchTab(File file, Tab excludeTab) {
+		for (Tab tab : tabPane.getTabs()) {
+			TabInfo tabInfo = getTabInfo(tab);
+			IDocument doc = tabInfo.getEditor().getDocument();
+			File f = doc.getFile();
+			if (f.equals(file)) {
+				return tab;
+			}
+		}
+		return null;
+	}
+
+	protected Tab searchTab(String name) {
+		String[] splits1 = name.split("\\.");
+
+		for (Tab t : tabPane.getTabs()) {
+			TabInfo info = getTabInfo(t);
+			String[] splits = t.getText().split("\\.");
+			if (splits1[0].trim().equals(splits[0].trim())) {
+				return t;
+			}
+			IDocument doc = info.getEditor().getDocument();
+			String docName = doc.getFile().getName();
+			if (docName.equals(name)) {
+				return t;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void setActiveAddon(IRcplAddon addon) {
+		this.activeAddon = addon;
 	}
 
 	@Override
@@ -1097,6 +1811,8 @@ public class RcplUic implements IRcplUic {
 		this.internalInhibitUI = inhibitUI;
 	}
 
+	// ===================================================
+
 	public void setInternalInhibitUI(boolean internalInhibitUI) {
 		this.internalInhibitUI = internalInhibitUI;
 	}
@@ -1111,40 +1827,30 @@ public class RcplUic implements IRcplUic {
 		this.perspective = perspective;
 	}
 
-	// private void initEcoreFile_OSGi() {
-	//
-	// String installDir = "";
-	//
-	// try {
-	// if (JOSession.ENV_DEV) {
-	//
-	// File f = new
-	// File(ResourcesPlugi.getWorkspace().getRoot().getLocation().toOSString());
-	//
-	// f = new File(f.getParentFile(),
-	// "joffice_migration_1/org.eclipse.rcpl.build/installer/components/conf");
-	//
-	// installDir = f.getAbsolutePath() + "/";
-	//
-	// } else {
-	// try {
-	// installDir =
-	// org.eclipse.core.runtime.Platform.getInstallLocation().getDataArea("/").getPath();
-	//
-	// } catch (IOException e1) {
-	//
-	// }
-	// }
-	// } catch (Throwable ex) {
-	//
-	// }
-	//
-	// }
-
 	@Override
 	public void setPerspective(Perspective activePerspective, IRcplAddon addon) {
 		this.perspective = activePerspective;
 		this.activeAddon = addon;
+	}
+
+	/*
+	 * 1 = 100 %
+	 * 
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.rcpl.IRcplUic#setScale(double)
+	 */
+	@Override
+	public void setScale(double scale) {
+		this.scale = scale;
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// to force a change event
+				zoomSlider.setValue(scale + 0.001);
+				zoomSlider.setValue(scale);
+			}
+		});
 	}
 
 	@Override
@@ -1168,49 +1874,19 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void setActiveAddon(IRcplAddon addon) {
-		this.activeAddon = addon;
-	}
-
-	@Override
 	public void setViewer(boolean viewer) {
 		this.viewer = viewer;
 	}
 
-	@Override
-	public void showHomePage(HomePageType type, String id) {
+	/**
+	 * 
+	 */
 
-		showStartMenuButton(type == null || !HomePageType.OVERVIEW.equals(type));
-		IHomePage homePage = findHomePage(type, id);
-		activeHomePage = homePage;
-
-		if (editorArea.getChildren().contains(homePage.getNode())) {
-			homePage.getNode().toFront();
-		} else {
-			setContent(homePage.getNode());
-		}
-		homePage.refresh();
-
-		HomePage model = homePage.getModel();
-		showPerspective(model.getPerspective());
-
-	}
-
-	@Override
-	public IHomePage findHomePage(HomePageType type, String id) {
-		for (IHomePage homePage : homepages) {
-			if (type.equals(homePage.getModel().getType())) {
-				if (id != null) {
-					String homePageId = homePage.getModel().getId();
-					if (id.equals(homePageId)) {
-						return homePage;
-					}
-				} else {
-					return homePage;
-				}
-			}
-		}
-		return null;
+	public boolean showAddon() {
+//		if (internalActiveAddon != null && internalActiveAddon.getId().length() > 0) {
+//			return showPluginPerspective(internalActiveAddon);
+//		}
+		return false;
 	}
 
 	@Override
@@ -1234,6 +1910,72 @@ public class RcplUic implements IRcplUic {
 		logTextArea.setText(RcplModel.logBuf.toString());
 		setContent(logPage);
 		returnButton.requestFocus();
+	}
+
+	@Override
+	public void showHomePage(HomePageType type, String id) {
+
+		showStartMenuButton(type == null || !HomePageType.OVERVIEW.equals(type));
+		IHomePage homePage = findHomePage(type, id);
+		activeHomePage = homePage;
+
+		if (editorArea.getChildren().contains(homePage.getNode())) {
+			homePage.getNode().toFront();
+		} else {
+			setContent(homePage.getNode());
+		}
+		homePage.refresh();
+
+		HomePage model = homePage.getModel();
+		showPerspective(model.getPerspective());
+
+	}
+
+	protected boolean showHtmlEditor() {
+		WebView webView = getBrowser();
+		if (webView != null) {
+
+			String htmlText = null;
+
+			Document doc = webView.getEngine().getDocument();
+			try {
+
+				if (doc instanceof HTMLDocument) {
+
+					// HTMLDocument htmlDoc = (HTMLDocument) doc;
+
+					// HTMLElement el = htmlDoc.getBody();
+					//
+					// String str = doc.getTextContent();
+
+					Transformer transformer = TransformerFactory.newInstance().newTransformer();
+					transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+					transformer.setOutputProperty(OutputKeys.METHOD, "html");
+					transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+					transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+					transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+					ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+					transformer.transform(new DOMSource(doc), new StreamResult(new OutputStreamWriter(bos, "UTF-8")));
+
+					// transformer.transform(new DOMSource(el), new
+					// StreamResult(
+					// new OutputStreamWriter(bos, "UTF-8")));
+					htmlText = bos.toString("UTF-8");
+				}
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			if (htmlText != null) {
+				final String html = htmlText;
+				setContent(htmlEditor);
+				htmlEditor.setHtmlText(html);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void showMessage(final String title, final String message) {
@@ -1318,39 +2060,73 @@ public class RcplUic implements IRcplUic {
 		return false;
 	}
 
-	private void updateQuickToolsArea() {
-		quickToolsArea.getChildren().clear();
-		if (!Rcpl.isMobile()) {
-			if (perspective != null && perspective.getQuickToolBar() != null) {
-				for (Tool tool : perspective.getQuickToolBar().getTools()) {
-					IButton q = Rcpl.getFactory().createButton(tool);
-					q.getNode().setStyle("-fx-background-color: transparent;");
-					quickToolsArea.getChildren().add(q.getNode());
-				}
-			}
-		}
-	}
-
 	@Override
 	public void showStartMenuButton(boolean show) {
 //		startMenuButton.setDisable(!show);
 	}
 
-	/**
-	 * 
-	 */
+	protected void showTab(final Tab tab) {
 
-	public boolean showAddon() {
-//		if (internalActiveAddon != null && internalActiveAddon.getId().length() > 0) {
-//			return showPluginPerspective(internalActiveAddon);
-//		}
-		return false;
+		final TabInfo tabInfo = getTabInfo(tab);
+		if (tabInfo != null) {
+			final IEditor editor = tabInfo.getEditor();
+			final Node node = tabInfo.getNode();
+			final IRcplAddon addon = tabInfo.getAddon();
+
+			Platform.runLater(new Runnable() {
+
+				@Override
+				public void run() {
+					updatePerspective(tab);
+					if (editor != null) {
+						setContent(editor.getMainPane());
+					} else if (node != null) {
+						setContent(node);
+					} else if (addon != null) {
+						setContent(addon.getNode());
+					}
+					tabPane.getSelectionModel().select(tab);
+				}
+			});
+		}
 	}
 
 	@Override
 	public void showWebView(String url) {
 		setContent(internalWebView);
 		internalWebView.getEngine().load(url);
+	}
+
+	protected void testMemoryConsumption() {
+
+	}
+
+	private void updateEditorListener() {
+		Rcpl.getEditorListeners().add(new RcplEditorListenerAdapter() {
+			@Override
+			public void update(final RcplEvent event) {
+				if (event.getEditMode() != null) {
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+							statusText.setText(event.getEditMode().name());
+						}
+					});
+
+				} else if (event.getMessage() != null) {
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+							statusText.setText(event.getMessage());
+						}
+					});
+
+				}
+
+			}
+		});
 	}
 
 	public void updatePerspective(Tab tab) {
@@ -1369,6 +2145,19 @@ public class RcplUic implements IRcplUic {
 //			}
 		} catch (Exception ex) {
 			Rcpl.printErrorln("", ex);
+		}
+	}
+
+	private void updateQuickToolsArea() {
+		quickToolsArea.getChildren().clear();
+		if (!Rcpl.isMobile()) {
+			if (perspective != null && perspective.getQuickToolBar() != null) {
+				for (Tool tool : perspective.getQuickToolBar().getTools()) {
+					IButton q = Rcpl.getFactory().createButton(tool);
+					q.getNode().setStyle("-fx-background-color: transparent;");
+					quickToolsArea.getChildren().add(q.getNode());
+				}
+			}
 		}
 	}
 
@@ -1404,750 +2193,6 @@ public class RcplUic implements IRcplUic {
 		} catch (Throwable ex) {
 			RcplModel.logError(ex);
 		}
-	}
-
-	private static Pane pane;
-
-	/**
-	 * 
-	 */
-	public static Pane getCaret() {
-
-		if (pane == null) {
-			pane = new Pane();
-			caret = new Rectangle(3, 0, 1.6, 18);
-			pane.getChildren().add(caret);
-//			StackPane.setAlignment(caret, Pos.TOP_LEFT);
-
-			caret.setX(80);
-			caret.setFill(Color.BLACK);
-			caretTimeline = new Timeline();
-			caretTimeline.setCycleCount(Timeline.INDEFINITE);
-			caretTimeline.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					Node n = Rcpl.UIC.getFocusOwner();
-					if (n instanceof ComboBox<?>) {
-						caret.setFill(Color.TRANSPARENT);
-						return;
-					}
-					caret.setFill(Color.BLACK);
-					Parent parent = caret.getParent();
-					if (parent != null) {
-						parent.requestFocus();
-					}
-					IEditor editor = Rcpl.UIC.getEditor();
-					if (editor != null) {
-						// editor.updateScrollTargetForCaret();
-					}
-				}
-			}), new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					caret.setFill(Color.TRANSPARENT);
-				}
-			}), new KeyFrame(Duration.seconds(1)));
-			caretTimeline.play();
-		}
-		return pane;
-	}
-
-	public static double getCaretHeight() {
-		getCaret();
-		return caret.getHeight();
-	}
-
-	public static double getCaretX() {
-		getCaret();
-		return caret.getX();
-	}
-
-	public static double getCaretY() {
-		getCaret();
-		return caret.getY();
-	}
-
-	public static void setCaretHeight(double height) {
-		getCaret();
-		caret.setHeight(height);
-	}
-
-	public static void setCaretLocation(double x, double y) {
-		getCaret();
-		caret.setX(x);
-		caret.setY(y);
-	}
-
-	// ===================================================
-
-	public static void setCaretWidth(double width) {
-		getCaret();
-		caret.setWidth(width);
-	}
-
-	public static void showCaret(IParagraphFigure figure) {
-		if (!figure.getCaretPane().getChildren().contains(RcplUic.getCaret())) {
-			figure.getCaretPane().getChildren().add(RcplUic.getCaret());
-		}
-		getCaretTimeline().playFromStart();
-		getCaret().setVisible(true);
-	}
-
-	public static void hideCaret(IParagraphFigure figure) {
-		figure.getCaretPane().getChildren().clear();
-	}
-
-	private void addBlinkingAnimation(Node imageView) {
-		blinkingTimeline = new Timeline();
-		blinkingTimeline.setCycleCount(Timeline.INDEFINITE);
-		blinkingTimeline.setAutoReverse(true);
-		final KeyValue kv = new KeyValue(imageView.opacityProperty(), 0.0);
-		final KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
-		blinkingTimeline.getKeyFrames().add(kf);
-		blinkingTimeline.play();
-	}
-
-	@Override
-	public void addHomePageButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup) {
-		IButton homeButton = Rcpl.getFactory().createHomePageButton(homePage);
-//		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
-		FlowPane.setMargin(homeButton.getNode(), new Insets(0, 0, 0, 5));
-		pane.getChildren().add(homeButton.getNode());
-	}
-
-//	protected void closeEditor(IEditor editor) {
-//		editorArea.getChildren().remove(editor.getMainPane());
-//		editor.dispose();
-//	}
-
-	private void createBorderDragger() {
-		createBorderDragger(mainTopArea);
-		createBorderDragger(borderPane);
-		createBorderDragger(topVBox);
-		createBorderDragger(quickToolsArea);
-		createBorderDragger(titleArea);
-		createBorderDragger(topArea);
-		createBorderDragger(titleText);
-		createBorderDragger(tabPane);
-	}
-
-	private void createBorderDragger(Node node) {
-		if (!Rcpl.isMobile()) {
-			node.setOnMousePressed(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-
-					mouseDragOffsetX = event.getSceneX();
-					mouseDragOffsetY = event.getSceneY();
-				}
-			});
-
-			node.setOnMouseDragged(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					Stage w = getStage();
-					w.setX(event.getScreenX() - mouseDragOffsetX);
-					w.setY(event.getScreenY() - mouseDragOffsetY);
-				}
-			});
-
-		}
-	}
-
-	protected TabInfo getTabInfo(Tab tab) {
-		return (TabInfo) tab.getUserData();
-	}
-
-	protected Tab createNewTab(String title) {
-
-		final Tab tab = new Tab();
-		TabInfo tabInfo = new TabInfo();
-		tab.setUserData(tabInfo);
-
-		if (title == null) {
-			title = "-";
-		}
-
-		IImage img = null;
-
-		if (title.endsWith("docx")) {
-			img = Rcpl.resources().getImage("word", 16, 16);
-		} else if (title.endsWith("xlsx")) {
-			img = Rcpl.resources().getImage("spreadsheet", 16, 16);
-		} else if (title.endsWith("pptx")) {
-			img = Rcpl.resources().getImage("presentation", 16, 16);
-		}
-
-		title = title.replaceAll("\\.docx", "");
-		title = title.replaceAll("\\.xlsx", "");
-		title = title.replaceAll("\\.pptx", "").trim();
-
-		tab.setText(title);
-
-		if (img != null) {
-			tab.setGraphic(img.getNode());
-		}
-		try {
-
-			tab.selectedProperty().addListener(new ChangeListener<Boolean>() {
-				@Override
-				public void changed(ObservableValue<? extends Boolean> paramObservableValue, Boolean paramT1,
-						Boolean isSelected) {
-					if (isSelected) {
-						showTab(tab);
-					}
-				}
-			});
-
-			tab.setOnCloseRequest(new EventHandler<Event>() {
-				@Override
-				public void handle(Event arg0) {
-					if (!closeTab(tab)) {
-						arg0.consume();
-					}
-				}
-			});
-
-			tabPane.getTabs().add(tab);
-
-			double h = tabPane.getTabMinHeight();
-			tabPane.setTabMinHeight(h + 1);
-			tabPane.setTabMinHeight(h);
-
-		} catch (Throwable ex) {
-			RcplModel.logError(ex);
-		}
-		return tab;
-	}
-
-	@Override
-	public void createHomePages() {
-		if (homepages.isEmpty()) {
-			for (HomePage modelHomePage : RcplSession.getDefault().getRcpl().getHomepages().getChildren()) {
-				IHomePage homePage = Rcpl.getFactory().createHomePage(this, modelHomePage);
-				homepages.add(homePage);
-			}
-		}
-	}
-
-	private void createRecentDocumentList() {
-
-//		try {
-//			if (RcplSession.getDefault().getSystemPreferences() != null)
-//
-//			{
-//				String lastDoc = RcplSession.getDefault().getSystemPreferences().getLastDocument();
-//				if (lastDoc != null && lastDoc.trim().length() > 0) {
-//					lastDocumentFile = new File(lastDoc);
-//				}
-//			}
-//		} catch (Exception ex) {
-//
-//		}
-
-	}
-
-	private void createTitelArea() {
-		titleText = new Label(getApplicationStarter().getVersionString() + " - " + RcplSession.getDefault().getUserId()
-				+ " (" + (RcplSession.getDefault().isOnline() ? "Online" : "Offline") + ")");
-		titleText.setId("title_version");
-		titleArea.setAlignment(Pos.CENTER_LEFT);
-		HBox.setHgrow(titleText, Priority.ALWAYS);
-		StackPane.setAlignment(titleText, Pos.TOP_LEFT);
-		StackPane.setMargin(titleText, new Insets(0, 0, 0, 55));
-
-	}
-
-//	protected void debugCollapsingAndHiding() {
-//
-//		final ToggleButton top = new ToggleButton("T");
-//		top.setOnAction(new EventHandler<ActionEvent>() {
-//			@Override
-//			public void handle(ActionEvent event) {
-//				getTopToolBar().collapse(!top.isSelected());
-//			}
-//
-//		});
-//		mainTopArea.getChildren().add(1, top);
-//
-//		final ToggleButton side = new ToggleButton("S");
-//		side.setOnAction(new EventHandler<ActionEvent>() {
-//			@Override
-//			public void handle(ActionEvent event) {
-//				if (!side.isSelected()) {
-//					getSideToolBarControl().collapseToolPane();
-//
-//				} else {
-//					getSideToolBarControl().showSideTools();
-//				}
-//			}
-//		});
-//		mainTopArea.getChildren().add(2, side);
-//
-//		final ToggleButton bottom = new ToggleButton("B");
-//		bottom.setOnAction(new EventHandler<ActionEvent>() {
-//			@Override
-//			public void handle(ActionEvent event) {
-//				// TODO Auto-generated method stub
-//
-//			}
-//		});
-//		mainTopArea.getChildren().add(3, bottom);
-//	}
-
-	protected void doCreateContent() {
-
-		Rcpl.progressMessage("Rcpl.doCreateContent()");
-
-		URL location = getClass().getResource("/org/eclipse/rcpl/ui/controler/rcpl_uic.fxml");
-		FXMLLoader fxmlLoader = new FXMLLoader(location);
-		fxmlLoader.setController(Rcpl.UIC);
-
-		try {
-			borderPane = fxmlLoader.load();
-			borderPane.setCenter(editorArea);
-			init(borderPane);
-		} catch (IOException e) {
-			e.printStackTrace();
-			// System.exit(1);
-		}
-
-		borderPane.setRight(null);
-
-		if (viewer) {
-			borderPane.setTop(null);
-			borderPane.setBottom(null);
-			borderPane.setLeft(null);
-			return;
-		}
-
-		try {
-			createTitelArea();
-			createBorderDragger();
-			createRecentDocumentList();
-			updateEditorListener();
-			statusText.setText(getApplicationStarter().getVersionString());
-		} catch (Exception ex) {
-			RcplModel.logError(ex);
-		}
-
-		if (Rcpl.isMobile()) {
-			borderPane.setTop(titleArea);
-			borderPane.setBottom(null);
-		} else {
-			tabPaneContainer.setAlignment(Pos.BOTTOM_LEFT);
-		}
-
-		startMenuButton.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				showHomePage(HomePageType.OVERVIEW, null);
-			}
-		});
-
-		createStartMenu(startMenuButton);
-
-		titleArea.getChildren().add(titleText);
-
-		IButton logoutButton = new RcplButton("logout") {
-			@Override
-			public void doAction() {
-				actionLogout();
-			};
-		};
-		logoutButton.disableService();
-		logoutButtonArea.getChildren().add(logoutButton.getNode());
-
-		tabPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				showTab(tabPane.getSelectionModel().getSelectedItem());
-			}
-		});
-
-	}
-
-	private ContextMenu contextMenu;
-
-	private void createStartMenu(Node anchor) {
-		contextMenu = new ContextMenu();
-		contextMenu.setMinHeight(300);
-		contextMenu.setMinWidth(100);
-
-		contextMenu.setAutoHide(true);
-		contextMenu.setHideOnEscape(true);
-		anchor.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
-			@Override
-			public void handle(ContextMenuEvent event) {
-				contextMenu.getItems().clear();
-
-				int counter = 0;
-				for (String filePath : RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name())) {
-					File file = new File(RcplSession.getDefault().getValue(filePath));
-					final MenuItem item1 = new MenuItem(file.getName());
-					item1.setUserData(file);
-					item1.setOnAction(new EventHandler<ActionEvent>() {
-
-						@Override
-						public void handle(ActionEvent event) {
-							openDocument((File) item1.getUserData());
-						}
-					});
-					contextMenu.getItems().add(item1);
-					counter++;
-					if (counter > 10) {
-						break;
-					}
-				}
-				contextMenu.show(anchor, event.getScreenX(), event.getScreenY());
-			}
-		});
-	}
-
-	@Override
-	public void createAllHomeButtons(Pane pane) {
-		RCPL rcpl = RcplSession.getDefault().getRcpl();
-		ToggleGroup toggleGroup = new ToggleGroup();
-
-		for (HomePage homePage : rcpl.getHomepages().getChildren()) {
-			if (!HomePageType.OVERVIEW.equals(homePage.getType())) {
-				addHomePageButton(homePage, pane, toggleGroup);
-			}
-
-		}
-	}
-
-	protected boolean isInternalDragMode() {
-		return internalDragMode;
-	}
-
-	protected boolean isInternalFirstTimeHomePage() {
-		return internalFirstTimeHomePage;
-	}
-
-	protected boolean isInternalInhibitUI() {
-		return internalInhibitUI;
-	}
-
-	protected boolean isInternalRemoteCDOServer() {
-		return internalRemoteCDOServer;
-	}
-
-	// protected IUndoRedoListener getInternalUndoRedoListener() {
-	// if (internalUndoRedoListener == null) {
-	// internalUndoRedoListener = Rcpl.getFactory().createUndoRedoTool();
-	// HBox.setMargin((Node) internalUndoRedoListener, new Insets(0, 10, 0,
-	// 10));
-	// }
-	// return internalUndoRedoListener;
-	// }
-
-	protected void printMemory(String message) {
-		int mb = 1024 * 1024;
-		Runtime runtime = Runtime.getRuntime();
-
-		long usedMemory = (runtime.totalMemory() - runtime.freeMemory()) / mb;
-		long dif = usedMemory - lastUsedMemory;
-		System.out.println(message + "   Used:" + usedMemory + " / " + dif + "     Free:" + runtime.freeMemory() / mb);
-
-		// System.out.println("Total Memory:" + runtime.totalMemory() / mb);
-		//
-		// System.out.println("Max Memory:" + runtime.maxMemory() / mb);
-		//
-		lastUsedMemory = usedMemory;
-	}
-
-	protected void removeAllStyles() {
-		for (String style : internalStylesRegistry) {
-			getStage().getScene().getStylesheets().remove(style);
-		}
-	}
-
-	protected boolean showHtmlEditor() {
-		WebView webView = getBrowser();
-		if (webView != null) {
-
-			String htmlText = null;
-
-			Document doc = webView.getEngine().getDocument();
-			try {
-
-				if (doc instanceof HTMLDocument) {
-
-					// HTMLDocument htmlDoc = (HTMLDocument) doc;
-
-					// HTMLElement el = htmlDoc.getBody();
-					//
-					// String str = doc.getTextContent();
-
-					Transformer transformer = TransformerFactory.newInstance().newTransformer();
-					transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-					transformer.setOutputProperty(OutputKeys.METHOD, "html");
-					transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-					transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-					transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-
-					ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
-					transformer.transform(new DOMSource(doc), new StreamResult(new OutputStreamWriter(bos, "UTF-8")));
-
-					// transformer.transform(new DOMSource(el), new
-					// StreamResult(
-					// new OutputStreamWriter(bos, "UTF-8")));
-					htmlText = bos.toString("UTF-8");
-				}
-
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-			if (htmlText != null) {
-				final String html = htmlText;
-				setContent(htmlEditor);
-				htmlEditor.setHtmlText(html);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	protected void showTab(final Tab tab) {
-
-		final TabInfo tabInfo = getTabInfo(tab);
-		if (tabInfo != null) {
-			final IEditor editor = tabInfo.getEditor();
-			final Node node = tabInfo.getNode();
-			final IRcplAddon addon = tabInfo.getAddon();
-
-			Platform.runLater(new Runnable() {
-
-				@Override
-				public void run() {
-					updatePerspective(tab);
-					if (editor != null) {
-						setContent(editor.getMainPane());
-					} else if (node != null) {
-						setContent(node);
-					} else if (addon != null) {
-						setContent(addon.getNode());
-					}
-					tabPane.getSelectionModel().select(tab);
-				}
-			});
-		}
-	}
-
-	private void updateEditorListener() {
-		Rcpl.getEditorListeners().add(new RcplEditorListenerAdapter() {
-			@Override
-			public void update(final RcplEvent event) {
-				if (event.getEditMode() != null) {
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-							statusText.setText(event.getEditMode().name());
-						}
-					});
-
-				} else if (event.getMessage() != null) {
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-							statusText.setText(event.getMessage());
-						}
-					});
-
-				}
-
-			}
-		});
-	}
-
-	private static Timeline getCaretTimeline() {
-		return caretTimeline;
-	}
-
-	protected static String getInternalStyleDark() {
-		return internalStyleDark;
-	}
-
-	protected static String getInternalStyleMsOffice() {
-		return internalStyleMsOffice;
-	}
-
-	protected static List<String> getInternalStylesRegistry() {
-		return internalStylesRegistry;
-	}
-
-	protected static String getInternalStyleWindows7() {
-		return internalStyleWindows7;
-	}
-
-	// ===================================================
-
-	protected static void setInternalStyleDark(String internalStyleDark) {
-		RcplUic.internalStyleDark = internalStyleDark;
-	}
-
-	protected static void setInternalStyleMsOffice(String internalStyleMsOffice) {
-		RcplUic.internalStyleMsOffice = internalStyleMsOffice;
-	}
-
-	protected static void setInternalStylesRegistry(List<String> internalStylesRegistry) {
-		RcplUic.internalStylesRegistry = internalStylesRegistry;
-	}
-
-	protected static void setInternalStyleWindows7(String internalStyleWindows7) {
-		RcplUic.internalStyleWindows7 = internalStyleWindows7;
-	}
-
-	@Override
-	public void collapseMainTopArea(boolean collapse) {
-		if (collapse && topArea.getChildren().contains(mainTopStack)) {
-			topArea.getChildren().remove(mainTopStack);
-		} else if (!collapse && !topArea.getChildren().contains(mainTopStack)) {
-			topArea.getChildren().add(1, mainTopStack);
-		}
-	}
-
-	@Override
-	public ITreePart getRcplTreepart() {
-		if (rcplTreePart == null) {
-			rcplTreePart = Rcpl.getFactory().createRcplTreePart();
-		}
-		return rcplTreePart;
-	}
-
-	@Override
-	public ITreePart getApplicationTreepart() {
-		if (applicationTreePart == null) {
-			applicationTreePart = Rcpl.getFactory().createApplicationTreePart();
-		}
-		return applicationTreePart;
-	}
-
-	@Override
-	public IDetailPage getDetailPage(String className) {
-		if (detailPages == null) {
-			detailPages = new HashMap<String, IDetailPage>();
-
-		}
-
-		IDetailPage detailPage = detailPages.get(className);
-		if (detailPage == null) {
-			detailPage = Rcpl.getFactory().createDetailPage(className);
-		}
-		return detailPage;
-	}
-
-	@Override
-	public void putDetailPage(String className, IDetailPage detailPage) {
-		if (detailPages == null) {
-			detailPages = new HashMap<String, IDetailPage>();
-		}
-		detailPages.put(className, detailPage);
-	}
-
-	@Override
-	public IHomePage getActiveHomePage() {
-		return activeHomePage;
-	}
-
-	@Override
-	public StackPane getEditorArea() {
-		return editorArea;
-	}
-
-	@Override
-	public H2DB getH2DB() {
-		if (h2DB == null) {
-			h2DB = Rcpl.getFactory().createH2DB();
-		}
-		return h2DB;
-	}
-
-	@Override
-	public IDetailPage getWebBrowserDetailPage() {
-		if (webDetailPage == null) {
-			webDetailPage = new WebBrowserDetailsPage();
-		}
-		return webDetailPage;
-	}
-
-	protected Tab searchTab(String name) {
-		String[] splits1 = name.split("\\.");
-
-		for (Tab t : tabPane.getTabs()) {
-			TabInfo info = getTabInfo(t);
-			String[] splits = t.getText().split("\\.");
-			if (splits1[0].trim().equals(splits[0].trim())) {
-				return t;
-			}
-			IDocument doc = info.getEditor().getDocument();
-			String docName = doc.getFile().getName();
-			if (docName.equals(name)) {
-				return t;
-			}
-		}
-		return null;
-	}
-
-	protected Tab searchTab(File file, Tab excludeTab) {
-		for (Tab tab : tabPane.getTabs()) {
-			TabInfo tabInfo = getTabInfo(tab);
-			IDocument doc = tabInfo.getEditor().getDocument();
-			File f = doc.getFile();
-			if (f.equals(file)) {
-				return tab;
-			}
-		}
-		return null;
-	}
-
-	protected void testMemoryConsumption() {
-
-	}
-
-	@Override
-	public StackPane getProgressArea() {
-		return progressArea;
-	}
-
-	@Override
-	public StackPane getZoomArea() {
-		return zoomArea;
-	}
-
-	@Override
-	public void addRecentDocument(File file, boolean commit) {
-		for (String key : RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name())) {
-			if (file.getAbsolutePath().equals(RcplSession.getDefault().getValue(key))) {
-				return;
-			}
-		}
-		Rcpl.putValue(getEditor(), KeyValueKey.RECENT_DOCUMENT, file.getAbsolutePath());
-	}
-
-	@Override
-	public void layoutDocument(IEditor editor, IDocument document) {
-	}
-
-	@FXML
-	public void onOnePage() {
-		getEditor().setPageColumns(1);
-	}
-
-	@FXML
-	public void onTwoPages() {
-		getEditor().setPageColumns(2);
-	}
-
-	@FXML
-	public void onMultiPages() {
-		getEditor().setPageColumns(10);
 	}
 
 }

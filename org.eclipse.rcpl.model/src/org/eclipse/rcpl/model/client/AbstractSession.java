@@ -1323,6 +1323,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	abstract protected void addAdapterFactories(ComposedAdapterFactory composedFactory);
 
+	// ---------- get value
+
 	@Override
 	public String getValue(String key) {
 		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
@@ -1353,6 +1355,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 		return keys;
 	}
 
+	// ---------- put value
+
 	@Override
 	public void putValue(String key, String value) {
 		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
@@ -1368,4 +1372,26 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 		commit();
 	}
 
+	// ---------- delete value
+
+	@Override
+	public void deleteAllValues(String matchKey) {
+
+		List<KeyValue> keyValuesToDelete = new ArrayList<KeyValue>();
+
+		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
+			String k = kv.getKey();
+			if (k.startsWith(matchKey)) {
+				keyValuesToDelete.add(kv);
+			}
+		}
+		for (KeyValue keyValue : keyValuesToDelete) {
+			getRcpl().getKeyvalues().getKeyvalues().remove(keyValue);
+		}
+
+//		getRcpl().getKeyvalues().getKeyvalues().removeAll(keyValuesToDelete);
+
+		commit();
+		System.out.println();
+	}
 }

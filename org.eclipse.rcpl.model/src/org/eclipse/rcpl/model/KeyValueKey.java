@@ -2,6 +2,8 @@ package org.eclipse.rcpl.model;
 
 public enum KeyValueKey {
 
+	LAST_OPENED_DOCUMENT,
+
 	RECENT_DOCUMENT,
 
 	PAGE_COLUMNS,

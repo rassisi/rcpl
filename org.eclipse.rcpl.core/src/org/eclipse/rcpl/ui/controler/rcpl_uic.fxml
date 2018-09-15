@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="decorationArea" minHeight="10.0" minWidth="10.0" prefHeight="1099.0" prefWidth="1521.0" style="" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="decorationArea" minHeight="10.0" minWidth="10.0" prefHeight="1099.0" prefWidth="1521.0" style="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <!-- TODO Add Nodes -->
   <bottom>
     <HBox fx:id="mainBottomArea" maxHeight="20.0" minHeight="0.0" prefHeight="16.0" prefWidth="16.0" spacing="5.0">
@@ -24,16 +29,22 @@
           </HBox.margin>
         </Text>
             <StackPane fx:id="progressArea" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-            <Button id="sliderButton" fx:id="onePageButton" mnemonicParsing="false" onAction="#onOnePage" text="1" HBox.hgrow="NEVER" />
-            <Button id="sliderButton" fx:id="twoPagesButton" mnemonicParsing="false" onAction="#onTwoPages" text="2" HBox.hgrow="NEVER" />
-            <Button id="sliderButton" fx:id="multiPagesButton" mnemonicParsing="false" onAction="#onMultiPages" text="3" HBox.hgrow="NEVER" />
-            <Button id="sliderButton" fx:id="minusZoom" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" text="-" HBox.hgrow="NEVER" />
-            <StackPane fx:id="zoomArea" prefHeight="150.0" prefWidth="200.0">
+            <HBox fx:id="editorWindowTools" minWidth="-Infinity" prefWidth="400.0" spacing="3.0">
                <children>
-                  <Slider fx:id="zoomSlider" max="400.0" value="60.0" StackPane.alignment="CENTER" />
-               </children></StackPane>
-            <Button id="sliderButton" fx:id="plusZoom" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" text="+" HBox.hgrow="NEVER" />
-            <Label fx:id="zoomLabel" prefWidth="50.0" />
+                  <Button id="sliderButton" fx:id="onePageButton" mnemonicParsing="false" onAction="#onOnePage" text="1" HBox.hgrow="NEVER" />
+                  <Button id="sliderButton" fx:id="twoPagesButton" mnemonicParsing="false" onAction="#onTwoPages" text="2" HBox.hgrow="NEVER" />
+                  <Button id="sliderButton" fx:id="multiPagesButton" mnemonicParsing="false" onAction="#onMultiPages" text="3" HBox.hgrow="NEVER" />
+                  <Separator orientation="VERTICAL" prefWidth="20.0" />
+                  <HBox minHeight="-Infinity" prefWidth="300.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Button id="sliderButton" fx:id="minusZoom" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" text="-" HBox.hgrow="NEVER" />
+                        <Slider fx:id="zoomSlider" blockIncrement="0.05" max="1.0" min="0.05" value="0.5" HBox.hgrow="ALWAYS" />
+                        <Button id="sliderButton" fx:id="plusZoom" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" text="+" HBox.hgrow="NEVER" />
+                        <Label fx:id="zoomLabel" prefWidth="50.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
       </children>
       <padding>
         <Insets left="5.0" right="20.0" />

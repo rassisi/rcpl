@@ -1,6 +1,7 @@
 package org.eclipse.rcpl;
 
 import java.io.File;
+import java.net.URL;
 import java.util.List;
 
 import org.eclipse.rcpl.libs.db.H2DB;
@@ -25,6 +26,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	void openDocument(URL url);
+
 	void closeApplication();
 
 	void layoutDocument(IEditor editor, IDocument document);
@@ -37,7 +40,7 @@ public interface IRcplUic {
 
 	StackPane getProgressArea();
 
-	StackPane getZoomArea();
+	HBox getEditorWindowTools();
 
 	H2DB getH2DB();
 

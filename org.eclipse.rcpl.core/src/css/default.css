@@ -1203,11 +1203,11 @@
 }
 
 #sliderButton {
-	-fx-background-radius: 5em;
-    -fx-min-width: 10px;
-    -fx-min-height: 10px;
-    -fx-max-width: 10px;
-    -fx-max-height: 10px;
+	-fx-background-radius: 2em;
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+    -fx-max-width: 16px;
+    -fx-max-height: 16px;
 }
 
 #dialogButton {
@@ -1264,4 +1264,9 @@
 .menu-item:focused .label {
   -fx-text-fill: white;
   -fx-font: 12pt "Segoe UI";
+}
+
+
+#documentTabPane {
+  -fx-background-color: derive(-fx-base, -50.0%);	
 }

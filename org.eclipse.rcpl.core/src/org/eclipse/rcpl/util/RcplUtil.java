@@ -1062,4 +1062,10 @@ public class RcplUtil {
 		byte[] ba = c.getBytes();
 		return c.equals("\r") || c.equals("\b") || ba[0] == 127; // 127 = DEL
 	}
+
+	public static void waitForDone(boolean[] done) {
+		while (!done[0]) {
+			sleep(10);
+		}
+	}
 }

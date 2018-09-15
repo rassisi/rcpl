@@ -765,7 +765,9 @@ public class Rcpl {
 	}
 
 	public static void putValue(IEditor editor, KeyValueKey key, String value) {
-		RcplSession.getDefault().putValue(key.name() + editor.getDocument().getFile().getName(), value);
+		if (editor.getDocument() != null && editor.getDocument().getFile() != null) {
+			RcplSession.getDefault().putValue(key.name() + editor.getDocument().getFile().getName(), value);
+		}
 	}
 
 	public static void putIntValue(IEditor editor, KeyValueKey key, int value) {
@@ -787,4 +789,11 @@ public class Rcpl {
 	public static void putValue(KeyValueKey key, String value) {
 		RcplSession.getDefault().putValue(key.name(), value);
 	}
+
+	// ---------- delete
+
+	public static void deleteAllValues(KeyValueKey key) {
+		RcplSession.getDefault().deleteAllValues(key.name());
+	}
+
 }
