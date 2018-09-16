@@ -830,28 +830,30 @@ public class RcplUic implements IRcplUic {
 			}
 		});
 
-		new Thread() {
-			@Override
-			public void run() {
+		if (!lastOpenedDocuments.isEmpty()) {
+			new Thread() {
+				@Override
+				public void run() {
 
-				File file = lastOpenedDocuments.get(lastOpenedDocuments.size() - 1);
-				final boolean[] done = new boolean[1];
-				completionListener = new RcplCompletionListener() {
-					@Override
-					public void onCompleted() {
-						done[0] = true;
-					}
-				};
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						openDocument(file);
-					}
-				});
-				RcplUtil.waitForDone(done);
-				completionListener = null;
-			}
-		}.start();
+					File file = lastOpenedDocuments.get(lastOpenedDocuments.size() - 1);
+					final boolean[] done = new boolean[1];
+					completionListener = new RcplCompletionListener() {
+						@Override
+						public void onCompleted() {
+							done[0] = true;
+						}
+					};
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							openDocument(file);
+						}
+					});
+					RcplUtil.waitForDone(done);
+					completionListener = null;
+				}
+			}.start();
+		}
 
 		getStage().widthProperty().addListener(new ChangeListener<Number>() {
 			@Override

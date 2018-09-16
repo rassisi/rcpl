@@ -824,7 +824,7 @@ public class RcplSideToolBar implements ISideToolBar {
 
 		if (path != null) {
 
-			Rcpl.set(KeyValueKey.SIDEBAR_PATH, path);
+			Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SIDEBAR_PATH, path);
 			StringTokenizer tok = new StringTokenizer(path, "/");
 			EObject root = Rcpl.getRcpl().getAllTools();
 

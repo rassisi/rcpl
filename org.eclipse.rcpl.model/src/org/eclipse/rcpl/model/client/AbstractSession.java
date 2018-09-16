@@ -80,6 +80,7 @@ import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.RcplModelUtil;
 import org.eclipse.rcpl.model.RcplSessionFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue;
+import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -1353,6 +1354,11 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	@Override
 	public List<String> loadKeys(String matchKey) {
 		List<String> keys = new ArrayList<String>();
+		if (getRcpl().getKeyvalues() == null) {
+			KeyValues kv = RcplFactory.eINSTANCE.createKeyValues();
+			getRcpl().setKeyvalues(kv);
+			commit();
+		}
 		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
 			if (kv.getKey().startsWith(matchKey)) {
 				keys.add(kv.getKey());
