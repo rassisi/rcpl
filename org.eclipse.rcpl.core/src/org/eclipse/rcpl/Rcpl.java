@@ -17,12 +17,9 @@ import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -54,19 +51,9 @@ public class Rcpl {
 
 	private static HashMap<String, String> pathRegistry = new HashMap<String, String>();
 
-//	private static ProgressBar progressBar;
-
-//	private static ProgressIndicator progressIndicator;
-
-	private static Text progressText;
-
 	private static boolean mobile;
 
 	public static Throwable runtimeException;
-
-	// private static ProgressBar startProgressbar;
-	//
-	// private static Text progressMessage;
 
 	public static List<INavigatorListener> navigatorListeners = new ArrayList<INavigatorListener>();
 
@@ -496,31 +483,8 @@ public class Rcpl {
 
 	// private static boolean debugDely;
 
-	private static boolean showProgressBar;
-
 	public static void startProgress(final double increment, final boolean showProgressBar) {
-		if (Platform.isFxApplicationThread()) {
-			Rcpl.progressValue = increment;
-			Rcpl.showProgressBar = showProgressBar;
-			Rcpl.progressIncrement = increment;
-			progressMessage("");
-			showProgress(true);
-		} else {
-			Platform.runLater(new Runnable() {
-
-				@Override
-				public void run() {
-					Rcpl.showProgressBar = showProgressBar;
-					Rcpl.progressIncrement = increment;
-					Rcpl.progressValue = increment;
-					progressMessage("");
-					showProgress(true);
-				}
-			});
-		}
 	}
-
-	private static double progressIncrement;
 
 	public static void progressMessage(final String message) {
 		RcplModel.mobileProvider.appendLog(message);
@@ -528,31 +492,11 @@ public class Rcpl {
 	}
 
 	public static void progressMessage(final String message, long delay) {
-		progressMessage = message;
-		progressValue += progressIncrement;
-
-		showProgress(progressValue < 100);
-
-		if (delay > 0) {
-			try {
-				Thread.sleep(delay);
-			} catch (InterruptedException e) {
-			}
-		}
-
 	}
 
 	public static void progressMessage(Exception ex) {
 		progressMessage(ex.getMessage());
 	}
-
-	private static String progressMessage = "";
-
-	private static double progressValue = 0;
-
-	private static Task<Void> task;
-
-	private static boolean isProgressVisible;
 
 	public static void showProgress(final boolean show) {
 //		if (isProgressVisible == show) {
@@ -794,7 +738,7 @@ public class Rcpl {
 	}
 
 	public static void set(KeyValueKey key, int value) {
-		putValue(key, "" + value);
+		set(key, "" + value);
 	}
 
 	public static void set(IEditor editor, KeyValueKey key, int value) {
@@ -806,18 +750,18 @@ public class Rcpl {
 	}
 
 	public static void set(KeyValueKey key, double value) {
-		putValue(key, "" + value);
+		set(key, "" + value);
 	}
 
 	public static void set(KeyValueKey key, boolean value) {
-		putValue(key, "" + value);
+		set(key, "" + value);
 	}
 
 	public static void set(IEditor editor, KeyValueKey key, boolean value) {
 		set(editor, key, "" + value);
 	}
 
-	public static void putValue(KeyValueKey key, String value) {
+	public static void set(KeyValueKey key, String value) {
 		RcplSession.getDefault().putValue(key.name(), value);
 	}
 

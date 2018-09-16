@@ -1,5 +1,7 @@
 package org.eclipse.rcpl;
 
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
+
 /**
  * @author ramin
  *
@@ -23,5 +25,7 @@ public interface ISideToolBar extends IToolbar {
 	void showSideTools();
 
 	void expand(String path);
+
+	void expand(ToolGroup toolGroup);
 
 }

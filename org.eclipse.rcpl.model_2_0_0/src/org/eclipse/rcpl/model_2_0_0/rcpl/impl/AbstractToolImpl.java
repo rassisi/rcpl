@@ -5,6 +5,7 @@ package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 
 /**
@@ -30,7 +31,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isSystem <em>System</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isToggleGroup <em>Toggle Group</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getSideToolbarPath <em>Side Toolbar Path</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getExpandToolGroup <em>Expand Tool Group</em>}</li>
  * </ul>
  *
  * @generated
@@ -346,8 +347,8 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSideToolbarPath() {
-		return (String)eGet(RcplPackage.Literals.ABSTRACT_TOOL__SIDE_TOOLBAR_PATH, true);
+	public ToolGroup getExpandToolGroup() {
+		return (ToolGroup)eGet(RcplPackage.Literals.ABSTRACT_TOOL__EXPAND_TOOL_GROUP, true);
 	}
 
 	/**
@@ -355,8 +356,8 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSideToolbarPath(String newSideToolbarPath) {
-		eSet(RcplPackage.Literals.ABSTRACT_TOOL__SIDE_TOOLBAR_PATH, newSideToolbarPath);
+	public void setExpandToolGroup(ToolGroup newExpandToolGroup) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__EXPAND_TOOL_GROUP, newExpandToolGroup);
 	}
 
 	private Object data;

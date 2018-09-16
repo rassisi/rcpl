@@ -2769,13 +2769,13 @@ public interface RcplPackage extends EPackage {
 	int ABSTRACT_TOOL__TOGGLE_GROUP = LAYOUTABLE_FEATURE_COUNT + 15;
 
 	/**
-	 * The feature id for the '<em><b>Side Toolbar Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Expand Tool Group</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TOOL__SIDE_TOOLBAR_PATH = LAYOUTABLE_FEATURE_COUNT + 16;
+	int ABSTRACT_TOOL__EXPAND_TOOL_GROUP = LAYOUTABLE_FEATURE_COUNT + 16;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Tool</em>' class. <!--
@@ -3065,13 +3065,13 @@ public interface RcplPackage extends EPackage {
 	int TOOL__TOGGLE_GROUP = ABSTRACT_TOOL__TOGGLE_GROUP;
 
 	/**
-	 * The feature id for the '<em><b>Side Toolbar Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Expand Tool Group</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL__SIDE_TOOLBAR_PATH = ABSTRACT_TOOL__SIDE_TOOLBAR_PATH;
+	int TOOL__EXPAND_TOOL_GROUP = ABSTRACT_TOOL__EXPAND_TOOL_GROUP;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute. <!--
@@ -3370,13 +3370,13 @@ public interface RcplPackage extends EPackage {
 	int TOOL_GROUP__TOGGLE_GROUP = ABSTRACT_TOOL__TOGGLE_GROUP;
 
 	/**
-	 * The feature id for the '<em><b>Side Toolbar Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Expand Tool Group</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_GROUP__SIDE_TOOLBAR_PATH = ABSTRACT_TOOL__SIDE_TOOLBAR_PATH;
+	int TOOL_GROUP__EXPAND_TOOL_GROUP = ABSTRACT_TOOL__EXPAND_TOOL_GROUP;
 
 	/**
 	 * The feature id for the '<em><b>Tool Groups</b></em>' containment reference list.
@@ -9894,15 +9894,15 @@ public interface RcplPackage extends EPackage {
 	EAttribute getAbstractTool_ToggleGroup();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSideToolbarPath <em>Side Toolbar Path</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getExpandToolGroup <em>Expand Tool Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Side Toolbar Path</em>'.
-	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSideToolbarPath()
+	 * @return the meta object for the reference '<em>Expand Tool Group</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getExpandToolGroup()
 	 * @see #getAbstractTool()
 	 * @generated
 	 */
-	EAttribute getAbstractTool_SideToolbarPath();
+	EReference getAbstractTool_ExpandToolGroup();
 
 	/**
 	 * Returns the meta object for class
@@ -11943,12 +11943,12 @@ public interface RcplPackage extends EPackage {
 		EAttribute ABSTRACT_TOOL__TOGGLE_GROUP = eINSTANCE.getAbstractTool_ToggleGroup();
 
 		/**
-		 * The meta object literal for the '<em><b>Side Toolbar Path</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Expand Tool Group</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ABSTRACT_TOOL__SIDE_TOOLBAR_PATH = eINSTANCE.getAbstractTool_SideToolbarPath();
+		EReference ABSTRACT_TOOL__EXPAND_TOOL_GROUP = eINSTANCE.getAbstractTool_ExpandToolGroup();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolImpl <em>Tool</em>}' class.

@@ -10,6 +10,8 @@ public enum KeyValueKey {
 
 	SIDEBAR_LEFT,
 
+	SIDEBAR_PATH,
+
 	EDITOR_SCALE,
 
 	WINDOW_WIDTH,

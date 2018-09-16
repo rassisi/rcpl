@@ -140,7 +140,7 @@ public class RibbonGroup extends RcplTool {
 						}
 					}
 					if (isSelected()) {
-						Rcpl.UIC.getSideToolBarControl().expand(toolGroup.getSideToolbarPath());
+						Rcpl.UIC.getSideToolBarControl().expand(toolGroup.getExpandToolGroup()); // toolGroup.getSideToolbarPath());
 					} else {
 						Rcpl.UIC.getSideToolBarControl().collapseToolPane();
 					}
@@ -163,12 +163,6 @@ public class RibbonGroup extends RcplTool {
 		getNode().getChildren().addAll(mainGridPane, gridPane);
 
 		processRibbonGroup();
-
-//		if (first) {
-//			HBox.setMargin(getNode(), new Insets(0, 7, 0, 0));
-//		} else {
-//			HBox.setMargin(getNode(), new Insets(0, 7, 0, 0));
-//		}
 
 		getNode().setMinWidth(2);
 		mainGridPane.setMinWidth(2);

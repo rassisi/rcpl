@@ -28,6 +28,7 @@ import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.ColorTool;
+import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.GroupType;
@@ -822,6 +823,8 @@ public class RcplSideToolBar implements ISideToolBar {
 	public void expand(String path) {
 
 		if (path != null) {
+
+			Rcpl.set(KeyValueKey.SIDEBAR_PATH, path);
 			StringTokenizer tok = new StringTokenizer(path, "/");
 			EObject root = Rcpl.getRcpl().getAllTools();
 
@@ -871,6 +874,32 @@ public class RcplSideToolBar implements ISideToolBar {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void expand(ToolGroup toolGroup) {
+
+		List<String> segments = new ArrayList<String>();
+
+		ToolGroup tg = toolGroup;
+		segments.add(tg.getId());
+
+		EObject o = tg.eContainer();
+
+		while (tg.eContainer() instanceof ToolGroup) {
+			tg = (ToolGroup) tg.eContainer();
+			segments.add(tg.getId());
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (int i = segments.size() - 1; i >= 0; i--) {
+			sb.append(segments.get(i));
+			if (i > 0) {
+				sb.append("/");
+			}
+		}
+		expand(sb.toString());
+
 	}
 
 }
