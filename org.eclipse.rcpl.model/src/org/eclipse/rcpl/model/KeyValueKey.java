@@ -8,6 +8,8 @@ public enum KeyValueKey {
 
 	PAGE_COLUMNS,
 
+	SIDEBAR_LEFT,
+
 	EDITOR_SCALE,
 
 	WINDOW_WIDTH,

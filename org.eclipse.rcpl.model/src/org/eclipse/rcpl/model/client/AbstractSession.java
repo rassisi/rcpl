@@ -672,7 +672,11 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	 */
 	@Override
 	public RCPL getRcpl() {
-		return (RCPL) getRcplEmfResource().getContents().get(0);
+		try {
+			return (RCPL) getRcplEmfResource().getContents().get(0);
+		} catch (Exception ex) {
+			return null;
+		}
 	}
 
 	@Override
@@ -1327,9 +1331,11 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	@Override
 	public String getValue(String key) {
-		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
-			if (key.equals(kv.getKey())) {
-				return kv.getValue();
+		if (getRcpl() != null) {
+			for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
+				if (key.equals(kv.getKey())) {
+					return kv.getValue();
+				}
 			}
 		}
 		return null;

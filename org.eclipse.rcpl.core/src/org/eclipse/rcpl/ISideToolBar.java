@@ -22,4 +22,6 @@ public interface ISideToolBar extends IToolbar {
 
 	void showSideTools();
 
+	void expand(String path);
+
 }

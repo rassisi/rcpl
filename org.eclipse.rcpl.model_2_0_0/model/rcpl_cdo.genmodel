@@ -239,6 +239,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/system"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/url"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/toggleGroup"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/sideToolbarPath"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Tool">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Tool/format"/>

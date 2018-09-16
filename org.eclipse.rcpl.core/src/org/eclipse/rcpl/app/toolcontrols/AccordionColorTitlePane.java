@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TitledPane;
 import javafx.scene.effect.DropShadow;
@@ -33,6 +34,8 @@ class AccordionColorTitlePane extends TitledPane {
 	private Pane pane;
 	private Rectangle rect;
 	private ToolGroup toolGroup;
+
+	private Accordion accordion;
 
 	AccordionColorTitlePane(ISideToolBar sideToolBar, ToolGroup toolGroup, Node node, int hierarchy,
 			HashMap<String, AccordionColorTitlePane> titlePaneRegistry) {
@@ -162,4 +165,13 @@ class AccordionColorTitlePane extends TitledPane {
 		}
 		rect.setFill(color);
 	}
+
+	public Accordion getAccordion() {
+		return accordion;
+	}
+
+	public void setAccordion(Accordion accordion) {
+		this.accordion = accordion;
+	}
+
 }

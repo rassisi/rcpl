@@ -1203,7 +1203,7 @@
 }
 
 #sliderButton {
-	-fx-background-radius: 2em;
+	/*-fx-background-radius: 2em;*/
     -fx-min-width: 16px;
     -fx-min-height: 16px;
     -fx-max-width: 16px;

@@ -138,7 +138,8 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			toggleButonListener = new ChangeListener<Boolean>() {
 				@Override
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-					if (newValue) {
+//					if (newValue) 
+					{
 						performAction();
 					}
 				}
@@ -200,6 +201,12 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		}
 
 		return (ButtonBase) node;
+	}
+
+	public void reset() {
+		if (node instanceof ToggleButton) {
+			setSelected(false);
+		}
 	}
 
 	@Override

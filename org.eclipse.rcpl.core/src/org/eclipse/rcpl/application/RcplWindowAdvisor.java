@@ -66,7 +66,7 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 
 			@Override
 			public void run() {
-				if (Rcpl.getValue(KeyValueKey.WINDOW_WIDTH) == null) {
+				if (Rcpl.get(KeyValueKey.WINDOW_WIDTH) == null) {
 					List<Screen> screens = Screen.getScreensForRectangle(100, 100, 100, 100);
 					Rectangle2D bounds = screens.get(0).getVisualBounds();
 					applicationProvider.getPrimaryStage().setWidth(bounds.getWidth() * 0.75);
@@ -74,15 +74,14 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 					applicationProvider.getPrimaryStage().centerOnScreen();
 					initialStageX = applicationProvider.getPrimaryStage().getX();
 					initialStageY = applicationProvider.getPrimaryStage().getY();
-					Rcpl.putDoubleValue(KeyValueKey.WINDOW_X, initialStageX);
-					Rcpl.putDoubleValue(KeyValueKey.WINDOW_Y, initialStageY);
+					Rcpl.set(KeyValueKey.WINDOW_X, initialStageX);
+					Rcpl.set(KeyValueKey.WINDOW_Y, initialStageY);
 
 				} else {
-					applicationProvider.getPrimaryStage().setWidth(Rcpl.getDoubleValue(KeyValueKey.WINDOW_WIDTH, 1000));
-					applicationProvider.getPrimaryStage()
-							.setHeight(Rcpl.getDoubleValue(KeyValueKey.WINDOW_HEIGHT, 800));
-					initialStageX = Rcpl.getDoubleValue(KeyValueKey.WINDOW_X, -1);
-					initialStageY = Rcpl.getDoubleValue(KeyValueKey.WINDOW_Y, -1);
+					applicationProvider.getPrimaryStage().setWidth(Rcpl.get(KeyValueKey.WINDOW_WIDTH, 1000.0));
+					applicationProvider.getPrimaryStage().setHeight(Rcpl.get(KeyValueKey.WINDOW_HEIGHT, 800.0));
+					initialStageX = Rcpl.get(KeyValueKey.WINDOW_X, -1.0);
+					initialStageY = Rcpl.get(KeyValueKey.WINDOW_Y, -1.0);
 					applicationProvider.getPrimaryStage().setX(initialStageX);
 					applicationProvider.getPrimaryStage().setY(initialStageY);
 				}

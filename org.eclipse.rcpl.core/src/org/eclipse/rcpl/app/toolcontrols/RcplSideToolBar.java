@@ -39,14 +39,13 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -158,7 +157,6 @@ public class RcplSideToolBar implements ISideToolBar {
 						toolbarStack.setPadding(new Insets(0, 0, 0, 0));
 					}
 
-					// n.setVisible(true);
 				}
 				collapseToolPane();
 
@@ -206,6 +204,7 @@ public class RcplSideToolBar implements ISideToolBar {
 							}
 						}
 					};
+					toolGroup_0.setData(b);
 
 					String url = toolGroup_0.getUrl();
 					String detailPaneClassName = toolGroup_0.getDetailPaneClassName();
@@ -249,23 +248,6 @@ public class RcplSideToolBar implements ISideToolBar {
 						// ---------- accordion -----------
 
 						Accordion accordion = new Accordion();
-
-						accordion.expandedPaneProperty().addListener(new ChangeListener<TitledPane>() {
-							@Override
-							public void changed(ObservableValue<? extends TitledPane> property,
-									final TitledPane oldPane, final TitledPane newPane) {
-								if (oldPane != null)
-									oldPane.setCollapsible(true);
-								if (newPane != null)
-									Platform.runLater(new Runnable() {
-										@Override
-										public void run() {
-											newPane.setCollapsible(false);
-										}
-									});
-							}
-						});
-
 						accordion.setUserData(toolGroup_0);
 						accordion.setId("sideBarAccordion");
 						accordion.setPrefHeight(screenHeight);
@@ -296,10 +278,6 @@ public class RcplSideToolBar implements ISideToolBar {
 	private void processAccordion(ToolGroup toolGroup, Accordion accordion, AccordionColorTitlePane titlePane,
 			int hierarchy) {
 
-		if ("TOOLBAR_SHAPES".equals(toolGroup.getId())) {
-			System.out.println();
-		}
-
 		// ---------- If there are no top level groups then process only Tools -
 
 		if (!groupHasAccordionItems(toolGroup)) {
@@ -321,7 +299,12 @@ public class RcplSideToolBar implements ISideToolBar {
 				};
 			};
 			titlePane = new AccordionColorTitlePane(this, toolGroup, newAccordion, hierarchy, titlePaneRegistry);
+			if (hierarchy > 0) {
+				toolGroup.setData(titlePane);
+			}
 			accordion.getPanes().add(titlePane);
+			titlePane.setAccordion(accordion);
+
 			accordion = newAccordion;
 		}
 
@@ -444,7 +427,11 @@ public class RcplSideToolBar implements ISideToolBar {
 			AccordionColorTitlePane titlePane = new AccordionColorTitlePane(this, toolGroup, stackPane, hierarchy,
 					titlePaneRegistry);
 
+			if (hierarchy > 0) {
+				toolGroup.setData(titlePane);
+			}
 			accordion.getPanes().add(titlePane);
+			titlePane.setAccordion(accordion);
 			ScrollPane scrollPane = new ScrollPane();
 			scrollPane.setFitToHeight(true);
 			scrollPane.setFitToWidth(true);
@@ -596,7 +583,6 @@ public class RcplSideToolBar implements ISideToolBar {
 							public void handle(ActionEvent actionEvent) {
 								expandAccordion();
 								expandToolPane(groupId);
-
 							}
 						}));
 				timeline.setCycleCount(1);
@@ -634,12 +620,15 @@ public class RcplSideToolBar implements ISideToolBar {
 	 */
 	@Override
 	public void collapseToolPane() {
+		expanded = false;
 		parent.setMaxWidth(WIDTH_COLLAPSED);
 		parent.setMinWidth(WIDTH_COLLAPSED);
 		parent.setPrefWidth(WIDTH_COLLAPSED);
 		BorderPane.setMargin(Rcpl.UIC.getMainBottomArea(), new Insets(0, 0, 0, WIDTH_COLLAPSED_BOTTOM));
 		activeGroupId = null;
 		toolPaneStack.getChildren().clear();
+
+		System.out.println("expanded = false");
 	}
 
 	private ITool createColorTool(final Tool eTool, Pane flowPane, final AccordionColorTitlePane titlePane) {
@@ -705,7 +694,7 @@ public class RcplSideToolBar implements ISideToolBar {
 																tp2.getToolGroup().getToolGroups().get(0));
 														if (tp3 != null) {
 
-															new DelayedExecution(300) {
+															new DelayedExecution(30) {
 																@Override
 																protected void execute() {
 																	tp3.setExpanded(true);
@@ -743,12 +732,17 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	}
 
+	private boolean expanded;
+
 	/**
 	 * @param groupId
 	 */
 	private void expandToolPane(String groupId) {
 
 		try {
+			expanded = true;
+			System.out.println("expanded = true");
+
 			try {
 				Pane pane = toolPaneStackRegistry.get(getKey(getPerspectiveId(), groupId));
 				toolPaneStack.getChildren().clear();
@@ -822,6 +816,61 @@ public class RcplSideToolBar implements ISideToolBar {
 		}
 
 		return false;
+	}
+
+	@Override
+	public void expand(String path) {
+
+		if (path != null) {
+			StringTokenizer tok = new StringTokenizer(path, "/");
+			EObject root = Rcpl.getRcpl().getAllTools();
+
+			List<EObject> eObjectPath = new ArrayList<EObject>();
+
+			while (tok.hasMoreElements()) {
+				String segment = tok.nextToken();
+
+				for (EObject o : root.eContents()) {
+					if (o instanceof ToolGroup) {
+						if (segment.equals(((ToolGroup) o).getId())) {
+							eObjectPath.add(o);
+							root = o;
+							break;
+						}
+					}
+				}
+			}
+
+			for (EObject eObject : eObjectPath) {
+
+				if (eObject instanceof ToolGroup) {
+					Object data = ((ToolGroup) eObject).getData();
+
+					if (data instanceof Button) {
+						((Button) data).fire();
+						new DelayedExecution(200) {
+
+							@Override
+							protected void execute() {
+								if (!expanded)
+									((Button) data).fire();
+							}
+						};
+
+					} else if (data instanceof AccordionColorTitlePane) {
+						new DelayedExecution(500) {
+
+							@Override
+							protected void execute() {
+								AccordionColorTitlePane tp = (AccordionColorTitlePane) data;
+								tp.setExpanded(true);
+							}
+						};
+					}
+
+				}
+			}
+		}
 	}
 
 }

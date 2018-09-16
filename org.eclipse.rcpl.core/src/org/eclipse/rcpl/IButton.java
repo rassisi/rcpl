@@ -11,6 +11,8 @@ public interface IButton extends ITool {
 	@Override
 	ButtonBase getNode();
 
+	void reset();
+
 	void setSelected(boolean selected);
 
 	@Override

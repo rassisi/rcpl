@@ -15,6 +15,7 @@ import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
+import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -707,8 +708,8 @@ public class Rcpl {
 
 	// ---------- getValues
 
-	public static double getDoubleValue(IEditor editor, KeyValueKey key, double defaultValue) {
-		String value = getValue(editor, key, "" + defaultValue);
+	public static double get(IEditor editor, KeyValueKey key, double defaultValue) {
+		String value = get(editor, key, "" + defaultValue);
 		try {
 			return Double.valueOf(value).doubleValue();
 		} catch (Exception ex) {
@@ -716,8 +717,8 @@ public class Rcpl {
 		}
 	}
 
-	public static double getDoubleValue(KeyValueKey key, double defaultValue) {
-		String value = getValue(key, "" + defaultValue);
+	public static double get(KeyValueKey key, double defaultValue) {
+		String value = get(key, "" + defaultValue);
 		try {
 			return Double.valueOf(value).doubleValue();
 		} catch (Exception ex) {
@@ -725,8 +726,8 @@ public class Rcpl {
 		}
 	}
 
-	public static int getIntValue(IEditor editor, KeyValueKey key, int defaultValue) {
-		String value = getValue(editor, key, "" + defaultValue);
+	public static int get(KeyValueKey key, int defaultValue) {
+		String value = get(key, "" + defaultValue);
 		try {
 			return Integer.valueOf(value).intValue();
 		} catch (Exception ex) {
@@ -734,56 +735,86 @@ public class Rcpl {
 		}
 	}
 
-	public static String getValue(IEditor editor, KeyValueKey key) {
-		return getValue(editor, key, null);
+	public static int get(IEditor editor, KeyValueKey key, int defaultValue) {
+		String value = get(editor, key, "" + defaultValue);
+		try {
+			return Integer.valueOf(value).intValue();
+		} catch (Exception ex) {
+			return defaultValue;
+		}
 	}
 
-	public static String getValue(IEditor editor, KeyValueKey key, String defaultValue) {
-		String value = RcplSession.getDefault().getValue(key.name() + editor.getDocument().getFile().getName());
+	public static boolean get(KeyValueKey key, boolean defaultValue) {
+		String value = get(key, "" + defaultValue);
+		try {
+			return Boolean.valueOf(value).booleanValue();
+		} catch (Exception ex) {
+			return defaultValue;
+		}
+	}
+
+	public static boolean get(IEditor editor, KeyValueKey key, boolean defaultValue) {
+		String value = get(editor, key, "" + defaultValue);
+		try {
+			return Boolean.valueOf(value).booleanValue();
+		} catch (Exception ex) {
+			return defaultValue;
+		}
+	}
+
+	public static String get(IEditor editor, KeyValueKey key, String defaultValue) {
+		String value = null;
+		if (editor != null && editor.getDocument() != null) {
+			value = RcplSession.getDefault().getValue(key.name() + editor.getDocument().getFile().getName());
+		}
 		if (value == null) {
 			value = defaultValue;
 		}
 		return value;
 	}
 
-	public static String getValue(KeyValueKey key, String defaultValue) {
-		String value = RcplSession.getDefault().getValue(key.name());
+	public static String get(KeyValueKey key, String defaultValue) {
+		String value = get(key);
 		if (value == null) {
 			value = defaultValue;
 		}
 		return value;
 	}
 
-	public static String getValue(KeyValueKey key) {
+	public static String get(KeyValueKey key) {
 		return RcplSession.getDefault().getValue(key.name());
 	}
 
-	// ---------- puts
+	// ---------- set
 
-	public static void putValue(IEditor editor, KeyValueKey key, int value) {
-		putValue(editor, key, "" + value);
-	}
-
-	public static void putValue(IEditor editor, KeyValueKey key, String value) {
+	public static void set(IEditor editor, KeyValueKey key, String value) {
 		if (editor.getDocument() != null && editor.getDocument().getFile() != null) {
 			RcplSession.getDefault().putValue(key.name() + editor.getDocument().getFile().getName(), value);
 		}
 	}
 
-	public static void putIntValue(IEditor editor, KeyValueKey key, int value) {
-		putValue(editor, key, "" + value);
-	}
-
-	public static void putDoubleValue(IEditor editor, KeyValueKey key, double value) {
-		putValue(editor, key, "" + value);
-	}
-
-	public static void putIntValue(KeyValueKey key, int value) {
+	public static void set(KeyValueKey key, int value) {
 		putValue(key, "" + value);
 	}
 
-	public static void putDoubleValue(KeyValueKey key, double value) {
+	public static void set(IEditor editor, KeyValueKey key, int value) {
+		set(editor, key, "" + value);
+	}
+
+	public static void set(IEditor editor, KeyValueKey key, double value) {
+		set(editor, key, "" + value);
+	}
+
+	public static void set(KeyValueKey key, double value) {
 		putValue(key, "" + value);
+	}
+
+	public static void set(KeyValueKey key, boolean value) {
+		putValue(key, "" + value);
+	}
+
+	public static void set(IEditor editor, KeyValueKey key, boolean value) {
+		set(editor, key, "" + value);
 	}
 
 	public static void putValue(KeyValueKey key, String value) {
@@ -794,6 +825,10 @@ public class Rcpl {
 
 	public static void deleteAllValues(KeyValueKey key) {
 		RcplSession.getDefault().deleteAllValues(key.name());
+	}
+
+	public static RCPL getRcpl() {
+		return RcplSession.getDefault().getRcpl();
 	}
 
 }

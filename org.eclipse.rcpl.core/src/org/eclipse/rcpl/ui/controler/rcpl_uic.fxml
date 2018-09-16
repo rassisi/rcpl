@@ -31,17 +31,22 @@
             <StackPane fx:id="progressArea" prefWidth="100.0" HBox.hgrow="ALWAYS" />
             <HBox fx:id="editorWindowTools" minWidth="-Infinity" prefWidth="400.0" spacing="3.0">
                <children>
-                  <Button id="sliderButton" fx:id="onePageButton" mnemonicParsing="false" onAction="#onOnePage" text="1" HBox.hgrow="NEVER" />
-                  <Button id="sliderButton" fx:id="twoPagesButton" mnemonicParsing="false" onAction="#onTwoPages" text="2" HBox.hgrow="NEVER" />
-                  <Button id="sliderButton" fx:id="multiPagesButton" mnemonicParsing="false" onAction="#onMultiPages" text="3" HBox.hgrow="NEVER" />
-                  <Separator orientation="VERTICAL" prefWidth="20.0" />
+                  <Button id="sliderButton" fx:id="onePageButton" mnemonicParsing="false" onAction="#onOnePage" HBox.hgrow="NEVER" />
+                  <Button id="sliderButton" fx:id="twoPagesButton" mnemonicParsing="false" onAction="#onTwoPages" HBox.hgrow="NEVER" />
+                  <Button id="sliderButton" mnemonicParsing="false" onAction="#onMultiPagesAutomatic" />
                   <HBox minHeight="-Infinity" prefWidth="300.0" HBox.hgrow="SOMETIMES">
                      <children>
                         <Button id="sliderButton" fx:id="minusZoom" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" text="-" HBox.hgrow="NEVER" />
                         <Slider fx:id="zoomSlider" blockIncrement="0.05" max="1.0" min="0.05" value="0.5" HBox.hgrow="ALWAYS" />
                         <Button id="sliderButton" fx:id="plusZoom" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" text="+" HBox.hgrow="NEVER" />
-                        <Label fx:id="zoomLabel" prefWidth="50.0" />
+                        <Label fx:id="zoomLabel">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin></Label>
                      </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                   </HBox>
                </children>
             </HBox>
@@ -65,6 +70,8 @@
              <Insets top="0.0" />
           </padding>
         </HBox>
+            <Button mnemonicParsing="false" onAction="#onTest" text="T" />
+            <Button mnemonicParsing="false" onAction="#onChangeSideBar" text="&lt;&gt;" />
             <StackPane fx:id="logoutButtonArea" alignment="BOTTOM_LEFT" prefHeight="32.0" prefWidth="32.0" VBox.vgrow="NEVER" />
       </children>
       <BorderPane.margin>

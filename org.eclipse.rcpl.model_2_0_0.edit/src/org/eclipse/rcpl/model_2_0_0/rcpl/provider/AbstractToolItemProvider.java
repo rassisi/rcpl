@@ -59,6 +59,7 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			addSystemPropertyDescriptor(object);
 			addUrlPropertyDescriptor(object);
 			addToggleGroupPropertyDescriptor(object);
+			addSideToolbarPathPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -416,6 +417,28 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Side Toolbar Path feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSideToolbarPathPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTool_sideToolbarPath_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTool_sideToolbarPath_feature", "_UI_AbstractTool_type"),
+				 RcplPackage.Literals.ABSTRACT_TOOL__SIDE_TOOLBAR_PATH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
@@ -454,6 +477,7 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			case RcplPackage.ABSTRACT_TOOL__SYSTEM:
 			case RcplPackage.ABSTRACT_TOOL__URL:
 			case RcplPackage.ABSTRACT_TOOL__TOGGLE_GROUP:
+			case RcplPackage.ABSTRACT_TOOL__SIDE_TOOLBAR_PATH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

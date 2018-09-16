@@ -11,7 +11,9 @@
 
 package org.eclipse.rcpl.internal.tools;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ITool;
@@ -62,6 +64,8 @@ public class RibbonGroup extends RcplTool {
 
 	// public JOTool(String id, String name, String toolTip, String imageName,
 	// boolean toggle) {
+
+	private static List<RcplButton> dialogButtons = new ArrayList<RcplButton>();
 
 	/**
 	 * Default Constructor.
@@ -130,13 +134,19 @@ public class RibbonGroup extends RcplTool {
 			RcplButton dialogButton = new RcplButton(t) {
 				@Override
 				public void doAction() {
+					for (RcplButton b2 : dialogButtons) {
+						if (b2 != this) {
+							b2.reset();
+						}
+					}
 					if (isSelected()) {
-						Rcpl.UIC.getSideToolBarControl().showSideTools();
+						Rcpl.UIC.getSideToolBarControl().expand(toolGroup.getSideToolbarPath());
 					} else {
 						Rcpl.UIC.getSideToolBarControl().collapseToolPane();
 					}
 				};
 			};
+			dialogButtons.add(dialogButton);
 			dialogButton.disableService();
 			dialogButton.setWidth(6);
 			dialogButton.setHeight(6);

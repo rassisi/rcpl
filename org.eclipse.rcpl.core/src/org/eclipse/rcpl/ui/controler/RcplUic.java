@@ -341,15 +341,6 @@ public class RcplUic implements IRcplUic {
 	protected Slider zoomSlider;
 
 	@FXML
-	protected Button onePageButton;
-
-	@FXML
-	protected Button twoPagesButton;
-
-	@FXML
-	protected Button multiPagesButton;
-
-	@FXML
 	protected Button minusZoom;
 
 	@FXML
@@ -621,7 +612,7 @@ public class RcplUic implements IRcplUic {
 				return;
 			}
 		}
-		Rcpl.putValue(getEditor(), KeyValueKey.RECENT_DOCUMENT, file.getAbsolutePath());
+		Rcpl.set(getEditor(), KeyValueKey.RECENT_DOCUMENT, file.getAbsolutePath());
 	}
 
 	@Override
@@ -632,10 +623,12 @@ public class RcplUic implements IRcplUic {
 
 	public void closeApplication() {
 
-		Rcpl.putDoubleValue(KeyValueKey.WINDOW_X, getStage().getX());
-		Rcpl.putDoubleValue(KeyValueKey.WINDOW_Y, getStage().getY());
-		Rcpl.putDoubleValue(KeyValueKey.WINDOW_WIDTH, getStage().getWidth());
-		Rcpl.putDoubleValue(KeyValueKey.WINDOW_HEIGHT, getStage().getHeight());
+		Rcpl.set(KeyValueKey.WINDOW_X, getStage().getX());
+		Rcpl.set(KeyValueKey.WINDOW_Y, getStage().getY());
+		Rcpl.set(KeyValueKey.WINDOW_WIDTH, getStage().getWidth());
+		Rcpl.set(KeyValueKey.WINDOW_HEIGHT, getStage().getHeight());
+
+		Rcpl.set(KeyValueKey.SIDEBAR_LEFT, sideBarLeft);
 
 		Rcpl.deleteAllValues(KeyValueKey.LAST_OPENED_DOCUMENT);
 
@@ -644,7 +637,7 @@ public class RcplUic implements IRcplUic {
 			IEditor editor = ti.getEditor();
 			if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
 				String fn = editor.getDocument().getFile().getAbsolutePath();
-				Rcpl.putValue(editor, KeyValueKey.LAST_OPENED_DOCUMENT, fn);
+				Rcpl.set(editor, KeyValueKey.LAST_OPENED_DOCUMENT, fn);
 			}
 		}
 
@@ -794,6 +787,8 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			protected void execute() {
+				sideBarLeft = !Rcpl.get(KeyValueKey.SIDEBAR_LEFT, true);
+				onChangeSideBar();
 				showHomePage(HomePageType.OVERVIEW, null);
 			}
 		};
@@ -806,7 +801,7 @@ public class RcplUic implements IRcplUic {
 					double scale = computeScale(newValue.doubleValue());
 					Rcpl.UIC.getEditor().setScale(scale);
 					if (oldValue.doubleValue() != 0.0) {
-						Rcpl.putDoubleValue(getEditor(), KeyValueKey.EDITOR_SCALE, newValue.doubleValue());
+						Rcpl.set(getEditor(), KeyValueKey.EDITOR_SCALE, newValue.doubleValue());
 					}
 					zoomLabel.setText("   " + (int) (scale * 100) + " %");
 				}
@@ -858,7 +853,21 @@ public class RcplUic implements IRcplUic {
 			}
 		}.start();
 
+		getStage().widthProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				if (!inPageLayout) {
+					if (Rcpl.get(getEditor(), KeyValueKey.PAGE_COLUMNS, 0) == -1) {
+						inPageLayout = true;
+						onMultiPagesAutomatic();
+						inPageLayout = false;
+					}
+				}
+			}
+		});
 	}
+
+	private boolean inPageLayout;
 
 	private double computeScale(double scale) {
 		double result;
@@ -1616,18 +1625,39 @@ public class RcplUic implements IRcplUic {
 
 	}
 
+	private boolean sideBarLeft = true;
+
 	@FXML
-	public void onMultiPages() {
-		getEditor().setPageColumns(10);
+	public void onChangeSideBar() {
+		sideBarLeft = !sideBarLeft;
+		borderPane.getChildren().remove(mainLeftBox);
+		if (sideBarLeft) {
+			borderPane.setLeft(mainLeftBox);
+		} else {
+			borderPane.setRight(mainLeftBox);
+		}
+	}
+
+	@FXML
+	public void onTest() {
+		getSideToolBarControl().expand("sidebar_paragraph_font/paragraphProperties");
+	}
+
+	@FXML
+	public void onMultiPagesAutomatic() {
+		Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, -1);
+		getEditor().setPageColumns(-1);
 	}
 
 	@FXML
 	public void onOnePage() {
+		Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, 1);
 		getEditor().setPageColumns(1);
 	}
 
 	@FXML
 	public void onTwoPages() {
+		Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, 2);
 		getEditor().setPageColumns(2);
 	}
 

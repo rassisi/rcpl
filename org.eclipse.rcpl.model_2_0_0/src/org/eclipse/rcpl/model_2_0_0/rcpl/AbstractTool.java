@@ -26,6 +26,7 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem <em>System</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl <em>Url</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isToggleGroup <em>Toggle Group</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSideToolbarPath <em>Side Toolbar Path</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool()
@@ -452,6 +453,32 @@ public interface AbstractTool extends Layoutable {
 	 * @generated
 	 */
 	void setToggleGroup(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Side Toolbar Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Side Toolbar Path</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Side Toolbar Path</em>' attribute.
+	 * @see #setSideToolbarPath(String)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_SideToolbarPath()
+	 * @model
+	 * @generated
+	 */
+	String getSideToolbarPath();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSideToolbarPath <em>Side Toolbar Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Side Toolbar Path</em>' attribute.
+	 * @see #getSideToolbarPath()
+	 * @generated
+	 */
+	void setSideToolbarPath(String value);
 
 	/**
 	 * @return

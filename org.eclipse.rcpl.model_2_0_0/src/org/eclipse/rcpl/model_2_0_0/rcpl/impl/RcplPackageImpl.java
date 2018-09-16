@@ -1546,6 +1546,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAbstractTool_SideToolbarPath() {
+		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTool() {
 		return toolEClass;
 	}
@@ -2771,6 +2780,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__SYSTEM);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__URL);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__TOGGLE_GROUP);
+		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__SIDE_TOOLBAR_PATH);
 
 		toolEClass = createEClass(TOOL);
 		createEAttribute(toolEClass, TOOL__FORMAT);
@@ -3132,6 +3142,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEAttribute(getAbstractTool_System(), ecorePackage.getEBoolean(), "system", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTool_Url(), ecorePackage.getEString(), "url", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTool_ToggleGroup(), ecorePackage.getEBoolean(), "toggleGroup", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractTool_SideToolbarPath(), ecorePackage.getEString(), "sideToolbarPath", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(toolEClass, Tool.class, "Tool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTool_Format(), ecorePackage.getEString(), "format", null, 0, 1, Tool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
