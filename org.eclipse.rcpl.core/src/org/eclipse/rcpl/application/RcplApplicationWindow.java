@@ -29,6 +29,7 @@ package org.eclipse.rcpl.application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -920,6 +921,17 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	@Override
 	public void setFullscreenAble(boolean fullscreenAble) {
 		fullscreen.setVisible(fullscreenAble);
+	}
+
+	@Override
+	public List<String> getStyleSheets() {
+		return super.getStylesheets();
+	}
+
+	@Override
+	public void resetStyles() {
+		getStylesheets().clear();
+		getStylesheets().add("skin/undecorator.css");
 	}
 
 }

@@ -20,7 +20,11 @@ public enum KeyValueKey {
 
 	WINDOW_X,
 
-	WINDOW_Y
+	WINDOW_Y,
+
+	TOP_TOOLBAR_COLLAPSED,
+
+	THEME
 
 	;
 

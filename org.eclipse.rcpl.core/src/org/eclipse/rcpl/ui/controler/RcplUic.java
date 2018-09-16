@@ -176,7 +176,7 @@ public class RcplUic implements IRcplUic {
 
 	private static Rectangle caret;
 
-	public static List<String> internalStylesRegistry = null;
+	public static String internalDefaultCss;
 
 	public static String internalStyleMsOffice;
 
@@ -195,7 +195,6 @@ public class RcplUic implements IRcplUic {
 			pane = new Pane();
 			caret = new Rectangle(3, 0, 1.6, 18);
 			pane.getChildren().add(caret);
-//			StackPane.setAlignment(caret, Pos.TOP_LEFT);
 
 			caret.setX(80);
 			caret.setFill(Color.BLACK);
@@ -249,22 +248,6 @@ public class RcplUic implements IRcplUic {
 		return caret.getY();
 	}
 
-	protected static String getInternalStyleDark() {
-		return internalStyleDark;
-	}
-
-	protected static String getInternalStyleMsOffice() {
-		return internalStyleMsOffice;
-	}
-
-	protected static List<String> getInternalStylesRegistry() {
-		return internalStylesRegistry;
-	}
-
-	protected static String getInternalStyleWindows7() {
-		return internalStyleWindows7;
-	}
-
 	public static void hideCaret(IParagraphFigure figure) {
 		figure.getCaretPane().getChildren().clear();
 	}
@@ -283,22 +266,6 @@ public class RcplUic implements IRcplUic {
 	public static void setCaretWidth(double width) {
 		getCaret();
 		caret.setWidth(width);
-	}
-
-	protected static void setInternalStyleDark(String internalStyleDark) {
-		RcplUic.internalStyleDark = internalStyleDark;
-	}
-
-	protected static void setInternalStyleMsOffice(String internalStyleMsOffice) {
-		RcplUic.internalStyleMsOffice = internalStyleMsOffice;
-	}
-
-	protected static void setInternalStylesRegistry(List<String> internalStylesRegistry) {
-		RcplUic.internalStylesRegistry = internalStylesRegistry;
-	}
-
-	protected static void setInternalStyleWindows7(String internalStyleWindows7) {
-		RcplUic.internalStyleWindows7 = internalStyleWindows7;
 	}
 
 	public static void showCaret(IParagraphFigure figure) {
@@ -600,7 +567,6 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void addHomePageButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup) {
 		IButton homeButton = Rcpl.getFactory().createHomePageButton(homePage);
-//		((ToggleButton) homeButton.getNode()).setToggleGroup(toggleGroup);
 		FlowPane.setMargin(homeButton.getNode(), new Insets(0, 0, 0, 5));
 		pane.getChildren().add(homeButton.getNode());
 	}
@@ -632,12 +598,16 @@ public class RcplUic implements IRcplUic {
 
 		Rcpl.deleteAllValues(KeyValueKey.LAST_OPENED_DOCUMENT);
 
+		Rcpl.set(KeyValueKey.TOP_TOOLBAR_COLLAPSED, topBarCollapseButton.isSelected());
+
 		for (Tab tab : tabPane.getTabs()) {
 			TabInfo ti = getTabInfo(tab);
-			IEditor editor = ti.getEditor();
-			if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
-				String fn = editor.getDocument().getFile().getAbsolutePath();
-				Rcpl.set(editor, KeyValueKey.LAST_OPENED_DOCUMENT, fn);
+			if (ti != null) {
+				IEditor editor = ti.getEditor();
+				if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
+					String fn = editor.getDocument().getFile().getAbsolutePath();
+					Rcpl.set(editor, KeyValueKey.LAST_OPENED_DOCUMENT, fn);
+				}
 			}
 		}
 
@@ -743,8 +713,9 @@ public class RcplUic implements IRcplUic {
 
 		Rcpl.progressMessage(this.getClass().getName() + ".createContent()");
 
-		List<String> recentDocumentKeys = RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name());
+		// ---------- restore some GUI states
 
+		List<String> recentDocumentKeys = RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name());
 		List<String> lastDocumentKeys = RcplSession.getDefault().loadKeys(KeyValueKey.LAST_OPENED_DOCUMENT.name());
 
 		for (int i = recentDocumentKeys.size() - 1; i >= 0; i--) {
@@ -779,7 +750,10 @@ public class RcplUic implements IRcplUic {
 
 		}
 
-		initStyles();
+		internalDefaultCss = RcplUic.class.getResource("/css/default.css").toExternalForm();
+		internalStyleMsOffice = RcplUic.class.getResource("/css/msoffice.css").toExternalForm();
+		internalStyleWindows7 = RcplUic.class.getResource("/css/windows_7.css").toExternalForm();
+		internalStyleDark = RcplUic.class.getResource("/css/theme_dark.css").toExternalForm();
 
 		doCreateContent();
 
@@ -835,6 +809,8 @@ public class RcplUic implements IRcplUic {
 				@Override
 				public void run() {
 
+					topBarCollapseButton.setSelected(Rcpl.get(KeyValueKey.TOP_TOOLBAR_COLLAPSED, false));
+
 					File file = lastOpenedDocuments.get(lastOpenedDocuments.size() - 1);
 					final boolean[] done = new boolean[1];
 					completionListener = new RcplCompletionListener() {
@@ -867,6 +843,24 @@ public class RcplUic implements IRcplUic {
 				}
 			}
 		});
+
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				String style = Rcpl.get(KeyValueKey.THEME, THEME_DEFAULT);
+				if (THEME_DEFAULT.equals(style)) {
+					handleThemeDefault(null);
+				} else if (THEME_DARK.equals(style)) {
+					handleThemeDark(null);
+				} else if (THEME_SILVER.equals(style)) {
+					handleThemeSilver(null);
+				} else if (THEME_WINDOWS7.equals(style)) {
+					handleThemeWindows7(null);
+				}
+			}
+		});
+
 	}
 
 	private boolean inPageLayout;
@@ -896,6 +890,55 @@ public class RcplUic implements IRcplUic {
 	protected Tab createNewTab(String title) {
 
 		final Tab tab = new Tab();
+
+		ContextMenu contextMenu = new ContextMenu();
+		contextMenu.setMinHeight(300);
+		contextMenu.setMinWidth(100);
+
+		contextMenu.setAutoHide(true);
+		contextMenu.setHideOnEscape(true);
+		tab.setContextMenu(contextMenu);
+
+		final MenuItem item1 = new MenuItem("close");
+		item1.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				closeTab(tab);
+				tabPane.getTabs().remove(tab);
+			}
+		});
+		contextMenu.getItems().add(item1);
+
+		final MenuItem item2 = new MenuItem("close All");
+		item2.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+
+				List<Tab> tabs = new ArrayList<Tab>();
+				tabs.addAll(tabPane.getTabs());
+
+				for (Tab t : tabs) {
+					try {
+						new WaitThread() {
+
+							@Override
+							public void doRun() {
+								closeTab(t);
+								tabPane.getTabs().remove(tab);
+							}
+						};
+
+					} catch (Exception ex) {
+						break;
+					}
+					RcplUtil.sleep(30);
+				}
+			}
+		});
+		contextMenu.getItems().add(item2);
+
 		TabInfo tabInfo = new TabInfo();
 		tab.setUserData(tabInfo);
 
@@ -951,6 +994,15 @@ public class RcplUic implements IRcplUic {
 			RcplModel.logError(ex);
 		}
 		return tab;
+	}
+
+	private void closeTab(Tab tab) {
+		EventHandler<Event> handler = tab.getOnCloseRequest();
+		if (null != handler) {
+			handler.handle(null);
+		} else {
+			tab.getTabPane().getTabs().remove(tab);
+		}
 	}
 
 	private void createStartMenu(Node anchor) {
@@ -1069,15 +1121,6 @@ public class RcplUic implements IRcplUic {
 			}
 		});
 
-	}
-
-	public void doInitStyles() {
-		internalStyleMsOffice = RcplUic.class.getResource("/css/msoffice.css").toExternalForm();
-		getInternalStylesRegistry().add(internalStyleMsOffice);
-		internalStyleWindows7 = RcplUic.class.getResource("/css/windows_7.css").toExternalForm();
-		getInternalStylesRegistry().add(internalStyleWindows7);
-		internalStyleDark = RcplUic.class.getResource("/css/theme_dark.css").toExternalForm();
-		getInternalStylesRegistry().add(internalStyleDark);
 	}
 
 	protected void doOpenDocument(URL file) {
@@ -1401,16 +1444,6 @@ public class RcplUic implements IRcplUic {
 		return applicationStarter.getRcplApplicationProvider().getPrimaryStage();
 	}
 
-	@Override
-	public String getStyleMsOffice() {
-		return internalStyleMsOffice;
-	}
-
-	@Override
-	public List<String> getStylesRegistry() {
-		return internalStylesRegistry;
-	}
-
 	protected TabInfo getTabInfo(Tab tab) {
 		return (TabInfo) tab.getUserData();
 	}
@@ -1485,41 +1518,65 @@ public class RcplUic implements IRcplUic {
 		getStage().setIconified(true);
 	}
 
+	private static final String THEME_DARK = "THEME_DARK";
+
+	private static final String THEME_DEFAULT = "THEME_DEFAULT";
+
+	private static final String THEME_SILVER = "THEME_SILVER";
+
+	private static final String THEME_WINDOWS7 = "THEME_WINDOWS7";
+
 	@FXML
 	public void handleThemeDark(ActionEvent event) {
-		final Scene scene = getStage().getScene();
 		removeAllStyles();
-		scene.getStylesheets().add(getClass().getResource("/css/theme_dark.css").toExternalForm());
+		addStyles(internalStyleDark, internalDefaultCss);
+		Rcpl.set(KeyValueKey.THEME, THEME_DARK);
 	}
 
-	@Override
 	@FXML
 	public void handleThemeDefault(ActionEvent event) {
-		final Scene scene = getStage().getScene();
 		removeAllStyles();
-		scene.getStylesheets().add(internalStyleMsOffice);
-
+		addStyles(internalStyleMsOffice, internalDefaultCss);
+		Rcpl.set(KeyValueKey.THEME, THEME_DEFAULT);
 	}
 
 	@FXML
 	public void handleThemeSilver(ActionEvent event) {
-
 		removeAllStyles();
-
+		addStyles(internalDefaultCss);
+		Rcpl.set(KeyValueKey.THEME, THEME_SILVER);
 	}
 
 	@FXML
-	public void handleThemeWIndows7(ActionEvent event) {
-		final Scene scene = getStage().getScene();
+	public void handleThemeWindows7(ActionEvent event) {
 		removeAllStyles();
-		scene.getStylesheets().add(internalStyleWindows7);
+		addStyles(internalStyleWindows7, internalDefaultCss);
+		Rcpl.set(KeyValueKey.THEME, THEME_WINDOWS7);
+	}
 
+	private void addStyles(String... styles) {
+		final Scene scene = getStage().getScene();
+		for (String style : styles) {
+			scene.getStylesheets().add(style);
+			getApplicationStarter().getRcplApplicationProvider().getApplicationWindow().getStyleSheets().add(style);
+		}
+	}
+
+	private void removeAllStyles() {
+		List<String> sts = getStage().getScene().getStylesheets();
+		sts.clear();
+		getApplicationStarter().getRcplApplicationProvider().getApplicationWindow().resetStyles();
+
+	}
+
+	@Override
+	public boolean isTopToolbarCollapsed() {
+		return topBarCollapseButton.isSelected();
 	}
 
 	@FXML
 	public void handleTopBarCollapseButton(ActionEvent event) {
-		boolean selected = topBarCollapseButton.isSelected();
-		getTopToolbarControl().collapse(selected);
+		getTopToolbarControl().collapse(isTopToolbarCollapsed());
 	}
 
 	public void hideTopBar() {
@@ -1565,15 +1622,6 @@ public class RcplUic implements IRcplUic {
 		RcplSession.getDefault().setPassword(null);
 
 		return true;
-	}
-
-	@Override
-	public void initStyles() {
-		if (internalStylesRegistry == null) {
-			internalStylesRegistry = new ArrayList<String>();
-			doInitStyles();
-
-		}
 	}
 
 	@Override
@@ -1757,12 +1805,6 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
-	protected void removeAllStyles() {
-		for (String style : internalStylesRegistry) {
-			getStage().getScene().getStylesheets().remove(style);
-		}
-	}
-
 	@Override
 	public void restorePerspective() {
 		updatePerspective(tabPane.getSelectionModel().getSelectedItem());
@@ -1787,17 +1829,21 @@ public class RcplUic implements IRcplUic {
 	protected Tab searchTab(String name) {
 		String[] splits1 = name.split("\\.");
 
-		for (Tab t : tabPane.getTabs()) {
-			TabInfo info = getTabInfo(t);
-			String[] splits = t.getText().split("\\.");
-			if (splits1[0].trim().equals(splits[0].trim())) {
-				return t;
+		try {
+			for (Tab t : tabPane.getTabs()) {
+				TabInfo info = getTabInfo(t);
+				String[] splits = t.getText().split("\\.");
+				if (splits1[0].trim().equals(splits[0].trim())) {
+					return t;
+				}
+				IDocument doc = info.getEditor().getDocument();
+				String docName = doc.getFile().getName();
+				if (docName.equals(name)) {
+					return t;
+				}
 			}
-			IDocument doc = info.getEditor().getDocument();
-			String docName = doc.getFile().getName();
-			if (docName.equals(name)) {
-				return t;
-			}
+		} catch (Exception ex) {
+			// ignore
 		}
 		return null;
 	}
@@ -2081,6 +2127,15 @@ public class RcplUic implements IRcplUic {
 		getTopToolBar().showPerspective(perspective);
 		updateQuickToolsArea();
 		this.perspective = perspective;
+
+		new DelayedExecution(100) {
+
+			@Override
+			protected void execute() {
+				handleTopBarCollapseButton(null);
+			}
+		};
+
 		return false;
 	}
 

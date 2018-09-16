@@ -31,6 +31,11 @@
             <StackPane fx:id="progressArea" prefWidth="100.0" HBox.hgrow="ALWAYS" />
             <HBox fx:id="editorWindowTools" minWidth="-Infinity" prefWidth="400.0" spacing="3.0">
                <children>
+                  <Button id="sliderButton" mnemonicParsing="false" onAction="#handleThemeDefault" />
+                  <Button id="sliderButton" mnemonicParsing="false" onAction="#handleThemeSilver" />
+                  <Button id="sliderButton" mnemonicParsing="false" onAction="#handleThemeDark" />
+                  <Button id="sliderButton" mnemonicParsing="false" onAction="#handleThemeWindows7" />
+                  <HBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="20.0" />
                   <Button id="sliderButton" fx:id="onePageButton" mnemonicParsing="false" onAction="#onOnePage" HBox.hgrow="NEVER" />
                   <Button id="sliderButton" fx:id="twoPagesButton" mnemonicParsing="false" onAction="#onTwoPages" HBox.hgrow="NEVER" />
                   <Button id="sliderButton" mnemonicParsing="false" onAction="#onMultiPagesAutomatic" />
@@ -121,17 +126,23 @@
                         </HBox>
             <HBox fx:id="topArea" alignment="BOTTOM_LEFT" maxHeight="-1.0" minHeight="-1.0" prefWidth="10.0">
               <children>
-                              <HBox alignment="CENTER" prefWidth="10.0" HBox.hgrow="NEVER">
+                              <HBox alignment="CENTER_RIGHT" prefWidth="10.0" HBox.hgrow="NEVER">
                                  <children>
-                                    <ToggleButton fx:id="topBarCollapseButton" alignment="CENTER_RIGHT" maxHeight="10.0" maxWidth="10.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#handleTopBarCollapseButton" prefHeight="10.0" prefWidth="10.0" text="t">
+                                    <ToggleButton id="topToolbarCollapseButton" fx:id="topBarCollapseButton" alignment="CENTER_RIGHT" maxHeight="64.0" maxWidth="16.0" minHeight="20.0" minWidth="16.0" mnemonicParsing="false" onAction="#handleTopBarCollapseButton" prefHeight="64.0" prefWidth="16.0">
                                        <font>
                                           <Font size="5.0" />
                                        </font>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
                                     </ToggleButton>
                                  </children>
                                  <padding>
                                     <Insets right="5.0" />
                                  </padding>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </HBox>
                   <StackPane id="transparentBorder" fx:id="mainTopStack" alignment="TOP_LEFT" maxHeight="-1.0" minWidth="-1.0" HBox.hgrow="NEVER">
                     <padding>

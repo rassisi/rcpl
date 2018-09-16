@@ -132,11 +132,13 @@ public class RcplLoginController implements ILoginController {
 
 		buttonCancel.setDisable(false);
 
-		String imageName = login.getApplicationProvider().getImage();
-		RcplImage img = new RcplImage(imageName, 32, 32,
-				login.getApplicationProvider().getApplicationResourceBaseClass());
-		logoArea.getChildren().clear();
-		logoArea.getChildren().add(img.getNode());
+		if (login.getApplicationProvider() != null) {
+			String imageName = login.getApplicationProvider().getImage();
+			RcplImage img = new RcplImage(imageName, 32, 32,
+					login.getApplicationProvider().getApplicationResourceBaseClass());
+			logoArea.getChildren().clear();
+			logoArea.getChildren().add(img.getNode());
+		}
 
 		// agreeCheckBox.setVisible(false);
 		// termsAndConditions.setText(

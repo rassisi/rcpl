@@ -1,10 +1,16 @@
 package org.eclipse.rcpl;
 
+import java.util.List;
+
 /**
  * @author Ramin
  *
  */
 public interface IApplicationWindow {
+
+	void resetStyles();
+
+	List<String> getStyleSheets();
 
 	void setResizable(boolean resizable);
 

@@ -2,14 +2,12 @@ package org.eclipse.rcpl;
 
 import java.io.File;
 import java.net.URL;
-import java.util.List;
 
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 
-import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
@@ -25,6 +23,8 @@ import javafx.stage.Stage;
  *
  */
 public interface IRcplUic {
+
+	boolean isTopToolbarCollapsed();
 
 	void openDocument(URL url);
 
@@ -112,21 +112,13 @@ public interface IRcplUic {
 
 	Stage getStage();
 
-	String getStyleMsOffice();
-
-	List<String> getStylesRegistry();
-
 	ITopToolbar getTopToolBar();
 
 	IRcplAddon getActiveAddon();
 
-	void handleThemeDefault(ActionEvent event);
-
 	void init(BorderPane parent);
 
 	public boolean initSession(ILogin login);
-
-	void initStyles();
 
 	boolean isHome();
 

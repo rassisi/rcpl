@@ -291,6 +291,9 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 			startPc();
 		}
 
+		Scene scene = getPrimaryStage().getScene();
+		scene.getStylesheets().addAll("/css/theme_login.css", "/css/default.css");
+
 		primaryStage.show();
 		started = true;
 		mainStackPane.layout();
@@ -327,7 +330,8 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		Rcpl.progressMessage("Start Desktop Application");
 
 		applicationWindow = new RcplApplicationWindow(primaryStage, mainStackPane);
-		applicationWindow.getStylesheets().addAll("skin/undecorator.css", "/css/msoffice.css", "/css/default.css"); // ,
+		applicationWindow.resetStyles();
+		applicationWindow.getStylesheets().addAll("/css/theme_login.css", "/css/default.css"); // ,
 
 		Scene scene = new Scene(applicationWindow);
 		applicationWindow.installAccelerators(scene);

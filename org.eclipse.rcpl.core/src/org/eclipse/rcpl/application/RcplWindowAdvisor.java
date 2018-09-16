@@ -53,9 +53,6 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 		this.cssStyleSheetResource = cssStyleSheetResource;
 	}
 
-	private double storedWidth;
-	private double storedHeight;
-
 	/**
 	 * @param stage
 	 */
@@ -107,7 +104,13 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 	@Override
 	public void openMainWindow() {
 		Rcpl.progressMessage("Create Default Theme");
-		Rcpl.UIC.handleThemeDefault(null);
+//		Platform.runLater(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				Rcpl.UIC.handleThemeDefault(null);
+//			}
+//		});
 		addKeyListener();
 		Rcpl.progressMessage("OfficeRCP.createMainWindow()#3");
 	}

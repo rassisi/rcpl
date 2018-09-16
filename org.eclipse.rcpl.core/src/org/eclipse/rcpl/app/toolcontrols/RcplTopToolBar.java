@@ -154,9 +154,7 @@ public class RcplTopToolBar implements ITopToolbar {
 					if (n != null) {
 						Rcpl.UIC.getMainTopStack().getChildren().add(n);
 					}
-					collapsed = false;
 					updateHeight();
-					collapse(false);
 				}
 
 			}

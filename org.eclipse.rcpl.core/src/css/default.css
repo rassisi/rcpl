@@ -1270,3 +1270,12 @@
 #documentTabPane {
   -fx-background-color: derive(-fx-base, -50.0%);	
 }
+
+#topToolbarCollapseButton {
+	-fx-background-image: url("images/topToolbarCollapseButton.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+	-fx-opacity: 0.5;
+}
+
+
