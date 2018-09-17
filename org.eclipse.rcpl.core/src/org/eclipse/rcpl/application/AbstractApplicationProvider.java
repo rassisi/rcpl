@@ -295,6 +295,8 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		scene.getStylesheets().addAll("/css/theme_login.css", "/css/default.css");
 
 		primaryStage.show();
+		primaryStage.setOpacity(1.0);
+		getApplicationWindow().fadeIn();
 		started = true;
 		mainStackPane.layout();
 	}

@@ -18,7 +18,7 @@
      * -fx-base directly, the sections in this file will typically use -fx-color.
      */
      
-   -fx-base: rgb(A0,A0,A0);
+   -fx-base: rgb(100,100,100);
 
     /* A very light grey used for the background of windows.  See also
      * -fx-text-background-color, which should be used as the -fx-text-fill

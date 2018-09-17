@@ -28,7 +28,6 @@
 package org.eclipse.rcpl.application;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -152,22 +151,10 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	}
 
 	public RcplApplicationWindow(Stage stage, Region root) {
-		this(stage, root, "stagedecoration.fxml", StageStyle.UNDECORATED);
-	}
+		this.clientArea = root;
+		this.stage = stage;
 
-	public RcplApplicationWindow(Stage stag, Region clientArea, String stageDecorationFxml, StageStyle st) {
-		create(stag, clientArea, getClass().getResource(stageDecorationFxml), st);
-	}
-
-	public RcplApplicationWindow(Stage stag, Region clientArea, URL stageDecorationFxmlAsURL, StageStyle st) {
-		create(stag, clientArea, stageDecorationFxmlAsURL, st);
-	}
-
-	public void create(Stage stag, Region clientArea, URL stageDecorationFxmlAsURL, StageStyle st) {
-		this.stage = stag;
-		this.clientArea = clientArea;
-
-		setStageStyle(st);
+		setStageStyle(StageStyle.UNDECORATED);
 		loadConfig();
 
 		// Properties
@@ -224,7 +211,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		});
 
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(stageDecorationFxmlAsURL);
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("stagedecoration.fxml"));
 			fxmlLoader.setController(this);
 			stageDecoration = (Pane) fxmlLoader.load();
 		} catch (Exception ex) {
