@@ -84,35 +84,23 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 				}
 
 				applicationProvider.getPrimaryStage().show();
-				Rcpl.progressMessage("RCPL.createMainWindow()");
+//				applicationProvider.getPrimaryStage().setOpacity(0.1);
+				applicationProvider.getApplicationWindow().fadeIn();
+
 				Rcpl.progressMessage("Init Addons");
 				for (IRcplAddon uc : applicationProvider.getRcplAddons()) {
 					uc.init();
 				}
 				Rcpl.progressMessage("Configure Top Area");
-				Rcpl.UIC.expandTopAra(true);
 				StackPane stackPane = applicationProvider.getMainContent();
 				stackPane.getChildren().clear();
 				Rcpl.UIC.addtoApplicationStack(applicationProvider.getMainContent());
-				Rcpl.progressMessage("OfficeRCP.createMainWindow()#2");
+				Rcpl.progressMessage("RcplWindowAdviser.start()#end");
 				Rcpl.showProgress(false);
 			}
 		});
 
-	}
-
-	@Override
-	public void openMainWindow() {
-		Rcpl.progressMessage("Create Default Theme");
-//		Platform.runLater(new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				Rcpl.UIC.handleThemeDefault(null);
-//			}
-//		});
 		addKeyListener();
-		Rcpl.progressMessage("OfficeRCP.createMainWindow()#3");
 	}
 
 	private EventHandler<KeyEvent> keyhandler = null;

@@ -157,7 +157,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 			primaryStage.setHeight(bounds.getHeight() * 0.8);
 			primaryStage.centerOnScreen();
 			primaryStage.getScene().getRoot().setClip(null);
-			primaryStage.show();
+//			primaryStage.show();
 		}
 		Rcpl.progressMessage("Register Addons");
 
@@ -335,14 +335,14 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 		Scene scene = new Scene(applicationWindow);
 		applicationWindow.installAccelerators(scene);
-		applicationWindow.setFadeInTransition();
+		applicationWindow.fadeIn();
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent we) {
 				we.consume(); // Do not hide
 				Rcpl.UIC.closeApplication();
-				applicationWindow.setFadeOutTransition();
+				applicationWindow.fadeOut();
 			}
 		});
 

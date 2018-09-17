@@ -127,9 +127,9 @@ public class RcplWindowsScene extends Scene {
     }
 
     public void setFadeInTransition() {
-        undecorator.setFadeInTransition();
+        undecorator.fadeIn();
     }
     public void setFadeOutTransition() {
-        undecorator.setFadeOutTransition();
+        undecorator.fadeOut();
     }
 }

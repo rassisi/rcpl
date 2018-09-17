@@ -79,7 +79,6 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 				} else {
 					windowAdvisor = createWindowAdvisor();
 					windowAdvisor.start();
-					windowAdvisor.openMainWindow();
 				}
 				uic.createHomePages();
 				uic.showHomePage(HomePageType.OVERVIEW, null);

@@ -20,4 +20,8 @@ public interface IApplicationWindow {
 
 	void setFullscreenAble(boolean fullscreenAble);
 
+	void fadeIn();
+
+	void fadeOut();
+
 }

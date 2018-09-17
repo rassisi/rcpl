@@ -120,7 +120,6 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 		progressText.setAlignment(Pos.CENTER);
 		splashLayout.setEffect(new DropShadow());
 
-		System.out.println("Starting the SplashScreen");
 		final Task<ObservableList<String>> loadModsTask = new Task<ObservableList<String>>() {
 			@Override
 			protected ObservableList<String> call() throws InterruptedException {

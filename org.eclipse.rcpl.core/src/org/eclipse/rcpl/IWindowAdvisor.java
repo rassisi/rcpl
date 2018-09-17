@@ -8,5 +8,4 @@ public interface IWindowAdvisor {
 
 	void start();
 
-	void openMainWindow();
 }

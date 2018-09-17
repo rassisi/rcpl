@@ -480,7 +480,8 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	/**
 	 * Activate fade in transition on showing event
 	 */
-	public void setFadeInTransition() {
+	@Override
+	public void fadeIn() {
 		super.setOpacity(0);
 		stage.showingProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
@@ -498,7 +499,8 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	 * Launch the fade out transition. Must be invoked when the application/window
 	 * is supposed to be closed
 	 */
-	public void setFadeOutTransition() {
+	@Override
+	public void fadeOut() {
 		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), RcplApplicationWindow.this);
 		fadeTransition.setToValue(0);
 		fadeTransition.play();
