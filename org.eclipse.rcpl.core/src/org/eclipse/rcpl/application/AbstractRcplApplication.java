@@ -196,7 +196,6 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 
 				}
 			}
-
 		});
 		final Scene splashScene = new Scene(splashLayout);
 		splashStage.initStyle(StageStyle.UNDECORATED);

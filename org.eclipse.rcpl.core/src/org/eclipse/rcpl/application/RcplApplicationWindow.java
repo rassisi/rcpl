@@ -36,9 +36,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.rcpl.IApplicationWindow;
+import org.eclipse.rcpl.IRcplApplicationProvider;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -55,7 +55,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
@@ -94,6 +93,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	static public double ROUNDED_DELTA = 5;
 	public static final Logger LOGGER = Logger.getLogger("Undecorator");
 	public static ResourceBundle LOC;
+
 	StageStyle stageStyle;
 
 	@FXML
@@ -111,28 +111,49 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	@FXML
 	private Pane decorationRoot;
 
-	Region clientArea;
-	Pane stageDecoration = null;
-	Rectangle shadowRectangle;
-	Pane glassPane;
-	Rectangle dockFeedback;
-	FadeTransition dockFadeTransition;
-	Stage dockFeedbackPopup;
-	ParallelTransition parallelTransition;
-	Effect dsFocused;
-	Effect dsNotFocused;
-	RcplWindowController undecoratorController;
-	Stage stage;
-	Rectangle backgroundRect;
-	SimpleBooleanProperty maximizeProperty;
-	SimpleBooleanProperty minimizeProperty;
-	SimpleBooleanProperty closeProperty;
-	SimpleBooleanProperty fullscreenProperty;
-	String shadowBackgroundStyleClass = "decoration-shadow";
-	String decorationBackgroundStyle = "decoration-background";
-	TranslateTransition fullscreenButtonTransition;
-	final Rectangle internal = new Rectangle();
-	final Rectangle external = new Rectangle();
+	private Region clientArea;
+
+	private Pane stageDecoration = null;
+
+	private Rectangle shadowRectangle;
+
+	private Pane glassPane;
+
+	private Rectangle dockFeedback;
+
+	private FadeTransition dockFadeTransition;
+
+	private Stage dockFeedbackPopup;
+
+//	private ParallelTransition parallelTransition;
+
+	private Effect dsFocused;
+
+	private Effect dsNotFocused;
+
+	private RcplWindowController controller;
+
+	private Rectangle backgroundRect;
+
+	public SimpleBooleanProperty maximizeProperty;
+
+	private SimpleBooleanProperty minimizeProperty;
+
+	private SimpleBooleanProperty closeProperty;
+
+	private SimpleBooleanProperty fullscreenProperty;
+
+	private String shadowBackgroundStyleClass = "decoration-shadow";
+
+	private String decorationBackgroundStyle = "decoration-background";
+
+	private TranslateTransition fullscreenButtonTransition;
+
+	private final Rectangle internal = new Rectangle();
+
+	private final Rectangle external = new Rectangle();
+
+	private IRcplApplicationProvider applicationProvider;
 
 	public SimpleBooleanProperty maximizeProperty() {
 		return maximizeProperty;
@@ -150,10 +171,9 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		return fullscreenProperty;
 	}
 
-	public RcplApplicationWindow(Stage stage, Region root) {
+	public RcplApplicationWindow(IRcplApplicationProvider applicationProvider, Region root) {
 		this.clientArea = root;
-		this.stage = stage;
-
+		this.applicationProvider = applicationProvider;
 		setStageStyle(StageStyle.UNDECORATED);
 		loadConfig();
 
@@ -184,14 +204,14 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		fullscreenProperty.addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-				getController().setFullScreen(!stage.isFullScreen());
+				getController().setFullScreen(!applicationProvider.getPrimaryStage().isFullScreen());
 			}
 		});
 
 		// The controller
-		undecoratorController = new RcplWindowController(this);
+		controller = new RcplWindowController(this);
 
-		undecoratorController.setAsStageDraggable(stage, clientArea);
+		controller.setAsStageDraggable(applicationProvider.getPrimaryStage(), clientArea);
 
 		// Focus drop shadows: radius, spread, offsets
 		dsFocused = new DropShadow(BlurType.THREE_PASS_BOX, Color.BLACK, SHADOW_WIDTH, 0.1, 0, 0);
@@ -223,18 +243,19 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		/*
 		 * Resize rectangle
 		 */
-		undecoratorController.setStageResizableWith(stage, decorationRoot, RESIZE_PADDING, SHADOW_WIDTH);
+		controller.setStageResizableWith(applicationProvider.getPrimaryStage(), decorationRoot, RESIZE_PADDING,
+				SHADOW_WIDTH);
 
 		// If not resizable (quick fix)
 		if (fullscreen != null) {
-			fullscreen.setVisible(stage.isResizable());
+			fullscreen.setVisible(applicationProvider.getPrimaryStage().isResizable());
 		}
 
-		resize.setVisible(stage.isResizable());
+		resize.setVisible(applicationProvider.getPrimaryStage().isResizable());
 		if (maximize != null) {
-			maximize.setVisible(stage.isResizable());
+			maximize.setVisible(applicationProvider.getPrimaryStage().isResizable());
 		}
-		if (minimize != null && !stage.isResizable()) {
+		if (minimize != null && !applicationProvider.getPrimaryStage().isResizable()) {
 			AnchorPane.setRightAnchor(minimize, 34d);
 		}
 
@@ -267,7 +288,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		/*
 		 * Focused stage
 		 */
-		stage.focusedProperty().addListener(new ChangeListener<Boolean>() {
+		applicationProvider.getPrimaryStage().focusedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
 				setShadowFocused(t1.booleanValue());
@@ -280,7 +301,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 			fullscreen.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent t) {
-					if (stage.isFullScreen()) {
+					if (applicationProvider.getPrimaryStage().isFullScreen()) {
 						fullscreen.setOpacity(1);
 					}
 				}
@@ -289,13 +310,13 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 			fullscreen.setOnMouseExited(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent t) {
-					if (stage.isFullScreen()) {
+					if (applicationProvider.getPrimaryStage().isFullScreen()) {
 						fullscreen.setOpacity(0.4);
 					}
 				}
 			});
 
-			stage.fullScreenProperty().addListener(new ChangeListener<Boolean>() {
+			applicationProvider.getPrimaryStage().fullScreenProperty().addListener(new ChangeListener<Boolean>() {
 				@Override
 				public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean fullscreenState) {
 					setShadow(!fullscreenState.booleanValue());
@@ -308,7 +329,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 						fullscreen.getStyleClass().add("decoration-button-unfullscreen");
 						fullscreen.setTooltip(new Tooltip(LOC.getString("Restore")));
 
-						undecoratorController.saveFullScreenBounds();
+						controller.saveFullScreenBounds();
 						if (fullscreenButtonTransition != null) {
 							fullscreenButtonTransition.stop();
 						}
@@ -330,7 +351,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 						fullscreen.getStyleClass().remove("decoration-button-unfullscreen");
 						fullscreen.setTooltip(new Tooltip(LOC.getString("FullScreen")));
 
-						undecoratorController.restoreFullScreenSavedBounds(stage);
+						controller.restoreFullScreenSavedBounds(applicationProvider.getPrimaryStage());
 						fullscreen.setOpacity(1);
 						if (fullscreenButtonTransition != null) {
 							fullscreenButtonTransition.stop();
@@ -389,7 +410,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	 */
 	public void installAccelerators(Scene scene) {
 		// Accelerators
-		if (stage.isResizable()) {
+		if (applicationProvider.getPrimaryStage().isResizable()) {
 			scene.getAccelerators().put(
 					new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN, KeyCombination.SHORTCUT_DOWN),
 					new Runnable() {
@@ -464,22 +485,30 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		return stageStyle;
 	}
 
+	private ChangeListener<Boolean> showingListener;
+
 	/**
 	 * Activate fade in transition on showing event
 	 */
 	@Override
-	public void fadeIn() {
+	public void fadeIn(final double seconds) {
 		super.setOpacity(0);
-		stage.showingProperty().addListener(new ChangeListener<Boolean>() {
+		if (showingListener != null) {
+			applicationProvider.getPrimaryStage().showingProperty().removeListener(showingListener);
+		}
+
+		showingListener = new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
 				if (t1.booleanValue()) {
-					FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), RcplApplicationWindow.this);
+					FadeTransition fadeTransition = new FadeTransition(Duration.seconds(seconds),
+							RcplApplicationWindow.this);
 					fadeTransition.setToValue(1);
 					fadeTransition.play();
 				}
 			}
-		});
+		};
+		applicationProvider.getPrimaryStage().showingProperty().addListener(showingListener);
 	}
 
 	/**
@@ -487,14 +516,14 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	 * is supposed to be closed
 	 */
 	@Override
-	public void fadeOut() {
-		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), RcplApplicationWindow.this);
+	public void fadeOut(double seconds) {
+		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(seconds), RcplApplicationWindow.this);
 		fadeTransition.setToValue(0);
 		fadeTransition.play();
 		fadeTransition.setOnFinished(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
-				stage.hide();
+				applicationProvider.getPrimaryStage().hide();
 				if (dockFeedbackPopup != null && dockFeedbackPopup.isShowing()) {
 					dockFeedbackPopup.hide();
 				}
@@ -523,7 +552,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	 * Manage buttons and menu items
 	 */
 	public void initDecoration() {
-		MenuItem minimizeMenuItem = null;
+//		MenuItem minimizeMenuItem = null;
 		// Menu
 		// final ContextMenu contextMenu = new ContextMenu();
 		// contextMenu.setAutoHide(true);
@@ -540,7 +569,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 			// });
 			// contextMenu.getItems().add(minimizeMenuItem);
 		}
-		if (maximize != null && stage.isResizable()) { // Utility Stage type
+		if (maximize != null && applicationProvider.getPrimaryStage().isResizable()) { // Utility Stage type
 			// maximizeMenuItem = new MenuItem(LOC.getString("Maximize"));
 			// maximizeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
 			// @Override
@@ -554,7 +583,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		}
 
 		// Fullscreen
-		if (stageStyle != StageStyle.UTILITY && stage.isResizable()) {
+		if (stageStyle != StageStyle.UTILITY && applicationProvider.getPrimaryStage().isResizable()) {
 			// fullScreenMenuItem = new
 			// CheckMenuItem(LOC.getString("FullScreen"));
 			// fullScreenMenuItem.setOnAction(new EventHandler<ActionEvent>() {
@@ -657,7 +686,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		}
 		// Transfer stage title to undecorator tiltle label
 
-		title.setText(stage.getTitle());
+		title.setText(applicationProvider.getPrimaryStage().getTitle());
 	}
 
 	public void switchFullscreen() {
@@ -665,7 +694,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				undecoratorController.setFullScreen(!stage.isFullScreen());
+				controller.setFullScreen(!applicationProvider.getPrimaryStage().isFullScreen());
 			}
 		});
 	}
@@ -689,7 +718,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	 * @param node
 	 */
 	public void setAsStageDraggable(Stage stage, Node node) {
-		undecoratorController.setAsStageDraggable(stage, node);
+		controller.setAsStageDraggable(stage, node);
 	}
 
 	/**
@@ -722,7 +751,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	protected void setShadowFocused(boolean b) {
 		// Do not change anything while maximized (in case of dialog closing for
 		// instance)
-		if (stage.isFullScreen()) {
+		if (applicationProvider.getPrimaryStage().isFullScreen()) {
 			return;
 		}
 		if (maximizeProperty().get()) {
@@ -785,11 +814,11 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	}
 
 	public RcplWindowController getController() {
-		return undecoratorController;
+		return controller;
 	}
 
 	public Stage getStage() {
-		return stage;
+		return applicationProvider.getPrimaryStage();
 	}
 
 	protected Pane getGlassPane() {

@@ -152,13 +152,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		Rcpl.createProgress(progressGroup);
 		Rcpl.startProgress(3.0, true);
 
-		if (!Rcpl.isMobile()) {
-			primaryStage.setWidth(bounds.getWidth() * 0.8);
-			primaryStage.setHeight(bounds.getHeight() * 0.8);
-			primaryStage.centerOnScreen();
-			primaryStage.getScene().getRoot().setClip(null);
-//			primaryStage.show();
-		}
 		Rcpl.progressMessage("Register Addons");
 
 		final IApplicationStarter applicationsStarter = getRcplApplicationStarter();
@@ -294,9 +287,8 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		Scene scene = getPrimaryStage().getScene();
 		scene.getStylesheets().addAll("/css/theme_login.css", "/css/default.css");
 
+		getApplicationWindow().fadeIn(0.5);
 		primaryStage.show();
-		primaryStage.setOpacity(1.0);
-		getApplicationWindow().fadeIn();
 		started = true;
 		mainStackPane.layout();
 	}
@@ -331,20 +323,20 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	private void startPc() {
 		Rcpl.progressMessage("Start Desktop Application");
 
-		applicationWindow = new RcplApplicationWindow(primaryStage, mainStackPane);
+		applicationWindow = new RcplApplicationWindow(this, mainStackPane);
 		applicationWindow.resetStyles();
 		applicationWindow.getStylesheets().addAll("/css/theme_login.css", "/css/default.css"); // ,
 
 		Scene scene = new Scene(applicationWindow);
 		applicationWindow.installAccelerators(scene);
-		applicationWindow.fadeIn();
+		applicationWindow.fadeIn(0.5);
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent we) {
 				we.consume(); // Do not hide
 				Rcpl.UIC.closeApplication();
-				applicationWindow.fadeOut();
+				applicationWindow.fadeOut(3.0);
 			}
 		});
 

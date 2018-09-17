@@ -1,6 +1,7 @@
 package org.eclipse.rcpl.application;
 
 import java.util.logging.Level;
+
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -32,22 +33,17 @@ public class RcplWindowController {
 	private static double newY;
 	private static int RESIZE_PADDING;
 	private static int SHADOW_WIDTH;
-	RcplApplicationWindow undecorator;
-	BoundingBox savedBounds, savedFullScreenBounds;
-	boolean maximized = false;
-	static boolean isMacOS = false;
-	static final int MAXIMIZE_BORDER = 20; // Allow double click to maximize on
-											// top of the Scene
 
-	{
-		String os = System.getProperty("os.name").toLowerCase();
-		if (os.indexOf("mac") != -1) {
-			isMacOS = true;
-		}
-	}
+	private RcplApplicationWindow rcplWindow;
+
+	private BoundingBox savedBounds, savedFullScreenBounds;
+
+	private boolean maximized = false;
+
+	private static final int MAXIMIZE_BORDER = 20; // Allow double click to maximize on
 
 	public RcplWindowController(RcplApplicationWindow ud) {
-		undecorator = ud;
+		rcplWindow = ud;
 	}
 
 	/*
@@ -55,11 +51,11 @@ public class RcplWindowController {
 	 */
 	protected void maximizeOrRestore() {
 
-		Stage stage = undecorator.getStage();
+		Stage stage = rcplWindow.getStage();
 
 		if (maximized) {
 			restoreSavedBounds(stage, false);
-			undecorator.setShadow(true);
+			rcplWindow.setShadow(true);
 			savedBounds = null;
 			maximized = false;
 		} else {
@@ -70,7 +66,7 @@ public class RcplWindowController {
 
 			savedBounds = new BoundingBox(stage.getX(), stage.getY(), stage.getWidth(), stage.getHeight());
 
-			undecorator.setShadow(false);
+			rcplWindow.setShadow(false);
 
 			stage.setX(visualBounds.getMinX());
 			stage.setY(visualBounds.getMinY());
@@ -81,12 +77,12 @@ public class RcplWindowController {
 	}
 
 	public void saveBounds() {
-		Stage stage = undecorator.getStage();
+		Stage stage = rcplWindow.getStage();
 		savedBounds = new BoundingBox(stage.getX(), stage.getY(), stage.getWidth(), stage.getHeight());
 	}
 
 	public void saveFullScreenBounds() {
-		Stage stage = undecorator.getStage();
+		Stage stage = rcplWindow.getStage();
 		savedFullScreenBounds = new BoundingBox(stage.getX(), stage.getY(), stage.getWidth(), stage.getHeight());
 	}
 
@@ -109,12 +105,12 @@ public class RcplWindowController {
 	}
 
 	protected void setFullScreen(boolean value) {
-		Stage stage = undecorator.getStage();
+		Stage stage = rcplWindow.getStage();
 		stage.setFullScreen(value);
 	}
 
 	public void close() {
-		final Stage stage = undecorator.getStage();
+		final Stage stage = rcplWindow.getStage();
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -141,7 +137,7 @@ public class RcplWindowController {
 	}
 
 	private void _minimize() {
-		Stage stage = undecorator.getStage();
+		Stage stage = rcplWindow.getStage();
 		stage.setIconified(true);
 	}
 
@@ -161,10 +157,10 @@ public class RcplWindowController {
 			// Maximize on double click
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				if (undecorator.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen()
+				if (rcplWindow.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen()
 						&& mouseEvent.getClickCount() > 1) {
 					if (mouseEvent.getSceneY() - SHADOW_WIDTH < MAXIMIZE_BORDER) {
-						undecorator.maximizeProperty().set(!undecorator.maximizeProperty().get());
+						rcplWindow.maximizeProperty().set(!rcplWindow.maximizeProperty().get());
 						// mouseEvent.consume();
 					}
 				}
@@ -198,11 +194,11 @@ public class RcplWindowController {
 				}
 				if (maximized) {
 					// Remove maximized state
-					undecorator.maximizeProperty.set(false);
+					rcplWindow.maximizeProperty.set(false);
 					return;
 				} // Docked then moved, so restore state
 				else if (savedBounds != null) {
-					undecorator.setShadow(true);
+					rcplWindow.setShadow(true);
 				}
 
 				newX = mouseEvent.getScreenX();
@@ -300,9 +296,8 @@ public class RcplWindowController {
 	}
 
 	/**
-	 * Under Windows, the undecorator Stage could be been dragged below the Task
-	 * bar and then no way to grab it again... On Mac, do not drag above the
-	 * menu bar
+	 * Under Windows, the undecorator Stage could be been dragged below the Task bar
+	 * and then no way to grab it again... On Mac, do not drag above the menu bar
 	 *
 	 * @param y
 	 */
@@ -352,10 +347,10 @@ public class RcplWindowController {
 			// Maximize on double click
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				if (undecorator.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen()
+				if (rcplWindow.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen()
 						&& mouseEvent.getClickCount() > 1) {
 					if (mouseEvent.getSceneY() - SHADOW_WIDTH < MAXIMIZE_BORDER) {
-						undecorator.maximizeProperty().set(!undecorator.maximizeProperty().get());
+						rcplWindow.maximizeProperty().set(!rcplWindow.maximizeProperty().get());
 						// mouseEvent.consume();
 					}
 				}
@@ -391,14 +386,14 @@ public class RcplWindowController {
 				}
 				if (maximized) {
 					// Remove Maximized state
-					undecorator.maximizeProperty.set(false);
+					rcplWindow.maximizeProperty.set(false);
 					// Center
 					stage.setX(mouseEvent.getScreenX() - stage.getWidth() / 2);
 					stage.setY(mouseEvent.getScreenY() - SHADOW_WIDTH);
 				} // Docked then moved, so restore state
 				else if (savedBounds != null) {
 					restoreSavedBounds(stage, false);
-					undecorator.setShadow(true);
+					rcplWindow.setShadow(true);
 					// Center
 					stage.setX(mouseEvent.getScreenX() - stage.getWidth() / 2);
 					stage.setY(mouseEvent.getScreenY() - SHADOW_WIDTH);
@@ -421,7 +416,7 @@ public class RcplWindowController {
 			@Override
 			public void handle(MouseEvent t) {
 				if (stage.isResizable()) {
-					undecorator.setDockFeedbackInvisible();
+					rcplWindow.setDockFeedbackInvisible();
 					setCursor(node, Cursor.DEFAULT);
 					initX = -1;
 					initY = -1;
@@ -464,7 +459,7 @@ public class RcplWindowController {
 			double width = visualBounds.getWidth() / 2;
 			double height = visualBounds.getHeight();
 
-			undecorator.setDockFeedbackVisible(x, y, width, height);
+			rcplWindow.setDockFeedbackVisible(x, y, width, height);
 			lastDocked = DOCK_LEFT;
 		} // Dock Right
 		else if (dockSide == DOCK_RIGHT) {
@@ -483,7 +478,7 @@ public class RcplWindowController {
 			double width = visualBounds.getWidth() / 2;
 			double height = visualBounds.getHeight();
 
-			undecorator.setDockFeedbackVisible(x, y, width, height);
+			rcplWindow.setDockFeedbackVisible(x, y, width, height);
 			lastDocked = DOCK_RIGHT;
 		} // Dock top
 		else if (dockSide == DOCK_TOP) {
@@ -499,10 +494,10 @@ public class RcplWindowController {
 			double y = visualBounds.getMinY();
 			double width = visualBounds.getWidth();
 			double height = visualBounds.getHeight();
-			undecorator.setDockFeedbackVisible(x, y, width, height);
+			rcplWindow.setDockFeedbackVisible(x, y, width, height);
 			lastDocked = DOCK_TOP;
 		} else {
-			undecorator.setDockFeedbackInvisible();
+			rcplWindow.setDockFeedbackInvisible();
 			lastDocked = DOCK_NONE;
 		}
 	}
@@ -569,7 +564,7 @@ public class RcplWindowController {
 			}
 
 			stage.setHeight(height);
-			undecorator.setShadow(false);
+			rcplWindow.setShadow(false);
 		} // Dock Right (visualBounds = [minX = 1440.0, minY=300.0, maxX=3360.0,
 			// maxY=1500.0, width=1920.0, height=1200.0])
 		else if (mouseEvent.getScreenX() >= visualBounds.getMaxX() - 1) { // MaxX
@@ -598,11 +593,11 @@ public class RcplWindowController {
 			}
 
 			stage.setHeight(height);
-			undecorator.setShadow(false);
+			rcplWindow.setShadow(false);
 		} else if (mouseEvent.getScreenY() <= visualBounds.getMinY()) { // Mac
 																		// menu
 																		// bar
-			undecorator.maximizeProperty.set(true);
+			rcplWindow.maximizeProperty.set(true);
 		}
 
 	}
