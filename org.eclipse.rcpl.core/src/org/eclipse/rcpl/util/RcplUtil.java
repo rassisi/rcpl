@@ -14,7 +14,10 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.xmlbeans.XmlObject;
@@ -26,6 +29,7 @@ import org.eclipse.rcpl.IMonitor;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.RcplCountry;
 import org.eclipse.rcpl.internal.config.RcplConfig;
+import org.eclipse.rcpl.libs.util.AFile;
 import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.libs.util.StringOutputStream;
 import org.eclipse.rcpl.model.RcplModel;
@@ -657,7 +661,7 @@ public class RcplUtil {
 		} catch (IOException e1) {
 			return null;
 		}
-		File outFile = new File(getUserLocalCacheDir(), fileName);
+		File outFile = createCacheFile(fileName);
 		outFile.getParentFile().mkdirs();
 		try {
 			AUtil.copyInputStream(is, new FileOutputStream(outFile), escapeHtml);
@@ -670,7 +674,7 @@ public class RcplUtil {
 	}
 
 	public static final void copyFromCacheToFile(String fileName, File output) {
-		File cacheFile = new File(getUserLocalCacheDir(), fileName);
+		File cacheFile = createCacheFile(fileName);
 		try {
 			FileInputStream fis = new FileInputStream(cacheFile);
 			output.getParentFile().mkdirs();
@@ -704,7 +708,7 @@ public class RcplUtil {
 	 * @return
 	 */
 	public static final File copyByteArrayToCache(byte[] byteArray, String fileName) {
-		File outFile = new File(getUserLocalCacheDir(), fileName);
+		File outFile = createCacheFile(fileName);
 		outFile.getParentFile().mkdirs();
 		try {
 			OutputStream os = new FileOutputStream(outFile);
@@ -725,7 +729,7 @@ public class RcplUtil {
 	 * @return
 	 */
 	public static long getCachedFileSize(String fileName) {
-		File file = new File(getUserLocalCacheDir(), fileName);
+		File file = createCacheFile(fileName);
 		if (file.exists()) {
 			return file.length();
 		}
@@ -737,7 +741,7 @@ public class RcplUtil {
 	 * @return
 	 */
 	public static File getCachedFile(String fileName) {
-		File file = new File(getUserLocalCacheDir(), fileName);
+		File file = createCacheFile(fileName);
 		if (file.exists()) {
 			return file;
 		}
@@ -750,7 +754,7 @@ public class RcplUtil {
 	 * @return
 	 */
 	public static final File copyInputStreamToCache(InputStream is, String fileName) {
-		File outFile = new File(getUserLocalCacheDir(), fileName);
+		File outFile = createCacheFile(fileName);
 		outFile.getParentFile().mkdirs();
 		try {
 			AUtil.copyInputStream(is, new FileOutputStream(outFile), false);
@@ -1068,4 +1072,347 @@ public class RcplUtil {
 			sleep(10);
 		}
 	}
+
+	private static boolean matches(Color c1, Color c2, String name) {
+
+		double diffRed = Math.abs(c1.getRed() - c2.getRed());
+		double diffGreen = Math.abs(c1.getGreen() - c2.getGreen());
+		double diffBlue = Math.abs(c1.getBlue() - c2.getBlue());
+		double totalDiff = diffRed + diffGreen + diffBlue;
+		boolean result = totalDiff == 0.0;
+		colorMap.put(totalDiff, new ColorName(c2, name));
+		return result;
+	}
+
+	private static Map<Double, ColorName> colorMap = new HashMap<Double, ColorName>();
+	private static SortedMap<Double, ColorName> sortedMap;
+
+	public static class ColorName {
+
+		public Color col;
+		public String name;
+
+		public ColorName(Color col, String name) {
+			super();
+			this.col = col;
+			this.name = name;
+		}
+	}
+
+	public static ColorName findColor(Color color) {
+
+		colorMap.clear();
+
+		if (matches(color, Color.ALICEBLUE, "ALICEBLUE"))
+			;
+		else if (matches(color, Color.ANTIQUEWHITE, "ANTIQUEWHITE"))
+			;
+		else if (matches(color, Color.AQUA, "AQUA"))
+			;
+		else if (matches(color, Color.AQUAMARINE, "AQUAMARINE"))
+			;
+		else if (matches(color, Color.AZURE, "AZURE"))
+			;
+		else if (matches(color, Color.BEIGE, "BEIGE"))
+			;
+		else if (matches(color, Color.BISQUE, "BISQUE"))
+			;
+		else if (matches(color, Color.BLACK, "BLACK"))
+			;
+		else if (matches(color, Color.BLANCHEDALMOND, "BLANCHEDALMOND"))
+			;
+		else if (matches(color, Color.BLUE, "BLUE"))
+			;
+		else if (matches(color, Color.BLUEVIOLET, "BLUEVIOLET"))
+			;
+		else if (matches(color, Color.BROWN, "BROWN"))
+			;
+		else if (matches(color, Color.BURLYWOOD, "BURLYWOOD"))
+			;
+		else if (matches(color, Color.CADETBLUE, "CADETBLUE"))
+			;
+		else if (matches(color, Color.CHARTREUSE, "CHARTREUSE"))
+			;
+		else if (matches(color, Color.CHOCOLATE, "CHOCOLATE"))
+			;
+		else if (matches(color, Color.CORAL, "CORAL"))
+			;
+		else if (matches(color, Color.CORNFLOWERBLUE, "CORNFLOWERBLUE"))
+			;
+		else if (matches(color, Color.CORNSILK, "CORNSILK"))
+			;
+		else if (matches(color, Color.CRIMSON, "CRIMSON"))
+			;
+		else if (matches(color, Color.CYAN, "CYAN"))
+			;
+		else if (matches(color, Color.DARKBLUE, "DARKBLUE"))
+			;
+		else if (matches(color, Color.DARKCYAN, "DARKCYAN"))
+			;
+		else if (matches(color, Color.DARKGOLDENROD, "DARKGOLDENROD"))
+			;
+		else if (matches(color, Color.DARKGRAY, "DARKGRAY"))
+			;
+		else if (matches(color, Color.DARKGREEN, "DARKGREEN"))
+			;
+		else if (matches(color, Color.DARKGREY, "DARKGREY"))
+			;
+		else if (matches(color, Color.DARKKHAKI, "DARKKHAKI"))
+			;
+		else if (matches(color, Color.DARKMAGENTA, "DARKMAGENTA"))
+			;
+		else if (matches(color, Color.DARKOLIVEGREEN, "DARKOLIVEGREEN"))
+			;
+		else if (matches(color, Color.DARKORANGE, "DARKORANGE"))
+			;
+		else if (matches(color, Color.DARKORCHID, "DARKORCHID"))
+			;
+		else if (matches(color, Color.DARKRED, "DARKRED"))
+			;
+		else if (matches(color, Color.DARKSALMON, "DARKSALMON"))
+			;
+		else if (matches(color, Color.DARKSEAGREEN, "DARKSEAGREEN"))
+			;
+		else if (matches(color, Color.DARKSLATEBLUE, "DARKSEAGREEN"))
+			;
+		else if (matches(color, Color.DARKSLATEGRAY, "DARKSLATEGRAY"))
+			;
+		else if (matches(color, Color.DARKSLATEGREY, "DARKSLATEGREY"))
+			;
+		else if (matches(color, Color.DARKTURQUOISE, "DARKTURQUOISE"))
+			;
+		else if (matches(color, Color.DARKVIOLET, "DARKVIOLET"))
+			;
+		else if (matches(color, Color.DEEPPINK, "DEEPPINK"))
+			;
+		else if (matches(color, Color.DEEPSKYBLUE, "DEEPSKYBLUE"))
+			;
+		else if (matches(color, Color.DIMGRAY, "DIMGRAY"))
+			;
+		else if (matches(color, Color.DIMGREY, "DIMGREY"))
+			;
+		else if (matches(color, Color.DODGERBLUE, "DODGERBLUE"))
+			;
+		else if (matches(color, Color.FIREBRICK, "FIREBRICK"))
+			;
+		else if (matches(color, Color.FLORALWHITE, "FLORALWHITE"))
+			;
+		else if (matches(color, Color.FORESTGREEN, "FORESTGREEN"))
+			;
+		else if (matches(color, Color.FUCHSIA, "FUCHSIA"))
+			;
+		else if (matches(color, Color.GAINSBORO, "GAINSBORO"))
+			;
+		else if (matches(color, Color.GHOSTWHITE, "GHOSTWHITE"))
+			;
+		else if (matches(color, Color.GOLD, "GOLD"))
+			;
+		else if (matches(color, Color.GOLDENROD, "GOLDENROD"))
+			;
+		else if (matches(color, Color.GRAY, "GRAY"))
+			;
+		else if (matches(color, Color.GREEN, "GREEN"))
+			;
+		else if (matches(color, Color.GREENYELLOW, "GREENYELLOW"))
+			;
+		else if (matches(color, Color.GREY, "GREY"))
+			;
+		else if (matches(color, Color.HONEYDEW, "HONEYDEW"))
+			;
+		else if (matches(color, Color.HOTPINK, "HOTPINK"))
+			;
+		else if (matches(color, Color.INDIANRED, "INDIANRED"))
+			;
+		else if (matches(color, Color.INDIGO, "INDIGO"))
+			;
+		else if (matches(color, Color.IVORY, "IVORY"))
+			;
+		else if (matches(color, Color.KHAKI, "KHAKI"))
+			;
+		else if (matches(color, Color.LAVENDER, "LAVENDER"))
+			;
+		else if (matches(color, Color.LAVENDERBLUSH, "LAVENDERBLUSH"))
+			;
+		else if (matches(color, Color.LAWNGREEN, "LAWNGREEN"))
+			;
+		else if (matches(color, Color.LIGHTBLUE, "LIGHTBLUE"))
+			;
+		else if (matches(color, Color.LIGHTCORAL, "LIGHTCORAL"))
+			;
+		else if (matches(color, Color.LIGHTCYAN, "LIGHTCYAN"))
+			;
+		else if (matches(color, Color.LIGHTGOLDENRODYELLOW, "LIGHTGOLDENRODYELLOW"))
+			;
+		else if (matches(color, Color.LIGHTGRAY, "LIGHTGRAY"))
+			;
+		else if (matches(color, Color.LIGHTGREEN, "LIGHTGREEN"))
+			;
+		else if (matches(color, Color.LIGHTGREY, "LIGHTGREY"))
+			;
+		else if (matches(color, Color.LIGHTPINK, "LIGHTPINK"))
+			;
+		else if (matches(color, Color.LIGHTSALMON, "LIGHTSALMON"))
+			;
+		else if (matches(color, Color.LIGHTSEAGREEN, "LIGHTSEAGREEN"))
+			;
+		else if (matches(color, Color.LIGHTSKYBLUE, "LIGHTSKYBLUE"))
+			;
+		else if (matches(color, Color.LIGHTSLATEGRAY, "LIGHTSLATEGRAY"))
+			;
+		else if (matches(color, Color.LIGHTSLATEGREY, "LIGHTSLATEGREY"))
+			;
+		else if (matches(color, Color.LIGHTYELLOW, "LIGHTYELLOW"))
+			;
+		else if (matches(color, Color.LIME, "LIME"))
+			;
+		else if (matches(color, Color.LIMEGREEN, "LIMEGREEN"))
+			;
+		else if (matches(color, Color.LINEN, "LINEN"))
+			;
+		else if (matches(color, Color.MAGENTA, "MAGENTA"))
+			;
+		else if (matches(color, Color.MAROON, "MAROON"))
+			;
+		else if (matches(color, Color.MEDIUMAQUAMARINE, "MEDIUMAQUAMARINE"))
+			;
+		else if (matches(color, Color.MEDIUMBLUE, "MEDIUMBLUE"))
+			;
+		else if (matches(color, Color.MEDIUMORCHID, "MEDIUMORCHID"))
+			;
+		else if (matches(color, Color.MEDIUMPURPLE, "MEDIUMPURPLE"))
+			;
+		else if (matches(color, Color.MEDIUMSEAGREEN, "MEDIUMSEAGREEN"))
+			;
+		else if (matches(color, Color.MEDIUMSLATEBLUE, "MEDIUMSLATEBLUE"))
+			;
+		else if (matches(color, Color.MEDIUMSPRINGGREEN, "MEDIUMSPRINGGREEN"))
+			;
+		else if (matches(color, Color.MEDIUMTURQUOISE, "MEDIUMTURQUOISE"))
+			;
+		else if (matches(color, Color.MEDIUMVIOLETRED, "MEDIUMVIOLETRED"))
+			;
+		else if (matches(color, Color.MIDNIGHTBLUE, "MIDNIGHTBLUE"))
+			;
+		else if (matches(color, Color.MINTCREAM, "MINTCREAM"))
+			;
+		else if (matches(color, Color.MISTYROSE, "MISTYROSE"))
+			;
+		else if (matches(color, Color.MOCCASIN, "MOCCASIN"))
+			;
+		else if (matches(color, Color.NAVAJOWHITE, "NAVAJOWHITE"))
+			;
+		else if (matches(color, Color.NAVY, "NAVY"))
+			;
+		else if (matches(color, Color.OLDLACE, "OLDLACE"))
+			;
+		else if (matches(color, Color.OLIVE, "OLIVE"))
+			;
+		else if (matches(color, Color.OLIVEDRAB, "OLIVEDRAB"))
+			;
+		else if (matches(color, Color.ORANGE, "ORANGE"))
+			;
+		else if (matches(color, Color.ORANGERED, "ORANGERED"))
+			;
+		else if (matches(color, Color.ORCHID, "ORCHID"))
+			;
+		else if (matches(color, Color.PALEGOLDENROD, "PALEGOLDENROD"))
+			;
+		else if (matches(color, Color.PALEGREEN, "PALEGREEN"))
+			;
+		else if (matches(color, Color.PALETURQUOISE, "PALETURQUOISE"))
+			;
+		else if (matches(color, Color.PALEVIOLETRED, "PALEVIOLETRED"))
+			;
+		else if (matches(color, Color.PAPAYAWHIP, "PAPAYAWHIP"))
+			;
+		else if (matches(color, Color.PEACHPUFF, "PEACHPUFF"))
+			;
+		else if (matches(color, Color.PERU, "PERU"))
+			;
+		else if (matches(color, Color.PINK, "PINK"))
+			;
+		else if (matches(color, Color.PLUM, "PLUM"))
+			;
+		else if (matches(color, Color.POWDERBLUE, "POWDERBLUE"))
+			;
+		else if (matches(color, Color.PURPLE, "PURPLE"))
+			;
+		else if (matches(color, Color.RED, "RED"))
+			;
+		else if (matches(color, Color.ROSYBROWN, "ROSYBROWN"))
+			;
+		else if (matches(color, Color.ROYALBLUE, "ROYALBLUE"))
+			;
+		else if (matches(color, Color.SADDLEBROWN, "SADDLEBROWN"))
+			;
+		else if (matches(color, Color.SALMON, "SALMON"))
+			;
+		else if (matches(color, Color.SANDYBROWN, "SANDYBROWN"))
+			;
+		else if (matches(color, Color.SEAGREEN, "SEAGREEN"))
+			;
+		else if (matches(color, Color.SEASHELL, "SEASHELL"))
+			;
+		else if (matches(color, Color.SIENNA, "SIENNA"))
+			;
+		else if (matches(color, Color.SILVER, "SILVER"))
+			;
+		else if (matches(color, Color.SKYBLUE, "SKYBLUE"))
+			;
+		else if (matches(color, Color.SLATEBLUE, "SLATEBLUE"))
+			;
+		else if (matches(color, Color.SLATEGRAY, "SLATEGRAY"))
+			;
+		else if (matches(color, Color.SLATEGREY, "SLATEGREY"))
+			;
+		else if (matches(color, Color.SNOW, "SNOW"))
+			;
+		else if (matches(color, Color.SPRINGGREEN, "SPRINGGREEN"))
+			;
+		else if (matches(color, Color.STEELBLUE, "STEELBLUE"))
+			;
+		else if (matches(color, Color.TAN, "TAN"))
+			;
+		else if (matches(color, Color.TEAL, "TEAL"))
+			;
+		else if (matches(color, Color.THISTLE, "THISTLE"))
+			;
+		else if (matches(color, Color.TOMATO, "TOMATO"))
+			;
+		else if (matches(color, Color.TRANSPARENT, "TRANSPARENT"))
+			;
+		else if (matches(color, Color.TURQUOISE, "TURQUOISE"))
+			;
+		else if (matches(color, Color.VIOLET, "VIOLET"))
+			;
+		else if (matches(color, Color.WHEAT, "WHEAT"))
+			;
+		else if (matches(color, Color.WHITE, "WHITE"))
+			;
+		else if (matches(color, Color.WHITESMOKE, "WHITESMOKE"))
+			;
+		else if (matches(color, Color.YELLOW, "YELLOW"))
+			;
+		else if (matches(color, Color.YELLOWGREEN, "YELLOWGREEN"))
+			;
+
+		sortedMap = new TreeMap<Double, ColorName>(colorMap);
+
+		ColorName result = sortedMap.get(sortedMap.firstKey());
+
+		System.out.println(result.name);
+
+		return result;
+	}
+
+	public static File createCacheFile(String fileName) {
+		return new File(getUserLocalCacheDir(), fileName);
+	}
+
+	public static File saveStringToFileInCache(String fileName, String s) {
+		File file = createCacheFile(fileName);
+		AFile.saveFile(file, s);
+		return file;
+	}
+
 }

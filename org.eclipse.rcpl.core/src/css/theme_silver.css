@@ -18,7 +18,7 @@
      * -fx-base directly, the sections in this file will typically use -fx-color.
      */
      
-   -fx-base: rgb(200,200,200);
+   -fx-base: whitesmoke;
 
     /* A very light grey used for the background of windows.  See also
      * -fx-text-background-color, which should be used as the -fx-text-fill

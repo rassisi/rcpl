@@ -203,4 +203,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 	void showAnchor(ILayoutFigure figure);
 
 	Perspective getPerspective();
+
+	void showEditorTools(boolean show);
+
 }

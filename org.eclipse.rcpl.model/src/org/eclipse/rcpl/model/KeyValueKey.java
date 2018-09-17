@@ -14,6 +14,10 @@ public enum KeyValueKey {
 
 	EDITOR_SCALE,
 
+	SHOW_EDITOR_TOOLS,
+
+	SHOW_OUTLINE,
+
 	WINDOW_WIDTH,
 
 	WINDOW_HEIGHT,

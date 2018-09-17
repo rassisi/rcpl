@@ -14,6 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,6 +58,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.eclipse.rcpl.util.RcplUtil;
+import org.eclipse.rcpl.util.RcplUtil.ColorName;
 import org.eclipse.rcpl.util.WaitThread;
 import org.w3c.dom.Document;
 import org.w3c.dom.html.HTMLDocument;
@@ -80,6 +82,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
@@ -176,13 +179,7 @@ public class RcplUic implements IRcplUic {
 
 	private static Rectangle caret;
 
-	public static String internalDefaultCss;
-
-	public static String internalStyleMsOffice;
-
-	public static String internalStyleWindows7;
-
-	public static String internalStyleDark;
+	private static HashMap<String, String> cssStylesheets = new HashMap<String, String>();
 
 	private static Pane pane;
 
@@ -376,6 +373,32 @@ public class RcplUic implements IRcplUic {
 	@FXML
 	private HBox editorWindowTools;
 
+	@FXML
+	private ToggleButton themeDefaultButton;
+
+	@FXML
+	private ToggleButton themeSilverButton;
+
+	@FXML
+	private ToggleButton themeDarkButton;
+
+	@FXML
+	private ToggleButton themeWindows7Button;
+
+	@FXML
+	private ToggleButton onePageButton;
+
+	@FXML
+	private ToggleButton twoPagesButton;
+
+	@FXML
+	private ToggleButton multiPagesButton;
+
+	@FXML
+	private ColorPicker themeColorPicker;
+
+	// ----------------------------------------------------------
+
 	private Timeline blinkingTimeline;
 
 	private Label debugLabel;
@@ -455,6 +478,12 @@ public class RcplUic implements IRcplUic {
 	private double scale = 0.6;
 
 	private ContextMenu contextMenu;
+
+	private ToggleGroup themeToggles = new ToggleGroup();
+
+	private ToggleGroup pageLayoutToggles = new ToggleGroup();
+
+	private boolean inPageLayout;
 
 	/**
 	 * Constructor
@@ -750,10 +779,11 @@ public class RcplUic implements IRcplUic {
 
 		}
 
-		internalDefaultCss = RcplUic.class.getResource("/css/default.css").toExternalForm();
-		internalStyleMsOffice = RcplUic.class.getResource("/css/msoffice.css").toExternalForm();
-		internalStyleWindows7 = RcplUic.class.getResource("/css/windows_7.css").toExternalForm();
-		internalStyleDark = RcplUic.class.getResource("/css/theme_dark.css").toExternalForm();
+		cssStylesheets.put(THEME_DEFAULT, RcplUic.class.getResource("/css/default.css").toExternalForm());
+		cssStylesheets.put(THEME_MSOFFICE, RcplUic.class.getResource("/css/msoffice.css").toExternalForm());
+		cssStylesheets.put(THEME_WINDOWS7, RcplUic.class.getResource("/css/windows_7.css").toExternalForm());
+		cssStylesheets.put(THEME_DARK, RcplUic.class.getResource("/css/theme_dark.css").toExternalForm());
+		cssStylesheets.put(THEME_SILVER, RcplUic.class.getResource("/css/theme_silver.css").toExternalForm());
 
 		doCreateContent();
 
@@ -837,33 +867,90 @@ public class RcplUic implements IRcplUic {
 				if (!inPageLayout) {
 					if (Rcpl.get(getEditor(), KeyValueKey.PAGE_COLUMNS, 0) == -1) {
 						inPageLayout = true;
-						onMultiPagesAutomatic();
+						onMultiPages();
 						inPageLayout = false;
 					}
 				}
 			}
 		});
 
+//		final ColorPicker colorPicker = new ColorPicker();
+//		colorPicker.setValue(Color.CORAL);
+//
+//		colorPicker.setOnAction(new EventHandler() {
+//			public void handle(Event t) {
+//				removeAllStyles();
+//				addStyles(internalStyleDark, internalDefaultCss);
+//				Rcpl.set(KeyValueKey.THEME, THEME_DARK);
+//			}
+//		});
+//
+//		ContextMenu contextMenu = new ContextMenu();
+//		contextMenu.setMinHeight(300);
+//		contextMenu.setMinWidth(100);
+//
+//		contextMenu.setAutoHide(true);
+//		contextMenu.setHideOnEscape(true);
+//
+//		final MenuItem item1 = new MenuItem("");
+//
+//		item1.setGraphic(colorPicker);
+//		item1.setOnAction(new EventHandler<ActionEvent>() {
+//
+//			@Override
+//			public void handle(ActionEvent event) {
+//			}
+//		});
+//		contextMenu.getItems().add(item1);
+
+		themeDefaultButton.setId("themeDefaultButton");
+		themeDarkButton.setId("themeDarkButton");
+		themeSilverButton.setId("themeSilverButton");
+		themeWindows7Button.setId("themeWindows7Button");
+
+		themeToggles.getToggles().addAll(themeDefaultButton, themeSilverButton, themeDarkButton, themeWindows7Button);
+
+		pageLayoutToggles.getToggles().addAll(onePageButton, twoPagesButton, multiPagesButton);
+
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-				String style = Rcpl.get(KeyValueKey.THEME, THEME_DEFAULT);
-				if (THEME_DEFAULT.equals(style)) {
-					handleThemeDefault(null);
+				String style = Rcpl.get(KeyValueKey.THEME, null);
+				if (THEME_MSOFFICE.equals(style)) {
+					themeDefaultButton.setSelected(true);
+					themeDefaultButton.requestFocus();
 				} else if (THEME_DARK.equals(style)) {
-					handleThemeDark(null);
+					themeDarkButton.setSelected(true);
+					themeDarkButton.requestFocus();
 				} else if (THEME_SILVER.equals(style)) {
-					handleThemeSilver(null);
+					themeSilverButton.setSelected(true);
+					themeSilverButton.requestFocus();
 				} else if (THEME_WINDOWS7.equals(style)) {
-					handleThemeWindows7(null);
+					themeWindows7Button.setSelected(true);
+					themeWindows7Button.requestFocus();
+				} else {
+
+					File f = RcplUtil.createCacheFile(style + ".css");
+					if (f.exists()) {
+						removeAllStyles();
+						try {
+							addStyles(f.toURI().toURL().toExternalForm(), cssStylesheets.get(THEME_DEFAULT));
+							return;
+						} catch (MalformedURLException e) {
+						}
+					}
+
+					// ---------- fall back ----------
+
+					themeSilverButton.setSelected(true);
+					themeSilverButton.requestFocus();
+
 				}
 			}
 		});
 
 	}
-
-	private boolean inPageLayout;
 
 	private double computeScale(double scale) {
 		double result;
@@ -1518,6 +1605,8 @@ public class RcplUic implements IRcplUic {
 		getStage().setIconified(true);
 	}
 
+	private static final String THEME_MSOFFICE = "THEME_MSOFFICE";
+
 	private static final String THEME_DARK = "THEME_DARK";
 
 	private static final String THEME_DEFAULT = "THEME_DEFAULT";
@@ -1527,30 +1616,56 @@ public class RcplUic implements IRcplUic {
 	private static final String THEME_WINDOWS7 = "THEME_WINDOWS7";
 
 	@FXML
+	public void handleThemeColorPicker(ActionEvent event) {
+		Color color = themeColorPicker.getValue();
+		if (color != null) {
+			ColorName c2 = RcplUtil.findColor(color);
+			removeAllStyles();
+			String newStyleKey = "THEME_" + c2.name;
+			String newStyleSheet = cssStylesheets.get(newStyleKey);
+			if (newStyleSheet == null) {
+				File f = RcplUtil.saveStringToFileInCache(newStyleKey + ".css",
+						".root { -fx-base: rgb(" + (int) (c2.col.getRed() * 255.0) + ","
+								+ (int) (c2.col.getGreen() * 255.0) + "," + (int) (c2.col.getBlue() * 255.0) + "); }");
+				try {
+					newStyleSheet = f.toURI().toURL().toExternalForm();
+					cssStylesheets.put(newStyleKey, newStyleSheet);
+					addStyles(cssStylesheets.get(newStyleKey), cssStylesheets.get(THEME_DEFAULT));
+					Rcpl.set(KeyValueKey.THEME, newStyleKey);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+	}
+
+	@FXML
 	public void handleThemeDark(ActionEvent event) {
 		removeAllStyles();
-		addStyles(internalStyleDark, internalDefaultCss);
+		addStyles(cssStylesheets.get(THEME_DARK), cssStylesheets.get(THEME_DEFAULT));
 		Rcpl.set(KeyValueKey.THEME, THEME_DARK);
 	}
 
 	@FXML
 	public void handleThemeDefault(ActionEvent event) {
 		removeAllStyles();
-		addStyles(internalStyleMsOffice, internalDefaultCss);
-		Rcpl.set(KeyValueKey.THEME, THEME_DEFAULT);
+		addStyles(cssStylesheets.get(THEME_MSOFFICE), cssStylesheets.get(THEME_DEFAULT));
+		Rcpl.set(KeyValueKey.THEME, THEME_MSOFFICE);
 	}
 
 	@FXML
 	public void handleThemeSilver(ActionEvent event) {
 		removeAllStyles();
-		addStyles(internalDefaultCss);
+		addStyles(cssStylesheets.get(THEME_SILVER), cssStylesheets.get(THEME_DEFAULT));
 		Rcpl.set(KeyValueKey.THEME, THEME_SILVER);
 	}
 
 	@FXML
 	public void handleThemeWindows7(ActionEvent event) {
 		removeAllStyles();
-		addStyles(internalStyleWindows7, internalDefaultCss);
+		addStyles(cssStylesheets.get(THEME_WINDOWS7), cssStylesheets.get(THEME_DEFAULT));
 		Rcpl.set(KeyValueKey.THEME, THEME_WINDOWS7);
 	}
 
@@ -1608,7 +1723,7 @@ public class RcplUic implements IRcplUic {
 			Rcpl.progressMessage(e.getMessage());
 		}
 
-		double max = 0;
+//		double max = 0;
 		if (RcplSession.getDefault() != null && RcplSession.getDefault().isOnline()) {
 			// login.getController().collapseAll();
 //			max = RcplSession.getDefault().getSystemPreferences().getDouble(RcplKey.MAX_PROGRESS);
@@ -1694,21 +1809,27 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@FXML
-	public void onMultiPagesAutomatic() {
-		Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, -1);
-		getEditor().setPageColumns(-1);
+	public void onMultiPages() {
+		if (getEditor() != null) {
+			Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, -1);
+			getEditor().setPageColumns(-1);
+		}
 	}
 
 	@FXML
 	public void onOnePage() {
-		Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, 1);
-		getEditor().setPageColumns(1);
+		if (getEditor() != null) {
+			Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, 1);
+			getEditor().setPageColumns(1);
+		}
 	}
 
 	@FXML
 	public void onTwoPages() {
-		Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, 2);
-		getEditor().setPageColumns(2);
+		if (getEditor() != null) {
+			Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, 2);
+			getEditor().setPageColumns(2);
+		}
 	}
 
 	@Override

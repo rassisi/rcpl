@@ -1278,4 +1278,47 @@
 	-fx-opacity: 0.5;
 }
 
+#themeDefaultButton {
+	-fx-border-width: 4;
+	-fx-border-radius: 1;
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+    -fx-max-width: 16px;
+    -fx-max-height: 16px;
+	-fx-border-color: rgb(172,208,238);
+	-fx-border-insets: 3.0, 3.0 3.0 3.0 3.0;
+}
+
+#themeDarkButton {
+	-fx-border-width: 4;
+	-fx-border-radius: 1;
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+    -fx-max-width: 16px;
+    -fx-max-height: 16px;
+	-fx-border-color: rgb(100,100,100);
+	-fx-border-insets: 3.0, 3.0 3.0 3.0 3.0;
+}
+
+#themeSilverButton {
+	-fx-border-width: 4;
+	-fx-border-radius: 1;
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+    -fx-max-width: 16px;
+    -fx-max-height: 16px;
+	-fx-border-color: rgb(180,180,180);
+	-fx-border-insets: 3.0, 3.0 3.0 3.0 3.0;
+}
+
+#themeWindows7Button {
+	-fx-border-width: 4;
+	-fx-border-radius: 1;
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+    -fx-max-width: 16px;
+    -fx-max-height: 16px;
+	-fx-border-color: rgb(4.0,100.0,230.0);
+	-fx-border-insets: 3.0, 3.0 3.0 3.0 3.0;
+}
 

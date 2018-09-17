@@ -708,7 +708,7 @@ public class Rcpl {
 
 	public static String get(IEditor editor, KeyValueKey key, String defaultValue) {
 		String value = null;
-		if (editor != null && editor.getDocument() != null) {
+		if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
 			value = RcplSession.getDefault().getValue(key.name() + editor.getDocument().getFile().getName());
 		}
 		if (value == null) {
@@ -732,7 +732,7 @@ public class Rcpl {
 	// ---------- set
 
 	public static void set(IEditor editor, KeyValueKey key, String value) {
-		if (editor.getDocument() != null && editor.getDocument().getFile() != null) {
+		if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
 			RcplSession.getDefault().putValue(key.name() + editor.getDocument().getFile().getName(), value);
 		}
 	}

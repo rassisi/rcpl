@@ -628,8 +628,6 @@ public class RcplSideToolBar implements ISideToolBar {
 		BorderPane.setMargin(Rcpl.UIC.getMainBottomArea(), new Insets(0, 0, 0, WIDTH_COLLAPSED_BOTTOM));
 		activeGroupId = null;
 		toolPaneStack.getChildren().clear();
-
-		System.out.println("expanded = false");
 	}
 
 	private ITool createColorTool(final Tool eTool, Pane flowPane, final AccordionColorTitlePane titlePane) {
@@ -742,8 +740,6 @@ public class RcplSideToolBar implements ISideToolBar {
 
 		try {
 			expanded = true;
-			System.out.println("expanded = true");
-
 			try {
 				Pane pane = toolPaneStackRegistry.get(getKey(getPerspectiveId(), groupId));
 				toolPaneStack.getChildren().clear();

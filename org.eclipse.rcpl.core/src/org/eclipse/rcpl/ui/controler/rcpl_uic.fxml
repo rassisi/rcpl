@@ -31,14 +31,15 @@
             <StackPane fx:id="progressArea" prefWidth="100.0" HBox.hgrow="ALWAYS" />
             <HBox fx:id="editorWindowTools" minWidth="-Infinity" prefWidth="400.0" spacing="3.0">
                <children>
-                  <Button id="sliderButton" mnemonicParsing="false" onAction="#handleThemeDefault" />
-                  <Button id="sliderButton" mnemonicParsing="false" onAction="#handleThemeSilver" />
-                  <Button id="sliderButton" mnemonicParsing="false" onAction="#handleThemeDark" />
-                  <Button id="sliderButton" mnemonicParsing="false" onAction="#handleThemeWindows7" />
+                  <ColorPicker fx:id="themeColorPicker" onAction="#handleThemeColorPicker" />
+                  <ToggleButton id="sliderButton" fx:id="themeDefaultButton" mnemonicParsing="false" onAction="#handleThemeDefault" />
+                  <ToggleButton id="sliderButton" fx:id="themeSilverButton" mnemonicParsing="false" onAction="#handleThemeSilver" />
+                  <ToggleButton id="sliderButton" fx:id="themeDarkButton" mnemonicParsing="false" onAction="#handleThemeDark" />
+                  <ToggleButton id="sliderButton" fx:id="themeWindows7Button" mnemonicParsing="false" onAction="#handleThemeWindows7" />
                   <HBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="20.0" />
-                  <Button id="sliderButton" fx:id="onePageButton" mnemonicParsing="false" onAction="#onOnePage" HBox.hgrow="NEVER" />
-                  <Button id="sliderButton" fx:id="twoPagesButton" mnemonicParsing="false" onAction="#onTwoPages" HBox.hgrow="NEVER" />
-                  <Button id="sliderButton" mnemonicParsing="false" onAction="#onMultiPagesAutomatic" />
+                  <ToggleButton id="sliderButton" fx:id="onePageButton" mnemonicParsing="false" onAction="#onOnePage" />
+                  <ToggleButton id="sliderButton" fx:id="twoPagesButton" mnemonicParsing="false" onAction="#onTwoPages" />
+                  <ToggleButton id="sliderButton" fx:id="multiPagesButton" mnemonicParsing="false" onAction="#onMultiPages" />
                   <HBox minHeight="-Infinity" prefWidth="300.0" HBox.hgrow="SOMETIMES">
                      <children>
                         <Button id="sliderButton" fx:id="minusZoom" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" text="-" HBox.hgrow="NEVER" />
