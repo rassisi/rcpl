@@ -11,8 +11,6 @@ public interface IParagraph extends ILayoutObject {
 
 	void setIndentation(double pixel);
 
-	void updateOverflowClipping();
-
 	void advanceCaretOffset();
 
 	void backCaretOffset();
@@ -21,17 +19,7 @@ public interface IParagraph extends ILayoutObject {
 
 	void setCaretOffset(int offset);
 
-	boolean isOverflowActive();
-
-	void setOverflowActive(boolean overflowActive);
-
 	boolean isLoaded();
-
-	void detachOverflowFigure();
-
-	IParagraphFigure getOverflowParagraphFigure();
-
-	void createOverflowFigure();
 
 	@Override
 	IParagraphFigure getLayoutFigure();

@@ -172,6 +172,8 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		return fullscreenProperty;
 	}
 
+	private boolean inLayoutChange = false;
+
 	public RcplApplicationWindow(IRcplApplicationProvider applicationProvider, Region root) {
 		this.clientArea = root;
 		this.applicationProvider = applicationProvider;
@@ -226,11 +228,15 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 
 					@Override
 					protected void execute() {
-						if (SHADOW_WIDTH != 0) {
-							shadowRectangle.setVisible(true);
-							setShadowClip(newBounds);
-						} else {
-							shadowRectangle.setVisible(false);
+						if (!inLayoutChange) {
+							inLayoutChange = true;
+							if (SHADOW_WIDTH != 0) {
+								shadowRectangle.setVisible(true);
+								setShadowClip(newBounds);
+							} else {
+								shadowRectangle.setVisible(false);
+							}
+							inLayoutChange = false;
 						}
 					}
 				};
@@ -327,7 +333,6 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 				@Override
 				public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean fullscreenState) {
 					setShadow(!fullscreenState.booleanValue());
-					// fullScreenMenuItem.setSelected(fullscreenState.booleanValue());
 					maximize.setVisible(!fullscreenState.booleanValue());
 					minimize.setVisible(!fullscreenState.booleanValue());
 					resize.setVisible(!fullscreenState.booleanValue());
@@ -382,7 +387,6 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 			});
 		}
 
-		computeAllSizes();
 	}
 
 	/**
@@ -439,21 +443,6 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 				switchClose();
 			}
 		});
-	}
-
-	/**
-	 * Init the minimum/pref/max size in order to be reflected in the primary stage
-	 */
-	private void computeAllSizes() {
-		// double minWidth = minWidth(getHeight());
-		// setMinWidth(minWidth);
-		// double minHeight = minHeight(getWidth());
-		// setMinHeight(minHeight);
-		//
-		// double prefHeight = prefHeight(getWidth());
-		// setPrefHeight(prefHeight);
-		// double prefWidth = prefWidth(getHeight());
-		// setPrefWidth(prefWidth);
 	}
 
 	/*
@@ -559,81 +548,6 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	 * Manage buttons and menu items
 	 */
 	public void initDecoration() {
-//		MenuItem minimizeMenuItem = null;
-		// Menu
-		// final ContextMenu contextMenu = new ContextMenu();
-		// contextMenu.setAutoHide(true);
-		if (minimize != null) { // Utility Stage
-			// minimizeMenuItem = new MenuItem(LOC.getString("Minimize"));
-			// minimizeMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.M,
-			// KeyCombination.SHORTCUT_DOWN));
-			//
-			// minimizeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			// @Override
-			// public void handle(ActionEvent e) {
-			// switchMinimize();
-			// }
-			// });
-			// contextMenu.getItems().add(minimizeMenuItem);
-		}
-		if (maximize != null && applicationProvider.getPrimaryStage().isResizable()) { // Utility Stage type
-			// maximizeMenuItem = new MenuItem(LOC.getString("Maximize"));
-			// maximizeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			// @Override
-			// public void handle(ActionEvent e) {
-			// switchMaximize();
-			// contextMenu.hide(); // Stay stuck on screen
-			// }
-			// });
-			// contextMenu.getItems().addAll(maximizeMenuItem, new
-			// SeparatorMenuItem());
-		}
-
-		// Fullscreen
-		if (stageStyle != StageStyle.UTILITY && applicationProvider.getPrimaryStage().isResizable()) {
-			// fullScreenMenuItem = new
-			// CheckMenuItem(LOC.getString("FullScreen"));
-			// fullScreenMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			// @Override
-			// public void handle(ActionEvent e) {
-			// // fake
-			// // maximizeProperty().set(!maximizeProperty().get());
-			// switchFullscreen();
-			// }
-			// });
-			// fullScreenMenuItem.setAccelerator(
-			// new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN,
-			// KeyCombination.SHORTCUT_DOWN));
-			//
-			// contextMenu.getItems().addAll(fullScreenMenuItem, new
-			// SeparatorMenuItem());
-		}
-
-		// Close
-		// MenuItem closeMenuItem = new MenuItem(LOC.getString("Close"));
-		// closeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-		// @Override
-		// public void handle(ActionEvent e) {
-		// switchClose();
-		// }
-		// });
-		// closeMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.W,
-		// KeyCombination.SHORTCUT_DOWN));
-		//
-		// contextMenu.getItems().add(closeMenuItem);
-
-		// menu.setOnMousePressed(new EventHandler<MouseEvent>() {
-		// @Override
-		// public void handle(MouseEvent t) {
-		// if (contextMenu.isShowing()) {
-		// contextMenu.hide();
-		// } else {
-		// contextMenu.show(menu, Side.BOTTOM, 0, 0);
-		// }
-		// }
-		// });
-
-		// Close button
 		close.setTooltip(new Tooltip(LOC.getString("Close")));
 		close.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -642,8 +556,6 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 			}
 		});
 
-		// Maximize button
-		// If changed via contextual menu
 		maximizeProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {

@@ -40,7 +40,7 @@ public class LayoutData {
 
 	public List<ILayoutObject> rootObjects;
 
-	public boolean pageBreakOccured;
+	public int pageBreakCounter;
 
 	public int sameLocation = 0;
 
@@ -74,7 +74,7 @@ public class LayoutData {
 		actualSection = null;
 		layoutResult = null;
 		rootObjects = null;
-		pageBreakOccured = false;
+		pageBreakCounter = 0;
 		sameLocation = 0;
 	}
 

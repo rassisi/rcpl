@@ -13,6 +13,18 @@ import javafx.geometry.Rectangle2D;
  */
 public interface ILayoutObject {
 
+	void updateOverflowClipping();
+
+	boolean isOverflowActive();
+
+	void setOverflowActive(boolean overflowActive);
+
+	void detachOverflowFigure();
+
+	void createOverflowFigure();
+
+	ILayoutFigure getOverflowFigure();
+
 	IProperty2 getInsets();
 
 	void deActivate();
