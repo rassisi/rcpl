@@ -67,8 +67,6 @@ public interface ILayoutFigure extends IPane {
 
 	Point2D getOverflowLocation();
 
-	IPage getPage();
-
 	@Override
 	Pane getPane();
 
@@ -115,8 +113,6 @@ public interface ILayoutFigure extends IPane {
 	void setOverflowExcess(double excess, double remaining);
 
 	void setOverflowFigure(boolean overflow);
-
-	void setPage(IPage page);
 
 	void setParentFigure(ILayoutFigure figure);
 

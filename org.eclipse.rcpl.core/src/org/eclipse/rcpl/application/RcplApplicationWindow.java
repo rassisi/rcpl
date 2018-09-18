@@ -35,6 +35,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IApplicationWindow;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 
@@ -221,12 +222,18 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		shadowRectangle.layoutBoundsProperty().addListener(new ChangeListener<Bounds>() {
 			@Override
 			public void changed(ObservableValue<? extends Bounds> observable, Bounds oldBounds, Bounds newBounds) {
-				if (SHADOW_WIDTH != 0) {
-					shadowRectangle.setVisible(true);
-					setShadowClip(newBounds);
-				} else {
-					shadowRectangle.setVisible(false);
-				}
+				new DelayedExecution(30) {
+
+					@Override
+					protected void execute() {
+						if (SHADOW_WIDTH != 0) {
+							shadowRectangle.setVisible(true);
+							setShadowClip(newBounds);
+						} else {
+							shadowRectangle.setVisible(false);
+						}
+					}
+				};
 			}
 		});
 

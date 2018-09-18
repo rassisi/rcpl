@@ -52,6 +52,8 @@ public class LayoutData {
 
 	private ILayoutService layoutService;
 
+	public int pageCountAtTheBeginning;
+
 	public LayoutData(ILayoutService layoutService) {
 		this.layoutService = layoutService;
 	}
@@ -80,6 +82,9 @@ public class LayoutData {
 	 * @return
 	 */
 	public ILayoutObject getLayoutObject() {
+		if (index < 0) {
+			index = 0;
+		}
 		if (index < rootObjects.size()) {
 			return rootObjects.get(index);
 		}
@@ -121,4 +126,7 @@ public class LayoutData {
 		return false;
 	}
 
+	public boolean pageCountHasChanged() {
+		return layoutService.getEditor().getPageCount() != pageCountAtTheBeginning;
+	}
 }

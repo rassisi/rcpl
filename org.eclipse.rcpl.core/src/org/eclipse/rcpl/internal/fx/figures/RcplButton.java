@@ -361,17 +361,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 			}
 			if (found) {
-//				if (select) 
-
-				{
-					System.out.println(cmd.getId() + ": " + select);
-					System.out.println("-----------------------------------------");
-					System.out.println();
-					System.out.println();
-					System.out.println();
-				}
 				toggleButton.setSelected(select);
-
 			}
 
 		}
