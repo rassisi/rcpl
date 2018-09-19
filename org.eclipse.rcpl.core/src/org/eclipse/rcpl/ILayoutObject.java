@@ -21,7 +21,7 @@ public interface ILayoutObject {
 
 	void detachOverflowFigure();
 
-	void createOverflowFigure();
+	void createOverflowFigure(double remaining);
 
 	ILayoutFigure getOverflowFigure();
 

@@ -13,6 +13,10 @@ import javafx.scene.text.TextFlow;
  */
 public interface IParagraphFigure extends ILayoutFigure {
 
+	void process_BACKSPACE();
+
+	void process_DELETE();
+
 	void setAlignment(AlignType type);
 
 	Pane getCaretPane();

@@ -118,6 +118,13 @@ public class LayoutData {
 		this.y = y;
 	}
 
+	public ILayoutObject getLastRootObject() {
+		if (rootObjects.isEmpty()) {
+			return null;
+		}
+		return rootObjects.get(rootObjects.size() - 1);
+	}
+
 	public boolean compleated() {
 		if (rootObjects != null && page != null && layoutService.getEditor() != null) {
 			return index >= rootObjects.size()

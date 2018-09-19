@@ -83,7 +83,6 @@ public class PreferencesDetailsPage extends AbstractModelDetailPage {
 	@Override
 	public void create(StackPane stackPane) {
 		GridPane node = new GridPane();
-		node.setId("redBorder");
 		Preferences preferences = RcplSession.getDefault().getRcpl().getPreferences();
 
 		int rowIndex = 0;

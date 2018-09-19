@@ -174,7 +174,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void updateCanvasSize();
 
-	void updatePageVisibility();
+	void updatePageVisibility(boolean isScrollBarEvent);
 
 	void updateTabText(String text, boolean dirty);
 

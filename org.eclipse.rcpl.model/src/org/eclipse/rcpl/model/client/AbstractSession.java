@@ -1151,7 +1151,9 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			}
 
 			try {
-				user = getRealm().getUser(userId);
+				if (getRealm() != null) {
+					user = getRealm().getUser(userId);
+				}
 			} catch (Exception ex) {
 				// user has no right
 			}
