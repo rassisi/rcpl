@@ -224,6 +224,9 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		shadowRectangle.layoutBoundsProperty().addListener(new ChangeListener<Bounds>() {
 			@Override
 			public void changed(ObservableValue<? extends Bounds> observable, Bounds oldBounds, Bounds newBounds) {
+
+				// --------- needed otherwise it crashes when resizing the window
+
 				new DelayedExecution(30) {
 
 					@Override
