@@ -1782,10 +1782,6 @@ public class RcplUic implements IRcplUic {
 		return viewer;
 	}
 
-	@Override
-	public void layoutDocument(IEditor editor, IDocument document) {
-	}
-
 	public void logout() {
 
 	}

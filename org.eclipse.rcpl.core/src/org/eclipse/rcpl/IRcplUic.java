@@ -30,8 +30,6 @@ public interface IRcplUic {
 
 	void closeApplication();
 
-	void layoutDocument(IEditor editor, IDocument document);
-
 	void addRecentDocument(File file, boolean commit);
 
 	double getScale();
