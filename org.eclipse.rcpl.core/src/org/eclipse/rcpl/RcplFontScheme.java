@@ -17,7 +17,7 @@ import org.openxmlformats.schemas.drawingml.x2006.main.CTTextFont;
  * @author ramin
  * 
  */
-public class JOFontScheme {
+public class RcplFontScheme {
 
 	private CTTextFont minorFontsLatin;
 	private CTTextFont minorFontsCs;
@@ -29,8 +29,7 @@ public class JOFontScheme {
 	private CTTextFont majorFontsEa;
 //	private CTSupplementalFont[] majorFontsSupplemental;
 
-	@SuppressWarnings("deprecation")
-	public JOFontScheme(CTFontScheme themeFontScheme) {
+	public RcplFontScheme(CTFontScheme themeFontScheme) {
 
 		minorFontsCs = themeFontScheme.getMinorFont().getCs();
 		minorFontsEa = themeFontScheme.getMinorFont().getEa();
