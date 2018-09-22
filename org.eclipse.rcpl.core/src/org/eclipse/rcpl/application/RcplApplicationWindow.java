@@ -35,7 +35,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IApplicationWindow;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 
@@ -227,22 +226,21 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 
 				// --------- needed otherwise it crashes when resizing the window
 
-				new DelayedExecution(30) {
+				if (oldBounds.getHeight() == newBounds.getHeight() && oldBounds.getWidth() == newBounds.getWidth()) {
+					updateWindow(newBounds);
+				} else {
 
-					@Override
-					protected void execute() {
-						if (!inLayoutChange) {
-							inLayoutChange = true;
-							if (SHADOW_WIDTH != 0) {
-								shadowRectangle.setVisible(true);
-								setShadowClip(newBounds);
-							} else {
-								shadowRectangle.setVisible(false);
-							}
-							inLayoutChange = false;
-						}
-					}
-				};
+					updateWindow(newBounds);
+
+//					updateBounds();
+
+//					new DelayedExecution(300) {
+//
+//						@Override
+//						protected void execute() {
+//						}
+//					};
+				}
 			}
 		});
 
@@ -390,6 +388,19 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 			});
 		}
 
+	}
+
+	private void updateWindow(Bounds newBounds) {
+		if (!inLayoutChange) {
+			inLayoutChange = true;
+			if (SHADOW_WIDTH != 0) {
+				shadowRectangle.setVisible(true);
+				setShadowClip(newBounds);
+			} else {
+				shadowRectangle.setVisible(false);
+			}
+			inLayoutChange = false;
+		}
 	}
 
 	/**

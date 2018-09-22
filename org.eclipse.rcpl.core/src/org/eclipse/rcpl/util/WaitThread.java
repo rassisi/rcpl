@@ -94,7 +94,7 @@ public abstract class WaitThread {
 
 	private void sleep() {
 		try {
-			Thread.sleep(0, 100);
+			Thread.sleep(0, 3);
 		} catch (InterruptedException e) {
 		}
 	}

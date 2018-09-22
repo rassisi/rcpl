@@ -119,14 +119,14 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		} else {
 			node = new Button();
 			((Button) node).setMinWidth(2);
-			((ButtonBase) node).setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					performAction();
-				}
-			});
 		}
+		((ButtonBase) node).setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				performAction();
+			}
+		});
 
 		String imageName = getTool().getImage();
 		if (imageName == null) {

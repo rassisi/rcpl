@@ -80,6 +80,7 @@ public class RibbonGroup extends RcplTool {
 		getNode().setMaxHeight(80);
 		getNode().setPrefHeight(80);
 		getNode().setMinHeight(80);
+		getNode().setPickOnBounds(false);
 		getNode().setAlignment(Pos.CENTER);
 		DropShadow dropShadow = new DropShadow(3, Color.GRAY);
 		dropShadow.setOffsetX(1.0);
@@ -90,6 +91,7 @@ public class RibbonGroup extends RcplTool {
 		// ---------- GridPane
 
 		this.mainGridPane = new GridPane();
+		mainGridPane.setPickOnBounds(false);
 		this.mainGridPane.setId("clipboard");
 		this.mainGridPane.setGridLinesVisible(false);
 		this.mainGridPane.setVgap(5);
@@ -113,12 +115,14 @@ public class RibbonGroup extends RcplTool {
 		// ---------- grid container
 
 		GridPane gridPane = new GridPane();
+
+		gridPane.setPickOnBounds(false);
 		VBox.setVgrow(gridPane, Priority.NEVER);
 		gridPane.setMinHeight(20);
 		gridPane.setPrefHeight(20);
 		gridPane.setMaxHeight(20);
 		gridPane.add(label, 0, 0);
-		GridPane.setHgrow(label, Priority.ALWAYS);
+		GridPane.setHgrow(label, Priority.SOMETIMES);
 		GridPane.setHalignment(label, HPos.CENTER);
 		GridPane.setValignment(label, VPos.BOTTOM);
 		gridPane.setAlignment(Pos.BOTTOM_CENTER);
@@ -150,15 +154,13 @@ public class RibbonGroup extends RcplTool {
 			};
 			dialogButtons.add(dialogButton);
 			dialogButton.disableService();
-			dialogButton.setWidth(6);
-			dialogButton.setHeight(6);
-			dialogButton.getNode().setPrefSize(6, 6);
-			dialogButton.getNode().setMaxSize(6, 6);
-			dialogButton.getNode().setMaxHeight(6);
+			dialogButton.setWidth(10);
+			dialogButton.setHeight(10);
+			dialogButton.getNode().setPrefSize(10, 10);
+			dialogButton.getNode().setMaxSize(10, 10);
 			dialogButton.getNode().setId("dialogButton");
-
 			GridPane.setValignment(dialogButton.getNode(), VPos.BOTTOM);
-			GridPane.setMargin(dialogButton.getNode(), new Insets(5, 0, 0, 5));
+//			GridPane.setMargin(dialogButton.getNode(), new Insets(5, 0, 0, 5));
 			gridPane.add(dialogButton.getNode(), 1, 0);
 		}
 
@@ -227,6 +229,7 @@ public class RibbonGroup extends RcplTool {
 	private void processSubGroup(ToolGroup t) {
 		HBox hBox = new HBox();
 		hBox.setId("ribbonSubGroup");
+		hBox.setPickOnBounds(false);
 
 		int spanX = Math.max(1, t.getSpanX());
 		int spanY = Math.max(1, t.getSpanY());
