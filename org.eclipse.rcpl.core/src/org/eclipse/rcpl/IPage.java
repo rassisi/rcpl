@@ -12,6 +12,12 @@ import javafx.scene.paint.Color;
  */
 public interface IPage extends ILayoutFigure {
 
+	void setOverflowPage(boolean overflowPage);
+
+	void setForceEvenPage(boolean forceEvenPage);
+
+	void setForceOddPage(boolean forceOdd);
+
 	boolean isLast();
 
 	boolean isFirst();
