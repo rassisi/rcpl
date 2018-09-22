@@ -10,6 +10,8 @@ import javafx.geometry.Point2D;
  */
 public class LayoutData {
 
+	public boolean shrinking;
+
 	public boolean pause;
 
 	public long startTime;
@@ -102,7 +104,7 @@ public class LayoutData {
 			// buf.append("\nlayoutBounds = " + x + "," + y + "," + width + ","
 			// + height);
 		}
-		return buf.toString();
+		return "p:" + (page != null ? "" + page.getPageNumber() : "null") + " t:" + buf.toString();
 	}
 
 	public double getX() {

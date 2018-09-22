@@ -157,7 +157,9 @@ public interface ILayoutObject {
 
 	void setDirtyContent(boolean dirty);
 
-	void setDirtyLayout(boolean dirty);
+	void setDirtyLayout(boolean dirty, boolean shrinking);
+
+	boolean isShrinking();
 
 	void setHeightOverflow(double heightOverflow);
 

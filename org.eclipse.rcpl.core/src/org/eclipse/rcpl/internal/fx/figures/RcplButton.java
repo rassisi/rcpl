@@ -32,8 +32,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -106,26 +104,9 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 	@Override
 	public void setSelected(boolean selected) {
 		if (isToggle()) {
-			removeToggleButtonListener();
 			((ToggleButton) getNode()).setSelected(selected);
-			addToggleButtonListener();
 		}
 		this.selected = selected;
-	}
-
-	private ChangeListener<Boolean> toggleButonListener;
-
-	private void addToggleButtonListener() {
-		if (isToggle()) {
-			((ToggleButton) getNode()).selectedProperty().addListener(toggleButonListener);
-		}
-	}
-
-	private void removeToggleButtonListener() {
-		if (isToggle()) {
-			((ToggleButton) getNode()).selectedProperty().removeListener(toggleButonListener);
-		}
-
 	}
 
 	@Override
@@ -134,22 +115,10 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		if (isToggle()) {
 			node = new ToggleButton();
 			((ToggleButton) node).setMinWidth(2);
-//			node.setPickOnBounds(false);
-			toggleButonListener = new ChangeListener<Boolean>() {
-				@Override
-				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-//					if (newValue) 
-					{
-						performAction();
-					}
-				}
-			};
-			addToggleButtonListener();
 
 		} else {
 			node = new Button();
 			((Button) node).setMinWidth(2);
-//			node.setPickOnBounds(false);
 			((ButtonBase) node).setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -180,8 +149,6 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			toolTip = getTool().getId();
 		}
 		final String tt = toolTip;
-		// unselectedSkin();
-
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -291,8 +258,6 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 				return;
 			}
 
-			ToggleButton toggleButton = (ToggleButton) getNode();
-			removeToggleButtonListener();
 			EnCommandId cmd;
 			try {
 				cmd = EnCommandId.valueOf(id);
@@ -361,12 +326,11 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 			}
 			if (found) {
-				toggleButton.setSelected(select);
+				setSelected(select);
 			}
 
 		}
 
-		addToggleButtonListener();
 	}
 
 	private boolean isNormalStyle(RcplEvent event, EnCommandId cmd) {
