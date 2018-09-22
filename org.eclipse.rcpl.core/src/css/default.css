@@ -1328,3 +1328,13 @@
     -fx-size: 0.1pt;
     -fx-font: 0.1pt "Segoe UI";
 }
+
+.table-view .scroll-bar:vertical {
+    -fx-opacity: 0;
+    -fx-padding:-7;
+}
+
+.table-view .scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-padding:-7;
+}
