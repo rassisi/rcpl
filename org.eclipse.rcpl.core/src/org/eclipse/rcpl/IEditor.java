@@ -62,6 +62,8 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void addPage(IPage page);
 
+	void addPage(final IPage page, int index);
+
 	void centerHorizontally();
 
 	void collapseHorizontalRuler();
