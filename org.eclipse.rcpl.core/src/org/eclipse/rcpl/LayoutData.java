@@ -54,6 +54,8 @@ public class LayoutData {
 
 	public int pageCountAtTheBeginning;
 
+	public boolean breakBefore;
+
 	public LayoutData(ILayoutService layoutService) {
 		this.layoutService = layoutService;
 	}
@@ -76,6 +78,7 @@ public class LayoutData {
 		rootObjects = null;
 		pageBreakCounter = 0;
 		sameLocation = 0;
+		breakBefore = false;
 	}
 
 	/**
