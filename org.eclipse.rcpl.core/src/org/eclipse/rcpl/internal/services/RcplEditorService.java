@@ -12,7 +12,6 @@
 package org.eclipse.rcpl.internal.services;
 
 import org.eclipse.rcpl.ICommand;
-import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.ui.action.RcplCommand;
@@ -45,10 +44,13 @@ public class RcplEditorService extends RcplService {
 		case test_layout:
 			IParagraph sel = Rcpl.UIC.getEditor().getSelectedParagraph();
 			if (sel != null) {
-				sel.setDirtyLayout(true);
-//				sel.getDocument().getEditor().layoutDocument();
-				sel.getDocument().getEditor().startTask("", IEditor.TASK_LAYOUT_DOCUMENT, null);
-
+				if (sel.getPreviousRootObject() != null) {
+					sel.getPreviousRootObject().setTestLayout(true);
+					sel.getPreviousRootObject().setDirtyLayout(true);
+				} else {
+					sel.setTestLayout(true);
+					sel.setDirtyLayout(true);
+				}
 			}
 			break;
 		case test_z_order:
