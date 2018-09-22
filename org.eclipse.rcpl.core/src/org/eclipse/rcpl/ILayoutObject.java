@@ -13,6 +13,12 @@ import javafx.geometry.Rectangle2D;
  */
 public interface ILayoutObject {
 
+	boolean isPageBreakBefore();
+
+	boolean isTestLayout();
+
+	void setTestLayout(boolean testlayout);
+
 	void updateOverflowClipping();
 
 	boolean isOverflowActive();
