@@ -6,7 +6,11 @@ package org.eclipse.rcpl;
  */
 public enum EnLayoutReason {
 
-	INITIAL_LAYOUT, EDITING_LAYOUT;
+	INITIAL_LAYOUT,
+
+	EDITING_LAYOUT,
+
+	TEST_LAYOUT;
 
 	private ILayoutObject dirtyLayoutObject;
 
