@@ -15,6 +15,10 @@ public abstract class WaitThread {
 
 	private IEditor editor;
 
+	private long millis = 0;
+
+	private int nanos = 10;
+
 	class Waiter extends Thread {
 		private Object ob;
 
@@ -25,6 +29,7 @@ public abstract class WaitThread {
 			setName("Waiter");
 		}
 
+		@Override
 		public void run() {
 			// waiter warten sofort
 			synchronized (ob) {
@@ -40,10 +45,14 @@ public abstract class WaitThread {
 	}
 
 	public WaitThread() {
-		this(null);
+		this(null, 0, 10);
 	}
 
 	public WaitThread(IEditor editor) {
+		this(editor, 0, 10);
+	}
+
+	public WaitThread(IEditor editor, long millis, int nanos) {
 		this.editor = editor;
 		if (editor == null || !editor.isDisposed()) {
 			try {
@@ -94,7 +103,7 @@ public abstract class WaitThread {
 
 	private void sleep() {
 		try {
-			Thread.sleep(0, 3);
+			Thread.sleep(millis, nanos);
 		} catch (InterruptedException e) {
 		}
 	}

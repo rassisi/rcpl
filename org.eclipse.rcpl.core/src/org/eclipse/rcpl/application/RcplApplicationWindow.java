@@ -86,8 +86,8 @@ import javafx.util.Duration;
  */
 public class RcplApplicationWindow extends StackPane implements IApplicationWindow {
 
-	public int SHADOW_WIDTH = 15;
-	public int SAVED_SHADOW_WIDTH = 15;
+	public int SHADOW_WIDTH = 3; // 15
+	public int SAVED_SHADOW_WIDTH = 3; // 15
 	static public int RESIZE_PADDING = 7;
 	static public int FEEDBACK_STROKE = 4;
 	static public double ROUNDED_DELTA = 5;
@@ -229,17 +229,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 				if (oldBounds.getHeight() == newBounds.getHeight() && oldBounds.getWidth() == newBounds.getWidth()) {
 					updateWindow(newBounds);
 				} else {
-
 					updateWindow(newBounds);
-
-//					updateBounds();
-
-//					new DelayedExecution(300) {
-//
-//						@Override
-//						protected void execute() {
-//						}
-//					};
 				}
 			}
 		});
@@ -280,6 +270,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		buildDockFeedbackStage();
 
 		title.getStyleClass().add("undecorator-label-titlebar");
+		// !!!
 		shadowRectangle.getStyleClass().add(shadowBackgroundStyleClass);
 		// resizeRect.getStyleClass().add(resizeStyleClass);
 		// Do not intercept mouse events on stage's shadow
@@ -289,10 +280,12 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		super.setStyle("-fx-background-color:transparent;");
 		// Or this:
 		// super.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-radius:30;-fx-border-width:1;-fx-border-insets:"+SHADOW_WIDTH+";");
-		// super.setEffect(dsFocused);
+		super.setEffect(dsFocused);
 		// super.getChildren().addAll(clientArea,stageDecoration, glassPane);
 
 		backgroundRect = new Rectangle();
+
+		// !!!
 		backgroundRect.getStyleClass().add(decorationBackgroundStyle);
 		backgroundRect.setMouseTransparent(true);
 
@@ -725,19 +718,10 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 				stageDecoration.setLayoutX(SHADOW_WIDTH + ROUNDED_DELTA);
 				stageDecoration.setLayoutY(SHADOW_WIDTH + ROUNDED_DELTA);
 			} // else if (node == resizeRect) {
-				// resizeRect.setWidth(w - SHADOW_WIDTH * 2);
-				// resizeRect.setHeight(h - SHADOW_WIDTH * 2);
-				// resizeRect.setLayoutX(SHADOW_WIDTH);
-				// resizeRect.setLayoutY(SHADOW_WIDTH);
-				// }
 			else {
 				node.resize(w - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2, h - SHADOW_WIDTH * 2 - ROUNDED_DELTA * 2);
 				node.setLayoutX(SHADOW_WIDTH + ROUNDED_DELTA);
 				node.setLayoutY(SHADOW_WIDTH + ROUNDED_DELTA);
-				// node.resize(w - SHADOW_WIDTH * 2 - RESIZE_PADDING * 2, h -
-				// SHADOW_WIDTH * 2 - RESIZE_PADDING * 2);
-				// node.setLayoutX(SHADOW_WIDTH + RESIZE_PADDING);
-				// node.setLayoutY(SHADOW_WIDTH + RESIZE_PADDING);
 			}
 		}
 	}
@@ -855,6 +839,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 
 	}
 
+	@Override
 	public void setResizable(boolean resizable) {
 		resize.setVisible(resizable);
 	}

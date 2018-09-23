@@ -325,7 +325,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 		applicationWindow = new RcplApplicationWindow(this, mainStackPane);
 		applicationWindow.resetStyles();
-		applicationWindow.getStylesheets().addAll("/css/theme_login.css", "/css/default.css"); // ,
 
 		Scene scene = new Scene(applicationWindow);
 		applicationWindow.installAccelerators(scene);

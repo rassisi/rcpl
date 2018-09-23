@@ -481,6 +481,10 @@ public class Rcpl {
 		return "/com/joffice/rcpl/addon/office/internal/templates/";
 	}
 
+	public static String getDefaultCssPath() {
+		return "/css/";
+	}
+
 	// private static boolean debugDely;
 
 	public static void startProgress(final double increment, final boolean showProgressBar) {

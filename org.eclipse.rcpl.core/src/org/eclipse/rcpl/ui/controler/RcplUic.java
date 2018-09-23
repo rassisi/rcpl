@@ -616,6 +616,7 @@ public class RcplUic implements IRcplUic {
 		contentGroup.getChildren().add(borderPane);
 	}
 
+	@Override
 	public void closeApplication() {
 
 		Rcpl.set(KeyValueKey.WINDOW_X, getStage().getX());
@@ -779,11 +780,11 @@ public class RcplUic implements IRcplUic {
 
 		}
 
-		cssStylesheets.put(THEME_DEFAULT, RcplUic.class.getResource("/css/default.css").toExternalForm());
-		cssStylesheets.put(THEME_MSOFFICE, RcplUic.class.getResource("/css/msoffice.css").toExternalForm());
-		cssStylesheets.put(THEME_WINDOWS7, RcplUic.class.getResource("/css/windows_7.css").toExternalForm());
-		cssStylesheets.put(THEME_DARK, RcplUic.class.getResource("/css/theme_dark.css").toExternalForm());
-		cssStylesheets.put(THEME_SILVER, RcplUic.class.getResource("/css/theme_silver.css").toExternalForm());
+//		cssStylesheets.put(THEME_DEFAULT, RcplUic.class.getResource("/css/default.css").toExternalForm());
+//		cssStylesheets.put(THEME_MSOFFICE, RcplUic.class.getResource("/css/msoffice.css").toExternalForm());
+//		cssStylesheets.put(THEME_WINDOWS7, RcplUic.class.getResource("/css/windows_7.css").toExternalForm());
+//		cssStylesheets.put(THEME_DARK, RcplUic.class.getResource("/css/theme_dark.css").toExternalForm());
+//		cssStylesheets.put(THEME_SILVER, RcplUic.class.getResource("/css/theme_silver.css").toExternalForm());
 
 		doCreateContent();
 
@@ -1624,48 +1625,61 @@ public class RcplUic implements IRcplUic {
 			String newStyleKey = "THEME_" + c2.name;
 			String newStyleSheet = cssStylesheets.get(newStyleKey);
 			if (newStyleSheet == null) {
-				File f = RcplUtil.saveStringToFileInCache(newStyleKey + ".css",
-						".root { -fx-base: rgb(" + (int) (c2.col.getRed() * 255.0) + ","
-								+ (int) (c2.col.getGreen() * 255.0) + "," + (int) (c2.col.getBlue() * 255.0) + "); }");
-				try {
-					newStyleSheet = f.toURI().toURL().toExternalForm();
-					cssStylesheets.put(newStyleKey, newStyleSheet);
-					addStyles(cssStylesheets.get(newStyleKey), cssStylesheets.get(THEME_DEFAULT));
-					Rcpl.set(KeyValueKey.THEME, newStyleKey);
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				createStyleSheetTheme(c2);
 			}
 
 		}
 	}
 
+	private void createStyleSheetTheme(ColorName c2) {
+		String newStyleSheet;
+		String newStyleKey = "THEME_" + c2.name;
+
+		String s = RcplUtil.loadCssAsString("default_template.css");
+
+//		File f = RcplUtil.saveStringToFileInCache(newStyleKey + ".css",
+//				".root { -fx-base: rgb(" + (int) (c2.col.getRed() * 255.0) + ","
+//						+ (int) (c2.col.getGreen() * 255.0) + "," + (int) (c2.col.getBlue() * 255.0) + "); }");
+
+		File f = RcplUtil.saveStringToFileInCache(newStyleKey + ".css",
+				".root { -fx-base: rgb(" + (int) (c2.col.getRed() * 255.0) + "," + (int) (c2.col.getGreen() * 255.0)
+						+ "," + (int) (c2.col.getBlue() * 255.0) + "); }\n" + s);
+
+//		".root { -fx-font-size: 8.0pt; -fx-base: whitesmoke; }"
+
+		try {
+			newStyleSheet = f.toURI().toURL().toExternalForm();
+			cssStylesheets.put(newStyleKey, newStyleSheet);
+			removeAllStyles();
+			addStyles(cssStylesheets.get(newStyleKey)); // , cssStylesheets.get(THEME_DEFAULT));
+			Rcpl.set(KeyValueKey.THEME, newStyleKey);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	@FXML
 	public void handleThemeDark(ActionEvent event) {
-		removeAllStyles();
-		addStyles(cssStylesheets.get(THEME_DARK), cssStylesheets.get(THEME_DEFAULT));
+		createStyleSheetTheme(new ColorName(Color.rgb(100, 100, 100), THEME_DARK));
 		Rcpl.set(KeyValueKey.THEME, THEME_DARK);
 	}
 
 	@FXML
 	public void handleThemeDefault(ActionEvent event) {
-		removeAllStyles();
-		addStyles(cssStylesheets.get(THEME_MSOFFICE), cssStylesheets.get(THEME_DEFAULT));
+		createStyleSheetTheme(new ColorName(Color.rgb(172, 208, 238), THEME_MSOFFICE));
 		Rcpl.set(KeyValueKey.THEME, THEME_MSOFFICE);
 	}
 
 	@FXML
 	public void handleThemeSilver(ActionEvent event) {
-		removeAllStyles();
-		addStyles(cssStylesheets.get(THEME_SILVER), cssStylesheets.get(THEME_DEFAULT));
+		createStyleSheetTheme(new ColorName(Color.WHITESMOKE, THEME_SILVER));
 		Rcpl.set(KeyValueKey.THEME, THEME_SILVER);
 	}
 
 	@FXML
 	public void handleThemeWindows7(ActionEvent event) {
-		removeAllStyles();
-		addStyles(cssStylesheets.get(THEME_WINDOWS7), cssStylesheets.get(THEME_DEFAULT));
+		createStyleSheetTheme(new ColorName(Color.AZURE, THEME_WINDOWS7));
 		Rcpl.set(KeyValueKey.THEME, THEME_WINDOWS7);
 	}
 

@@ -90,7 +90,7 @@ public class RcplLogin implements ILogin {
 
 			if (applicationProvider == null && stage.getScene() == null) {
 				Scene scene = new Scene(getNode());
-				scene.getStylesheets().addAll("/css/theme_login.css", "/css/default.css");
+//				scene.getStylesheets().addAll("/css/theme_login.css");
 				stage.setScene(scene);
 				stage.getScene().setFill(Color.TRANSPARENT);
 				try {

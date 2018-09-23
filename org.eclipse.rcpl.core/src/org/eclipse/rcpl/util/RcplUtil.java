@@ -404,12 +404,22 @@ public class RcplUtil {
 		return is;
 	}
 
+	public static InputStream loadCssInputStream(String cssName) {
+		InputStream is = Rcpl.class.getResourceAsStream(Rcpl.getDefaultCssPath() + cssName); // $NON-NLS-1$
+		return is;
+	}
+
 	/**
 	 * @param templateResourceName
 	 * @return
 	 */
 	public static String loadTemplateAsString(String templateResourceName) {
 		InputStream is = loadTemplate(templateResourceName);
+		return AUtil.convertStreamToString(is);
+	}
+
+	public static String loadCssAsString(String cssResourceName) {
+		InputStream is = loadCssInputStream(cssResourceName);
 		return AUtil.convertStreamToString(is);
 	}
 
@@ -1407,6 +1417,10 @@ public class RcplUtil {
 
 	public static File createCacheFile(String fileName) {
 		return new File(getUserLocalCacheDir(), fileName);
+	}
+
+	public static String loadStringFromCssResource(String cssName) {
+		return RcplUtil.loadCssAsString(cssName);
 	}
 
 	public static File saveStringToFileInCache(String fileName, String s) {
