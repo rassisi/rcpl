@@ -10,14 +10,11 @@
  *******************************************************************************/
 package org.eclipse.rcpl.service;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 
 import org.eclipse.rcpl.EnServiceId;
 import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.IDocument;
-import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IService;
@@ -39,15 +36,11 @@ public abstract class RcplAbstractService {
 
 	protected boolean selectionSimulation;
 
-	protected List<ILayoutObject> dirtyLayoutObjects;
-
 	public static boolean enableUnimplementedMessage = true;
 
 	public abstract Object doExecute(ICommand event) throws Exception;
 
 	private static Hashtable<Class<?>, IService> services;
-
-	private IEditor editor;
 
 	public RcplAbstractService() {
 	}
@@ -125,10 +118,7 @@ public abstract class RcplAbstractService {
 	 * 
 	 */
 	protected void initSelectedObjects(ICommand command) {
-		// getEditor().getCanvas().setFocus();
-		dirtyLayoutObjects = new ArrayList<ILayoutObject>();
 		selectionSimulation = false;
-
 	}
 
 	/**

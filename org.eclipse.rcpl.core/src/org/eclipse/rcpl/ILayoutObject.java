@@ -17,6 +17,8 @@ public interface ILayoutObject {
 
 	boolean isPageBreakBefore();
 
+	void setPageBreakBefore(boolean breakBefore);
+
 	boolean isTestLayout();
 
 	void setTestLayout(boolean testlayout);

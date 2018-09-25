@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.rcpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.rcpl.model.RcplModel;
 
 import javafx.animation.KeyFrame;
@@ -26,8 +29,11 @@ public abstract class DelayedExecution {
 
 	private boolean done = false;
 
+	private List<Timeline> timelines;
+
 	public DelayedExecution(int... delays) {
 
+		timelines = new ArrayList<Timeline>();
 		for (int delay : delays) {
 			Timeline timeline = new Timeline(new KeyFrame(Duration.millis(delay), new EventHandler<ActionEvent>() {
 				@Override
@@ -43,9 +49,16 @@ public abstract class DelayedExecution {
 			}));
 			timeline.setCycleCount(1);
 			timeline.play();
-
+			timelines.add(timeline);
 		}
 
+	}
+
+	public void cancel() {
+		done = true;
+		for (Timeline timeline : timelines) {
+			timeline.stop();
+		}
 	}
 
 	protected abstract void execute();

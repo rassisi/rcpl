@@ -10,6 +10,8 @@ import javafx.geometry.Point2D;
  */
 public class LayoutData {
 
+	public boolean overflowOccured;
+
 	public boolean expanding;
 
 	public boolean pause;
@@ -63,11 +65,16 @@ public class LayoutData {
 	}
 
 	public void clear() {
+		rootObjects = Rcpl.UIC.getEditor().getDocument().getRootObjects();
 		pause = false;
 		startTime = 0;
 		headers = null;
 		footers = null;
-		index = 0;
+		if (firstDirtyObject != null) {
+			index = firstDirtyObject.getIndex();
+		} else {
+			index = 0;
+		}
 		layoutCount = -1;
 		caretOffset = 0;
 		layoutNotChangedCounter = 0;
@@ -77,10 +84,11 @@ public class LayoutData {
 		page = null;
 		actualSection = null;
 		layoutResult = null;
-		rootObjects = null;
 		pageBreakCounter = 0;
 		sameLocation = 0;
 		breakBefore = false;
+		pageCount = 0;
+		pause = false;
 	}
 
 	/**
