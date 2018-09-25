@@ -59,7 +59,7 @@ public class RibbonGroup extends RcplTool {
 
 	private GridPane mainGridPane;
 
-	protected ToolGroup toolGroup;
+//	protected ToolGroup toolGroup;
 
 	protected HashMap<AbstractTool, ITool> registry = new HashMap<AbstractTool, ITool>();
 
@@ -71,7 +71,7 @@ public class RibbonGroup extends RcplTool {
 	/**
 	 * Default Constructor.
 	 */
-	public RibbonGroup(ToolGroup toolGroup, boolean first, boolean isDialogButton) {
+	public RibbonGroup(final ToolGroup toolGroup, boolean first, boolean isDialogButton) {
 		super(toolGroup);
 		this.toolGroup = toolGroup;
 
@@ -145,7 +145,8 @@ public class RibbonGroup extends RcplTool {
 						}
 					}
 					if (isSelected()) {
-						Rcpl.UIC.getSideToolBarControl().expand(toolGroup.getExpandToolGroup()); // toolGroup.getSideToolbarPath());
+						ToolGroup tg = (ToolGroup) getTool();
+						Rcpl.UIC.getSideToolBarControl().expand(tg.getExpandToolGroup()); // toolGroup.getSideToolbarPath());
 					} else {
 						Rcpl.UIC.getSideToolBarControl().collapseToolPane();
 						Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SIDEBAR_PATH, (String) null);

@@ -875,6 +875,9 @@ public class RcplSideToolBar implements ISideToolBar {
 	@Override
 	public void expand(ToolGroup toolGroup) {
 
+		if (toolGroup == null) {
+			return;
+		}
 		List<String> segments = new ArrayList<String>();
 
 		ToolGroup tg = toolGroup;
