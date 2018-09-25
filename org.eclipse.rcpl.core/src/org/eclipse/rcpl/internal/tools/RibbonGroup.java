@@ -73,7 +73,6 @@ public class RibbonGroup extends RcplTool {
 	 */
 	public RibbonGroup(final ToolGroup toolGroup, boolean first, boolean isDialogButton) {
 		super(toolGroup);
-		this.toolGroup = toolGroup;
 
 		// ---------- Main VBox Container
 
@@ -145,7 +144,7 @@ public class RibbonGroup extends RcplTool {
 						}
 					}
 					if (isSelected()) {
-						ToolGroup tg = (ToolGroup) getTool();
+						ToolGroup tg = (ToolGroup) RibbonGroup.this.getTool();
 						Rcpl.UIC.getSideToolBarControl().expand(tg.getExpandToolGroup()); // toolGroup.getSideToolbarPath());
 					} else {
 						Rcpl.UIC.getSideToolBarControl().collapseToolPane();
@@ -179,7 +178,7 @@ public class RibbonGroup extends RcplTool {
 	protected int processRibbonGroup() {
 		try {
 
-			if (toolGroup == null) {
+			if (getTool() == null) {
 				Tool tool = RcplFactory.eINSTANCE.createTool();
 				tool.setId("error");
 				IButton b = Rcpl.getFactory().createButton(tool);
@@ -188,13 +187,13 @@ public class RibbonGroup extends RcplTool {
 				return 0;
 			}
 
-			for (ToolGroup g : toolGroup.getToolGroups()) {
+			for (ToolGroup g : getTool().getToolGroups()) {
 				processSubGroup(g);
 			}
 
 			int lastX = 0;
 			ToggleGroup toggleGroup = new ToggleGroup();
-			for (Tool t : toolGroup.getTools()) {
+			for (Tool t : getTool().getTools()) {
 				ITool n = Rcpl.getToolFactory().createTool(t, t.getWidth(), t.getHeight());
 				if (n instanceof IButton) {
 					if (ToolType.TOGGLEBUTTON.equals(t.getType()) && t.isToggleGroup()) {
@@ -222,6 +221,11 @@ public class RibbonGroup extends RcplTool {
 			RcplModel.logError(ex);
 			return 0;
 		}
+	}
+
+	@Override
+	public ToolGroup getTool() {
+		return (ToolGroup) super.getTool();
 	}
 
 	/**
@@ -306,11 +310,11 @@ public class RibbonGroup extends RcplTool {
 	protected void updateToolGroup(RcplEvent event) {
 
 		try {
-			String id = toolGroup.getId();
+			String id = getTool().getId();
 
 			if ("topBar/font".equals(id)) {
 
-				for (ToolGroup g : toolGroup.getToolGroups()) {
+				for (ToolGroup g : getTool().getToolGroups()) {
 
 					try {
 						id = g.getId();
