@@ -46,10 +46,10 @@ public class RcplEditorService extends RcplService {
 			if (sel != null) {
 				if (sel.getPreviousRootObject() != null) {
 					sel.getPreviousRootObject().setTestLayout(true);
-					sel.getPreviousRootObject().setDirtyLayout(true, true);
+					Rcpl.UIC.getEditor().addDirtyLayoutObject(sel.getPreviousRootObject());
 				} else {
 					sel.setTestLayout(true);
-					sel.setDirtyLayout(true, true);
+					Rcpl.UIC.getEditor().addDirtyLayoutObject(sel);
 				}
 			}
 			break;

@@ -13,6 +13,8 @@ import javafx.geometry.Rectangle2D;
  */
 public interface ILayoutObject {
 
+	IEditor getEditor();
+
 	boolean isPageBreakBefore();
 
 	boolean isTestLayout();
@@ -139,8 +141,6 @@ public interface ILayoutObject {
 
 	boolean isDirtyContent();
 
-	boolean isDirtyLayout();
-
 	boolean isPageBreakAfter();
 
 	boolean isRealPageBreakAfterAndNoSectionBreak();
@@ -156,10 +156,6 @@ public interface ILayoutObject {
 	void setBorderColor(IColor color);
 
 	void setDirtyContent(boolean dirty);
-
-	void setDirtyLayout(boolean dirty, boolean shrinking);
-
-	boolean isShrinking();
 
 	void setHeightOverflow(double heightOverflow);
 

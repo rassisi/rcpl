@@ -12,15 +12,4 @@ public enum EnLayoutReason {
 
 	TEST_LAYOUT;
 
-	private ILayoutObject dirtyLayoutObject;
-
-	public EnLayoutReason setDirtyLayoutObject(ILayoutObject layoutObject) {
-		this.dirtyLayoutObject = layoutObject;
-		return this;
-	}
-
-	public ILayoutObject getDirtyLayoutObject() {
-		return dirtyLayoutObject;
-	}
-
 }

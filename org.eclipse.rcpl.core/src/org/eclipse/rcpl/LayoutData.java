@@ -10,7 +10,7 @@ import javafx.geometry.Point2D;
  */
 public class LayoutData {
 
-	public boolean shrinking;
+	public boolean expanding;
 
 	public boolean pause;
 
