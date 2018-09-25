@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.rcpl.IModelManager;
+import org.eclipse.rcpl.Rcpl;
 
 /**
  * @author ramin
@@ -72,7 +73,7 @@ public abstract class AbstractModelManagerImpl implements IModelManager {
 			try {
 				editingDomain.getResourceSet().getResources().add(getResource());
 			} catch (Exception ex) {
-				// System. out.println();
+				Rcpl.printErrorln("", ex);
 			}
 
 		}

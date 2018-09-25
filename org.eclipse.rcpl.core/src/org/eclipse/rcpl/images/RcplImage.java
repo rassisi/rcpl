@@ -99,11 +99,6 @@ public class RcplImage implements IImage {
 
 	public RcplImage(String id, double width, double height) {
 		this(id, width, height, null);
-
-		if ("style_normal_big".equals(id)) {
-			System.out.println();
-		}
-
 	}
 
 	/**
@@ -293,10 +288,6 @@ public class RcplImage implements IImage {
 				return false;
 			}
 			for (String codeBase : RcplSession.getDefault().getImageCodeBases()) {
-
-				if ("Information_icon".equals(id)) {
-					System.out.println();
-				}
 
 				if (codeBase != null) {
 					URL url;

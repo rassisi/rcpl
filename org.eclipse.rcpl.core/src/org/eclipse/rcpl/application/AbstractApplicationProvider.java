@@ -181,12 +181,10 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 							IRcplAddon rcplAddon = createRcplAddon(addon);
 							if (rcplAddon != null) {
 								Rcpl.progressMessage("RcplAddon " + rcplAddon.getDisplayName() + " registered.");
-								System.out.println("RcplAddon " + rcplAddon.getClass() + " registered.");
-
 							}
 						}
 					} catch (Throwable ex) {
-						System.out.println();
+						Rcpl.printErrorln("", ex);
 					}
 				}
 			}
