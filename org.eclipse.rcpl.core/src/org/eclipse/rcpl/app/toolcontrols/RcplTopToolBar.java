@@ -37,7 +37,7 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	private HashMap<String, HBox> toolPaneRegistry = new HashMap<String, HBox>();
 
-	public static final int RIBBON_HEIGHT = 110;
+	public static final int RIBBON_HEIGHT = 110 + 30;
 
 	public static final int COLLAPSED_HEIGHT_WITH_EDITOR = 50;
 

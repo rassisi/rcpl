@@ -38,11 +38,7 @@ public interface IRcplUic {
 
 	StackPane getProgressArea();
 
-	HBox getEditorWindowTools();
-
 	H2DB getH2DB();
-
-	StackPane getEditorArea();
 
 	IDetailPage getWebBrowserDetailPage();
 

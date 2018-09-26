@@ -76,6 +76,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
@@ -338,9 +339,6 @@ public class RcplUic implements IRcplUic {
 	protected HBox mainBottomArea;
 
 	@FXML
-	protected HBox mainRightArea;
-
-	@FXML
 	protected TabPane tabPane;
 
 	@FXML
@@ -354,9 +352,6 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	protected HBox collapseButtonHBox;
-
-	@FXML
-	private VBox tabPaneContainer;
 
 	@FXML
 	private HBox quickToolsArea;
@@ -979,6 +974,7 @@ public class RcplUic implements IRcplUic {
 
 		final Tab tab = new Tab();
 
+		tab.setContent(null);
 		ContextMenu contextMenu = new ContextMenu();
 		contextMenu.setMinHeight(300);
 		contextMenu.setMinWidth(100);
@@ -1073,11 +1069,6 @@ public class RcplUic implements IRcplUic {
 			});
 
 			tabPane.getTabs().add(tab);
-
-			double h = tabPane.getTabMinHeight();
-			tabPane.setTabMinHeight(h + 1);
-			tabPane.setTabMinHeight(h);
-
 		} catch (Throwable ex) {
 			RcplModel.logError(ex);
 		}
@@ -1176,9 +1167,10 @@ public class RcplUic implements IRcplUic {
 		if (Rcpl.isMobile()) {
 			borderPane.setTop(titleArea);
 			borderPane.setBottom(null);
-		} else {
-			tabPaneContainer.setAlignment(Pos.BOTTOM_LEFT);
 		}
+//		else {
+//			tabPaneContainer.setAlignment(Pos.BOTTOM_LEFT);
+//		}
 
 		startMenuButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -1391,16 +1383,6 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public StackPane getEditorArea() {
-		return editorArea;
-	}
-
-	@Override
-	public HBox getEditorWindowTools() {
-		return editorWindowTools;
-	}
-
-	@Override
 	public Node getFocusOwner() {
 		return focusOwner;
 	}
@@ -1440,10 +1422,6 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public VBox getMainLeftBox() {
 		return mainLeftBox;
-	}
-
-	public HBox getMainRightArea() {
-		return mainRightArea;
 	}
 
 	@Override
@@ -1719,7 +1697,6 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void init(BorderPane parent) {
 		borderPane = parent;
-		tabPane.setPrefSize(10, 10);
 	}
 
 	// ===================================================
@@ -1808,8 +1785,10 @@ public class RcplUic implements IRcplUic {
 		borderPane.getChildren().remove(mainLeftBox);
 		if (sideBarLeft) {
 			borderPane.setLeft(mainLeftBox);
+			mainLeftArea.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
 		} else {
 			borderPane.setRight(mainLeftBox);
+			mainLeftArea.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 		}
 	}
 
