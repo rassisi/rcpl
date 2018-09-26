@@ -10,12 +10,11 @@ import javafx.application.Platform;
  */
 public abstract class ForceFXThread {
 
-	private boolean wait;
-
-	private IEditor editor;
+	public ForceFXThread() {
+		run();
+	}
 
 	public ForceFXThread(IEditor editor) {
-		this.editor = editor;
 		if (editor == null || !editor.isDisposed()) {
 			run();
 		}
@@ -25,12 +24,10 @@ public abstract class ForceFXThread {
 		if (Platform.isFxApplicationThread()) {
 			doRun();
 		} else {
-			wait = true;
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
 					doRun();
-					wait = false;
 				}
 			});
 		}

@@ -65,7 +65,7 @@ public class LayoutData {
 	}
 
 	public void clear() {
-		rootObjects = Rcpl.UIC.getEditor().getDocument().getRootObjects();
+		rootObjects = layoutService.getDocument().getRootObjects();
 		pause = false;
 		startTime = 0;
 		headers = null;

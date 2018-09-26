@@ -1374,7 +1374,7 @@ public class RcplUic implements IRcplUic {
 		return detailPage;
 	}
 
-	@Override
+//	@Override
 	public IEditor getEditor() {
 		if (tabPane == null) {
 			return null;
@@ -2246,27 +2246,30 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public boolean showPerspective(Perspective perspective) {
 
-		topBarCollapseButton.setVisible(perspective != null && perspective.getTopToolBar() != null
-				&& (!perspective.getTopToolBar().getToolGroups().isEmpty()
-						|| !perspective.getTopToolBar().getTools().isEmpty()));
+		try {
+			topBarCollapseButton.setVisible(perspective != null && perspective.getTopToolBar() != null
+					&& (!perspective.getTopToolBar().getToolGroups().isEmpty()
+							|| !perspective.getTopToolBar().getTools().isEmpty()));
 
-		if (perspective != null && perspective == this.perspective) {
-			return false;
-		}
-		Rcpl.UIC.setPerspective(perspective);
-		getSideToolBarControl().showPerspective(perspective);
-		getTopToolBar().showPerspective(perspective);
-		updateQuickToolsArea();
-		this.perspective = perspective;
-
-		new DelayedExecution(100) {
-
-			@Override
-			protected void execute() {
-				handleTopBarCollapseButton(null);
+			if (perspective != null && perspective == this.perspective) {
+				return false;
 			}
-		};
+			Rcpl.UIC.setPerspective(perspective);
+			getSideToolBarControl().showPerspective(perspective);
+			getTopToolBar().showPerspective(perspective);
+			updateQuickToolsArea();
+			this.perspective = perspective;
 
+			new DelayedExecution(100) {
+
+				@Override
+				protected void execute() {
+					handleTopBarCollapseButton(null);
+				}
+			};
+		} catch (Exception ex) {
+			Rcpl.printErrorln("", ex);
+		}
 		return false;
 	}
 
