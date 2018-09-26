@@ -318,9 +318,6 @@ public class RcplUic implements IRcplUic {
 	protected Button startMenuButton;
 
 	@FXML
-	protected HBox topArea;
-
-	@FXML
 	protected HBox homeHeaderHBox;
 
 	@FXML
@@ -679,10 +676,10 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void collapseMainTopArea(boolean collapse) {
-		if (collapse && topArea.getChildren().contains(mainTopStack)) {
-			topArea.getChildren().remove(mainTopStack);
-		} else if (!collapse && !topArea.getChildren().contains(mainTopStack)) {
-			topArea.getChildren().add(1, mainTopStack);
+		if (collapse && topVBox.getChildren().contains(mainTopStack)) {
+			topVBox.getChildren().remove(mainTopStack);
+		} else if (!collapse && !topVBox.getChildren().contains(mainTopStack)) {
+			topVBox.getChildren().add(1, mainTopStack);
 		}
 	}
 
@@ -705,7 +702,7 @@ public class RcplUic implements IRcplUic {
 		createBorderDragger(topVBox);
 		createBorderDragger(quickToolsArea);
 		createBorderDragger(titleArea);
-		createBorderDragger(topArea);
+		createBorderDragger(mainTopStack);
 		createBorderDragger(titleText);
 		createBorderDragger(tabPane);
 	}
@@ -2040,9 +2037,6 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void setTopAreaHeight(double height) {
-		topVBox.setMaxHeight(height);
-		topVBox.setMinHeight(height);
-		topVBox.setPrefHeight(height);
 		topVBox.setMaxHeight(height);
 		topVBox.setMinHeight(height);
 		topVBox.setPrefHeight(height);

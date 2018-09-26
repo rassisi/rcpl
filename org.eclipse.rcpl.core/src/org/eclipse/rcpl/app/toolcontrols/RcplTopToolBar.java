@@ -41,7 +41,7 @@ public class RcplTopToolBar implements ITopToolbar {
 
 	public static final int COLLAPSED_HEIGHT_WITH_EDITOR = 50;
 
-	public static final int COLLAPSED_HEIGHT = 10;
+	public static final int COLLAPSED_HEIGHT = 0;
 
 	@Override
 	public void clear() {
@@ -114,31 +114,31 @@ public class RcplTopToolBar implements ITopToolbar {
 	public void collapse(boolean collapse) {
 		collapsed = collapse;
 		Rcpl.UIC.collapseMainTopArea(collapse);
-		updateHeight();
+//		updateHeight();
 	}
 
 	@Override
 	public void updateHeight() {
-		if (collapsed) {
-			if (Rcpl.UIC.getEditor() != null) {
-				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
-			} else {
-				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
-			}
-			return;
-		}
-		if (Rcpl.UIC.getPerspective() != null) {
-			Perspective p = Rcpl.UIC.getPerspective();
-			if (!p.getTopToolBar().getToolGroups().isEmpty()) {
-				Rcpl.UIC.setTopAreaHeight(RIBBON_HEIGHT);
-			} else {
-				if (Rcpl.UIC.getEditor() != null) {
-					Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
-				} else {
-					Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
-				}
-			}
-		}
+//		if (collapsed) {
+//			if (Rcpl.UIC.getEditor() != null) {
+//				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
+//			} else {
+//				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+//			}
+//			return;
+//		}
+//		if (Rcpl.UIC.getPerspective() != null) {
+//			Perspective p = Rcpl.UIC.getPerspective();
+//			if (!p.getTopToolBar().getToolGroups().isEmpty()) {
+//				Rcpl.UIC.setTopAreaHeight(RIBBON_HEIGHT);
+//			} else {
+//				if (Rcpl.UIC.getEditor() != null) {
+//					Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
+//				} else {
+//					Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+//				}
+//			}
+//		}
 	}
 
 	@Override

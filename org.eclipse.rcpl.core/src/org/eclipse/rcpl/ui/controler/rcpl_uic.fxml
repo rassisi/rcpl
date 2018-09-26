@@ -94,7 +94,7 @@
    <top>
 <HBox fx:id="mainTopArea" maxWidth="5000.0" minWidth="10.0" prefHeight="61.0" prefWidth="10000.0" BorderPane.alignment="CENTER">
 <children>
-            <VBox alignment="TOP_CENTER" spacing="5.0">
+            <VBox alignment="TOP_CENTER" spacing="1.0">
                <children>
                   <Button fx:id="startMenuButton" mnemonicParsing="false">
       <VBox.margin>
@@ -130,25 +130,15 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </HBox>
-      <HBox fx:id="topArea" alignment="BOTTOM_LEFT" maxHeight="-1.0" minHeight="-1.0" prefWidth="10.0">
-        <children>
-                        <HBox alignment="CENTER_RIGHT" prefWidth="10.0" HBox.hgrow="NEVER">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </HBox>
-            <StackPane id="transparentBorder" fx:id="mainTopStack" alignment="TOP_LEFT" maxHeight="-1.0" minWidth="-1.0" HBox.hgrow="NEVER">
-              <padding>
-                <Insets fx:id="x2" />
-              </padding>
-            </StackPane>
-        </children>
-      </HBox>
-    <TabPane fx:id="tabPane" maxHeight="30.0" minHeight="-Infinity" minWidth="30.0" prefHeight="30.0" tabMaxHeight="20.0" tabMinHeight="20.0" tabMinWidth="20.0">
-                 </TabPane>
+      <StackPane id="transparentBorder" fx:id="mainTopStack" alignment="TOP_LEFT" maxHeight="-1.0" minWidth="-1.0">
+        <padding>
+          <Insets fx:id="x2" />
+        </padding>
+      </StackPane>
+    <TabPane fx:id="tabPane" minHeight="-Infinity" tabMaxHeight="20.0" tabMinHeight="20.0" tabMinWidth="20.0">
+                     <padding>
+                        <Insets left="8.0" />
+                     </padding></TabPane>
                </children>
             </VBox>
 </children>
