@@ -13,6 +13,8 @@ import javafx.geometry.Rectangle2D;
  */
 public interface ILayoutObject {
 
+	void layout(boolean expanding);
+
 	IEditor getEditor();
 
 	boolean isPageBreakBefore();

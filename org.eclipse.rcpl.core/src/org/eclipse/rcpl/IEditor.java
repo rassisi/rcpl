@@ -22,6 +22,8 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	public static final int TASK_LOAD_FILE_DOCUMENT = 5;
 
+	void layout();
+
 	void setExpanding(boolean expanding);
 
 	void addDirtyLayoutObject(ILayoutObject layoutObject);

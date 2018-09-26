@@ -1074,7 +1074,7 @@ public class RcplUtil {
 
 	public static boolean isControlCharacter(String c) {
 		byte[] ba = c.getBytes();
-		return c.equals("\r") || c.equals("\b") || ba[0] == 127; // 127 = DEL
+		return c.equals("\r") || c.equals("\b") || c.equals("\n") || ba[0] == 127; // 127 = DEL
 	}
 
 	public static void waitForDone(boolean[] done) {
