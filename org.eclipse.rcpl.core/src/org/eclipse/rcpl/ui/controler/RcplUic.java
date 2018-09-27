@@ -2383,4 +2383,12 @@ public class RcplUic implements IRcplUic {
 		}
 	}
 
+	@FXML
+	private void onZoom100() {
+		if (Rcpl.UIC.getEditor() != null) {
+			double newValue = 0.5;
+			setScale(newValue);
+		}
+	}
+
 }

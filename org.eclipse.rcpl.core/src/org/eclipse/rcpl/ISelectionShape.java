@@ -2,9 +2,15 @@ package org.eclipse.rcpl;
 
 public interface ISelectionShape {
 
-	boolean isVisible();
+	void setParagraph(IParagraph paragraph);
+
+	boolean isActive();
 
 	IParagraph getParagraph();
 
 	int getCharacterIndex();
+
+	void setActive(boolean visible);
+
+	void setLocation(IParagraph paragraph, int characterIndex, double x, double y);
 }

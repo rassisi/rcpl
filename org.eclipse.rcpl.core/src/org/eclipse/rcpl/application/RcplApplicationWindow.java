@@ -58,7 +58,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -127,9 +126,9 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 
 //	private ParallelTransition parallelTransition;
 
-	private Effect dsFocused;
+//	private Effect dsFocused;
 
-	private Effect dsNotFocused;
+//	private Effect dsNotFocused;
 
 	private RcplWindowController controller;
 
@@ -143,7 +142,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 
 	private SimpleBooleanProperty fullscreenProperty;
 
-	private String shadowBackgroundStyleClass = "decoration-shadow";
+//	private String shadowBackgroundStyleClass = "decoration-shadow";
 
 	private String decorationBackgroundStyle = "decoration-background";
 
@@ -216,10 +215,14 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		controller.setAsStageDraggable(applicationProvider.getPrimaryStage(), clientArea);
 
 		// Focus drop shadows: radius, spread, offsets
-		dsFocused = new DropShadow(BlurType.THREE_PASS_BOX, Color.BLACK, SHADOW_WIDTH, 0.1, 0, 0);
-		dsNotFocused = new DropShadow(BlurType.THREE_PASS_BOX, Color.DARKGREY, SHADOW_WIDTH, 0, 0, 0);
+//		dsFocused = new DropShadow(BlurType.THREE_PASS_BOX, Color.BLACK, SHADOW_WIDTH, 0.1, 0, 0);
+//		dsNotFocused = new DropShadow(BlurType.THREE_PASS_BOX, Color.DARKGREY, SHADOW_WIDTH, 0, 0, 0);
 
 		shadowRectangle = new Rectangle();
+		shadowRectangle.setStroke(Color.GREY);
+		shadowRectangle.setArcHeight(3);
+		shadowRectangle.setArcWidth(3);
+		shadowRectangle.setStrokeWidth(1);
 		shadowRectangle.layoutBoundsProperty().addListener(new ChangeListener<Bounds>() {
 			@Override
 			public void changed(ObservableValue<? extends Bounds> observable, Bounds oldBounds, Bounds newBounds) {
@@ -271,7 +274,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 
 		title.getStyleClass().add("undecorator-label-titlebar");
 		// !!!
-		shadowRectangle.getStyleClass().add(shadowBackgroundStyleClass);
+//		shadowRectangle.getStyleClass().add(shadowBackgroundStyleClass);
 		// resizeRect.getStyleClass().add(resizeStyleClass);
 		// Do not intercept mouse events on stage's shadow
 		shadowRectangle.setMouseTransparent(true);
@@ -280,7 +283,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 		super.setStyle("-fx-background-color:transparent;");
 		// Or this:
 		// super.setStyle("-fx-background-color:transparent;-fx-border-color:white;-fx-border-radius:30;-fx-border-width:1;-fx-border-insets:"+SHADOW_WIDTH+";");
-		super.setEffect(dsFocused);
+//		super.setEffect(dsFocused);
 		// super.getChildren().addAll(clientArea,stageDecoration, glassPane);
 
 		backgroundRect = new Rectangle();
@@ -535,7 +538,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	}
 
 	public void removeDefaultBackgroundStyleClass() {
-		shadowRectangle.getStyleClass().remove(shadowBackgroundStyleClass);
+//		shadowRectangle.getStyleClass().remove(shadowBackgroundStyleClass);
 	}
 
 	public Rectangle getBackgroundNode() {
@@ -664,7 +667,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 			SAVED_SHADOW_WIDTH = SHADOW_WIDTH;
 			SHADOW_WIDTH = 0;
 		} else {
-			shadowRectangle.setEffect(dsFocused);
+//			shadowRectangle.setEffect(dsFocused);
 			SHADOW_WIDTH = SAVED_SHADOW_WIDTH;
 		}
 	}
@@ -684,9 +687,9 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 			return;
 		}
 		if (b) {
-			shadowRectangle.setEffect(dsFocused);
+//			shadowRectangle.setEffect(dsFocused);
 		} else {
-			shadowRectangle.setEffect(dsNotFocused);
+//			shadowRectangle.setEffect(dsNotFocused);
 		}
 	}
 

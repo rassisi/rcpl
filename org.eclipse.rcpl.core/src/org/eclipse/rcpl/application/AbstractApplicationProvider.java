@@ -332,8 +332,10 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 			@Override
 			public void handle(WindowEvent we) {
 				we.consume(); // Do not hide
-				Rcpl.UIC.closeApplication();
 				applicationWindow.fadeOut(3.0);
+				if (Rcpl.UIC != null) {
+					Rcpl.UIC.closeApplication();
+				}
 			}
 		});
 

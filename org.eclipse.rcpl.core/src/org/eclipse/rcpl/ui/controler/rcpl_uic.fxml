@@ -29,7 +29,7 @@
           </HBox.margin>
         </Text>
             <StackPane fx:id="progressArea" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-            <HBox fx:id="editorWindowTools" minWidth="-Infinity" prefWidth="400.0" spacing="3.0">
+            <HBox fx:id="editorWindowTools" minWidth="-Infinity" spacing="3.0">
                <children>
                   <ColorPicker fx:id="themeColorPicker" minWidth="120.0" onAction="#handleThemeColorPicker" />
                   <ToggleButton id="sliderButton" fx:id="themeDefaultButton" mnemonicParsing="false" onAction="#handleThemeDefault" />
@@ -40,12 +40,13 @@
                   <ToggleButton id="sliderButton" fx:id="onePageButton" mnemonicParsing="false" onAction="#onOnePage" />
                   <ToggleButton id="sliderButton" fx:id="twoPagesButton" mnemonicParsing="false" onAction="#onTwoPages" />
                   <ToggleButton id="sliderButton" fx:id="multiPagesButton" mnemonicParsing="false" onAction="#onMultiPages" />
-                  <HBox minHeight="-Infinity" prefWidth="300.0" HBox.hgrow="SOMETIMES">
+                  <HBox HBox.hgrow="SOMETIMES">
                      <children>
+                        <Button mnemonicParsing="false" onAction="#onZoom100" text="100 %" />
                         <Button id="sliderButton" fx:id="minusZoom" maxHeight="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" text="-" HBox.hgrow="NEVER" />
-                        <Slider fx:id="zoomSlider" blockIncrement="0.05" max="1.0" min="0.05" value="0.5" HBox.hgrow="ALWAYS" />
+                        <Slider fx:id="zoomSlider" blockIncrement="0.05" max="1.0" min="0.05" prefWidth="200.0" value="0.5" HBox.hgrow="ALWAYS" />
                         <Button id="sliderButton" fx:id="plusZoom" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" text="+" HBox.hgrow="NEVER" />
-                        <Label fx:id="zoomLabel">
+                        <Label fx:id="zoomLabel" prefWidth="50.0">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin></Label>
@@ -132,7 +133,7 @@
                   </HBox>
       <StackPane id="transparentBorder" fx:id="mainTopStack" alignment="TOP_LEFT" maxHeight="-1.0" minWidth="-1.0">
         <padding>
-          <Insets fx:id="x2" />
+          <Insets left="10.0" fx:id="x2" />
         </padding>
       </StackPane>
     <TabPane fx:id="tabPane" minHeight="-Infinity" tabMaxHeight="20.0" tabMinHeight="20.0" tabMinWidth="20.0">
