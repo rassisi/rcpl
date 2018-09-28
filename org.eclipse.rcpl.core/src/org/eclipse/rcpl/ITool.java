@@ -6,6 +6,14 @@ import javafx.scene.Node;
 
 public interface ITool extends IEditorListener {
 
+	void fire();
+
+	void setSelected(boolean selected);
+
+	boolean isSelected();
+
+	String getImageName();
+
 	Node createNode();
 
 	Node getNode();

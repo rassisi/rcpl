@@ -22,6 +22,10 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	public static final int TASK_LOAD_FILE_DOCUMENT = 5;
 
+	IParagraph getFirstSelectionParagraph();
+
+	IParagraph getLastSelectionParagraph();
+
 	void layout();
 
 	void setExpanding(boolean expanding);
@@ -102,7 +106,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	IPage getSelectedPage();
 
-	IParagraph getSelectedParagraph();
+	IParagraph getActiveParagraph();
 
 	Object getTabItem();
 
@@ -182,15 +186,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void updateTabText(String text, boolean dirty);
 
-	void select(IParagraph paragraph);
-
-	ISelectionShape getSelectionStartShape();
-
-	ISelectionShape getSelectionEndShape();
-
 	void unselectAllParagraphs();
-
-	void updateAllSelections();
 
 	boolean hasSelection();
 

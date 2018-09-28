@@ -80,8 +80,6 @@ public interface IParagraph extends ILayoutObject {
 
 	int getSelectionStart();
 
-	void resetSelection();
-
 	IProperty2 getSpacingAfter();
 
 	ITableCell getTableCell();
@@ -128,7 +126,7 @@ public interface IParagraph extends ILayoutObject {
 
 	void setUnderline(boolean underline);
 
-	void unselect();
+	void clearSelection();
 
 	void updateFromXml(boolean update);
 

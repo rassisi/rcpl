@@ -21,6 +21,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ToggleButton;
 
 /**
  * @author ramin
@@ -65,7 +66,7 @@ public abstract class RcplTool<T> implements ITool {
 			public void changed(ObservableValue<? extends T> observable, T oldValue, T newValue) {
 				if (Rcpl.UIC.getEditor() != null) {
 					getTool().setData(RcplTool.this);
-					IParagraph paragraph = Rcpl.UIC.getEditor().getSelectedParagraph();
+					IParagraph paragraph = Rcpl.UIC.getEditor().getActiveParagraph();
 					ICommand command = Rcpl.getFactory().createCommand(RcplTool.this, paragraph,
 							new Object[] { oldValue }, newValue);
 					Rcpl.service().execute(command);
@@ -234,6 +235,32 @@ public abstract class RcplTool<T> implements ITool {
 		return null;
 	}
 
+//	public String getServiceClassName() {
+//		String srv = getTool().getService();
+//		if (srv == null) {
+//			EnCommandId ci = EnCommandId.findCommandId(getTool().getId());
+//			if (ci != null) {
+//				srv = null;
+//			}
+//		}
+//		return srv;
+//	}
+
+	public String getImageName() {
+		String imageName = getTool().getImage();
+		if (imageName == null) {
+			EnCommandId ci = EnCommandId.findCommandId(getTool().getId());
+			if (ci != null) {
+				imageName = ci.getImage();
+			}
+			if (imageName == null) {
+				imageName = getTool().getId();
+			}
+			return imageName;
+		}
+		return imageName;
+	}
+
 	private String getId() {
 		if (tool != null) {
 			return tool.getId();
@@ -286,4 +313,21 @@ public abstract class RcplTool<T> implements ITool {
 		this.data = data;
 	}
 
+	@Override
+	public boolean isSelected() {
+		if (ToolType.TOGGLEBUTTON.equals(tool.getType())) {
+			return ((ToggleButton) getNode()).isSelected();
+		}
+		return false;
+	}
+
+	@Override
+	public void setSelected(boolean selected) {
+
+	}
+
+	@Override
+	public void fire() {
+
+	}
 }

@@ -64,10 +64,6 @@ public interface IParagraphFigure extends ILayoutFigure {
 
 	void insertText(IParagraph p, String c);
 
-	void resetSelection();
-
-	void selectAll();
-
 	@Override
 	void setParentFigure(ILayoutFigure node);
 

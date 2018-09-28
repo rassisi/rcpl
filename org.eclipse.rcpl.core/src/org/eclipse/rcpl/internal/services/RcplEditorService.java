@@ -12,8 +12,10 @@
 package org.eclipse.rcpl.internal.services;
 
 import org.eclipse.rcpl.ICommand;
+import org.eclipse.rcpl.IPage;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
@@ -42,7 +44,7 @@ public class RcplEditorService extends RcplService {
 			// Rcpl.UIC.saveAs();
 			break;
 		case test_layout:
-			IParagraph sel = Rcpl.UIC.getEditor().getSelectedParagraph();
+			IParagraph sel = Rcpl.UIC.getEditor().getActiveParagraph();
 			if (sel != null) {
 				if (sel.getPreviousRootObject() != null) {
 					sel.getPreviousRootObject().setTestLayout(true);
@@ -56,6 +58,21 @@ public class RcplEditorService extends RcplService {
 		case test_z_order:
 			Rcpl.UIC.getEditor().getPage(1).zOrder();
 			break;
+
+		case showHLineal:
+			boolean selected = command.getTool().isSelected();
+			for (IPage page : Rcpl.UIC.getEditor().getPages()) {
+				page.getHLineal().show(selected);
+			}
+			Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SHOW_H_LINEAL, selected);
+			return true;
+		case showVLineal:
+			selected = command.getTool().isSelected();
+			for (IPage page : Rcpl.UIC.getEditor().getPages()) {
+				page.getVLineal().show(selected);
+			}
+			Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SHOW_V_LINEAL, selected);
+			return true;
 		default:
 			break;
 

@@ -27,17 +27,20 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.rcpl.DelayedExecution;
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IDetailPage;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.IEditorListener;
 import org.eclipse.rcpl.IHomePage;
 import org.eclipse.rcpl.ILogin;
 import org.eclipse.rcpl.IParagraphFigure;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplUic;
 import org.eclipse.rcpl.ISideToolBar;
+import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
@@ -2315,6 +2318,20 @@ public class RcplUic implements IRcplUic {
 
 			}
 		});
+	}
+
+	public ITool findTool(EnCommandId id) {
+
+		for (IEditorListener l : Rcpl.getEditorListeners()) {
+
+			if (l instanceof ITool) {
+				ITool t = (ITool) l;
+				if (id.getId() != null && t.getTool() != null && id.getId().equals(t.getTool().getId())) {
+					return t;
+				}
+			}
+		}
+		return null;
 	}
 
 	public void updatePerspective(Tab tab) {

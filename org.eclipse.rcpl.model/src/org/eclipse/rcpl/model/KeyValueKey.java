@@ -26,6 +26,10 @@ public enum KeyValueKey {
 
 	WINDOW_Y,
 
+	SHOW_V_LINEAL,
+
+	SHOW_H_LINEAL,
+
 	TOP_TOOLBAR_COLLAPSED,
 
 	THEME

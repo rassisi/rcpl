@@ -74,6 +74,11 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		}
 	}
 
+	@Override
+	public void fire() {
+		performAction();
+	}
+
 	private void performAction() {
 		if (executeService) {
 			try {
@@ -128,10 +133,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			}
 		});
 
-		String imageName = getTool().getImage();
-		if (imageName == null) {
-			imageName = getTool().getId();
-		}
+		String imageName = getImageName();
 
 		node.setId("toolButton");
 		image = Rcpl.resources().getImage(imageName,

@@ -144,7 +144,7 @@ public abstract class RcplAbstractService {
 	 * @param figure
 	 */
 	protected boolean simulateSelection(ICommand command, IParagraph paragraph) {
-		if (!(paragraph.hasSelection() && Rcpl.UIC.getEditor().getSelectedParagraph() == paragraph)) {
+		if (!(paragraph.hasSelection() && Rcpl.UIC.getEditor().getActiveParagraph() == paragraph)) {
 			selectionSimulation = true;
 			paragraph.selectAll();
 			return true;

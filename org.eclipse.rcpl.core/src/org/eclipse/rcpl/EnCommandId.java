@@ -24,9 +24,9 @@ public enum EnCommandId {
 
 	toBackOneLevel(EnServiceId.PICTURE_SERVICE, "to_back_one_level", "", ""),
 
-	showHLineal(EnServiceId.PARAGRAPH_SERVICE, "h_lineal", "H", "H"),
+	showHLineal(EnServiceId.EDITOR_SERVICE, "h_lineal", "H", "H"),
 
-	showVLineal(EnServiceId.PARAGRAPH_SERVICE, "v_lineal", "V", "V"),
+	showVLineal(EnServiceId.EDITOR_SERVICE, "v_lineal", "V", "V"),
 
 	showTwoPages(EnServiceId.LAYOUT_SERVICE, "two_pages", "", "Show two Pages"),
 
