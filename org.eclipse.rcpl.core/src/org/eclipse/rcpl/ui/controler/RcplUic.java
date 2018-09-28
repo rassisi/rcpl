@@ -772,14 +772,7 @@ public class RcplUic implements IRcplUic {
 			//
 			// homeWebView = new WebView();
 			// homeWebView.setEffect(new InnerShadow());
-
 		}
-
-//		cssStylesheets.put(THEME_DEFAULT, RcplUic.class.getResource("/css/default.css").toExternalForm());
-//		cssStylesheets.put(THEME_MSOFFICE, RcplUic.class.getResource("/css/msoffice.css").toExternalForm());
-//		cssStylesheets.put(THEME_WINDOWS7, RcplUic.class.getResource("/css/windows_7.css").toExternalForm());
-//		cssStylesheets.put(THEME_DARK, RcplUic.class.getResource("/css/theme_dark.css").toExternalForm());
-//		cssStylesheets.put(THEME_SILVER, RcplUic.class.getResource("/css/theme_silver.css").toExternalForm());
 
 		doCreateContent();
 
@@ -870,35 +863,6 @@ public class RcplUic implements IRcplUic {
 			}
 		});
 
-//		final ColorPicker colorPicker = new ColorPicker();
-//		colorPicker.setValue(Color.CORAL);
-//
-//		colorPicker.setOnAction(new EventHandler() {
-//			public void handle(Event t) {
-//				removeAllStyles();
-//				addStyles(internalStyleDark, internalDefaultCss);
-//				Rcpl.set(KeyValueKey.THEME, THEME_DARK);
-//			}
-//		});
-//
-//		ContextMenu contextMenu = new ContextMenu();
-//		contextMenu.setMinHeight(300);
-//		contextMenu.setMinWidth(100);
-//
-//		contextMenu.setAutoHide(true);
-//		contextMenu.setHideOnEscape(true);
-//
-//		final MenuItem item1 = new MenuItem("");
-//
-//		item1.setGraphic(colorPicker);
-//		item1.setOnAction(new EventHandler<ActionEvent>() {
-//
-//			@Override
-//			public void handle(ActionEvent event) {
-//			}
-//		});
-//		contextMenu.getItems().add(item1);
-
 		themeDefaultButton.setId("themeDefaultButton");
 		themeDarkButton.setId("themeDarkButton");
 		themeSilverButton.setId("themeSilverButton");
@@ -912,36 +876,44 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void run() {
-				String style = Rcpl.get(KeyValueKey.THEME, null);
-				if (THEME_MSOFFICE.equals(style)) {
-					themeDefaultButton.setSelected(true);
-					themeDefaultButton.requestFocus();
-				} else if (THEME_DARK.equals(style)) {
-					themeDarkButton.setSelected(true);
-					themeDarkButton.requestFocus();
-				} else if (THEME_SILVER.equals(style)) {
-					themeSilverButton.setSelected(true);
-					themeSilverButton.requestFocus();
-				} else if (THEME_WINDOWS7.equals(style)) {
-					themeWindows7Button.setSelected(true);
-					themeWindows7Button.requestFocus();
-				} else {
+				try {
+					String style = Rcpl.get(KeyValueKey.THEME, null);
+					if (THEME_MSOFFICE.equals(style)) {
+						themeDefaultButton.setSelected(true);
+						themeDefaultButton.requestFocus();
+						handleThemeDefault(null);
+					} else if (THEME_DARK.equals(style)) {
+						themeDarkButton.setSelected(true);
+						themeDarkButton.requestFocus();
+						handleThemeDark(null);
+					} else if (THEME_SILVER.equals(style)) {
+						themeSilverButton.setSelected(true);
+						themeSilverButton.requestFocus();
+						handleThemeSilver(null);
+					} else if (THEME_WINDOWS7.equals(style)) {
+						themeWindows7Button.setSelected(true);
+						themeWindows7Button.requestFocus();
+						handleThemeSilver(null);
+					} else {
 
-					File f = RcplUtil.createCacheFile(style + ".css");
-					if (f.exists()) {
-						removeAllStyles();
-						try {
-							addStyles(f.toURI().toURL().toExternalForm(), cssStylesheets.get(THEME_DEFAULT));
-							return;
-						} catch (MalformedURLException e) {
+						File f = RcplUtil.createCacheFile(style + ".css");
+						if (f.exists()) {
+							removeAllStyles();
+							try {
+								addStyles(f.toURI().toURL().toExternalForm());
+								return;
+							} catch (MalformedURLException e) {
+							}
 						}
+
+						// ---------- fall back ----------
+
+						themeSilverButton.setSelected(true);
+						themeSilverButton.requestFocus();
+
 					}
-
-					// ---------- fall back ----------
-
-					themeSilverButton.setSelected(true);
-					themeSilverButton.requestFocus();
-
+				} catch (Exception ex) {
+					Rcpl.printErrorln("", ex);
 				}
 			}
 		});
@@ -1610,31 +1582,29 @@ public class RcplUic implements IRcplUic {
 	}
 
 	private void createStyleSheetTheme(ColorName c2) {
-		String newStyleSheet;
+
 		String newStyleKey = "THEME_" + c2.name;
 
 		String s = RcplUtil.loadCssAsString("default_template.css");
-
-//		File f = RcplUtil.saveStringToFileInCache(newStyleKey + ".css",
-//				".root { -fx-base: rgb(" + (int) (c2.col.getRed() * 255.0) + ","
-//						+ (int) (c2.col.getGreen() * 255.0) + "," + (int) (c2.col.getBlue() * 255.0) + "); }");
-
 		File f = RcplUtil.saveStringToFileInCache(newStyleKey + ".css",
 				".root { -fx-base: rgb(" + (int) (c2.col.getRed() * 255.0) + "," + (int) (c2.col.getGreen() * 255.0)
 						+ "," + (int) (c2.col.getBlue() * 255.0) + "); }\n" + s);
+		Platform.runLater(new Runnable() {
 
-//		".root { -fx-font-size: 8.0pt; -fx-base: whitesmoke; }"
+			@Override
+			public void run() {
+				try {
+					String newStyleSheet = f.toURI().toURL().toExternalForm();
+					cssStylesheets.put(newStyleKey, newStyleSheet);
+					removeAllStyles();
+					addStyles(cssStylesheets.get(newStyleKey));
+					Rcpl.set(KeyValueKey.THEME, newStyleKey);
+				} catch (MalformedURLException e) {
 
-		try {
-			newStyleSheet = f.toURI().toURL().toExternalForm();
-			cssStylesheets.put(newStyleKey, newStyleSheet);
-			removeAllStyles();
-			addStyles(cssStylesheets.get(newStyleKey)); // , cssStylesheets.get(THEME_DEFAULT));
-			Rcpl.set(KeyValueKey.THEME, newStyleKey);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				}
+			}
+		});
+
 	}
 
 	@FXML

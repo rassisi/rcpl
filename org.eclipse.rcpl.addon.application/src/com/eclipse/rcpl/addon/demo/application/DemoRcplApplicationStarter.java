@@ -24,8 +24,7 @@ public class DemoRcplApplicationStarter extends AbstractApplicationStarter {
 
 	@Override
 	protected IWindowAdvisor createWindowAdvisor() {
-		return new RcplWindowAdvisor(getRcplApplicationProvider(),
-				getClass().getResource("/css/default.css").toExternalForm());
+		return new RcplWindowAdvisor(getRcplApplicationProvider());
 	}
 
 	/*

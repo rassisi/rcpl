@@ -491,8 +491,6 @@ public class Rcpl {
 		return "/css/";
 	}
 
-	// private static boolean debugDely;
-
 	public static void startProgress(final double increment, final boolean showProgressBar) {
 	}
 

@@ -42,15 +42,13 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 	private double initialStageY;
 
 	private IRcplApplicationProvider applicationProvider;
-	private String cssStyleSheetResource;
 
 	/**
 	 * @param rcplApplicationProvider
 	 * @param cssStyleSheetResource
 	 */
-	public RcplWindowAdvisor(IRcplApplicationProvider rcplApplicationProvider, String cssStyleSheetResource) {
+	public RcplWindowAdvisor(IRcplApplicationProvider rcplApplicationProvider) {
 		this.applicationProvider = rcplApplicationProvider;
-		this.cssStyleSheetResource = cssStyleSheetResource;
 	}
 
 	/**
@@ -139,10 +137,6 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 
 	protected void handleOk() {
 
-	}
-
-	public String getCssStyleSheetResource() {
-		return cssStyleSheetResource;
 	}
 
 }

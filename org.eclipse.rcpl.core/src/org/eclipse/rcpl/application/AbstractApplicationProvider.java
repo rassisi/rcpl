@@ -283,7 +283,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		}
 
 		Scene scene = getPrimaryStage().getScene();
-		scene.getStylesheets().addAll("/css/theme_login.css", "/css/default.css");
+		scene.getStylesheets().addAll("/css/theme_login.css");
 
 		getApplicationWindow().fadeIn(0.5);
 		primaryStage.show();
@@ -306,10 +306,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
 		RcplModel.log(this, "Screen bounds: " + bounds.getWidth() + "/" + bounds.getHeight());
 		primaryStage.setScene(new Scene(mainStackPane));
-		primaryStage.getScene().getStylesheets().addAll(
-				AbstractApplicationProvider.class.getResource("/css/default.css").toExternalForm(),
-				AbstractApplicationProvider.class.getResource("/css/msoffice.css").toExternalForm());
-
 		primaryStage.setWidth(bounds.getWidth());
 		primaryStage.setHeight(bounds.getHeight());
 		primaryStage.setX(0);
