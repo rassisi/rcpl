@@ -628,6 +628,8 @@ public class RcplSideToolBar implements ISideToolBar {
 		BorderPane.setMargin(Rcpl.UIC.getMainBottomArea(), new Insets(0, 0, 0, WIDTH_COLLAPSED_BOTTOM));
 		activeGroupId = null;
 		toolPaneStack.getChildren().clear();
+
+		Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SIDEBAR_PATH, (String) null);
 	}
 
 	private ITool createColorTool(final Tool eTool, Pane flowPane, final AccordionColorTitlePane titlePane) {

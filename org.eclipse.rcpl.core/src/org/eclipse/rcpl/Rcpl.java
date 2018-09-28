@@ -743,7 +743,8 @@ public class Rcpl {
 
 	public static void set(IEditor editor, KeyValueKey key, String value) {
 		if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
-			RcplSession.getDefault().putValue(key.name() + editor.getDocument().getFile().getName(), value);
+			RcplSession.getDefault().putValue(key.name() + editor.getDocument().getFile().getName(),
+					value == null ? "" : value);
 		}
 	}
 
