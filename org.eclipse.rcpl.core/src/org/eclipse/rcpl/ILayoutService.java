@@ -6,6 +6,14 @@ package org.eclipse.rcpl;
  */
 public interface ILayoutService extends IService {
 
+	IPage addPage(IPage newPageFigure);
+
+	IPage addPage(int index);
+
+	IPage addPage(IPage newPageFigure, int index);
+
+	IPage addPage(IPage newPageFigure, int index, boolean forceEven, boolean forceOdd);
+
 	IEditor getEditor();
 
 	IDocument getDocument();

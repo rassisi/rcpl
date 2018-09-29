@@ -16,8 +16,6 @@ public interface IPage extends ILayoutFigure {
 
 	IPage previous();
 
-	void setOverflowPage(boolean overflowPage);
-
 	void setForceEvenPage(boolean forceEvenPage);
 
 	void setForceOddPage(boolean forceOdd);

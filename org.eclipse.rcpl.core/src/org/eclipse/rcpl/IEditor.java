@@ -28,7 +28,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void layout();
 
-	void setExpanding(boolean expanding);
+	void setLayoutReason(EnLayoutReason reason);
 
 	void addDirtyLayoutObject(ILayoutObject layoutObject);
 

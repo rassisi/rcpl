@@ -10,9 +10,11 @@ import javafx.geometry.Point2D;
  */
 public class LayoutData {
 
+	public boolean expanding;
+
 	public boolean overflowOccured;
 
-	public boolean expanding;
+	public EnLayoutReason layoutReason;
 
 	public boolean pause;
 
@@ -59,6 +61,8 @@ public class LayoutData {
 	public int pageCountAtTheBeginning;
 
 	public boolean breakBefore;
+
+	public int startIndex;
 
 	public LayoutData(ILayoutService layoutService) {
 		this.layoutService = layoutService;
@@ -148,5 +152,9 @@ public class LayoutData {
 
 	public boolean pageCountHasChanged() {
 		return layoutService.getEditor().getPageCount() != pageCountAtTheBeginning;
+	}
+
+	public int getDistance() {
+		return index - startIndex;
 	}
 }

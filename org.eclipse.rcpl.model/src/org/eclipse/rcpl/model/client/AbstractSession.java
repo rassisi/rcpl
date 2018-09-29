@@ -76,6 +76,7 @@ import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.model.IIdProvider;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.ISessionFacory;
+import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.RcplModelUtil;
 import org.eclipse.rcpl.model.RcplSessionFactory;
@@ -1367,6 +1368,29 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 			}
 		}
 		return keys;
+	}
+
+	@Override
+	public void setMaxKeyValues(KeyValueKey matchKey, int max) {
+		List<String> keys = loadKeys(matchKey.name());
+		List<KeyValue> keyValuesToDelete = new ArrayList<KeyValue>();
+
+		if (keys.size() > max) {
+			for (int i = 0; i < keys.size() - max; i++) {
+				String key = keys.get(i);
+				for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
+					if (kv.getKey().startsWith(matchKey.name())) {
+						keyValuesToDelete.add(kv);
+					}
+				}
+
+			}
+		}
+
+		for (KeyValue keyValue : keyValuesToDelete) {
+			getRcpl().getKeyvalues().getKeyvalues().remove(keyValue);
+		}
+
 	}
 
 	// ---------- put value

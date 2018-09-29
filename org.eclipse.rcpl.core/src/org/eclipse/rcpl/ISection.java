@@ -1,6 +1,5 @@
 package org.eclipse.rcpl;
 
-
 public interface ISection extends ILayoutObject {
 
 	double getBottomMargin();

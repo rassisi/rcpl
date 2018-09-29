@@ -13,7 +13,7 @@ import javafx.geometry.Rectangle2D;
  */
 public interface ILayoutObject {
 
-	void layout(boolean expanding);
+	void layout(EnLayoutReason reason);
 
 	IEditor getEditor();
 

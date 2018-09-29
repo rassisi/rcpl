@@ -597,12 +597,14 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void addRecentDocument(File file, boolean commit) {
+
 		for (String key : RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name())) {
 			if (file.getAbsolutePath().equals(RcplSession.getDefault().getValue(key))) {
 				return;
 			}
 		}
 		Rcpl.set(getEditor(), KeyValueKey.RECENT_DOCUMENT, file.getAbsolutePath());
+		RcplSession.getDefault().commit();
 	}
 
 	@Override
@@ -739,6 +741,9 @@ public class RcplUic implements IRcplUic {
 		Rcpl.progressMessage(this.getClass().getName() + ".createContent()");
 
 		// ---------- restore some GUI states
+
+//		RcplSession.getDefault().setMaxKeyValues(KeyValueKey.RECENT_DOCUMENT, 10);
+//		RcplSession.getDefault().setMaxKeyValues(KeyValueKey.LAST_OPENED_DOCUMENT, 10);
 
 		List<String> recentDocumentKeys = RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name());
 		List<String> lastDocumentKeys = RcplSession.getDefault().loadKeys(KeyValueKey.LAST_OPENED_DOCUMENT.name());

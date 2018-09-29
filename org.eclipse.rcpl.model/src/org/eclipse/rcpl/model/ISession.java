@@ -18,6 +18,8 @@ public interface ISession {
 
 	List<String> loadKeys(String matchKey);
 
+	void setMaxKeyValues(KeyValueKey matchKey, int max);
+
 	String getValue(String key);
 
 	String getValue(String key, String defaultValue);
