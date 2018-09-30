@@ -112,7 +112,7 @@ public interface ILayoutFigure extends IPane {
 
 	void setOverflowExcess(double excess, double remaining);
 
-	void setOverflowFigure(boolean overflow);
+	void setOverflow(boolean overflow);
 
 	void setParentFigure(ILayoutFigure figure);
 
