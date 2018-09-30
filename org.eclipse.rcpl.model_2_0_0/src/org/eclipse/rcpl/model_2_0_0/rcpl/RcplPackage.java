@@ -2778,13 +2778,31 @@ public interface RcplPackage extends EPackage {
 	int ABSTRACT_TOOL__EXPAND_TOOL_GROUP = LAYOUTABLE_FEATURE_COUNT + 16;
 
 	/**
+	 * The feature id for the '<em><b>HGrow</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOOL__HGROW = LAYOUTABLE_FEATURE_COUNT + 17;
+
+	/**
+	 * The feature id for the '<em><b>VGrow</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOOL__VGROW = LAYOUTABLE_FEATURE_COUNT + 18;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Tool</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TOOL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 17;
+	int ABSTRACT_TOOL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 19;
 
 	/**
 	 * The number of operations of the '<em>Abstract Tool</em>' class. <!--
@@ -3072,6 +3090,24 @@ public interface RcplPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOOL__EXPAND_TOOL_GROUP = ABSTRACT_TOOL__EXPAND_TOOL_GROUP;
+
+	/**
+	 * The feature id for the '<em><b>HGrow</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL__HGROW = ABSTRACT_TOOL__HGROW;
+
+	/**
+	 * The feature id for the '<em><b>VGrow</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL__VGROW = ABSTRACT_TOOL__VGROW;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute. <!--
@@ -3377,6 +3413,24 @@ public interface RcplPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOOL_GROUP__EXPAND_TOOL_GROUP = ABSTRACT_TOOL__EXPAND_TOOL_GROUP;
+
+	/**
+	 * The feature id for the '<em><b>HGrow</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL_GROUP__HGROW = ABSTRACT_TOOL__HGROW;
+
+	/**
+	 * The feature id for the '<em><b>VGrow</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL_GROUP__VGROW = ABSTRACT_TOOL__VGROW;
 
 	/**
 	 * The feature id for the '<em><b>Tool Groups</b></em>' containment reference list.
@@ -9905,6 +9959,28 @@ public interface RcplPackage extends EPackage {
 	EReference getAbstractTool_ExpandToolGroup();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow <em>HGrow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>HGrow</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow()
+	 * @see #getAbstractTool()
+	 * @generated
+	 */
+	EAttribute getAbstractTool_HGrow();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow <em>VGrow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>VGrow</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow()
+	 * @see #getAbstractTool()
+	 * @generated
+	 */
+	EAttribute getAbstractTool_VGrow();
+
+	/**
 	 * Returns the meta object for class
 	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool <em>Tool</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -11949,6 +12025,22 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ABSTRACT_TOOL__EXPAND_TOOL_GROUP = eINSTANCE.getAbstractTool_ExpandToolGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>HGrow</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_TOOL__HGROW = eINSTANCE.getAbstractTool_HGrow();
+
+		/**
+		 * The meta object literal for the '<em><b>VGrow</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_TOOL__VGROW = eINSTANCE.getAbstractTool_VGrow();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolImpl <em>Tool</em>}' class.

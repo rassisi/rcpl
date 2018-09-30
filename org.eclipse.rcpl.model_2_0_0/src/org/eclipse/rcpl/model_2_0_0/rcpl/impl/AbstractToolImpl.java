@@ -32,6 +32,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isToggleGroup <em>Toggle Group</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getExpandToolGroup <em>Expand Tool Group</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isHGrow <em>HGrow</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isVGrow <em>VGrow</em>}</li>
  * </ul>
  *
  * @generated
@@ -358,6 +360,42 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 */
 	public void setExpandToolGroup(ToolGroup newExpandToolGroup) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__EXPAND_TOOL_GROUP, newExpandToolGroup);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isHGrow() {
+		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__HGROW, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHGrow(boolean newHGrow) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__HGROW, newHGrow);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isVGrow() {
+		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__VGROW, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVGrow(boolean newVGrow) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__VGROW, newVGrow);
 	}
 
 	private Object data;

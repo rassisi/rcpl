@@ -240,6 +240,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/url"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/toggleGroup"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//AbstractTool/expandToolGroup"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/hGrow"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/vGrow"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Tool">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Tool/format"/>

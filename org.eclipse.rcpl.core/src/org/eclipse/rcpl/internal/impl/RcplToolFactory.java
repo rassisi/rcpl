@@ -23,13 +23,14 @@ import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.CheckBoxTool;
 import org.eclipse.rcpl.internal.tools.ComboBoxTool;
 import org.eclipse.rcpl.internal.tools.DateTool;
+import org.eclipse.rcpl.internal.tools.FlowPaneTool;
 import org.eclipse.rcpl.internal.tools.FontNameTool;
 import org.eclipse.rcpl.internal.tools.FontSizeTool;
 import org.eclipse.rcpl.internal.tools.GridPaneTool;
-import org.eclipse.rcpl.internal.tools.FlowPaneTool;
 import org.eclipse.rcpl.internal.tools.HtmlTool;
 import org.eclipse.rcpl.internal.tools.HyperLinkTool;
 import org.eclipse.rcpl.internal.tools.ImageTool;
+import org.eclipse.rcpl.internal.tools.LabelTool;
 import org.eclipse.rcpl.internal.tools.ListTool;
 import org.eclipse.rcpl.internal.tools.MenuButtonTool;
 import org.eclipse.rcpl.internal.tools.PasswordTool;
@@ -41,9 +42,9 @@ import org.eclipse.rcpl.internal.tools.SliderTool;
 import org.eclipse.rcpl.internal.tools.SplitMenuTool;
 import org.eclipse.rcpl.internal.tools.TextAreaTool;
 import org.eclipse.rcpl.internal.tools.TextFieldTool;
-import org.eclipse.rcpl.internal.tools.WebBrowserTool;
-import org.eclipse.rcpl.internal.tools.LabelTool;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
+import org.eclipse.rcpl.internal.tools.UndoRedoTool;
+import org.eclipse.rcpl.internal.tools.WebBrowserTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 
@@ -59,6 +60,15 @@ import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 
 public class RcplToolFactory implements IToolFactory {
+
+	public static UndoRedoTool undoRedoTool;
+
+	public static UndoRedoTool getUndoRedoTool() {
+		if (undoRedoTool == null) {
+			undoRedoTool = new UndoRedoTool();
+		}
+		return undoRedoTool;
+	}
 
 	@Override
 	public ITool createURLAddressTool(ToolGroup toolGroup) {
@@ -77,14 +87,6 @@ public class RcplToolFactory implements IToolFactory {
 
 		ITool tool = null;
 		String id = model.getId();
-
-		if ("PARAGRAPH_STYLES".equals(model.getId())) {
-			System.out.println();
-		}
-
-		if ("PARAGRAPH_STYLES".equals(model.getFormat())) {
-			System.out.println();
-		}
 
 		if (id != null && !Tool.ids.contains(id)) {
 			Tool.ids.add(id);

@@ -38,10 +38,6 @@ public interface IRcplFactory {
 
 	Node createRibbonGroup(ToolGroup group, IRcplAddon useCase, boolean first, boolean dialogButton);
 
-	IUndoRedoListener createUndoRedoTool();
-
-//	IEditor createEditor(File file, Tab tab, HashMap<String, String> wordReplacements, boolean onePage);
-
 	IEditor createEditor(Tab tab);
 
 	ISideToolBar createSideToolBar(HBox hbox);

@@ -34,7 +34,6 @@ import org.eclipse.rcpl.internal.resources.JOColorProvider;
 import org.eclipse.rcpl.internal.resources.RcplResources;
 import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.internal.tools.RibbonGroup;
-import org.eclipse.rcpl.internal.tools.UndoRedoTool;
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.IResources;
@@ -88,11 +87,6 @@ public class RcplBasicFactory implements IRcplFactory {
 	public final static int NO_UPDATES = 1 << 9;
 
 	public final static int NO_MAINPAGE = 1 << 10;
-
-	@Override
-	public IUndoRedoListener createUndoRedoTool() {
-		return new UndoRedoTool();
-	}
 
 	@Override
 	public ICommand createCommand(IService service, EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData,

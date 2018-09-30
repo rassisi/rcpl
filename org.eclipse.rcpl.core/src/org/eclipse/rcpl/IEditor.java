@@ -194,8 +194,6 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	boolean isEditable();
 
-	IUndoRedoListener getUndoRedoListener();
-
 	void showTools(boolean show);
 
 	void hideAnchor();

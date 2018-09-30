@@ -60,6 +60,8 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			addUrlPropertyDescriptor(object);
 			addToggleGroupPropertyDescriptor(object);
 			addExpandToolGroupPropertyDescriptor(object);
+			addHGrowPropertyDescriptor(object);
+			addVGrowPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -439,6 +441,50 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the HGrow feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHGrowPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTool_hGrow_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTool_hGrow_feature", "_UI_AbstractTool_type"),
+				 RcplPackage.Literals.ABSTRACT_TOOL__HGROW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the VGrow feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVGrowPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTool_vGrow_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTool_vGrow_feature", "_UI_AbstractTool_type"),
+				 RcplPackage.Literals.ABSTRACT_TOOL__VGROW,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
@@ -477,6 +523,8 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			case RcplPackage.ABSTRACT_TOOL__SYSTEM:
 			case RcplPackage.ABSTRACT_TOOL__URL:
 			case RcplPackage.ABSTRACT_TOOL__TOGGLE_GROUP:
+			case RcplPackage.ABSTRACT_TOOL__HGROW:
+			case RcplPackage.ABSTRACT_TOOL__VGROW:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
