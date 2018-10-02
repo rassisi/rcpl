@@ -246,6 +246,7 @@ public abstract class RcplTool<T> implements ITool {
 //		return srv;
 //	}
 
+	@Override
 	public String getImageName() {
 		String imageName = getTool().getImage();
 		if (imageName == null) {
@@ -329,5 +330,15 @@ public abstract class RcplTool<T> implements ITool {
 	@Override
 	public void fire() {
 
+	}
+
+	protected boolean isImplemented() {
+		EObject eo = getTool().eContainer();
+		if (eo instanceof AbstractTool) {
+			if (((AbstractTool) eo).isNotImplemented()) {
+				return false;
+			}
+		}
+		return !getTool().isNotImplemented();
 	}
 }

@@ -204,6 +204,11 @@ public class RcplSideToolBar implements ISideToolBar {
 								showSideTools(groupId0);
 							}
 						}
+
+						@Override
+						protected boolean isImplemented() {
+							return true;
+						};
 					};
 					toolGroup_0.setData(b);
 

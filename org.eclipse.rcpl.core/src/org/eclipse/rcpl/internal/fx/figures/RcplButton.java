@@ -80,6 +80,9 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 	}
 
 	private void performAction() {
+		if (!isImplemented()) {
+			return;
+		}
 		if (executeService) {
 			try {
 				getTool().setData(RcplButton.this);
@@ -91,7 +94,6 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		} else {
 			doAction();
 		}
-
 	}
 
 	@Override
@@ -99,6 +101,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 	}
 
+	@Override
 	public boolean isSelected() {
 		if (isToggle()) {
 			return ((ToggleButton) getNode()).isSelected();
@@ -155,7 +158,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 			@Override
 			public void run() {
-				Tooltip t = new Tooltip(tt);
+				Tooltip t = new Tooltip(getTool().isNotImplemented() ? "Not Implemented yet " + tt : tt);
 				Tooltip.install(node, t);
 				t.getStyleClass().add("ttip");
 			}
@@ -169,9 +172,14 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			getTool().setData(node);
 		}
 
+		if (!isImplemented()) {
+			node.setDisable(true);
+
+		}
 		return (ButtonBase) node;
 	}
 
+	@Override
 	public void reset() {
 		if (node instanceof ToggleButton) {
 			setSelected(false);
