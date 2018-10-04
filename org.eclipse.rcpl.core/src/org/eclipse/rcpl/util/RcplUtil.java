@@ -1012,6 +1012,10 @@ public class RcplUtil {
 		dlg.initOwner(null);
 		dlg.setTitle(title);
 		dlg.getDialogPane().setContentText(message);
+
+		dlg.setX(Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getLoginWindowX());
+		dlg.setY(Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getLoginWindowY());
+
 //		dlg.getDialogPane().getButtonTypes().remove(ButtonType.CANCEL);
 //		configureSampleDialog(dlg, optionalMasthead);
 		dlg.showAndWait();
