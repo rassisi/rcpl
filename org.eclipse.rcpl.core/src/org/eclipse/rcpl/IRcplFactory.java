@@ -66,4 +66,6 @@ public interface IRcplFactory {
 	IToolFactory createToolFactory();
 
 	IDetailPage createDetailPage(String className);
+
+	IButton createButton(EnCommandId id);
 }

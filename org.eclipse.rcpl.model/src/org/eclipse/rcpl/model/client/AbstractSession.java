@@ -246,6 +246,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 		prepareJnlp();
 
+		loadLocalXMI(false);
+
 	}
 
 	@Override
@@ -1134,8 +1136,6 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 		// ---------- load Rcpl model always locally
 
-		loadLocalXMI(false);
-
 //		if ("demo".equals(userId) || "".equals(userId)) {
 //			return true;
 //		}
@@ -1269,8 +1269,13 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 				RcplModel.logError(ex);
 			}
 
-			boolean forceNewXMI = DEBUG_RECREATE || !localXMIFile.exists()
-					|| ((!FileUtils.contentEquals(tempXMIFile, localXMIFile) && DEBUG_COMPARE_CONTENT));
+			boolean forceNewXMI =
+
+					DEBUG_RECREATE
+
+							|| !localXMIFile.exists()
+
+							|| (DEBUG_COMPARE_CONTENT && !FileUtils.contentEquals(tempXMIFile, localXMIFile));
 
 			tempXMIFile.delete();
 

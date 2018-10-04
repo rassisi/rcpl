@@ -11,4 +11,6 @@ public interface ILogin {
 	Node getNode();
 
 	ILoginController getController();
+
+	IRcplApplicationProvider getApplicationProvider();
 }

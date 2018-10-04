@@ -45,6 +45,9 @@
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/SLIDER_HORIZONTAL"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/GRIDPANE"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/FLOWPANE"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/MATH_EDITOR"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/SVG_EDITOR"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/IMAGE_EDITOR"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//FontStyles">
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//FontStyles/NORMAL"/>

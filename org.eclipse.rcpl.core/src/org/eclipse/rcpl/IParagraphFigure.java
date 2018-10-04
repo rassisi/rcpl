@@ -13,6 +13,12 @@ import javafx.scene.text.TextFlow;
  */
 public interface IParagraphFigure extends ILayoutFigure {
 
+	void deactivateAll();
+
+	void activate(MouseEvent event);
+
+	void showColumnBreakLabel(boolean show);
+
 	void process_LEFT(KeyEvent event);
 
 	void process_BACKSPACE();
@@ -47,9 +53,6 @@ public interface IParagraphFigure extends ILayoutFigure {
 	void deActivate();
 
 	Node getActualText();
-
-	@Override
-	IParagraphFigure getFx();
 
 	@Override
 	IParagraph getLayoutObject();

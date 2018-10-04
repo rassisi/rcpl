@@ -26,6 +26,7 @@ import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.impl.RcplMonitor;
 import org.eclipse.rcpl.internal.services.RcplService;
+import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
@@ -55,6 +56,9 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	private boolean LOGIN_DEBUG = false;
 
 	private RcplApplicationWindow applicationWindow;
+
+	private double loginWindowX = -1;
+	private double loginWindowY = -1;
 
 	public static void init(String[] args) {
 
@@ -143,11 +147,14 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 	@Override
 	public void login() {
+
+		loginWindowX = primaryStage.getX();
+		loginWindowY = primaryStage.getY();
+
 		joLogin.getNode().setVisible(false);
 		if (!Rcpl.isMobile()) {
 			primaryStage.hide();
 		}
-		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
 		mainContent.getChildren().remove(joLogin.getNode());
 		Rcpl.createProgress(progressGroup);
 		Rcpl.startProgress(3.0, true);
@@ -286,6 +293,26 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		scene.getStylesheets().addAll("/css/theme_login.css");
 
 		getApplicationWindow().fadeIn(0.5);
+
+		double initialStageX = Rcpl.get(KeyValueKey.LOGIN_WINDOW_X, -1.0);
+		double initialStageY = Rcpl.get(KeyValueKey.LOGIN_WINDOW_Y, -1.0);
+
+		if (initialStageX > Rcpl.getActualMonitor().getPixelWidth() - 100) {
+			initialStageX = Rcpl.getActualMonitor().getPixelWidth() - 101;
+		}
+		if (initialStageY > Rcpl.getActualMonitor().getHeight() - 100) {
+			initialStageY = Rcpl.getActualMonitor().getHeight() - 101;
+		}
+
+		if (primaryStage != null) {
+			if (initialStageX == -1) {
+				primaryStage.centerOnScreen();
+			} else {
+				primaryStage.setX(initialStageX);
+				primaryStage.setY(initialStageY);
+			}
+		}
+
 		primaryStage.show();
 		started = true;
 		mainStackPane.layout();
@@ -447,5 +474,15 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	protected abstract IToolFactory createToolFactory();
 
 	protected abstract IRcplFactory createRcplFactory();
+
+	@Override
+	public double getLoginWindowX() {
+		return loginWindowX;
+	}
+
+	@Override
+	public double getLoginWindowY() {
+		return loginWindowY;
+	}
 
 }

@@ -36,6 +36,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
+import org.eclipse.rcpl.ui.controler.RcplUic;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -574,6 +575,7 @@ public class RcplSideToolBar implements ISideToolBar {
 				return false;
 			}
 
+			RcplUic.deActivateCaret();
 			Perspective actualPerspective = Rcpl.UIC.getPerspective();
 			String perspectiveId = actualPerspective.getId();
 
@@ -633,8 +635,8 @@ public class RcplSideToolBar implements ISideToolBar {
 		BorderPane.setMargin(Rcpl.UIC.getMainBottomArea(), new Insets(0, 0, 0, WIDTH_COLLAPSED_BOTTOM));
 		activeGroupId = null;
 		toolPaneStack.getChildren().clear();
-
 		Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SIDEBAR_PATH, (String) null);
+		RcplUic.activateCaret();
 	}
 
 	private ITool createColorTool(final Tool eTool, Pane flowPane, final AccordionColorTitlePane titlePane) {

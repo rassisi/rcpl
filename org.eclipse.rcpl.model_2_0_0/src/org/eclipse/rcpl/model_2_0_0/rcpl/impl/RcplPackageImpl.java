@@ -3351,6 +3351,9 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		addEEnumLiteral(toolTypeEEnum, ToolType.SLIDER_HORIZONTAL);
 		addEEnumLiteral(toolTypeEEnum, ToolType.GRIDPANE);
 		addEEnumLiteral(toolTypeEEnum, ToolType.FLOWPANE);
+		addEEnumLiteral(toolTypeEEnum, ToolType.MATH_EDITOR);
+		addEEnumLiteral(toolTypeEEnum, ToolType.SVG_EDITOR);
+		addEEnumLiteral(toolTypeEEnum, ToolType.IMAGE_EDITOR);
 
 		initEEnum(fontStylesEEnum, FontStyles.class, "FontStyles");
 		addEEnumLiteral(fontStylesEEnum, FontStyles.NORMAL);

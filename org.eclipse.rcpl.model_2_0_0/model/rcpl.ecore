@@ -33,6 +33,9 @@
     <eLiterals name="SLIDER_HORIZONTAL" value="28"/>
     <eLiterals name="GRIDPANE" value="29"/>
     <eLiterals name="FLOWPANE" value="30"/>
+    <eLiterals name="MATH_EDITOR" value="31"/>
+    <eLiterals name="SVG_EDITOR" value="32"/>
+    <eLiterals name="IMAGE_EDITOR" value="33"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FontStyles">
     <eLiterals name="NORMAL" value="2"/>

@@ -21,7 +21,6 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
-import javafx.stage.Stage;
 
 /**
  * @author ramin
@@ -64,8 +63,40 @@ public class Rcpl {
 	}
 
 	public static IMonitor getActualMonitor() {
-		Stage stage = rcplApplicationProvider.getPrimaryStage();
-		Rectangle2D r = new Rectangle2D(stage.getX(), stage.getY(), 2, 2);
+		Rectangle2D r = new Rectangle2D(100, 100, 2, 2); // stage.getX(), stage.getY(), 2, 2);
+		ObservableList<Screen> screens = Screen.getScreensForRectangle(r);
+		if (screens.isEmpty()) {
+			return monitors.values().iterator().next();
+		}
+		IMonitor m = monitors.get(screens.get(0));
+
+		if (m != null) {
+			return m;
+		}
+		Screen s = Screen.getPrimary();
+		m = new RcplMonitor(s, 0);
+		Rcpl.monitors.put(s, m);
+		return m;
+
+//		Stage stage = rcplApplicationProvider.getPrimaryStage();
+//		Rectangle2D r = new Rectangle2D(stage.getX(), stage.getY(), 2, 2);
+//		ObservableList<Screen> screens = Screen.getScreensForRectangle(r);
+//		if (screens.isEmpty()) {
+//			return monitors.values().iterator().next();
+//		}
+//		IMonitor m = monitors.get(screens.get(0));
+//
+//		if (m != null) {
+//			return m;
+//		}
+//		Screen s = Screen.getPrimary();
+//		m = new RcplMonitor(s, 0);
+//		Rcpl.monitors.put(s, m);
+//		return m;
+	}
+
+	public static IMonitor geMainMonitor() {
+		Rectangle2D r = new Rectangle2D(100, 100, 2, 2); // stage.getX(), stage.getY(), 2, 2);
 		ObservableList<Screen> screens = Screen.getScreensForRectangle(r);
 		if (screens.isEmpty()) {
 			return monitors.values().iterator().next();

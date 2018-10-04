@@ -326,7 +326,31 @@ public enum ToolType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOWPANE(30, "FLOWPANE", "FLOWPANE");
+	FLOWPANE(30, "FLOWPANE", "FLOWPANE"), /**
+	 * The '<em><b>MATH EDITOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #MATH_EDITOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	MATH_EDITOR(31, "MATH_EDITOR", "MATH_EDITOR"), /**
+	 * The '<em><b>SVG EDITOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SVG_EDITOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SVG_EDITOR(32, "SVG_EDITOR", "SVG_EDITOR"), /**
+	 * The '<em><b>IMAGE EDITOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #IMAGE_EDITOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	IMAGE_EDITOR(33, "IMAGE_EDITOR", "IMAGE_EDITOR");
 
 	/**
 	 * The '<em><b>BUTTON</b></em>' literal value.
@@ -794,6 +818,51 @@ public enum ToolType implements Enumerator {
 	public static final int FLOWPANE_VALUE = 30;
 
 	/**
+	 * The '<em><b>MATH EDITOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MATH EDITOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MATH_EDITOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MATH_EDITOR_VALUE = 31;
+
+	/**
+	 * The '<em><b>SVG EDITOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SVG EDITOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SVG_EDITOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SVG_EDITOR_VALUE = 32;
+
+	/**
+	 * The '<em><b>IMAGE EDITOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>IMAGE EDITOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #IMAGE_EDITOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int IMAGE_EDITOR_VALUE = 33;
+
+	/**
 	 * An array of all the '<em><b>Tool Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -832,6 +901,9 @@ public enum ToolType implements Enumerator {
 			SLIDER_HORIZONTAL,
 			GRIDPANE,
 			FLOWPANE,
+			MATH_EDITOR,
+			SVG_EDITOR,
+			IMAGE_EDITOR,
 		};
 
 	/**
@@ -919,6 +991,9 @@ public enum ToolType implements Enumerator {
 			case SLIDER_HORIZONTAL_VALUE: return SLIDER_HORIZONTAL;
 			case GRIDPANE_VALUE: return GRIDPANE;
 			case FLOWPANE_VALUE: return FLOWPANE;
+			case MATH_EDITOR_VALUE: return MATH_EDITOR;
+			case SVG_EDITOR_VALUE: return SVG_EDITOR;
+			case IMAGE_EDITOR_VALUE: return IMAGE_EDITOR;
 		}
 		return null;
 	}

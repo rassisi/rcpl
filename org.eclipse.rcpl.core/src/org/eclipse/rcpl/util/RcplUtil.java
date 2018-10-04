@@ -901,16 +901,18 @@ public class RcplUtil {
 	}
 
 	public static double getPoint2PixelFactor() {
-		IMonitor m = Rcpl.getActualMonitor();
-		if (actualMonitor != m) {
-			final Text text = new Text("1234567890abcdefghijklmnopqrstABCDEFGHIJKLMNOPQRSTUVW");
-			final double width = text.getLayoutBounds().getWidth();
-			double widthFac = 438.97705078125 / width;
-			double dpi = m.getDpi();
-			point2PixelFactor = (dpi / widthFac) / 72;
-			// physicalWidth = m.getCmpi();
+		if (point2PixelFactor == -1 || point2PixelFactor == 0) {
+			IMonitor m = Rcpl.getActualMonitor();
+			if (actualMonitor != m || point2PixelFactor == -1 || point2PixelFactor == 0) {
+				final Text text = new Text("1234567890abcdefghijklmnopqrstABCDEFGHIJKLMNOPQRSTUVW");
+				final double width = text.getLayoutBounds().getWidth();
+				double widthFac = 438.97705078125 / width;
+				double dpi = m.getDpi();
+				point2PixelFactor = (dpi / widthFac) / 72;
+				// physicalWidth = m.getCmpi();
+			}
+			actualMonitor = m;
 		}
-		actualMonitor = m;
 		return point2PixelFactor;
 	}
 

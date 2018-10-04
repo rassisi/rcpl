@@ -78,29 +78,34 @@ public class RcplLogin implements ILogin {
 			controller.init();
 			node.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 10;");
 
-			if (applicationProvider != null && applicationProvider.isLoginDebug()) {
-				Platform.runLater(new Runnable() {
+			if (applicationProvider != null) {
 
-					@Override
-					public void run() {
-						controller.handleGuest();
-					}
-				});
-			}
+				stage = this.stage;
+				if (applicationProvider.isLoginDebug()) {
 
-			if (applicationProvider == null && stage.getScene() == null) {
-				Scene scene = new Scene(getNode());
-				stage.setScene(scene);
-				stage.getScene().setFill(Color.TRANSPARENT);
-				try {
-					stage.initStyle(StageStyle.TRANSPARENT);
-				} catch (Throwable ex) {
-					// ignore
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+							controller.handleGuest();
+						}
+					});
 				}
+			} else {
 
-				stage.centerOnScreen();
+				if (stage.getScene() == null) {
+					Scene scene = new Scene(getNode());
+					stage.setScene(scene);
+					stage.getScene().setFill(Color.TRANSPARENT);
+					try {
+						stage.initStyle(StageStyle.TRANSPARENT);
+					} catch (Throwable ex) {
+						// ignore
+					}
+					stage.centerOnScreen();
+					stage.show();
 
-				stage.show();
+				}
 			}
 
 		} catch (
@@ -139,6 +144,7 @@ public class RcplLogin implements ILogin {
 		return node;
 	}
 
+	@Override
 	public IRcplApplicationProvider getApplicationProvider() {
 		return applicationProvider;
 	}

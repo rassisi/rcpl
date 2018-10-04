@@ -249,8 +249,8 @@ public class RcplService extends RcplAbstractService implements IService {
 			while (it.hasNext()) {
 				ILayoutObject lo = it.next();
 				// TODO ??
-				if (lo.getLayoutFigure() != null && lo.getLayoutFigure().getFx() != null) {
-					lo.getLayoutFigure().getFx().showOutline(show);
+				if (lo.getLayoutFigure() != null && lo.getLayoutFigure() != null) {
+					lo.getLayoutFigure().showOutline(show);
 				}
 			}
 		}

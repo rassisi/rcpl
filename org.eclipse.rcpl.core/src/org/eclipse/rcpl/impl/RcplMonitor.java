@@ -24,7 +24,11 @@ public class RcplMonitor implements IMonitor {
 
 	@Override
 	public double getDpi() {
-		return screen.getDpi();
+		double dpi = screen.getDpi();
+		if (dpi == 0) {
+			dpi = 96; // Screen.getPrimary().getDpi();
+		}
+		return dpi;
 	}
 
 	@Override

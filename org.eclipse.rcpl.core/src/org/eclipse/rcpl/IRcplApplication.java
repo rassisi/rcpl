@@ -2,6 +2,8 @@ package org.eclipse.rcpl;
 
 import org.eclipse.rcpl.model.IIdProvider;
 
+import javafx.stage.Stage;
+
 /**
  * @author ramin
  *
@@ -15,4 +17,5 @@ public interface IRcplApplication extends IIdProvider {
 
 	IApplicationStarter getApplicationStarter();
 
+	Stage getSplashStage();
 }

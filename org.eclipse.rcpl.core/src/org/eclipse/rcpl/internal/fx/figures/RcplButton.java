@@ -28,7 +28,9 @@ import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
+import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.application.Platform;
@@ -93,6 +95,9 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			}
 		} else {
 			doAction();
+		}
+		if (!(getTool() instanceof ToolGroup)) {
+			RcplUic.activateCaret();
 		}
 	}
 

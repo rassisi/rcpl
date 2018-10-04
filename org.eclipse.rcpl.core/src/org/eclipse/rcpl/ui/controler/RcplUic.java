@@ -35,7 +35,9 @@ import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IEditorListener;
 import org.eclipse.rcpl.IHomePage;
+import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.ILogin;
+import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IParagraphFigure;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplUic;
@@ -87,7 +89,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -185,17 +186,19 @@ public class RcplUic implements IRcplUic {
 
 	private static HashMap<String, String> cssStylesheets = new HashMap<String, String>();
 
-	private static Pane pane;
+	private static Pane caretPane;
+
+	private static boolean paragraphEditing;
 
 	/**
 	 * 
 	 */
 	public static Pane getCaret() {
 
-		if (pane == null) {
-			pane = new Pane();
+		if (caretPane == null) {
+			caretPane = new Pane();
 			caret = new Rectangle(3, 0, 1.6, 18);
-			pane.getChildren().add(caret);
+			caretPane.getChildren().add(caret);
 
 			caret.setX(80);
 			caret.setFill(Color.BLACK);
@@ -204,16 +207,11 @@ public class RcplUic implements IRcplUic {
 			caretTimeline.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					Node n = Rcpl.UIC.getFocusOwner();
-					if (n instanceof ComboBox<?>) {
-						caret.setFill(Color.TRANSPARENT);
+					if (!isParagraphEditing()) {
+						caret.setFill(Color.LIGHTGRAY);
 						return;
 					}
 					caret.setFill(Color.BLACK);
-					Parent parent = caret.getParent();
-					if (parent != null) {
-						parent.requestFocus();
-					}
 					IEditor editor = Rcpl.UIC.getEditor();
 					if (editor != null) {
 						// editor.updateScrollTargetForCaret();
@@ -222,12 +220,43 @@ public class RcplUic implements IRcplUic {
 			}), new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					caret.setFill(Color.TRANSPARENT);
+					if (paragraphEditing) {
+						caret.setFill(Color.TRANSPARENT);
+					} else {
+						caret.setFill(Color.LIGHTGRAY);
+					}
 				}
 			}), new KeyFrame(Duration.seconds(1)));
 			caretTimeline.play();
 		}
-		return pane;
+		return caretPane;
+	}
+
+	public static void activateCaret() {
+		if (Rcpl.UIC.getEditor() != null) {
+			ILayoutObject lo = Rcpl.UIC.getEditor().getSelectedLayoutObject();
+			if (lo instanceof IParagraph) {
+				caretPane.setUserData(lo.getLayoutFigure());
+				caret.requestFocus();
+				((IParagraphFigure) lo.getLayoutFigure()).updateCaret();
+			}
+		}
+	}
+
+	public static void deActivateCaret() {
+		caretPane.setUserData(null);
+	}
+
+	private static boolean isParagraphEditing() {
+		Object o = caretPane.getUserData();
+		if (o != null
+				&& "com.joffice.rcpl.addon.office.figures.word.JOParagraphFigure".equals(o.getClass().getName())) {
+			paragraphEditing = true;
+			return true;
+		}
+		paragraphEditing = false;
+		return false;
+
 	}
 
 	public static double getCaretHeight() {
@@ -251,6 +280,7 @@ public class RcplUic implements IRcplUic {
 
 	public static void hideCaret(IParagraphFigure figure) {
 		figure.getCaretPane().getChildren().clear();
+		RcplUic.getCaret().setUserData(null);
 	}
 
 	public static void setCaretHeight(double height) {
@@ -615,6 +645,9 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void closeApplication() {
+
+		Rcpl.set(KeyValueKey.LOGIN_WINDOW_X, getApplicationStarter().getRcplApplicationProvider().getLoginWindowX());
+		Rcpl.set(KeyValueKey.LOGIN_WINDOW_Y, getApplicationStarter().getRcplApplicationProvider().getLoginWindowY());
 
 		Rcpl.set(KeyValueKey.WINDOW_X, getStage().getX());
 		Rcpl.set(KeyValueKey.WINDOW_Y, getStage().getY());
@@ -1344,6 +1377,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 //	@Override
+	@Override
 	public IEditor getEditor() {
 		if (tabPane == null) {
 			return null;

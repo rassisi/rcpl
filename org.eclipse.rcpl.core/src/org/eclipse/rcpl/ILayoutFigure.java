@@ -19,13 +19,15 @@ import javafx.scene.shape.Rectangle;
  */
 public interface ILayoutFigure extends IPane {
 
-	public void handleMouseDragged(MouseEvent me);
+	void addKeyHandler(Pane pane);
 
-	public void handleMousePressed(MouseEvent me);
+	void handleMouseDragged(MouseEvent me);
 
-	public void handleMouseReleased();
+	void handleMousePressed(MouseEvent me);
 
-	public boolean isActivated();
+	void handleMouseReleased();
+
+	boolean isActivated();
 
 	void activate();
 
@@ -52,8 +54,6 @@ public interface ILayoutFigure extends IPane {
 	double getColumnX();
 
 	List<ILayoutFigure> getFigureChildren();
-
-	ILayoutFigure getFx();
 
 	List<ILayoutFigure> getLayoutFigures();
 

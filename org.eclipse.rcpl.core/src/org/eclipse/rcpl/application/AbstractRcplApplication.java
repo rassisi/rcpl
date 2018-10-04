@@ -17,6 +17,7 @@ import org.eclipse.rcpl.IRcplApplication;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.ISessionFacory;
+import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.AbstractSession;
 import org.eclipse.rcpl.util.RcplUtil;
@@ -34,6 +35,7 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -41,6 +43,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -76,6 +79,11 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 	private IApplicationStarter applicationStarter;
 
 	private IRcplApplicationProvider applicationProvider;
+
+	public AbstractRcplApplication() {
+		super();
+		getApplicationProvider();
+	}
 
 	@Override
 	public IRcplApplicationProvider getApplicationProvider() {
@@ -201,8 +209,31 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 		splashStage.initStyle(StageStyle.UNDECORATED);
 		splashStage.setScene(splashScene);
 		splashStage.toFront();
-		splashStage.centerOnScreen();
+
+		double initialStageX = Rcpl.get(KeyValueKey.LOGIN_WINDOW_X, -1.0);
+		double initialStageY = Rcpl.get(KeyValueKey.LOGIN_WINDOW_Y, -1.0);
+
+		if (initialStageX > Rcpl.getActualMonitor().getPixelWidth() - 600
+				|| initialStageY > Rcpl.getActualMonitor().getHeight() - 600) {
+			splashStage.centerOnScreen();
+		}
+
+		if (initialStageX == -1) {
+			splashStage.centerOnScreen();
+		} else {
+
+			Screen sc = Screen.getScreensForRectangle(new Rectangle2D(initialStageX, initialStageY, 2, 2)).get(0);
+
+			splashStage.setX(sc.getBounds().getMinX() + sc.getBounds().getWidth() / 2 - SPLASH_WIDTH / 2);
+			splashStage.setY(sc.getBounds().getMinY() + sc.getBounds().getHeight() / 2 - SPLASH_HEIGHT / 2);
+		}
+
 		splashStage.show();
+	}
+
+	@Override
+	public Stage getSplashStage() {
+		return splashStage;
 	}
 
 }

@@ -77,6 +77,14 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 					applicationProvider.getPrimaryStage().setHeight(Rcpl.get(KeyValueKey.WINDOW_HEIGHT, 800.0));
 					initialStageX = Rcpl.get(KeyValueKey.WINDOW_X, -1.0);
 					initialStageY = Rcpl.get(KeyValueKey.WINDOW_Y, -1.0);
+
+					if (initialStageX > Rcpl.getActualMonitor().getPixelWidth() - 100) {
+						initialStageX = Rcpl.getActualMonitor().getPixelWidth() - 101;
+					}
+					if (initialStageY > Rcpl.getActualMonitor().getHeight() - 100) {
+						initialStageY = Rcpl.getActualMonitor().getHeight() - 101;
+					}
+
 					applicationProvider.getPrimaryStage().setX(initialStageX);
 					applicationProvider.getPrimaryStage().setY(initialStageY);
 				}

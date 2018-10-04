@@ -162,6 +162,8 @@ public enum EnCommandId {
 
 	tableSplitCells(EnServiceId.TABLE_SERVICE, null, "", ""),
 
+	insertNewEquation(EnServiceId.PARAGRAPH_SERVICE, null, "", ""),
+
 	;
 
 	private final String image;

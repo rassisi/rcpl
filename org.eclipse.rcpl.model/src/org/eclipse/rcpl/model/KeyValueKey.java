@@ -26,6 +26,10 @@ public enum KeyValueKey {
 
 	WINDOW_Y,
 
+	LOGIN_WINDOW_X,
+
+	LOGIN_WINDOW_Y,
+
 	SHOW_V_LINEAL,
 
 	SHOW_H_LINEAL,
