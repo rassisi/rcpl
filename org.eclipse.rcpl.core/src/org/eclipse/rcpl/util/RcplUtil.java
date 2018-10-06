@@ -1435,4 +1435,20 @@ public class RcplUtil {
 		return file;
 	}
 
+	public static Color getFXColor(java.awt.Color awtColor) {
+		int r = awtColor.getRed();
+		int g = awtColor.getGreen();
+		int b = awtColor.getBlue();
+		int a = awtColor.getAlpha();
+		double opacity = a / 255.0;
+		return Color.rgb(r, g, b, opacity);
+	}
+
+	public static java.awt.Color getAWTColor(Color color) {
+		double r = color.getRed() * 255.0;
+		double g = color.getGreen() * 255.0;
+		double b = color.getBlue() * 255.0;
+//		double a = color.getOpacity() * 255.0;
+		return new java.awt.Color((int) r, (int) g, (int) b); // , (float) a);
+	}
 }

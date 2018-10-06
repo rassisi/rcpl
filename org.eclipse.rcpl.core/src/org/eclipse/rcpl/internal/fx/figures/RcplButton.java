@@ -454,4 +454,8 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		executeService = false;
 	}
 
+	@Override
+	public IButton setData(Object data) {
+		return (IButton) super.setData(data);
+	}
 }

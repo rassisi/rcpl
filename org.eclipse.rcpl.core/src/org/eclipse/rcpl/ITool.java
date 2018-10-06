@@ -42,7 +42,7 @@ public interface ITool extends IEditorListener {
 
 	String getService();
 
-	void setData(Object data);
+	ITool setData(Object data);
 
 	Object getData();
 

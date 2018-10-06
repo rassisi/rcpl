@@ -349,15 +349,16 @@ public class RcplBasicFactory implements IRcplFactory {
 
 	@Override
 	public IButton createButton(EnCommandId id) {
-		Tool emfTool = RcplFactory.eINSTANCE.createTool();
-		emfTool.setId(id.getId());
-		emfTool.setName(id.getDisplayName());
-		emfTool.setImage(id.getImage());
-		emfTool.setType(ToolType.BUTTON);
-		final RcplButton button = new RcplButton(emfTool);
+		Tool model = RcplFactory.eINSTANCE.createTool();
+		model.setId(id.getId());
+		model.setName(id.getDisplayName());
+		model.setImage(id.getImage());
+		model.setType(ToolType.BUTTON);
+		model.setToolTip(id.getToolTip());
+		final RcplButton button = new RcplButton(model);
 		button.getNode().setPickOnBounds(false);
 		if (id.getServiceId() != null) {
-			emfTool.setService(id.getServiceId().name());
+			model.setService(id.getServiceId().name());
 		} else {
 			button.disableService();
 		}

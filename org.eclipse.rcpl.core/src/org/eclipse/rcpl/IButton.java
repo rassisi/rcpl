@@ -28,4 +28,7 @@ public interface IButton extends ITool {
 
 	void disableService();
 
+	@Override
+	IButton setData(Object data);
+
 }

@@ -310,8 +310,9 @@ public abstract class RcplTool<T> implements ITool {
 	}
 
 	@Override
-	public void setData(Object data) {
+	public ITool setData(Object data) {
 		this.data = data;
+		return this;
 	}
 
 	@Override
