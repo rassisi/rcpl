@@ -12,6 +12,7 @@ package org.eclipse.rcpl.internal.fx.figures;
 
 import org.eclipse.rcpl.AlignType;
 import org.eclipse.rcpl.EnCommandId;
+import org.eclipse.rcpl.EnLatexMath;
 import org.eclipse.rcpl.IAlignment;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ICommand;
@@ -141,15 +142,36 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			}
 		});
 
-		String imageName = getImageName();
-
 		node.setId("toolButton");
-		image = Rcpl.resources().getImage(imageName,
 
-				getWidth(), getHeight());
+		createToolTip();
 
+		if (tool.getId() != null && !tool.getId().equals(EnCommandId.insertLatex.name())) {
+			createImage();
+		}
+
+		((ButtonBase) node).setCenterShape(true);
+		node.setUserData(this);
+
+		if (getTool() != null) {
+			getTool().setData(node);
+		}
+
+		if (!isImplemented()) {
+			node.setDisable(true);
+
+		}
+		return (ButtonBase) node;
+	}
+
+	private void createImage() {
+		String imageName = getImageName();
+		image = Rcpl.resources().getImage(imageName, getWidth(), getHeight());
 		this.imageNode = image.getNode();
+		((ButtonBase) node).setGraphic(imageNode);
+	}
 
+	private void createToolTip() {
 		String toolTip = getTool().getToolTip();
 		if (toolTip == null) {
 			toolTip = getTool().getName();
@@ -168,20 +190,6 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 				t.getStyleClass().add("ttip");
 			}
 		});
-
-		((ButtonBase) node).setGraphic(imageNode);
-		((ButtonBase) node).setCenterShape(true);
-		node.setUserData(this);
-
-		if (getTool() != null) {
-			getTool().setData(node);
-		}
-
-		if (!isImplemented()) {
-			node.setDisable(true);
-
-		}
-		return (ButtonBase) node;
 	}
 
 	@Override
@@ -455,7 +463,13 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 	}
 
 	@Override
-	public IButton setData(Object data) {
+	public IButton setData(Object... data) {
+		if (tool != null && EnCommandId.insertLatex.name().equals(tool.getId())) {
+			EnLatexMath math = (EnLatexMath) data[1];
+			getNode().setText(math.getText());
+			getTool().setToolTip("Insert a " + math.getToolTip());
+			createToolTip();
+		}
 		return (IButton) super.setData(data);
 	}
 }

@@ -164,9 +164,9 @@ public enum EnCommandId {
 
 	insertNewEquation(EnServiceId.PARAGRAPH_SERVICE, "equations", "", "Insert A New Equation As Text", null),
 
-	insertNewEquationAsImage(EnServiceId.PARAGRAPH_SERVICE, "image", "", "Insert a New Equation As Image", null),
+	insertNewEquationAsImage(EnServiceId.PARAGRAPH_SERVICE, "images", "", "Insert a New Equation As Image", null),
 
-	insertFraction(EnServiceId.PARAGRAPH_SERVICE, "equations", "", "Insert a Fraction", "FRACTION"),
+	insertLatex(EnServiceId.PARAGRAPH_SERVICE, null, "", null, null),
 
 	;
 

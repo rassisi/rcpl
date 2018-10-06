@@ -35,7 +35,7 @@ public abstract class RcplTool<T> implements ITool {
 
 	protected boolean selected;
 
-	private Object data;
+	private Object[] data;
 
 	/**
 	 * This constructor is for conveniant reflection (e.g. creation of a Navigator)
@@ -305,12 +305,12 @@ public abstract class RcplTool<T> implements ITool {
 	}
 
 	@Override
-	public Object getData() {
+	public Object[] getData() {
 		return data;
 	}
 
 	@Override
-	public ITool setData(Object data) {
+	public ITool setData(Object... data) {
 		this.data = data;
 		return this;
 	}

@@ -42,8 +42,8 @@ public interface ITool extends IEditorListener {
 
 	String getService();
 
-	ITool setData(Object data);
+	ITool setData(Object... data);
 
-	Object getData();
+	Object[] getData();
 
 }
