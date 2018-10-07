@@ -131,9 +131,9 @@ public class RcplService extends RcplAbstractService implements IService {
 		}
 
 		if (command.getTool() != null) {
-			Object data = command.getTool().getData();
-			if (data instanceof HomePage) {
-				HomePage homePage = (HomePage) data;
+			Object[] data = command.getTool().getData();
+			if (data != null && data[0] instanceof HomePage) {
+				HomePage homePage = (HomePage) data[0];
 				Rcpl.UIC.showHomePage(homePage.getType(), homePage.getId());
 				return true;
 			}
