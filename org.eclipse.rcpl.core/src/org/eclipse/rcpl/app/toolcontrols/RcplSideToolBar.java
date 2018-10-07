@@ -82,23 +82,23 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	private HashMap<String, ToolBar> toolbarRegistry = new HashMap<String, ToolBar>();
 
-	boolean startMenu;
-
-	double lastMinWidth = 0;
-
-	double lastMaxWidth = 0;
-
-	Node firstNode;
+//	private boolean startMenu;
+//
+//	private double lastMinWidth = 0;
+//
+//	private double lastMaxWidth = 0;
+//
+	private Node firstNode;
 
 	private HBox parent;
 
-	int count = 0;
-
-	private String activeGroupId = "";
+//	private int count = 0;
 
 	private Pane activeToolPane;
 
 	private List<Object> processedList = new ArrayList<Object>();
+
+	private ToolGroup activeGroup;
 
 	public RcplSideToolBar(HBox parent) {
 		this.parent = parent;
@@ -182,7 +182,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			return;
 		}
 
-		this.startMenu = startMenu;
+//		this.startMenu = startMenu;
 
 		final double screenHeight = Screen.getPrimary().getBounds().getHeight();
 
@@ -199,10 +199,10 @@ public class RcplSideToolBar implements ISideToolBar {
 						@Override
 						public void doAction() {
 							String groupId0 = toolGroup_0.getId();
-							if (groupId0 == null || groupId0.equals(activeGroupId)) {
+							if (toolGroup_0 == activeGroup) {
 								collapseToolPane();
 							} else {
-								showSideTools(groupId0);
+								showSideTools(toolGroup_0);
 							}
 						}
 
@@ -248,7 +248,7 @@ public class RcplSideToolBar implements ISideToolBar {
 						sideToolsVbox.setPrefHeight(100);
 						sideToolsVbox.setPrefWidth(304);
 
-						toolPaneStackRegistry.put(getKey(perspective.getId(), toolGroup_0.getId()), sideToolsVbox);
+						toolPaneStackRegistry.put(getKey(perspective.getId(), toolGroup_0), sideToolsVbox);
 
 						sideToolsVbox.setPrefHeight(screenHeight);
 
@@ -555,7 +555,7 @@ public class RcplSideToolBar implements ISideToolBar {
 	public void selectFirstGroup(final String perspective, IRcplAddon useCase, EList<ToolGroup> tools) {
 		if (!tools.isEmpty()) {
 			for (ToolGroup t : tools) {
-				showSideTools(t.getId());
+				showSideTools(t);
 				break;
 			}
 		}
@@ -563,15 +563,14 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	@Override
 	public void showSideTools() {
-		String id = activeGroupId;
-		activeGroupId = "";
-		showSideTools(id);
+		activeGroup = null;
+		showSideTools(activeGroup);
 	}
 
-	private boolean showSideTools(final String groupId) {
+	private boolean showSideTools(final ToolGroup group) {
 
 		try {
-			if (groupId == null || groupId.length() == 0) {
+			if (group == null) {
 				return false;
 			}
 
@@ -579,18 +578,18 @@ public class RcplSideToolBar implements ISideToolBar {
 			Perspective actualPerspective = Rcpl.UIC.getPerspective();
 			String perspectiveId = actualPerspective.getId();
 
-			Pane pane = toolPaneStackRegistry.get(getKey(perspectiveId, groupId));
+			Pane pane = toolPaneStackRegistry.get(getKey(perspectiveId, group));
 			if (pane != null) {
 				pane.setVisible(true);
 				activeToolPane = pane;
-				activeGroupId = groupId;
+				activeGroup = group;
 
 				final Timeline timeline = new Timeline(
 						new KeyFrame(Duration.millis(10), new EventHandler<ActionEvent>() {
 							@Override
 							public void handle(ActionEvent actionEvent) {
 								expandAccordion();
-								expandToolPane(groupId);
+								expandToolPane(group);
 							}
 						}));
 				timeline.setCycleCount(1);
@@ -633,7 +632,7 @@ public class RcplSideToolBar implements ISideToolBar {
 		parent.setMinWidth(WIDTH_COLLAPSED);
 		parent.setPrefWidth(WIDTH_COLLAPSED);
 		BorderPane.setMargin(Rcpl.UIC.getMainBottomArea(), new Insets(0, 0, 0, WIDTH_COLLAPSED_BOTTOM));
-		activeGroupId = null;
+		activeGroup = null;
 		toolPaneStack.getChildren().clear();
 		Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SIDEBAR_PATH, (String) null);
 		RcplUic.activateCaret();
@@ -745,12 +744,15 @@ public class RcplSideToolBar implements ISideToolBar {
 	/**
 	 * @param groupId
 	 */
-	private void expandToolPane(String groupId) {
+	private void expandToolPane(ToolGroup group) {
 
 		try {
 			expanded = true;
+
+			double w = group.getWidth();
+
 			try {
-				Pane pane = toolPaneStackRegistry.get(getKey(getPerspectiveId(), groupId));
+				Pane pane = toolPaneStackRegistry.get(getKey(getPerspectiveId(), group));
 				toolPaneStack.getChildren().clear();
 				toolPaneStack.getChildren().add(pane);
 				pane.setVisible(true);
@@ -759,7 +761,11 @@ public class RcplSideToolBar implements ISideToolBar {
 				RcplModel.logError(ex);
 			}
 
-			if ("images".equals(groupId)) {
+			if (w > 0) {
+				parent.setMaxWidth(w);
+				parent.setMinWidth(w);
+				parent.setPrefWidth(w);
+			} else if ("images".equals(group.getId())) {
 				parent.setMaxWidth(WIDTH_EXPANDED_IMAGES);
 				parent.setMinWidth(WIDTH_EXPANDED_IMAGES);
 				parent.setPrefWidth(WIDTH_EXPANDED_IMAGES);
@@ -793,8 +799,8 @@ public class RcplSideToolBar implements ISideToolBar {
 	 * @param id
 	 * @return
 	 */
-	private String getKey(String perspective, String groupId) {
-		return "PERSPECTIVE_GROUP_ID_" + perspective + groupId;
+	private String getKey(String perspective, ToolGroup group) {
+		return "PERSPECTIVE_GROUP_ID_" + perspective + group.getId();
 	}
 
 	private String getPerspectiveId() {
