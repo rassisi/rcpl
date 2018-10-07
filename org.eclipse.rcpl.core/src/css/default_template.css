@@ -1213,7 +1213,7 @@
 #transparentBorder{
 	-fx-border-style: solid;
 	-fx-border-color: transparent;
-	-fx-border-width: 1.0;
+	-fx-border-width: 0.1;
 }
 
 #sliderButton {
@@ -1351,4 +1351,11 @@
 .table-view .scroll-bar:horizontal {
     -fx-opacity: 0;
     -fx-padding:-7;
+}
+
+#latexButton {
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12.0px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
 }

@@ -245,9 +245,12 @@ public class RcplSideToolBar implements ISideToolBar {
 
 					try {
 						VBox sideToolsVbox = new VBox(2);
-						sideToolsVbox.setPrefHeight(100);
-						sideToolsVbox.setPrefWidth(304);
-
+						sideToolsVbox.setPrefHeight(3000);
+						if (toolGroup_0.getWidth() > 0) {
+							sideToolsVbox.setPrefWidth(toolGroup_0.getWidth());
+						} else {
+							sideToolsVbox.setPrefWidth(304);
+						}
 						toolPaneStackRegistry.put(getKey(perspective.getId(), toolGroup_0), sideToolsVbox);
 
 						sideToolsVbox.setPrefHeight(screenHeight);
@@ -762,9 +765,9 @@ public class RcplSideToolBar implements ISideToolBar {
 			}
 
 			if (w > 0) {
-				parent.setMaxWidth(w);
-				parent.setMinWidth(w);
-				parent.setPrefWidth(w);
+				parent.setMaxWidth(w + 20);
+				parent.setMinWidth(w + 20);
+				parent.setPrefWidth(w + 20);
 			} else if ("images".equals(group.getId())) {
 				parent.setMaxWidth(WIDTH_EXPANDED_IMAGES);
 				parent.setMinWidth(WIDTH_EXPANDED_IMAGES);
