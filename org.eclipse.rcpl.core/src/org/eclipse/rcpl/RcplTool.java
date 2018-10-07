@@ -29,7 +29,7 @@ import javafx.scene.control.ToggleButton;
  */
 public abstract class RcplTool<T> implements ITool {
 
-	protected AbstractTool tool;
+	protected AbstractTool model;
 
 	protected Node node;
 
@@ -43,14 +43,14 @@ public abstract class RcplTool<T> implements ITool {
 	public RcplTool() {
 	}
 
-	public RcplTool(AbstractTool tool) {
-		if (tool == null) {
-			tool = RcplFactory.eINSTANCE.createTool();
-			tool.setType(ToolType.BUTTON);
-			tool.setId("NULL_TOOL");
+	public RcplTool(AbstractTool model) {
+		if (model == null) {
+			model = RcplFactory.eINSTANCE.createTool();
+			model.setType(ToolType.BUTTON);
+			model.setId("NULL_TOOL");
 		}
-		this.tool = tool;
-		tool.setData(this);
+		this.model = model;
+		model.setData(this);
 		Rcpl.getEditorListeners().add(this);
 	}
 
@@ -65,7 +65,7 @@ public abstract class RcplTool<T> implements ITool {
 			@Override
 			public void changed(ObservableValue<? extends T> observable, T oldValue, T newValue) {
 				if (Rcpl.UIC.getEditor() != null) {
-					getTool().setData(RcplTool.this);
+					getModel().setData(RcplTool.this);
 					IParagraph paragraph = Rcpl.UIC.getEditor().getActiveParagraph();
 					ICommand command = Rcpl.getFactory().createCommand(RcplTool.this, paragraph,
 							new Object[] { oldValue }, newValue);
@@ -101,15 +101,15 @@ public abstract class RcplTool<T> implements ITool {
 	}
 
 	@Override
-	public AbstractTool getTool() {
-		return tool;
+	public AbstractTool getModel() {
+		return model;
 	}
 
 	@Override
 	public String getService() {
-		String sn = tool.getService();
+		String sn = model.getService();
 		if (sn == null) {
-			EObject ea = tool;
+			EObject ea = model;
 			while (ea != null) {
 				ea = ea.eContainer();
 				if (ea instanceof ToolGroup) {
@@ -248,14 +248,14 @@ public abstract class RcplTool<T> implements ITool {
 
 	@Override
 	public String getImageName() {
-		String imageName = getTool().getImage();
+		String imageName = getModel().getImage();
 		if (imageName == null) {
-			EnCommandId ci = EnCommandId.findCommandId(getTool().getId());
+			EnCommandId ci = EnCommandId.findCommandId(getModel().getId());
 			if (ci != null) {
 				imageName = ci.getImage();
 			}
 			if (imageName == null) {
-				imageName = getTool().getId();
+				imageName = getModel().getId();
 			}
 			return imageName;
 		}
@@ -263,8 +263,8 @@ public abstract class RcplTool<T> implements ITool {
 	}
 
 	private String getId() {
-		if (tool != null) {
-			return tool.getId();
+		if (model != null) {
+			return model.getId();
 		}
 		return "";
 	}
@@ -317,7 +317,7 @@ public abstract class RcplTool<T> implements ITool {
 
 	@Override
 	public boolean isSelected() {
-		if (ToolType.TOGGLEBUTTON.equals(tool.getType())) {
+		if (ToolType.TOGGLEBUTTON.equals(model.getType())) {
 			return ((ToggleButton) getNode()).isSelected();
 		}
 		return false;
@@ -334,12 +334,12 @@ public abstract class RcplTool<T> implements ITool {
 	}
 
 	protected boolean isImplemented() {
-		EObject eo = getTool().eContainer();
+		EObject eo = getModel().eContainer();
 		if (eo instanceof AbstractTool) {
 			if (((AbstractTool) eo).isNotImplemented()) {
 				return false;
 			}
 		}
-		return !getTool().isNotImplemented();
+		return !getModel().isNotImplemented();
 	}
 }

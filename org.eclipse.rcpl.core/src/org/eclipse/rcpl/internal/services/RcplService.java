@@ -42,7 +42,7 @@ public class RcplService extends RcplAbstractService implements IService {
 		try {
 			ITool iTool = command.getTool();
 			if (iTool != null) {
-				AbstractTool tool = iTool.getTool();
+				AbstractTool tool = iTool.getModel();
 				if (tool != null) {
 
 					if (!ToolType.NAVIGATOR.equals(tool.getType()) && tool.getUrl() != null) {
@@ -177,8 +177,8 @@ public class RcplService extends RcplAbstractService implements IService {
 
 	private ICommand getCommand(ICommand command) {
 		if (EnCommandId.NO_COMMAND.equals(command.getCommandId())) {
-			if (command.getTool() != null && command.getTool().getTool().getId() != null) {
-				String id = command.getTool().getTool().getId();
+			if (command.getTool() != null && command.getTool().getModel().getId() != null) {
+				String id = command.getTool().getModel().getId();
 				for (EnCommandId e : EnCommandId.values()) {
 					if (id == e.getId()) {
 						return new RcplCommand(command.getService(), e, command.getNewData());
@@ -192,8 +192,8 @@ public class RcplService extends RcplAbstractService implements IService {
 	private String getId(ICommand command) {
 		String id;
 		if (EnCommandId.NO_COMMAND.equals(command.getCommandId())) {
-			if (command.getTool() != null && command.getTool().getTool().getId() != null) {
-				id = command.getTool().getTool().getId();
+			if (command.getTool() != null && command.getTool().getModel().getId() != null) {
+				id = command.getTool().getModel().getId();
 			}
 		}
 		return getCommand(command).getCommandId().getId();

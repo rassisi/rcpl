@@ -110,7 +110,7 @@ public class DefaultNavigatorTreePart extends RcplTool<EObject> implements ITree
 
 	@Override
 	public void init(Tool tool, boolean showRoot) {
-		this.tool = tool;
+		this.model = tool;
 		Rcpl.getEditorListeners().add(this);
 
 		try {

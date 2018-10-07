@@ -18,7 +18,7 @@ public interface ITool extends IEditorListener {
 
 	Node getNode();
 
-	AbstractTool getTool();
+	AbstractTool getModel();
 
 	IToolRegistry getToolRegistry();
 

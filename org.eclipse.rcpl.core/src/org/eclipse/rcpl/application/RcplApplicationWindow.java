@@ -220,8 +220,8 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 
 		shadowRectangle = new Rectangle();
 		shadowRectangle.setStroke(Color.GREY);
-		shadowRectangle.setArcHeight(3);
-		shadowRectangle.setArcWidth(3);
+		shadowRectangle.setArcHeight(20);
+		shadowRectangle.setArcWidth(20);
 		shadowRectangle.setStrokeWidth(1);
 		shadowRectangle.layoutBoundsProperty().addListener(new ChangeListener<Bounds>() {
 			@Override

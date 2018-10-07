@@ -160,7 +160,7 @@ public class RibbonGroup extends RcplTool {
 						}
 					}
 					if (isSelected()) {
-						ToolGroup tg = (ToolGroup) RibbonGroup.this.getTool();
+						ToolGroup tg = (ToolGroup) RibbonGroup.this.getModel();
 						Rcpl.UIC.getSideToolBarControl().expand(tg.getExpandToolGroup()); // toolGroup.getSideToolbarPath());
 					} else {
 						Rcpl.UIC.getSideToolBarControl().collapseToolPane();
@@ -200,7 +200,7 @@ public class RibbonGroup extends RcplTool {
 	protected int processRibbonGroup() {
 		try {
 
-			if (getTool() == null) {
+			if (getModel() == null) {
 				Tool tool = RcplFactory.eINSTANCE.createTool();
 				tool.setId("error");
 				IButton b = Rcpl.getFactory().createButton(tool);
@@ -209,13 +209,13 @@ public class RibbonGroup extends RcplTool {
 				return 0;
 			}
 
-			for (ToolGroup g : getTool().getToolGroups()) {
+			for (ToolGroup g : getModel().getToolGroups()) {
 				processSubGroup(g);
 			}
 
 			int lastX = 0;
 			ToggleGroup toggleGroup = new ToggleGroup();
-			for (Tool model : getTool().getTools()) {
+			for (Tool model : getModel().getTools()) {
 				ITool tool;
 				int spanX = Math.max(1, model.getSpanX());
 				int spanY = Math.max(1, model.getSpanY());
@@ -261,8 +261,8 @@ public class RibbonGroup extends RcplTool {
 	}
 
 	@Override
-	public ToolGroup getTool() {
-		return (ToolGroup) super.getTool();
+	public ToolGroup getModel() {
+		return (ToolGroup) super.getModel();
 	}
 
 	/**
@@ -347,11 +347,11 @@ public class RibbonGroup extends RcplTool {
 	protected void updateToolGroup(RcplEvent event) {
 
 		try {
-			String id = getTool().getId();
+			String id = getModel().getId();
 
 			if ("topBar/font".equals(id)) {
 
-				for (ToolGroup g : getTool().getToolGroups()) {
+				for (ToolGroup g : getModel().getToolGroups()) {
 
 					try {
 						id = g.getId();

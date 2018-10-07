@@ -60,13 +60,13 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 	private boolean executeService = true;
 
 	public boolean isToggle() {
-		return ToolType.TOGGLEBUTTON.equals(getTool().getType());
+		return ToolType.TOGGLEBUTTON.equals(getModel().getType());
 	}
 
 	public RcplButton(String id) {
 		super(RcplFactory.eINSTANCE.createTool());
-		tool.setId(id);
-		tool.setType(ToolType.BUTTON);
+		model.setId(id);
+		model.setType(ToolType.BUTTON);
 	}
 
 	public RcplButton(AbstractTool tool) {
@@ -88,7 +88,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		}
 		if (executeService) {
 			try {
-				getTool().setData(RcplButton.this);
+				getModel().setData(RcplButton.this);
 				ICommand command = Rcpl.getFactory().createCommand(RcplButton.this);
 				Rcpl.service().execute(command);
 			} catch (Throwable ex) {
@@ -97,7 +97,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		} else {
 			doAction();
 		}
-		if (!(getTool() instanceof ToolGroup)) {
+		if (!(getModel() instanceof ToolGroup)) {
 			RcplUic.activateCaret();
 		}
 	}
@@ -146,15 +146,15 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 		createToolTip();
 
-		if (tool.getId() != null && !tool.getId().equals(EnCommandId.insertLatex.name())) {
+		if (model.getId() != null && !model.getId().equals(EnCommandId.insertLatex.name())) {
 			createImage();
 		}
 
 		((ButtonBase) node).setCenterShape(true);
 		node.setUserData(this);
 
-		if (getTool() != null) {
-			getTool().setData(node);
+		if (getModel() != null) {
+			getModel().setData(node);
 		}
 
 		if (!isImplemented()) {
@@ -172,20 +172,20 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 	}
 
 	private void createToolTip() {
-		String toolTip = getTool().getToolTip();
+		String toolTip = getModel().getToolTip();
 		if (toolTip == null) {
-			toolTip = getTool().getName();
+			toolTip = getModel().getName();
 		}
 
 		if (toolTip == null) {
-			toolTip = getTool().getId();
+			toolTip = getModel().getId();
 		}
 		final String tt = toolTip;
 		Platform.runLater(new Runnable() {
 
 			@Override
 			public void run() {
-				Tooltip t = new Tooltip(getTool().isNotImplemented() ? "Not Implemented yet " + tt : tt);
+				Tooltip t = new Tooltip(getModel().isNotImplemented() ? "Not Implemented yet " + tt : tt);
 				Tooltip.install(node, t);
 				t.getStyleClass().add("ttip");
 			}
@@ -271,13 +271,13 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 	@Override
 	public void update(RcplEvent event) {
-		if (getTool() != null) {
+		if (getModel() != null) {
 
-			String id = getTool().getId();
+			String id = getModel().getId();
 			if (id == null || "".equals(id)) {
 				return;
 			}
-			if (!ToolType.TOGGLEBUTTON.equals(getTool().getType())) {
+			if (!ToolType.TOGGLEBUTTON.equals(getModel().getType())) {
 				return;
 			}
 
@@ -464,10 +464,10 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 	@Override
 	public IButton setData(Object... data) {
-		if (tool != null && EnCommandId.insertLatex.name().equals(tool.getId())) {
+		if (model != null && EnCommandId.insertLatex.name().equals(model.getId())) {
 			EnLatexMath math = (EnLatexMath) data[1];
 			getNode().setText(math.getText());
-			getTool().setToolTip("Insert a " + math.getToolTip());
+			getModel().setToolTip("Insert a " + math.getToolTip());
 			createToolTip();
 		}
 		return (IButton) super.setData(data);

@@ -107,7 +107,7 @@ public class RcplBasicFactory implements IRcplFactory {
 	public ICommand createCommand(ITool tool, ILayoutObject layoutObject, Object[] oldData, Object... newData) {
 
 		try {
-			String sId = tool.getTool().getService();
+			String sId = tool.getModel().getService();
 			EnServiceId serviceId = EnServiceId.DEFAULT_SERVICE;
 
 			if (sId != null) {
@@ -118,10 +118,10 @@ public class RcplBasicFactory implements IRcplFactory {
 			}
 			EnCommandId commandId = null;
 
-			if (tool.getTool() instanceof Tool) {
-				switch (((Tool) tool.getTool()).getType()) {
+			if (tool.getModel() instanceof Tool) {
+				switch (((Tool) tool.getModel()).getType()) {
 				case TOGGLEBUTTON:
-					RcplButton b = (RcplButton) tool.getTool().getData();
+					RcplButton b = (RcplButton) tool.getModel().getData();
 					newData = new Object[] { b.isSelected() };
 					oldData = new Object[] { !b.isSelected() };
 					break;
@@ -132,7 +132,7 @@ public class RcplBasicFactory implements IRcplFactory {
 				}
 			}
 
-			String id = tool.getTool().getId();
+			String id = tool.getModel().getId();
 
 			commandId = EnCommandId.findCommandId(id);
 

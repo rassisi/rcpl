@@ -166,6 +166,11 @@ public enum EnCommandId {
 
 	insertNewEquationAsImage(EnServiceId.PARAGRAPH_SERVICE, "images", "", "Insert a New Equation As Image", null),
 
+	insertNewEquationAsTextbox(EnServiceId.INSERT_SERVICE, "equations", "", "Insert a New Equation As Textbox", null),
+
+	insertNewEquationAsTextboxImage(EnServiceId.INSERT_SERVICE, "images", "Insert a New Equation As Textbox (Image)",
+			"Insert a New Equation As Textbox (Image)", null),
+
 	insertLatex(EnServiceId.PARAGRAPH_SERVICE, null, "", null, null),
 
 	;

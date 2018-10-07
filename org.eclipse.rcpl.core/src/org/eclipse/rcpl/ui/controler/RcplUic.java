@@ -2335,7 +2335,7 @@ public class RcplUic implements IRcplUic {
 
 			if (l instanceof ITool) {
 				ITool t = (ITool) l;
-				if (id.getId() != null && t.getTool() != null && id.getId().equals(t.getTool().getId())) {
+				if (id.getId() != null && t.getModel() != null && id.getId().equals(t.getModel().getId())) {
 					return t;
 				}
 			}

@@ -106,7 +106,7 @@ public abstract class RcplAbstractService {
 
 	protected String getId(RcplCommand command) {
 		if (command.getTool() != null) {
-			return command.getTool().getTool().getId();
+			return command.getTool().getModel().getId();
 		}
 		if (command.getCommandId() != null) {
 			return command.getCommandId().name();
@@ -197,8 +197,8 @@ public abstract class RcplAbstractService {
 
 		}
 
-		if (command.getTool() != null && command.getTool().getTool().getId() != null) {
-			EnServiceId servId = EnServiceId.getServiceId(command.getTool().getTool().getId());
+		if (command.getTool() != null && command.getTool().getModel().getId() != null) {
+			EnServiceId servId = EnServiceId.getServiceId(command.getTool().getModel().getId());
 			if (servId != null) {
 				IService customService = getService(servId);
 				if (customService != null) {

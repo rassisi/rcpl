@@ -485,7 +485,7 @@ public class URLAddressTool extends RcplTool implements IURLAddressTool {
 	}
 
 	@Override
-	public Tool getTool() {
+	public Tool getModel() {
 		return null;
 	}
 
