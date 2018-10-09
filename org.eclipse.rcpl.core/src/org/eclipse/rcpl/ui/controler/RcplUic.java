@@ -60,6 +60,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.eclipse.rcpl.util.RcplUtil;
@@ -2336,6 +2337,19 @@ public class RcplUic implements IRcplUic {
 			if (l instanceof ITool) {
 				ITool t = (ITool) l;
 				if (id.getId() != null && t.getModel() != null && id.getId().equals(t.getModel().getId())) {
+					return t;
+				}
+			}
+		}
+		return null;
+	}
+
+	public ITool findTool(ToolType type) {
+		for (IEditorListener l : Rcpl.getEditorListeners()) {
+
+			if (l instanceof ITool) {
+				ITool t = (ITool) l;
+				if (t.getModel() != null && type.equals(t.getModel().getType())) {
 					return t;
 				}
 			}

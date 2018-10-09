@@ -7,6 +7,7 @@ import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 
 import javafx.scene.Node;
 import javafx.scene.control.ToggleGroup;
@@ -23,6 +24,8 @@ import javafx.stage.Stage;
  *
  */
 public interface IRcplUic {
+
+	ITool findTool(ToolType type);
 
 	boolean isTopToolbarCollapsed();
 
