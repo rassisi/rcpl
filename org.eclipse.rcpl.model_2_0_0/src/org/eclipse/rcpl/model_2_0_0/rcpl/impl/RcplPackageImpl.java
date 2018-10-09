@@ -1573,6 +1573,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAbstractTool_WidthPercent() {
+		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTool() {
 		return toolEClass;
 	}
@@ -2801,6 +2810,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEReference(abstractToolEClass, ABSTRACT_TOOL__EXPAND_TOOL_GROUP);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__HGROW);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__VGROW);
+		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__WIDTH_PERCENT);
 
 		toolEClass = createEClass(TOOL);
 		createEAttribute(toolEClass, TOOL__FORMAT);
@@ -3165,6 +3175,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEReference(getAbstractTool_ExpandToolGroup(), this.getToolGroup(), null, "expandToolGroup", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTool_HGrow(), ecorePackage.getEBoolean(), "hGrow", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTool_VGrow(), ecorePackage.getEBoolean(), "vGrow", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractTool_WidthPercent(), ecorePackage.getEDouble(), "widthPercent", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(toolEClass, Tool.class, "Tool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTool_Format(), ecorePackage.getEString(), "format", null, 0, 1, Tool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

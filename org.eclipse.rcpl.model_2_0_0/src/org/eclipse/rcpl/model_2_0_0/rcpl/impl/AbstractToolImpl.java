@@ -34,6 +34,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getExpandToolGroup <em>Expand Tool Group</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isHGrow <em>HGrow</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isVGrow <em>VGrow</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getWidthPercent <em>Width Percent</em>}</li>
  * </ul>
  *
  * @generated
@@ -396,6 +397,24 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 */
 	public void setVGrow(boolean newVGrow) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__VGROW, newVGrow);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getWidthPercent() {
+		return (Double)eGet(RcplPackage.Literals.ABSTRACT_TOOL__WIDTH_PERCENT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWidthPercent(double newWidthPercent) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__WIDTH_PERCENT, newWidthPercent);
 	}
 
 	private Object data;

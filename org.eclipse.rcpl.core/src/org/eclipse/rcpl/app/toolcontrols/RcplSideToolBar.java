@@ -182,8 +182,6 @@ public class RcplSideToolBar implements ISideToolBar {
 			return;
 		}
 
-//		this.startMenu = startMenu;
-
 		final double screenHeight = Screen.getPrimary().getBounds().getHeight();
 
 		Platform.runLater(new Runnable() {
@@ -245,12 +243,8 @@ public class RcplSideToolBar implements ISideToolBar {
 
 					try {
 						VBox sideToolsVbox = new VBox(2);
+						HBox.setHgrow(sideToolsVbox, Priority.ALWAYS);
 						sideToolsVbox.setPrefHeight(3000);
-						if (toolGroup_0.getWidth() > 0) {
-							sideToolsVbox.setPrefWidth(toolGroup_0.getWidth());
-						} else {
-							sideToolsVbox.setPrefWidth(304);
-						}
 						toolPaneStackRegistry.put(getKey(perspective.getId(), toolGroup_0), sideToolsVbox);
 
 						sideToolsVbox.setPrefHeight(screenHeight);
@@ -261,7 +255,6 @@ public class RcplSideToolBar implements ISideToolBar {
 						accordion.setUserData(toolGroup_0);
 						accordion.setId("sideBarAccordion");
 						accordion.setPrefHeight(screenHeight);
-						accordion.setPrefWidth(WIDTH_EXPANDED_1);
 						sideToolsVbox.getChildren().add(accordion);
 
 						processAccordion(toolGroup_0, accordion, null, 0);
@@ -504,7 +497,6 @@ public class RcplSideToolBar implements ISideToolBar {
 				pane = gridPane;
 			} else {
 				FlowPane toolFlowPane = new FlowPane();
-				// toolFlowPane.setStyle("-fx-background-color: orange");
 				toolFlowPane.setHgap(3);
 				toolFlowPane.setVgap(3);
 				// toolFlowPane.setId("accordeonItemPaneId");
@@ -518,7 +510,8 @@ public class RcplSideToolBar implements ISideToolBar {
 			// scrollPane.setStyle("-fx-background-color: gold");
 
 			for (ToolGroup g : toolGroup.getToolGroups()) {
-
+				g.setWidth(toolGroup.getWidth());
+				g.setWidthPercent(toolGroup.getWidthPercent());
 				if (GroupType.GRIDPANE.equals(g.getType())) {
 					GridPane gp = new GridPane();
 					gp.setId("verticalGradientPane");
@@ -535,6 +528,8 @@ public class RcplSideToolBar implements ISideToolBar {
 						pane.getChildren().add(gp);
 					}
 					for (Tool t : g.getTools()) {
+						t.setWidth(g.getWidth());
+						t.setWidthPercent(g.getWidthPercent());
 						processTool(t, gp, titlePane);
 					}
 				}
@@ -548,6 +543,8 @@ public class RcplSideToolBar implements ISideToolBar {
 			}
 
 			for (Tool tool : toolGroup.getTools()) {
+				tool.setWidth(toolGroup.getWidth());
+				tool.setWidthPercent(toolGroup.getWidthPercent());
 				processTool(tool, pane, titlePane);
 			}
 		} catch (Exception ex) {
@@ -622,6 +619,7 @@ public class RcplSideToolBar implements ISideToolBar {
 		toolbarStack = new StackPane();
 		HBox.setMargin(toolbarStack, new Insets(0, 0, 0, -6));
 		toolPaneStack = new StackPane();
+		HBox.setHgrow(toolPaneStack, Priority.ALWAYS);
 		this.parent.getChildren().addAll(toolbarStack, toolPaneStack);
 	}
 
@@ -748,22 +746,22 @@ public class RcplSideToolBar implements ISideToolBar {
 	 * @param groupId
 	 */
 	private void expandToolPane(ToolGroup group) {
-
 		try {
 			expanded = true;
-
-			double w = group.getWidth();
-
 			try {
 				Pane pane = toolPaneStackRegistry.get(getKey(getPerspectiveId(), group));
 				toolPaneStack.getChildren().clear();
 				toolPaneStack.getChildren().add(pane);
 				pane.setVisible(true);
-
 			} catch (Exception ex) {
 				RcplModel.logError(ex);
 			}
-
+			double w = group.getWidth();
+			double wp = group.getWidthPercent();
+			if (wp > 0) {
+				w = Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getPrimaryStage().getWidth() * wp
+						/ 100.0;
+			}
 			if (w > 0) {
 				parent.setMaxWidth(w + 20);
 				parent.setMinWidth(w + 20);
@@ -777,7 +775,6 @@ public class RcplSideToolBar implements ISideToolBar {
 				parent.setMinWidth(WIDTH_EXPANDED_1);
 				parent.setPrefWidth(WIDTH_EXPANDED_1);
 			}
-
 		} catch (Throwable ex) {
 			RcplModel.logError(ex);
 		}

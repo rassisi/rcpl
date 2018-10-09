@@ -62,6 +62,7 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			addExpandToolGroupPropertyDescriptor(object);
 			addHGrowPropertyDescriptor(object);
 			addVGrowPropertyDescriptor(object);
+			addWidthPercentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -485,6 +486,28 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Width Percent feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWidthPercentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTool_widthPercent_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTool_widthPercent_feature", "_UI_AbstractTool_type"),
+				 RcplPackage.Literals.ABSTRACT_TOOL__WIDTH_PERCENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
@@ -525,6 +548,7 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			case RcplPackage.ABSTRACT_TOOL__TOGGLE_GROUP:
 			case RcplPackage.ABSTRACT_TOOL__HGROW:
 			case RcplPackage.ABSTRACT_TOOL__VGROW:
+			case RcplPackage.ABSTRACT_TOOL__WIDTH_PERCENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

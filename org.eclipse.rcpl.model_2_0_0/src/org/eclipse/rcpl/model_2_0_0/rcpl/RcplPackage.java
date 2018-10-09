@@ -2796,13 +2796,22 @@ public interface RcplPackage extends EPackage {
 	int ABSTRACT_TOOL__VGROW = LAYOUTABLE_FEATURE_COUNT + 18;
 
 	/**
+	 * The feature id for the '<em><b>Width Percent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOOL__WIDTH_PERCENT = LAYOUTABLE_FEATURE_COUNT + 19;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Tool</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TOOL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 19;
+	int ABSTRACT_TOOL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 20;
 
 	/**
 	 * The number of operations of the '<em>Abstract Tool</em>' class. <!--
@@ -3108,6 +3117,15 @@ public interface RcplPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOOL__VGROW = ABSTRACT_TOOL__VGROW;
+
+	/**
+	 * The feature id for the '<em><b>Width Percent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL__WIDTH_PERCENT = ABSTRACT_TOOL__WIDTH_PERCENT;
 
 	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute. <!--
@@ -3431,6 +3449,15 @@ public interface RcplPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOOL_GROUP__VGROW = ABSTRACT_TOOL__VGROW;
+
+	/**
+	 * The feature id for the '<em><b>Width Percent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL_GROUP__WIDTH_PERCENT = ABSTRACT_TOOL__WIDTH_PERCENT;
 
 	/**
 	 * The feature id for the '<em><b>Tool Groups</b></em>' containment reference list.
@@ -9981,6 +10008,17 @@ public interface RcplPackage extends EPackage {
 	EAttribute getAbstractTool_VGrow();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent <em>Width Percent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Width Percent</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent()
+	 * @see #getAbstractTool()
+	 * @generated
+	 */
+	EAttribute getAbstractTool_WidthPercent();
+
+	/**
 	 * Returns the meta object for class
 	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool <em>Tool</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -12041,6 +12079,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TOOL__VGROW = eINSTANCE.getAbstractTool_VGrow();
+
+		/**
+		 * The meta object literal for the '<em><b>Width Percent</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_TOOL__WIDTH_PERCENT = eINSTANCE.getAbstractTool_WidthPercent();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolImpl <em>Tool</em>}' class.

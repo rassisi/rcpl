@@ -333,6 +333,10 @@ public abstract class RcplTool<T> implements ITool {
 
 	}
 
+	@Override
+	public void setWidth(double width) {
+	}
+
 	protected boolean isImplemented() {
 		EObject eo = getModel().eContainer();
 		if (eo instanceof AbstractTool) {

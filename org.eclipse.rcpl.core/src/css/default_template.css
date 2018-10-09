@@ -1355,7 +1355,6 @@
 
 #latexButton {
     -fx-font-family: "Helvetica";
-    -fx-font-size: 12.0px;
-    -fx-text-fill: white;
+    -fx-font-size: 16.0px;
     -fx-font-weight: bold;
 }

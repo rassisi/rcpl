@@ -29,6 +29,7 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getExpandToolGroup <em>Expand Tool Group</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow <em>HGrow</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow <em>VGrow</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent <em>Width Percent</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool()
@@ -533,6 +534,32 @@ public interface AbstractTool extends Layoutable {
 	 * @generated
 	 */
 	void setVGrow(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Width Percent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Width Percent</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Width Percent</em>' attribute.
+	 * @see #setWidthPercent(double)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_WidthPercent()
+	 * @model
+	 * @generated
+	 */
+	double getWidthPercent();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent <em>Width Percent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Width Percent</em>' attribute.
+	 * @see #getWidthPercent()
+	 * @generated
+	 */
+	void setWidthPercent(double value);
 
 	/**
 	 * @return

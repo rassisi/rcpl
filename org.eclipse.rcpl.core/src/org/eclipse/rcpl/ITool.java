@@ -46,4 +46,6 @@ public interface ITool extends IEditorListener {
 
 	Object[] getData();
 
+	void setWidth(double width);
+
 }
