@@ -700,7 +700,7 @@ public class RcplUic implements IRcplUic {
 				}
 				RcplSession.getDefault().commit();
 			} else {
-				event.consume();
+//				event.consume();
 			}
 		}
 	}

@@ -1451,4 +1451,15 @@ public class RcplUtil {
 //		double a = color.getOpacity() * 255.0;
 		return new java.awt.Color((int) r, (int) g, (int) b); // , (float) a);
 	}
+
+	public static int getTokenCount(String input, String token) {
+		if (input == null) {
+			return 0;
+		}
+		input = input.trim();
+		if (input.isEmpty()) {
+			return 0;
+		}
+		return input.split(token).length;
+	}
 }
