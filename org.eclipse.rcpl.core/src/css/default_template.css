@@ -1354,7 +1354,5 @@
 }
 
 #latexButton {
-    -fx-font-family: "Helvetica";
-    -fx-font-size: 16.0px;
-    -fx-font-weight: bold;
+	-fx-font: bold 32.0pt "Arial";
 }

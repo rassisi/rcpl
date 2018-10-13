@@ -68,4 +68,6 @@ public interface IRcplFactory {
 	IDetailPage createDetailPage(String className);
 
 	IButton createButton(EnCommandId id);
+
+	IButton createButton(EnCommandId id, String cssId);
 }

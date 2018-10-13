@@ -300,8 +300,8 @@ public abstract class RcplTool<T> implements ITool {
 	}
 
 	@Override
-	public void update(RcplEvent event) {
-
+	public boolean update(RcplEvent event) {
+		return true;
 	}
 
 	@Override

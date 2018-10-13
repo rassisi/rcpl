@@ -8,6 +8,8 @@ import javafx.scene.control.ButtonBase;
  */
 public interface IButton extends ITool {
 
+	String DEFAUL_TOOLBUTTON_CSS_ID = "toolButton";
+
 	@Override
 	ButtonBase getNode();
 

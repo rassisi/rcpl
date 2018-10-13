@@ -2305,7 +2305,7 @@ public class RcplUic implements IRcplUic {
 	private void updateEditorListener() {
 		Rcpl.getEditorListeners().add(new RcplEditorListenerAdapter() {
 			@Override
-			public void update(final RcplEvent event) {
+			public boolean update(final RcplEvent event) {
 				if (event.getEditMode() != null) {
 					Platform.runLater(new Runnable() {
 
@@ -2325,6 +2325,7 @@ public class RcplUic implements IRcplUic {
 					});
 
 				}
+				return true;
 
 			}
 		});

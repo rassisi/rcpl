@@ -77,7 +77,7 @@ public class FontSizeTool extends RcplTool<Double> {
 	}
 
 	@Override
-	public void update(RcplEvent event) {
+	public boolean update(RcplEvent event) {
 		ILayoutObject lo = event.getLayoutObject();
 		if (lo instanceof IParagraph) {
 			IParagraph p = (IParagraph) lo;
@@ -86,6 +86,7 @@ public class FontSizeTool extends RcplTool<Double> {
 			setFontSize(style.getFont().getHeight());
 			addListener();
 		}
+		return true;
 	}
 
 }

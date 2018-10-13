@@ -53,5 +53,5 @@ public interface IEditorListener {
 
 	public void fullScreen();
 
-	public void update(RcplEvent event);
+	public boolean update(RcplEvent event);
 }

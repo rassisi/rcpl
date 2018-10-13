@@ -123,6 +123,10 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		this.selected = selected;
 	}
 
+	protected String getNodeId() {
+		return "toolButton";
+	}
+
 	@Override
 	public ButtonBase createNode() {
 
@@ -142,7 +146,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			}
 		});
 
-		node.setId("toolButton");
+		node.setId(getNodeId());
 
 		createToolTip();
 
@@ -270,15 +274,15 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 	}
 
 	@Override
-	public void update(RcplEvent event) {
+	public boolean update(RcplEvent event) {
 		if (getModel() != null) {
 
 			String id = getModel().getId();
 			if (id == null || "".equals(id)) {
-				return;
+				return false;
 			}
 			if (!ToolType.TOGGLEBUTTON.equals(getModel().getType())) {
-				return;
+				return false;
 			}
 
 			EnCommandId cmd;
@@ -286,7 +290,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 				cmd = EnCommandId.valueOf(id);
 			} catch (IllegalArgumentException ex) {
 				// There is no value for this id
-				return;
+				return false;
 			}
 			boolean select = false;
 			boolean found = false;
@@ -353,6 +357,8 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			}
 
 		}
+
+		return true;
 
 	}
 

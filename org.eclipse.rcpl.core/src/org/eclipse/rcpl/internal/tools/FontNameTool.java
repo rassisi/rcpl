@@ -134,7 +134,7 @@ public class FontNameTool extends RcplTool<String> {
 	}
 
 	@Override
-	public void update(RcplEvent event) {
+	public boolean update(RcplEvent event) {
 		try {
 			ILayoutObject lo = event.getLayoutObject();
 			if (lo instanceof IParagraph) {
@@ -143,9 +143,11 @@ public class FontNameTool extends RcplTool<String> {
 				removeListener();
 				selectFont(style.getFont());
 				addListener();
+				return true;
 			}
 		} catch (Exception ex) {
 			RcplModel.logError(ex);
 		}
+		return true;
 	}
 }
