@@ -1453,13 +1453,16 @@ public class RcplUtil {
 	}
 
 	public static int getTokenCount(String input, String token) {
-		if (input == null) {
-			return 0;
+		int pos = 0;
+		int count = 0;
+		while (pos != -1) {
+			pos = input.indexOf(token, pos);
+			if (pos != -1) {
+				count++;
+				pos += token.length();
+			}
 		}
-		input = input.trim();
-		if (input.isEmpty()) {
-			return 0;
-		}
-		return input.split(token).length;
+		return count;
 	}
+
 }
