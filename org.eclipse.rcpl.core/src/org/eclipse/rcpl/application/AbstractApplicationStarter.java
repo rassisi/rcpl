@@ -105,7 +105,6 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 			} catch (ClassNotFoundException e) {
 				Rcpl.printErrorln("", e);
 			}
-
 		}
 	}
 
