@@ -1465,4 +1465,7 @@ public class RcplUtil {
 		return count;
 	}
 
+	public static String maxString(String s, int max) {
+		return s.substring(0, Math.min(s.length(), max));
+	}
 }
