@@ -1356,3 +1356,8 @@
 #latexButton {
  -fx-font: bold 12.0pt "Arial";
 }
+
+#defaultLatexButton {
+ -fx-font: bold 24.0pt "Arial";
+}
+

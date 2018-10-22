@@ -471,7 +471,7 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 	@Override
 	public IButton setData(Object... data) {
 		if (model != null && EnCommandId.insertLatex.name().equals(model.getId())) {
-			EnLatexMath math = (EnLatexMath) data[1];
+			EnLatexMath math = (EnLatexMath) data[2];
 			getNode().setText(math.getText());
 			getModel().setToolTip("Insert a " + math.getToolTip());
 			createToolTip();
