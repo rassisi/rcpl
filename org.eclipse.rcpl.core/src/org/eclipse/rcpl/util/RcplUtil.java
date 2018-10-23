@@ -6,8 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.Reader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
@@ -18,6 +21,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.xmlbeans.XmlObject;
@@ -1468,4 +1473,34 @@ public class RcplUtil {
 	public static String maxString(String s, int max) {
 		return s.substring(0, Math.min(s.length(), max));
 	}
+
+	public static String loadHtml(String urlString) {
+		URL url;
+		String str = null;
+		try {
+			url = new URL(urlString);
+			URLConnection con = url.openConnection();
+			Pattern p = Pattern.compile("text/html;\\s+charset=([^\\s]+)\\s*");
+			Matcher m = p.matcher(con.getContentType());
+			/*
+			 * If Content-Type doesn't match this pre-conception, choose default and hope
+			 * for the best.
+			 */
+			String charset = m.matches() ? m.group(1) : "ISO-8859-1";
+			Reader r = new InputStreamReader(con.getInputStream(), charset);
+			StringBuilder buf = new StringBuilder();
+			while (true) {
+				int ch = r.read();
+				if (ch < 0)
+					break;
+				buf.append((char) ch);
+			}
+			str = buf.toString();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return str;
+	}
+
 }

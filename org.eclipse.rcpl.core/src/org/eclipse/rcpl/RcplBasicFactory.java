@@ -107,16 +107,6 @@ public class RcplBasicFactory implements IRcplFactory {
 	public ICommand createCommand(ITool tool, ILayoutObject layoutObject, Object[] oldData, Object... newData) {
 
 		try {
-			String sId = tool.getModel().getService();
-			EnServiceId serviceId = EnServiceId.DEFAULT_SERVICE;
-
-			if (sId != null) {
-				serviceId = EnServiceId.valueOf(sId);
-			}
-			if (serviceId == null) {
-				serviceId = EnServiceId.DEFAULT_SERVICE;
-			}
-			EnCommandId commandId = null;
 
 			if (tool.getModel() instanceof Tool) {
 				switch (((Tool) tool.getModel()).getType()) {
@@ -132,9 +122,18 @@ public class RcplBasicFactory implements IRcplFactory {
 				}
 			}
 
-			String id = tool.getModel().getId();
+			EnServiceId serviceId = EnServiceId.DEFAULT_SERVICE;
+			String sId = tool.getModel().getService();
 
-			commandId = EnCommandId.findCommandId(id);
+			if (sId != null) {
+				serviceId = EnServiceId.valueOf(sId);
+			}
+			if (serviceId == null) {
+				serviceId = EnServiceId.DEFAULT_SERVICE;
+			}
+
+			String id = tool.getModel().getId();
+			EnCommandId commandId = EnCommandId.findCommandId(id);
 
 			return new RcplCommand(null, commandId, layoutObject, tool, oldData, newData);
 		} catch (Exception ex) {

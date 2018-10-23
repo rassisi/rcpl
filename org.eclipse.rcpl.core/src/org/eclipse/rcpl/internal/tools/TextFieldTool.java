@@ -31,4 +31,8 @@ public class TextFieldTool extends RcplTool {
 		return new TextField();
 	}
 
+	@Override
+	public TextField getNode() {
+		return (TextField) super.getNode();
+	}
 }

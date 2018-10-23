@@ -3,6 +3,9 @@ package org.eclipse.rcpl;
 import java.io.File;
 import java.net.URL;
 
+import org.eclipse.rcpl.internal.tools.ComboBoxTool;
+import org.eclipse.rcpl.internal.tools.TextFieldTool;
+import org.eclipse.rcpl.internal.tools.WebBrowserTool;
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
@@ -26,6 +29,14 @@ import javafx.stage.Stage;
 public interface IRcplUic {
 
 	ITool findTool(ToolType type);
+
+	ITool findTool(ToolType type, String id);
+
+	WebBrowserTool findWebBrowserTool(String id);
+
+	ComboBoxTool findComboBoxTool(String id);
+
+	TextFieldTool findTextFieldTool(String id);
 
 	boolean isTopToolbarCollapsed();
 

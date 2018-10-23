@@ -49,7 +49,10 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.control.RcplCompletionListener;
 import org.eclipse.rcpl.detailpages.WebBrowserDetailsPage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
+import org.eclipse.rcpl.internal.tools.ComboBoxTool;
+import org.eclipse.rcpl.internal.tools.TextFieldTool;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
+import org.eclipse.rcpl.internal.tools.WebBrowserTool;
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.KeyValueKey;
@@ -2332,9 +2335,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public ITool findTool(EnCommandId id) {
-
 		for (IEditorListener l : Rcpl.getEditorListeners()) {
-
 			if (l instanceof ITool) {
 				ITool t = (ITool) l;
 				if (id.getId() != null && t.getModel() != null && id.getId().equals(t.getModel().getId())) {
@@ -2351,6 +2352,18 @@ public class RcplUic implements IRcplUic {
 			if (l instanceof ITool) {
 				ITool t = (ITool) l;
 				if (t.getModel() != null && type.equals(t.getModel().getType())) {
+					return t;
+				}
+			}
+		}
+		return null;
+	}
+
+	public ITool findTool(ToolType type, String id) {
+		for (IEditorListener l : Rcpl.getEditorListeners()) {
+			if (l instanceof ITool) {
+				ITool t = (ITool) l;
+				if (t.getModel() != null && type.equals(t.getModel().getType()) && id.equals(t.getModel().getId())) {
 					return t;
 				}
 			}
@@ -2430,6 +2443,21 @@ public class RcplUic implements IRcplUic {
 			double newValue = 0.5;
 			setScale(newValue);
 		}
+	}
+
+	@Override
+	public WebBrowserTool findWebBrowserTool(String id) {
+		return (WebBrowserTool) Rcpl.UIC.findTool(ToolType.WEBVIEW, id);
+	}
+
+	@Override
+	public ComboBoxTool findComboBoxTool(String id) {
+		return (ComboBoxTool) Rcpl.UIC.findTool(ToolType.COMBO, id);
+	}
+
+	@Override
+	public TextFieldTool findTextFieldTool(String id) {
+		return (TextFieldTool) Rcpl.UIC.findTool(ToolType.TEXTFIELD, id);
 	}
 
 }

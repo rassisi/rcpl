@@ -48,6 +48,7 @@ import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -379,6 +380,10 @@ public class RcplSideToolBar implements ISideToolBar {
 					int y = model.getGridY();
 					int spanX = model.getSpanX();
 					int spanY = model.getSpanY();
+					boolean hGrow = model.isHGrow();
+					boolean vGrow = model.isVGrow();
+					double width = model.getWidth();
+
 					if (model.isLabeled()) {
 						Label label = new Label(model.getName());
 						((GridPane) pane).add(label, x, y, 1, 1);
@@ -386,7 +391,20 @@ public class RcplSideToolBar implements ISideToolBar {
 					}
 
 					try {
-						((GridPane) pane).add(tool.getNode(), x, y, spanX, spanY);
+						Node n = tool.getNode();
+						if (hGrow) {
+							GridPane.setHgrow(n, Priority.ALWAYS);
+						}
+						if (vGrow) {
+							GridPane.setVgrow(n, Priority.ALWAYS);
+						}
+						if (width > 0) {
+							if (n instanceof Control) {
+								((Control) n).setPrefWidth(width);
+							}
+						}
+						((GridPane) pane).add(n, x, y, spanX, spanY);
+
 					} catch (Exception ex) {
 						RcplModel.logError(ex);
 					}

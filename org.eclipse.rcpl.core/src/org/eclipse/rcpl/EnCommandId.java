@@ -175,6 +175,8 @@ public enum EnCommandId {
 
 	insertLatex(EnServiceId.PARAGRAPH_SERVICE, null, "", null, null),
 
+	searchImageInWeb(EnServiceId.PICTURE_SERVICE, "search", "Search Image", "Search Image", null),
+
 	;
 
 	private final String image;

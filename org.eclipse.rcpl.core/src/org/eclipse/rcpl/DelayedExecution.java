@@ -13,8 +13,6 @@ package org.eclipse.rcpl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.rcpl.model.RcplModel;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -42,7 +40,7 @@ public abstract class DelayedExecution {
 						try {
 							execute();
 						} catch (Exception ex) {
-							RcplModel.logError(ex);
+							Rcpl.printErrorln("", ex);
 						}
 					}
 				}
