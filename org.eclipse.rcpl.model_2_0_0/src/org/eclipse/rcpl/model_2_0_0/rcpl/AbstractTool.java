@@ -10,26 +10,46 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getX <em>X</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getY <em>Y</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidth <em>Width</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getHeight <em>Height</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getGridX <em>Grid X</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getGridY <em>Grid Y</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSpanX <em>Span X</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSpanY <em>Span Y</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isLabeled <em>Labeled</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isNotImplemented <em>Not Implemented</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getService <em>Service</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getDetailPaneClassName <em>Detail Pane Class Name</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem <em>System</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl <em>Url</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isToggleGroup <em>Toggle Group</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getExpandToolGroup <em>Expand Tool Group</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow <em>HGrow</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow <em>VGrow</em>}</li>
- *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent <em>Width Percent</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getX
+ * <em>X</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getY
+ * <em>Y</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidth
+ * <em>Width</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getHeight
+ * <em>Height</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getGridX <em>Grid
+ * X</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getGridY <em>Grid
+ * Y</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSpanX <em>Span
+ * X</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSpanY <em>Span
+ * Y</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isLabeled
+ * <em>Labeled</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isNotImplemented
+ * <em>Not Implemented</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getService
+ * <em>Service</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getDetailPaneClassName
+ * <em>Detail Pane Class Name</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getType
+ * <em>Type</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem
+ * <em>System</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl
+ * <em>Url</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isToggleGroup
+ * <em>Toggle Group</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getExpandToolGroup
+ * <em>Expand Tool Group</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow
+ * <em>HGrow</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow
+ * <em>VGrow</em>}</li>
+ * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent
+ * <em>Width Percent</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool()
@@ -38,14 +58,14 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  */
 public interface AbstractTool extends Layoutable {
 	/**
-	 * Returns the value of the '<em><b>X</b></em>' attribute.
-	 * <!-- begin-user-doc
+	 * Returns the value of the '<em><b>X</b></em>' attribute. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>X</em>' attribute isn't clear, there really should
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>X</em>' attribute.
 	 * @see #setX(double)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_X()
@@ -55,8 +75,10 @@ public interface AbstractTool extends Layoutable {
 	double getX();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getX <em>X</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getX <em>X</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>X</em>' attribute.
 	 * @see #getX()
 	 * @generated
@@ -64,14 +86,14 @@ public interface AbstractTool extends Layoutable {
 	void setX(double value);
 
 	/**
-	 * Returns the value of the '<em><b>Y</b></em>' attribute.
-	 * <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Y</b></em>' attribute. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Y</em>' attribute isn't clear, there really should
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Y</em>' attribute.
 	 * @see #setY(double)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_Y()
@@ -81,8 +103,10 @@ public interface AbstractTool extends Layoutable {
 	double getY();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getY <em>Y</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getY <em>Y</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Y</em>' attribute.
 	 * @see #getY()
 	 * @generated
@@ -107,8 +131,10 @@ public interface AbstractTool extends Layoutable {
 	double getWidth();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidth <em>Width</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidth
+	 * <em>Width</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Width</em>' attribute.
 	 * @see #getWidth()
 	 * @generated
@@ -133,8 +159,10 @@ public interface AbstractTool extends Layoutable {
 	double getHeight();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getHeight <em>Height</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getHeight
+	 * <em>Height</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Height</em>' attribute.
 	 * @see #getHeight()
 	 * @generated
@@ -159,8 +187,10 @@ public interface AbstractTool extends Layoutable {
 	int getGridX();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getGridX <em>Grid X</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getGridX <em>Grid
+	 * X</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Grid X</em>' attribute.
 	 * @see #getGridX()
 	 * @generated
@@ -185,8 +215,10 @@ public interface AbstractTool extends Layoutable {
 	int getGridY();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getGridY <em>Grid Y</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getGridY <em>Grid
+	 * Y</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Grid Y</em>' attribute.
 	 * @see #getGridY()
 	 * @generated
@@ -194,14 +226,14 @@ public interface AbstractTool extends Layoutable {
 	void setGridY(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Span X</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Span X</b></em>' attribute. The default
+	 * value is <code>"1"</code>. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Span X</em>' attribute isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Span X</em>' attribute.
 	 * @see #setSpanX(int)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_SpanX()
@@ -211,8 +243,10 @@ public interface AbstractTool extends Layoutable {
 	int getSpanX();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSpanX <em>Span X</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSpanX <em>Span
+	 * X</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Span X</em>' attribute.
 	 * @see #getSpanX()
 	 * @generated
@@ -220,14 +254,14 @@ public interface AbstractTool extends Layoutable {
 	void setSpanX(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Span Y</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Span Y</b></em>' attribute. The default
+	 * value is <code>"1"</code>. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Span Y</em>' attribute isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Span Y</em>' attribute.
 	 * @see #setSpanY(int)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_SpanY()
@@ -237,8 +271,10 @@ public interface AbstractTool extends Layoutable {
 	int getSpanY();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSpanY <em>Span Y</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getSpanY <em>Span
+	 * Y</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Span Y</em>' attribute.
 	 * @see #getSpanY()
 	 * @generated
@@ -263,8 +299,10 @@ public interface AbstractTool extends Layoutable {
 	boolean isLabeled();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isLabeled <em>Labeled</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isLabeled
+	 * <em>Labeled</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Labeled</em>' attribute.
 	 * @see #isLabeled()
 	 * @generated
@@ -289,9 +327,11 @@ public interface AbstractTool extends Layoutable {
 	boolean isNotImplemented();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isNotImplemented <em>Not Implemented</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isNotImplemented
+	 * <em>Not Implemented</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Not Implemented</em>' attribute.
 	 * @see #isNotImplemented()
 	 * @generated
@@ -316,8 +356,10 @@ public interface AbstractTool extends Layoutable {
 	String getService();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getService <em>Service</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getService
+	 * <em>Service</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Service</em>' attribute.
 	 * @see #getService()
 	 * @generated
@@ -332,6 +374,7 @@ public interface AbstractTool extends Layoutable {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Detail Pane Class Name</em>' attribute.
 	 * @see #setDetailPaneClassName(String)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_DetailPaneClassName()
@@ -341,24 +384,28 @@ public interface AbstractTool extends Layoutable {
 	String getDetailPaneClassName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getDetailPaneClassName <em>Detail Pane Class Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getDetailPaneClassName
+	 * <em>Detail Pane Class Name</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Detail Pane Class Name</em>' attribute.
+	 * 
+	 * @param value the new value of the '<em>Detail Pane Class Name</em>'
+	 *              attribute.
 	 * @see #getDetailPaneClassName()
 	 * @generated
 	 */
 	void setDetailPaneClassName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Type</b></em>' attribute. The literals are
+	 * from the enumeration {@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType}. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.ToolType
 	 * @see #setType(ToolType)
@@ -369,9 +416,10 @@ public interface AbstractTool extends Layoutable {
 	ToolType getType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getType <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getType
+	 * <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Type</em>' attribute.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.ToolType
 	 * @see #getType()
@@ -380,13 +428,14 @@ public interface AbstractTool extends Layoutable {
 	void setType(ToolType value);
 
 	/**
-	 * Returns the value of the '<em><b>System</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>System</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>System</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>System</em>' attribute isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>System</em>' attribute.
 	 * @see #setSystem(boolean)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_System()
@@ -396,9 +445,10 @@ public interface AbstractTool extends Layoutable {
 	boolean isSystem();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem <em>System</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem
+	 * <em>System</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>System</em>' attribute.
 	 * @see #isSystem()
 	 * @generated
@@ -406,13 +456,14 @@ public interface AbstractTool extends Layoutable {
 	void setSystem(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Url</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Url</b></em>' attribute. <!-- begin-user-doc
+	 * -->
 	 * <p>
-	 * If the meaning of the '<em>Url</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Url</em>' attribute isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Url</em>' attribute.
 	 * @see #setUrl(String)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_Url()
@@ -422,9 +473,10 @@ public interface AbstractTool extends Layoutable {
 	String getUrl();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl <em>Url</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl <em>Url</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Url</em>' attribute.
 	 * @see #getUrl()
 	 * @generated
@@ -432,13 +484,14 @@ public interface AbstractTool extends Layoutable {
 	void setUrl(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Toggle Group</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Toggle Group</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Toggle Group</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Toggle Group</em>' attribute isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Toggle Group</em>' attribute.
 	 * @see #setToggleGroup(boolean)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_ToggleGroup()
@@ -448,9 +501,11 @@ public interface AbstractTool extends Layoutable {
 	boolean isToggleGroup();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isToggleGroup <em>Toggle Group</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isToggleGroup
+	 * <em>Toggle Group</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @param value the new value of the '<em>Toggle Group</em>' attribute.
 	 * @see #isToggleGroup()
 	 * @generated
@@ -458,13 +513,14 @@ public interface AbstractTool extends Layoutable {
 	void setToggleGroup(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Expand Tool Group</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Expand Tool Group</b></em>' reference. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expand Tool Group</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Expand Tool Group</em>' reference.
 	 * @see #setExpandToolGroup(ToolGroup)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_ExpandToolGroup()
@@ -474,9 +530,11 @@ public interface AbstractTool extends Layoutable {
 	ToolGroup getExpandToolGroup();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getExpandToolGroup <em>Expand Tool Group</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getExpandToolGroup
+	 * <em>Expand Tool Group</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Expand Tool Group</em>' reference.
 	 * @see #getExpandToolGroup()
 	 * @generated
@@ -484,13 +542,14 @@ public interface AbstractTool extends Layoutable {
 	void setExpandToolGroup(ToolGroup value);
 
 	/**
-	 * Returns the value of the '<em><b>HGrow</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>HGrow</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>HGrow</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>HGrow</em>' attribute isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>HGrow</em>' attribute.
 	 * @see #setHGrow(boolean)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_HGrow()
@@ -500,9 +559,10 @@ public interface AbstractTool extends Layoutable {
 	boolean isHGrow();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow <em>HGrow</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow
+	 * <em>HGrow</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>HGrow</em>' attribute.
 	 * @see #isHGrow()
 	 * @generated
@@ -510,13 +570,14 @@ public interface AbstractTool extends Layoutable {
 	void setHGrow(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>VGrow</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>VGrow</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>VGrow</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>VGrow</em>' attribute isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>VGrow</em>' attribute.
 	 * @see #setVGrow(boolean)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_VGrow()
@@ -526,9 +587,10 @@ public interface AbstractTool extends Layoutable {
 	boolean isVGrow();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow <em>VGrow</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow
+	 * <em>VGrow</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>VGrow</em>' attribute.
 	 * @see #isVGrow()
 	 * @generated
@@ -536,13 +598,14 @@ public interface AbstractTool extends Layoutable {
 	void setVGrow(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Width Percent</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Width Percent</b></em>' attribute. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Width Percent</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Width Percent</em>' attribute isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Width Percent</em>' attribute.
 	 * @see #setWidthPercent(double)
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_WidthPercent()
@@ -552,9 +615,11 @@ public interface AbstractTool extends Layoutable {
 	double getWidthPercent();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent <em>Width Percent</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent
+	 * <em>Width Percent</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @param value the new value of the '<em>Width Percent</em>' attribute.
 	 * @see #getWidthPercent()
 	 * @generated

@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.rcpl.images;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -21,8 +20,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-
-import javax.imageio.ImageIO;
 
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderInput;
@@ -35,7 +32,6 @@ import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.util.RcplUtil;
 
-import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -513,14 +509,7 @@ public class RcplImage implements IImage {
 
 	private void saveToFile(Image image, File path) {
 		getPngFile().getParentFile().mkdirs();
-		BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
-		if (bImage != null) {
-			try {
-				ImageIO.write(bImage, "png", path);
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
+		RcplUtil.saveToFile(image, path, "png");
 	}
 
 	@Override

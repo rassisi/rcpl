@@ -1,5 +1,6 @@
 package org.eclipse.rcpl.util;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +12,8 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
@@ -24,7 +27,10 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
+
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.xmlbeans.XmlObject;
 import org.eclipse.rcpl.EnMeasurementUnits;
 import org.eclipse.rcpl.EnPageSize;
@@ -42,9 +48,11 @@ import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.w3c.dom.Node;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -1503,4 +1511,32 @@ public class RcplUtil {
 		return str;
 	}
 
+	public static List<String> getListFromDelimiterSeparatedList(String str, String delimiter) {
+		if (str == null) {
+			return new ArrayList<String>();
+		}
+		List<String> items = Arrays.asList(str.split("\\s*" + delimiter + "\\s*"));
+		return items;
+	}
+
+	public static File saveToFile(Image image, File outputFile, String fileType) {
+		String filePath = outputFile.getAbsolutePath();
+		if (!filePath.endsWith(fileType)) {
+			filePath += "." + fileType;
+			outputFile = new File(filePath);
+		}
+		BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+		if (bImage != null) {
+			try {
+				ImageIO.write(bImage, fileType, outputFile);
+			} catch (IOException e) {
+				Rcpl.printErrorln("", e);
+			}
+		}
+		return outputFile;
+	}
+
+	public static String getFileExtension(File file) {
+		return FilenameUtils.getExtension(file.getName());
+	}
 }

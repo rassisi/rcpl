@@ -177,6 +177,8 @@ public enum EnCommandId {
 
 	searchImageInWeb(EnServiceId.PICTURE_SERVICE, "search", "Search Image", "Search Image", null),
 
+	insertImageFromWeb(EnServiceId.PICTURE_SERVICE, "insert", "Insert Image", "Insert Image", null),
+
 	;
 
 	private final String image;

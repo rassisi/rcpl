@@ -10,10 +10,6 @@
  *******************************************************************************/
 package org.eclipse.rcpl.internal.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.eclipse.rcpl.EnServiceId;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.IToolFactory;
@@ -119,43 +115,12 @@ public class RcplToolFactory implements IToolFactory {
 				GridPane.setHgrow(tool.getNode(), Priority.ALWAYS);
 				break;
 			}
-			ComboBoxTool combo = new ComboBoxTool(model);
-			((ComboBox<?>) combo.getNode()).setMinWidth(2);
 
-			GridPane.setHgrow(combo.getNode(), Priority.ALWAYS);
-			tool = combo;
-			if (model.getFormat() != null) {
-
-				try {
-					Class<?> clazz = Class.forName(model.getFormat());
-					if (clazz.isEnum()) {
-						Object[] values = clazz.getEnumConstants();
-
-						for (int i = 0; i < values.length; i++) {
-							combo.getNode().getItems().add(values[i].toString());
-						}
-					}
-				} catch (ClassNotFoundException e) {
-					if (model.getFormat() != null) {
-						List<String> list = new ArrayList<String>(Arrays.asList(model.getFormat().split(",")));
-
-						List<String> list2 = new ArrayList<String>();
-						int index = 0;
-						int sel = -1;
-						for (String string : list) {
-							int pos = string.indexOf("{");
-							if (pos != -1) {
-								string = string.substring(0, pos);
-								sel = index++;
-							}
-							list2.add(string);
-						}
-						combo.getNode().getItems().addAll(list2);
-						combo.getNode().getSelectionModel().select(sel);
-					}
-				}
-
-			}
+			ComboBoxTool comboTool = new ComboBoxTool(model);
+			ComboBox<String> combo = comboTool.getNode();
+			combo.setMinWidth(2);
+			GridPane.setHgrow(combo, Priority.ALWAYS);
+			tool = comboTool;
 			break;
 		case DATEANDTIMEFIELD:
 			tool = new DateTool(model);

@@ -371,6 +371,7 @@ public class RcplSideToolBar implements ISideToolBar {
 					tool = Rcpl.getToolFactory().createTool(model);
 					break;
 				}
+
 			}
 
 			final ITool nodeCreated = tool;

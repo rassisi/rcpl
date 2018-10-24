@@ -111,9 +111,12 @@ public class WebBrowserTool extends RcplTool {
 	public List<String> getHtml() {
 		for (int i = 0; htmls.isEmpty() && i < 100; i++) {
 			RcplUtil.sleep(100);
-			System.out.println("*** WAITING");
 		}
 		return htmls;
+	}
+
+	public String getLocation() {
+		return wv.getEngine().getLocation();
 	}
 
 }
