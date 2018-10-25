@@ -1,12 +1,14 @@
 package com.eclipse.rcpl.addon.demo.application;
 
 import org.eclipse.rcpl.IRcplFactory;
+import org.eclipse.rcpl.IServiceFactory;
 import org.eclipse.rcpl.IToolFactory;
-import org.eclipse.rcpl.RcplBasicFactory;
-import org.eclipse.rcpl.application.AbstractRcplApplication;
 import org.eclipse.rcpl.application.AbstractApplicationProvider;
+import org.eclipse.rcpl.application.AbstractRcplApplication;
 import org.eclipse.rcpl.images.RcplImage;
-import org.eclipse.rcpl.internal.impl.RcplToolFactory;
+import org.eclipse.rcpl.internal.factory.impl.RcplBasicFactory;
+import org.eclipse.rcpl.internal.factory.impl.RcplServiceFactory;
+import org.eclipse.rcpl.internal.factory.impl.RcplToolFactory;
 
 /**
  * @author ramin
@@ -20,7 +22,7 @@ public class DemoRcplApplicationProvider extends AbstractApplicationProvider {
 
 	@Override
 	public String getName() {
-		return "Dmeo Rcpl Application";
+		return "Demo Rcpl Application";
 	}
 
 	@Override
@@ -41,6 +43,11 @@ public class DemoRcplApplicationProvider extends AbstractApplicationProvider {
 	@Override
 	public Class<?> getApplicationResourceBaseClass() {
 		return RcplImage.class;
+	}
+
+	@Override
+	protected IServiceFactory createServiceFactory() {
+		return new RcplServiceFactory();
 	}
 
 }

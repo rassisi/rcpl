@@ -179,6 +179,20 @@ public enum EnCommandId {
 
 	insertImageFromWeb(EnServiceId.PICTURE_SERVICE, "insert", "Insert Image", "Insert Image", null),
 
+	insertShape(EnServiceId.PICTURE_SERVICE, "insert", "Insert Shape", "Insert Shape", null),
+
+	arrangeAlignLeft(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+
+	arrangeAlignRight(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+
+	arrangeAlignTop(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+
+	arrangeAlignBottom(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+
+	arrangeAlignVerticalCenter(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+
+	arrangeAlignHorizontalCenter(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+
 	;
 
 	private final String image;
@@ -226,9 +240,17 @@ public enum EnCommandId {
 	}
 
 	public static EnCommandId findCommandId(String id) {
+		Object data = null;
+		if (id.startsWith("shape")) {
+			data = id;
+			id = "insertShape";
+		}
 		for (EnCommandId e : EnCommandId.values()) {
 			String enId = e.getId();
 			if (id.equals(enId)) {
+				if (data != null) {
+					e.setData(data);
+				}
 				return e;
 			}
 		}

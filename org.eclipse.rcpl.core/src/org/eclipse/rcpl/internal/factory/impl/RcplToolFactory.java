@@ -8,7 +8,7 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl.internal.impl;
+package org.eclipse.rcpl.internal.factory.impl;
 
 import org.eclipse.rcpl.EnServiceId;
 import org.eclipse.rcpl.ITool;

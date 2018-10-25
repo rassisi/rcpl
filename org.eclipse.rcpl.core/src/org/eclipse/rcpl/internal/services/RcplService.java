@@ -26,6 +26,34 @@ import org.eclipse.rcpl.ui.action.RcplCommand;
  */
 public class RcplService extends RcplAbstractService implements IService {
 
+	private IService browserService;
+
+	private IService commandService;
+
+	private IService contextMenuGeneralService;
+
+	private IService deleteService;
+
+	private IService documentService;
+
+	private IService editorService;
+
+	private IService setupService;
+
+	private IService colorService;
+
+	private IService fontService;
+
+	private IService insertService;
+
+	private IService layoutService;
+
+	private IService paragraphService;
+
+	private IService pictureService;
+
+	private IService tableService;
+
 	public RcplService() {
 	}
 
@@ -342,35 +370,77 @@ public class RcplService extends RcplAbstractService implements IService {
 
 		switch (serviceId) {
 		case BROWSER_SERVICE:
-			return getBrowserService();
+			if (browserService == null) {
+				browserService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return browserService;
 		case COMMAND_SERVICE:
-			return getCommandService();
+			if (commandService == null) {
+				commandService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return commandService;
 		case CONTEXT_MENU_SERVICE:
-			return getContextMenuGeneralService();
+			if (contextMenuGeneralService == null) {
+				contextMenuGeneralService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return contextMenuGeneralService;
 		case DEFAULT_SERVICE:
 			return this;
 		case DELETE_SERVICE:
-			return getDeleteService();
+			if (deleteService == null) {
+				deleteService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return deleteService;
 		case DOCUMENT_SERVICE:
-			return getDocumentService();
+			if (documentService == null) {
+				documentService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return documentService;
 		case EDITOR_SERVICE:
-			return getEditorService();
+			if (editorService == null) {
+				editorService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return editorService;
 		case SETUP_SERVICE:
-			return getSetupService();
+			if (setupService == null) {
+				setupService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return setupService;
 		case COLOR_SERVICE:
-			return getServiceBySimpleName("JOColorService");
+			if (colorService == null) {
+				colorService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return colorService;
 		case FONT_SERVICE:
-			return getServiceBySimpleName("JOFontService");
+			if (fontService == null) {
+				fontService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return fontService;
 		case INSERT_SERVICE:
-			return getServiceBySimpleName("JOInsertService");
+			if (insertService == null) {
+				insertService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return insertService;
 		case LAYOUT_SERVICE:
-			return Rcpl.UIC.getEditor().getLayoutService();
+			if (layoutService == null) {
+				layoutService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return layoutService;
 		case PARAGRAPH_SERVICE:
-			return getServiceBySimpleName("JOParagraphService");
+			if (paragraphService == null) {
+				paragraphService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return paragraphService;
 		case PICTURE_SERVICE:
-			return getServiceBySimpleName("JOPictureService");
+			if (pictureService == null) {
+				pictureService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return pictureService;
 		case TABLE_SERVICE:
-			return getServiceBySimpleName("JOTableService");
+			if (tableService == null) {
+				tableService = Rcpl.getServiceFactory().createService(serviceId);
+			}
+			return tableService;
 		default:
 			break;
 		}

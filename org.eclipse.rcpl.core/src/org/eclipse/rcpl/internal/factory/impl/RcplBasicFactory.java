@@ -8,8 +8,32 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.internal.factory.impl;
 
+import org.eclipse.rcpl.EnCommandId;
+import org.eclipse.rcpl.EnServiceId;
+import org.eclipse.rcpl.IButton;
+import org.eclipse.rcpl.IColorProvider;
+import org.eclipse.rcpl.ICommand;
+import org.eclipse.rcpl.IDetailPage;
+import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.IFontProvider;
+import org.eclipse.rcpl.IHomePage;
+import org.eclipse.rcpl.ILayoutObject;
+import org.eclipse.rcpl.ILogin;
+import org.eclipse.rcpl.IModelManager;
+import org.eclipse.rcpl.IRcplAddon;
+import org.eclipse.rcpl.IRcplApplicationProvider;
+import org.eclipse.rcpl.IRcplFactory;
+import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.IService;
+import org.eclipse.rcpl.ISideToolBar;
+import org.eclipse.rcpl.IStyleTemplate;
+import org.eclipse.rcpl.ITool;
+import org.eclipse.rcpl.IToolFactory;
+import org.eclipse.rcpl.ITopToolbar;
+import org.eclipse.rcpl.ITreePart;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.app.toolcontrols.RcplSideToolBar;
 import org.eclipse.rcpl.app.toolcontrols.RcplTopToolBar;
 import org.eclipse.rcpl.detailpages.RcplModelManagerImpl;
@@ -29,7 +53,6 @@ import org.eclipse.rcpl.homepages.DefaultToolsEditorHomePage;
 import org.eclipse.rcpl.homepages.DefaultTutorialsHomePage;
 import org.eclipse.rcpl.homepages.DefaultWhatsNewHomePage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
-import org.eclipse.rcpl.internal.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.resources.JOColorProvider;
 import org.eclipse.rcpl.internal.resources.RcplResources;
 import org.eclipse.rcpl.internal.services.RcplService;

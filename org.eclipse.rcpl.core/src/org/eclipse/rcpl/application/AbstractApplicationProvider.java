@@ -22,6 +22,7 @@ import org.eclipse.rcpl.IMonitor;
 import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplFactory;
+import org.eclipse.rcpl.IServiceFactory;
 import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.impl.RcplMonitor;
@@ -108,6 +109,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		this.rcplApplication = rcplApplication;
 		Rcpl.setFactory(createRcplFactory());
 		Rcpl.setToolFactory(createToolFactory());
+		Rcpl.setServiceFactory(createServiceFactory());
 	}
 
 	@Override
@@ -474,6 +476,8 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	protected abstract IToolFactory createToolFactory();
 
 	protected abstract IRcplFactory createRcplFactory();
+
+	protected abstract IServiceFactory createServiceFactory();
 
 	@Override
 	public double getLoginWindowX() {

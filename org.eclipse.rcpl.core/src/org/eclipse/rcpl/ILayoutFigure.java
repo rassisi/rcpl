@@ -19,6 +19,8 @@ import javafx.scene.shape.Rectangle;
  */
 public interface ILayoutFigure extends IPane {
 
+	void changeBounds(double layoutX, double layoutY, double width, double height);
+
 	void addKeyHandler(Pane pane);
 
 	void handleMouseDragged(MouseEvent me);

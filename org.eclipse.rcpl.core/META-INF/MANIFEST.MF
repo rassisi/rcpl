@@ -92,6 +92,7 @@ Export-Package: org.eclipse.rcpl;
    javafx.application,
    javafx.stage",
  org.eclipse.rcpl.internal.config;uses:="org.eclipse.rcpl.model",
+ org.eclipse.rcpl.internal.factory.impl;uses:="org.eclipse.rcpl,org.eclipse.rcpl.model_2_0_0.rcpl",
  org.eclipse.rcpl.internal.fx.figures;
   uses:="javafx.scene.control,
    javafx.scene,
@@ -101,7 +102,6 @@ Export-Package: org.eclipse.rcpl;
    org.eclipse.rcpl.model_2_0_0.rcpl,
    org.eclipse.rcpl.ui.listener,
    javafx.stage",
- org.eclipse.rcpl.internal.impl;uses:="org.eclipse.rcpl,org.eclipse.rcpl.model_2_0_0.rcpl",
  org.eclipse.rcpl.internal.resources;
   uses:="org.apache.poi.openxml4j.opc,
    org.openxmlformats.schemas.drawingml.x2006.main,

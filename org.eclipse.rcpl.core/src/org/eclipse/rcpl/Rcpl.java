@@ -40,6 +40,8 @@ public class Rcpl {
 
 	private static IToolFactory toolFactory;
 
+	private static IServiceFactory serviceFactory;
+
 	private static IService service;
 
 	private static IResources resources;
@@ -674,8 +676,16 @@ public class Rcpl {
 		return toolFactory;
 	}
 
+	public static IServiceFactory getServiceFactory() {
+		return serviceFactory;
+	}
+
 	public static void setToolFactory(IToolFactory toolFactory) {
 		Rcpl.toolFactory = toolFactory;
+	}
+
+	public static void setServiceFactory(IServiceFactory serviceFactory) {
+		Rcpl.serviceFactory = serviceFactory;
 	}
 
 	public static void fxSleep() {
