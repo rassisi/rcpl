@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.rcpl.IRcplAddon;
-import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITopToolbar;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.RcplModel;
@@ -91,13 +90,15 @@ public class RcplTopToolBar implements ITopToolbar {
 		boolean first = true;
 		for (AbstractTool eAbstractTool : toolGroups) {
 			String id = eAbstractTool.getId();
-			if ("topBar/URL_ADDRESS_TOOL_COMPONENT".equals(id)) {
-				ITool toolNode = null;
-				toolNode = Rcpl.getToolFactory().createURLAddressTool((ToolGroup) eAbstractTool);
-				if (toolNode != null) {
-					pane.getChildren().add(toolNode.getNode());
-				}
-			} else {
+//			if ("topBar/URL_ADDRESS_TOOL_COMPONENT".equals(id)) {
+//				ITool toolNode = null;
+//				toolNode = Rcpl.getToolFactory().createURLAddressTool((ToolGroup) eAbstractTool);
+//				if (toolNode != null) {
+//					pane.getChildren().add(toolNode.getNode());
+//				}
+//			} else 
+
+			{
 				Node toolNode = null;
 				toolNode = Rcpl.getFactory().createRibbonGroup((ToolGroup) eAbstractTool, addon, first, true);
 				if (toolNode != null) {

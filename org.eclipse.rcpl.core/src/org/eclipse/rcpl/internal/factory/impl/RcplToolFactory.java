@@ -17,6 +17,7 @@ import org.eclipse.rcpl.IURLAddressTool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.CheckBoxTool;
+import org.eclipse.rcpl.internal.tools.ColorTool;
 import org.eclipse.rcpl.internal.tools.ComboBoxTool;
 import org.eclipse.rcpl.internal.tools.DateTool;
 import org.eclipse.rcpl.internal.tools.FlowPaneTool;
@@ -66,7 +67,6 @@ public class RcplToolFactory implements IToolFactory {
 		return undoRedoTool;
 	}
 
-	@Override
 	public ITool createURLAddressTool(ToolGroup toolGroup) {
 		IURLAddressTool iurl = new URLAddressTool(null);
 		iurl.setToolGroup(toolGroup);
@@ -74,12 +74,7 @@ public class RcplToolFactory implements IToolFactory {
 	}
 
 	@Override
-	public ITool createTool(final Tool emfTool) {
-		return createTool(emfTool, 0, 0);
-	}
-
-	@Override
-	public ITool createTool(final Tool model, double width, double height) {
+	public ITool createTool(final Tool model, Object... data) {
 
 		ITool tool = null;
 		String id = model.getId();
@@ -89,12 +84,15 @@ public class RcplToolFactory implements IToolFactory {
 		}
 
 		switch (model.getType()) {
-		case NAVIGATOR:
 
+		case COLOR_CHOOSER:
+			tool = new ColorTool(model);
+			break;
+		case NAVIGATOR:
 			break;
 		case BUTTON:
 			tool = new RcplButton(model);
-			tool.setBounds(0, 0, width, height);
+			tool.setBounds(0, 0, model.getWidth(), model.getHeight());
 			break;
 		case CHECKBOX:
 			tool = new CheckBoxTool(model);
@@ -159,8 +157,7 @@ public class RcplToolFactory implements IToolFactory {
 			break;
 		case CHOICEBOX:
 			break;
-		case COLOR_CHOOSER:
-			break;
+
 		case HTMLEDITOR:
 			tool = new HtmlTool(model);
 			break;

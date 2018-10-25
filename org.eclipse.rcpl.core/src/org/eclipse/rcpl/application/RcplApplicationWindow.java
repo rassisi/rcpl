@@ -38,6 +38,7 @@ import java.util.logging.Logger;
 import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IApplicationWindow;
 import org.eclipse.rcpl.IRcplApplicationProvider;
+import org.eclipse.rcpl.Rcpl;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -234,6 +235,10 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 					updateWindow(newBounds);
 				} else {
 					updateWindow(newBounds);
+					if (Rcpl.UIC != null && Rcpl.UIC.getSideToolBarControl() != null) {
+						Rcpl.UIC.getSideToolBarControl().collapseToolPane();
+					}
+
 				}
 			}
 		});
@@ -388,7 +393,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 	}
 
 	private void updateWindow(Bounds newBounds) {
-		new DelayedExecution(30) {
+		new DelayedExecution(10) {
 
 			@Override
 			protected void execute() {

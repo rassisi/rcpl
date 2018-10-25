@@ -27,7 +27,6 @@ import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
-import org.eclipse.rcpl.internal.tools.ColorTool;
 import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
@@ -83,17 +82,7 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	private HashMap<String, ToolBar> toolbarRegistry = new HashMap<String, ToolBar>();
 
-//	private boolean startMenu;
-//
-//	private double lastMinWidth = 0;
-//
-//	private double lastMaxWidth = 0;
-//
-	private Node firstNode;
-
 	private HBox parent;
-
-//	private int count = 0;
 
 	private Pane activeToolPane;
 
@@ -197,7 +186,6 @@ public class RcplSideToolBar implements ISideToolBar {
 					IButton b = new RcplButton(toolGroup_0) {
 						@Override
 						public void doAction() {
-							String groupId0 = toolGroup_0.getId();
 							if (toolGroup_0 == activeGroup) {
 								collapseToolPane();
 							} else {
@@ -344,7 +332,11 @@ public class RcplSideToolBar implements ISideToolBar {
 		toolGroupToolBar.getItems().add(b.getNode());
 	}
 
-	private void processTool(final Tool model, Pane pane, final AccordionColorTitlePane titlePane) {
+	/**
+	 * @param model
+	 * @param pane
+	 */
+	private void processTool(final Tool model, Pane pane) {
 
 		try {
 			String image = model.getImage();
@@ -352,29 +344,9 @@ public class RcplSideToolBar implements ISideToolBar {
 				image = model.getId();
 			}
 
-			final ITool tool;
-
-			if ("fontName".equals(model.getId())) {
-				tool = Rcpl.getToolFactory().createTool(model);
-			} else if ("fontSize".equals(model.getId())) {
-				tool = Rcpl.getToolFactory().createTool(model);
-			} else {
-				switch (model.getType()) {
-				case COLOR_CHOOSER:
-					tool = createColorTool(model, pane, titlePane);
-					break;
-
-				case OTHER:
-					tool = Rcpl.getToolFactory().createTool(model);
-					break;
-				default:
-					tool = Rcpl.getToolFactory().createTool(model);
-					break;
-				}
-
-			}
-
+			final ITool tool = Rcpl.getToolFactory().createTool(model);
 			final ITool nodeCreated = tool;
+
 			if (tool != null) {
 				if (pane instanceof GridPane) {
 					int x = model.getGridX();
@@ -549,7 +521,7 @@ public class RcplSideToolBar implements ISideToolBar {
 					for (Tool t : g.getTools()) {
 						t.setWidth(g.getWidth());
 						t.setWidthPercent(g.getWidthPercent());
-						processTool(t, gp, titlePane);
+						processTool(t, gp);
 					}
 				}
 
@@ -564,7 +536,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			for (Tool tool : toolGroup.getTools()) {
 				tool.setWidth(toolGroup.getWidth());
 				tool.setWidthPercent(toolGroup.getWidthPercent());
-				processTool(tool, pane, titlePane);
+				processTool(tool, pane);
 			}
 		} catch (Exception ex) {
 			RcplModel.logError(ex);
@@ -656,13 +628,6 @@ public class RcplSideToolBar implements ISideToolBar {
 		toolPaneStack.getChildren().clear();
 		Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SIDEBAR_PATH, (String) null);
 		RcplUic.activateCaret();
-	}
-
-	private ITool createColorTool(final Tool eTool, Pane flowPane, final AccordionColorTitlePane titlePane) {
-
-		final ColorTool ct = new ColorTool(eTool);
-
-		return ct;
 	}
 
 	private void expandAccordion() {
@@ -908,22 +873,16 @@ public class RcplSideToolBar implements ISideToolBar {
 
 	@Override
 	public void expand(ToolGroup toolGroup) {
-
 		if (toolGroup == null) {
 			return;
 		}
 		List<String> segments = new ArrayList<String>();
-
 		ToolGroup tg = toolGroup;
 		segments.add(tg.getId());
-
-		EObject o = tg.eContainer();
-
 		while (tg.eContainer() instanceof ToolGroup) {
 			tg = (ToolGroup) tg.eContainer();
 			segments.add(tg.getId());
 		}
-
 		StringBuilder sb = new StringBuilder();
 		for (int i = segments.size() - 1; i >= 0; i--) {
 			sb.append(segments.get(i));
@@ -932,7 +891,6 @@ public class RcplSideToolBar implements ISideToolBar {
 			}
 		}
 		expand(sb.toString());
-
 	}
 
 }

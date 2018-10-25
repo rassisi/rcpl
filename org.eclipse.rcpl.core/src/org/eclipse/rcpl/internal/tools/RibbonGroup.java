@@ -37,6 +37,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBase;
+import javafx.scene.control.Control;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.Separator;
 import javafx.scene.control.SplitMenuButton;
@@ -77,11 +78,7 @@ public class RibbonGroup extends RcplTool {
 
 		// ---------- Main VBox Container
 
-		if (toolGroup.isHGrow()) {
-			HBox.setHgrow(getNode(), Priority.SOMETIMES);
-		} else {
-			HBox.setHgrow(getNode(), Priority.NEVER);
-		}
+		HBox.setHgrow(getNode(), Priority.NEVER);
 
 		getNode().setMaxHeight(80);
 		getNode().setPrefHeight(80);
@@ -115,16 +112,18 @@ public class RibbonGroup extends RcplTool {
 		is.setOffsetY(4.0f);
 		Text label = new Text();
 		label.setEffect(is);
-		label.setId("ribbonLabel");
+//		label.setId("ribbonLabel");
+		label.setId("blueBorder");
 		label.setText(toolGroup.getName());
 		label.setFill(Color.LIGHTGRAY);
-		label.setFont(javafx.scene.text.Font.font("Arial", FontWeight.BOLD, 10));
+		label.setFont(javafx.scene.text.Font.font("Arial", FontWeight.BOLD, 12));
 		label.setOpacity(0.7);
 		HBox.setHgrow(label, Priority.NEVER);
 
 		// ---------- grid container
 
 		GridPane gridPane = new GridPane();
+		gridPane.setId("redBorder");
 
 		gridPane.setPickOnBounds(false);
 		VBox.setVgrow(gridPane, Priority.NEVER);
@@ -132,12 +131,7 @@ public class RibbonGroup extends RcplTool {
 		gridPane.setPrefHeight(20);
 		gridPane.setMaxHeight(20);
 		gridPane.add(label, 0, 0);
-//		GridPane.setHgrow(label, Priority.SOMETIMES);
-
-		if (!toolGroup.isHGrow()) {
-			HBox.setHgrow(getNode(), Priority.NEVER);
-		}
-
+		GridPane.setFillWidth(label, true);
 		GridPane.setHalignment(label, HPos.CENTER);
 		GridPane.setValignment(label, VPos.BOTTOM);
 		gridPane.setAlignment(Pos.BOTTOM_CENTER);
@@ -176,7 +170,8 @@ public class RibbonGroup extends RcplTool {
 			dialogButton.getNode().setMaxSize(10, 10);
 			dialogButton.getNode().setId("dialogButton");
 			GridPane.setValignment(dialogButton.getNode(), VPos.BOTTOM);
-//			GridPane.setMargin(dialogButton.getNode(), new Insets(5, 0, 0, 5));
+			GridPane.setHalignment(dialogButton.getNode(), HPos.RIGHT);
+			GridPane.setFillWidth(dialogButton.getNode(), false);
 			gridPane.add(dialogButton.getNode(), 1, 0);
 		}
 
@@ -189,8 +184,8 @@ public class RibbonGroup extends RcplTool {
 			mainGridPane.setMinWidth(2);
 		} else {
 //			getNode().layout();
-			mainGridPane.setMinWidth(200);
-			mainGridPane.setPrefWidth(200);
+//			mainGridPane.setMinWidth(200);
+//			mainGridPane.setPrefWidth(200);
 		}
 	}
 
@@ -204,7 +199,6 @@ public class RibbonGroup extends RcplTool {
 				Tool tool = RcplFactory.eINSTANCE.createTool();
 				tool.setId("error");
 				IButton b = Rcpl.getFactory().createButton(tool);
-//				b.getNode().setMinWidth(2);
 				add(b.getNode(), 0, 0);
 				return 0;
 			}
@@ -232,7 +226,7 @@ public class RibbonGroup extends RcplTool {
 					node = RcplToolFactory.getUndoRedoTool().getRedoCombo();
 				} else {
 
-					tool = Rcpl.getToolFactory().createTool(model, model.getWidth(), model.getHeight());
+					tool = Rcpl.getToolFactory().createTool(model);
 					if (tool instanceof IButton) {
 						if (ToolType.TOGGLEBUTTON.equals(model.getType()) && model.isToggleGroup()) {
 							toggleGroup.getToggles().add(((ToggleButton) tool.getNode()));
@@ -250,6 +244,11 @@ public class RibbonGroup extends RcplTool {
 					node = tool.getNode();
 				}
 
+				if (model.getWidth() > 0) {
+					if (node instanceof Control) {
+						((Control) node).setPrefWidth(model.getWidth());
+					}
+				}
 				GridPane.setValignment(node, VPos.CENTER);
 				add(node, model.getGridX(), model.getGridY(), spanX, spanY);
 			}

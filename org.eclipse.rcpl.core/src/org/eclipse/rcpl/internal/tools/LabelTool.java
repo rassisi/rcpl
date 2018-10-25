@@ -30,11 +30,16 @@ public class LabelTool extends RcplTool {
 
 	@Override
 	public Label createNode() {
-		return new Label();
+		return new Label(getModel().getName());
 	}
 
 	@Override
 	public Label getNode() {
 		return (Label) super.getNode();
+	}
+
+	@Override
+	public Tool getModel() {
+		return (Tool) super.getModel();
 	}
 }

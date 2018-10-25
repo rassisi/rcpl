@@ -16,9 +16,10 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a
+ * {@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ToolItemProvider extends AbstractToolItemProvider {
@@ -49,25 +50,18 @@ public class ToolItemProvider extends AbstractToolItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Format feature.
-	 * <!-- begin-user-doc
+	 * This adds a property descriptor for the Format feature. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFormatPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Tool_format_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Tool_format_feature", "_UI_Tool_type"),
-				 RcplPackage.Literals.TOOL__FORMAT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Tool_format_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Tool_format_feature", "_UI_Tool_type"),
+						RcplPackage.Literals.TOOL__FORMAT, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -97,13 +91,15 @@ public class ToolItemProvider extends AbstractToolItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		Tool tool = (Tool) object;
+		return tool.getType().getName() + " " + tool.getName();
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update
+	 * any cached children and by creating a viewer notification, which it passes to
+	 * {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,18 +107,18 @@ public class ToolItemProvider extends AbstractToolItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Tool.class)) {
-			case RcplPackage.TOOL__FORMAT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case RcplPackage.TOOL__FORMAT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
+	 * the children that can be created under this object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
