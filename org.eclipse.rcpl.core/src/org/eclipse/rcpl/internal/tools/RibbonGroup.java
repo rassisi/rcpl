@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.internal.factory.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.model.KeyValueKey;
@@ -58,7 +58,7 @@ import javafx.scene.text.TextAlignment;
  * @author Ramin
  * 
  */
-public class RibbonGroup extends RcplTool {
+public class RibbonGroup extends AbstractRcplTool {
 
 	private GridPane mainGridPane;
 

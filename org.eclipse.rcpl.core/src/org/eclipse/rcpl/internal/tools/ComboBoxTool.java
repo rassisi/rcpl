@@ -14,7 +14,7 @@ package org.eclipse.rcpl.internal.tools;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.util.RcplUtil;
 
@@ -24,7 +24,7 @@ import javafx.scene.control.ComboBox;
  * @author ramin
  *
  */
-public class ComboBoxTool extends RcplTool {
+public class ComboBoxTool extends AbstractRcplTool {
 
 	List<String> datas;
 

@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.web.HTMLEditor;
@@ -20,7 +20,7 @@ import javafx.scene.web.HTMLEditor;
  * @author ramin
  *
  */
-public class HtmlTool extends RcplTool {
+public class HtmlTool extends AbstractRcplTool {
 
 	public HtmlTool(Tool tool) {
 		super(tool);

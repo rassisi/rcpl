@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.MenuBar;
@@ -24,7 +24,7 @@ import javafx.scene.control.MenuBar;
  * @author ramin
  *
  */
-public class MenuBarTool extends RcplTool {
+public class MenuBarTool extends AbstractRcplTool {
 
 	public MenuBarTool(Tool tool) {
 		super(tool);

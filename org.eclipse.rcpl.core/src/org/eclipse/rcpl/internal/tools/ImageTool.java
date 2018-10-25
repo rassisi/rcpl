@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.image.ImageView;
@@ -20,7 +20,7 @@ import javafx.scene.image.ImageView;
  * @author ramin
  *
  */
-public class ImageTool extends RcplTool {
+public class ImageTool extends AbstractRcplTool {
 
 	public ImageTool(Tool tool) {
 		super(tool);

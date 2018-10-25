@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.TextField;
@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
  * @author ramin
  *
  */
-public class TextFieldTool extends RcplTool {
+public class TextFieldTool extends AbstractRcplTool {
 
 	public TextFieldTool(Tool tool) {
 		super(tool);

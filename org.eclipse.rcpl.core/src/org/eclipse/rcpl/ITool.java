@@ -4,7 +4,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 
 import javafx.scene.Node;
 
-public interface ITool extends IEditorListener {
+public interface ITool extends IEditorListener, ILocalable {
 
 	void fire();
 

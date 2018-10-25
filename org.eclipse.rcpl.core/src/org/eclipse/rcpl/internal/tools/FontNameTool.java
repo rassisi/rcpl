@@ -18,7 +18,7 @@ import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.font.RcplFont;
@@ -39,7 +39,7 @@ import javafx.util.Callback;
  * @author ramin
  *
  */
-public class FontNameTool extends RcplTool<String> {
+public class FontNameTool extends AbstractRcplTool<String> {
 
 	private static double LABEL_FONT_SIZE = 12;
 

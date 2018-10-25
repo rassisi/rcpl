@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.ListView;
@@ -24,7 +24,7 @@ import javafx.scene.control.ListView;
  * @author ramin
  *
  */
-public class ListTool extends RcplTool {
+public class ListTool extends AbstractRcplTool {
 
 	public ListTool(Tool tool) {
 		super(tool);

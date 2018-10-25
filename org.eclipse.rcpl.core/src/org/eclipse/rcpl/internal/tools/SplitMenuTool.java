@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.SplitMenuButton;
@@ -20,7 +20,7 @@ import javafx.scene.control.SplitMenuButton;
  * @author ramin
  *
  */
-public class SplitMenuTool extends RcplTool {
+public class SplitMenuTool extends AbstractRcplTool {
 
 	public SplitMenuTool(Tool tool) {
 		super(tool);

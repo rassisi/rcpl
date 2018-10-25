@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.Separator;
@@ -24,7 +24,7 @@ import javafx.scene.control.Separator;
  * @author ramin
  *
  */
-public class SeparatorTool extends RcplTool {
+public class SeparatorTool extends AbstractRcplTool {
 
 	public SeparatorTool(Tool tool) {
 		super(tool);

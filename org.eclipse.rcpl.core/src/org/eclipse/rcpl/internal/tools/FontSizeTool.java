@@ -16,13 +16,13 @@ import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.scene.control.ComboBox;
 
-public class FontSizeTool extends RcplTool<Double> {
+public class FontSizeTool extends AbstractRcplTool<Double> {
 
 	Double[] items = new Double[] { 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 11.0, 12.0, 14.0, 16.0, 18.0, 20.0, 22.0,
 			24.0, 26.0, 28.0, 36.0, 48.0, 72.0 };

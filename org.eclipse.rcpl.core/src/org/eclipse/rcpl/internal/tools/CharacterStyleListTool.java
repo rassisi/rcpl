@@ -17,7 +17,7 @@ import org.eclipse.rcpl.EStyleType;
 import org.eclipse.rcpl.IFont;
 import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.collections.FXCollections;
@@ -30,7 +30,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
-public class CharacterStyleListTool extends RcplTool {
+public class CharacterStyleListTool extends AbstractRcplTool {
 
 	public static double LABEL_FONT_SIZE = 13;
 

@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.RadioButton;
@@ -20,7 +20,7 @@ import javafx.scene.control.RadioButton;
  * @author ramin
  *
  */
-public class RadioButtonTool extends RcplTool {
+public class RadioButtonTool extends AbstractRcplTool {
 
 	public RadioButtonTool(Tool tool) {
 		super(tool);

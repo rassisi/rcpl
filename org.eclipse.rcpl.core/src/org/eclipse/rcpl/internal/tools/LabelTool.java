@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.Label;
@@ -20,7 +20,7 @@ import javafx.scene.control.Label;
  * @author ramin
  *
  */
-public class LabelTool extends RcplTool {
+public class LabelTool extends AbstractRcplTool {
 
 	public LabelTool(Tool tool) {
 		super(tool);

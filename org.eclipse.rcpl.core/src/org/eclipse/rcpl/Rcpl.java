@@ -219,11 +219,17 @@ public class Rcpl {
 
 	private static List<IEditorListener> editorListeners = new ArrayList<IEditorListener>();
 
+	private static List<ILocalable> localables = new ArrayList<ILocalable>();
+
 	/**
 	 * @return editor listeners
 	 */
 	public static List<IEditorListener> getEditorListeners() {
 		return editorListeners;
+	}
+
+	public static List<ILocalable> getLocalables() {
+		return localables;
 	}
 
 	public static final String OPEN_RECENTLY_OPENED_DOCUMENT = "actions/document/openRecentlyUsedDocument"; //$NON-NLS-1$

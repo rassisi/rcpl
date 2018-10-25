@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.Hyperlink;
@@ -20,7 +20,7 @@ import javafx.scene.control.Hyperlink;
  * @author ramin
  *
  */
-public class HyperLinkTool extends RcplTool {
+public class HyperLinkTool extends AbstractRcplTool {
 
 	public HyperLinkTool(Tool tool) {
 		super(tool);

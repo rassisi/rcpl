@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -31,6 +32,7 @@ import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IDetailPage;
+import org.eclipse.rcpl.IDictionary;
 import org.eclipse.rcpl.IDocument;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IEditorListener;
@@ -1807,7 +1809,8 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	public void onTest() {
-		getSideToolBarControl().expand("sidebar_paragraph_font/paragraphProperties");
+//		getSideToolBarControl().expand("sidebar_paragraph_font/paragraphProperties");
+		IDictionary.INSTANCE.setLocale(Locale.GERMAN);
 	}
 
 	@FXML

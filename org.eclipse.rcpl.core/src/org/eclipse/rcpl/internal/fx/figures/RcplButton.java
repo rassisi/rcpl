@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.rcpl.internal.fx.figures;
 
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.AlignType;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnLatexMath;
@@ -24,7 +25,6 @@ import org.eclipse.rcpl.IToolComponent;
 import org.eclipse.rcpl.IToolGroup;
 import org.eclipse.rcpl.IToolRegistry;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplTool;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
@@ -34,20 +34,18 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.Tooltip;
 
 /**
  * @author ramin
  *
  */
-public class RcplButton extends RcplTool<Boolean> implements IButton {
+public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 	private Node imageNode;
 
@@ -148,8 +146,6 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 
 		node.setId(getNodeId());
 
-		createToolTip();
-
 		if (model.getId() != null && !model.getId().equals(EnCommandId.insertLatex.name())) {
 			createImage();
 		}
@@ -173,27 +169,6 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 		image = Rcpl.resources().getImage(imageName, getWidth(), getHeight());
 		this.imageNode = image.getNode();
 		((ButtonBase) node).setGraphic(imageNode);
-	}
-
-	private void createToolTip() {
-		String toolTip = getModel().getToolTip();
-		if (toolTip == null) {
-			toolTip = getModel().getName();
-		}
-
-		if (toolTip == null) {
-			toolTip = getModel().getId();
-		}
-		final String tt = toolTip;
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				Tooltip t = new Tooltip(getModel().isNotImplemented() ? "Not Implemented yet " + tt : tt);
-				Tooltip.install(node, t);
-				t.getStyleClass().add("ttip");
-			}
-		});
 	}
 
 	@Override
@@ -477,5 +452,10 @@ public class RcplButton extends RcplTool<Boolean> implements IButton {
 			createToolTip();
 		}
 		return (IButton) super.setData(data);
+	}
+
+	@Override
+	public void updateLocale() {
+		super.updateLocale();
 	}
 }

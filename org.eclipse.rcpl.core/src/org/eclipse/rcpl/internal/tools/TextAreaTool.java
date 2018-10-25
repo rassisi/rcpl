@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.TextArea;
@@ -20,7 +20,7 @@ import javafx.scene.control.TextArea;
  * @author ramin
  *
  */
-public class TextAreaTool extends RcplTool {
+public class TextAreaTool extends AbstractRcplTool {
 
 	public TextAreaTool(Tool tool) {
 		super(tool);

@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.ProgressIndicator;
@@ -20,7 +20,7 @@ import javafx.scene.control.ProgressIndicator;
  * @author ramin
  *
  */
-public class ProgressIndicatorTool extends RcplTool {
+public class ProgressIndicatorTool extends AbstractRcplTool {
 
 	public ProgressIndicatorTool(Tool tool) {
 		super(tool);

@@ -11,7 +11,7 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.layout.StackPane;
@@ -20,7 +20,7 @@ import javafx.scene.layout.StackPane;
  * @author ramin
  *
  */
-public class StackPaneTool extends RcplTool {
+public class StackPaneTool extends AbstractRcplTool {
 
 	public StackPaneTool(Tool tool) {
 		super(tool);

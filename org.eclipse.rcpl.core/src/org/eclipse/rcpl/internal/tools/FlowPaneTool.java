@@ -1,6 +1,6 @@
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.Node;
@@ -10,7 +10,7 @@ import javafx.scene.layout.FlowPane;
  * @author ramin
  *
  */
-public class FlowPaneTool extends RcplTool {
+public class FlowPaneTool extends AbstractRcplTool {
 
 	public FlowPaneTool(Tool tool) {
 		super(tool);

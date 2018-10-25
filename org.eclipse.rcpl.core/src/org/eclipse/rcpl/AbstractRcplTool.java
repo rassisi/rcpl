@@ -17,17 +17,19 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Tooltip;
 
 /**
  * @author ramin
  *
  */
-public abstract class RcplTool<T> implements ITool {
+public abstract class AbstractRcplTool<T> implements ITool {
 
 	protected AbstractTool model;
 
@@ -40,10 +42,10 @@ public abstract class RcplTool<T> implements ITool {
 	/**
 	 * This constructor is for conveniant reflection (e.g. creation of a Navigator)
 	 */
-	public RcplTool() {
+	public AbstractRcplTool() {
 	}
 
-	public RcplTool(AbstractTool model) {
+	public AbstractRcplTool(AbstractTool model) {
 		if (model == null) {
 			model = RcplFactory.eINSTANCE.createTool();
 			model.setType(ToolType.BUTTON);
@@ -52,6 +54,7 @@ public abstract class RcplTool<T> implements ITool {
 		this.model = model;
 		model.setData(this);
 		Rcpl.getEditorListeners().add(this);
+		Rcpl.getLocalables().add(this);
 	}
 
 	private ChangeListener<T> changeListener;
@@ -65,9 +68,9 @@ public abstract class RcplTool<T> implements ITool {
 			@Override
 			public void changed(ObservableValue<? extends T> observable, T oldValue, T newValue) {
 				if (Rcpl.UIC.getEditor() != null) {
-					getModel().setData(RcplTool.this);
+					getModel().setData(AbstractRcplTool.this);
 					IParagraph paragraph = Rcpl.UIC.getEditor().getActiveParagraph();
-					ICommand command = Rcpl.getFactory().createCommand(RcplTool.this, paragraph,
+					ICommand command = Rcpl.getFactory().createCommand(AbstractRcplTool.this, paragraph,
 							new Object[] { oldValue }, newValue);
 					Rcpl.service().execute(command);
 				}
@@ -96,6 +99,7 @@ public abstract class RcplTool<T> implements ITool {
 	public Node getNode() {
 		if (node == null) {
 			node = createNode();
+			createToolTip();
 		}
 		return node;
 	}
@@ -290,7 +294,7 @@ public abstract class RcplTool<T> implements ITool {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RcplTool other = (RcplTool) obj;
+		AbstractRcplTool other = (AbstractRcplTool) obj;
 		if (getId() == null) {
 			if (other.getId() != null)
 				return false;
@@ -345,5 +349,43 @@ public abstract class RcplTool<T> implements ITool {
 			}
 		}
 		return !getModel().isNotImplemented();
+	}
+
+	protected void createToolTip() {
+		if (getModel() != null) {
+			createToolTip(getModel().getToolTip());
+		}
+	}
+
+	private void createToolTip(String toolTip) {
+		if (toolTip == null) {
+			toolTip = getModel().getName();
+		}
+		if (toolTip == null) {
+			toolTip = getModel().getId();
+		}
+
+		if (toolTip == null) {
+			toolTip = IDictionary.INSTANCE.get("error: No Tooltip defined!");
+		} else {
+			toolTip = IDictionary.INSTANCE.get(toolTip);
+		}
+		if (getModel().isNotImplemented()) {
+			toolTip = IDictionary.INSTANCE.get("Not Implemented yet") + " " + toolTip;
+		}
+
+		final String tt = toolTip;
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				Tooltip t = new Tooltip(tt);
+				Tooltip.install(node, t);
+				t.getStyleClass().add("ttip");
+			}
+		});
+	}
+
+	public void updateLocale() {
+		createToolTip();
 	}
 }

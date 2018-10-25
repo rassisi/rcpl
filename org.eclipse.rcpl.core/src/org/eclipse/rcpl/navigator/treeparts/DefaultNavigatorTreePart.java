@@ -41,7 +41,7 @@ import org.eclipse.rcpl.IToolGroup;
 import org.eclipse.rcpl.IToolRegistry;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.RcplTool;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
@@ -80,7 +80,7 @@ import javafx.scene.layout.Pane;
  * @author ramin
  *
  */
-public class DefaultNavigatorTreePart extends RcplTool<EObject> implements ITreePart {
+public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implements ITreePart {
 
 	private TreeView<Object> treeView;
 
