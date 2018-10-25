@@ -6,6 +6,8 @@ package org.eclipse.rcpl;
  */
 public interface ILayoutService extends IService {
 
+	void layoutPages();
+
 	IPage addPage(IPage newPageFigure);
 
 	IPage addPage(int index);

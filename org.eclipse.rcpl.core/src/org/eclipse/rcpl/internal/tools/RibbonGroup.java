@@ -30,7 +30,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -48,10 +47,12 @@ import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 /**
  * @author Ramin
@@ -78,13 +79,19 @@ public class RibbonGroup extends RcplTool {
 
 		// ---------- Main VBox Container
 
-		HBox.setHgrow(getNode(), Priority.NEVER);
-
 		getNode().setMaxHeight(80);
 		getNode().setPrefHeight(80);
 		getNode().setMinHeight(80);
 		getNode().setPickOnBounds(false);
 		getNode().setAlignment(Pos.CENTER);
+		if (toolGroup.getWidth() > 0) {
+			getNode().setPrefWidth(toolGroup.getWidth());
+			getNode().setMaxWidth(toolGroup.getWidth());
+			HBox.setHgrow(getNode(), Priority.SOMETIMES);
+		} else {
+			HBox.setHgrow(getNode(), Priority.NEVER);
+		}
+
 		DropShadow dropShadow = new DropShadow(3, Color.GRAY);
 		dropShadow.setOffsetX(1.0);
 		dropShadow.setOffsetY(1.0);
@@ -99,6 +106,7 @@ public class RibbonGroup extends RcplTool {
 		this.mainGridPane.setGridLinesVisible(false);
 		this.mainGridPane.setVgap(5);
 		this.mainGridPane.setHgap(5);
+
 		if (!toolGroup.isHGrow()) {
 			HBox.setHgrow(mainGridPane, Priority.NEVER);
 		}
@@ -111,9 +119,9 @@ public class RibbonGroup extends RcplTool {
 		is.setOffsetX(4.0f);
 		is.setOffsetY(4.0f);
 		Text label = new Text();
+		label.setTextAlignment(TextAlignment.CENTER);
 		label.setEffect(is);
-//		label.setId("ribbonLabel");
-		label.setId("blueBorder");
+		label.setId("ribbonLabel");
 		label.setText(toolGroup.getName());
 		label.setFill(Color.LIGHTGRAY);
 		label.setFont(javafx.scene.text.Font.font("Arial", FontWeight.BOLD, 12));
@@ -122,21 +130,14 @@ public class RibbonGroup extends RcplTool {
 
 		// ---------- grid container
 
-		GridPane gridPane = new GridPane();
-		gridPane.setId("redBorder");
-
-		gridPane.setPickOnBounds(false);
-		VBox.setVgrow(gridPane, Priority.NEVER);
-		gridPane.setMinHeight(20);
-		gridPane.setPrefHeight(20);
-		gridPane.setMaxHeight(20);
-		gridPane.add(label, 0, 0);
-		GridPane.setFillWidth(label, true);
-		GridPane.setHalignment(label, HPos.CENTER);
-		GridPane.setValignment(label, VPos.BOTTOM);
-		gridPane.setAlignment(Pos.BOTTOM_CENTER);
-		gridPane.setStyle("-fx-padding: 5 0 0 0");
-		VBox.setMargin(gridPane, new Insets(0, 0, 5, 0));
+		StackPane bottomStackPane = new StackPane();
+		bottomStackPane.setAlignment(Pos.CENTER);
+		bottomStackPane.setPickOnBounds(false);
+		VBox.setVgrow(bottomStackPane, Priority.NEVER);
+		bottomStackPane.setMinHeight(20);
+		bottomStackPane.setPrefHeight(20);
+		bottomStackPane.setMaxHeight(20);
+		bottomStackPane.getChildren().add(label);
 
 		// ---------- Dialog Button ---------------------------
 
@@ -169,23 +170,19 @@ public class RibbonGroup extends RcplTool {
 			dialogButton.getNode().setPrefSize(10, 10);
 			dialogButton.getNode().setMaxSize(10, 10);
 			dialogButton.getNode().setId("dialogButton");
-			GridPane.setValignment(dialogButton.getNode(), VPos.BOTTOM);
-			GridPane.setHalignment(dialogButton.getNode(), HPos.RIGHT);
-			GridPane.setFillWidth(dialogButton.getNode(), false);
-			gridPane.add(dialogButton.getNode(), 1, 0);
+			StackPane.setAlignment(dialogButton.getNode(), Pos.CENTER_RIGHT);
+			bottomStackPane.getChildren().add(dialogButton.getNode()); // , 1, 0);
 		}
 
-		getNode().getChildren().addAll(mainGridPane, gridPane);
+		VBox.setMargin(mainGridPane, new Insets(2, 2, 0, 2));
+		VBox.setMargin(bottomStackPane, new Insets(0, 0, 0, 0));
+		getNode().getChildren().addAll(mainGridPane, bottomStackPane);
 
 		processRibbonGroup();
 
 		if (!toolGroup.isHGrow()) {
 			getNode().setMinWidth(2);
 			mainGridPane.setMinWidth(2);
-		} else {
-//			getNode().layout();
-//			mainGridPane.setMinWidth(200);
-//			mainGridPane.setPrefWidth(200);
 		}
 	}
 
@@ -209,30 +206,34 @@ public class RibbonGroup extends RcplTool {
 
 			int lastX = 0;
 			ToggleGroup toggleGroup = new ToggleGroup();
-			for (Tool model : getModel().getTools()) {
+
+			if ("paragraph_styles".equals(getModel().getId())) {
+				System.out.println();
+			}
+
+			for (Tool toolModel : getModel().getTools()) {
 				ITool tool;
-				int spanX = Math.max(1, model.getSpanX());
-				int spanY = Math.max(1, model.getSpanY());
-				String imageName = model.getImage();
+				int spanX = Math.max(1, toolModel.getSpanX());
+				int spanY = Math.max(1, toolModel.getSpanY());
+				String imageName = toolModel.getImage();
 				Node node;
 
-				if (ToolType.BUTTON.equals(model.getType()) && "undo".equals(model.getFormat())) {
+				if (ToolType.BUTTON.equals(toolModel.getType()) && "undo".equals(toolModel.getFormat())) {
 					node = RcplToolFactory.getUndoRedoTool().getUndoButton();
-				} else if (ToolType.BUTTON.equals(model.getType()) && "redo".equals(model.getFormat())) {
+				} else if (ToolType.BUTTON.equals(toolModel.getType()) && "redo".equals(toolModel.getFormat())) {
 					node = RcplToolFactory.getUndoRedoTool().getRedoButton();
-				} else if (ToolType.COMBO.equals(model.getType()) && "undo".equals(model.getFormat())) {
+				} else if (ToolType.COMBO.equals(toolModel.getType()) && "undo".equals(toolModel.getFormat())) {
 					node = RcplToolFactory.getUndoRedoTool().getUndoCombo();
-				} else if (ToolType.COMBO.equals(model.getType()) && "redo".equals(model.getFormat())) {
+				} else if (ToolType.COMBO.equals(toolModel.getType()) && "redo".equals(toolModel.getFormat())) {
 					node = RcplToolFactory.getUndoRedoTool().getRedoCombo();
 				} else {
-
-					tool = Rcpl.getToolFactory().createTool(model);
+					tool = Rcpl.getToolFactory().createTool(toolModel);
 					if (tool instanceof IButton) {
-						if (ToolType.TOGGLEBUTTON.equals(model.getType()) && model.isToggleGroup()) {
+						if (ToolType.TOGGLEBUTTON.equals(toolModel.getType()) && toolModel.isToggleGroup()) {
 							toggleGroup.getToggles().add(((ToggleButton) tool.getNode()));
 						}
 					}
-					registry.put(model, tool);
+					registry.put(toolModel, tool);
 
 					if (tool instanceof Labeled) {
 						Node image = Rcpl.resources().getImage(imageName, 16, 16).getNode();
@@ -240,17 +241,21 @@ public class RibbonGroup extends RcplTool {
 							((Labeled) tool).setGraphic(image);
 						}
 					}
-					lastX = model.getGridX();
+					lastX = toolModel.getGridX();
 					node = tool.getNode();
 				}
-
-				if (model.getWidth() > 0) {
+				if (toolModel.getWidth() > 0) {
 					if (node instanceof Control) {
-						((Control) node).setPrefWidth(model.getWidth());
+						((Control) node).setPrefWidth(toolModel.getWidth());
 					}
 				}
 				GridPane.setValignment(node, VPos.CENTER);
-				add(node, model.getGridX(), model.getGridY(), spanX, spanY);
+
+				if (toolModel.getWidth() > 0) {
+//					GridPane.setMargin(node, new Insets(0, 5, 0, 5));
+					((Control) node).setPrefWidth(toolModel.getWidth() + 10);
+				}
+				add(node, toolModel.getGridX(), toolModel.getGridY(), spanX, spanY);
 			}
 			return lastX;
 		} catch (Throwable ex) {

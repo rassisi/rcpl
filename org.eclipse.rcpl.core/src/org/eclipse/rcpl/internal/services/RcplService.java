@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnServiceId;
-import org.eclipse.rcpl.IColorTool;
 import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.IDetailPage;
 import org.eclipse.rcpl.ILayoutObject;
@@ -54,6 +53,8 @@ public class RcplService extends RcplAbstractService implements IService {
 
 	private IService tableService;
 
+	private HashMap<EnServiceId, IService> serviceRegistry;
+
 	public RcplService() {
 	}
 
@@ -65,8 +66,6 @@ public class RcplService extends RcplAbstractService implements IService {
 		}
 
 		ICommand command = getCommand(command0);
-		String id = getId(command0);
-
 		try {
 			ITool iTool = command.getTool();
 			if (iTool != null) {
@@ -89,48 +88,14 @@ public class RcplService extends RcplAbstractService implements IService {
 						}
 						return false;
 					}
-
-					if (id != null) {
-
-						String id2 = tool.getId();
-
-						if (id2.startsWith("insert_shape") || id2.startsWith("shape")) {
-							IService serv = getService(EnServiceId.INSERT_SERVICE);
-							serv.doExecute(command);
-							return true;
-						}
-
-					}
 				}
-
 			}
 
 			switch (command.getCommandId()) {
-			case undo:
-			case redo:
-				getCommandService().doExecute(command);
-				break;
-			case textStyleListTool:
-				break;
-			case foregroundColor:
-				// getService(JOColor).doExecute(command);
-				break;
-			case showOutline:
-//				RcplSession.getDefault().getSystemPreferences().put(RcplKey.SHOW_OUTLINE,
-//						(Boolean) command.getNewData()[0]);
-//				showOutLine(command, (Boolean) command.getNewData()[0]);
-				break;
 			case collapse_all:
 				Rcpl.UIC.collapseAll();
 				break;
-			case bold:
-			case italic:
-			case underline:
-			case fontSize:
-				getService(EnServiceId.PARAGRAPH_SERVICE).doExecute(command);
-				break;
 			default:
-
 				String service = command.getTool().getService();
 				if (service != null) {
 					IService srv = getServiceBySimpleName(service);
@@ -138,11 +103,8 @@ public class RcplService extends RcplAbstractService implements IService {
 						srv.doExecute(command);
 						return true;
 					}
-
 				}
-
 				return true;
-
 			}
 
 			return true;
@@ -217,16 +179,16 @@ public class RcplService extends RcplAbstractService implements IService {
 		return command;
 	}
 
-	private String getId(ICommand command) {
-		String id;
-		if (EnCommandId.NO_COMMAND.equals(command.getCommandId())) {
-			if (command.getTool() != null && command.getTool().getModel().getId() != null) {
-				id = command.getTool().getModel().getId();
-			}
-		}
-		return getCommand(command).getCommandId().getId();
-
-	}
+//	private String getId(ICommand command) {
+//		String id;
+//		if (EnCommandId.NO_COMMAND.equals(command.getCommandId())) {
+//			if (command.getTool() != null && command.getTool().getModel().getId() != null) {
+//				id = command.getTool().getModel().getId();
+//			}
+//		}
+//		return getCommand(command).getCommandId().getId();
+//
+//	}
 
 	public Object execute(ITool tool) {
 		ICommand command = Rcpl.getFactory().createCommand(tool);
@@ -244,23 +206,6 @@ public class RcplService extends RcplAbstractService implements IService {
 
 	protected void finalizeCommand(RcplCommand command) {
 		command.update();
-	}
-
-	/**
-	 * @return
-	 */
-	public IColorTool getColorChooser() {
-		// try {
-		// List<ITool> colorChoosers = JOUtil2
-		// .findEditorTools("word/actions/object/color_chooser") //$NON-NLS-1$
-		// ;
-		// if (colorChoosers != null && colorChoosers.size() > 0) {
-		// return (IColorTool) colorChoosers.get(0);
-		// }
-		// } catch (Exception ex) {
-		// LOGGER.error("", ex); //$NON-NLS-1$
-		// }
-		return null;
 	}
 
 	/**
@@ -282,67 +227,6 @@ public class RcplService extends RcplAbstractService implements IService {
 				}
 			}
 		}
-	}
-
-	/**
-	 * @param key
-	 */
-	protected void unimplemented(RcplCommand command) {
-
-		// if (command.getTool().getSubGroupItem() != null) {
-		// doActionSubGroupItem(command);
-		// return;
-		// }
-
-		// if
-		// (command.getCommandId().name().startsWith("actions/groups/styles/"))
-		// { //$NON-NLS-1$
-		// try {
-		// getParagraphService().doExecute(command);
-		// } catch (Exception e) {
-		// LOGGER.error("", e); //$NON-NLS-1$
-		// }
-		// return;
-		// }
-
-		// infotab/actions/editor/setup_tab_browsing
-		// if (command.getCommandId().name()
-		// .startsWith("actions/paragraph/text_change")) { //$NON-NLS-1$
-		// try {
-		// getParagraphService().doExecute(command);
-		// } catch (Exception e) {
-		// LOGGER.error("", e); //$NON-NLS-1$
-		// }
-		// return;
-		// }
-
-		if (command.isUndo() || command.isRedo()) {
-			// LOGGER.error("redo/undo command not implemented: " //$NON-NLS-1$
-			// + command.getCommandId().name());
-			return;
-		}
-		// JOResourceEntry entry = (JOResourceEntry) command.getEntry();
-		// if (entry != null) {
-		// if (command.getSource() instanceof JOToolComponent) {
-		// if (((JOToolComponent) command.getSource()).getEntry()
-		// .isDatabinding()) {
-		// return;
-		// }
-		// }
-		// if (entry.getRadiogroup() != null) {
-		// if (command.getSource() instanceof IButtonTool) {
-		// if (((IButtonTool) command.getSource()).getRadioList()
-		// .size() == 2) {
-		// return;
-		// }
-		// }
-		// }
-		// }
-
-		// LOGGER.error("Service unimplemented: " +
-		// command.getCommandId().name()); //$NON-NLS-1$
-
-		return;
 	}
 
 	public static RcplSetupService getSetupService() {
@@ -451,8 +335,6 @@ public class RcplService extends RcplAbstractService implements IService {
 		return null;
 	}
 
-	private HashMap<EnServiceId, IService> serviceRegistry;
-
 	@Override
 	public void registerService(EnServiceId serviceId, IService service) {
 		if (serviceRegistry == null) {
@@ -462,65 +344,4 @@ public class RcplService extends RcplAbstractService implements IService {
 		Rcpl.progressMessage(service.getClass().getSimpleName() + " registered");
 	}
 
-	/**
-	 * @return
-	 */
-	protected RcplEditorService getEditorService() {
-		return (RcplEditorService) getService(RcplEditorService.class);
-	}
-
 }
-
-// @Override
-// public void execute(JOCommand command) {
-// if (command.getCommandId().name().equals("actions/command/undo")
-// //$NON-NLS-1$
-// || command.getCommandId().name().equals("actions/command/redo")) {
-// //$NON-NLS-1$
-// try {
-// getCommandService().doActionPerformed(command);
-// } catch (Exception e) {
-// LOGGER.error("", e); //$NON-NLS-1$
-// // MessageDialog.openError(JOUtil.getShell(),
-// // Messages.JOService_Error,
-// // Messages.JOService_ExecutionError);
-// }
-// } else {
-// actionPerformed(command, false, false);
-// }
-// finalizeCommand(command);
-// }
-
-/**
- * @param command
- * @param undo
- */
-// public void actionPerformed(JOCommand command, boolean undo, boolean
-// redo) {
-// try {
-// command.setUndo(undo);
-// command.setRedo(redo);
-//
-// if (!doActionPerformed(command)) {
-// unimplemented(command);
-// }
-//
-// // else {
-// // String cmdMessage;
-// // if (command.getEntry().isNoCommand()) {
-// // cmdMessage = "COMMAND: "; //$NON-NLS-1$
-// // } else {
-// // cmdMessage = "UNDOABLE COMMAND: "; //$NON-NLS-1$
-// // }
-// // LOGGER.info(cmdMessage + command.getEntry().getKey());
-// // // if (JOUtil.IS_IDE) {
-// // // System. out
-// // // .log(cmdMessage + command.getEntry().getKey());
-// // // }
-// // // command.setUndo(false);
-// // }
-//
-// } catch (Exception ex) {
-// LOGGER.error("", ex); //$NON-NLS-1$
-// }
-// }
