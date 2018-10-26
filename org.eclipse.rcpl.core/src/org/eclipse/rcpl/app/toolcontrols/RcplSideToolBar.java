@@ -298,6 +298,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			titlePane.setAccordion(accordion);
 
 			accordion = newAccordion;
+
 		}
 
 		// ---------- process all groups ---------------------------------------
@@ -891,6 +892,13 @@ public class RcplSideToolBar implements ISideToolBar {
 			}
 		}
 		expand(sb.toString());
+	}
+
+	@Override
+	public void updateLocale() {
+		for (AccordionColorTitlePane tp : titlePaneRegistry.values()) {
+			tp.updateLocale();
+		}
 	}
 
 }

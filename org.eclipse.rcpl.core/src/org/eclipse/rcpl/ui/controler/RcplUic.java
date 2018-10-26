@@ -905,10 +905,14 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				if (!inPageLayout) {
-					if (Rcpl.get(getEditor(), EnKeyValue.PAGE_COLUMNS, 0) == -1) {
-						inPageLayout = true;
-						onMultiPages();
-						inPageLayout = false;
+					try {
+						if (Rcpl.get(getEditor(), EnKeyValue.PAGE_COLUMNS, 0) == -1) {
+							inPageLayout = true;
+							onMultiPages();
+							inPageLayout = false;
+						}
+					} catch (Exception ex) {
+						// happens when logging out
 					}
 				}
 			}

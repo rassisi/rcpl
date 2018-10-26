@@ -12,6 +12,10 @@ public enum EnKeyValueFolder {
 
 	WINDOW,
 
-	HISTORY;
+	HISTORY,
+
+	DICTIONARY,
+
+	;
 
 }

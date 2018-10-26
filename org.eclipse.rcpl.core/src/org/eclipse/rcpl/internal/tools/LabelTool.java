@@ -12,6 +12,7 @@
 package org.eclipse.rcpl.internal.tools;
 
 import org.eclipse.rcpl.AbstractRcplTool;
+import org.eclipse.rcpl.IDictionary;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.scene.control.Label;
@@ -41,5 +42,11 @@ public class LabelTool extends AbstractRcplTool {
 	@Override
 	public Tool getModel() {
 		return (Tool) super.getModel();
+	}
+
+	@Override
+	public void updateLocale() {
+		super.updateLocale();
+		getNode().setText(IDictionary.INSTANCE.get(getModel().getName()));
 	}
 }

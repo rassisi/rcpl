@@ -28,4 +28,5 @@ public interface ISideToolBar extends IToolbar {
 
 	void expand(ToolGroup toolGroup);
 
+	void updateLocale();
 }
