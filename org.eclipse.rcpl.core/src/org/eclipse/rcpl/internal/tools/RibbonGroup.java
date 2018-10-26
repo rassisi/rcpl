@@ -21,7 +21,7 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.internal.factory.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
-import org.eclipse.rcpl.model.KeyValueKey;
+import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
@@ -159,7 +159,7 @@ public class RibbonGroup extends AbstractRcplTool {
 						Rcpl.UIC.getSideToolBarControl().expand(tg.getExpandToolGroup()); // toolGroup.getSideToolbarPath());
 					} else {
 						Rcpl.UIC.getSideToolBarControl().collapseToolPane();
-						Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SIDEBAR_PATH, (String) null);
+						Rcpl.set(Rcpl.UIC.getEditor(), EnKeyValue.SIDEBAR_PATH, (String) null);
 					}
 				};
 			};

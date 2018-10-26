@@ -441,13 +441,15 @@
     <eLiterals name="IMAGE" value="5"/>
     <eLiterals name="TEXT" value="6"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="KeyValue">
+  <eClassifiers xsi:type="ecore:EClass" name="KeyValue" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="KeyValues">
+  <eClassifiers xsi:type="ecore:EClass" name="KeyValues" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="keyvalues" upperBound="-1"
         eType="#//KeyValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keyvaluesFolder" upperBound="-1"
+        eType="#//KeyValues" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Command" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#//Service"/>

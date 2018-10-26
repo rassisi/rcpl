@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.emf.cdo.common.util.CDOException;
@@ -76,7 +77,7 @@ import org.eclipse.rcpl.libs.util.AUtil;
 import org.eclipse.rcpl.model.IIdProvider;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.ISessionFacory;
-import org.eclipse.rcpl.model.KeyValueKey;
+import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.RcplModelUtil;
 import org.eclipse.rcpl.model.RcplSessionFactory;
@@ -1338,10 +1339,48 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	// ---------- get value
 
+	private KeyValues findKeyValueFolder(String path, boolean create) {
+		StringTokenizer tok = new StringTokenizer(path, "/");
+
+		KeyValues root = getRcpl().getKeyvalues();
+		if (root == null) {
+			root = RcplFactory.eINSTANCE.createKeyValues();
+			getRcpl().setKeyvalues(root);
+			commit();
+		}
+
+		boolean changed = false;
+		while (tok.hasMoreElements()) {
+			String folderName = tok.nextToken();
+			boolean found = false;
+			for (KeyValues kv : root.getKeyvaluesFolder()) {
+				if (folderName.equals(kv.getName())) {
+					root = kv;
+					found = true;
+				}
+			}
+			if (!found) {
+				if (!create) {
+					return null;
+				}
+				KeyValues kv = RcplFactory.eINSTANCE.createKeyValues();
+				kv.setName(folderName);
+				root.getKeyvaluesFolder().add(kv);
+				root = kv;
+				changed = true;
+			}
+		}
+		if (changed) {
+			commit();
+		}
+		return root;
+	}
+
 	@Override
-	public String getValue(String key) {
+	public String getValue(String path, String key) {
+		KeyValues root = findKeyValueFolder(path, false);
 		if (getRcpl() != null) {
-			for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
+			for (KeyValue kv : root.getKeyvalues()) {
 				if (key.equals(kv.getKey())) {
 					return kv.getValue();
 				}
@@ -1351,8 +1390,8 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	}
 
 	@Override
-	public String getValue(String key, String defaultValue) {
-		String value = getValue(key);
+	public String getValue(String path, String key, String defaultValue) {
+		String value = getValue(path, key);
 		if (value == null) {
 			return defaultValue;
 		}
@@ -1360,81 +1399,78 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	}
 
 	@Override
-	public List<String> loadKeys(String matchKey) {
+	public List<String> loadKeys(String folder, String matchKey) {
 		List<String> keys = new ArrayList<String>();
-		if (getRcpl().getKeyvalues() == null) {
-			KeyValues kv = RcplFactory.eINSTANCE.createKeyValues();
-			getRcpl().setKeyvalues(kv);
-			commit();
-		}
-		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
-			if (kv.getKey().startsWith(matchKey)) {
-				keys.add(kv.getKey());
+		KeyValues root = findKeyValueFolder(folder, false);
+		if (root != null) {
+			for (KeyValue kv : root.getKeyvalues()) {
+				if (kv.getKey().startsWith(matchKey)) {
+					keys.add(kv.getKey());
+				}
 			}
 		}
 		return keys;
 	}
 
 	@Override
-	public void setMaxKeyValues(KeyValueKey matchKey, int max) {
-		List<String> keys = loadKeys(matchKey.name());
+	public void setMaxKeyValues(String path, EnKeyValue matchKey, int max) {
+		List<String> keys = loadKeys(path, matchKey.name());
 		List<KeyValue> keyValuesToDelete = new ArrayList<KeyValue>();
-
-		if (keys.size() > max) {
-			for (int i = 0; i < keys.size() - max; i++) {
-				String key = keys.get(i);
-				for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
-					if (kv.getKey().startsWith(matchKey.name())) {
-						keyValuesToDelete.add(kv);
+		KeyValues root = findKeyValueFolder(path, false);
+		if (root != null) {
+			if (keys.size() > max) {
+				for (int i = 0; i < keys.size() - max; i++) {
+					String key = keys.get(i);
+					for (KeyValue kv : root.getKeyvalues()) {
+						if (kv.getKey().startsWith(matchKey.name())) {
+							keyValuesToDelete.add(kv);
+						}
 					}
 				}
-
+			}
+			for (KeyValue keyValue : keyValuesToDelete) {
+				root.getKeyvalues().remove(keyValue);
 			}
 		}
-
-		for (KeyValue keyValue : keyValuesToDelete) {
-			getRcpl().getKeyvalues().getKeyvalues().remove(keyValue);
-		}
-
 	}
 
 	// ---------- put value
 
 	@Override
-	public void putValue(String key, String value) {
-		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
+	public void putValue(String path, String key, String value) {
+		KeyValues root = findKeyValueFolder(path, true);
+		for (KeyValue kv : root.getKeyvalues()) {
 			if (key.equals(kv.getKey())) {
+				kv.setName(key);
 				kv.setValue(value);
 				return;
 			}
 		}
 		KeyValue kv = RcplFactory.eINSTANCE.createKeyValue();
 		kv.setKey(key);
+		kv.setName(key);
 		kv.setValue(value);
-		getRcpl().getKeyvalues().getKeyvalues().add(kv);
+		root.getKeyvalues().add(kv);
 		commit();
 	}
 
 	// ---------- delete value
 
 	@Override
-	public void deleteAllValues(String matchKey) {
-
+	public void deleteAllValues(String path, String matchKey) {
 		List<KeyValue> keyValuesToDelete = new ArrayList<KeyValue>();
-
-		for (KeyValue kv : getRcpl().getKeyvalues().getKeyvalues()) {
-			String k = kv.getKey();
-			if (k.startsWith(matchKey)) {
-				keyValuesToDelete.add(kv);
+		KeyValues root = findKeyValueFolder(path, false);
+		if (root != null) {
+			for (KeyValue kv : root.getKeyvalues()) {
+				String k = kv.getKey();
+				if (k.startsWith(matchKey)) {
+					keyValuesToDelete.add(kv);
+				}
 			}
+			for (KeyValue keyValue : keyValuesToDelete) {
+				root.getKeyvalues().remove(keyValue);
+			}
+			commit();
 		}
-		for (KeyValue keyValue : keyValuesToDelete) {
-			getRcpl().getKeyvalues().getKeyvalues().remove(keyValue);
-		}
-
-//		getRcpl().getKeyvalues().getKeyvalues().removeAll(keyValuesToDelete);
-
-		commit();
-		System.out.println();
 	}
 }

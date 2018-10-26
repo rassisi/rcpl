@@ -2,14 +2,14 @@
  */
 package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
+import static org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage.RESOURCE;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addons;
@@ -73,428 +73,367 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.TopToolBar;
 import org.eclipse.rcpl.model_2_0_0.rcpl.WorldRegion;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
+ * end-user-doc -->
  * @generated
  */
 public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass layoutableEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass rcplEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass perspectivesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass perspectiveEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass preferenceEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass loginsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass loginEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass favoritesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass favoriteEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass favoritesGroupEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass preferencesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass addonsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass addonEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass abstractToolEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass toolEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass toolGroupEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass toolsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass ribbonToolBarEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass topToolBarEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass sideToolBarEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass quickToolBarEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass folderEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass resourceEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass personEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass personGroupEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass resourcesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass preferenceGroupEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass personsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass rcplTemplatesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass jPersonEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass nPersonEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass addressEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass countryEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass cityEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass geoEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass worldRegionEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass streetEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass houseNumberEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass buildingEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass contactEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass phoneEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass domainsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass domainEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass homePagesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass homePageEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass documentsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass documentEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass keyValueEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass keyValuesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass commandEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass commandsEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass servicesEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass serviceEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum toolTypeEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum fontStylesEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum toolBarReplacementPolicyEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum groupTypeEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum addressTypeEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum homePageTypeEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EEnum documentTypeEEnum = null;
@@ -507,8 +446,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * factory method {@link #init init()}, which also performs
 	 * initialization of the package, or returns the registered package,
 	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#eNS_URI
 	 * @see #init()
@@ -519,8 +458,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -530,8 +468,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 *
 	 * <p>This method is used to initialize {@link RcplPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -561,8 +499,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getLayoutable() {
@@ -570,8 +507,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_LayoutX() {
@@ -579,8 +515,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_LayoutY() {
@@ -588,8 +523,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_LayoutWidth() {
@@ -597,8 +531,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_LayoutHeight() {
@@ -606,8 +539,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_Name() {
@@ -615,8 +547,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_Description() {
@@ -624,8 +555,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_Id() {
@@ -633,8 +563,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_Image() {
@@ -642,8 +571,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_ToolTip() {
@@ -651,8 +579,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_CreateDate() {
@@ -660,8 +587,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_BeginDate() {
@@ -669,8 +595,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_EndDate() {
@@ -678,8 +603,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLayoutable_Leaf() {
@@ -687,8 +611,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getRCPL() {
@@ -696,8 +619,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_AllAddons() {
@@ -705,8 +627,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_AllPerspectives() {
@@ -714,8 +635,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_Preferences() {
@@ -723,8 +643,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_AllTools() {
@@ -732,8 +651,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_AllFavorites() {
@@ -741,8 +659,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getRCPL_VersionMajor() {
@@ -750,8 +667,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getRCPL_VersionMinor() {
@@ -759,8 +675,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getRCPL_VersionMaintenance() {
@@ -768,8 +683,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getRCPL_BuildNumber() {
@@ -777,8 +691,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getRCPL_VersionDescription() {
@@ -786,8 +699,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_AllResources() {
@@ -795,8 +707,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_AllPersons() {
@@ -804,8 +715,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_LinkedRcpls() {
@@ -813,8 +723,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_Homepages() {
@@ -822,8 +731,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_Documents() {
@@ -831,8 +739,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_Keyvalues() {
@@ -840,8 +747,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getRCPL_ImageUrls() {
@@ -849,8 +755,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getRCPL_ServiceClasses() {
@@ -858,8 +763,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getRCPL_HomeURL() {
@@ -867,8 +771,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_Commands() {
@@ -876,8 +779,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPL_Services() {
@@ -885,8 +787,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getPerspectives() {
@@ -894,8 +795,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPerspectives_Children() {
@@ -903,8 +803,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getPerspective() {
@@ -912,8 +811,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPerspective_SideToolBar() {
@@ -921,8 +819,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPerspective_TopToolBar() {
@@ -930,8 +827,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPerspective_QuickToolBar() {
@@ -939,8 +835,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPerspective_RibbonToolBar() {
@@ -948,8 +843,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getPerspective_Overview() {
@@ -957,8 +851,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getPreference() {
@@ -966,8 +859,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getPreference_Key() {
@@ -975,8 +867,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getPreference_Value() {
@@ -984,8 +875,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getPreference_Type() {
@@ -993,8 +883,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getLogins() {
@@ -1002,8 +891,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getLogins_Children() {
@@ -1011,8 +899,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getLogin() {
@@ -1020,8 +907,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLogin_Country() {
@@ -1029,8 +915,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLogin_Password() {
@@ -1038,8 +923,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getLogin_Rcpl() {
@@ -1047,8 +931,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getLogin_UserId() {
@@ -1056,8 +939,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getLogin_Person() {
@@ -1065,8 +947,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getLogin_Domains() {
@@ -1074,8 +955,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getFavorites() {
@@ -1083,8 +963,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getFavorites_Children() {
@@ -1092,8 +971,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorites_DefaultSetId() {
@@ -1101,8 +979,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getFavorite() {
@@ -1110,8 +987,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_Link() {
@@ -1119,8 +995,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_URI() {
@@ -1128,8 +1003,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_URL() {
@@ -1137,8 +1011,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_CreationDate() {
@@ -1146,8 +1019,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_DocumentCreationDate() {
@@ -1155,8 +1027,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_Rating() {
@@ -1164,8 +1035,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_LastUsedDate() {
@@ -1173,8 +1043,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_Frequency() {
@@ -1182,8 +1051,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_Password() {
@@ -1191,8 +1059,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_Format() {
@@ -1200,8 +1067,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getFavorite_ShowOnToolBar() {
@@ -1209,8 +1075,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getFavoritesGroup() {
@@ -1218,8 +1083,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getFavoritesGroup_Groups() {
@@ -1227,8 +1091,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getFavoritesGroup_Favorites() {
@@ -1236,8 +1099,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getFavoritesGroup_LinkedFavorites() {
@@ -1245,8 +1107,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getPreferences() {
@@ -1254,8 +1115,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPreferences_Children() {
@@ -1263,8 +1123,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getPreferences_System() {
@@ -1272,8 +1131,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getAddons() {
@@ -1281,8 +1139,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAddons_Children() {
@@ -1290,8 +1147,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getAddon() {
@@ -1299,8 +1155,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAddon_BundleId() {
@@ -1308,8 +1163,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAddon_ClassName() {
@@ -1317,8 +1171,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAddon_Roles() {
@@ -1326,8 +1179,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAddon_Users() {
@@ -1335,8 +1187,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAddon_Groups() {
@@ -1344,8 +1195,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAddon_IsPerspective() {
@@ -1353,8 +1203,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAddon_ReadOnly() {
@@ -1362,8 +1211,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAddon_DefaultPerspective() {
@@ -1371,8 +1219,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAddon_Perspectives() {
@@ -1380,8 +1227,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAddon_RootClassName() {
@@ -1389,8 +1235,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getAbstractTool() {
@@ -1398,8 +1243,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_X() {
@@ -1407,8 +1251,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_Y() {
@@ -1416,8 +1259,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_Width() {
@@ -1425,8 +1267,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_Height() {
@@ -1434,8 +1275,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_GridX() {
@@ -1443,8 +1283,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_GridY() {
@@ -1452,8 +1291,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_SpanX() {
@@ -1461,8 +1299,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_SpanY() {
@@ -1470,8 +1307,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_Labeled() {
@@ -1479,8 +1315,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_NotImplemented() {
@@ -1488,8 +1323,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_Service() {
@@ -1497,8 +1331,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_DetailPaneClassName() {
@@ -1506,8 +1339,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_Type() {
@@ -1515,8 +1347,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_System() {
@@ -1524,8 +1355,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_Url() {
@@ -1533,8 +1363,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_ToggleGroup() {
@@ -1542,8 +1371,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAbstractTool_ExpandToolGroup() {
@@ -1551,8 +1379,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_HGrow() {
@@ -1560,8 +1387,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_VGrow() {
@@ -1569,8 +1395,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAbstractTool_WidthPercent() {
@@ -1578,8 +1403,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getTool() {
@@ -1587,8 +1411,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getTool_Format() {
@@ -1596,8 +1419,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getToolGroup() {
@@ -1605,8 +1427,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getToolGroup_ToolGroups() {
@@ -1614,8 +1435,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getToolGroup_Grid() {
@@ -1623,8 +1443,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getToolGroup_Format() {
@@ -1632,8 +1451,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getToolGroup_Tools() {
@@ -1641,8 +1459,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getToolGroup_GroupType() {
@@ -1650,8 +1467,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getTools() {
@@ -1659,8 +1475,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getTools_ToolgroupChildren() {
@@ -1668,8 +1483,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getTools_ToolChildren() {
@@ -1677,8 +1491,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getRibbonToolBar() {
@@ -1686,8 +1499,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRibbonToolBar_ToolGroups() {
@@ -1695,8 +1507,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRibbonToolBar_Tools() {
@@ -1704,8 +1515,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getTopToolBar() {
@@ -1713,8 +1523,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getTopToolBar_ToolGroups() {
@@ -1722,8 +1531,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getTopToolBar_Tools() {
@@ -1731,8 +1539,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getSideToolBar() {
@@ -1740,8 +1547,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getSideToolBar_ToolGroups() {
@@ -1749,8 +1555,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getSideToolBar_Tools() {
@@ -1758,8 +1563,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getQuickToolBar() {
@@ -1767,8 +1571,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getQuickToolBar_ToolGroups() {
@@ -1776,8 +1579,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getQuickToolBar_Tools() {
@@ -1785,8 +1587,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getFolder() {
@@ -1794,8 +1595,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getFolder_Folders() {
@@ -1803,8 +1603,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getFolder_Resources() {
@@ -1812,8 +1611,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getFolder_LinkedResources() {
@@ -1821,8 +1619,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getResource() {
@@ -1830,8 +1627,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getResource_Uri() {
@@ -1839,8 +1635,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getResource_Template() {
@@ -1848,8 +1643,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getResource_LinkedResources() {
@@ -1857,8 +1651,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getResource_MainPerspective() {
@@ -1866,8 +1659,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getPerson() {
@@ -1875,8 +1667,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getPerson_LastName() {
@@ -1884,8 +1675,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getPerson_MiddleName() {
@@ -1893,8 +1683,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getPerson_FirstName() {
@@ -1902,8 +1691,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPerson_Addresses() {
@@ -1911,8 +1699,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getPersonGroup() {
@@ -1920,8 +1707,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPersonGroup_Persongroups() {
@@ -1929,8 +1715,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPersonGroup_Persons() {
@@ -1938,8 +1723,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPersonGroup_LinkedPersons() {
@@ -1947,8 +1731,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPersonGroup_LinkedPersongroups() {
@@ -1956,8 +1739,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getResources() {
@@ -1965,8 +1747,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getResources_Children() {
@@ -1974,8 +1755,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getPreferenceGroup() {
@@ -1983,8 +1763,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPreferenceGroup_Preferences() {
@@ -1992,8 +1771,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPreferenceGroup_LinkedPreferences() {
@@ -2001,8 +1779,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPreferenceGroup_Preferencegroups() {
@@ -2010,8 +1787,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getPersons() {
@@ -2019,8 +1795,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getPersons_Children() {
@@ -2028,8 +1803,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getRCPLTemplates() {
@@ -2037,8 +1811,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getRCPLTemplates_Children() {
@@ -2046,8 +1819,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getJPerson() {
@@ -2055,8 +1827,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getNPerson() {
@@ -2064,8 +1835,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getAddress() {
@@ -2073,8 +1843,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAddress_Country() {
@@ -2082,8 +1851,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAddress_City() {
@@ -2091,8 +1859,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAddress_Street() {
@@ -2100,8 +1867,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAddress_Housenumber() {
@@ -2109,8 +1875,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAddress_Buildings() {
@@ -2118,8 +1883,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getAddress_AddressType() {
@@ -2127,8 +1891,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getCountry() {
@@ -2136,8 +1899,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getCountry_Cities() {
@@ -2145,8 +1907,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getCountry_Worldregions() {
@@ -2154,8 +1915,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getCity() {
@@ -2163,8 +1923,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getCity_Streets() {
@@ -2172,8 +1931,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getGeo() {
@@ -2181,8 +1939,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getGeo_Countries() {
@@ -2190,8 +1947,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getGeo_Worldregions() {
@@ -2199,8 +1955,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getWorldRegion() {
@@ -2208,8 +1963,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getStreet() {
@@ -2217,8 +1971,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getStreet_Housenumbers() {
@@ -2226,8 +1979,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getStreet_Buildings() {
@@ -2235,8 +1987,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getHouseNumber() {
@@ -2244,8 +1995,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getBuilding() {
@@ -2253,8 +2003,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getContact() {
@@ -2262,8 +2011,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getContact_Phones() {
@@ -2271,8 +2019,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getPhone() {
@@ -2280,8 +2027,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getPhone_Number() {
@@ -2289,8 +2035,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getDomains() {
@@ -2298,8 +2043,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getDomains_Children() {
@@ -2307,8 +2051,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getDomain() {
@@ -2316,8 +2059,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getDomain_Host() {
@@ -2325,8 +2067,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getDomain_Port() {
@@ -2334,8 +2075,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getDomain_Resource() {
@@ -2343,8 +2083,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getHomePages() {
@@ -2352,8 +2091,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getHomePages_Children() {
@@ -2361,8 +2099,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getHomePage() {
@@ -2370,8 +2107,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getHomePage_Type() {
@@ -2379,8 +2115,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getHomePage_Perspective() {
@@ -2388,8 +2123,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getHomePage_Documents() {
@@ -2397,8 +2131,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getHomePage_TextReplacements() {
@@ -2406,8 +2139,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getHomePage_Navigator() {
@@ -2415,8 +2147,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getHomePage_ShowHomePageButtons() {
@@ -2424,8 +2155,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getHomePage_RootClassName() {
@@ -2433,8 +2163,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getDocuments() {
@@ -2442,8 +2171,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getDocuments_Children() {
@@ -2451,8 +2179,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getDocument() {
@@ -2460,8 +2187,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getDocument_Path() {
@@ -2469,8 +2195,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getDocument_Type() {
@@ -2478,8 +2203,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getKeyValue() {
@@ -2487,8 +2211,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getKeyValue_Key() {
@@ -2496,8 +2219,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getKeyValue_Value() {
@@ -2505,8 +2227,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getKeyValues() {
@@ -2514,8 +2235,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getKeyValues_Keyvalues() {
@@ -2523,8 +2243,15 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getKeyValues_KeyvaluesFolder() {
+		return (EReference)keyValuesEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getCommand() {
@@ -2532,8 +2259,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getCommand_Service() {
@@ -2541,8 +2267,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getCommands() {
@@ -2550,8 +2275,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getCommands_Children() {
@@ -2559,8 +2283,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getServices() {
@@ -2568,8 +2291,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getServices_Children() {
@@ -2577,8 +2299,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass getService() {
@@ -2586,8 +2307,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EAttribute getService_ClassName() {
@@ -2595,8 +2315,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getToolType() {
@@ -2604,8 +2323,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getFontStyles() {
@@ -2613,8 +2331,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getToolBarReplacementPolicy() {
@@ -2622,8 +2339,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getGroupType() {
@@ -2631,8 +2347,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getAddressType() {
@@ -2640,8 +2355,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getHomePageType() {
@@ -2649,8 +2363,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EEnum getDocumentType() {
@@ -2658,8 +2371,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RcplFactory getRcplFactory() {
@@ -2667,8 +2379,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -2676,8 +2387,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	/**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -2951,6 +2662,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		keyValuesEClass = createEClass(KEY_VALUES);
 		createEReference(keyValuesEClass, KEY_VALUES__KEYVALUES);
+		createEReference(keyValuesEClass, KEY_VALUES__KEYVALUES_FOLDER);
 
 		commandEClass = createEClass(COMMAND);
 		createEReference(commandEClass, COMMAND__SERVICE);
@@ -2975,17 +2687,16 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is
+	 * guarded to have no affect on any invocation but its first. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -3046,6 +2757,8 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		homePageEClass.getESuperTypes().add(this.getLayoutable());
 		documentsEClass.getESuperTypes().add(this.getLayoutable());
 		documentEClass.getESuperTypes().add(this.getLayoutable());
+		keyValueEClass.getESuperTypes().add(this.getLayoutable());
+		keyValuesEClass.getESuperTypes().add(this.getLayoutable());
 		commandEClass.getESuperTypes().add(this.getLayoutable());
 		serviceEClass.getESuperTypes().add(this.getLayoutable());
 
@@ -3316,6 +3029,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		initEClass(keyValuesEClass, KeyValues.class, "KeyValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getKeyValues_Keyvalues(), this.getKeyValue(), null, "keyvalues", null, 0, -1, KeyValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getKeyValues_KeyvaluesFolder(), this.getKeyValues(), null, "keyvaluesFolder", null, 0, -1, KeyValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCommand_Service(), this.getService(), null, "service", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3441,4 +3155,4 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createResource(eNS_URI);
 	}
 
-} //RcplPackageImpl
+} // RcplPackageImpl

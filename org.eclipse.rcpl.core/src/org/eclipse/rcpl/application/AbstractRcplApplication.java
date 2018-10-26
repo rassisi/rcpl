@@ -17,7 +17,7 @@ import org.eclipse.rcpl.IRcplApplication;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model.ISessionFacory;
-import org.eclipse.rcpl.model.KeyValueKey;
+import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.AbstractSession;
 import org.eclipse.rcpl.util.RcplUtil;
@@ -210,8 +210,8 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 		splashStage.setScene(splashScene);
 		splashStage.toFront();
 
-		double initialStageX = Rcpl.get(KeyValueKey.LOGIN_WINDOW_X, -1.0);
-		double initialStageY = Rcpl.get(KeyValueKey.LOGIN_WINDOW_Y, -1.0);
+		double initialStageX = Rcpl.get(EnKeyValue.LOGIN_WINDOW_X, -1.0);
+		double initialStageY = Rcpl.get(EnKeyValue.LOGIN_WINDOW_Y, -1.0);
 
 		if (initialStageX > Rcpl.getActualMonitor().getPixelWidth() - 600
 				|| initialStageY > Rcpl.getActualMonitor().getHeight() - 600) {

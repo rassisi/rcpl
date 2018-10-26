@@ -341,8 +341,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Preferences</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -486,18 +485,18 @@ public interface RcplPackage extends EPackage {
 	int RCPL__HOME_URL = LAYOUTABLE_FEATURE_COUNT + 18;
 
 	/**
-	 * The feature id for the '<em><b>Commands</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Commands</b></em>' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int RCPL__COMMANDS = LAYOUTABLE_FEATURE_COUNT + 19;
 
 	/**
-	 * The feature id for the '<em><b>Services</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Services</b></em>' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2742,9 +2741,9 @@ public interface RcplPackage extends EPackage {
 	int ABSTRACT_TOOL__TYPE = LAYOUTABLE_FEATURE_COUNT + 12;
 
 	/**
-	 * The feature id for the '<em><b>System</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>System</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2752,26 +2751,26 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_TOOL__URL = LAYOUTABLE_FEATURE_COUNT + 14;
 
 	/**
-	 * The feature id for the '<em><b>Toggle Group</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Toggle Group</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_TOOL__TOGGLE_GROUP = LAYOUTABLE_FEATURE_COUNT + 15;
 
 	/**
-	 * The feature id for the '<em><b>Expand Tool Group</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Expand Tool Group</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -2779,8 +2778,8 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>HGrow</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -2788,17 +2787,17 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>VGrow</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ABSTRACT_TOOL__VGROW = LAYOUTABLE_FEATURE_COUNT + 18;
 
 	/**
-	 * The feature id for the '<em><b>Width Percent</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Width Percent</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -3065,9 +3064,9 @@ public interface RcplPackage extends EPackage {
 	int TOOL__TYPE = ABSTRACT_TOOL__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>System</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>System</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -3075,26 +3074,26 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int TOOL__URL = ABSTRACT_TOOL__URL;
 
 	/**
-	 * The feature id for the '<em><b>Toggle Group</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Toggle Group</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int TOOL__TOGGLE_GROUP = ABSTRACT_TOOL__TOGGLE_GROUP;
 
 	/**
-	 * The feature id for the '<em><b>Expand Tool Group</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Expand Tool Group</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -3102,8 +3101,8 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>HGrow</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -3111,17 +3110,17 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>VGrow</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int TOOL__VGROW = ABSTRACT_TOOL__VGROW;
 
 	/**
-	 * The feature id for the '<em><b>Width Percent</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Width Percent</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -3397,9 +3396,9 @@ public interface RcplPackage extends EPackage {
 	int TOOL_GROUP__TYPE = ABSTRACT_TOOL__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>System</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>System</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -3407,26 +3406,26 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int TOOL_GROUP__URL = ABSTRACT_TOOL__URL;
 
 	/**
-	 * The feature id for the '<em><b>Toggle Group</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Toggle Group</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int TOOL_GROUP__TOGGLE_GROUP = ABSTRACT_TOOL__TOGGLE_GROUP;
 
 	/**
-	 * The feature id for the '<em><b>Expand Tool Group</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Expand Tool Group</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -3434,8 +3433,8 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>HGrow</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -3443,17 +3442,17 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>VGrow</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int TOOL_GROUP__VGROW = ABSTRACT_TOOL__VGROW;
 
 	/**
-	 * The feature id for the '<em><b>Width Percent</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Width Percent</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -3494,9 +3493,9 @@ public interface RcplPackage extends EPackage {
 	int TOOL_GROUP__TOOLS = ABSTRACT_TOOL_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Group Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Group Type</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8354,13 +8353,130 @@ public interface RcplPackage extends EPackage {
 	int KEY_VALUE = 47;
 
 	/**
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+
+	/**
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+
+	/**
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__NAME = LAYOUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__ID = LAYOUTABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__IMAGE = LAYOUTABLE__IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+
+	/**
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__END_DATE = LAYOUTABLE__END_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUE__LEAF = LAYOUTABLE__LEAF;
+
+	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_VALUE__KEY = 0;
+	int KEY_VALUE__KEY = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -8369,7 +8485,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_VALUE__VALUE = 1;
+	int KEY_VALUE__VALUE = LAYOUTABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Key Value</em>' class. <!--
@@ -8378,7 +8494,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_VALUE_FEATURE_COUNT = 2;
+	int KEY_VALUE_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Key Value</em>' class. <!--
@@ -8387,7 +8503,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_VALUE_OPERATION_COUNT = 0;
+	int KEY_VALUE_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.KeyValuesImpl <em>Key Values</em>}' class.
@@ -8399,12 +8515,137 @@ public interface RcplPackage extends EPackage {
 	int KEY_VALUES = 48;
 
 	/**
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
+
+	/**
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
+
+	/**
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__LAYOUT_HEIGHT = LAYOUTABLE__LAYOUT_HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__NAME = LAYOUTABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__DESCRIPTION = LAYOUTABLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__ID = LAYOUTABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__IMAGE = LAYOUTABLE__IMAGE;
+
+	/**
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
+
+	/**
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
+
+	/**
+	 * The feature id for the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__END_DATE = LAYOUTABLE__END_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__LEAF = LAYOUTABLE__LEAF;
+
+	/**
 	 * The feature id for the '<em><b>Keyvalues</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_VALUES__KEYVALUES = 0;
+	int KEY_VALUES__KEYVALUES = LAYOUTABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Keyvalues Folder</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KEY_VALUES__KEYVALUES_FOLDER = LAYOUTABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Key Values</em>' class. <!--
@@ -8413,7 +8654,7 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_VALUES_FEATURE_COUNT = 1;
+	int KEY_VALUES_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Key Values</em>' class. <!--
@@ -8422,12 +8663,11 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int KEY_VALUES_OPERATION_COUNT = 0;
+	int KEY_VALUES_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl <em>Command</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getCommand()
 	 * @generated
@@ -8435,36 +8675,36 @@ public interface RcplPackage extends EPackage {
 	int COMMAND = 49;
 
 	/**
-	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
 
 	/**
-	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
 
 	/**
-	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
 
 	/**
-	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8472,17 +8712,17 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__NAME = LAYOUTABLE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8490,8 +8730,8 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -8499,44 +8739,44 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__IMAGE = LAYOUTABLE__IMAGE;
 
 	/**
-	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
 
 	/**
-	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
 
 	/**
-	 * The feature id for the '<em><b>End Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>End Date</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8544,26 +8784,26 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__LEAF = LAYOUTABLE__LEAF;
 
 	/**
-	 * The feature id for the '<em><b>Service</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Service</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMMAND__SERVICE = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Command</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Command</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8571,8 +8811,8 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The number of operations of the '<em>Command</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -8580,8 +8820,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl <em>Commands</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getCommands()
 	 * @generated
@@ -8590,26 +8829,25 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int COMMANDS__CHILDREN = 0;
 
 	/**
-	 * The number of structural features of the '<em>Commands</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Commands</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMMANDS_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Commands</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The number of operations of the '<em>Commands</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8617,8 +8855,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServicesImpl <em>Services</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServicesImpl
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getServices()
 	 * @generated
@@ -8627,26 +8864,25 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICES__CHILDREN = 0;
 
 	/**
-	 * The number of structural features of the '<em>Services</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Services</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICES_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Services</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The number of operations of the '<em>Services</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8654,8 +8890,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServiceImpl <em>Service</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServiceImpl
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getService()
 	 * @generated
@@ -8663,36 +8898,36 @@ public interface RcplPackage extends EPackage {
 	int SERVICE = 52;
 
 	/**
-	 * The feature id for the '<em><b>Layout X</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Layout X</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__LAYOUT_X = LAYOUTABLE__LAYOUT_X;
 
 	/**
-	 * The feature id for the '<em><b>Layout Y</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Layout Y</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__LAYOUT_Y = LAYOUTABLE__LAYOUT_Y;
 
 	/**
-	 * The feature id for the '<em><b>Layout Width</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Layout Width</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__LAYOUT_WIDTH = LAYOUTABLE__LAYOUT_WIDTH;
 
 	/**
-	 * The feature id for the '<em><b>Layout Height</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Layout Height</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8700,17 +8935,17 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__NAME = LAYOUTABLE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8718,8 +8953,8 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -8727,44 +8962,44 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Image</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__IMAGE = LAYOUTABLE__IMAGE;
 
 	/**
-	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Tool Tip</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__TOOL_TIP = LAYOUTABLE__TOOL_TIP;
 
 	/**
-	 * The feature id for the '<em><b>Create Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Create Date</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__CREATE_DATE = LAYOUTABLE__CREATE_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Begin Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Begin Date</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__BEGIN_DATE = LAYOUTABLE__BEGIN_DATE;
 
 	/**
-	 * The feature id for the '<em><b>End Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>End Date</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8772,26 +9007,26 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Leaf</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__LEAF = LAYOUTABLE__LEAF;
 
 	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SERVICE__CLASS_NAME = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Service</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Service</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -8799,8 +9034,8 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * The number of operations of the '<em>Service</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -9044,8 +9279,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getPreferences <em>Preferences</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Preferences</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getPreferences()
 	 * @see #getRCPL()
@@ -9215,8 +9449,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getCommands <em>Commands</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Commands</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getCommands()
 	 * @see #getRCPL()
@@ -9226,8 +9459,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServices <em>Services</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Services</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServices()
 	 * @see #getRCPL()
@@ -9943,8 +10175,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem <em>System</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>System</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isSystem()
 	 * @see #getAbstractTool()
@@ -9954,8 +10185,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl <em>Url</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Url</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getUrl()
 	 * @see #getAbstractTool()
@@ -9965,8 +10195,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isToggleGroup <em>Toggle Group</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Toggle Group</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isToggleGroup()
 	 * @see #getAbstractTool()
@@ -9976,8 +10205,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getExpandToolGroup <em>Expand Tool Group</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Expand Tool Group</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getExpandToolGroup()
 	 * @see #getAbstractTool()
@@ -9987,8 +10215,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow <em>HGrow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>HGrow</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow()
 	 * @see #getAbstractTool()
@@ -9998,8 +10225,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow <em>VGrow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>VGrow</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow()
 	 * @see #getAbstractTool()
@@ -10009,8 +10235,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent <em>Width Percent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Width Percent</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent()
 	 * @see #getAbstractTool()
@@ -10070,8 +10295,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getGroupType <em>Group Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Group Type</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup#getGroupType()
 	 * @see #getToolGroup()
@@ -11080,9 +11304,20 @@ public interface RcplPackage extends EPackage {
 	EReference getKeyValues_Keyvalues();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Command <em>Command</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues#getKeyvaluesFolder <em>Keyvalues Folder</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Keyvalues Folder</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues#getKeyvaluesFolder()
+	 * @see #getKeyValues()
+	 * @generated
+	 */
+	EReference getKeyValues_KeyvaluesFolder();
+
+	/**
+	 * Returns the meta object for class
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Command <em>Command</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Command</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Command
 	 * @generated
@@ -11091,8 +11326,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Command#getService <em>Service</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Service</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Command#getService()
 	 * @see #getCommand()
@@ -11101,9 +11335,10 @@ public interface RcplPackage extends EPackage {
 	EReference getCommand_Service();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Commands <em>Commands</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the meta object for class
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Commands <em>Commands</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Commands</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Commands
 	 * @generated
@@ -11112,8 +11347,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Commands#getChildren <em>Children</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Children</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Commands#getChildren()
 	 * @see #getCommands()
@@ -11122,9 +11356,10 @@ public interface RcplPackage extends EPackage {
 	EReference getCommands_Children();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Services <em>Services</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the meta object for class
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Services <em>Services</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Services</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Services
 	 * @generated
@@ -11133,8 +11368,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Services#getChildren <em>Children</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Children</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Services#getChildren()
 	 * @see #getServices()
@@ -11143,9 +11377,10 @@ public interface RcplPackage extends EPackage {
 	EReference getServices_Children();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Service <em>Service</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the meta object for class
+	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Service <em>Service</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Service</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Service
 	 * @generated
@@ -11154,8 +11389,7 @@ public interface RcplPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Service#getClassName <em>Class Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Class Name</em>'.
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Service#getClassName()
 	 * @see #getService()
@@ -11376,8 +11610,7 @@ public interface RcplPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Preferences</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference RCPL__PREFERENCES = eINSTANCE.getRCPL_Preferences();
@@ -11496,16 +11729,14 @@ public interface RcplPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Commands</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference RCPL__COMMANDS = eINSTANCE.getRCPL_Commands();
 
 		/**
 		 * The meta object literal for the '<em><b>Services</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference RCPL__SERVICES = eINSTANCE.getRCPL_Services();
@@ -12034,56 +12265,50 @@ public interface RcplPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>System</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TOOL__SYSTEM = eINSTANCE.getAbstractTool_System();
 
 		/**
-		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TOOL__URL = eINSTANCE.getAbstractTool_Url();
 
 		/**
 		 * The meta object literal for the '<em><b>Toggle Group</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TOOL__TOGGLE_GROUP = eINSTANCE.getAbstractTool_ToggleGroup();
 
 		/**
 		 * The meta object literal for the '<em><b>Expand Tool Group</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ABSTRACT_TOOL__EXPAND_TOOL_GROUP = eINSTANCE.getAbstractTool_ExpandToolGroup();
 
 		/**
 		 * The meta object literal for the '<em><b>HGrow</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TOOL__HGROW = eINSTANCE.getAbstractTool_HGrow();
 
 		/**
 		 * The meta object literal for the '<em><b>VGrow</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TOOL__VGROW = eINSTANCE.getAbstractTool_VGrow();
 
 		/**
 		 * The meta object literal for the '<em><b>Width Percent</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TOOL__WIDTH_PERCENT = eINSTANCE.getAbstractTool_WidthPercent();
@@ -12129,8 +12354,7 @@ public interface RcplPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Group Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute TOOL_GROUP__GROUP_TYPE = eINSTANCE.getToolGroup_GroupType();
@@ -12904,9 +13128,17 @@ public interface RcplPackage extends EPackage {
 		EReference KEY_VALUES__KEYVALUES = eINSTANCE.getKeyValues_Keyvalues();
 
 		/**
+		 * The meta object literal for the '<em><b>Keyvalues Folder</b></em>'
+		 * containment reference list feature. <!-- begin-user-doc --> <!-- end-user-doc
+		 * -->
+		 * 
+		 * @generated
+		 */
+		EReference KEY_VALUES__KEYVALUES_FOLDER = eINSTANCE.getKeyValues_KeyvaluesFolder();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl <em>Command</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl
 		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getCommand()
 		 * @generated
@@ -12915,16 +13147,14 @@ public interface RcplPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Service</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference COMMAND__SERVICE = eINSTANCE.getCommand_Service();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl <em>Commands</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl
 		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getCommands()
 		 * @generated
@@ -12933,16 +13163,14 @@ public interface RcplPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference COMMANDS__CHILDREN = eINSTANCE.getCommands_Children();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServicesImpl <em>Services</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServicesImpl
 		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getServices()
 		 * @generated
@@ -12951,16 +13179,14 @@ public interface RcplPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SERVICES__CHILDREN = eINSTANCE.getServices_Children();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServiceImpl <em>Service</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.ServiceImpl
 		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getService()
 		 * @generated
@@ -12969,8 +13195,7 @@ public interface RcplPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute SERVICE__CLASS_NAME = eINSTANCE.getService_ClassName();

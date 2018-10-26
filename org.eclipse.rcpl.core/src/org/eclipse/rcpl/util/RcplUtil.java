@@ -1037,9 +1037,14 @@ public class RcplUtil {
 		return ButtonType.OK.equals(result);
 	}
 
-	public static File openDocumentWithFileDialog(boolean word, boolean spreadsheet, boolean presentation, boolean all,
-			boolean save) {
+	public static File openDocumentWithFileDialog(String workingDir, boolean word, boolean spreadsheet,
+			boolean presentation, boolean all, boolean save) {
 		final FileChooser fileChooser = new FileChooser();
+
+		if (workingDir != null && workingDir.length() > 0) {
+			fileChooser.setInitialDirectory(new File(workingDir));
+		}
+
 		if (word) {
 			FileChooser.ExtensionFilter wordExtFilter = new FileChooser.ExtensionFilter("Word Documents", "*.docx");
 			fileChooser.getExtensionFilters().add(wordExtFilter);

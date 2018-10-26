@@ -14,17 +14,17 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
  */
 public interface ISession {
 
-	void deleteAllValues(String matchKey);
+	void deleteAllValues(String path, String matchKey);
 
-	List<String> loadKeys(String matchKey);
+	List<String> loadKeys(String path, String matchKey);
 
-	void setMaxKeyValues(KeyValueKey matchKey, int max);
+	void setMaxKeyValues(String path, EnKeyValue matchKey, int max);
 
-	String getValue(String key);
+	String getValue(String path, String key);
 
-	String getValue(String key, String defaultValue);
+	String getValue(String path, String key, String defaultValue);
 
-	void putValue(String key, String value);
+	void putValue(String path, String key, String value);
 
 	CDOSession getSession();
 

@@ -3,9 +3,6 @@
 package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
-
 import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
@@ -23,7 +20,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
  *
  * @generated
  */
-public class KeyValueImpl extends CDOObjectImpl implements KeyValue {
+public class KeyValueImpl extends LayoutableImpl implements KeyValue {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41,16 +38,6 @@ public class KeyValueImpl extends CDOObjectImpl implements KeyValue {
 	@Override
 	protected EClass eStaticClass() {
 		return RcplPackage.Literals.KEY_VALUE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**

@@ -56,8 +56,9 @@ import org.eclipse.rcpl.internal.tools.TextFieldTool;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.internal.tools.WebBrowserTool;
 import org.eclipse.rcpl.libs.db.H2DB;
+import org.eclipse.rcpl.model.EnKeyValue;
+import org.eclipse.rcpl.model.EnKeyValueFolder;
 import org.eclipse.rcpl.model.IImage;
-import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
@@ -634,12 +635,14 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void addRecentDocument(File file, boolean commit) {
 
-		for (String key : RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name())) {
-			if (file.getAbsolutePath().equals(RcplSession.getDefault().getValue(key))) {
+		for (String key : RcplSession.getDefault().loadKeys(EnKeyValueFolder.HISTORY.name(),
+				EnKeyValue.RECENT_DOCUMENT.name())) {
+			if (file.getAbsolutePath()
+					.equals(RcplSession.getDefault().getValue(EnKeyValueFolder.HISTORY.name(), key))) {
 				return;
 			}
 		}
-		Rcpl.set(getEditor(), KeyValueKey.RECENT_DOCUMENT, file.getAbsolutePath());
+		Rcpl.set(EnKeyValue.RECENT_DOCUMENT, file.getAbsolutePath());
 		RcplSession.getDefault().commit();
 	}
 
@@ -652,19 +655,19 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void closeApplication() {
 
-		Rcpl.set(KeyValueKey.LOGIN_WINDOW_X, getApplicationStarter().getRcplApplicationProvider().getLoginWindowX());
-		Rcpl.set(KeyValueKey.LOGIN_WINDOW_Y, getApplicationStarter().getRcplApplicationProvider().getLoginWindowY());
+		Rcpl.set(EnKeyValue.LOGIN_WINDOW_X, getApplicationStarter().getRcplApplicationProvider().getLoginWindowX());
+		Rcpl.set(EnKeyValue.LOGIN_WINDOW_Y, getApplicationStarter().getRcplApplicationProvider().getLoginWindowY());
 
-		Rcpl.set(KeyValueKey.WINDOW_X, getStage().getX());
-		Rcpl.set(KeyValueKey.WINDOW_Y, getStage().getY());
-		Rcpl.set(KeyValueKey.WINDOW_WIDTH, getStage().getWidth());
-		Rcpl.set(KeyValueKey.WINDOW_HEIGHT, getStage().getHeight());
+		Rcpl.set(EnKeyValue.WINDOW_X, getStage().getX());
+		Rcpl.set(EnKeyValue.WINDOW_Y, getStage().getY());
+		Rcpl.set(EnKeyValue.WINDOW_WIDTH, getStage().getWidth());
+		Rcpl.set(EnKeyValue.WINDOW_HEIGHT, getStage().getHeight());
 
-		Rcpl.set(KeyValueKey.SIDEBAR_LEFT, sideBarLeft);
+		Rcpl.set(EnKeyValue.SIDEBAR_LEFT, sideBarLeft);
 
-		Rcpl.deleteAllValues(KeyValueKey.LAST_OPENED_DOCUMENT);
+		Rcpl.deleteAllValues(EnKeyValueFolder.HISTORY.name(), EnKeyValue.LAST_OPENED_DOCUMENT);
 
-		Rcpl.set(KeyValueKey.TOP_TOOLBAR_COLLAPSED, topBarCollapseButton.isSelected());
+		Rcpl.set(EnKeyValue.TOP_TOOLBAR_COLLAPSED, topBarCollapseButton.isSelected());
 
 		for (Tab tab : tabPane.getTabs()) {
 			TabInfo ti = getTabInfo(tab);
@@ -672,7 +675,7 @@ public class RcplUic implements IRcplUic {
 				IEditor editor = ti.getEditor();
 				if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
 					String fn = editor.getDocument().getFile().getAbsolutePath();
-					Rcpl.set(editor, KeyValueKey.LAST_OPENED_DOCUMENT, fn);
+					Rcpl.set(editor, EnKeyValue.LAST_OPENED_DOCUMENT, fn);
 				}
 			}
 		}
@@ -784,16 +787,20 @@ public class RcplUic implements IRcplUic {
 //		RcplSession.getDefault().setMaxKeyValues(KeyValueKey.RECENT_DOCUMENT, 10);
 //		RcplSession.getDefault().setMaxKeyValues(KeyValueKey.LAST_OPENED_DOCUMENT, 10);
 
-		List<String> recentDocumentKeys = RcplSession.getDefault().loadKeys(KeyValueKey.RECENT_DOCUMENT.name());
-		List<String> lastDocumentKeys = RcplSession.getDefault().loadKeys(KeyValueKey.LAST_OPENED_DOCUMENT.name());
+		List<String> recentDocumentKeys = RcplSession.getDefault()
+				.loadKeys(EnKeyValue.RECENT_DOCUMENT.getFolder().name(), EnKeyValue.RECENT_DOCUMENT.name());
+		List<String> lastDocumentKeys = RcplSession.getDefault()
+				.loadKeys(EnKeyValue.LAST_OPENED_DOCUMENT.getFolder().name(), EnKeyValue.LAST_OPENED_DOCUMENT.name());
 
 		for (int i = recentDocumentKeys.size() - 1; i >= 0; i--) {
-			File file = new File(RcplSession.getDefault().getValue(recentDocumentKeys.get(i)));
+			File file = new File(RcplSession.getDefault().getValue(EnKeyValue.RECENT_DOCUMENT.getFolder().name(),
+					recentDocumentKeys.get(i)));
 			recentlyOpenedDocuments.add(file);
 		}
 
 		for (int i = 0; i < lastDocumentKeys.size(); i++) {
-			File file = new File(RcplSession.getDefault().getValue(lastDocumentKeys.get(i)));
+			File file = new File(RcplSession.getDefault().getValue(EnKeyValue.RECENT_DOCUMENT.getFolder().name(),
+					lastDocumentKeys.get(i)));
 			lastOpenedDocuments.add(file);
 		}
 
@@ -824,7 +831,7 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			protected void execute() {
-				sideBarLeft = !Rcpl.get(KeyValueKey.SIDEBAR_LEFT, true);
+				sideBarLeft = !Rcpl.get(EnKeyValue.SIDEBAR_LEFT, true);
 				onChangeSideBar();
 				showHomePage(HomePageType.OVERVIEW, null);
 			}
@@ -838,7 +845,7 @@ public class RcplUic implements IRcplUic {
 					double scale = computeScale(newValue.doubleValue());
 					Rcpl.UIC.getEditor().setScale(scale);
 					if (oldValue.doubleValue() != 0.0) {
-						Rcpl.set(getEditor(), KeyValueKey.EDITOR_SCALE, newValue.doubleValue());
+						Rcpl.set(getEditor(), EnKeyValue.EDITOR_SCALE, newValue.doubleValue());
 					}
 					zoomLabel.setText("   " + (int) (scale * 100) + " %");
 				}
@@ -872,7 +879,7 @@ public class RcplUic implements IRcplUic {
 				@Override
 				public void run() {
 
-					topBarCollapseButton.setSelected(Rcpl.get(KeyValueKey.TOP_TOOLBAR_COLLAPSED, false));
+					topBarCollapseButton.setSelected(Rcpl.get(EnKeyValue.TOP_TOOLBAR_COLLAPSED, false));
 
 					File file = lastOpenedDocuments.get(lastOpenedDocuments.size() - 1);
 					final boolean[] done = new boolean[1];
@@ -898,7 +905,7 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				if (!inPageLayout) {
-					if (Rcpl.get(getEditor(), KeyValueKey.PAGE_COLUMNS, 0) == -1) {
+					if (Rcpl.get(getEditor(), EnKeyValue.PAGE_COLUMNS, 0) == -1) {
 						inPageLayout = true;
 						onMultiPages();
 						inPageLayout = false;
@@ -921,7 +928,7 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void run() {
 				try {
-					String style = Rcpl.get(KeyValueKey.THEME, null);
+					String style = Rcpl.get(EnKeyValue.THEME, null);
 					if (THEME_MSOFFICE.equals(style)) {
 						themeDefaultButton.setSelected(true);
 						themeDefaultButton.requestFocus();
@@ -1643,7 +1650,7 @@ public class RcplUic implements IRcplUic {
 					cssStylesheets.put(newStyleKey, newStyleSheet);
 					removeAllStyles();
 					addStyles(cssStylesheets.get(newStyleKey));
-					Rcpl.set(KeyValueKey.THEME, newStyleKey);
+					Rcpl.set(EnKeyValue.THEME, newStyleKey);
 				} catch (MalformedURLException e) {
 
 				}
@@ -1655,25 +1662,25 @@ public class RcplUic implements IRcplUic {
 	@FXML
 	public void handleThemeDark(ActionEvent event) {
 		createStyleSheetTheme(new ColorName(Color.rgb(100, 100, 100), THEME_DARK));
-		Rcpl.set(KeyValueKey.THEME, THEME_DARK);
+		Rcpl.set(EnKeyValue.THEME, THEME_DARK);
 	}
 
 	@FXML
 	public void handleThemeDefault(ActionEvent event) {
 		createStyleSheetTheme(new ColorName(Color.rgb(172, 208, 238), THEME_MSOFFICE));
-		Rcpl.set(KeyValueKey.THEME, THEME_MSOFFICE);
+		Rcpl.set(EnKeyValue.THEME, THEME_MSOFFICE);
 	}
 
 	@FXML
 	public void handleThemeSilver(ActionEvent event) {
 		createStyleSheetTheme(new ColorName(Color.WHITESMOKE, THEME_SILVER));
-		Rcpl.set(KeyValueKey.THEME, THEME_SILVER);
+		Rcpl.set(EnKeyValue.THEME, THEME_SILVER);
 	}
 
 	@FXML
 	public void handleThemeWindows7(ActionEvent event) {
 		createStyleSheetTheme(new ColorName(Color.AZURE, THEME_WINDOWS7));
-		Rcpl.set(KeyValueKey.THEME, THEME_WINDOWS7);
+		Rcpl.set(EnKeyValue.THEME, THEME_WINDOWS7);
 	}
 
 	private void addStyles(String... styles) {
@@ -1816,7 +1823,7 @@ public class RcplUic implements IRcplUic {
 	@FXML
 	public void onMultiPages() {
 		if (getEditor() != null) {
-			Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, -1);
+			Rcpl.set(getEditor(), EnKeyValue.PAGE_COLUMNS, -1);
 			getEditor().setPageColumns(-1);
 		}
 	}
@@ -1824,7 +1831,7 @@ public class RcplUic implements IRcplUic {
 	@FXML
 	public void onOnePage() {
 		if (getEditor() != null) {
-			Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, 1);
+			Rcpl.set(getEditor(), EnKeyValue.PAGE_COLUMNS, 1);
 			getEditor().setPageColumns(1);
 		}
 	}
@@ -1832,7 +1839,7 @@ public class RcplUic implements IRcplUic {
 	@FXML
 	public void onTwoPages() {
 		if (getEditor() != null) {
-			Rcpl.set(getEditor(), KeyValueKey.PAGE_COLUMNS, 2);
+			Rcpl.set(getEditor(), EnKeyValue.PAGE_COLUMNS, 2);
 			getEditor().setPageColumns(2);
 		}
 	}
@@ -2461,6 +2468,14 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public TextFieldTool findTextFieldTool(String id) {
 		return (TextFieldTool) Rcpl.UIC.findTool(ToolType.TEXTFIELD, id);
+	}
+
+	protected void saveWorkingDir(String dir) {
+		Rcpl.set(EnKeyValue.WORKING_DIR, dir);
+	}
+
+	protected String getWorkingDir() {
+		return Rcpl.get(EnKeyValue.WORKING_DIR);
 	}
 
 }

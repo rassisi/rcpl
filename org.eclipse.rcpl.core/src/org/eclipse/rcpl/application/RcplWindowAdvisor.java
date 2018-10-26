@@ -16,7 +16,7 @@ import org.eclipse.rcpl.IRcplAddon;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.KeyValueKey;
+import org.eclipse.rcpl.model.EnKeyValue;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -61,7 +61,7 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 
 			@Override
 			public void run() {
-				if (Rcpl.get(KeyValueKey.WINDOW_WIDTH) == null) {
+				if (Rcpl.get(EnKeyValue.WINDOW_WIDTH) == null) {
 					List<Screen> screens = Screen.getScreensForRectangle(100, 100, 100, 100);
 					Rectangle2D bounds = screens.get(0).getVisualBounds();
 					applicationProvider.getPrimaryStage().setWidth(bounds.getWidth() * 0.75);
@@ -69,14 +69,14 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 					applicationProvider.getPrimaryStage().centerOnScreen();
 					initialStageX = applicationProvider.getPrimaryStage().getX();
 					initialStageY = applicationProvider.getPrimaryStage().getY();
-					Rcpl.set(KeyValueKey.WINDOW_X, initialStageX);
-					Rcpl.set(KeyValueKey.WINDOW_Y, initialStageY);
+					Rcpl.set(EnKeyValue.WINDOW_X, initialStageX);
+					Rcpl.set(EnKeyValue.WINDOW_Y, initialStageY);
 
 				} else {
-					applicationProvider.getPrimaryStage().setWidth(Rcpl.get(KeyValueKey.WINDOW_WIDTH, 1000.0));
-					applicationProvider.getPrimaryStage().setHeight(Rcpl.get(KeyValueKey.WINDOW_HEIGHT, 800.0));
-					initialStageX = Rcpl.get(KeyValueKey.WINDOW_X, -1.0);
-					initialStageY = Rcpl.get(KeyValueKey.WINDOW_Y, -1.0);
+					applicationProvider.getPrimaryStage().setWidth(Rcpl.get(EnKeyValue.WINDOW_WIDTH, 1000.0));
+					applicationProvider.getPrimaryStage().setHeight(Rcpl.get(EnKeyValue.WINDOW_HEIGHT, 800.0));
+					initialStageX = Rcpl.get(EnKeyValue.WINDOW_X, -1.0);
+					initialStageY = Rcpl.get(EnKeyValue.WINDOW_Y, -1.0);
 
 					if (initialStageX > Rcpl.getActualMonitor().getPixelWidth() - 100) {
 						initialStageX = Rcpl.getActualMonitor().getPixelWidth() - 101;

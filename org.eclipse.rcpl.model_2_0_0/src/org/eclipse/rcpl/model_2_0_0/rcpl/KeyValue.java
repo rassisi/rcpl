@@ -2,8 +2,6 @@
  */
 package org.eclipse.rcpl.model_2_0_0.rcpl;
 
-import org.eclipse.emf.cdo.CDOObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Key Value</b></em>'.
@@ -19,10 +17,9 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getKeyValue()
  * @model
- * @extends CDOObject
  * @generated
  */
-public interface KeyValue extends CDOObject {
+public interface KeyValue extends Layoutable {
 	/**
 	 * Returns the value of the '<em><b>Key</b></em>' attribute.
 	 * <!-- begin-user-doc -->

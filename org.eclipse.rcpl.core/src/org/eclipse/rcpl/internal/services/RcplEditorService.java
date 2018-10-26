@@ -15,7 +15,7 @@ import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.IPage;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.KeyValueKey;
+import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
@@ -64,14 +64,14 @@ public class RcplEditorService extends RcplService {
 			for (IPage page : Rcpl.UIC.getEditor().getPages()) {
 				page.getHLineal().show(selected);
 			}
-			Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SHOW_H_LINEAL, selected);
+			Rcpl.set(Rcpl.UIC.getEditor(), EnKeyValue.SHOW_H_LINEAL, selected);
 			return true;
 		case showVLineal:
 			selected = command.getTool().isSelected();
 			for (IPage page : Rcpl.UIC.getEditor().getPages()) {
 				page.getVLineal().show(selected);
 			}
-			Rcpl.set(Rcpl.UIC.getEditor(), KeyValueKey.SHOW_V_LINEAL, selected);
+			Rcpl.set(Rcpl.UIC.getEditor(), EnKeyValue.SHOW_V_LINEAL, selected);
 			return true;
 		default:
 			break;

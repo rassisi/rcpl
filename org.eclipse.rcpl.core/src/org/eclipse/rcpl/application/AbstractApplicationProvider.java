@@ -27,7 +27,7 @@ import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.impl.RcplMonitor;
 import org.eclipse.rcpl.internal.services.RcplService;
-import org.eclipse.rcpl.model.KeyValueKey;
+import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
@@ -296,8 +296,8 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 		getApplicationWindow().fadeIn(0.5);
 
-		double initialStageX = Rcpl.get(KeyValueKey.LOGIN_WINDOW_X, -1.0);
-		double initialStageY = Rcpl.get(KeyValueKey.LOGIN_WINDOW_Y, -1.0);
+		double initialStageX = Rcpl.get(EnKeyValue.LOGIN_WINDOW_X, -1.0);
+		double initialStageY = Rcpl.get(EnKeyValue.LOGIN_WINDOW_Y, -1.0);
 
 		if (initialStageX > Rcpl.getActualMonitor().getPixelWidth() - 100) {
 			initialStageX = Rcpl.getActualMonitor().getPixelWidth() - 101;

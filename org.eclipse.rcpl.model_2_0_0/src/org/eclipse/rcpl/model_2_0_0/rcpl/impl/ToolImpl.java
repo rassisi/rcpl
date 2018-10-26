@@ -13,8 +13,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolImpl#getFormat
- * <em>Format</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ToolImpl#getFormat <em>Format</em>}</li>
  * </ul>
  *
  * @generated
@@ -22,7 +21,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 public class ToolImpl extends AbstractToolImpl implements Tool {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ToolImpl() {
@@ -31,7 +29,6 @@ public class ToolImpl extends AbstractToolImpl implements Tool {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -41,16 +38,14 @@ public class ToolImpl extends AbstractToolImpl implements Tool {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getFormat() {
-		return (String) eGet(RcplPackage.Literals.TOOL__FORMAT, true);
+		return (String)eGet(RcplPackage.Literals.TOOL__FORMAT, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFormat(String newFormat) {

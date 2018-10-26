@@ -2,39 +2,32 @@
  */
 package org.eclipse.rcpl.model_2_0_0.rcpl.provider;
 
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues;
-import org.eclipse.rcpl.model_2_0_0.rcpl.Layoutable;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues} object. <!--
- * begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
-public class KeyValuesItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class KeyValuesItemProvider 
+	extends LayoutableItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public KeyValuesItemProvider(AdapterFactory adapterFactory) {
@@ -42,9 +35,9 @@ public class KeyValuesItemProvider extends ItemProviderAdapter implements IEditi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,7 +53,8 @@ public class KeyValuesItemProvider extends ItemProviderAdapter implements IEditi
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -68,12 +62,14 @@ public class KeyValuesItemProvider extends ItemProviderAdapter implements IEditi
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(RcplPackage.Literals.KEY_VALUES__KEYVALUES);
+			childrenFeatures.add(RcplPackage.Literals.KEY_VALUES__KEYVALUES_FOLDER);
 		}
 		return childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -85,17 +81,9 @@ public class KeyValuesItemProvider extends ItemProviderAdapter implements IEditi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean hasChildren(Object object) {
-		return hasChildren(object, true);
-	}
-
-	/**
 	 * This returns KeyValues.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -104,20 +92,25 @@ public class KeyValuesItemProvider extends ItemProviderAdapter implements IEditi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc -->
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((Layoutable) object).getName();
+		String label = ((KeyValues)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_KeyValues_type") :
+			getString("_UI_KeyValues_type") + " " + label;
 	}
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -126,6 +119,7 @@ public class KeyValuesItemProvider extends ItemProviderAdapter implements IEditi
 
 		switch (notification.getFeatureID(KeyValues.class)) {
 			case RcplPackage.KEY_VALUES__KEYVALUES:
+			case RcplPackage.KEY_VALUES__KEYVALUES_FOLDER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -147,17 +141,11 @@ public class KeyValuesItemProvider extends ItemProviderAdapter implements IEditi
 			(createChildParameter
 				(RcplPackage.Literals.KEY_VALUES__KEYVALUES,
 				 RcplFactory.eINSTANCE.createKeyValue()));
-	}
 
-	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return RCPLEditPlugin.INSTANCE;
+		newChildDescriptors.add
+			(createChildParameter
+				(RcplPackage.Literals.KEY_VALUES__KEYVALUES_FOLDER,
+				 RcplFactory.eINSTANCE.createKeyValues()));
 	}
 
 }

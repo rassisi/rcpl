@@ -2,8 +2,6 @@
  */
 package org.eclipse.rcpl.model_2_0_0.rcpl.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValue;
@@ -15,15 +13,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class KeyValueTest extends TestCase {
-
-	/**
-	 * The fixture for this Key Value test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected KeyValue fixture = null;
+public class KeyValueTest extends LayoutableTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,23 +35,14 @@ public class KeyValueTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Key Value test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(KeyValue fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Key Value test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected KeyValue getFixture() {
-		return fixture;
+		return (KeyValue)fixture;
 	}
 
 	/**

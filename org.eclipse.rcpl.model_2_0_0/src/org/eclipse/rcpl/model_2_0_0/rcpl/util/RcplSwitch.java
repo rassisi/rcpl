@@ -397,12 +397,14 @@ public class RcplSwitch<T> extends Switch<T> {
 			case RcplPackage.KEY_VALUE: {
 				KeyValue keyValue = (KeyValue)theEObject;
 				T result = caseKeyValue(keyValue);
+				if (result == null) result = caseLayoutable(keyValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RcplPackage.KEY_VALUES: {
 				KeyValues keyValues = (KeyValues)theEObject;
 				T result = caseKeyValues(keyValues);
+				if (result == null) result = caseLayoutable(keyValues);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

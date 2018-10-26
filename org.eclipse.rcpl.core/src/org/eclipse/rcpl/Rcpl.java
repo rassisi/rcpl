@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.rcpl.impl.RcplMonitor;
+import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.IResources;
-import org.eclipse.rcpl.model.KeyValueKey;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
@@ -707,7 +707,7 @@ public class Rcpl {
 
 	// ---------- getValues
 
-	public static double get(IEditor editor, KeyValueKey key, double defaultValue) {
+	public static double get(IEditor editor, EnKeyValue key, double defaultValue) {
 		String value = get(editor, key, "" + defaultValue);
 		try {
 			return Double.valueOf(value).doubleValue();
@@ -716,7 +716,7 @@ public class Rcpl {
 		}
 	}
 
-	public static double get(KeyValueKey key, double defaultValue) {
+	public static double get(EnKeyValue key, double defaultValue) {
 		String value = get(key, "" + defaultValue);
 		try {
 			return Double.valueOf(value).doubleValue();
@@ -725,7 +725,7 @@ public class Rcpl {
 		}
 	}
 
-	public static int get(KeyValueKey key, int defaultValue) {
+	public static int get(EnKeyValue key, int defaultValue) {
 		String value = get(key, "" + defaultValue);
 		try {
 			return Integer.valueOf(value).intValue();
@@ -734,7 +734,7 @@ public class Rcpl {
 		}
 	}
 
-	public static int get(IEditor editor, KeyValueKey key, int defaultValue) {
+	public static int get(IEditor editor, EnKeyValue key, int defaultValue) {
 		String value = get(editor, key, "" + defaultValue);
 		try {
 			return Integer.valueOf(value).intValue();
@@ -743,7 +743,7 @@ public class Rcpl {
 		}
 	}
 
-	public static boolean get(KeyValueKey key, boolean defaultValue) {
+	public static boolean get(EnKeyValue key, boolean defaultValue) {
 		String value = get(key, "" + defaultValue);
 		try {
 			return Boolean.valueOf(value).booleanValue();
@@ -752,7 +752,7 @@ public class Rcpl {
 		}
 	}
 
-	public static boolean get(IEditor editor, KeyValueKey key, boolean defaultValue) {
+	public static boolean get(IEditor editor, EnKeyValue key, boolean defaultValue) {
 		String value = get(editor, key, "" + defaultValue);
 		try {
 			return Boolean.valueOf(value).booleanValue();
@@ -761,10 +761,11 @@ public class Rcpl {
 		}
 	}
 
-	public static String get(IEditor editor, KeyValueKey key, String defaultValue) {
+	public static String get(IEditor editor, EnKeyValue key, String defaultValue) {
 		String value = null;
 		if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
-			value = RcplSession.getDefault().getValue(key.name() + editor.getDocument().getFile().getName());
+			String path = createKeyValuePath(key, editor);
+			value = RcplSession.getDefault().getValue(path, key.name());
 		}
 		if (value == null) {
 			value = defaultValue;
@@ -772,7 +773,7 @@ public class Rcpl {
 		return value;
 	}
 
-	public static String get(KeyValueKey key, String defaultValue) {
+	public static String get(EnKeyValue key, String defaultValue) {
 		String value = get(key);
 		if (value == null) {
 			value = defaultValue;
@@ -780,51 +781,59 @@ public class Rcpl {
 		return value;
 	}
 
-	public static String get(KeyValueKey key) {
-		return RcplSession.getDefault().getValue(key.name());
+	public static String get(EnKeyValue key) {
+		return RcplSession.getDefault().getValue(createKeyValuePath(key), key.name());
 	}
 
 	// ---------- set
 
-	public static void set(IEditor editor, KeyValueKey key, String value) {
+	public static void set(IEditor editor, EnKeyValue key, String value) {
 		if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
-			RcplSession.getDefault().putValue(key.name() + editor.getDocument().getFile().getName(),
-					value == null ? "" : value);
+			String path = createKeyValuePath(key, editor);
+			RcplSession.getDefault().putValue(path, key.name(), value == null ? "" : value);
 		}
 	}
 
-	public static void set(KeyValueKey key, int value) {
+	public static void set(EnKeyValue key, int value) {
 		set(key, "" + value);
 	}
 
-	public static void set(IEditor editor, KeyValueKey key, int value) {
+	public static void set(IEditor editor, EnKeyValue key, int value) {
 		set(editor, key, "" + value);
 	}
 
-	public static void set(IEditor editor, KeyValueKey key, double value) {
+	public static void set(IEditor editor, EnKeyValue key, double value) {
 		set(editor, key, "" + value);
 	}
 
-	public static void set(KeyValueKey key, double value) {
+	public static void set(EnKeyValue key, double value) {
 		set(key, "" + value);
 	}
 
-	public static void set(KeyValueKey key, boolean value) {
+	public static void set(EnKeyValue key, boolean value) {
 		set(key, "" + value);
 	}
 
-	public static void set(IEditor editor, KeyValueKey key, boolean value) {
+	public static void set(IEditor editor, EnKeyValue key, boolean value) {
 		set(editor, key, "" + value);
 	}
 
-	public static void set(KeyValueKey key, String value) {
-		RcplSession.getDefault().putValue(key.name(), value);
+	public static void set(EnKeyValue key, String value) {
+		RcplSession.getDefault().putValue(key.getFolder().name() + "/", key.name(), value);
+	}
+
+	private static String createKeyValuePath(EnKeyValue key) {
+		return key.getFolder().name();
+	}
+
+	private static String createKeyValuePath(EnKeyValue key, IEditor editor) {
+		return key.getFolder() + "/" + editor.getDocument().getFile().getName();
 	}
 
 	// ---------- delete
 
-	public static void deleteAllValues(KeyValueKey key) {
-		RcplSession.getDefault().deleteAllValues(key.name());
+	public static void deleteAllValues(String path, EnKeyValue key) {
+		RcplSession.getDefault().deleteAllValues(path, key.name());
 	}
 
 	public static RCPL getRcpl() {

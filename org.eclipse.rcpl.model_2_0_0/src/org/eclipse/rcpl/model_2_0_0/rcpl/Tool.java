@@ -13,8 +13,7 @@ import java.util.List;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool#getFormat
- * <em>Format</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool#getFormat <em>Format</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getTool()
@@ -40,10 +39,8 @@ public interface Tool extends AbstractTool {
 	String getFormat();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool#getFormat <em>Format</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Tool#getFormat <em>Format</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Format</em>' attribute.
 	 * @see #getFormat()
 	 * @generated
