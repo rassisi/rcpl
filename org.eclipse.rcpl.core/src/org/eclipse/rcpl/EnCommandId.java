@@ -10,7 +10,7 @@ public enum EnCommandId {
 
 	NEW_WORD_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
 
-	NEW_SpreadSheet_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
+	NEW_SPREADSHEET_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
 
 	NEW_PRESENTATION_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
 

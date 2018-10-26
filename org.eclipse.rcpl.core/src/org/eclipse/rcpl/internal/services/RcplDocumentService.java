@@ -34,7 +34,7 @@ public class RcplDocumentService extends RcplService {
 		case NEW_PRESENTATION_DOCUMENT:
 			Rcpl.UIC.openTemplateDocument("blank_presentation.pptx", " New Presentation");
 			break;
-		case NEW_SpreadSheet_DOCUMENT:
+		case NEW_SPREADSHEET_DOCUMENT:
 			Rcpl.UIC.openTemplateDocument("blank_workbook.xlsx", " New Spreadsheet");
 			break;
 		default:
