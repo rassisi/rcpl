@@ -130,7 +130,7 @@ public enum EnCommandId {
 
 	save(EnServiceId.EDITOR_SERVICE, null, "Save", "Save", null),
 
-	save_as(EnServiceId.EDITOR_SERVICE, null, "Save", "Save As...", null),
+	save_as(EnServiceId.EDITOR_SERVICE, null, null, null, null),
 
 	OPEN_DOCUMENT(EnServiceId.EDITOR_SERVICE, "open", "Open Document", "Open Document...", null),
 

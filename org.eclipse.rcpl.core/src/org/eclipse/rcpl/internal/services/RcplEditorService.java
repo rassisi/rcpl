@@ -38,10 +38,10 @@ public class RcplEditorService extends RcplService {
 			Rcpl.UIC.openLastDocument();
 			break;
 		case save:
-			// Rcpl.UIC.save();
+			Rcpl.UIC.save();
 			break;
 		case save_as:
-			// Rcpl.UIC.saveAs();
+			Rcpl.UIC.saveAs();
 			break;
 		case test_layout:
 			IParagraph sel = Rcpl.UIC.getEditor().getActiveParagraph();

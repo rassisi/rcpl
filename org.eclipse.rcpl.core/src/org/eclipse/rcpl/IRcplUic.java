@@ -28,6 +28,10 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	void save();
+
+	void saveAs();
+
 	ITool findTool(ToolType type);
 
 	ITool findTool(ToolType type, String id);

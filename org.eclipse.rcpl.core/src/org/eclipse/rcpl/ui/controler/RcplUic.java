@@ -2478,4 +2478,12 @@ public class RcplUic implements IRcplUic {
 		return Rcpl.get(EnKeyValue.WORKING_DIR);
 	}
 
+	@Override
+	public void save() {
+	}
+
+	@Override
+	public void saveAs() {
+	}
+
 }

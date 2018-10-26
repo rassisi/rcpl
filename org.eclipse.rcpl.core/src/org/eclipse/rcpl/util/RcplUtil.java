@@ -1037,7 +1037,17 @@ public class RcplUtil {
 		return ButtonType.OK.equals(result);
 	}
 
-	public static File openDocumentWithFileDialog(String workingDir, boolean word, boolean spreadsheet,
+	public static File openDocumentFileDialog(String workingDir, boolean word, boolean spreadsheet,
+			boolean presentation, boolean all) {
+		return openDocumentWithFileDialog(workingDir, word, spreadsheet, presentation, all, false);
+	}
+
+	public static File openSaveFileDialog(String workingDir, boolean word, boolean spreadsheet, boolean presentation,
+			boolean all) {
+		return openDocumentWithFileDialog(workingDir, word, spreadsheet, presentation, all, true);
+	}
+
+	private static File openDocumentWithFileDialog(String workingDir, boolean word, boolean spreadsheet,
 			boolean presentation, boolean all, boolean save) {
 		final FileChooser fileChooser = new FileChooser();
 

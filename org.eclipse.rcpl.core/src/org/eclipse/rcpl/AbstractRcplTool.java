@@ -253,13 +253,13 @@ public abstract class AbstractRcplTool<T> implements ITool {
 	@Override
 	public String getImageName() {
 		String imageName = getModel().getImage();
-		if (imageName == null) {
-			EnCommandId ci = EnCommandId.findCommandId(getModel().getId());
-			if (ci != null) {
-				imageName = ci.getImage();
-			}
-			if (imageName == null) {
-				imageName = getModel().getId();
+		if (imageName == null || imageName.length() == 0) {
+			imageName = getModel().getId();
+			if (imageName == null || imageName.length() == 0) {
+				EnCommandId ci = EnCommandId.findCommandId(getModel().getId());
+				if (ci != null) {
+					imageName = ci.getImage();
+				}
 			}
 			return imageName;
 		}
