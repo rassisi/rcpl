@@ -44,7 +44,7 @@ public enum EnCommandId {
 
 	align_text_right(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Right", null),
 
-	align_text_justify(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justify", null),
+	align_text_justified(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
 
 	undo(EnServiceId.COMMAND_SERVICE, null, "Undo", "", null),
 

@@ -274,7 +274,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 				found = true;
 				select = isAlign(event, AlignType.CENTER);
 				break;
-			case align_text_justify:
+			case align_text_justified:
 				select = isAlign(event, AlignType.BOTH);
 				break;
 			case align_text_left:
