@@ -254,6 +254,8 @@ public class RcplSideToolBar implements ISideToolBar {
 					}
 				}
 
+				Rcpl.UIC.sideBarLoaded(perspective);
+
 				// selectFirstGroup(perspective, useCase, toolGroups, false);
 			}
 		});

@@ -28,6 +28,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	void sideBarLoaded(Perspective perspective);
+
 	void save();
 
 	void saveAs();
@@ -39,6 +41,8 @@ public interface IRcplUic {
 	WebBrowserTool findWebBrowserTool(String id);
 
 	ComboBoxTool findComboBoxTool(String id);
+
+	IButton findButtonTool(String id);
 
 	TextFieldTool findTextFieldTool(String id);
 

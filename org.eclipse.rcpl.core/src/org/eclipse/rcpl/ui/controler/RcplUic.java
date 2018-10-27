@@ -2474,6 +2474,11 @@ public class RcplUic implements IRcplUic {
 		return (TextFieldTool) Rcpl.UIC.findTool(ToolType.TEXTFIELD, id);
 	}
 
+	@Override
+	public IButton findButtonTool(String id) {
+		return (IButton) Rcpl.UIC.findTool(ToolType.BUTTON, id);
+	}
+
 	protected void saveWorkingDir(String dir) {
 		Rcpl.set(EnKeyValue.WORKING_DIR, dir);
 	}
@@ -2488,6 +2493,10 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void saveAs() {
+	}
+
+	@Override
+	public void sideBarLoaded(Perspective perspective) {
 	}
 
 }

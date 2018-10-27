@@ -11,22 +11,12 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 import org.eclipse.rcpl.AbstractRcplTool;
+import org.eclipse.rcpl.IWebViewListener;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
-import org.eclipse.rcpl.util.RcplUtil;
-import org.w3c.dom.Document;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -45,9 +35,9 @@ public class WebBrowserTool extends AbstractRcplTool {
 
 	private WebView wv;
 
-	private Document doc;
+//	private Document doc;
 
-	private List<String> htmls = new ArrayList<String>();
+	private List<IWebViewListener> webViewListeners = new ArrayList<IWebViewListener>();
 
 	public WebBrowserTool(Tool tool) {
 		super(tool);
@@ -57,30 +47,55 @@ public class WebBrowserTool extends AbstractRcplTool {
 		wv.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
 			public void changed(ObservableValue ov, State oldState, State newState) {
 				if (newState == Worker.State.SUCCEEDED) {
-					doc = wv.getEngine().getDocument();
 
-					System.out.println("*** DOC LOADED");
+					System.out.println(getLocation());
 
-					try {
-						Transformer transformer = TransformerFactory.newInstance().newTransformer();
-						transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-						transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-						transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-						transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-						transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+					for (IWebViewListener w : webViewListeners) {
+						w.loaded(getLocation());
 
-						final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-						PrintStream ps = new PrintStream(baos, true, "UTF-8");
-						transformer.transform(new DOMSource(doc),
-								new StreamResult(new OutputStreamWriter(ps, "UTF-8")));
-
-						String html = new String(baos.toByteArray());
-						htmls.add(html);
-
-					} catch (Exception ex) {
-						ex.printStackTrace();
 					}
+//					doc = wv.getEngine().getDocument();
+//
+//					System.out.println("*** DOC LOADED");
+//
+//					try {
+//						Transformer transformer = TransformerFactory.newInstance().newTransformer();
+//						transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+//						transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+//						transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+//						transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+//						transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+//
+//						final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//						PrintStream ps = new PrintStream(baos, true, "UTF-8");
+//						transformer.transform(new DOMSource(doc),
+//								new StreamResult(new OutputStreamWriter(ps, "UTF-8")));
+//
+//						String html = new String(baos.toByteArray());
+//						htmls.add(html);
+//
+//					} catch (Exception ex) {
+//						ex.printStackTrace();
+//					}
 				}
+			}
+		});
+
+		wv.getEngine().locationProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+				System.out.println("############# " + newValue);
+
+			}
+		});
+		wv.getEngine().getLoadWorker().valueProperty().addListener(new ChangeListener<Object>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
+
+				System.out.println();
 			}
 		});
 
@@ -99,7 +114,6 @@ public class WebBrowserTool extends AbstractRcplTool {
 	}
 
 	public void showUrl(String url, boolean wait) {
-		htmls.clear();
 		javafx.application.Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -108,15 +122,16 @@ public class WebBrowserTool extends AbstractRcplTool {
 		});
 	}
 
-	public List<String> getHtml() {
-		for (int i = 0; htmls.isEmpty() && i < 100; i++) {
-			RcplUtil.sleep(100);
-		}
-		return htmls;
-	}
-
 	public String getLocation() {
 		return wv.getEngine().getLocation();
+	}
+
+	public void addListener(IWebViewListener listener) {
+		webViewListeners.add(listener);
+	}
+
+	public void removeListener(IWebViewListener listener) {
+		webViewListeners.remove(listener);
 	}
 
 }
