@@ -7,6 +7,16 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 
 public interface IParagraph extends ILayoutObject {
 
+	void removeBullet();
+
+	void setBullet();
+
+	void setBulletNumber(int level, int number);
+
+	boolean hasBulletNumber();
+
+	boolean hasBullet();
+
 	boolean isSelected();
 
 	void setIndentation(double pixel);

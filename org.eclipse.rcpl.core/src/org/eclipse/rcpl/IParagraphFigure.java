@@ -13,6 +13,10 @@ import javafx.scene.text.TextFlow;
  */
 public interface IParagraphFigure extends ILayoutFigure {
 
+	int getBulletNumber();
+
+	void setBulletNumber(int number);
+
 	void updateIndentAndBullets();
 
 	void deactivateAll();
