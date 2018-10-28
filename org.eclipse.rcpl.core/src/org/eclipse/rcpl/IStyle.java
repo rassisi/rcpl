@@ -91,6 +91,8 @@ public interface IStyle {
 
 	boolean isStrikeThrough();
 
+	void setStrikeThrough(IBoolean strikeThrough);
+
 	boolean isSubScript();
 
 	boolean isSuperScript();

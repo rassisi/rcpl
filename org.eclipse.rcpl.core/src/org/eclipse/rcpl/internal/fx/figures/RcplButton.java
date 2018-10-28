@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.rcpl.internal.fx.figures;
 
+import java.util.HashMap;
+
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.AlignType;
 import org.eclipse.rcpl.EnCommandId;
@@ -40,6 +42,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.text.TextAlignment;
 
 /**
  * @author ramin
@@ -252,6 +255,10 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	public boolean update(RcplEvent event) {
 		if (getModel() != null) {
 
+			HashMap<String, Object> map = event.getData();
+
+			TextAlignment alignment = (TextAlignment) map.get("textAlignment");
+
 			String id = getModel().getId();
 			if (id == null || "".equals(id)) {
 				return false;
@@ -272,18 +279,18 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 			switch (cmd) {
 			case align_text_center:
 				found = true;
-				select = isAlign(event, AlignType.CENTER);
+				select = TextAlignment.CENTER == alignment;
 				break;
 			case align_text_justified:
-				select = isAlign(event, AlignType.BOTH);
+				select = TextAlignment.JUSTIFY == alignment;
 				break;
 			case align_text_left:
 				found = true;
-				select = isAlign(event, AlignType.LEFT);
+				select = TextAlignment.LEFT == alignment;
 				break;
 			case align_text_right:
 				found = true;
-				select = isAlign(event, AlignType.RIGHT);
+				select = TextAlignment.RIGHT == alignment;
 				break;
 			case backgroundColor:
 				break;
@@ -417,6 +424,10 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	}
 
 	private boolean isUnderline(RcplEvent event) {
+		ILayoutObject lo = event.getLayoutObject();
+		if (lo.getStyle().isUnderline()) {
+			return true;
+		}
 		IStyle style = findSelectedStyle(event);
 		return style != null && style.isUnderline();
 	}
