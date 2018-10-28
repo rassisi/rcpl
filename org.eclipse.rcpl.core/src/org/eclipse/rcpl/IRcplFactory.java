@@ -56,7 +56,7 @@ public interface IRcplFactory {
 
 	IService createService();
 
-	ICommand createCommand(ITool tool);
+	ICommand createCommand(ITool tool, Object... newData);
 
 	ICommand createCommand(EnCommandId commandId);
 

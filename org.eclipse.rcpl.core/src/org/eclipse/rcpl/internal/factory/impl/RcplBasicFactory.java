@@ -118,12 +118,12 @@ public class RcplBasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public ICommand createCommand(ITool tool) {
+	public ICommand createCommand(ITool tool, Object... newData) {
 		ILayoutObject l = null;
 		if (Rcpl.UIC.getEditor() != null) {
 			l = Rcpl.UIC.getEditor().getSelectedLayoutObject();
 		}
-		return createCommand(tool, l, new Object[0], new Object[0]);
+		return createCommand(tool, l, new Object[0], newData);
 	}
 
 	@Override
@@ -407,7 +407,7 @@ public class RcplBasicFactory implements IRcplFactory {
 
 	@Override
 	public ICommand createCommand(EnCommandId commandId) {
-		return createCommand(null, commandId, null, null);
+		return createCommand((IService) null, commandId, (ILayoutObject) null, (Object[]) null);
 	}
 
 }

@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.util.RcplUtil;
@@ -23,6 +24,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.image.ImageView;
 
 /**
  * @author ramin
@@ -40,16 +42,62 @@ public class SplitMenuTool extends AbstractRcplTool {
 	public SplitMenuButton createNode() {
 		SplitMenuButton b = new SplitMenuButton();
 		String f = getModel().getFormat();
-		items = RcplUtil.getListFromDelimiterSeparatedList(f, ",");
-		for (String string : items) {
-			MenuItem item = new MenuItem(string);
-			item.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					b.setText(string);
+
+		// index=0;entries=●{},123...{numbers};
+
+		List<String> rawItems = RcplUtil.getListFromDelimiterSeparatedList(getModel().getFormatValue("entries"), ",");
+		if (!rawItems.isEmpty()) {
+			for (String rawItem : rawItems) {
+				try {
+					MenuItem menuItem = new MenuItem();
+					b.getItems().add(menuItem);
+					menuItem.setOnAction(new EventHandler<ActionEvent>() {
+						@Override
+						public void handle(ActionEvent event) {
+							b.setText(menuItem.getText());
+							b.setGraphic(menuItem.getGraphic());
+							Object o = menuItem.getUserData();
+							b.setUserData(o);
+						}
+					});
+
+					String menuItemText;
+					String menuItemImage = null;
+					int pos = rawItem.indexOf("{");
+					if (pos != -1) {
+						menuItemText = rawItem.substring(0, pos);
+						String data = rawItem.substring(pos + 1, rawItem.length());
+						if (data.endsWith("}")) {
+							data = data.substring(0, data.length() - 1);
+						}
+						if (data != null && data.length() > 0) {
+							menuItemImage = (getModel().getId() + "_" + data).toLowerCase();
+						} else {
+							menuItemImage = getModel().getId();
+						}
+					} else {
+						menuItemText = rawItem;
+					}
+
+					if (menuItemText != null && menuItemText.length() > 0) {
+						menuItem.setText(menuItemText);
+					}
+					if (menuItemImage != null) {
+						ImageView iv = new RcplImage(menuItemImage, 16, 16).getNode();
+						menuItem.setGraphic(iv);
+					}
+
+					String additionalId = menuItemText;
+					if (additionalId == null || additionalId.length() == 0) {
+						additionalId = menuItemImage;
+					}
+					menuItem.setUserData(additionalId);
+
+				} catch (Exception ex) {
+					System.out.println();
 				}
-			});
-			b.getItems().add(item);
+
+			}
 		}
 
 		b.setOnAction(new EventHandler<ActionEvent>() {
@@ -68,8 +116,11 @@ public class SplitMenuTool extends AbstractRcplTool {
 			return;
 		}
 		try {
+
+			Object o = getNode().getUserData();
+
 			getModel().setData(SplitMenuTool.this);
-			Rcpl.getFactory().createCommand(SplitMenuTool.this).execute();
+			Rcpl.getFactory().createCommand(SplitMenuTool.this, o).execute();
 		} catch (Throwable ex) {
 			RcplModel.logError(ex);
 		}
