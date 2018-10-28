@@ -74,10 +74,10 @@ import org.eclipse.net4j.util.om.trace.PrintTraceHandler;
 import org.eclipse.net4j.util.security.IPasswordCredentialsProvider;
 import org.eclipse.net4j.util.security.PasswordCredentialsProvider;
 import org.eclipse.rcpl.libs.util.AUtil;
+import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.IIdProvider;
 import org.eclipse.rcpl.model.ISession;
 import org.eclipse.rcpl.model.ISessionFacory;
-import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.RcplModelUtil;
 import org.eclipse.rcpl.model.RcplSessionFactory;
@@ -1340,6 +1340,9 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	// ---------- get value
 
 	private KeyValues findKeyValueFolder(String path, boolean create) {
+		if (getRcpl() == null) {
+			return null;
+		}
 		StringTokenizer tok = new StringTokenizer(path, "/");
 
 		KeyValues root = getRcpl().getKeyvalues();
@@ -1379,7 +1382,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	@Override
 	public String getValue(String path, String key) {
 		KeyValues root = findKeyValueFolder(path, false);
-		if (getRcpl() != null) {
+		if (root != null) {
 			for (KeyValue kv : root.getKeyvalues()) {
 				if (key.equals(kv.getKey())) {
 					return kv.getValue();
@@ -1438,20 +1441,24 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 
 	@Override
 	public void putValue(String path, String key, String value) {
-		KeyValues root = findKeyValueFolder(path, true);
-		for (KeyValue kv : root.getKeyvalues()) {
-			if (key.equals(kv.getKey())) {
-				kv.setName(key);
-				kv.setValue(value);
-				return;
+		try {
+			KeyValues root = findKeyValueFolder(path, true);
+			for (KeyValue kv : root.getKeyvalues()) {
+				if (key.equals(kv.getKey())) {
+					kv.setName(key);
+					kv.setValue(value);
+					return;
+				}
 			}
+			KeyValue kv = RcplFactory.eINSTANCE.createKeyValue();
+			kv.setKey(key);
+			kv.setName(key);
+			kv.setValue(value);
+			root.getKeyvalues().add(kv);
+			commit();
+		} catch (Exception ex) {
+			//
 		}
-		KeyValue kv = RcplFactory.eINSTANCE.createKeyValue();
-		kv.setKey(key);
-		kv.setName(key);
-		kv.setValue(value);
-		root.getKeyvalues().add(kv);
-		commit();
 	}
 
 	// ---------- delete value

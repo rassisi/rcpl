@@ -405,4 +405,9 @@ public class RcplBasicFactory implements IRcplFactory {
 		return button;
 	}
 
+	@Override
+	public ICommand createCommand(EnCommandId commandId) {
+		return createCommand(null, commandId, null, null);
+	}
+
 }

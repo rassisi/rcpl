@@ -1554,4 +1554,10 @@ public class RcplUtil {
 	public static String getFileExtension(File file) {
 		return FilenameUtils.getExtension(file.getName());
 	}
+
+	public static String findAndReplaceAll(String pattern, String replaceWith, String inputString) {
+		Pattern patt = Pattern.compile(pattern);
+		Matcher matcher = patt.matcher(inputString);
+		return matcher.replaceAll(replaceWith);
+	}
 }

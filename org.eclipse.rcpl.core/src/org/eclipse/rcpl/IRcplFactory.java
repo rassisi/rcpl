@@ -58,6 +58,8 @@ public interface IRcplFactory {
 
 	ICommand createCommand(ITool tool);
 
+	ICommand createCommand(EnCommandId commandId);
+
 	ICommand createCommand(IService service, EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData,
 			Object... newData);
 

@@ -13,7 +13,7 @@ import javafx.scene.text.TextFlow;
  */
 public interface IParagraphFigure extends ILayoutFigure {
 
-	void updateIndent();
+	void updateIndentAndBullets();
 
 	void deactivateAll();
 

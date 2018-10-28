@@ -6,6 +6,8 @@ package org.eclipse.rcpl;
  */
 public interface ICommand {
 
+	void execute();
+
 	EnCommandId getCommandId();
 
 	ITool getTool();

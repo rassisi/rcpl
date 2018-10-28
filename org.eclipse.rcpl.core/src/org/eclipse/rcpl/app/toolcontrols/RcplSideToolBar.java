@@ -505,7 +505,7 @@ public class RcplSideToolBar implements ISideToolBar {
 
 			for (ToolGroup g : toolGroup.getToolGroups()) {
 				g.setWidth(toolGroup.getWidth());
-				g.setWidthPercent(toolGroup.getWidthPercent());
+//				g.setWidthPercent(toolGroup.getWidthPercent());
 				if (GroupType.GRIDPANE.equals(g.getType())) {
 					GridPane gp = new GridPane();
 					gp.setId("verticalGradientPane");
@@ -522,8 +522,8 @@ public class RcplSideToolBar implements ISideToolBar {
 						pane.getChildren().add(gp);
 					}
 					for (Tool t : g.getTools()) {
-						t.setWidth(g.getWidth());
-						t.setWidthPercent(g.getWidthPercent());
+//						t.setWidth(g.getWidth());
+//						t.setWidthPercent(g.getWidthPercent());
 						processTool(t, gp);
 					}
 				}
@@ -538,7 +538,7 @@ public class RcplSideToolBar implements ISideToolBar {
 
 			for (Tool tool : toolGroup.getTools()) {
 				tool.setWidth(toolGroup.getWidth());
-				tool.setWidthPercent(toolGroup.getWidthPercent());
+//				tool.setWidthPercent(toolGroup.getWidthPercent());
 				processTool(tool, pane);
 			}
 		} catch (Exception ex) {
@@ -746,20 +746,17 @@ public class RcplSideToolBar implements ISideToolBar {
 			double w = group.getWidth();
 			double wp = group.getWidthPercent();
 			if (wp > 0) {
-				w = Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getPrimaryStage().getWidth() * wp
-						/ 100.0;
+				w = (Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getPrimaryStage().getWidth() - 300)
+						* wp / 100.0;
 			}
 			if (w > 0) {
-				parent.setMaxWidth(w + 20);
-				parent.setMinWidth(w + 20);
-				parent.setPrefWidth(w + 20);
+				parent.setMaxWidth(w);
+				parent.setPrefWidth(w);
 			} else if ("images".equals(group.getId())) {
 				parent.setMaxWidth(WIDTH_EXPANDED_IMAGES);
-				parent.setMinWidth(WIDTH_EXPANDED_IMAGES);
 				parent.setPrefWidth(WIDTH_EXPANDED_IMAGES);
 			} else {
 				parent.setMaxWidth(WIDTH_EXPANDED_1);
-				parent.setMinWidth(WIDTH_EXPANDED_1);
 				parent.setPrefWidth(WIDTH_EXPANDED_1);
 			}
 		} catch (Throwable ex) {

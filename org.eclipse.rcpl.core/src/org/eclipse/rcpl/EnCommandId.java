@@ -50,6 +50,8 @@ public enum EnCommandId {
 
 	decrease_indent(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
 
+	bullets(EnServiceId.PARAGRAPH_SERVICE, null, "", "Bullets", null),
+
 	undo(EnServiceId.COMMAND_SERVICE, null, "Undo", "", null),
 
 	redo(EnServiceId.COMMAND_SERVICE, null, "Redo", "", null),

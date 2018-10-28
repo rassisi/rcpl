@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 
 import org.eclipse.rcpl.internal.tools.ComboBoxTool;
+import org.eclipse.rcpl.internal.tools.SplitMenuTool;
 import org.eclipse.rcpl.internal.tools.TextFieldTool;
 import org.eclipse.rcpl.internal.tools.WebBrowserTool;
 import org.eclipse.rcpl.libs.db.H2DB;
@@ -39,6 +40,8 @@ public interface IRcplUic {
 	ITool findTool(ToolType type, String id);
 
 	WebBrowserTool findWebBrowserTool(String id);
+
+	SplitMenuTool findSplitMenuTool(String id);
 
 	ComboBoxTool findComboBoxTool(String id);
 

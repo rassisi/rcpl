@@ -11,9 +11,8 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import org.eclipse.rcpl.ICommand;
-import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.AbstractRcplTool;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 
 import javafx.event.ActionEvent;
@@ -39,8 +38,8 @@ public class ColorTool extends AbstractRcplTool<Color> {
 		getNode().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				ICommand command = Rcpl.getFactory().createCommand(ColorTool.this);
-				Rcpl.service().execute(command);
+				getModel().setData(ColorTool.this);
+				Rcpl.getFactory().createCommand(ColorTool.this).execute();
 			}
 		});
 

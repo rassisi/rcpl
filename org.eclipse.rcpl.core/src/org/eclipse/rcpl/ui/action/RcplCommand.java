@@ -342,4 +342,9 @@ public class RcplCommand implements ICommand {
 		return null;
 	}
 
+	@Override
+	public void execute() {
+		Rcpl.service().execute(this);
+	}
+
 }

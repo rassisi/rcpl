@@ -52,6 +52,7 @@ import org.eclipse.rcpl.control.RcplCompletionListener;
 import org.eclipse.rcpl.detailpages.WebBrowserDetailsPage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.ComboBoxTool;
+import org.eclipse.rcpl.internal.tools.SplitMenuTool;
 import org.eclipse.rcpl.internal.tools.TextFieldTool;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.internal.tools.WebBrowserTool;
@@ -1997,10 +1998,16 @@ public class RcplUic implements IRcplUic {
 			@Override
 			public void doRun() {
 				if (node != null) {
+					for (Node n : editorArea.getChildren()) {
+						if (n != node) {
+							n.setVisible(false);
+						}
+					}
 					if (!editorArea.getChildren().contains(node)) {
 						editorArea.getChildren().add(node);
 					}
 					node.toFront();
+					node.setVisible(true);
 				}
 			}
 		};
@@ -2125,6 +2132,7 @@ public class RcplUic implements IRcplUic {
 
 		if (editorArea.getChildren().contains(homePage.getNode())) {
 			homePage.getNode().toFront();
+			homePage.getNode().setVisible(true);
 		} else {
 			setContent(homePage.getNode());
 		}
@@ -2477,6 +2485,11 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public IButton findButtonTool(String id) {
 		return (IButton) Rcpl.UIC.findTool(ToolType.BUTTON, id);
+	}
+
+	@Override
+	public SplitMenuTool findSplitMenuTool(String id) {
+		return (SplitMenuTool) Rcpl.UIC.findTool(ToolType.SPLITMENUBUTTON, id);
 	}
 
 	protected void saveWorkingDir(String dir) {
