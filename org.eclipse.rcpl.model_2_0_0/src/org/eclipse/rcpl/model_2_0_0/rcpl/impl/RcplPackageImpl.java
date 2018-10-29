@@ -3079,6 +3079,10 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		addEEnumLiteral(toolTypeEEnum, ToolType.MATH_EDITOR);
 		addEEnumLiteral(toolTypeEEnum, ToolType.SVG_EDITOR);
 		addEEnumLiteral(toolTypeEEnum, ToolType.IMAGE_EDITOR);
+		addEEnumLiteral(toolTypeEEnum, ToolType.LINE_WIDTH);
+		addEEnumLiteral(toolTypeEEnum, ToolType.LINE_DASHES);
+		addEEnumLiteral(toolTypeEEnum, ToolType.LINE_ARROWS);
+		addEEnumLiteral(toolTypeEEnum, ToolType.PATTERN);
 
 		initEEnum(fontStylesEEnum, FontStyles.class, "FontStyles");
 		addEEnumLiteral(fontStylesEEnum, FontStyles.NORMAL);

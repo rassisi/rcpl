@@ -350,7 +350,39 @@ public enum ToolType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	IMAGE_EDITOR(33, "IMAGE_EDITOR", "IMAGE_EDITOR");
+	IMAGE_EDITOR(33, "IMAGE_EDITOR", "IMAGE_EDITOR"), /**
+	 * The '<em><b>LINE WIDTH</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LINE_WIDTH_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	LINE_WIDTH(34, "LINE_WIDTH", "LINE_WIDTH"), /**
+	 * The '<em><b>LINE DASHES</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LINE_DASHES_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	LINE_DASHES(35, "LINE_DASHES", "LINE_DASHES"), /**
+	 * The '<em><b>LINE ARROWS</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LINE_ARROWS_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	LINE_ARROWS(36, "LINE_ARROWS", "LINE_ARROWS"), /**
+	 * The '<em><b>PATTERN</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PATTERN_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	PATTERN(37, "PATTERN", "PATTERN");
 
 	/**
 	 * The '<em><b>BUTTON</b></em>' literal value.
@@ -863,6 +895,66 @@ public enum ToolType implements Enumerator {
 	public static final int IMAGE_EDITOR_VALUE = 33;
 
 	/**
+	 * The '<em><b>LINE WIDTH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LINE WIDTH</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LINE_WIDTH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LINE_WIDTH_VALUE = 34;
+
+	/**
+	 * The '<em><b>LINE DASHES</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LINE DASHES</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LINE_DASHES
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LINE_DASHES_VALUE = 35;
+
+	/**
+	 * The '<em><b>LINE ARROWS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LINE ARROWS</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LINE_ARROWS
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LINE_ARROWS_VALUE = 36;
+
+	/**
+	 * The '<em><b>PATTERN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PATTERN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PATTERN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PATTERN_VALUE = 37;
+
+	/**
 	 * An array of all the '<em><b>Tool Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -904,6 +996,10 @@ public enum ToolType implements Enumerator {
 			MATH_EDITOR,
 			SVG_EDITOR,
 			IMAGE_EDITOR,
+			LINE_WIDTH,
+			LINE_DASHES,
+			LINE_ARROWS,
+			PATTERN,
 		};
 
 	/**
@@ -994,6 +1090,10 @@ public enum ToolType implements Enumerator {
 			case MATH_EDITOR_VALUE: return MATH_EDITOR;
 			case SVG_EDITOR_VALUE: return SVG_EDITOR;
 			case IMAGE_EDITOR_VALUE: return IMAGE_EDITOR;
+			case LINE_WIDTH_VALUE: return LINE_WIDTH;
+			case LINE_DASHES_VALUE: return LINE_DASHES;
+			case LINE_ARROWS_VALUE: return LINE_ARROWS;
+			case PATTERN_VALUE: return PATTERN;
 		}
 		return null;
 	}

@@ -232,7 +232,7 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 				// --------- needed otherwise it crashes when resizing the window
 
 				if (oldBounds.getHeight() == newBounds.getHeight() && oldBounds.getWidth() == newBounds.getWidth()) {
-					updateWindow(newBounds);
+//					updateWindow(newBounds);
 				} else {
 					updateWindow(newBounds);
 					if (Rcpl.UIC != null && Rcpl.UIC.getSideToolBarControl() != null) {

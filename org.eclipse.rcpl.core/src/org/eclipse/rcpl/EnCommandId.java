@@ -48,9 +48,19 @@ public enum EnCommandId {
 
 	increase_indent(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
 
-	decrease_indent(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
+	decrease_indent(EnServiceId.PARAGRAPH_SERVICE, null, null, "Align Justified", null),
 
 	bullets(EnServiceId.PARAGRAPH_SERVICE, null, "", "Bullets", null),
+
+	border(EnServiceId.PARAGRAPH_SERVICE, null, "", "Border", null),
+
+	lineWidth(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Width", null),
+
+	lineArrows(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Arrows", null),
+
+	lineDashes(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Type", null),
+
+	pattern(EnServiceId.PARAGRAPH_SERVICE, null, "", "Pattern", null),
 
 	undo(EnServiceId.COMMAND_SERVICE, null, "Undo", "", null),
 

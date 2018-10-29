@@ -48,6 +48,10 @@
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/MATH_EDITOR"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/SVG_EDITOR"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/IMAGE_EDITOR"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/LINE_WIDTH"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/LINE_DASHES"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/LINE_ARROWS"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/PATTERN"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//FontStyles">
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//FontStyles/NORMAL"/>

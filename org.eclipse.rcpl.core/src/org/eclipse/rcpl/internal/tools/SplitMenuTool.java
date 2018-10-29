@@ -34,13 +34,27 @@ public class SplitMenuTool extends AbstractRcplTool {
 
 	private List<String> items;
 
+	protected SplitMenuButton b;
+
 	public SplitMenuTool(Tool tool) {
 		super(tool);
 	}
 
 	@Override
 	public SplitMenuButton createNode() {
-		SplitMenuButton b = new SplitMenuButton();
+		b = new SplitMenuButton();
+		createContent();
+		b.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				performAction();
+			}
+		});
+		return b;
+	}
+
+	protected void createContent() {
 		String f = getModel().getFormat();
 
 		// index=0;entries=●{},123...{numbers};
@@ -51,15 +65,6 @@ public class SplitMenuTool extends AbstractRcplTool {
 				try {
 					MenuItem menuItem = new MenuItem();
 					b.getItems().add(menuItem);
-					menuItem.setOnAction(new EventHandler<ActionEvent>() {
-						@Override
-						public void handle(ActionEvent event) {
-							b.setText(menuItem.getText());
-							b.setGraphic(menuItem.getGraphic());
-							Object o = menuItem.getUserData();
-							b.setUserData(o);
-						}
-					});
 
 					String menuItemText;
 					String menuItemImage = null;
@@ -99,26 +104,14 @@ public class SplitMenuTool extends AbstractRcplTool {
 
 			}
 		}
-
-		b.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				performAction();
-			}
-		});
-
-		return b;
 	}
 
-	private void performAction() {
+	void performAction() {
 		if (!isImplemented()) {
 			return;
 		}
 		try {
-
 			Object o = getNode().getUserData();
-
 			getModel().setData(SplitMenuTool.this);
 			Rcpl.getFactory().createCommand(SplitMenuTool.this, o).execute();
 		} catch (Throwable ex) {
@@ -134,5 +127,21 @@ public class SplitMenuTool extends AbstractRcplTool {
 	@Override
 	public Tool getModel() {
 		return (Tool) super.getModel();
+	}
+
+	protected void updateButton(MenuItem menuItem) {
+		b.setText(menuItem.getText());
+		b.setGraphic(menuItem.getGraphic());
+		Object o = menuItem.getUserData();
+		b.setUserData(o);
+	}
+
+	protected void addActionListener(MenuItem menuItem) {
+		menuItem.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				updateButton(menuItem);
+			}
+		});
 	}
 }

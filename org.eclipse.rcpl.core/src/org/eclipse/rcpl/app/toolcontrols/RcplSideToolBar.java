@@ -504,8 +504,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			// scrollPane.setStyle("-fx-background-color: gold");
 
 			for (ToolGroup g : toolGroup.getToolGroups()) {
-				g.setWidth(toolGroup.getWidth());
-//				g.setWidthPercent(toolGroup.getWidthPercent());
+//				g.setWidth(toolGroup.getWidth());
 				if (GroupType.GRIDPANE.equals(g.getType())) {
 					GridPane gp = new GridPane();
 					gp.setId("verticalGradientPane");
@@ -522,23 +521,17 @@ public class RcplSideToolBar implements ISideToolBar {
 						pane.getChildren().add(gp);
 					}
 					for (Tool t : g.getTools()) {
-//						t.setWidth(g.getWidth());
-//						t.setWidthPercent(g.getWidthPercent());
 						processTool(t, gp);
 					}
 				}
 
 				else {
-
 					processTools(g, accordion, ++hierarchy);
 					return;
 				}
-
 			}
 
 			for (Tool tool : toolGroup.getTools()) {
-				tool.setWidth(toolGroup.getWidth());
-//				tool.setWidthPercent(toolGroup.getWidthPercent());
 				processTool(tool, pane);
 			}
 		} catch (Exception ex) {

@@ -28,9 +28,13 @@ import org.eclipse.rcpl.internal.tools.HtmlTool;
 import org.eclipse.rcpl.internal.tools.HyperLinkTool;
 import org.eclipse.rcpl.internal.tools.ImageTool;
 import org.eclipse.rcpl.internal.tools.LabelTool;
+import org.eclipse.rcpl.internal.tools.LineArrowsTool;
+import org.eclipse.rcpl.internal.tools.LineDashesTool;
+import org.eclipse.rcpl.internal.tools.LineWidthTool;
 import org.eclipse.rcpl.internal.tools.ListTool;
 import org.eclipse.rcpl.internal.tools.MenuButtonTool;
 import org.eclipse.rcpl.internal.tools.PasswordTool;
+import org.eclipse.rcpl.internal.tools.PatternTool;
 import org.eclipse.rcpl.internal.tools.ProgressBarTool;
 import org.eclipse.rcpl.internal.tools.ProgressIndicatorTool;
 import org.eclipse.rcpl.internal.tools.RadioButtonTool;
@@ -87,6 +91,18 @@ public class RcplToolFactory implements IToolFactory {
 
 		case COLOR_CHOOSER:
 			tool = new ColorTool(model);
+			break;
+		case LINE_WIDTH:
+			tool = new LineWidthTool(model);
+			break;
+		case LINE_DASHES:
+			tool = new LineDashesTool(model);
+			break;
+		case LINE_ARROWS:
+			tool = new LineArrowsTool(model);
+			break;
+		case PATTERN:
+			tool = new PatternTool(model);
 			break;
 		case NAVIGATOR:
 			break;

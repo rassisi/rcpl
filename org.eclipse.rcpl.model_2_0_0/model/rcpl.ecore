@@ -36,6 +36,10 @@
     <eLiterals name="MATH_EDITOR" value="31"/>
     <eLiterals name="SVG_EDITOR" value="32"/>
     <eLiterals name="IMAGE_EDITOR" value="33"/>
+    <eLiterals name="LINE_WIDTH" value="34"/>
+    <eLiterals name="LINE_DASHES" value="35"/>
+    <eLiterals name="LINE_ARROWS" value="36"/>
+    <eLiterals name="PATTERN" value="37"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FontStyles">
     <eLiterals name="NORMAL" value="2"/>

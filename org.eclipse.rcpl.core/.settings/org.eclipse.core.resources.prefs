@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/org/eclipse/rcpl/EnLatexMath.java=UTF-8
+encoding//src/org/eclipse/rcpl/internal/tools/LineArrowsTool.java=UTF-8
+encoding//src/org/eclipse/rcpl/internal/tools/LineDashesTool.java=UTF-8
+encoding//src/org/eclipse/rcpl/internal/tools/LineWidthTool.java=UTF-8
+encoding//src/org/eclipse/rcpl/internal/tools/PatternTool.java=UTF-8
 encoding//src/org/eclipse/rcpl/internal/tools/SplitMenuTool.java=UTF-8
 encoding//src/org/eclipse/rcpl/internal/util/JOUtil.java=UTF-8
