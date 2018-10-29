@@ -47,9 +47,9 @@ import javafx.scene.paint.Color;
 /**
  * Provides access Color Resources
  */
-public class JOColorProvider implements IColorProvider {
+public class RcplColorProvider implements IColorProvider {
 
-	public static IColorProvider INSTANCE = new JOColorProvider();
+	public static IColorProvider INSTANCE = new RcplColorProvider();
 
 	/**
 	 * @author ramin
@@ -255,7 +255,7 @@ public class JOColorProvider implements IColorProvider {
 	/**
 	 * Private Constructor
 	 */
-	public JOColorProvider() {
+	public RcplColorProvider() {
 		// do nothing
 	}
 

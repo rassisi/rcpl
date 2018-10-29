@@ -53,7 +53,7 @@ import org.eclipse.rcpl.homepages.DefaultToolsEditorHomePage;
 import org.eclipse.rcpl.homepages.DefaultTutorialsHomePage;
 import org.eclipse.rcpl.homepages.DefaultWhatsNewHomePage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
-import org.eclipse.rcpl.internal.resources.JOColorProvider;
+import org.eclipse.rcpl.internal.resources.RcplColorProvider;
 import org.eclipse.rcpl.internal.resources.RcplResources;
 import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.internal.tools.RibbonGroup;
@@ -211,7 +211,7 @@ public class RcplBasicFactory implements IRcplFactory {
 
 	@Override
 	public IColorProvider createColorProvider() {
-		return new JOColorProvider();
+		return new RcplColorProvider();
 	}
 
 	@Override

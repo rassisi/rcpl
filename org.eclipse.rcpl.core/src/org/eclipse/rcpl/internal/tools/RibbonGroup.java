@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.internal.factory.impl.RcplToolFactory;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.model.EnKeyValue;

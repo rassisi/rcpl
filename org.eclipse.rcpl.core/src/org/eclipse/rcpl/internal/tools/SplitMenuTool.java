@@ -134,6 +134,7 @@ public class SplitMenuTool extends AbstractRcplTool {
 		b.setGraphic(menuItem.getGraphic());
 		Object o = menuItem.getUserData();
 		b.setUserData(o);
+		setData(o);
 	}
 
 	protected void addActionListener(MenuItem menuItem) {

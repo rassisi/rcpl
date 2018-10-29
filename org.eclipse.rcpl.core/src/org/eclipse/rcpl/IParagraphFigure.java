@@ -13,6 +13,8 @@ import javafx.scene.text.TextFlow;
  */
 public interface IParagraphFigure extends ILayoutFigure {
 
+	void updateBorder();
+
 	int getBulletNumber();
 
 	void setBulletNumber(int number);

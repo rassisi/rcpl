@@ -26,7 +26,7 @@ import javafx.geometry.Rectangle2D;
  * @author ramin
  * 
  */
-public class JOResource implements IResource {
+public class RcplResource implements IResource {
 
 	private IImage image;
 
@@ -43,7 +43,7 @@ public class JOResource implements IResource {
 	/**
 	 * @param image
 	 */
-	public JOResource(IImage image) {
+	public RcplResource(IImage image) {
 		this.image = image;
 		this.type = ResourceType.IMAGE;
 	}
@@ -51,7 +51,7 @@ public class JOResource implements IResource {
 	/**
 	 * @param svgContent
 	 */
-	public JOResource(ResourceType type, String content) {
+	public RcplResource(ResourceType type, String content) {
 		this.content = content;
 		this.type = type;
 	}
@@ -60,7 +60,7 @@ public class JOResource implements IResource {
 	 * @param type
 	 * @param packagePart
 	 */
-	public JOResource(ResourceType type, PackagePart packagePart, String content) {
+	public RcplResource(ResourceType type, PackagePart packagePart, String content) {
 		this.content = content;
 		this.packagePart = packagePart;
 		this.type = type;

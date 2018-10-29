@@ -11,9 +11,6 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import javafx.geometry.Rectangle2D;
-import javafx.scene.image.Image;
-
 import org.eclipse.rcpl.EValueType;
 import org.eclipse.rcpl.IProperty2;
 import org.eclipse.rcpl.IResourceEntry;
@@ -22,6 +19,9 @@ import org.eclipse.rcpl.IToolComponent;
 import org.eclipse.rcpl.IToolGroupFigure;
 import org.eclipse.rcpl.IToolRegistry;
 import org.eclipse.rcpl.internal.services.RcplActionListener;
+
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
 
 /**
  * @author ramin

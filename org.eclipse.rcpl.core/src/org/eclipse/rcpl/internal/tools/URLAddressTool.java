@@ -26,9 +26,9 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.IURLAddressTool;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.favicon.FavIconHandler;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;

@@ -13,12 +13,12 @@ package org.eclipse.rcpl.internal.tools;
 
 import java.util.List;
 
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.IFont;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.font.RcplFont;
