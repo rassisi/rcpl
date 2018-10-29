@@ -13,10 +13,8 @@ package org.eclipse.rcpl.internal.fx.figures;
 import java.util.HashMap;
 
 import org.eclipse.rcpl.AbstractRcplTool;
-import org.eclipse.rcpl.AlignType;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnLatexMath;
-import org.eclipse.rcpl.IAlignment;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.ILayoutObject;
@@ -256,8 +254,11 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 		if (getModel() != null) {
 
 			HashMap<String, Object> map = event.getData();
+			TextAlignment alignment = null;
 
-			TextAlignment alignment = (TextAlignment) map.get("textAlignment");
+			if (map != null) {
+				alignment = (TextAlignment) map.get("textAlignment");
+			}
 
 			String id = getModel().getId();
 			if (id == null || "".equals(id)) {
@@ -305,6 +306,18 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 			case underline:
 				found = true;
 				select = isUnderline(event);
+				break;
+			case subscript:
+				found = true;
+				select = isSubScript(event);
+				break;
+			case superscript:
+				found = true;
+				select = isSuperScript(event);
+				break;
+			case strikethrough:
+				found = true;
+				select = isStrikeThrough(event);
 				break;
 			case style_normal:
 				found = true;
@@ -432,16 +445,31 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 		return style != null && style.isUnderline();
 	}
 
-	private boolean isAlign(RcplEvent event, AlignType type) {
+	private boolean isSubScript(RcplEvent event) {
 		ILayoutObject lo = event.getLayoutObject();
-		if (lo instanceof IParagraph) {
-			IParagraph p = (IParagraph) lo;
-			IAlignment al = p.getAlignment();
-			if (al != null) {
-				return al.getType().equals(type);
-			}
+		if (lo.getStyle().isSubScript()) {
+			return true;
 		}
-		return false;
+		IStyle style = findSelectedStyle(event);
+		return style != null && style.isSubScript();
+	}
+
+	private boolean isSuperScript(RcplEvent event) {
+		ILayoutObject lo = event.getLayoutObject();
+		if (lo.getStyle().isSuperScript()) {
+			return true;
+		}
+		IStyle style = findSelectedStyle(event);
+		return style != null && style.isSuperScript();
+	}
+
+	private boolean isStrikeThrough(RcplEvent event) {
+		ILayoutObject lo = event.getLayoutObject();
+		if (lo.getStyle().isStrikeThrough()) {
+			return true;
+		}
+		IStyle style = findSelectedStyle(event);
+		return style != null && style.isUnderline();
 	}
 
 	@Override

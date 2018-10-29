@@ -93,7 +93,13 @@ public interface IStyle {
 
 	void setStrikeThrough(IBoolean strikeThrough);
 
+	void setStrikeThrough(boolean strikeThrough);
+
+	void setSubScript(boolean subScript);
+
 	boolean isSubScript();
+
+	void setSuperScript(boolean superScript);
 
 	boolean isSuperScript();
 

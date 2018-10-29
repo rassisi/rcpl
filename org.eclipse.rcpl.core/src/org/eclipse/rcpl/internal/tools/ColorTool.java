@@ -46,7 +46,19 @@ public class ColorTool extends AbstractRcplTool<Color> {
 	}
 
 	@Override
+	public Tool getModel() {
+		return (Tool) super.getModel();
+	}
+
+	@Override
 	public Node createNode() {
+		String f = getModel().getFormat();
+		if (f != null && f.length() > 0) {
+			Color c = Color.web(f);
+			if (c != null) {
+				return new ColorPicker(c);
+			}
+		}
 		return new ColorPicker();
 	}
 

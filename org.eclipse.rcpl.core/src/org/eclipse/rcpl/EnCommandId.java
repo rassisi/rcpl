@@ -80,6 +80,10 @@ public enum EnCommandId {
 
 	strikethrough(EnServiceId.PARAGRAPH_SERVICE, null, "", "Strikethrough", null),
 
+	subscript(EnServiceId.PARAGRAPH_SERVICE, null, "", "SubScript", null),
+
+	superscript(EnServiceId.PARAGRAPH_SERVICE, null, "", "SuperScript", null),
+
 	showStartMenu(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
 	layout(EnServiceId.LAYOUT_SERVICE, null, "", "", null),

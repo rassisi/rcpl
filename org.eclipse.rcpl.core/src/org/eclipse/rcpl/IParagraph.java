@@ -50,6 +50,12 @@ public interface IParagraph extends ILayoutObject {
 
 	void applyUnderline(int start, int length, boolean underline);
 
+	void applyStrikeThrough(int start, int length, boolean strikeThrough);
+
+	void applySubScript(int start, int length, boolean subScript);
+
+	void applySuperScript(int start, int length, boolean superScript);
+
 	void clearRunStyles();
 
 	CTR createRun();
