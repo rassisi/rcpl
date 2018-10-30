@@ -64,6 +64,7 @@ public class SplitMenuTool extends AbstractRcplTool {
 			for (String rawItem : rawItems) {
 				try {
 					MenuItem menuItem = new MenuItem();
+					addActionListener(menuItem);
 					b.getItems().add(menuItem);
 
 					String menuItemText;

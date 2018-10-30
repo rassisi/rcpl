@@ -62,6 +62,8 @@ public enum EnCommandId {
 
 	pattern(EnServiceId.PARAGRAPH_SERVICE, null, "", "Pattern", null),
 
+	line_spacing(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Spacing", null),
+
 	undo(EnServiceId.COMMAND_SERVICE, null, "Undo", "", null),
 
 	redo(EnServiceId.COMMAND_SERVICE, null, "Redo", "", null),

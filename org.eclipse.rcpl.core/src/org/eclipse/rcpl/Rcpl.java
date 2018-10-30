@@ -785,6 +785,10 @@ public class Rcpl {
 		return RcplSession.getDefault().getValue(createKeyValuePath(key), key.name());
 	}
 
+	public static String getWithIndex(EnKeyValue key, int index) {
+		return RcplSession.getDefault().getValue(createKeyValuePath(key), key.name() + "_" + index);
+	}
+
 	// ---------- set
 
 	public static void set(IEditor editor, EnKeyValue key, String value) {
@@ -820,6 +824,10 @@ public class Rcpl {
 
 	public static void set(EnKeyValue key, String value) {
 		RcplSession.getDefault().putValue(key.getFolder().name() + "/", key.name(), value);
+	}
+
+	public static void setWithIndex(EnKeyValue key, int index, String value) {
+		RcplSession.getDefault().putValue(key.getFolder().name() + "/", key.name() + "_" + index, value);
 	}
 
 	private static String createKeyValuePath(EnKeyValue key) {

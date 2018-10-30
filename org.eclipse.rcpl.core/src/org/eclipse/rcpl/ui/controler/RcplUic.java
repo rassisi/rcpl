@@ -58,7 +58,6 @@ import org.eclipse.rcpl.internal.tools.URLAddressTool;
 import org.eclipse.rcpl.internal.tools.WebBrowserTool;
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.model.EnKeyValue;
-import org.eclipse.rcpl.model.EnKeyValueFolder;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
@@ -197,6 +196,8 @@ public class RcplUic implements IRcplUic {
 	private static Pane caretPane;
 
 	private static boolean paragraphEditing;
+
+	private List<String> recentDocumentFiles = new ArrayList<String>();
 
 	/**
 	 * 
@@ -504,10 +505,6 @@ public class RcplUic implements IRcplUic {
 
 	private Button returnButton;
 
-	private List<File> recentlyOpenedDocuments = new ArrayList<File>();
-
-	private List<File> lastOpenedDocuments = new ArrayList<File>();
-
 	private double scale = 0.6;
 
 	private ContextMenu contextMenu;
@@ -634,17 +631,19 @@ public class RcplUic implements IRcplUic {
 	}
 
 	@Override
-	public void addRecentDocument(File file, boolean commit) {
-
-		for (String key : RcplSession.getDefault().loadKeys(EnKeyValueFolder.HISTORY.name(),
-				EnKeyValue.RECENT_DOCUMENT.name())) {
-			if (file.getAbsolutePath()
-					.equals(RcplSession.getDefault().getValue(EnKeyValueFolder.HISTORY.name(), key))) {
-				return;
+	public void addRecentDocument(File file) {
+		if (file != null) {
+			if (!recentDocumentFiles.contains(file.getAbsoluteFile())) {
+				recentDocumentFiles.add(0, file.getAbsolutePath());
+				if (recentDocumentFiles.size() > 10) {
+					recentDocumentFiles.remove(recentDocumentFiles.size() - 1);
+				}
+				for (int index = 1; index < recentDocumentFiles.size(); index++) {
+					Rcpl.setWithIndex(EnKeyValue.RECENT_DOCUMENT, index, recentDocumentFiles.get(index));
+				}
+				updateContextMenu();
 			}
 		}
-		Rcpl.set(EnKeyValue.RECENT_DOCUMENT, file.getAbsolutePath());
-		RcplSession.getDefault().commit();
 	}
 
 	@Override
@@ -658,25 +657,19 @@ public class RcplUic implements IRcplUic {
 
 		Rcpl.set(EnKeyValue.LOGIN_WINDOW_X, getApplicationStarter().getRcplApplicationProvider().getLoginWindowX());
 		Rcpl.set(EnKeyValue.LOGIN_WINDOW_Y, getApplicationStarter().getRcplApplicationProvider().getLoginWindowY());
-
 		Rcpl.set(EnKeyValue.WINDOW_X, getStage().getX());
 		Rcpl.set(EnKeyValue.WINDOW_Y, getStage().getY());
 		Rcpl.set(EnKeyValue.WINDOW_WIDTH, getStage().getWidth());
 		Rcpl.set(EnKeyValue.WINDOW_HEIGHT, getStage().getHeight());
-
 		Rcpl.set(EnKeyValue.SIDEBAR_LEFT, sideBarLeft);
-
-		Rcpl.deleteAllValues(EnKeyValueFolder.HISTORY.name(), EnKeyValue.LAST_OPENED_DOCUMENT);
-
 		Rcpl.set(EnKeyValue.TOP_TOOLBAR_COLLAPSED, topBarCollapseButton.isSelected());
-
-		for (Tab tab : tabPane.getTabs()) {
-			TabInfo ti = getTabInfo(tab);
-			if (ti != null) {
-				IEditor editor = ti.getEditor();
-				if (editor != null && editor.getDocument() != null && editor.getDocument().getFile() != null) {
-					String fn = editor.getDocument().getFile().getAbsolutePath();
-					Rcpl.set(editor, EnKeyValue.LAST_OPENED_DOCUMENT, fn);
+		if (getTabPane().getTabs().size() > 0) {
+			int index = getTabPane().getSelectionModel().getSelectedIndex();
+			TabInfo tabInfo = getTabInfo(getTabPane().getTabs().get(index));
+			if (tabInfo.getEditor() != null) {
+				File file = tabInfo.getEditor().getDocument().getFile();
+				if (file != null) {
+					Rcpl.set(EnKeyValue.LAST_OPENED_DOCUMENT, file.getAbsolutePath());
 				}
 			}
 		}
@@ -785,24 +778,17 @@ public class RcplUic implements IRcplUic {
 
 		// ---------- restore some GUI states
 
-//		RcplSession.getDefault().setMaxKeyValues(KeyValueKey.RECENT_DOCUMENT, 10);
-//		RcplSession.getDefault().setMaxKeyValues(KeyValueKey.LAST_OPENED_DOCUMENT, 10);
+		recentDocumentFiles.clear();
 
-		List<String> recentDocumentKeys = RcplSession.getDefault()
-				.loadKeys(EnKeyValue.RECENT_DOCUMENT.getFolder().name(), EnKeyValue.RECENT_DOCUMENT.name());
-		List<String> lastDocumentKeys = RcplSession.getDefault()
-				.loadKeys(EnKeyValue.LAST_OPENED_DOCUMENT.getFolder().name(), EnKeyValue.LAST_OPENED_DOCUMENT.name());
-
-		for (int i = recentDocumentKeys.size() - 1; i >= 0; i--) {
-			File file = new File(RcplSession.getDefault().getValue(EnKeyValue.RECENT_DOCUMENT.getFolder().name(),
-					recentDocumentKeys.get(i)));
-			recentlyOpenedDocuments.add(file);
-		}
-
-		for (int i = 0; i < lastDocumentKeys.size(); i++) {
-			File file = new File(RcplSession.getDefault().getValue(EnKeyValue.RECENT_DOCUMENT.getFolder().name(),
-					lastDocumentKeys.get(i)));
-			lastOpenedDocuments.add(file);
+		for (int i = 1;; i++) {
+			String fileName = Rcpl.getWithIndex(EnKeyValue.RECENT_DOCUMENT, i);
+			if (fileName == null || fileName.length() == 0) {
+				break;
+			}
+			File f = new File(fileName);
+			if (f.exists()) {
+				recentDocumentFiles.add(fileName);
+			}
 		}
 
 		htmlEditor = new HTMLEditor();
@@ -875,31 +861,34 @@ public class RcplUic implements IRcplUic {
 			}
 		});
 
-		if (!lastOpenedDocuments.isEmpty()) {
-			new Thread() {
-				@Override
-				public void run() {
+		String lastOpenedDocument = Rcpl.get(EnKeyValue.LAST_OPENED_DOCUMENT, null);
+		if (lastOpenedDocument != null && lastOpenedDocument.length() > 0) {
+			File file = new File(lastOpenedDocument);
+			if (file.exists()) {
+				new Thread() {
+					@Override
+					public void run() {
 
-					topBarCollapseButton.setSelected(Rcpl.get(EnKeyValue.TOP_TOOLBAR_COLLAPSED, false));
+						topBarCollapseButton.setSelected(Rcpl.get(EnKeyValue.TOP_TOOLBAR_COLLAPSED, false));
 
-					File file = lastOpenedDocuments.get(lastOpenedDocuments.size() - 1);
-					final boolean[] done = new boolean[1];
-					completionListener = new RcplCompletionListener() {
-						@Override
-						public void onCompleted() {
-							done[0] = true;
-						}
-					};
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							openDocument(file);
-						}
-					});
-					RcplUtil.waitForDone(done);
-					completionListener = null;
-				}
-			}.start();
+						final boolean[] done = new boolean[1];
+						completionListener = new RcplCompletionListener() {
+							@Override
+							public void onCompleted() {
+								done[0] = true;
+							}
+						};
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								openDocument(file);
+							}
+						});
+						RcplUtil.waitForDone(done);
+						completionListener = null;
+					}
+				}.start();
+			}
 		}
 
 		getStage().widthProperty().addListener(new ChangeListener<Number>() {
@@ -1122,28 +1111,33 @@ public class RcplUic implements IRcplUic {
 		anchor.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
 			@Override
 			public void handle(ContextMenuEvent event) {
-				contextMenu.getItems().clear();
-
-				int counter = 0;
-				for (File file : recentlyOpenedDocuments) {
-					final MenuItem item1 = new MenuItem(file.getName());
-					item1.setUserData(file);
-					item1.setOnAction(new EventHandler<ActionEvent>() {
-
-						@Override
-						public void handle(ActionEvent event) {
-							openDocument((File) item1.getUserData());
-						}
-					});
-					contextMenu.getItems().add(item1);
-					counter++;
-					if (counter > 10) {
-						break;
-					}
-				}
+				updateContextMenu();
 				contextMenu.show(anchor, event.getScreenX(), event.getScreenY());
 			}
 		});
+	}
+
+	private void updateContextMenu() {
+		contextMenu.getItems().clear();
+
+		int counter = 0;
+		for (String fileName : recentDocumentFiles) {
+			File file = new File(fileName);
+			final MenuItem item1 = new MenuItem(fileName);
+			item1.setUserData(file);
+			item1.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent event) {
+					openDocument((File) item1.getUserData());
+				}
+			});
+			contextMenu.getItems().add(item1);
+			counter++;
+			if (counter > 10) {
+				break;
+			}
+		}
 	}
 
 	private void createTitelArea() {

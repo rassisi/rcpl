@@ -164,4 +164,6 @@ public interface IStyle {
 	void setUnderline(boolean underline);
 
 	void updateFont();
+
+	double getSpaceLine();
 }

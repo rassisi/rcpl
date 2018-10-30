@@ -55,7 +55,7 @@ public interface IRcplUic {
 
 	void closeApplication();
 
-	void addRecentDocument(File file, boolean commit);
+	void addRecentDocument(File file);
 
 	double getScale();
 
