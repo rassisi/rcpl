@@ -438,6 +438,9 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 	private boolean isUnderline(RcplEvent event) {
 		ILayoutObject lo = event.getLayoutObject();
+		if (lo == null || lo.getStyle() == null) {
+			return false;
+		}
 		if (lo.getStyle().isUnderline()) {
 			return true;
 		}
@@ -447,6 +450,9 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 	private boolean isSubScript(RcplEvent event) {
 		ILayoutObject lo = event.getLayoutObject();
+		if (lo == null || lo.getStyle() == null) {
+			return false;
+		}
 		if (lo.getStyle().isSubScript()) {
 			return true;
 		}
@@ -456,6 +462,9 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 	private boolean isSuperScript(RcplEvent event) {
 		ILayoutObject lo = event.getLayoutObject();
+		if (lo == null || lo.getStyle() == null) {
+			return false;
+		}
 		if (lo.getStyle().isSuperScript()) {
 			return true;
 		}
@@ -465,6 +474,9 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 	private boolean isStrikeThrough(RcplEvent event) {
 		ILayoutObject lo = event.getLayoutObject();
+		if (lo == null || lo.getStyle() == null) {
+			return false;
+		}
 		if (lo.getStyle().isStrikeThrough()) {
 			return true;
 		}

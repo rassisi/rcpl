@@ -8,9 +8,11 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.application;
 
-import org.eclipse.rcpl.images.RcplImage;
+import org.eclipse.rcpl.IPane;
+import org.eclipse.rcpl.IParagraph;
+import org.eclipse.rcpl.Rcpl;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -64,6 +66,13 @@ public class WindowRotateButton extends ImageView {
 				}
 
 				stack.getPane().setRotate(angle);
+
+				IParagraph par = Rcpl.UIC.getEditor().getActiveParagraph();
+				if (par != null && par.getDrawings() != null) {
+					if (!par.getDrawings().isEmpty()) {
+						par.getDrawings().get(0).setRotation(angle);
+					}
+				}
 
 				e.consume();
 

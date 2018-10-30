@@ -8,7 +8,11 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.application;
+
+import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.IPane;
+import org.eclipse.rcpl.Rcpl;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;

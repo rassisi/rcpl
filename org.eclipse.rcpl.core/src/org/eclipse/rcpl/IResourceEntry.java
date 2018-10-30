@@ -1,5 +1,6 @@
 package org.eclipse.rcpl;
 
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 
 public interface IResourceEntry {
 
@@ -57,7 +58,7 @@ public interface IResourceEntry {
 
 	boolean isDocumentPersist();
 
-	RcplToolType getToolType();
+	ToolType getToolType();
 
 	int getIndex();
 

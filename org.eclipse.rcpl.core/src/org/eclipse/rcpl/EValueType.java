@@ -6,20 +6,12 @@ package org.eclipse.rcpl;
  */
 public enum EValueType {
 
-	MEASUREMENT,
-	MEASURMENT_ALWAYS_POINTS,
-	TIME,
-	ALIGNMENT,
-	BOOLEAN,
-	ENUM,
-	COLOR,
-	
+	MEASUREMENT, MEASURMENT_ALWAYS_POINTS, TIME, ALIGNMENT, BOOLEAN, ENUM, COLOR, INT, FLOAT,
+
 	// example: bullet char etc.
-	
+
 	OTHER,
-	
+
 	;
-	
-	
-	
+
 }
