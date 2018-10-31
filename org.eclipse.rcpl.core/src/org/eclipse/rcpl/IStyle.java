@@ -166,4 +166,9 @@ public interface IStyle {
 	void updateFont();
 
 	double getSpaceLine();
+
+	public IShadow getShadow();
+
+	public void setShadow(IShadow shadow);
+
 }
