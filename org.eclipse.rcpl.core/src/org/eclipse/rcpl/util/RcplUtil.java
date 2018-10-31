@@ -31,6 +31,17 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.openxml4j.opc.PackageAccess;
+import org.apache.poi.openxml4j.opc.PackagePart;
+import org.apache.poi.openxml4j.opc.PackagePartName;
+import org.apache.poi.openxml4j.opc.PackageRelationship;
+import org.apache.poi.openxml4j.opc.PackageRelationshipCollection;
+import org.apache.poi.openxml4j.opc.PackagingURIHelper;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFRelation;
+import org.apache.xmlbeans.XmlException;
 import org.apache.xmlbeans.XmlObject;
 import org.eclipse.rcpl.EnMeasurementUnits;
 import org.eclipse.rcpl.EnPageSize;
@@ -46,6 +57,10 @@ import org.eclipse.rcpl.libs.util.StringOutputStream;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.openxmlformats.schemas.drawingml.x2006.main.CTOfficeStyleSheet;
+import org.openxmlformats.schemas.drawingml.x2006.main.ThemeDocument;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTFontsList;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.FontsDocument;
 import org.w3c.dom.Node;
 
 import javafx.embed.swing.SwingFXUtils;
@@ -70,6 +85,8 @@ public class RcplUtil {
 //	private static double physicalWidth = -1;
 
 	private static IMonitor actualMonitor;
+
+	protected static final PackageAccess defaultPackageAccess = PackageAccess.READ_WRITE;
 
 	/**
 	 * 
@@ -1560,4 +1577,110 @@ public class RcplUtil {
 		Matcher matcher = patt.matcher(inputString);
 		return matcher.replaceAll(replaceWith);
 	}
+
+	/**
+	 * Get the PackagePart that is the target of a relationship.
+	 * 
+	 * @param rel The relationship
+	 * @param pkg The package to fetch from
+	 * @return The target part
+	 * @throws InvalidFormatException
+	 */
+	public static PackagePart getTargetPart(OPCPackage pkg, PackageRelationship rel) throws InvalidFormatException {
+		PackagePartName relName = PackagingURIHelper.createPartName(rel.getTargetURI());
+		PackagePart part = pkg.getPart(relName);
+		if (part == null) {
+			throw new IllegalArgumentException("No part found for relationship " + rel); //$NON-NLS-1$
+		}
+		return part;
+	}
+
+	/**
+	 * @param xml
+	 * @param rel
+	 * @return
+	 * @throws InvalidFormatException
+	 */
+	public static PackagePart getTargetPart(XWPFDocument xml, PackageRelationship rel) throws InvalidFormatException {
+		return getTargetPart(xml.getPackage(), rel);
+	}
+
+	public static PackagePart[] getRelatedByType(XWPFDocument xml, String contentType) throws InvalidFormatException {
+		PackageRelationshipCollection partsC = xml.getPackagePart().getRelationshipsByType(contentType);
+
+		PackagePart[] parts = new PackagePart[partsC.size()];
+		int count = 0;
+		for (PackageRelationship rel : partsC) {
+			parts[count] = getTargetPart(xml, rel);
+			count++;
+		}
+		return parts;
+	}
+
+	/**
+	 * Returns the styles object used
+	 */
+	public static CTOfficeStyleSheet getThemes(XWPFDocument xml) throws XmlException, IOException {
+		PackagePart[] parts;
+		try {
+			// parts = getRelatedByType(xml, XWPFRelation.STYLES.getRelation());
+
+			String s = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme"; //$NON-NLS-1$
+			parts = getRelatedByType(xml, s);
+
+		} catch (InvalidFormatException e) {
+			throw new IllegalStateException(e);
+		}
+		if (parts.length != 1) {
+			throw new IllegalStateException("" + parts.length); //$NON-NLS-1$
+		}
+
+		ThemeDocument themeDocument = ThemeDocument.Factory.parse(parts[0].getInputStream());
+		CTOfficeStyleSheet theme = themeDocument.getTheme();
+
+		return theme;
+	}
+
+//	/**
+//	 * Returns the styles object used
+//	 */
+//	public static CTOfficeStyleSheet getThemes(XWPFDocument xml) throws XmlException, IOException {
+//		PackagePart[] parts;
+//		try {
+//			// parts = getRelatedByType(xml, XWPFRelation.STYLES.getRelation());
+//
+//			String s = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme"; //$NON-NLS-1$
+//			parts = getRelatedByType(xml, s);
+//
+//		} catch (InvalidFormatException e) {
+//			throw new IllegalStateException(e);
+//		}
+//		if (parts.length != 1) {
+//			throw new IllegalStateException("" + parts.length); //$NON-NLS-1$
+//		}
+//
+//		ThemeDocument themeDocument = ThemeDocument.Factory.parse(parts[0].getInputStream());
+//		CTOfficeStyleSheet theme = themeDocument.getTheme();
+//
+//		return theme;
+//	}
+
+	/**
+	 * Returns the styles object used
+	 */
+	public static CTFontsList getFontTable(XWPFDocument xml) throws XmlException, IOException {
+		PackagePart[] parts;
+		try {
+			parts = getRelatedByType(xml, XWPFRelation.FONT_TABLE.getRelation());
+		} catch (InvalidFormatException e) {
+			throw new IllegalStateException(e);
+		}
+		if (parts.length != 1) {
+			throw new IllegalStateException("" + parts.length); //$NON-NLS-1$
+		}
+
+		FontsDocument fd = FontsDocument.Factory.parse(parts[0].getInputStream());
+		return fd.getFonts();
+	}
+
 }

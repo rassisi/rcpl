@@ -205,8 +205,7 @@ Export-Package: org.eclipse.rcpl;
  org.eclipse.rcpl.ui.listener;uses:="javafx.geometry,org.eclipse.rcpl",
  org.eclipse.rcpl.upload,
  org.eclipse.rcpl.util
-Require-Bundle: org.eclipse.rcpl.libs;bundle-version="0.1.1",
- org.eclipse.emf.cdo.security;bundle-version="4.3.100",
+Require-Bundle: org.eclipse.emf.cdo.security;bundle-version="4.3.100",
  org.eclipse.rcpl.model_2_0_0;bundle-version="0.1.1",
  org.eclipse.rcpl.model;bundle-version="0.1.1",
  org.eclipse.rcpl.model_2_0_0.edit;bundle-version="0.1.1",

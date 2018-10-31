@@ -9,6 +9,8 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.eclipse.rcpl.client.migration,
+ org.eclipse.rcpl.libs.db,
+ org.eclipse.rcpl.libs.util,
  org.eclipse.rcpl.model,
  org.eclipse.rcpl.model.client,
  org.eclipse.rcpl.model.joffice
@@ -21,7 +23,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit;bundle-version="2.9.0",
  org.eclipse.core.resources;bundle-version="3.8.101",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
- org.eclipse.rcpl.libs;bundle-version="0.1.1",
  org.eclipse.emf.cdo.security;bundle-version="4.2.0",
  org.eclipse.emf.cdo.security.edit;bundle-version="4.2.0",
  org.eclipse.rcpl.model_2_0_0.edit;bundle-version="0.1.1"

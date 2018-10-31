@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.libs.db;
+package org.eclipse.rcpl.db.h2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
