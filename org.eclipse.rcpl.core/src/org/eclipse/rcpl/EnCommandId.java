@@ -140,6 +140,10 @@ public enum EnCommandId {
 
 	style_heading_5(EnServiceId.PARAGRAPH_SERVICE, null, "H5", "Header 5", null),
 
+	shadow(EnServiceId.PARAGRAPH_SERVICE, null, null, "Shadow", null),
+
+	// ---------- EDITOR -------------------------------------------------------
+
 	zoom_in(EnServiceId.EDITOR_SERVICE, null, "Zoom In", "Zoom In", null),
 
 	zoom_out(EnServiceId.EDITOR_SERVICE, null, "Zoom out", "Zoom out", null),
