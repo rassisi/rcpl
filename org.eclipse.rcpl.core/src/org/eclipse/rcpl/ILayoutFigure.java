@@ -138,4 +138,6 @@ public interface ILayoutFigure extends IPane {
 
 	void updateSelection(Rectangle selectionRectangle);
 
+	public void setRotation(double angle);
+
 }

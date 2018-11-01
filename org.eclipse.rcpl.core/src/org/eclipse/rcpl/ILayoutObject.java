@@ -13,53 +13,23 @@ import javafx.geometry.Rectangle2D;
  */
 public interface ILayoutObject {
 
-	void layout(EnLayoutReason reason);
-
-	IEditor getEditor();
-
-	boolean isPageBreakBefore();
-
-	void setPageBreakBefore(boolean breakBefore);
-
-	boolean isTestLayout();
-
-	void setTestLayout(boolean testlayout);
-
-	void updateOverflowClipping();
-
-	boolean isOverflowActive();
-
-	void setOverflowActive(boolean overflowActive);
-
-	void detachOverflowFigure();
-
-	void createOverflowFigure(double remaining);
-
-	ILayoutFigure getOverflowFigure();
-
-	IProperty2 getInsets();
-
-	void deActivate();
-
-	void setVAnchorObject(ILayoutObject anchorObject);
-
-	void setHAnchorObject(ILayoutObject anchorObject);
-
-	ILayoutObject getNextRootObject();
-
-	void setHeightPixel(double height);
+	void boundsChanged2(Rectangle2D newBounds);
 
 	boolean commit();
 
 	ILayoutFigure createLayoutFigure();
 
+	void createOverflowFigure(double remaining);
+
+	void deActivate();
+
+	void detachOverflowFigure();
+
 	boolean dispose();
 
-	ILayoutObject getVAnchorObject();
-
-	ILayoutObject getHAnchorObject();
-
 	IBorder getBorder();
+
+	double getBottomMargin();
 
 	List<ILayoutObject> getChildList();
 
@@ -69,7 +39,11 @@ public interface ILayoutObject {
 
 	IDocument getDocument();
 
+	IEditor getEditor();
+
 	ILayoutAnchor getHAnchor();
+
+	ILayoutObject getHAnchorObject();
 
 	IProperty2 getHeight();
 
@@ -83,6 +57,8 @@ public interface ILayoutObject {
 
 	int getIndex();
 
+	IProperty2 getInsets();
+
 	Rectangle2D getLayoutBounds();
 
 	ILayoutFigure getLayoutFigure();
@@ -91,11 +67,11 @@ public interface ILayoutObject {
 
 	double getLeftMargin();
 
-	double getBottomMargin();
-
-	double getRightMargin();
+	ILayoutObject getNextRootObject();
 
 	IParagraph getNextRootParagraph();
+
+	ILayoutFigure getOverflowFigure();
 
 	IPage getPage();
 
@@ -105,9 +81,15 @@ public interface ILayoutObject {
 
 	IParagraph getPreviousRootParagraph();
 
+	double getRightMargin();
+
+	int getRootIndex();
+
 	ILayoutObject getRootObject();
 
 	int getRootObjectIndex();
+
+	public double getRotation();
 
 	double getSavedZOrder();
 
@@ -124,6 +106,8 @@ public interface ILayoutObject {
 	double getTopMargin();
 
 	ILayoutAnchor getVAnchor();
+
+	ILayoutObject getVAnchorObject();
 
 	IProperty2 getWidth();
 
@@ -145,13 +129,21 @@ public interface ILayoutObject {
 
 	boolean isDirtyContent();
 
+	boolean isOverflowActive();
+
 	boolean isPageBreakAfter();
+
+	boolean isPageBreakBefore();
 
 	boolean isRealPageBreakAfterAndNoSectionBreak();
 
 	boolean isRootObject();
 
+	boolean isTestLayout();
+
 	java.util.Iterator<ILayoutObject> iterator();
+
+	void layout(EnLayoutReason reason);
 
 	void remove(ILayoutObject lo);
 
@@ -161,17 +153,31 @@ public interface ILayoutObject {
 
 	void setDirtyContent(boolean dirty);
 
+	void setHAnchorObject(ILayoutObject anchorObject);
+
 	void setHeightOverflow(double heightOverflow);
+
+	void setHeightPixel(double height);
 
 	void setLayoutBounds(Rectangle2D layoutBounds);
 
 	void setLayoutFigure(ILayoutFigure f);
 
+	void setOverflowActive(boolean overflowActive);
+
 	void setPage(IPage page);
+
+	void setPageBreakBefore(boolean breakBefore);
 
 	void setParent(ILayoutObject lo);
 
 	void setRootObject(boolean root);
+
+	public void setRotation(double rotation);
+
+	void setTestLayout(boolean testlayout);
+
+	void setVAnchorObject(ILayoutObject anchorObject);
 
 	void setWidthPixel(double width);
 
@@ -185,8 +191,6 @@ public interface ILayoutObject {
 
 	void updateFromXml();
 
-	int getRootIndex();
-
-	void boundsChanged2(Rectangle2D newBounds);
+	void updateOverflowClipping();
 
 }
