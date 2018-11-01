@@ -132,6 +132,11 @@
 	-fx-background-image: url("images/window-corner.png");
 	-fx-background-position: right 1.0px bottom 1.0px;
 	-fx-background-repeat: no-repeat;
+	
+	-fx-border-style: solid;
+	-fx-border-color: red;
+	-fx-border-width: 6.0;
+	
 }
 
 #start_button {
