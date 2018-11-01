@@ -11,10 +11,10 @@
 package org.eclipse.rcpl.application;
 
 import org.eclipse.rcpl.IEditor;
+import org.eclipse.rcpl.ILayoutFigure;
 import org.eclipse.rcpl.IPane;
 import org.eclipse.rcpl.Rcpl;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -192,7 +192,6 @@ public class WindowResizeButton extends Region {
 	}
 
 	private void update(final double w, final double h) {
-
 		if (stage != null) {
 			if (w > 10) {
 				stage.setWidth(w);
@@ -200,21 +199,36 @@ public class WindowResizeButton extends Region {
 			if (h > 10) {
 				stage.setHeight(h);
 			}
-		}
+		} else {
 
-		if (w > 0) {
-			stack.setWidth(w);
-		}
-		if (h > 0) {
-			stack.setHeight(h);
-		}
+			double oldW = stack.getWidth();
+			double oldH = stack.getHeight();
 
-		// Platform.runLater(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// }
-		// });
+			double facW = w / oldW;
+			double facH = h / oldH;
+
+			for (ILayoutFigure f : Rcpl.UIC.getEditor().getSelectedDraggables()) {
+
+				if (f == stack) {
+					if (w > 0) {
+						f.getLayoutObject().getLayoutFigure().setWidth(w);
+					}
+					if (h > 0) {
+						f.getLayoutObject().getLayoutFigure().setHeight(h);
+					}
+				} else {
+
+					if (w > 0) {
+						double oW = f.getLayoutObject().getLayoutFigure().getWidth();
+						f.getLayoutObject().getLayoutFigure().setWidth(oW * facW);
+					}
+					if (h > 0) {
+						double oH = f.getLayoutObject().getLayoutFigure().getHeight();
+						f.getLayoutObject().getLayoutFigure().setHeight(oH * facH);
+					}
+				}
+			}
+		}
 
 	}
 

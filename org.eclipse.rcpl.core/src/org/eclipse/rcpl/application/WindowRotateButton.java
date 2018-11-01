@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.rcpl.application;
 
+import org.eclipse.rcpl.ILayoutFigure;
 import org.eclipse.rcpl.IPane;
-import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.Rcpl;
 
 import javafx.event.EventHandler;
@@ -38,6 +38,13 @@ public class WindowRotateButton extends ImageView {
 
 		Image img = ((ImageView) Rcpl.resources().getImage("rotate", 20, 20).getNode()).getImage();
 		setImage(img);
+
+		setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				event.consume();
+			}
+		});
 
 		setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
@@ -67,11 +74,8 @@ public class WindowRotateButton extends ImageView {
 
 				stack.getPane().setRotate(angle);
 
-				IParagraph par = Rcpl.UIC.getEditor().getActiveParagraph();
-				if (par != null && par.getDrawings() != null) {
-					if (!par.getDrawings().isEmpty()) {
-						par.getDrawings().get(0).setRotation(angle);
-					}
+				for (ILayoutFigure f : Rcpl.UIC.getEditor().getSelectedDraggables()) {
+					f.getLayoutObject().setRotation(angle);
 				}
 
 				e.consume();
