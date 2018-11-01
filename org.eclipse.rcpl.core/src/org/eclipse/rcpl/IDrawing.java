@@ -6,10 +6,6 @@ package org.eclipse.rcpl;
  */
 public interface IDrawing extends ILayoutObject {
 
-	public void setRotation(double rotation);
-
-	public double getRotation();
-
 	void setStyle(IStyle style);
 
 	long getEmuEffectExtentLeft();
