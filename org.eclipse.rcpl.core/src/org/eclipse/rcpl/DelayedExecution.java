@@ -64,4 +64,8 @@ public abstract class DelayedExecution {
 	protected void setDone(boolean done) {
 		this.done = done;
 	}
+
+	public boolean isDone() {
+		return this.done;
+	}
 }

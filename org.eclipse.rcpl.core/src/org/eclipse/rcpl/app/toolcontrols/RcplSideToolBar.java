@@ -444,31 +444,33 @@ public class RcplSideToolBar implements ISideToolBar {
 					String s = null;
 					ITreePart treePart = Rcpl.getFactory().createRcplTreePart();
 
-					if (url.toLowerCase().startsWith("root://")) {
-						if (url.toLowerCase().startsWith("root://rcpl/")) {
-							root = RcplSession.getDefault().getRcpl();
-							s = url.substring(12, url.length());
-						} else if (url.startsWith("root://application/")) {
-							root = RcplSession.getDefault().getApplicationRootObject();
-							s = url.substring(19, url.length());
-						}
-						if (root != null && s != null) {
-							StringTokenizer tok = new StringTokenizer(s, "/");
+					if (url != null) {
+						if (url.toLowerCase().startsWith("root://")) {
+							if (url.toLowerCase().startsWith("root://rcpl/")) {
+								root = RcplSession.getDefault().getRcpl();
+								s = url.substring(12, url.length());
+							} else if (url.startsWith("root://application/")) {
+								root = RcplSession.getDefault().getApplicationRootObject();
+								s = url.substring(19, url.length());
+							}
+							if (root != null && s != null) {
+								StringTokenizer tok = new StringTokenizer(s, "/");
 
-							while (tok.hasMoreElements()) {
-								String segment = tok.nextToken();
+								while (tok.hasMoreElements()) {
+									String segment = tok.nextToken();
 
-								for (EObject o : root.eContents()) {
-									Type[] types = o.getClass().getGenericInterfaces();
-									if (types.length == 1) {
-										String tn = types[0].getTypeName();
-										if (tn.endsWith("." + segment)) {
-											root = o;
+									for (EObject o : root.eContents()) {
+										Type[] types = o.getClass().getGenericInterfaces();
+										if (types.length == 1) {
+											String tn = types[0].getTypeName();
+											if (tn.endsWith("." + segment)) {
+												root = o;
+											}
 										}
 									}
 								}
+								treePart.setRoot(root);
 							}
-							treePart.setRoot(root);
 						}
 					}
 					scrollPane.setContent(treePart.getNode());

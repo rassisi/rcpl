@@ -206,7 +206,7 @@ public class RcplUic implements IRcplUic {
 
 		if (caretPane == null) {
 			caretPane = new Pane();
-			caret = new Rectangle(3, 0, 1.6, 18);
+			caret = new Rectangle(3, 0, 1.0, 18);
 			caretPane.getChildren().add(caret);
 
 			caret.setX(80);
@@ -235,7 +235,11 @@ public class RcplUic implements IRcplUic {
 						caret.setFill(Color.LIGHTGRAY);
 					}
 				}
-			}), new KeyFrame(Duration.seconds(1)));
+			})
+
+//					, new KeyFrame(Duration.seconds(1))
+
+			);
 			caretTimeline.play();
 		}
 		return caretPane;
