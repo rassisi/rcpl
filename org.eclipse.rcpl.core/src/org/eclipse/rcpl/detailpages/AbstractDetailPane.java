@@ -102,9 +102,4 @@ public abstract class AbstractDetailPane extends AbstractTaskViewProvider implem
 		headerText.setText(title);
 	}
 
-	@Override
-	public StackPane getProgressViewArea() {
-		return progressViewArea;
-	}
-
 }

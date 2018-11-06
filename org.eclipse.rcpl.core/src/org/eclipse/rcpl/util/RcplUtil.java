@@ -867,11 +867,14 @@ public class RcplUtil {
 
 	public static File getUserLocalArea() {
 		if (userLocalArea == null) {
-			if (RcplModel.mobileProvider != null) {
-				userLocalArea = RcplModel.mobileProvider.getApplicationDir(); // $NON-NLS-1$
-			} else {
-				userLocalArea = new File(System.getProperty("user.home"), ".rcpl"); //$NON-NLS-1$
-			}
+//			if (RcplModel.mobileProvider != null) {
+//				userLocalArea = RcplModel.mobileProvider.getApplicationDir(); // $NON-NLS-1$
+//			} else {
+//				userLocalArea = new File(System.getProperty("user.home"), ".rcpl"); //$NON-NLS-1$
+//			}
+
+			userLocalArea = RcplModel.getMobileProvider().getApplicationDir(); // $NON-NLS-1$
+
 			userLocalArea.mkdirs();
 		}
 		return userLocalArea;
@@ -995,7 +998,7 @@ public class RcplUtil {
 	}
 
 	public static boolean copyResourceToUserDir(Class<?> cl, String fileName) {
-		String userDir = RcplModel.mobileProvider.getApplicationDir().getAbsolutePath();
+		String userDir = RcplModel.getMobileProvider().getApplicationDir().getAbsolutePath();
 		return copyResourceToFile(cl, fileName, new File(userDir, fileName).getAbsolutePath());
 	}
 

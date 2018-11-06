@@ -15,7 +15,18 @@ public class RcplModel {
 
 	public static ITextProvider textProvider;
 
-	public static IMobileProvider mobileProvider;
+	private static IMobileProvider mobileProvider;
+
+	public static IMobileProvider getMobileProvider() {
+		if (mobileProvider == null) {
+			mobileProvider = new DefaultMobileProvider();
+		}
+		return mobileProvider;
+	}
+
+	public static void setMobileProvider(IMobileProvider mobileProvider) {
+		RcplModel.mobileProvider = mobileProvider;
+	}
 
 	public static StringBuilder errorBuf = new StringBuilder();
 
@@ -79,7 +90,9 @@ public class RcplModel {
 
 	public static void log(Object o, String message) {
 		logBuf.append(o.getClass().getName() + ": " + message + "\r\n");
-		mobileProvider.appendLog(message + "\r\n");
+		if (mobileProvider != null) {
+			mobileProvider.appendLog(message + "\r\n");
+		}
 	}
 
 	public static void clearLog() {

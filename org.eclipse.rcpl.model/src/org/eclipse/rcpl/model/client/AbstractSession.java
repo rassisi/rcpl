@@ -1332,7 +1332,7 @@ public abstract class AbstractSession<T extends EObject> implements ISession {
 	}
 
 	private File getLocalXmiFile(boolean application) {
-		return new File(RcplModel.mobileProvider.getApplicationDir(), getLocalXmiFileName(application));
+		return new File(RcplModel.getMobileProvider().getApplicationDir(), getLocalXmiFileName(application));
 	}
 
 	abstract protected void addAdapterFactories(ComposedAdapterFactory composedFactory);

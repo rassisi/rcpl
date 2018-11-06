@@ -25,6 +25,7 @@ import org.eclipse.rcpl.IToolComponent;
 import org.eclipse.rcpl.IToolGroup;
 import org.eclipse.rcpl.IToolRegistry;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.model.IImage;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
@@ -167,7 +168,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 	private void createImage() {
 		String imageName = getImageName();
-		image = Rcpl.resources().getImage(imageName, getWidth(), getHeight());
+		image = new RcplImage(imageName, getWidth(), getHeight());
 		this.imageNode = image.getNode();
 		((ButtonBase) node).setGraphic(imageNode);
 	}

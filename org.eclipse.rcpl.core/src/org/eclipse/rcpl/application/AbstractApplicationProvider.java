@@ -83,10 +83,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		// // ignore
 		// }
 
-		if (RcplModel.mobileProvider == null) {
-			RcplModel.mobileProvider = new DefaultMobileProvider();
-		}
-
 	}
 
 	private boolean started = false;

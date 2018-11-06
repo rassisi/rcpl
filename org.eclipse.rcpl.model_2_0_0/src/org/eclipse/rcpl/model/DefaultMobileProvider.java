@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.application;
+package org.eclipse.rcpl.model;
 
 import java.io.File;
 

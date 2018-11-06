@@ -57,9 +57,7 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 	@Override
 	public boolean start(final ILogin login, final Stage primaryStage) {
 
-		RcplModel.mobileProvider.appendLog("register services)");
-
-		RcplModel.mobileProvider.appendLog("before Session)");
+		RcplModel.getMobileProvider().appendLog("before Session)");
 
 		if (!beforeSession(login)) {
 			return false;
@@ -83,7 +81,7 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 				uic.createHomePages();
 				uic.showHomePage(HomePageType.OVERVIEW, null);
 				uic.updateStartMenuButton();
-				RcplModel.log(this, "User dir: " + RcplModel.mobileProvider.getApplicationDir().toString());
+				RcplModel.log(this, "User dir: " + RcplModel.getMobileProvider().getApplicationDir().toString());
 
 			}
 		});

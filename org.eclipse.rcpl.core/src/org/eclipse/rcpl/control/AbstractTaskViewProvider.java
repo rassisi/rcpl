@@ -15,7 +15,6 @@ import javafx.scene.control.Skin;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 
 /**
  * @author ramin
@@ -25,7 +24,6 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 	private final long LONG_TASK_MILLIS = 3000;
 
-	protected StackPane progressViewArea = new StackPane();
 	private static TaskProgressView<RcplTask> taskProgressView;
 
 	int taskCounter = 0;
@@ -42,7 +40,9 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 				}
 			};
 			HBox.setHgrow(taskProgressView, Priority.ALWAYS);
-			Rcpl.UIC.getProgressArea().getChildren().add(taskProgressView);
+			if (Rcpl.UIC != null) {
+				Rcpl.UIC.getProgressArea().getChildren().add(taskProgressView);
+			}
 		}
 	}
 
@@ -225,14 +225,6 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 	}
 
 	abstract public Pane getNode();
-
-	public TaskProgressView<RcplTask> getTaskProgressView() {
-		return taskProgressView;
-	}
-
-	public StackPane getProgressViewArea() {
-		return progressViewArea;
-	}
 
 	@Override
 	public RcplTask getTask(int taskNumber) {
