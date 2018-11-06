@@ -1541,6 +1541,14 @@ public class RcplUic implements IRcplUic {
 		return (TabInfo) tab.getUserData();
 	}
 
+	protected TabInfo getTabInfo() {
+		Tab tab = tabPane.getSelectionModel().getSelectedItem();
+		if (tab != null) {
+			return (TabInfo) tab.getUserData();
+		}
+		return null;
+	}
+
 	public TabPane getTabPane() {
 		return tabPane;
 	}
@@ -2508,6 +2516,11 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void sideBarLoaded(Perspective perspective) {
+	}
+
+	@Override
+	public boolean updateToggleButton(IEditor editor, EnCommandId commandId, EnKeyValue keyValue, boolean update) {
+		return false;
 	}
 
 }

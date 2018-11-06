@@ -1,5 +1,6 @@
 package org.eclipse.rcpl;
 
+import java.io.File;
 import java.util.List;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -211,5 +212,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 	Perspective getPerspective();
 
 	void showEditorTools(boolean show);
+
+	void loadDocument(final String docName, String tabName, File file);
 
 }

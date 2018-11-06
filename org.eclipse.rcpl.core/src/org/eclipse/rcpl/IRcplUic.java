@@ -8,6 +8,7 @@ import org.eclipse.rcpl.internal.tools.SplitMenuTool;
 import org.eclipse.rcpl.internal.tools.TextFieldTool;
 import org.eclipse.rcpl.internal.tools.WebBrowserTool;
 import org.eclipse.rcpl.libs.db.H2DB;
+import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -28,6 +29,8 @@ import javafx.stage.Stage;
  *
  */
 public interface IRcplUic {
+
+	boolean updateToggleButton(IEditor editor, EnCommandId commandId, EnKeyValue keyValue, boolean update);
 
 	void sideBarLoaded(Perspective perspective);
 
