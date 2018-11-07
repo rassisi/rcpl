@@ -61,7 +61,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	private double loginWindowX = -1;
 	private double loginWindowY = -1;
 
-	public static void init(String[] args) {
+	public void init(String[] args) {
 
 		// BasicService basicService = null;
 		// try {

@@ -229,7 +229,7 @@ public class RcplService extends RcplAbstractService implements IService {
 		}
 	}
 
-	public static RcplSetupService getSetupService() {
+	public RcplSetupService getSetupService() {
 		return (RcplSetupService) getService(RcplSetupService.class);
 	}
 

@@ -24,7 +24,7 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 
 	private final long LONG_TASK_MILLIS = 3000;
 
-	private static TaskProgressView<RcplTask> taskProgressView;
+	private TaskProgressView<RcplTask> taskProgressView;
 
 	int taskCounter = 0;
 

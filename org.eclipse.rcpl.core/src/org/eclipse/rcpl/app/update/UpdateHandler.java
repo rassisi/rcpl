@@ -12,7 +12,7 @@ package org.eclipse.rcpl.app.update;
 
 public class UpdateHandler {
 
-	// private static final String REPOSITORY_LOC = System.getProperty(
+	// private final String REPOSITORY_LOC = System.getProperty(
 	// "UpdateHandler.Repo", "file://home/repository");
 
 	public void execute() {
