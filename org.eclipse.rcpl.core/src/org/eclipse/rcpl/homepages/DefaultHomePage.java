@@ -34,8 +34,8 @@ public class DefaultHomePage extends AbstractHomePage {
 	@Override
 	protected void doCreateContent(StackPane contentPane) {
 
-		RcplImage img = new RcplImage(Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getImage(), 200,
-				200, Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getApplicationResourceBaseClass());
+		RcplImage img = new RcplImage(Rcpl.UIC().getApplicationStarter().getRcplApplicationProvider().getImage(), 200,
+				200, Rcpl.UIC().getApplicationStarter().getRcplApplicationProvider().getApplicationResourceBaseClass());
 
 		ImageView iv = img.getNode();
 		iv.setOpacity(0.5);

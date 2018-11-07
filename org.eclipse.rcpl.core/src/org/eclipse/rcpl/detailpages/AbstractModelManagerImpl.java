@@ -73,7 +73,7 @@ public abstract class AbstractModelManagerImpl implements IModelManager {
 			try {
 				editingDomain.getResourceSet().getResources().add(getResource());
 			} catch (Exception ex) {
-				Rcpl.printErrorln("", ex);
+				Rcpl.get().printErrorln("", ex);
 			}
 
 		}

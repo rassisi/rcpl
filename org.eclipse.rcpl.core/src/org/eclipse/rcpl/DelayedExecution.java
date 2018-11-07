@@ -40,7 +40,7 @@ public abstract class DelayedExecution {
 						try {
 							execute();
 						} catch (Exception ex) {
-							Rcpl.printErrorln("", ex);
+							Rcpl.get().printErrorln("", ex);
 						}
 					}
 				}

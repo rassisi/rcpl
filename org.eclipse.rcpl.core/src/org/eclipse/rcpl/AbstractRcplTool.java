@@ -53,8 +53,8 @@ public abstract class AbstractRcplTool<T> implements ITool {
 		}
 		this.model = model;
 		model.setData(this);
-		Rcpl.getEditorListeners().add(this);
-		Rcpl.getLocalables().add(this);
+		Rcpl.get().getEditorListeners().add(this);
+		Rcpl.get().getLocalables().add(this);
 	}
 
 	private ChangeListener<T> changeListener;
@@ -67,12 +67,12 @@ public abstract class AbstractRcplTool<T> implements ITool {
 		changeListener = new ChangeListener<T>() {
 			@Override
 			public void changed(ObservableValue<? extends T> observable, T oldValue, T newValue) {
-				if (Rcpl.UIC.getEditor() != null) {
+				if (Rcpl.UIC().getEditor() != null) {
 					getModel().setData(AbstractRcplTool.this);
-					IParagraph paragraph = Rcpl.UIC.getEditor().getActiveParagraph();
-					ICommand command = Rcpl.getFactory().createCommand(AbstractRcplTool.this, paragraph,
+					IParagraph paragraph = Rcpl.UIC().getEditor().getActiveParagraph();
+					ICommand command = Rcpl.get().getFactory().createCommand(AbstractRcplTool.this, paragraph,
 							new Object[] { oldValue }, newValue);
-					Rcpl.service().execute(command);
+					Rcpl.get().service().execute(command);
 				}
 			}
 		};

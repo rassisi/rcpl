@@ -89,8 +89,8 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 		if (executeService) {
 			try {
 				getModel().setData(RcplButton.this);
-				ICommand command = Rcpl.getFactory().createCommand(RcplButton.this);
-				Rcpl.service().execute(command);
+				ICommand command = Rcpl.get().getFactory().createCommand(RcplButton.this);
+				Rcpl.get().service().execute(command);
 			} catch (Throwable ex) {
 				RcplModel.logError(ex);
 			}

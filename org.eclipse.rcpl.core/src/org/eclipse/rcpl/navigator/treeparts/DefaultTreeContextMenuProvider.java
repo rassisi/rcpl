@@ -89,7 +89,7 @@ public class DefaultTreeContextMenuProvider implements ICellUpdateListener {
 							addMenuItem.setDisable(!addHandler.canExecute());
 							contextMenu.getItems().add(addMenuItem);
 							if (addHandler.getImage() != null) {
-								IImage img = Rcpl.resources().getImage(addHandler.getImage(), 16, 16);
+								IImage img = Rcpl.get().resources().getImage(addHandler.getImage(), 16, 16);
 								addMenuItem.setGraphic(new ImageView(img.getImage()));
 							}
 							addMenuItem.setText(addHandler.getText());
@@ -100,7 +100,7 @@ public class DefaultTreeContextMenuProvider implements ICellUpdateListener {
 							deleteMenuItem.setDisable(!deleteHandler.canExecute());
 							contextMenu.getItems().add(deleteMenuItem);
 							if (deleteHandler.getImage() != null) {
-								IImage img = Rcpl.resources().getImage(addHandler.getImage(), 16, 16);
+								IImage img = Rcpl.get().resources().getImage(addHandler.getImage(), 16, 16);
 								deleteMenuItem.setGraphic(new ImageView(img.getImage()));
 							}
 							deleteMenuItem.setText(deleteHandler.getText());

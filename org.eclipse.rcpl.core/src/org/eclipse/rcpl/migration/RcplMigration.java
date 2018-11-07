@@ -25,13 +25,13 @@ public class RcplMigration extends RcplAbstractMigration {
 	 */
 	@Override
 	public void migrate() {
-		Rcpl.progressMessage("Migrate Model");
+		Rcpl.get().progressMessage("Migrate Model");
 		if (RcplSession.getDefault().getContents() == null) {
-			Rcpl.progressMessage("Model migrated (Content == null)");
+			Rcpl.get().progressMessage("Model migrated (Content == null)");
 			return;
 		}
 		migrateOffice();
-		Rcpl.progressMessage("Model migrated");
+		Rcpl.get().progressMessage("Model migrated");
 	}
 
 	protected void migrateOffice() {

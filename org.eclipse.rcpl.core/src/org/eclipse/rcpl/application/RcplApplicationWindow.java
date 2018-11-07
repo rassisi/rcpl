@@ -235,8 +235,8 @@ public class RcplApplicationWindow extends StackPane implements IApplicationWind
 //					updateWindow(newBounds);
 				} else {
 					updateWindow(newBounds);
-					if (Rcpl.UIC != null && Rcpl.UIC.getSideToolBarControl() != null) {
-						Rcpl.UIC.getSideToolBarControl().collapseToolPane();
+					if (Rcpl.UIC() != null && Rcpl.UIC().getSideToolBarControl() != null) {
+						Rcpl.UIC().getSideToolBarControl().collapseToolPane();
 					}
 
 				}

@@ -71,7 +71,7 @@ public class RcplCommand implements ICommand {
 		this.service = service;
 		this.newData = newData;
 		this.layoutObject = layoutObject;
-		IEditor editor = Rcpl.UIC.getEditor();
+		IEditor editor = Rcpl.UIC().getEditor();
 		if (layoutObject == null && editor != null) {
 			this.layoutObject = editor.getSelectedLayoutObject();
 		}
@@ -344,7 +344,7 @@ public class RcplCommand implements ICommand {
 
 	@Override
 	public void execute() {
-		Rcpl.service().execute(this);
+		Rcpl.get().service().execute(this);
 	}
 
 }

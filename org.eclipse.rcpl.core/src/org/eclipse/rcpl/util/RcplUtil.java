@@ -430,12 +430,12 @@ public class RcplUtil {
 	// }
 
 	public static InputStream loadTemplate(String templateResourceName) {
-		InputStream is = Rcpl.class.getResourceAsStream(Rcpl.getDefaultTemplatesPath() + templateResourceName); // $NON-NLS-1$
+		InputStream is = Rcpl.class.getResourceAsStream(Rcpl.get().getDefaultTemplatesPath() + templateResourceName); // $NON-NLS-1$
 		return is;
 	}
 
 	public static InputStream loadCssInputStream(String cssName) {
-		InputStream is = Rcpl.class.getResourceAsStream(Rcpl.getDefaultCssPath() + cssName); // $NON-NLS-1$
+		InputStream is = Rcpl.class.getResourceAsStream(Rcpl.get().getDefaultCssPath() + cssName); // $NON-NLS-1$
 		return is;
 	}
 
@@ -459,7 +459,7 @@ public class RcplUtil {
 	 */
 	public static File loadTemplateDocumentToFile(String name, boolean escapeHtml) {
 
-		String path = Rcpl.getDefaultTemplatesPath() + name;
+		String path = Rcpl.get().getDefaultTemplatesPath() + name;
 		InputStream is = AUtil.class.getResourceAsStream(path); // $NON-NLS-1$
 		if (is == null) {
 			return null;
@@ -490,7 +490,7 @@ public class RcplUtil {
 	 * @return
 	 */
 	public static void loadTemplateDocumentToFile(String name, File outFile, boolean escapeHtml) {
-		InputStream is = AUtil.class.getResourceAsStream(Rcpl.getDefaultTemplatesPath() + name); // $NON-NLS-1$
+		InputStream is = AUtil.class.getResourceAsStream(Rcpl.get().getDefaultTemplatesPath() + name); // $NON-NLS-1$
 		try {
 			AUtil.copyInputStream(is, outFile, escapeHtml);
 		} catch (IOException e) {
@@ -501,7 +501,7 @@ public class RcplUtil {
 	public static String loadTemplateHTMLDocument(String name, HashMap<String, String> wordReplacements,
 			boolean escapeHtml) {
 
-		InputStream is = AUtil.class.getResourceAsStream(Rcpl.getDefaultTemplatesPath() + name); // $NON-NLS-1$
+		InputStream is = AUtil.class.getResourceAsStream(Rcpl.get().getDefaultTemplatesPath() + name); // $NON-NLS-1$
 
 		// InputStreamReader r;
 		// OutputStreamWriter w;
@@ -935,7 +935,7 @@ public class RcplUtil {
 
 	public static double getPoint2PixelFactor() {
 		if (point2PixelFactor == -1 || point2PixelFactor == 0) {
-			IMonitor m = Rcpl.getActualMonitor();
+			IMonitor m = Rcpl.get().getActualMonitor();
 			if (actualMonitor != m || point2PixelFactor == -1 || point2PixelFactor == 0) {
 				final Text text = new Text("1234567890abcdefghijklmnopqrstABCDEFGHIJKLMNOPQRSTUVW");
 				final double width = text.getLayoutBounds().getWidth();
@@ -1046,8 +1046,8 @@ public class RcplUtil {
 		dlg.setTitle(title);
 		dlg.getDialogPane().setContentText(message);
 
-		dlg.setX(Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getLoginWindowX());
-		dlg.setY(Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getLoginWindowY());
+		dlg.setX(Rcpl.UIC().getApplicationStarter().getRcplApplicationProvider().getLoginWindowX());
+		dlg.setY(Rcpl.UIC().getApplicationStarter().getRcplApplicationProvider().getLoginWindowY());
 
 //		dlg.getDialogPane().getButtonTypes().remove(ButtonType.CANCEL);
 //		configureSampleDialog(dlg, optionalMasthead);
@@ -1123,7 +1123,7 @@ public class RcplUtil {
 	}
 
 	public static Stage getStage() {
-		return Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getPrimaryStage();
+		return Rcpl.UIC().getApplicationStarter().getRcplApplicationProvider().getPrimaryStage();
 	}
 
 	public static boolean isControlCharacter(String c) {
@@ -1565,7 +1565,7 @@ public class RcplUtil {
 			try {
 				ImageIO.write(bImage, fileType, outputFile);
 			} catch (IOException e) {
-				Rcpl.printErrorln("", e);
+				Rcpl.get().printErrorln("", e);
 			}
 		}
 		return outputFile;

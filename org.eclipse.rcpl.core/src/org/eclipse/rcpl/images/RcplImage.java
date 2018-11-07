@@ -174,7 +174,7 @@ public class RcplImage implements IImage {
 			// ---------- id==null !!! -> should never happen!!!
 
 			else if (id == null) {
-				Rcpl.printErrorln("Image could not be loeaded (id == null): ");
+				Rcpl.get().printErrorln("Image could not be loeaded (id == null): ");
 				createErrorNode();
 				return node;
 			}
@@ -183,7 +183,7 @@ public class RcplImage implements IImage {
 
 			else if (getErrorImagePngFile().exists()) {
 				URL url = getErrorImagePngFile().toURI().toURL();
-				Rcpl.println("Image loaded from cache: " + id);
+				Rcpl.get().println("Image loaded from cache: " + id);
 				InputStream is = url.openStream();
 				if (is != null) {
 					image = new Image(is);
@@ -195,7 +195,7 @@ public class RcplImage implements IImage {
 
 			else if (getPngFile().exists()) {
 				URL url = getPngFile().toURI().toURL();
-				Rcpl.println("Image loaded from cache: " + id);
+				Rcpl.get().println("Image loaded from cache: " + id);
 				InputStream is = url.openStream();
 				if (is != null) {
 					image = new Image(is);
@@ -206,7 +206,7 @@ public class RcplImage implements IImage {
 			// ---------- image from resource
 
 			else if (createImageFromResource() != null) {
-				Rcpl.println("Image loaded from resouce: " + id);
+				Rcpl.get().println("Image loaded from resouce: " + id);
 			}
 
 			// ---------- load image from remote
@@ -214,14 +214,14 @@ public class RcplImage implements IImage {
 			else if (findPngRemoteImage()) {
 				try {
 					image = new Image(pngUrl.toString());
-					Rcpl.println("Image loaded from Remote: " + id);
+					Rcpl.get().println("Image loaded from Remote: " + id);
 				} catch (Throwable ex) {
-					Rcpl.printErrorln("Image not loaded from Resource -> ERROR!: " + id, ex);
+					Rcpl.get().printErrorln("Image not loaded from Resource -> ERROR!: " + id, ex);
 					createErrorNode();
 					return node;
 				}
 				if (image.isError()) {
-					Rcpl.printErrorln("Image not loaded from Resource -> ERROR (image is error)!: " + id);
+					Rcpl.get().printErrorln("Image not loaded from Resource -> ERROR (image is error)!: " + id);
 					createErrorNode();
 					return node;
 				}
@@ -235,7 +235,7 @@ public class RcplImage implements IImage {
 			}
 
 		} catch (Throwable ex) {
-			Rcpl.printErrorln("Image not be loaded!: " + id, ex);
+			Rcpl.get().printErrorln("Image not be loaded!: " + id, ex);
 			createErrorNode();
 			return node;
 
@@ -246,7 +246,7 @@ public class RcplImage implements IImage {
 			put(id, width, height);
 			saveToFile(image, getPngFile());
 		} else {
-			Rcpl.printErrorln("Image not be loaded (image==null!");
+			Rcpl.get().printErrorln("Image not be loaded (image==null!");
 			createErrorNode();
 			saveToFile(image, getErrorImagePngFile());
 		}
@@ -357,7 +357,7 @@ public class RcplImage implements IImage {
 			isImage.close();
 
 		} catch (Throwable ex) {
-			Rcpl.printErrorln("", ex);
+			Rcpl.get().printErrorln("", ex);
 			isImage.close();
 		}
 
@@ -500,7 +500,7 @@ public class RcplImage implements IImage {
 		try {
 			getErrorPngFile().getParentFile().mkdirs();
 			getErrorPngFile().createNewFile();
-			Rcpl.println("Image could not be created: " + getErrorPngFile().getName());
+			Rcpl.get().println("Image could not be created: " + getErrorPngFile().getName());
 		} catch (IOException e) {
 		}
 	}
@@ -513,7 +513,7 @@ public class RcplImage implements IImage {
 	@Override
 	public Image getImage() {
 		if (image == null) {
-			Rcpl.printErrorln("Image could not be loeaded in getImage() ");
+			Rcpl.get().printErrorln("Image could not be loeaded in getImage() ");
 			createErrorNode();
 		}
 		return image;
@@ -539,7 +539,7 @@ public class RcplImage implements IImage {
 		if (is != null) {
 			try {
 				createSvgImage(is, width, height);
-				Rcpl.println("SVG Image loaded from Resource: " + id);
+				Rcpl.get().println("SVG Image loaded from Resource: " + id);
 			} catch (TranscoderException | IOException e) {
 			}
 		}
@@ -550,7 +550,7 @@ public class RcplImage implements IImage {
 		} catch (IOException e) {
 			// ignore as all images wrong will be saved under the __ERROR__
 			// folder
-			Rcpl.println("Image could not be loaded from Resource: " + id);
+			Rcpl.get().println("Image could not be loaded from Resource: " + id);
 		}
 	}
 
@@ -568,9 +568,9 @@ public class RcplImage implements IImage {
 			if (is != null) {
 				try {
 					createSvgImage(is, width, height);
-					Rcpl.println("SVG Image loaded from Resource: " + id);
+					Rcpl.get().println("SVG Image loaded from Resource: " + id);
 				} catch (TranscoderException | IOException e) {
-					Rcpl.printErrorln("", e);
+					Rcpl.get().printErrorln("", e);
 				}
 			}
 			try {
@@ -582,7 +582,7 @@ public class RcplImage implements IImage {
 				// folder
 			}
 		} else {
-			Rcpl.println("Image loaded from Resource: " + id);
+			Rcpl.get().println("Image loaded from Resource: " + id);
 		}
 		return image;
 	}

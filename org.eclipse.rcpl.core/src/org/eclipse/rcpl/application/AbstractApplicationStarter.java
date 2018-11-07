@@ -14,10 +14,10 @@ import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.ILogin;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.IRcplUic;
+import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.IWindowAdvisor;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.config.RcplConfig;
-import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
@@ -72,7 +72,7 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 			@Override
 			public void run() {
 				uic.createContent();
-				if (Rcpl.isMobile()) {
+				if (Rcpl.get().isMobile()) {
 					uic.addtoApplicationStack(applicationProvider.getMainContent());
 				} else {
 					windowAdvisor = createWindowAdvisor();
@@ -97,11 +97,10 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 
 			try {
 				@SuppressWarnings("unchecked")
-				Class<? extends RcplService> srvClass = (Class<? extends RcplService>) Class
-						.forName(srv.getClassName());
-				getRcplApplicationProvider().registerService(srvClass);
+				Class<? extends IService> srvClass = (Class<? extends IService>) Class.forName(srv.getClassName());
+				Rcpl.get().service().registerService(srvClass);
 			} catch (ClassNotFoundException e) {
-				Rcpl.printErrorln("", e);
+				Rcpl.get().printErrorln("", e);
 			}
 		}
 	}
@@ -120,7 +119,7 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 			RcplSession.getDefault().addAdditionalImageCodebases(url);
 
 		}
-		Rcpl.progressMessage("Bind Plugins to Model");
+		Rcpl.get().progressMessage("Bind Plugins to Model");
 		applicationProvider.bindAddonsToModel();
 
 	}
@@ -134,16 +133,16 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 	private boolean beforeSession(final ILogin login) {
 		RcplSession.getDefault().setStandalone(true);
 
-		Rcpl.progressMessage("Collapse All");
+		Rcpl.get().progressMessage("Collapse All");
 		RcplModel.configuration = new RcplConfig();
 
-		Rcpl.progressMessage("Create UIC");
+		Rcpl.get().progressMessage("Create UIC");
 		uic = createUIC(login);
 
-		Rcpl.progressMessage("Init Session");
+		Rcpl.get().progressMessage("Init Session");
 
 		if (!uic.initSession(login)) {
-			Rcpl.progressMessage("Init Session failed");
+			Rcpl.get().progressMessage("Init Session failed");
 			return false;
 		}
 

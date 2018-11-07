@@ -32,10 +32,10 @@ public class RcplDictionary implements IDictionary {
 		} else {
 			this.locale = locale;
 		}
-		for (final ILocalable l : Rcpl.getLocalables()) {
+		for (final ILocalable l : Rcpl.get().getLocalables()) {
 			l.updateLocale();
 		}
-		Rcpl.UIC.getSideToolBarControl().updateLocale();
+		Rcpl.UIC().getSideToolBarControl().updateLocale();
 	}
 
 	@Override

@@ -199,6 +199,17 @@ public class RcplUic implements IRcplUic {
 
 	private List<String> recentDocumentFiles = new ArrayList<String>();
 
+	public void dispose() {
+		if (caretTimeline != null) {
+			caretTimeline.stop();
+			caretTimeline = null;
+		}
+		if (caretPane != null) {
+			caretPane.setUserData(null);
+			caretPane = null;
+		}
+	}
+
 	/**
 	 * 
 	 */
@@ -221,9 +232,11 @@ public class RcplUic implements IRcplUic {
 						return;
 					}
 					caret.setFill(Color.BLACK);
-					IEditor editor = Rcpl.UIC.getEditor();
-					if (editor != null) {
-						// editor.updateScrollTargetForCaret();
+					if (Rcpl.UIC() != null) {
+						IEditor editor = Rcpl.UIC().getEditor();
+						if (editor != null) {
+							// editor.updateScrollTargetForCaret();
+						}
 					}
 				}
 			}), new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
@@ -246,8 +259,8 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public static void activateCaret() {
-		if (Rcpl.UIC.getEditor() != null) {
-			ILayoutObject lo = Rcpl.UIC.getEditor().getSelectedLayoutObject();
+		if (Rcpl.UIC().getEditor() != null) {
+			ILayoutObject lo = Rcpl.UIC().getEditor().getSelectedLayoutObject();
 			if (lo instanceof IParagraph) {
 				caretPane.setUserData(lo.getLayoutFigure());
 				caret.requestFocus();
@@ -578,7 +591,7 @@ public class RcplUic implements IRcplUic {
 		});
 		logPage.getChildren().addAll(returnButton, clearButton);
 
-		Rcpl.UIC = this;
+		Rcpl.get().setUIC(this);
 
 		rcplApplicationStarter.getRcplApplicationProvider().getMainApplicationStack().getScene().focusOwnerProperty()
 				.addListener(new ChangeListener<Node>() {
@@ -629,7 +642,7 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void addHomePageButton(HomePage homePage, Pane pane, ToggleGroup toggleGroup) {
-		IButton homeButton = Rcpl.getFactory().createHomePageButton(homePage);
+		IButton homeButton = Rcpl.get().getFactory().createHomePageButton(homePage);
 		FlowPane.setMargin(homeButton.getNode(), new Insets(0, 0, 0, 5));
 		pane.getChildren().add(homeButton.getNode());
 	}
@@ -643,7 +656,7 @@ public class RcplUic implements IRcplUic {
 					recentDocumentFiles.remove(recentDocumentFiles.size() - 1);
 				}
 				for (int index = 1; index < recentDocumentFiles.size(); index++) {
-					Rcpl.setWithIndex(EnKeyValue.RECENT_DOCUMENT, index, recentDocumentFiles.get(index));
+					Rcpl.get().setWithIndex(EnKeyValue.RECENT_DOCUMENT, index, recentDocumentFiles.get(index));
 				}
 				updateContextMenu();
 			}
@@ -698,7 +711,7 @@ public class RcplUic implements IRcplUic {
 		TabInfo tabInfo = getTabInfo(tab);
 		if (tabInfo != null && tabInfo.getEditor() != null) {
 			final IEditor editor = tabInfo.getEditor();
-			if (editor.close()) {
+			if (editor.dispose()) {
 				tab.setUserData(null);
 				if (tabPane.getTabs().size() == 1) {
 					showHomePage(HomePageType.OVERVIEW, null);
@@ -753,7 +766,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	private void createBorderDragger(Node node) {
-		if (!Rcpl.isMobile()) {
+		if (!Rcpl.get().isMobile()) {
 			node.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
@@ -778,7 +791,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void createContent() {
 
-		Rcpl.progressMessage(this.getClass().getName() + ".createContent()");
+		Rcpl.get().progressMessage(this.getClass().getName() + ".createContent()");
 
 		// ---------- restore some GUI states
 
@@ -832,9 +845,9 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				if (Rcpl.UIC.getEditor() != null) {
+				if (Rcpl.UIC().getEditor() != null) {
 					double scale = computeScale(newValue.doubleValue());
-					Rcpl.UIC.getEditor().setScale(scale);
+					Rcpl.UIC().getEditor().setScale(scale);
 					if (oldValue.doubleValue() != 0.0) {
 						Rcpl.set(getEditor(), EnKeyValue.EDITOR_SCALE, newValue.doubleValue());
 					}
@@ -847,7 +860,7 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if (Rcpl.UIC.getEditor() != null) {
+				if (Rcpl.UIC().getEditor() != null) {
 					double newValue = zoomSlider.getValue() + 0.05;
 					setScale(newValue);
 				}
@@ -858,7 +871,7 @@ public class RcplUic implements IRcplUic {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if (Rcpl.UIC.getEditor() != null) {
+				if (Rcpl.UIC().getEditor() != null) {
 					double newValue = zoomSlider.getValue() - 0.05;
 					setScale(newValue);
 				}
@@ -962,7 +975,7 @@ public class RcplUic implements IRcplUic {
 
 					}
 				} catch (Exception ex) {
-					Rcpl.printErrorln("", ex);
+					Rcpl.get().printErrorln("", ex);
 				}
 			}
 		});
@@ -985,7 +998,7 @@ public class RcplUic implements IRcplUic {
 	public void createHomePages() {
 		if (homepages.isEmpty()) {
 			for (HomePage modelHomePage : RcplSession.getDefault().getRcpl().getHomepages().getChildren()) {
-				IHomePage homePage = Rcpl.getFactory().createHomePage(this, modelHomePage);
+				IHomePage homePage = Rcpl.get().getFactory().createHomePage(this, modelHomePage);
 				homepages.add(homePage);
 			}
 		}
@@ -1054,11 +1067,11 @@ public class RcplUic implements IRcplUic {
 		IImage img = null;
 
 		if (title.endsWith("docx")) {
-			img = Rcpl.resources().getImage("word", 16, 16);
+			img = Rcpl.get().resources().getImage("word", 16, 16);
 		} else if (title.endsWith("xlsx")) {
-			img = Rcpl.resources().getImage("spreadsheet", 16, 16);
+			img = Rcpl.get().resources().getImage("spreadsheet", 16, 16);
 		} else if (title.endsWith("pptx")) {
-			img = Rcpl.resources().getImage("presentation", 16, 16);
+			img = Rcpl.get().resources().getImage("presentation", 16, 16);
 		}
 
 		title = title.replaceAll("\\.docx", "");
@@ -1157,11 +1170,11 @@ public class RcplUic implements IRcplUic {
 
 	protected void doCreateContent() {
 
-		Rcpl.progressMessage("Rcpl.doCreateContent()");
+		Rcpl.get().progressMessage("Rcpl.doCreateContent()");
 
 		URL location = getClass().getResource("/org/eclipse/rcpl/ui/controler/rcpl_uic.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
-		fxmlLoader.setController(Rcpl.UIC);
+		fxmlLoader.setController(Rcpl.UIC());
 
 		try {
 			borderPane = fxmlLoader.load();
@@ -1190,7 +1203,7 @@ public class RcplUic implements IRcplUic {
 			RcplModel.logError(ex);
 		}
 
-		if (Rcpl.isMobile()) {
+		if (Rcpl.get().isMobile()) {
 			borderPane.setTop(titleArea);
 			borderPane.setBottom(null);
 		}
@@ -1352,7 +1365,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public ITreePart getApplicationTreepart() {
 		if (applicationTreePart == null) {
-			applicationTreePart = Rcpl.getFactory().createApplicationTreePart();
+			applicationTreePart = Rcpl.get().getFactory().createApplicationTreePart();
 		}
 		return applicationTreePart;
 	}
@@ -1387,7 +1400,7 @@ public class RcplUic implements IRcplUic {
 
 		IDetailPage detailPage = detailPages.get(className);
 		if (detailPage == null) {
-			detailPage = Rcpl.getFactory().createDetailPage(className);
+			detailPage = Rcpl.get().getFactory().createDetailPage(className);
 		}
 		return detailPage;
 	}
@@ -1417,7 +1430,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public H2DB getH2DB() {
 		if (h2DB == null) {
-			h2DB = Rcpl.getFactory().createH2DB();
+			h2DB = Rcpl.get().getFactory().createH2DB();
 		}
 		return h2DB;
 	}
@@ -1508,7 +1521,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public ITreePart getRcplTreepart() {
 		if (rcplTreePart == null) {
-			rcplTreePart = Rcpl.getFactory().createRcplTreePart();
+			rcplTreePart = Rcpl.get().getFactory().createRcplTreePart();
 		}
 		return rcplTreePart;
 	}
@@ -1522,7 +1535,7 @@ public class RcplUic implements IRcplUic {
 	public ISideToolBar getSideToolBarControl() {
 
 		if (sideToolbarControl == null) {
-			sideToolbarControl = Rcpl.getFactory().createSideToolBar(Rcpl.UIC.getMainLeftArea());
+			sideToolbarControl = Rcpl.get().getFactory().createSideToolBar(Rcpl.UIC().getMainLeftArea());
 		}
 
 		return sideToolbarControl;
@@ -1564,7 +1577,7 @@ public class RcplUic implements IRcplUic {
 
 	public ITopToolbar getTopToolbarControl() {
 		if (internalTopToolBar == null) {
-			internalTopToolBar = Rcpl.getFactory().createTopToolBar(getMainTopStack());
+			internalTopToolBar = Rcpl.get().getFactory().createTopToolBar(getMainTopStack());
 		}
 		return internalTopToolBar;
 	}
@@ -1737,14 +1750,14 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public boolean initSession(ILogin login) {
 
-		Rcpl.progressMessage("Session Start");
+		Rcpl.get().progressMessage("Session Start");
 		try {
 			if (!RcplSession.getDefault().start()) {
-				Rcpl.progressMessage("Session Start failed");
+				Rcpl.get().progressMessage("Session Start failed");
 				return false;
 			}
 		} catch (Throwable e) {
-			Rcpl.progressMessage(e.getMessage());
+			Rcpl.get().progressMessage(e.getMessage());
 		}
 
 //		double max = 0;
@@ -1752,11 +1765,11 @@ public class RcplUic implements IRcplUic {
 			// login.getController().collapseAll();
 //			max = RcplSession.getDefault().getSystemPreferences().getDouble(RcplKey.MAX_PROGRESS);
 //			if (max > 0) {
-//				// Rcpl.UIC.setProgressMax(max);
+//				// Rcpl.UIC().setProgressMax(max);
 //			}
 		}
 
-		Rcpl.progressMessage("Register Services");
+		Rcpl.get().progressMessage("Register Services");
 
 		RcplSession.getDefault().setPassword(null);
 
@@ -1921,7 +1934,7 @@ public class RcplUic implements IRcplUic {
 		internalInhibitUI = true;
 		getSideToolBarControl().init();
 		internalInhibitUI = false;
-		getSideToolBarControl().showPerspective(Rcpl.UIC.getPerspective());
+		getSideToolBarControl().showPerspective(Rcpl.UIC().getPerspective());
 		getSideToolBarControl().showSideTools();
 	}
 
@@ -1930,7 +1943,7 @@ public class RcplUic implements IRcplUic {
 		internalInhibitUI = true;
 		getTopToolbarControl().init();
 		internalInhibitUI = false;
-		getTopToolbarControl().showPerspective(Rcpl.UIC.getPerspective());
+		getTopToolbarControl().showPerspective(Rcpl.UIC().getPerspective());
 	}
 
 	// protected IUndoRedoListener getInternalUndoRedoListener() {
@@ -1999,7 +2012,7 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void setContent(Node node) {
-		new WaitThread(Rcpl.UIC.getEditor()) {
+		new WaitThread(Rcpl.UIC().getEditor()) {
 
 			@Override
 			public void doRun() {
@@ -2271,7 +2284,7 @@ public class RcplUic implements IRcplUic {
 			if (perspective != null && perspective == this.perspective) {
 				return false;
 			}
-			Rcpl.UIC.setPerspective(perspective);
+			Rcpl.UIC().setPerspective(perspective);
 			getSideToolBarControl().showPerspective(perspective);
 			getTopToolBar().showPerspective(perspective);
 			updateQuickToolsArea();
@@ -2285,7 +2298,7 @@ public class RcplUic implements IRcplUic {
 				}
 			};
 		} catch (Exception ex) {
-			Rcpl.printErrorln("", ex);
+			Rcpl.get().printErrorln("", ex);
 		}
 		return false;
 	}
@@ -2334,7 +2347,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	private void updateEditorListener() {
-		Rcpl.getEditorListeners().add(new RcplEditorListenerAdapter() {
+		Rcpl.get().getEditorListeners().add(new RcplEditorListenerAdapter() {
 			@Override
 			public boolean update(final RcplEvent event) {
 				if (event.getEditMode() != null) {
@@ -2363,7 +2376,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public ITool findTool(EnCommandId id) {
-		for (IEditorListener l : Rcpl.getEditorListeners()) {
+		for (IEditorListener l : Rcpl.get().getEditorListeners()) {
 			if (l instanceof ITool) {
 				ITool t = (ITool) l;
 				if (id.getId() != null && t.getModel() != null && id.getId().equals(t.getModel().getId())) {
@@ -2375,7 +2388,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public ITool findTool(ToolType type) {
-		for (IEditorListener l : Rcpl.getEditorListeners()) {
+		for (IEditorListener l : Rcpl.get().getEditorListeners()) {
 
 			if (l instanceof ITool) {
 				ITool t = (ITool) l;
@@ -2388,7 +2401,7 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public ITool findTool(ToolType type, String id) {
-		for (IEditorListener l : Rcpl.getEditorListeners()) {
+		for (IEditorListener l : Rcpl.get().getEditorListeners()) {
 			if (l instanceof ITool) {
 				ITool t = (ITool) l;
 				if (t.getModel() != null && type.equals(t.getModel().getType()) && id.equals(t.getModel().getId())) {
@@ -2414,16 +2427,16 @@ public class RcplUic implements IRcplUic {
 //				urlAddressTool.setText(getBrowser().getEngine().getLocation());
 //			}
 		} catch (Exception ex) {
-			Rcpl.printErrorln("", ex);
+			Rcpl.get().printErrorln("", ex);
 		}
 	}
 
 	private void updateQuickToolsArea() {
 		quickToolsArea.getChildren().clear();
-		if (!Rcpl.isMobile()) {
+		if (!Rcpl.get().isMobile()) {
 			if (perspective != null && perspective.getQuickToolBar() != null) {
 				for (Tool tool : perspective.getQuickToolBar().getTools()) {
-					IButton q = Rcpl.getFactory().createButton(tool);
+					IButton q = Rcpl.get().getFactory().createButton(tool);
 					q.getNode().setStyle("-fx-background-color: transparent;");
 					quickToolsArea.getChildren().add(q.getNode());
 				}
@@ -2436,7 +2449,7 @@ public class RcplUic implements IRcplUic {
 		try {
 			if (RcplSession.getDefault().isOnline()) {
 				// getStartMenuButton().setToolTip("Online");
-				onlineOfflineView = Rcpl.resources().getImage("start_button", 20, 20).getNode();
+				onlineOfflineView = Rcpl.get().resources().getImage("start_button", 20, 20).getNode();
 				StackPane.setMargin(onlineOfflineView, new Insets(6, 0, 0, 0));
 				// onlineOfflineView.setFitHeight(20);
 				// onlineOfflineView.setFitWidth(20);
@@ -2450,7 +2463,7 @@ public class RcplUic implements IRcplUic {
 
 			} else {
 				// getStartMenuButton().setToolTip("Offline");
-				IImage img = Rcpl.resources().getImage("start_button", 20, 20);
+				IImage img = Rcpl.get().resources().getImage("start_button", 20, 20);
 				onlineOfflineView = img.getNode();
 				// img.getImage().;
 				Tooltip t = new Tooltip("Offline");
@@ -2467,7 +2480,7 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	private void onZoom100() {
-		if (Rcpl.UIC.getEditor() != null) {
+		if (Rcpl.UIC().getEditor() != null) {
 			double newValue = 0.5;
 			setScale(newValue);
 		}
@@ -2475,27 +2488,27 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public WebBrowserTool findWebBrowserTool(String id) {
-		return (WebBrowserTool) Rcpl.UIC.findTool(ToolType.WEBVIEW, id);
+		return (WebBrowserTool) Rcpl.UIC().findTool(ToolType.WEBVIEW, id);
 	}
 
 	@Override
 	public ComboBoxTool findComboBoxTool(String id) {
-		return (ComboBoxTool) Rcpl.UIC.findTool(ToolType.COMBO, id);
+		return (ComboBoxTool) Rcpl.UIC().findTool(ToolType.COMBO, id);
 	}
 
 	@Override
 	public TextFieldTool findTextFieldTool(String id) {
-		return (TextFieldTool) Rcpl.UIC.findTool(ToolType.TEXTFIELD, id);
+		return (TextFieldTool) Rcpl.UIC().findTool(ToolType.TEXTFIELD, id);
 	}
 
 	@Override
 	public IButton findButtonTool(String id) {
-		return (IButton) Rcpl.UIC.findTool(ToolType.BUTTON, id);
+		return (IButton) Rcpl.UIC().findTool(ToolType.BUTTON, id);
 	}
 
 	@Override
 	public SplitMenuTool findSplitMenuTool(String id) {
-		return (SplitMenuTool) Rcpl.UIC.findTool(ToolType.SPLITMENUBUTTON, id);
+		return (SplitMenuTool) Rcpl.UIC().findTool(ToolType.SPLITMENUBUTTON, id);
 	}
 
 	protected void saveWorkingDir(String dir) {

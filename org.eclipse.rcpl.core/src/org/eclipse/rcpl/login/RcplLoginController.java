@@ -276,7 +276,7 @@ public class RcplLoginController implements ILoginController {
 			@Override
 			public void handle(KeyEvent event) {
 
-				if (!Rcpl.isMobile()) {
+				if (!Rcpl.get().isMobile()) {
 					if ("x".equals(event.getText())) {
 						if (event.isAltDown()) {
 							password.setText("joffice");

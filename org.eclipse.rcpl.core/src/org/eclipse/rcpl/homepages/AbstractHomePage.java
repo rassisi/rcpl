@@ -95,7 +95,7 @@ public abstract class AbstractHomePage implements IHomePage {
 			header.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-					Rcpl.UIC.expandAllToolBars();
+					Rcpl.UIC().expandAllToolBars();
 				}
 			});
 
@@ -112,7 +112,7 @@ public abstract class AbstractHomePage implements IHomePage {
 			imageContainer.setMinSize(imageSize, imageSize);
 			imageContainer.setMaxSize(imageSize, imageSize);
 
-			Node imageView = Rcpl.resources().getImage(imageName, imageSize, imageSize).getNode();
+			Node imageView = Rcpl.get().resources().getImage(imageName, imageSize, imageSize).getNode();
 			if (imageView != null) {
 				imageContainer.getChildren().add(imageView);
 				HBox.setMargin(imageContainer, new Insets(0, 0, 0, 20));
@@ -154,7 +154,7 @@ public abstract class AbstractHomePage implements IHomePage {
 				homeButtonsPane = new FlowPane();
 				homeButtonsPane.setVgap(5);
 				homeButtonsPane.setAlignment(Pos.CENTER_LEFT);
-				Rcpl.UIC.createAllHomeButtons(homeButtonsPane);
+				Rcpl.UIC().createAllHomeButtons(homeButtonsPane);
 				homeButtonsPane.setHgap(5);
 				homeButtonsPane.setPrefWrapLength(1000);
 				HBox.setHgrow(homeButtonsPane, Priority.ALWAYS);

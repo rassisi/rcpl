@@ -32,46 +32,46 @@ public class RcplEditorService extends RcplService {
 
 		switch (command.getCommandId()) {
 		case OPEN_DOCUMENT:
-			Rcpl.UIC.openDocumentWithFileDialog();
+			Rcpl.UIC().openDocumentWithFileDialog();
 			break;
 		case open_last_document:
-			Rcpl.UIC.openLastDocument();
+			Rcpl.UIC().openLastDocument();
 			break;
 		case save:
-			Rcpl.UIC.save();
+			Rcpl.UIC().save();
 			break;
 		case save_as:
-			Rcpl.UIC.saveAs();
+			Rcpl.UIC().saveAs();
 			break;
 		case test_layout:
-			IParagraph sel = Rcpl.UIC.getEditor().getActiveParagraph();
+			IParagraph sel = Rcpl.UIC().getEditor().getActiveParagraph();
 			if (sel != null) {
 				if (sel.getPreviousRootObject() != null) {
 					sel.getPreviousRootObject().setTestLayout(true);
-					Rcpl.UIC.getEditor().addDirtyLayoutObject(sel.getPreviousRootObject());
+					Rcpl.UIC().getEditor().addDirtyLayoutObject(sel.getPreviousRootObject());
 				} else {
 					sel.setTestLayout(true);
-					Rcpl.UIC.getEditor().addDirtyLayoutObject(sel);
+					Rcpl.UIC().getEditor().addDirtyLayoutObject(sel);
 				}
 			}
 			break;
 		case test_z_order:
-			Rcpl.UIC.getEditor().getPage(1).zOrder();
+			Rcpl.UIC().getEditor().getPage(1).zOrder();
 			break;
 
 		case showHLineal:
 			boolean selected = command.getTool().isSelected();
-			for (IPage page : Rcpl.UIC.getEditor().getPages()) {
+			for (IPage page : Rcpl.UIC().getEditor().getPages()) {
 				page.getHLineal().show(selected);
 			}
-			Rcpl.set(Rcpl.UIC.getEditor(), EnKeyValue.SHOW_H_LINEAL, selected);
+			Rcpl.set(Rcpl.UIC().getEditor(), EnKeyValue.SHOW_H_LINEAL, selected);
 			return true;
 		case showVLineal:
 			selected = command.getTool().isSelected();
-			for (IPage page : Rcpl.UIC.getEditor().getPages()) {
+			for (IPage page : Rcpl.UIC().getEditor().getPages()) {
 				page.getVLineal().show(selected);
 			}
-			Rcpl.set(Rcpl.UIC.getEditor(), EnKeyValue.SHOW_V_LINEAL, selected);
+			Rcpl.set(Rcpl.UIC().getEditor(), EnKeyValue.SHOW_V_LINEAL, selected);
 			return true;
 		default:
 			break;

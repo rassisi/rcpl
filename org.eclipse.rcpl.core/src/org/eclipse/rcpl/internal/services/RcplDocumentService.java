@@ -29,13 +29,13 @@ public class RcplDocumentService extends RcplService {
 
 		switch (event.getCommandId()) {
 		case NEW_WORD_DOCUMENT:
-			Rcpl.UIC.openTemplateDocument("blank_A4.docx", " New Document");
+			Rcpl.UIC().openTemplateDocument("blank_A4.docx", " New Document");
 			break;
 		case NEW_PRESENTATION_DOCUMENT:
-			Rcpl.UIC.openTemplateDocument("blank_presentation.pptx", " New Presentation");
+			Rcpl.UIC().openTemplateDocument("blank_presentation.pptx", " New Presentation");
 			break;
 		case NEW_SPREADSHEET_DOCUMENT:
-			Rcpl.UIC.openTemplateDocument("blank_workbook.xlsx", " New Spreadsheet");
+			Rcpl.UIC().openTemplateDocument("blank_workbook.xlsx", " New Spreadsheet");
 			break;
 		default:
 			break;

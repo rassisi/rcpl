@@ -156,10 +156,10 @@ public class RibbonGroup extends AbstractRcplTool {
 					}
 					if (isSelected()) {
 						ToolGroup tg = (ToolGroup) RibbonGroup.this.getModel();
-						Rcpl.UIC.getSideToolBarControl().expand(tg.getExpandToolGroup()); // toolGroup.getSideToolbarPath());
+						Rcpl.UIC().getSideToolBarControl().expand(tg.getExpandToolGroup()); // toolGroup.getSideToolbarPath());
 					} else {
-						Rcpl.UIC.getSideToolBarControl().collapseToolPane();
-						Rcpl.set(Rcpl.UIC.getEditor(), EnKeyValue.SIDEBAR_PATH, (String) null);
+						Rcpl.UIC().getSideToolBarControl().collapseToolPane();
+						Rcpl.set(Rcpl.UIC().getEditor(), EnKeyValue.SIDEBAR_PATH, (String) null);
 					}
 				};
 			};
@@ -195,7 +195,7 @@ public class RibbonGroup extends AbstractRcplTool {
 			if (getModel() == null) {
 				Tool tool = RcplFactory.eINSTANCE.createTool();
 				tool.setId("error");
-				IButton b = Rcpl.getFactory().createButton(tool);
+				IButton b = Rcpl.get().getFactory().createButton(tool);
 				add(b.getNode(), 0, 0);
 				return 0;
 			}
@@ -227,7 +227,7 @@ public class RibbonGroup extends AbstractRcplTool {
 				} else if (ToolType.COMBO.equals(toolModel.getType()) && "redo".equals(toolModel.getFormat())) {
 					node = RcplToolFactory.getUndoRedoTool().getRedoCombo();
 				} else {
-					tool = Rcpl.getToolFactory().createTool(toolModel);
+					tool = Rcpl.get().getToolFactory().createTool(toolModel);
 					if (tool instanceof IButton) {
 						if (ToolType.TOGGLEBUTTON.equals(toolModel.getType()) && toolModel.isToggleGroup()) {
 							toggleGroup.getToggles().add(((ToggleButton) tool.getNode()));
@@ -236,7 +236,7 @@ public class RibbonGroup extends AbstractRcplTool {
 					registry.put(toolModel, tool);
 
 					if (tool instanceof Labeled) {
-						Node image = Rcpl.resources().getImage(imageName, 16, 16).getNode();
+						Node image = Rcpl.get().resources().getImage(imageName, 16, 16).getNode();
 						if (image != null) {
 							((Labeled) tool).setGraphic(image);
 						}
@@ -285,7 +285,7 @@ public class RibbonGroup extends AbstractRcplTool {
 		ToggleGroup toggleGroup = new ToggleGroup();
 
 		for (Tool t2 : t.getTools()) {
-			Node n = Rcpl.getToolFactory().createTool(t2).getNode();
+			Node n = Rcpl.get().getToolFactory().createTool(t2).getNode();
 
 			if (n instanceof IButton) {
 				if (ToolType.TOGGLEBUTTON.equals(t2.getType()) && t2.isToggleGroup()) {
@@ -296,9 +296,9 @@ public class RibbonGroup extends AbstractRcplTool {
 			// String name = t2.getName();
 			String imageName = t2.getImage();
 			if (imageName != null) {
-				Node image = Rcpl.resources().getImage(imageName, 16, 16).getNode();
+				Node image = Rcpl.get().resources().getImage(imageName, 16, 16).getNode();
 				if (image == null) {
-					image = Rcpl.resources().getImage("close", 16, 16).getNode();
+					image = Rcpl.get().resources().getImage("close", 16, 16).getNode();
 				}
 				if (image != null) {
 					if (n instanceof Labeled) {

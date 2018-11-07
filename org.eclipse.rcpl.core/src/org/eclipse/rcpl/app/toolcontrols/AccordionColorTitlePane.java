@@ -99,7 +99,7 @@ class AccordionColorTitlePane extends TitledPane {
 			HBox hBox = new HBox();
 			hBox.setAlignment(Pos.CENTER);
 
-			Node image = Rcpl.resources().getImage(imageName, width, height).getNode();
+			Node image = Rcpl.get().resources().getImage(imageName, width, height).getNode();
 
 			if (image != null) {
 				hBox.getChildren().add(image);
@@ -122,7 +122,7 @@ class AccordionColorTitlePane extends TitledPane {
 				String format = toolGroup.getFormat();
 				if (!toolGroup.getTools().isEmpty() && format != null && format.indexOf("{HEADER}") != -1) {
 					if (!ToolType.NAVIGATOR.equals(toolGroup.getTools().get(0).getType())) {
-						ITool n = Rcpl.getToolFactory().createTool(toolGroup.getTools().get(0));
+						ITool n = Rcpl.get().getToolFactory().createTool(toolGroup.getTools().get(0));
 						if (n instanceof ComboBox<?>) {
 							((ComboBox<?>) n).setEditable(true);
 						}

@@ -53,7 +53,7 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 		splitPane.setDividerPositions(0.3f);
 		uic.getTopToolBar().showPerspective(null);
 
-		if (!Rcpl.isMobile())
+		if (!Rcpl.get().isMobile())
 
 		{
 			showSplash(1);
@@ -84,7 +84,7 @@ public abstract class AbstractNavigatorHomePage extends AbstractHomePage {
 	}
 
 	protected ITreePart getTreePart() {
-		return Rcpl.UIC.getRcplTreepart();
+		return Rcpl.UIC().getRcplTreepart();
 	}
 
 }

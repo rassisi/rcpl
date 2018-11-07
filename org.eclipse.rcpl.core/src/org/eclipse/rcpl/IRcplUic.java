@@ -30,6 +30,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	void dispose();
+
 	boolean updateToggleButton(IEditor editor, EnCommandId commandId, EnKeyValue keyValue, boolean update);
 
 	void sideBarLoaded(Perspective perspective);

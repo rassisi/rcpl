@@ -16,14 +16,14 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
-import org.eclipse.rcpl.service.RcplAbstractService;
+import org.eclipse.rcpl.service.RcplBaseService;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
  * @author ramin
  * 
  */
-public class RcplService extends RcplAbstractService implements IService {
+public class RcplService extends RcplBaseService implements IService {
 
 	private IService browserService;
 
@@ -73,17 +73,17 @@ public class RcplService extends RcplAbstractService implements IService {
 				if (tool != null) {
 
 					if (!ToolType.NAVIGATOR.equals(tool.getType()) && tool.getUrl() != null) {
-						Rcpl.UIC.getWebBrowserDetailPage().setTool(tool);
-						Rcpl.UIC.getActiveHomePage().getContentPane().getChildren().clear();
-						Rcpl.UIC.getActiveHomePage().getContentPane().getChildren()
-								.add(Rcpl.UIC.getWebBrowserDetailPage().getNode());
+						Rcpl.UIC().getWebBrowserDetailPage().setTool(tool);
+						Rcpl.UIC().getActiveHomePage().getContentPane().getChildren().clear();
+						Rcpl.UIC().getActiveHomePage().getContentPane().getChildren()
+								.add(Rcpl.UIC().getWebBrowserDetailPage().getNode());
 						return true;
 					}
 					if (tool.getDetailPaneClassName() != null) {
-						IDetailPage detailPage = Rcpl.UIC.getDetailPage(tool.getDetailPaneClassName());
+						IDetailPage detailPage = Rcpl.UIC().getDetailPage(tool.getDetailPaneClassName());
 						if (detailPage != null) {
-							Rcpl.UIC.getActiveHomePage().getContentPane().getChildren().clear();
-							Rcpl.UIC.getActiveHomePage().getContentPane().getChildren().add(detailPage.getNode());
+							Rcpl.UIC().getActiveHomePage().getContentPane().getChildren().clear();
+							Rcpl.UIC().getActiveHomePage().getContentPane().getChildren().add(detailPage.getNode());
 							return true;
 						}
 						return false;
@@ -93,7 +93,7 @@ public class RcplService extends RcplAbstractService implements IService {
 
 			switch (command.getCommandId()) {
 			case collapse_all:
-				Rcpl.UIC.collapseAll();
+				Rcpl.UIC().collapseAll();
 				break;
 			default:
 				String service = command.getTool().getService();
@@ -116,7 +116,7 @@ public class RcplService extends RcplAbstractService implements IService {
 
 	private boolean executeHomePages(ICommand command) {
 		if (command.getCommandId().equals(EnCommandId.showStartMenu)) {
-			Rcpl.UIC.showHomePage(HomePageType.OVERVIEW, null);
+			Rcpl.UIC().showHomePage(HomePageType.OVERVIEW, null);
 			return true;
 		}
 
@@ -124,7 +124,7 @@ public class RcplService extends RcplAbstractService implements IService {
 			Object[] data = command.getTool().getData();
 			if (data != null && data[0] instanceof HomePage) {
 				HomePage homePage = (HomePage) data[0];
-				Rcpl.UIC.showHomePage(homePage.getType(), homePage.getId());
+				Rcpl.UIC().showHomePage(homePage.getType(), homePage.getId());
 				return true;
 			}
 		}
@@ -191,7 +191,7 @@ public class RcplService extends RcplAbstractService implements IService {
 //	}
 
 	public Object execute(ITool tool) {
-		ICommand command = Rcpl.getFactory().createCommand(tool);
+		ICommand command = Rcpl.get().getFactory().createCommand(tool);
 		IService service = getService(command);
 		try {
 			return service.doExecute(command);
@@ -216,8 +216,8 @@ public class RcplService extends RcplAbstractService implements IService {
 	}
 
 	public void showOutLine(ICommand command, boolean show) {
-		if (Rcpl.UIC.getEditor() != null) {
-			Rcpl.UIC.getEditor().setShowOutlineParagraph(show);
+		if (Rcpl.UIC().getEditor() != null) {
+			Rcpl.UIC().getEditor().setShowOutlineParagraph(show);
 			Iterator<ILayoutObject> it = getDocument(command).layoutObjects();
 			while (it.hasNext()) {
 				ILayoutObject lo = it.next();
@@ -255,74 +255,74 @@ public class RcplService extends RcplAbstractService implements IService {
 		switch (serviceId) {
 		case BROWSER_SERVICE:
 			if (browserService == null) {
-				browserService = Rcpl.getServiceFactory().createService(serviceId);
+				browserService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return browserService;
 		case COMMAND_SERVICE:
 			if (commandService == null) {
-				commandService = Rcpl.getServiceFactory().createService(serviceId);
+				commandService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return commandService;
 		case CONTEXT_MENU_SERVICE:
 			if (contextMenuGeneralService == null) {
-				contextMenuGeneralService = Rcpl.getServiceFactory().createService(serviceId);
+				contextMenuGeneralService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return contextMenuGeneralService;
 		case DEFAULT_SERVICE:
 			return this;
 		case DELETE_SERVICE:
 			if (deleteService == null) {
-				deleteService = Rcpl.getServiceFactory().createService(serviceId);
+				deleteService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return deleteService;
 		case DOCUMENT_SERVICE:
 			if (documentService == null) {
-				documentService = Rcpl.getServiceFactory().createService(serviceId);
+				documentService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return documentService;
 		case EDITOR_SERVICE:
 			if (editorService == null) {
-				editorService = Rcpl.getServiceFactory().createService(serviceId);
+				editorService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return editorService;
 		case SETUP_SERVICE:
 			if (setupService == null) {
-				setupService = Rcpl.getServiceFactory().createService(serviceId);
+				setupService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return setupService;
 		case COLOR_SERVICE:
 			if (colorService == null) {
-				colorService = Rcpl.getServiceFactory().createService(serviceId);
+				colorService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return colorService;
 		case FONT_SERVICE:
 			if (fontService == null) {
-				fontService = Rcpl.getServiceFactory().createService(serviceId);
+				fontService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return fontService;
 		case INSERT_SERVICE:
 			if (insertService == null) {
-				insertService = Rcpl.getServiceFactory().createService(serviceId);
+				insertService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return insertService;
 		case LAYOUT_SERVICE:
 			if (layoutService == null) {
-				layoutService = Rcpl.getServiceFactory().createService(serviceId);
+				layoutService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return layoutService;
 		case PARAGRAPH_SERVICE:
 			if (paragraphService == null) {
-				paragraphService = Rcpl.getServiceFactory().createService(serviceId);
+				paragraphService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return paragraphService;
 		case PICTURE_SERVICE:
 			if (pictureService == null) {
-				pictureService = Rcpl.getServiceFactory().createService(serviceId);
+				pictureService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return pictureService;
 		case TABLE_SERVICE:
 			if (tableService == null) {
-				tableService = Rcpl.getServiceFactory().createService(serviceId);
+				tableService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return tableService;
 		default:
@@ -341,7 +341,7 @@ public class RcplService extends RcplAbstractService implements IService {
 			serviceRegistry = new HashMap<EnServiceId, IService>();
 		}
 		serviceRegistry.put(serviceId, service);
-		Rcpl.progressMessage(service.getClass().getSimpleName() + " registered");
+		Rcpl.get().progressMessage(service.getClass().getSimpleName() + " registered");
 	}
 
 }

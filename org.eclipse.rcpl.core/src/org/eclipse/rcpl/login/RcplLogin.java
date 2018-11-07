@@ -45,7 +45,7 @@ public class RcplLogin implements ILogin {
 	}
 
 	public static void start(IRcplApplicationProvider applicationProvider) {
-		Rcpl.getFactory().createLoginDialog(applicationProvider);
+		Rcpl.get().getFactory().createLoginDialog(applicationProvider);
 	}
 
 	/**

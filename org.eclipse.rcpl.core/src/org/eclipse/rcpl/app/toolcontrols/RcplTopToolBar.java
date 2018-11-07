@@ -48,14 +48,14 @@ public class RcplTopToolBar implements ITopToolbar {
 	}
 
 	public RcplTopToolBar(StackPane parent) {
-		Rcpl.topToolbar = this;
+		Rcpl.get().setTopToolbar(this);
 		init();
 	}
 
 	@Override
 	public void init() {
 		toolPaneRegistry.clear();
-		Rcpl.UIC.getMainTopStack().getChildren().clear();
+		Rcpl.UIC().getMainTopStack().getChildren().clear();
 		try {
 			if (RcplSession.getDefault().getRcpl() != null) {
 				for (Perspective p : RcplSession.getDefault().getRcpl().getAllPerspectives().getChildren()) {
@@ -72,7 +72,7 @@ public class RcplTopToolBar implements ITopToolbar {
 	public void expandAll() {
 		if (collapsed) {
 			collapse(false);
-			Rcpl.UIC.expandLeftAra(true);
+			Rcpl.UIC().expandLeftAra(true);
 		}
 
 	}
@@ -83,7 +83,7 @@ public class RcplTopToolBar implements ITopToolbar {
 		pane.setSpacing(4);
 		Perspective perspective = RcplSession.getDefault().getModelUtil().findPerspective(perspectiveId);
 		pane.setId("topBarHBox");
-		Rcpl.UIC.getMainTopStack().getChildren().add(pane);
+		Rcpl.UIC().getMainTopStack().getChildren().add(pane);
 		toolPaneRegistry.put(perspectiveId, pane);
 		List<ToolGroup> toolGroups = perspective.getTopToolBar().getToolGroups();
 
@@ -100,7 +100,7 @@ public class RcplTopToolBar implements ITopToolbar {
 
 			{
 				Node toolNode = null;
-				toolNode = Rcpl.getFactory().createRibbonGroup((ToolGroup) eAbstractTool, addon, first, true);
+				toolNode = Rcpl.get().getFactory().createRibbonGroup((ToolGroup) eAbstractTool, addon, first, true);
 				if (toolNode != null) {
 					pane.getChildren().add(toolNode);
 				}
@@ -114,29 +114,29 @@ public class RcplTopToolBar implements ITopToolbar {
 	@Override
 	public void collapse(boolean collapse) {
 		collapsed = collapse;
-		Rcpl.UIC.collapseMainTopArea(collapse);
+		Rcpl.UIC().collapseMainTopArea(collapse);
 //		updateHeight();
 	}
 
 	@Override
 	public void updateHeight() {
 //		if (collapsed) {
-//			if (Rcpl.UIC.getEditor() != null) {
-//				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
+//			if (Rcpl.UIC().getEditor() != null) {
+//				Rcpl.UIC().setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
 //			} else {
-//				Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+//				Rcpl.UIC().setTopAreaHeight(COLLAPSED_HEIGHT);
 //			}
 //			return;
 //		}
-//		if (Rcpl.UIC.getPerspective() != null) {
-//			Perspective p = Rcpl.UIC.getPerspective();
+//		if (Rcpl.UIC().getPerspective() != null) {
+//			Perspective p = Rcpl.UIC().getPerspective();
 //			if (!p.getTopToolBar().getToolGroups().isEmpty()) {
-//				Rcpl.UIC.setTopAreaHeight(RIBBON_HEIGHT);
+//				Rcpl.UIC().setTopAreaHeight(RIBBON_HEIGHT);
 //			} else {
-//				if (Rcpl.UIC.getEditor() != null) {
-//					Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
+//				if (Rcpl.UIC().getEditor() != null) {
+//					Rcpl.UIC().setTopAreaHeight(COLLAPSED_HEIGHT_WITH_EDITOR);
 //				} else {
-//					Rcpl.UIC.setTopAreaHeight(COLLAPSED_HEIGHT);
+//					Rcpl.UIC().setTopAreaHeight(COLLAPSED_HEIGHT);
 //				}
 //			}
 //		}
@@ -149,11 +149,11 @@ public class RcplTopToolBar implements ITopToolbar {
 
 			@Override
 			public void run() {
-				Rcpl.UIC.getMainTopStack().getChildren().clear();
+				Rcpl.UIC().getMainTopStack().getChildren().clear();
 				if (perspective != null) {
 					Node n = toolPaneRegistry.get(perspective.getId());
 					if (n != null) {
-						Rcpl.UIC.getMainTopStack().getChildren().add(n);
+						Rcpl.UIC().getMainTopStack().getChildren().add(n);
 					}
 					updateHeight();
 				}
@@ -166,15 +166,15 @@ public class RcplTopToolBar implements ITopToolbar {
 	@Override
 	public void hideAll() {
 		if (Platform.isFxApplicationThread()) {
-			Rcpl.UIC.getMainTopStack().getChildren().clear();
-			Rcpl.UIC.setTopAreaHeight(0);
+			Rcpl.UIC().getMainTopStack().getChildren().clear();
+			Rcpl.UIC().setTopAreaHeight(0);
 		} else {
 			Platform.runLater(new Runnable() {
 
 				@Override
 				public void run() {
-					Rcpl.UIC.getMainTopStack().getChildren().clear();
-					Rcpl.UIC.setTopAreaHeight(0);
+					Rcpl.UIC().getMainTopStack().getChildren().clear();
+					Rcpl.UIC().setTopAreaHeight(0);
 				}
 			});
 		}

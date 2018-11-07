@@ -78,11 +78,11 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 					initialStageX = Rcpl.get(EnKeyValue.WINDOW_X, -1.0);
 					initialStageY = Rcpl.get(EnKeyValue.WINDOW_Y, -1.0);
 
-					if (initialStageX > Rcpl.getActualMonitor().getPixelWidth() - 100) {
-						initialStageX = Rcpl.getActualMonitor().getPixelWidth() - 101;
+					if (initialStageX > Rcpl.get().getActualMonitor().getPixelWidth() - 100) {
+						initialStageX = Rcpl.get().getActualMonitor().getPixelWidth() - 101;
 					}
-					if (initialStageY > Rcpl.getActualMonitor().getHeight() - 100) {
-						initialStageY = Rcpl.getActualMonitor().getHeight() - 101;
+					if (initialStageY > Rcpl.get().getActualMonitor().getHeight() - 100) {
+						initialStageY = Rcpl.get().getActualMonitor().getHeight() - 101;
 					}
 
 					applicationProvider.getPrimaryStage().setX(initialStageX);
@@ -92,16 +92,16 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 				applicationProvider.getApplicationWindow().fadeIn(2.0);
 				applicationProvider.getPrimaryStage().show();
 
-				Rcpl.progressMessage("Init Addons");
+				Rcpl.get().progressMessage("Init Addons");
 				for (IRcplAddon uc : applicationProvider.getRcplAddons()) {
 					uc.init();
 				}
-				Rcpl.progressMessage("Configure Top Area");
+				Rcpl.get().progressMessage("Configure Top Area");
 				StackPane stackPane = applicationProvider.getMainContent();
 				stackPane.getChildren().clear();
-				Rcpl.UIC.addtoApplicationStack(applicationProvider.getMainContent());
-				Rcpl.progressMessage("RcplWindowAdviser.start()#end");
-				Rcpl.showProgress(false);
+				Rcpl.UIC().addtoApplicationStack(applicationProvider.getMainContent());
+				Rcpl.get().progressMessage("RcplWindowAdviser.start()#end");
+				Rcpl.get().showProgress(false);
 			}
 		});
 

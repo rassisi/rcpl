@@ -36,7 +36,7 @@ public class WindowRotateButton extends ImageView {
 		WindowRotateButton.this.setFitHeight(20);
 		WindowRotateButton.this.setFitWidth(20);
 
-		Image img = ((ImageView) Rcpl.resources().getImage("rotate", 20, 20).getNode()).getImage();
+		Image img = ((ImageView) Rcpl.get().resources().getImage("rotate", 20, 20).getNode()).getImage();
 		setImage(img);
 
 		setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -74,7 +74,7 @@ public class WindowRotateButton extends ImageView {
 
 				stack.getPane().setRotate(angle);
 
-				for (ILayoutFigure f : Rcpl.UIC.getEditor().getSelectedDraggables()) {
+				for (ILayoutFigure f : Rcpl.UIC().getEditor().getSelectedDraggables()) {
 					f.getLayoutObject().setRotation(angle);
 				}
 

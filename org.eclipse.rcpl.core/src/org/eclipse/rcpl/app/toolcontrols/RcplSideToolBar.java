@@ -108,7 +108,7 @@ public class RcplSideToolBar implements ISideToolBar {
 		toolbarStack.getChildren().clear();
 
 		if (perspective != null) {
-			Rcpl.UIC.showStartMenuButton(!perspective.isOverview());
+			Rcpl.UIC().showStartMenuButton(!perspective.isOverview());
 
 			try {
 				if (!processedList.contains(perspective.getId())) {
@@ -141,9 +141,9 @@ public class RcplSideToolBar implements ISideToolBar {
 				if (n != null) {
 					toolbarStack.getChildren().add(n);
 
-					if (Rcpl.UIC.getEditor() != null) {
+					if (Rcpl.UIC().getEditor() != null) {
 						toolbarStack.setPadding(new Insets(-14, 0, 0, 0));
-					} else if (Rcpl.UIC.getActiveHomePage() != null) {
+					} else if (Rcpl.UIC().getActiveHomePage() != null) {
 						toolbarStack.setPadding(new Insets(IHomePage.HOMEPAGE_HEADER_HEIGHT, 0, 0, 0));
 					} else {
 						toolbarStack.setPadding(new Insets(0, 0, 0, 0));
@@ -209,7 +209,7 @@ public class RcplSideToolBar implements ISideToolBar {
 
 						b.disableService();
 					}
-					if (!Rcpl.isBigDisplay()) {
+					if (!Rcpl.get().isBigDisplay()) {
 						b.setWidth(16);
 						b.setHeight(16);
 
@@ -254,7 +254,7 @@ public class RcplSideToolBar implements ISideToolBar {
 					}
 				}
 
-				Rcpl.UIC.sideBarLoaded(perspective);
+				Rcpl.UIC().sideBarLoaded(perspective);
 
 				// selectFirstGroup(perspective, useCase, toolGroups, false);
 			}
@@ -321,8 +321,8 @@ public class RcplSideToolBar implements ISideToolBar {
 	 */
 	private void m04_processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspectiveType,
 			final Tool tool) {
-		IButton b = Rcpl.getFactory().createButton(tool);
-		if (!Rcpl.isBigDisplay()) {
+		IButton b = Rcpl.get().getFactory().createButton(tool);
+		if (!Rcpl.get().isBigDisplay()) {
 			b.setWidth(16);
 			b.setHeight(16);
 
@@ -347,7 +347,7 @@ public class RcplSideToolBar implements ISideToolBar {
 				image = model.getId();
 			}
 
-			final ITool tool = Rcpl.getToolFactory().createTool(model);
+			final ITool tool = Rcpl.get().getToolFactory().createTool(model);
 			final ITool nodeCreated = tool;
 
 			if (tool != null) {
@@ -398,7 +398,7 @@ public class RcplSideToolBar implements ISideToolBar {
 					public void handle(MouseEvent arg0) {
 						if (nodeCreated instanceof ListView<?>) {
 							if (arg0.getClickCount() == 2) {
-								Rcpl.service().execute(Rcpl.getFactory().createCommand(tool));
+								Rcpl.get().service().execute(Rcpl.get().getFactory().createCommand(tool));
 							}
 						}
 					}
@@ -442,7 +442,7 @@ public class RcplSideToolBar implements ISideToolBar {
 					String url = toolGroup.getUrl();
 					EObject root = null;
 					String s = null;
-					ITreePart treePart = Rcpl.getFactory().createRcplTreePart();
+					ITreePart treePart = Rcpl.get().getFactory().createRcplTreePart();
 
 					if (url != null) {
 						if (url.toLowerCase().startsWith("root://")) {
@@ -564,7 +564,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			}
 
 			RcplUic.deActivateCaret();
-			Perspective actualPerspective = Rcpl.UIC.getPerspective();
+			Perspective actualPerspective = Rcpl.UIC().getPerspective();
 			String perspectiveId = actualPerspective.getId();
 
 			Pane pane = toolPaneStackRegistry.get(getKey(perspectiveId, group));
@@ -621,10 +621,10 @@ public class RcplSideToolBar implements ISideToolBar {
 		parent.setMaxWidth(WIDTH_COLLAPSED);
 		parent.setMinWidth(WIDTH_COLLAPSED);
 		parent.setPrefWidth(WIDTH_COLLAPSED);
-		BorderPane.setMargin(Rcpl.UIC.getMainBottomArea(), new Insets(0, 0, 0, WIDTH_COLLAPSED_BOTTOM));
+		BorderPane.setMargin(Rcpl.UIC().getMainBottomArea(), new Insets(0, 0, 0, WIDTH_COLLAPSED_BOTTOM));
 		activeGroup = null;
 		toolPaneStack.getChildren().clear();
-		Rcpl.set(Rcpl.UIC.getEditor(), EnKeyValue.SIDEBAR_PATH, (String) null);
+		Rcpl.set(Rcpl.UIC().getEditor(), EnKeyValue.SIDEBAR_PATH, (String) null);
 		RcplUic.activateCaret();
 	}
 
@@ -741,7 +741,7 @@ public class RcplSideToolBar implements ISideToolBar {
 			double w = group.getWidth();
 			double wp = group.getWidthPercent();
 			if (wp > 0) {
-				w = (Rcpl.UIC.getApplicationStarter().getRcplApplicationProvider().getPrimaryStage().getWidth() - 300)
+				w = (Rcpl.UIC().getApplicationStarter().getRcplApplicationProvider().getPrimaryStage().getWidth() - 300)
 						* wp / 100.0;
 			}
 			if (w > 0) {
@@ -783,7 +783,7 @@ public class RcplSideToolBar implements ISideToolBar {
 	}
 
 	private String getPerspectiveId() {
-		return Rcpl.UIC.getPerspective().getId();
+		return Rcpl.UIC().getPerspective().getId();
 	}
 
 	private AccordionColorTitlePane getTitlePane(ToolGroup group) {
@@ -814,7 +814,7 @@ public class RcplSideToolBar implements ISideToolBar {
 
 		if (path != null) {
 
-			Rcpl.set(Rcpl.UIC.getEditor(), EnKeyValue.SIDEBAR_PATH, path);
+			Rcpl.set(Rcpl.UIC().getEditor(), EnKeyValue.SIDEBAR_PATH, path);
 			StringTokenizer tok = new StringTokenizer(path, "/");
 			EObject root = Rcpl.getRcpl().getAllTools();
 

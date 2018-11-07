@@ -16,8 +16,8 @@ import org.eclipse.rcpl.IApplicationStarter;
 import org.eclipse.rcpl.IRcplApplication;
 import org.eclipse.rcpl.IRcplApplicationProvider;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.EnKeyValue;
+import org.eclipse.rcpl.model.ISessionFacory;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.AbstractSession;
 import org.eclipse.rcpl.util.RcplUtil;
@@ -166,7 +166,7 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 	 * 
 	 */
 	private void initApplication() {
-		Rcpl.setMobile(isMobile());
+		Rcpl.get().setMobile(isMobile());
 		RcplModel.modelClass = getRcplModel();
 		File errorCache = new File(RcplUtil.getUserLocalCacheDir(), "images/___ERROR___/");
 		RcplUtil.deleteFolder(errorCache);
@@ -213,8 +213,8 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 		double initialStageX = Rcpl.get(EnKeyValue.LOGIN_WINDOW_X, -1.0);
 		double initialStageY = Rcpl.get(EnKeyValue.LOGIN_WINDOW_Y, -1.0);
 
-		if (initialStageX > Rcpl.getActualMonitor().getPixelWidth() - 600
-				|| initialStageY > Rcpl.getActualMonitor().getHeight() - 600) {
+		if (initialStageX > Rcpl.get().getActualMonitor().getPixelWidth() - 600
+				|| initialStageY > Rcpl.get().getActualMonitor().getHeight() - 600) {
 			splashStage.centerOnScreen();
 		}
 

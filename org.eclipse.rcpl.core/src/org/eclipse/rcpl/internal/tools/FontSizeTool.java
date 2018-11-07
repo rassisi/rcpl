@@ -38,8 +38,8 @@ public class FontSizeTool extends AbstractRcplTool<Double> {
 	}
 
 	private void initSelection() {
-		if (Rcpl.globalStyleTemplate() != null) {
-			IFont font = Rcpl.globalStyleTemplate().getDefaultStyle().getFont();
+		if (Rcpl.get().globalStyleTemplate() != null) {
+			IFont font = Rcpl.get().globalStyleTemplate().getDefaultStyle().getFont();
 			getNode().getSelectionModel().select(font.getHeight());
 			setFontSize(font.getHeight());
 		}

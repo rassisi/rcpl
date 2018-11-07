@@ -22,7 +22,6 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.services.RcplCommandService;
 import org.eclipse.rcpl.internal.services.RcplObjectService;
-import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
@@ -30,7 +29,7 @@ import org.eclipse.rcpl.ui.action.RcplCommand;
  * @author ramin
  *
  */
-public abstract class RcplAbstractService {
+public class RcplBaseService implements IService {
 
 	protected int savedOffset = 0;
 
@@ -38,19 +37,21 @@ public abstract class RcplAbstractService {
 
 	public static boolean enableUnimplementedMessage = true;
 
-	public abstract Object doExecute(ICommand event) throws Exception;
-
-	private static Hashtable<Class<?>, IService> services;
-
-	public RcplAbstractService() {
+	public Object doExecute(ICommand event) throws Exception {
+		return null;
 	}
 
-	public static void registerService(Class<? extends RcplService> serviceClass) {
+	private Hashtable<Class<?>, IService> services;
+
+	public RcplBaseService() {
+	}
+
+	public void registerService(Class<? extends IService> serviceClass) {
 		if (services == null) {
 			services = new Hashtable<Class<?>, IService>();
 		}
 		try {
-			services.put(serviceClass, serviceClass.newInstance());
+			services.put(serviceClass, (IService) serviceClass.newInstance());
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,7 +65,7 @@ public abstract class RcplAbstractService {
 		if (lo != null) {
 			return lo.getDocument();
 		}
-		return Rcpl.UIC.getEditor().getDocument();
+		return Rcpl.UIC().getEditor().getDocument();
 	}
 
 	// protected boolean match(JOCommand event, String key) {
@@ -144,7 +145,7 @@ public abstract class RcplAbstractService {
 	 * @param figure
 	 */
 	protected boolean simulateSelection(ICommand command, IParagraph paragraph) {
-		if (!(paragraph.hasSelection() && Rcpl.UIC.getEditor().getActiveParagraph() == paragraph)) {
+		if (!(paragraph.hasSelection() && Rcpl.UIC().getEditor().getActiveParagraph() == paragraph)) {
 			selectionSimulation = true;
 			paragraph.selectAll();
 			return true;
@@ -211,7 +212,9 @@ public abstract class RcplAbstractService {
 		return service;
 	}
 
-	public abstract IService getService(EnServiceId serviceId);
+	public IService getService(EnServiceId serviceId) {
+		return null;
+	}
 
 	// public JOTableService getTableService() {
 	// return (JOTableService) getService(JOTableService.class);
@@ -222,7 +225,7 @@ public abstract class RcplAbstractService {
 	 * @param serviceClass
 	 * @return
 	 */
-	public static IService getServiceBySimpleName(String serviceClassSimpleName) {
+	public IService getServiceBySimpleName(String serviceClassSimpleName) {
 		for (Class<?> cl : services.keySet()) {
 			String sn = cl.getSimpleName();
 			if (serviceClassSimpleName.equals(sn)) {
@@ -238,11 +241,11 @@ public abstract class RcplAbstractService {
 	 * @param serviceClass
 	 * @return
 	 */
-	public static IService getService(Class<?> serviceClass) {
+	public IService getService(Class<?> serviceClass) {
 		IService service = services.get(serviceClass);
 		if (service == null) {
 			try {
-				service = (RcplService) serviceClass.newInstance();
+				service = (IService) serviceClass.newInstance();
 				services.put(serviceClass, service);
 			} catch (InstantiationException e) {
 				// LOGGER.error("", e); //$NON-NLS-1$
@@ -260,6 +263,18 @@ public abstract class RcplAbstractService {
 
 	public RcplCommandService getCommandService() {
 		return (RcplCommandService) getService(RcplCommandService.class);
+	}
+
+	@Override
+	public Object execute(ICommand command) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void registerService(EnServiceId serviceId, IService service) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

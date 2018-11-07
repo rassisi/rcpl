@@ -73,8 +73,9 @@ public enum RcplAction {
 	Z_ORDER_BRING_FORWARD2("actions/z_order_bring_forward", null, IMovableLayoutFigure.class, "BringForward", 3), //$NON-NLS-1$
 	Z_ORDER_SEND_BACKWARD2("actions/z_order_send_backward", null, IMovableLayoutFigure.class, "SendBackward", 3), //$NON-NLS-1$
 	Z_ORDER_BRING_IN_FRONT_OF_TEXT2("actions/z_order_bring_in_front_of_text", null, IMovableLayoutFigure.class, //$NON-NLS-1$
-			"BringInFrontOfText", 3), Z_ORDER_SEND_BEHIND_TEXT2("actions/z_order_send_behind_text", null, //$NON-NLS-2$
-					IMovableLayoutFigure.class, "SendBehindText", 3),
+			"BringInFrontOfText", 3),
+	Z_ORDER_SEND_BEHIND_TEXT2("actions/z_order_send_behind_text", null, //$NON-NLS-1$
+			IMovableLayoutFigure.class, "SendBehindText", 3),
 
 	SEPARATOR3("", "", null, "", 3), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
@@ -146,6 +147,6 @@ public enum RcplAction {
 		if (getKey().indexOf("delete_") != -1) { //$NON-NLS-1$
 			imageName = "delete"; //$NON-NLS-1$
 		}
-		return Rcpl.resources().getImage(imageName, 16, 16);
+		return Rcpl.get().resources().getImage(imageName, 16, 16);
 	}
 }

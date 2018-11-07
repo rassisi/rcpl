@@ -154,7 +154,7 @@ public class RcplToolFactory implements IToolFactory {
 
 			String imName = model.getImage();
 			if (imName != null) {
-				Node im = Rcpl.resources().getImage(imName, 16, 16).getNode();
+				Node im = Rcpl.get().resources().getImage(imName, 16, 16).getNode();
 				if (im != null) {
 					b.getNode().setGraphic(im);
 				} else {

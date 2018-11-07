@@ -39,7 +39,7 @@ public class ColorTool extends AbstractRcplTool<Color> {
 			@Override
 			public void handle(ActionEvent event) {
 				getModel().setData(ColorTool.this);
-				Rcpl.getFactory().createCommand(ColorTool.this).execute();
+				Rcpl.get().getFactory().createCommand(ColorTool.this).execute();
 			}
 		});
 

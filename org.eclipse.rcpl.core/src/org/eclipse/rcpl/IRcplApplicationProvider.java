@@ -2,8 +2,6 @@ package org.eclipse.rcpl;
 
 import java.util.Collection;
 
-import org.eclipse.rcpl.internal.services.RcplService;
-
 import javafx.application.Application;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -33,8 +31,6 @@ public interface IRcplApplicationProvider {
 	IRcplAddon findRcplAddon(String className);
 
 	IRcplAddon findRcplAddon(Class<? extends IRcplAddon> addon);
-
-	void registerService(Class<? extends RcplService> serviceClass);
 
 	void start(Stage primaryStage);
 

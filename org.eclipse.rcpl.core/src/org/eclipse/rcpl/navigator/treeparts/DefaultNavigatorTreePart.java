@@ -30,6 +30,7 @@ import org.eclipse.fx.emf.edit.ui.dnd.CellDragAdapter;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.lifecycle.LifecycleException;
+import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.IDetailPage;
 import org.eclipse.rcpl.IModelDetailPage;
 import org.eclipse.rcpl.IModelManager;
@@ -41,7 +42,6 @@ import org.eclipse.rcpl.IToolGroup;
 import org.eclipse.rcpl.IToolRegistry;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
@@ -111,7 +111,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 	@Override
 	public void init(Tool tool, boolean showRoot) {
 		this.model = tool;
-		Rcpl.getEditorListeners().add(this);
+		Rcpl.get().getEditorListeners().add(this);
 
 		try {
 			registerHandlers();
@@ -145,7 +145,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 					Object value = ((AdapterFactoryTreeItem<?>) newItem).getValue();
 					if (value instanceof EObject) {
 						selectedObject = (EObject) value;
-						for (INavigatorListener l : Rcpl.navigatorListeners) {
+						for (INavigatorListener l : Rcpl.get().getNavigatorListeners()) {
 							l.selected(selectedObject);
 						}
 
@@ -176,7 +176,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 
 	protected void adaptDetailPane(EObject eObject) {
 
-		IDetailPage detailPage = Rcpl.UIC.getDetailPage(eObject.getClass().getName());
+		IDetailPage detailPage = Rcpl.UIC().getDetailPage(eObject.getClass().getName());
 
 		if (detailPage == null) {
 
@@ -184,14 +184,14 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 
 			if (eObject instanceof Tool || eObject instanceof ToolGroup) {
 				this.detailPane = new ToolsDetailPage();
-				Rcpl.UIC.putDetailPage(eObject.getClass().getName(), detailPage);
+				Rcpl.UIC().putDetailPage(eObject.getClass().getName(), detailPage);
 				this.detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
 
 				// ========== Preference Group
 
 			} else if (eObject instanceof PreferenceGroup) {
 				this.detailPane = new PreferencesDetailsPage();
-				Rcpl.UIC.putDetailPage(eObject.getClass().getName(), detailPage);
+				Rcpl.UIC().putDetailPage(eObject.getClass().getName(), detailPage);
 			}
 
 		} else if (detailPage instanceof IModelDetailPage) {
@@ -207,7 +207,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 	@Override
 	public IModelManager getRcplManager() {
 		if (rcplManager == null) {
-			rcplManager = Rcpl.getFactory().createRcplTreeManager();
+			rcplManager = Rcpl.get().getFactory().createRcplTreeManager();
 		}
 		return rcplManager;
 	}
@@ -215,7 +215,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 	@Override
 	public IModelManager getApplicationTreeManager() {
 		if (applicationManager == null) {
-			applicationManager = Rcpl.getFactory().createApplicationTreeManager();
+			applicationManager = Rcpl.get().getFactory().createApplicationTreeManager();
 		}
 		return applicationManager;
 	}
@@ -276,16 +276,16 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 									file = new DownloadClient().download(RcplSession.getDefault().getUserId(), id);
 									documentRegistry.put(id, file);
 								}
-								((IOfficeUIC) Rcpl.UIC).openDocument(file);
+								((IOfficeUIC) Rcpl.UIC()).openDocument(file);
 							} catch (Exception e) {
 								RcplModel.logError(e);
 							}
 
 						} else if (uri != null && uri.length() > 0) {
-							((IOfficeUIC) Rcpl.UIC).openDocument(new File(uri));
+							((IOfficeUIC) Rcpl.UIC()).openDocument(new File(uri));
 						} else {
 							if (url != null) {
-								((IOfficeUIC) Rcpl.UIC).openDocument(url);
+								((IOfficeUIC) Rcpl.UIC()).openDocument(url);
 							}
 						}
 						mouseEvent.consume();
@@ -456,7 +456,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 				treeCellFactory.addCellEditHandler(
 						new EAttributeCellEditHandler(RcplPackage.eINSTANCE.getLayoutable_Id(), getEditingDomain()));
 
-				if (!Rcpl.isMobile()) {
+				if (!Rcpl.get().isMobile()) {
 					treeCellFactory.addCellCreationListener(new CellDragAdapter());
 				}
 
@@ -466,7 +466,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 					treeView.setEditable(false);
 				} else {
 					treeView.setCellFactory(treeCellFactory);
-					if (!Rcpl.isMobile()) {
+					if (!Rcpl.get().isMobile()) {
 						EditingDomainCellDropAdapter dropAdapter = new EditingDomainCellDropAdapter(getEditingDomain());
 						dropAdapter.setFeedbackHandler(new EditingDomainCellDropAdapter.DefaultFeedbackHandler());
 						treeCellFactory.addCellCreationListener(dropAdapter);
@@ -522,7 +522,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 			public void handle(KeyEvent event) {
 				if ("x".contentEquals(event.getText())) {
 					if (event.isControlDown()) {
-						Rcpl.UIC.showErrorPage();
+						Rcpl.UIC().showErrorPage();
 					}
 				}
 			}
@@ -597,7 +597,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 				try {
 					detailPane.getControler().unbindAll();
 				} catch (Exception ex) {
-					Rcpl.printErrorln("", ex);
+					Rcpl.get().printErrorln("", ex);
 				}
 			}
 		}

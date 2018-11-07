@@ -57,7 +57,7 @@ public abstract class RcplAbstractMigration extends RcplModel {
 	// }
 
 	protected void addToolToQuickBar(String useCaseId, String id, String name, String image, int index) {
-		IRcplAddon useCase = Rcpl.UIC.findRcplAddons(useCaseId);
+		IRcplAddon useCase = Rcpl.UIC().findRcplAddons(useCaseId);
 		if (useCase != null) {
 			addToolToQuickBar(id, name, index);
 		}
@@ -86,7 +86,7 @@ public abstract class RcplAbstractMigration extends RcplModel {
 	}
 
 	protected void removeGroupFromTopBar(String useCaseId, String id) {
-		IRcplAddon useCase = Rcpl.UIC.findRcplAddons(useCaseId);
+		IRcplAddon useCase = Rcpl.UIC().findRcplAddons(useCaseId);
 		if (useCase != null) {
 			removeGroupFromTopBar(useCase, id);
 		}
@@ -271,13 +271,13 @@ public abstract class RcplAbstractMigration extends RcplModel {
 	// }
 
 	protected void addGroupToSideBar(String useCaseId, String id, String image, int index) {
-		IRcplAddon useCase = Rcpl.UIC.findRcplAddons(useCaseId);
+		IRcplAddon useCase = Rcpl.UIC().findRcplAddons(useCaseId);
 		SideToolBar sideToolBar = getAddonSideBar(useCase);
 		addGroupToSideBar(sideToolBar, id, image, index);
 	}
 
 	protected void removeGroupFromSideBar(String useCaseId, String id, int index) {
-		IRcplAddon useCase = Rcpl.UIC.findRcplAddons(useCaseId);
+		IRcplAddon useCase = Rcpl.UIC().findRcplAddons(useCaseId);
 		SideToolBar sideToolBar = getAddonSideBar(useCase);
 		removeGroupFromSideBar(sideToolBar, id);
 	}

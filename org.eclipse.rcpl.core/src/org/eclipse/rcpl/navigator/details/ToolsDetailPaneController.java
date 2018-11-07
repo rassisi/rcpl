@@ -376,8 +376,8 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 		button_2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Rcpl.UIC.recreateSideBar();
-				Rcpl.UIC.recreateTopBar();
+				Rcpl.UIC().recreateSideBar();
+				Rcpl.UIC().recreateTopBar();
 				RcplSession.getDefault().commit();
 			}
 		});
@@ -403,7 +403,7 @@ public class ToolsDetailPaneController extends AbstractDetailPaneController {
 					updateToolItems(newValue);
 					addToolIdListener();
 				} catch (Exception ex) {
-					Rcpl.printErrorln("", ex);
+					Rcpl.get().printErrorln("", ex);
 				}
 			}
 		};

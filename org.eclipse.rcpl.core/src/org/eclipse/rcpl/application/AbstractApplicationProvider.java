@@ -26,13 +26,11 @@ import org.eclipse.rcpl.IServiceFactory;
 import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.impl.RcplMonitor;
-import org.eclipse.rcpl.internal.services.RcplService;
 import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Addon;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
-import org.eclipse.rcpl.service.RcplAbstractService;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -103,9 +101,9 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 	public AbstractApplicationProvider(AbstractRcplApplication rcplApplication) {
 		this.rcplApplication = rcplApplication;
-		Rcpl.setFactory(createRcplFactory());
-		Rcpl.setToolFactory(createToolFactory());
-		Rcpl.setServiceFactory(createServiceFactory());
+		Rcpl.get().setFactory(createRcplFactory());
+		Rcpl.get().setToolFactory(createToolFactory());
+		Rcpl.get().setServiceFactory(createServiceFactory());
 	}
 
 	@Override
@@ -119,7 +117,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 			try {
 				addon.bindToModel();
 			} catch (Exception e) {
-				Rcpl.progressMessage(e.getMessage());
+				Rcpl.get().progressMessage(e.getMessage());
 			}
 		}
 	}
@@ -150,14 +148,14 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		loginWindowY = primaryStage.getY();
 
 		joLogin.getNode().setVisible(false);
-		if (!Rcpl.isMobile()) {
+		if (!Rcpl.get().isMobile()) {
 			primaryStage.hide();
 		}
 		mainContent.getChildren().remove(joLogin.getNode());
-		Rcpl.createProgress(progressGroup);
-		Rcpl.startProgress(3.0, true);
+		Rcpl.get().createProgress(progressGroup);
+		Rcpl.get().startProgress(3.0, true);
 
-		Rcpl.progressMessage("Register Addons");
+		Rcpl.get().progressMessage("Register Addons");
 
 		final IApplicationStarter applicationsStarter = getRcplApplicationStarter();
 		if (applicationsStarter != null) {
@@ -167,7 +165,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 				reStart();
 			} else {
 				registerAddons();
-				Rcpl.progressMessage("Application " + applicationsStarter.getClass().getSimpleName() + "started");
+				Rcpl.get().progressMessage("Application " + applicationsStarter.getClass().getSimpleName() + "started");
 				joLogin.getController().setHeaderText("RCPL is starting.");
 
 			}
@@ -185,11 +183,11 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 						if (addon.getClassName() != null) {
 							IRcplAddon rcplAddon = createRcplAddon(addon);
 							if (rcplAddon != null) {
-								Rcpl.progressMessage("RcplAddon " + rcplAddon.getDisplayName() + " registered.");
+								Rcpl.get().progressMessage("RcplAddon " + rcplAddon.getDisplayName() + " registered.");
 							}
 						}
 					} catch (Throwable ex) {
-						Rcpl.printErrorln("", ex);
+						Rcpl.get().printErrorln("", ex);
 					}
 				}
 			}
@@ -204,7 +202,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 				IRcplAddon rcplAddon = (IRcplAddon) addon;
 				rcplAddon.setModel(model);
 				rcplAddons.put(model.getClassName(), rcplAddon);
-				Rcpl.progressMessage("RCPL - Addon registered: " + rcplAddon.getDisplayName());
+				Rcpl.get().progressMessage("RCPL - Addon registered: " + rcplAddon.getDisplayName());
 				return rcplAddon;
 			}
 		} catch (InstantiationException e) {
@@ -217,11 +215,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		return null;
 	}
 
-	@Override
-	public void registerService(Class<? extends RcplService> serviceClass) {
-		RcplAbstractService.registerService(serviceClass);
-	}
-
 	protected URL resolve(URL url) {
 		return url;
 	}
@@ -229,8 +222,8 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	@Override
 	public void reStart() {
 		RcplSession.getDefault().close(true, true);
-		Rcpl.UIC.getTopToolBar().clear();
-		Rcpl.UIC.getSideToolBarControl().clear();
+		Rcpl.UIC().getTopToolBar().clear();
+		Rcpl.UIC().getSideToolBarControl().clear();
 
 		while (!((Pane) primaryStage.getScene().getRoot()).getChildren().isEmpty()) {
 			((Pane) primaryStage.getScene().getRoot()).getChildren().remove(0);
@@ -242,7 +235,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		int index = 0;
 		for (Screen s : Screen.getScreens()) {
 			IMonitor m = new RcplMonitor(s, index++);
-			Rcpl.monitors.put(s, m);
+			Rcpl.get().getMonitors().put(s, m);
 		}
 	}
 
@@ -250,7 +243,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	public void start(final Stage primaryStage) {
 		primaryStage.hide();
 		this.primaryStage = primaryStage;
-		Rcpl.rcplApplicationProvider = this;
+		Rcpl.get().setRcplApplicationProvider(this);
 		calculateMonitors();
 		mainStackPane = new StackPane();
 		mainContent = new StackPane();
@@ -271,15 +264,15 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 			}
 		}
 
-		joLogin = Rcpl.getFactory().createLoginDialog(this);
-		if (Rcpl.isMobile()) {
+		joLogin = Rcpl.get().getFactory().createLoginDialog(this);
+		if (Rcpl.get().isMobile()) {
 			StackPane.setAlignment(joLogin.getNode(), Pos.TOP_CENTER);
 		}
 		mainContent.getChildren().add(joLogin.getNode());
 
 		// ---------------------------------------------------------
 
-		if (Rcpl.isMobile()) {
+		if (Rcpl.get().isMobile()) {
 			startMobile();
 		}
 
@@ -295,11 +288,11 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		double initialStageX = Rcpl.get(EnKeyValue.LOGIN_WINDOW_X, -1.0);
 		double initialStageY = Rcpl.get(EnKeyValue.LOGIN_WINDOW_Y, -1.0);
 
-		if (initialStageX > Rcpl.getActualMonitor().getPixelWidth() - 100) {
-			initialStageX = Rcpl.getActualMonitor().getPixelWidth() - 101;
+		if (initialStageX > Rcpl.get().getActualMonitor().getPixelWidth() - 100) {
+			initialStageX = Rcpl.get().getActualMonitor().getPixelWidth() - 101;
 		}
-		if (initialStageY > Rcpl.getActualMonitor().getHeight() - 100) {
-			initialStageY = Rcpl.getActualMonitor().getHeight() - 101;
+		if (initialStageY > Rcpl.get().getActualMonitor().getHeight() - 100) {
+			initialStageY = Rcpl.get().getActualMonitor().getHeight() - 101;
 		}
 
 		if (primaryStage != null) {
@@ -327,7 +320,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	}
 
 	private void startMobile() {
-		Rcpl.progressMessage("Start Mobile Application");
+		Rcpl.get().progressMessage("Start Mobile Application");
 		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
 		RcplModel.log(this, "Screen bounds: " + bounds.getWidth() + "/" + bounds.getHeight());
 		primaryStage.setScene(new Scene(mainStackPane));
@@ -340,7 +333,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	}
 
 	private void startPc() {
-		Rcpl.progressMessage("Start Desktop Application");
+		Rcpl.get().progressMessage("Start Desktop Application");
 
 		applicationWindow = new RcplApplicationWindow(this, mainStackPane);
 		applicationWindow.resetStyles();
@@ -354,8 +347,8 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 			public void handle(WindowEvent we) {
 				we.consume(); // Do not hide
 				applicationWindow.fadeOut(3.0);
-				if (Rcpl.UIC != null) {
-					Rcpl.UIC.closeApplication();
+				if (Rcpl.UIC() != null) {
+					Rcpl.UIC().closeApplication();
 				}
 			}
 		});

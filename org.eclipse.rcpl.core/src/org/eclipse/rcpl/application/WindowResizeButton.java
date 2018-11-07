@@ -63,7 +63,7 @@ public class WindowResizeButton extends Region {
 			public void handle(MouseEvent event) {
 				((Node) event.getSource()).setCursor(type);
 				if (Cursor.N_RESIZE.equals(type)) {
-					Rcpl.UIC.expandAllToolBars();
+					Rcpl.UIC().expandAllToolBars();
 				}
 			}
 		});
@@ -207,7 +207,7 @@ public class WindowResizeButton extends Region {
 			double facW = w / oldW;
 			double facH = h / oldH;
 
-			for (ILayoutFigure f : Rcpl.UIC.getEditor().getSelectedDraggables()) {
+			for (ILayoutFigure f : Rcpl.UIC().getEditor().getSelectedDraggables()) {
 
 				if (f == stack) {
 					if (w > 0) {

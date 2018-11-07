@@ -28,10 +28,10 @@ public class RcplCommandService extends RcplService {
 
 		switch (command.getCommandId()) {
 		case undo:
-			Rcpl.UIC.getEditor().undo();
+			Rcpl.UIC().getEditor().undo();
 			return true;
 		case redo:
-			Rcpl.UIC.getEditor().redo();
+			Rcpl.UIC().getEditor().redo();
 			return true;
 		default:
 			break;

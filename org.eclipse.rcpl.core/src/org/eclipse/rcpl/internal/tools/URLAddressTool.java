@@ -199,7 +199,7 @@ public class URLAddressTool extends AbstractRcplTool implements IURLAddressTool 
 	}
 
 	public void go() {
-		WebView browser = Rcpl.UIC.getBrowser();
+		WebView browser = Rcpl.UIC().getBrowser();
 		if (browser != null) {
 
 			String urlString = urlAddress.getText();
@@ -242,7 +242,7 @@ public class URLAddressTool extends AbstractRcplTool implements IURLAddressTool 
 	}
 
 	public String goBack() {
-		final WebHistory history = Rcpl.UIC.getBrowser().getEngine().getHistory();
+		final WebHistory history = Rcpl.UIC().getBrowser().getEngine().getHistory();
 		ObservableList<WebHistory.Entry> entryList = history.getEntries();
 		int currentIndex = history.getCurrentIndex();
 		// Out("currentIndex = "+currentIndex);
@@ -260,7 +260,7 @@ public class URLAddressTool extends AbstractRcplTool implements IURLAddressTool 
 	}
 
 	public String goForward() {
-		final WebHistory history = Rcpl.UIC.getBrowser().getEngine().getHistory();
+		final WebHistory history = Rcpl.UIC().getBrowser().getEngine().getHistory();
 		ObservableList<WebHistory.Entry> entryList = history.getEntries();
 		int currentIndex = history.getCurrentIndex();
 		if (currentIndex < entryList.size() - 1) {
@@ -279,7 +279,7 @@ public class URLAddressTool extends AbstractRcplTool implements IURLAddressTool 
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				Rcpl.UIC.getBrowser().getEngine().reload();
+				Rcpl.UIC().getBrowser().getEngine().reload();
 			}
 		});
 	}

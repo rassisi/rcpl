@@ -46,7 +46,7 @@ public class CharacterStyleListTool extends AbstractRcplTool {
 	public CharacterStyleListTool(Tool eTool) {
 		super(eTool);
 
-		List<IStyle> list = Rcpl.globalStyleTemplate().getStyles();
+		List<IStyle> list = Rcpl.get().globalStyleTemplate().getStyles();
 
 		for (IStyle iStyle : list) {
 			if (EStyleType.CHARACTER.equals(iStyle.getType())) {
@@ -83,7 +83,7 @@ public class CharacterStyleListTool extends AbstractRcplTool {
 			if (item == null || empty) {
 				setGraphic(null);
 			} else {
-				IStyle style = Rcpl.globalStyleTemplate().findStyle(item);
+				IStyle style = Rcpl.get().globalStyleTemplate().findStyle(item);
 				label.setText(item);
 				if (style != null) {
 					if (style != null) {
@@ -106,7 +106,7 @@ public class CharacterStyleListTool extends AbstractRcplTool {
 	}
 
 	public void initSelection() {
-		IFont font = Rcpl.globalStyleTemplate().getDefaultStyle().getFont();
+		IFont font = Rcpl.get().globalStyleTemplate().getDefaultStyle().getFont();
 		selectFont(font);
 		setFont(font);
 	}

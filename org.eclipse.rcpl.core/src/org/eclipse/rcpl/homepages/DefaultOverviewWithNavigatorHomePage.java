@@ -42,7 +42,7 @@ public class DefaultOverviewWithNavigatorHomePage extends DefaultOverviewHomePag
 		SplitPane splitPane = new SplitPane();
 		getContentPane().getChildren().add(splitPane);
 
-		Node n = Rcpl.UIC.getRcplTreepart().getNode();
+		Node n = Rcpl.UIC().getRcplTreepart().getNode();
 		if (n != null) {
 			splitPane.getItems().add(n);
 		}
@@ -53,7 +53,7 @@ public class DefaultOverviewWithNavigatorHomePage extends DefaultOverviewHomePag
 
 		uic.getTopToolBar().showPerspective(null);
 
-		if (!Rcpl.isMobile()) {
+		if (!Rcpl.get().isMobile()) {
 			showSplash(1);
 		}
 

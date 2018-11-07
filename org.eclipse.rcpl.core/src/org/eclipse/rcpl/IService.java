@@ -12,6 +12,8 @@ public interface IService {
 
 	void registerService(EnServiceId serviceId, IService service);
 
+	void registerService(Class<? extends IService> serviceClass);
+
 	Object doExecute(ICommand command) throws Exception;
 
 }

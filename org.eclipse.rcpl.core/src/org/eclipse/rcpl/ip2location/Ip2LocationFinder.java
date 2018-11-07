@@ -25,7 +25,7 @@ public class Ip2LocationFinder {
 
 	public Ip2LocationFinder() {
 		super();
-		this.h2 = Rcpl.UIC.getH2DB();
+		this.h2 = Rcpl.UIC().getH2DB();
 	}
 
 	public Ip2LocationFinder(H2DB h2) {

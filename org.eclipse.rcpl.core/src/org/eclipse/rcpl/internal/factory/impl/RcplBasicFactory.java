@@ -120,8 +120,8 @@ public class RcplBasicFactory implements IRcplFactory {
 	@Override
 	public ICommand createCommand(ITool tool, Object... newData) {
 		ILayoutObject l = null;
-		if (Rcpl.UIC.getEditor() != null) {
-			l = Rcpl.UIC.getEditor().getSelectedLayoutObject();
+		if (Rcpl.UIC().getEditor() != null) {
+			l = Rcpl.UIC().getEditor().getSelectedLayoutObject();
 		}
 		return createCommand(tool, l, new Object[0], newData);
 	}
@@ -325,7 +325,7 @@ public class RcplBasicFactory implements IRcplFactory {
 				return (IDetailPage) o;
 			}
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			Rcpl.printErrorln("", e);
+			Rcpl.get().printErrorln("", e);
 		}
 
 		return null;

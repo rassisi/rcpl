@@ -40,8 +40,8 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 				}
 			};
 			HBox.setHgrow(taskProgressView, Priority.ALWAYS);
-			if (Rcpl.UIC != null) {
-				Rcpl.UIC.getProgressArea().getChildren().add(taskProgressView);
+			if (Rcpl.UIC() != null) {
+				Rcpl.UIC().getProgressArea().getChildren().add(taskProgressView);
 			}
 		}
 	}

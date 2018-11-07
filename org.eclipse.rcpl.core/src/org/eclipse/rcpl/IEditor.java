@@ -85,7 +85,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void collapseHorizontalRuler();
 
-	boolean close();
+	boolean dispose();
 
 	void expandHorizontalRuler();
 

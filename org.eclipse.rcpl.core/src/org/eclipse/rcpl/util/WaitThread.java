@@ -58,7 +58,7 @@ public abstract class WaitThread {
 			try {
 				run();
 			} catch (Exception ex) {
-				Rcpl.printErrorln("", ex);
+				Rcpl.get().printErrorln("", ex);
 			}
 		}
 	}

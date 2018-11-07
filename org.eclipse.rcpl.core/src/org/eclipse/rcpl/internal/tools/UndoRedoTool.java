@@ -136,7 +136,7 @@ public class UndoRedoTool implements IUndoRedoListener {
 
 		Tool tool = RcplFactory.eINSTANCE.createTool();
 		tool.setId("undo");
-		undoButton = Rcpl.getFactory().createButton(tool);
+		undoButton = Rcpl.get().getFactory().createButton(tool);
 		undoButton.setDisable(true);
 
 		undoCombo = new UndoCombo();
@@ -148,7 +148,7 @@ public class UndoRedoTool implements IUndoRedoListener {
 		Tool tool2 = RcplFactory.eINSTANCE.createTool();
 		tool2.setId("redo");
 
-		redoButton = Rcpl.getFactory().createButton(tool2);
+		redoButton = Rcpl.get().getFactory().createButton(tool2);
 		undoButton.setDisable(true);
 
 	}
