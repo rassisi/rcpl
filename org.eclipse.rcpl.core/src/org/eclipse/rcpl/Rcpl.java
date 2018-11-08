@@ -264,7 +264,9 @@ public class Rcpl implements RcplConstants {
 	}
 
 	public void dispose() {
-		UIC.dispose();
+		if (UIC != null) {
+			UIC.dispose();
+		}
 		factory = null;
 		toolFactory = null;
 		serviceFactory = null;
@@ -283,6 +285,9 @@ public class Rcpl implements RcplConstants {
 		browserAddressField = null;
 		editorListeners.clear();
 		localables.clear();
+		localables = null;
+
+		INSTANCE = null;
 	}
 
 	public IFontProvider fontProvider() {
