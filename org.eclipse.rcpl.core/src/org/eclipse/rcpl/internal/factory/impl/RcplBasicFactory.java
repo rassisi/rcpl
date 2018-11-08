@@ -79,7 +79,6 @@ import org.eclipse.rcpl.ui.action.RcplCommand;
 import org.eclipse.rcpl.ui.font.RcplFontProvider;
 
 import javafx.scene.Node;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
@@ -229,13 +228,8 @@ public class RcplBasicFactory implements IRcplFactory {
 		return new RcplToolFactory();
 	}
 
-//	@Override
-//	public IEditor createEditor(File file, Tab tab, HashMap<String, String> wordReplacements, boolean onePage) {
-//		return null;
-//	}
-
 	@Override
-	public IEditor createEditor(Tab tab) {
+	public IEditor createEditor() {
 		return null;
 	}
 

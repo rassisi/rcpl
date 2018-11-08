@@ -99,7 +99,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	EnDocumentType getDocumentType();
 
-	Parent getMainPane();
+	Parent getNode();
 
 	IPage getPage(int index);
 
@@ -192,8 +192,6 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 	void updateCanvasSize();
 
 	void updatePageVisibility(boolean isScrollBarEvent);
-
-	void updateTabText(String text, boolean dirty);
 
 	void unselectAllParagraphs();
 

@@ -30,6 +30,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	void updateTabText();
+
 	void dispose();
 
 	boolean updateToggleButton(IEditor editor, EnCommandId commandId, EnKeyValue keyValue, boolean update);

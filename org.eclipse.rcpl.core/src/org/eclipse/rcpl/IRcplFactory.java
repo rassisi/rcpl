@@ -8,7 +8,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 
 import javafx.scene.Node;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
@@ -38,7 +37,7 @@ public interface IRcplFactory {
 
 	Node createRibbonGroup(ToolGroup group, IRcplAddon useCase, boolean first, boolean dialogButton);
 
-	IEditor createEditor(Tab tab);
+	IEditor createEditor();
 
 	ISideToolBar createSideToolBar(HBox hbox);
 

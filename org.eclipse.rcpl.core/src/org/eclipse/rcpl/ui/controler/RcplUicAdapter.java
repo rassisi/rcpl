@@ -421,4 +421,10 @@ public class RcplUicAdapter implements IRcplUic {
 
 	}
 
+	@Override
+	public void updateTabText() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

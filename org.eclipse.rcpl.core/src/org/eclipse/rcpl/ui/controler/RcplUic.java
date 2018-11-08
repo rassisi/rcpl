@@ -2323,7 +2323,7 @@ public class RcplUic implements IRcplUic {
 					public void run() {
 						updatePerspective(tab);
 						if (editor != null) {
-							setContent(editor.getMainPane());
+							setContent(editor.getNode());
 						} else if (node != null) {
 							setContent(node);
 						} else if (addon != null) {
@@ -2536,4 +2536,26 @@ public class RcplUic implements IRcplUic {
 		return false;
 	}
 
+	public void updateTabText() {
+		updateTabText(getEditor().getDocument().getFile().getName(), getEditor().getDocument().isDirty());
+	}
+
+	public void updateTabText(String text, boolean dirty) {
+		if (!tabPane.getTabs().isEmpty()) {
+			if (getEditor().getDocument() == null) {
+				return;
+			}
+			text = getEditor().getDocument().getFile().getName();
+			if (text == null) {
+				return;
+			}
+			String s = text.replace("*", "");
+			if (dirty) {
+				s += "*";
+			}
+			Tab tab = tabPane.getSelectionModel().getSelectedItem();
+			tab.setText(s);
+		}
+
+	}
 }

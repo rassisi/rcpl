@@ -13,7 +13,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Skin;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
 /**
@@ -223,8 +222,6 @@ public abstract class AbstractTaskViewProvider implements ITaskViewProvider {
 			RcplUtil.sleep(10);
 		}
 	}
-
-	abstract public Pane getNode();
 
 	@Override
 	public RcplTask getTask(int taskNumber) {
