@@ -46,7 +46,7 @@ public interface IRcplApplicationProvider {
 
 	StackPane getMainApplicationStack();
 
-	IApplicationWindow getApplicationWindow();
+//	IApplicationWindow getApplicationWindow();
 
 	void setResizable(boolean resizable);
 

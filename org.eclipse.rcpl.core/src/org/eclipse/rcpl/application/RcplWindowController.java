@@ -1,10 +1,7 @@
 package org.eclipse.rcpl.application;
 
-import java.util.logging.Level;
-
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
@@ -13,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 /**
@@ -34,16 +30,18 @@ public class RcplWindowController {
 	private static int RESIZE_PADDING;
 	private static int SHADOW_WIDTH;
 
-	private RcplApplicationWindow rcplWindow;
+//	private RcplApplicationWindow rcplWindow;
 
 	private BoundingBox savedBounds, savedFullScreenBounds;
 
 	private boolean maximized = false;
 
+	private Stage stage;
+
 	private static final int MAXIMIZE_BORDER = 20; // Allow double click to maximize on
 
-	public RcplWindowController(RcplApplicationWindow ud) {
-		rcplWindow = ud;
+	public RcplWindowController(Stage stage) {
+		this.stage = stage;
 	}
 
 	/*
@@ -51,11 +49,9 @@ public class RcplWindowController {
 	 */
 	protected void maximizeOrRestore() {
 
-		Stage stage = rcplWindow.getStage();
-
 		if (maximized) {
 			restoreSavedBounds(stage, false);
-			rcplWindow.setShadow(true);
+//			rcplWindow.setShadow(true);
 			savedBounds = null;
 			maximized = false;
 		} else {
@@ -66,8 +62,6 @@ public class RcplWindowController {
 
 			savedBounds = new BoundingBox(stage.getX(), stage.getY(), stage.getWidth(), stage.getHeight());
 
-			rcplWindow.setShadow(false);
-
 			stage.setX(visualBounds.getMinX());
 			stage.setY(visualBounds.getMinY());
 			stage.setWidth(visualBounds.getWidth());
@@ -77,12 +71,11 @@ public class RcplWindowController {
 	}
 
 	public void saveBounds() {
-		Stage stage = rcplWindow.getStage();
+//		Stage stage = rcplWindow.getStage();
 		savedBounds = new BoundingBox(stage.getX(), stage.getY(), stage.getWidth(), stage.getHeight());
 	}
 
 	public void saveFullScreenBounds() {
-		Stage stage = rcplWindow.getStage();
 		savedFullScreenBounds = new BoundingBox(stage.getX(), stage.getY(), stage.getWidth(), stage.getHeight());
 	}
 
@@ -105,12 +98,10 @@ public class RcplWindowController {
 	}
 
 	protected void setFullScreen(boolean value) {
-		Stage stage = rcplWindow.getStage();
 		stage.setFullScreen(value);
 	}
 
 	public void close() {
-		final Stage stage = rcplWindow.getStage();
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -137,7 +128,6 @@ public class RcplWindowController {
 	}
 
 	private void _minimize() {
-		Stage stage = rcplWindow.getStage();
 		stage.setIconified(true);
 	}
 
@@ -153,146 +143,147 @@ public class RcplWindowController {
 
 		RESIZE_PADDING = PADDING;
 		SHADOW_WIDTH = SHADOW;
-		node.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			// Maximize on double click
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (rcplWindow.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen()
-						&& mouseEvent.getClickCount() > 1) {
-					if (mouseEvent.getSceneY() - SHADOW_WIDTH < MAXIMIZE_BORDER) {
-						rcplWindow.maximizeProperty().set(!rcplWindow.maximizeProperty().get());
-						// mouseEvent.consume();
-					}
-				}
-			}
-		});
 
-		node.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (mouseEvent.isPrimaryButtonDown()) {
-					initX = mouseEvent.getScreenX();
-					initY = mouseEvent.getScreenY();
-					// mouseEvent.consume();
-				}
-			}
-		});
-		node.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (!mouseEvent.isPrimaryButtonDown() || (initX == -1 && initY == -1)) {
-					return;
-				}
-				if (stage.isFullScreen()) {
-					return;
-				}
-				/*
-				 * Long press generates drag event!
-				 */
-				if (mouseEvent.isStillSincePress()) {
-					return;
-				}
-				if (maximized) {
-					// Remove maximized state
-					rcplWindow.maximizeProperty.set(false);
-					return;
-				} // Docked then moved, so restore state
-				else if (savedBounds != null) {
-					rcplWindow.setShadow(true);
-				}
+//		node.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//			// Maximize on double click
+//			@Override
+//			public void handle(MouseEvent mouseEvent) {
+//				if (rcplWindow.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen()
+//						&& mouseEvent.getClickCount() > 1) {
+//					if (mouseEvent.getSceneY() - SHADOW_WIDTH < MAXIMIZE_BORDER) {
+//						rcplWindow.maximizeProperty().set(!rcplWindow.maximizeProperty().get());
+//						// mouseEvent.consume();
+//					}
+//				}
+//			}
+//		});
 
-				newX = mouseEvent.getScreenX();
-				newY = mouseEvent.getScreenY();
-				double deltax = newX - initX;
-				double deltay = newY - initY;
-
-				Cursor cursor = node.getCursor();
-				if (Cursor.E_RESIZE.equals(cursor)) {
-					setStageWidth(stage, stage.getWidth() + deltax);
-					mouseEvent.consume();
-				} else if (Cursor.NE_RESIZE.equals(cursor)) {
-					if (setStageHeight(stage, stage.getHeight() - deltay)) {
-						setStageY(stage, stage.getY() + deltay);
-					}
-					setStageWidth(stage, stage.getWidth() + deltax);
-					mouseEvent.consume();
-				} else if (Cursor.SE_RESIZE.equals(cursor)) {
-					setStageWidth(stage, stage.getWidth() + deltax);
-					setStageHeight(stage, stage.getHeight() + deltay);
-					mouseEvent.consume();
-				} else if (Cursor.S_RESIZE.equals(cursor)) {
-					setStageHeight(stage, stage.getHeight() + deltay);
-					mouseEvent.consume();
-				} else if (Cursor.W_RESIZE.equals(cursor)) {
-					if (setStageWidth(stage, stage.getWidth() - deltax)) {
-						stage.setX(stage.getX() + deltax);
-					}
-					mouseEvent.consume();
-				} else if (Cursor.SW_RESIZE.equals(cursor)) {
-					if (setStageWidth(stage, stage.getWidth() - deltax)) {
-						stage.setX(stage.getX() + deltax);
-					}
-					setStageHeight(stage, stage.getHeight() + deltay);
-					mouseEvent.consume();
-				} else if (Cursor.NW_RESIZE.equals(cursor)) {
-					if (setStageWidth(stage, stage.getWidth() - deltax)) {
-						stage.setX(stage.getX() + deltax);
-					}
-					if (setStageHeight(stage, stage.getHeight() - deltay)) {
-						setStageY(stage, stage.getY() + deltay);
-					}
-					mouseEvent.consume();
-				} else if (Cursor.N_RESIZE.equals(cursor)) {
-					if (setStageHeight(stage, stage.getHeight() - deltay)) {
-						setStageY(stage, stage.getY() + deltay);
-					}
-					mouseEvent.consume();
-				}
-
-			}
-		});
-		node.setOnMouseMoved(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (maximized) {
-					setCursor(node, Cursor.DEFAULT);
-					return; // maximized mode does not support resize
-				}
-				if (stage.isFullScreen()) {
-					return;
-				}
-				if (!stage.isResizable()) {
-					return;
-				}
-				double x = mouseEvent.getX();
-				double y = mouseEvent.getY();
-				Bounds boundsInParent = node.getBoundsInParent();
-				if (isRightEdge(x, y, boundsInParent)) {
-					if (y < RESIZE_PADDING + SHADOW_WIDTH) {
-						setCursor(node, Cursor.NE_RESIZE);
-					} else if (y > boundsInParent.getHeight() - (RESIZE_PADDING + SHADOW_WIDTH)) {
-						setCursor(node, Cursor.SE_RESIZE);
-					} else {
-						setCursor(node, Cursor.E_RESIZE);
-					}
-
-				} else if (isLeftEdge(x, y, boundsInParent)) {
-					if (y < RESIZE_PADDING + SHADOW_WIDTH) {
-						setCursor(node, Cursor.NW_RESIZE);
-					} else if (y > boundsInParent.getHeight() - (RESIZE_PADDING + SHADOW_WIDTH)) {
-						setCursor(node, Cursor.SW_RESIZE);
-					} else {
-						setCursor(node, Cursor.W_RESIZE);
-					}
-				} else if (isTopEdge(x, y, boundsInParent)) {
-					setCursor(node, Cursor.N_RESIZE);
-				} else if (isBottomEdge(x, y, boundsInParent)) {
-					setCursor(node, Cursor.S_RESIZE);
-				} else {
-					setCursor(node, Cursor.DEFAULT);
-				}
-			}
-		});
+//		node.setOnMousePressed(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent mouseEvent) {
+//				if (mouseEvent.isPrimaryButtonDown()) {
+//					initX = mouseEvent.getScreenX();
+//					initY = mouseEvent.getScreenY();
+//					// mouseEvent.consume();
+//				}
+//			}
+//		});
+//		node.setOnMouseDragged(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent mouseEvent) {
+//				if (!mouseEvent.isPrimaryButtonDown() || (initX == -1 && initY == -1)) {
+//					return;
+//				}
+//				if (stage.isFullScreen()) {
+//					return;
+//				}
+//				/*
+//				 * Long press generates drag event!
+//				 */
+//				if (mouseEvent.isStillSincePress()) {
+//					return;
+//				}
+////				if (maximized) {
+////					// Remove maximized state
+////					stage.maximizeProperty.set(false);
+////					return;
+////				} // Docked then moved, so restore state
+////				else if (savedBounds != null) {
+////					rcplWindow.setShadow(true);
+////				}
+//
+//				newX = mouseEvent.getScreenX();
+//				newY = mouseEvent.getScreenY();
+//				double deltax = newX - initX;
+//				double deltay = newY - initY;
+//
+//				Cursor cursor = node.getCursor();
+//				if (Cursor.E_RESIZE.equals(cursor)) {
+//					setStageWidth(stage, stage.getWidth() + deltax);
+//					mouseEvent.consume();
+//				} else if (Cursor.NE_RESIZE.equals(cursor)) {
+//					if (setStageHeight(stage, stage.getHeight() - deltay)) {
+//						setStageY(stage, stage.getY() + deltay);
+//					}
+//					setStageWidth(stage, stage.getWidth() + deltax);
+//					mouseEvent.consume();
+//				} else if (Cursor.SE_RESIZE.equals(cursor)) {
+//					setStageWidth(stage, stage.getWidth() + deltax);
+//					setStageHeight(stage, stage.getHeight() + deltay);
+//					mouseEvent.consume();
+//				} else if (Cursor.S_RESIZE.equals(cursor)) {
+//					setStageHeight(stage, stage.getHeight() + deltay);
+//					mouseEvent.consume();
+//				} else if (Cursor.W_RESIZE.equals(cursor)) {
+//					if (setStageWidth(stage, stage.getWidth() - deltax)) {
+//						stage.setX(stage.getX() + deltax);
+//					}
+//					mouseEvent.consume();
+//				} else if (Cursor.SW_RESIZE.equals(cursor)) {
+//					if (setStageWidth(stage, stage.getWidth() - deltax)) {
+//						stage.setX(stage.getX() + deltax);
+//					}
+//					setStageHeight(stage, stage.getHeight() + deltay);
+//					mouseEvent.consume();
+//				} else if (Cursor.NW_RESIZE.equals(cursor)) {
+//					if (setStageWidth(stage, stage.getWidth() - deltax)) {
+//						stage.setX(stage.getX() + deltax);
+//					}
+//					if (setStageHeight(stage, stage.getHeight() - deltay)) {
+//						setStageY(stage, stage.getY() + deltay);
+//					}
+//					mouseEvent.consume();
+//				} else if (Cursor.N_RESIZE.equals(cursor)) {
+//					if (setStageHeight(stage, stage.getHeight() - deltay)) {
+//						setStageY(stage, stage.getY() + deltay);
+//					}
+//					mouseEvent.consume();
+//				}
+//
+//			}
+//		});
+//		node.setOnMouseMoved(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent mouseEvent) {
+//				if (maximized) {
+//					setCursor(node, Cursor.DEFAULT);
+//					return; // maximized mode does not support resize
+//				}
+//				if (stage.isFullScreen()) {
+//					return;
+//				}
+//				if (!stage.isResizable()) {
+//					return;
+//				}
+//				double x = mouseEvent.getX();
+//				double y = mouseEvent.getY();
+//				Bounds boundsInParent = node.getBoundsInParent();
+//				if (isRightEdge(x, y, boundsInParent)) {
+//					if (y < RESIZE_PADDING + SHADOW_WIDTH) {
+//						setCursor(node, Cursor.NE_RESIZE);
+//					} else if (y > boundsInParent.getHeight() - (RESIZE_PADDING + SHADOW_WIDTH)) {
+//						setCursor(node, Cursor.SE_RESIZE);
+//					} else {
+//						setCursor(node, Cursor.E_RESIZE);
+//					}
+//
+//				} else if (isLeftEdge(x, y, boundsInParent)) {
+//					if (y < RESIZE_PADDING + SHADOW_WIDTH) {
+//						setCursor(node, Cursor.NW_RESIZE);
+//					} else if (y > boundsInParent.getHeight() - (RESIZE_PADDING + SHADOW_WIDTH)) {
+//						setCursor(node, Cursor.SW_RESIZE);
+//					} else {
+//						setCursor(node, Cursor.W_RESIZE);
+//					}
+//				} else if (isTopEdge(x, y, boundsInParent)) {
+//					setCursor(node, Cursor.N_RESIZE);
+//				} else if (isBottomEdge(x, y, boundsInParent)) {
+//					setCursor(node, Cursor.S_RESIZE);
+//				} else {
+//					setCursor(node, Cursor.DEFAULT);
+//				}
+//			}
+//		});
 	}
 
 	/**
@@ -313,7 +304,7 @@ public class RcplWindowController {
 				}
 			}
 		} catch (Exception e) {
-			RcplApplicationWindow.LOGGER.log(Level.SEVERE, "setStageY issue", e);
+//			RcplApplicationWindow.LOGGER.log(Level.SEVERE, "setStageY issue", e);
 		}
 	}
 
@@ -343,94 +334,94 @@ public class RcplWindowController {
 	 */
 	public void setAsStageDraggable(final Stage stage, final Node node) {
 
-		node.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			// Maximize on double click
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (rcplWindow.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen()
-						&& mouseEvent.getClickCount() > 1) {
-					if (mouseEvent.getSceneY() - SHADOW_WIDTH < MAXIMIZE_BORDER) {
-						rcplWindow.maximizeProperty().set(!rcplWindow.maximizeProperty().get());
-						// mouseEvent.consume();
-					}
-				}
-			}
-		});
-		node.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (mouseEvent.isPrimaryButtonDown()) {
-					initX = mouseEvent.getScreenX();
-					initY = mouseEvent.getScreenY();
-					// mouseEvent.consume();
-				} else {
-					initX = -1;
-					initY = -1;
-				}
-			}
-		});
-		node.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (!mouseEvent.isPrimaryButtonDown() || initX == -1) {
-					return;
-				}
-				if (stage.isFullScreen()) {
-					return;
-				}
-				/*
-				 * Long press generates drag event!
-				 */
-				if (mouseEvent.isStillSincePress()) {
-					return;
-				}
-				if (maximized) {
-					// Remove Maximized state
-					rcplWindow.maximizeProperty.set(false);
-					// Center
-					stage.setX(mouseEvent.getScreenX() - stage.getWidth() / 2);
-					stage.setY(mouseEvent.getScreenY() - SHADOW_WIDTH);
-				} // Docked then moved, so restore state
-				else if (savedBounds != null) {
-					restoreSavedBounds(stage, false);
-					rcplWindow.setShadow(true);
-					// Center
-					stage.setX(mouseEvent.getScreenX() - stage.getWidth() / 2);
-					stage.setY(mouseEvent.getScreenY() - SHADOW_WIDTH);
-				}
-				double newX = mouseEvent.getScreenX();
-				double newY = mouseEvent.getScreenY();
-				double deltax = newX - initX;
-				double deltay = newY - initY;
-				initX = newX;
-				initY = newY;
-				setCursor(node, Cursor.HAND);
-				stage.setX(stage.getX() + deltax);
-				setStageY(stage, stage.getY() + deltay);
-
-				testDock(stage, mouseEvent);
-				// mouseEvent.consume();
-			}
-		});
-		node.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent t) {
-				if (stage.isResizable()) {
-					rcplWindow.setDockFeedbackInvisible();
-					setCursor(node, Cursor.DEFAULT);
-					initX = -1;
-					initY = -1;
-					dockActions(stage, t);
-				}
-			}
-		});
-
-		node.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				// setCursor(node, Cursor.DEFAULT);
-			}
-		});
+//		node.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//			// Maximize on double click
+//			@Override
+//			public void handle(MouseEvent mouseEvent) {
+//				if (rcplWindow.getStageStyle() != StageStyle.UTILITY && !stage.isFullScreen()
+//						&& mouseEvent.getClickCount() > 1) {
+//					if (mouseEvent.getSceneY() - SHADOW_WIDTH < MAXIMIZE_BORDER) {
+//						rcplWindow.maximizeProperty().set(!rcplWindow.maximizeProperty().get());
+//						// mouseEvent.consume();
+//					}
+//				}
+//			}
+//		});
+//		node.setOnMousePressed(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent mouseEvent) {
+//				if (mouseEvent.isPrimaryButtonDown()) {
+//					initX = mouseEvent.getScreenX();
+//					initY = mouseEvent.getScreenY();
+//					// mouseEvent.consume();
+//				} else {
+//					initX = -1;
+//					initY = -1;
+//				}
+//			}
+//		});
+//		node.setOnMouseDragged(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent mouseEvent) {
+//				if (!mouseEvent.isPrimaryButtonDown() || initX == -1) {
+//					return;
+//				}
+//				if (stage.isFullScreen()) {
+//					return;
+//				}
+//				/*
+//				 * Long press generates drag event!
+//				 */
+//				if (mouseEvent.isStillSincePress()) {
+//					return;
+//				}
+//				if (maximized) {
+//					// Remove Maximized state
+//					rcplWindow.maximizeProperty.set(false);
+//					// Center
+//					stage.setX(mouseEvent.getScreenX() - stage.getWidth() / 2);
+//					stage.setY(mouseEvent.getScreenY() - SHADOW_WIDTH);
+//				} // Docked then moved, so restore state
+//				else if (savedBounds != null) {
+//					restoreSavedBounds(stage, false);
+//					rcplWindow.setShadow(true);
+//					// Center
+//					stage.setX(mouseEvent.getScreenX() - stage.getWidth() / 2);
+//					stage.setY(mouseEvent.getScreenY() - SHADOW_WIDTH);
+//				}
+//				double newX = mouseEvent.getScreenX();
+//				double newY = mouseEvent.getScreenY();
+//				double deltax = newX - initX;
+//				double deltay = newY - initY;
+//				initX = newX;
+//				initY = newY;
+//				setCursor(node, Cursor.HAND);
+//				stage.setX(stage.getX() + deltax);
+//				setStageY(stage, stage.getY() + deltay);
+//
+//				testDock(stage, mouseEvent);
+//				// mouseEvent.consume();
+//			}
+//		});
+//		node.setOnMouseReleased(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent t) {
+//				if (stage.isResizable()) {
+//					rcplWindow.setDockFeedbackInvisible();
+//					setCursor(node, Cursor.DEFAULT);
+//					initX = -1;
+//					initY = -1;
+//					dockActions(stage, t);
+//				}
+//			}
+//		});
+//
+//		node.setOnMouseExited(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent mouseEvent) {
+//				// setCursor(node, Cursor.DEFAULT);
+//			}
+//		});
 
 	}
 
@@ -459,7 +450,7 @@ public class RcplWindowController {
 			double width = visualBounds.getWidth() / 2;
 			double height = visualBounds.getHeight();
 
-			rcplWindow.setDockFeedbackVisible(x, y, width, height);
+//			rcplWindow.setDockFeedbackVisible(x, y, width, height);
 			lastDocked = DOCK_LEFT;
 		} // Dock Right
 		else if (dockSide == DOCK_RIGHT) {
@@ -478,7 +469,7 @@ public class RcplWindowController {
 			double width = visualBounds.getWidth() / 2;
 			double height = visualBounds.getHeight();
 
-			rcplWindow.setDockFeedbackVisible(x, y, width, height);
+//			rcplWindow.setDockFeedbackVisible(x, y, width, height);
 			lastDocked = DOCK_RIGHT;
 		} // Dock top
 		else if (dockSide == DOCK_TOP) {
@@ -494,10 +485,10 @@ public class RcplWindowController {
 			double y = visualBounds.getMinY();
 			double width = visualBounds.getWidth();
 			double height = visualBounds.getHeight();
-			rcplWindow.setDockFeedbackVisible(x, y, width, height);
+//			rcplWindow.setDockFeedbackVisible(x, y, width, height);
 			lastDocked = DOCK_TOP;
 		} else {
-			rcplWindow.setDockFeedbackInvisible();
+//			rcplWindow.setDockFeedbackInvisible();
 			lastDocked = DOCK_NONE;
 		}
 	}
@@ -564,7 +555,7 @@ public class RcplWindowController {
 			}
 
 			stage.setHeight(height);
-			rcplWindow.setShadow(false);
+//			rcplWindow.setShadow(false);
 		} // Dock Right (visualBounds = [minX = 1440.0, minY=300.0, maxX=3360.0,
 			// maxY=1500.0, width=1920.0, height=1200.0])
 		else if (mouseEvent.getScreenX() >= visualBounds.getMaxX() - 1) { // MaxX
@@ -593,11 +584,11 @@ public class RcplWindowController {
 			}
 
 			stage.setHeight(height);
-			rcplWindow.setShadow(false);
+//			rcplWindow.setShadow(false);
 		} else if (mouseEvent.getScreenY() <= visualBounds.getMinY()) { // Mac
 																		// menu
 																		// bar
-			rcplWindow.maximizeProperty.set(true);
+//			rcplWindow.maximizeProperty.set(true);
 		}
 
 	}

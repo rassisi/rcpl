@@ -1711,14 +1711,14 @@ public class RcplUic implements IRcplUic {
 		final Scene scene = getStage().getScene();
 		for (String style : styles) {
 			scene.getStylesheets().add(style);
-			getApplicationStarter().getRcplApplicationProvider().getApplicationWindow().getStyleSheets().add(style);
+//			getApplicationStarter().getRcplApplicationProvider().getApplicationWindow().getStyleSheets().add(style);
 		}
 	}
 
 	private void removeAllStyles() {
 		List<String> sts = getStage().getScene().getStylesheets();
 		sts.clear();
-		getApplicationStarter().getRcplApplicationProvider().getApplicationWindow().resetStyles();
+//		getApplicationStarter().getRcplApplicationProvider().getApplicationWindow().resetStyles();
 
 	}
 

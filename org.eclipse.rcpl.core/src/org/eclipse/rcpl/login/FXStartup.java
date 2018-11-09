@@ -59,7 +59,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
@@ -189,7 +188,7 @@ public class FXStartup extends Application {
 
 		});
 		final Scene splashScene = new Scene(splashLayout);
-		splashStage.initStyle(StageStyle.UNDECORATED);
+//		splashStage.initStyle(StageStyle.UNDECORATED);
 		final Rectangle2D bounds = Screen.getPrimary().getBounds();
 		splashStage.setScene(splashScene);
 		splashStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);

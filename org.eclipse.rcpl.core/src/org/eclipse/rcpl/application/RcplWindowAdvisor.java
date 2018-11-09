@@ -89,7 +89,7 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 					applicationProvider.getPrimaryStage().setY(initialStageY);
 				}
 
-				applicationProvider.getApplicationWindow().fadeIn(2.0);
+//				applicationProvider.getApplicationWindow().fadeIn(2.0);
 				applicationProvider.getPrimaryStage().show();
 
 				Rcpl.get().progressMessage("Init Addons");

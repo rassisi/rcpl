@@ -45,7 +45,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
@@ -206,7 +205,7 @@ public abstract class AbstractRcplApplication extends Application implements IRc
 			}
 		});
 		final Scene splashScene = new Scene(splashLayout);
-		splashStage.initStyle(StageStyle.UNDECORATED);
+//		splashStage.initStyle(StageStyle.UNDECORATED);
 		splashStage.setScene(splashScene);
 		splashStage.toFront();
 

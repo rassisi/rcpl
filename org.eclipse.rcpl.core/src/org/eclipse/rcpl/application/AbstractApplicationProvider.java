@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.rcpl.IApplicationStarter;
-import org.eclipse.rcpl.IApplicationWindow;
 import org.eclipse.rcpl.ILogin;
 import org.eclipse.rcpl.IMonitor;
 import org.eclipse.rcpl.IRcplAddon;
@@ -40,10 +39,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 /**
@@ -53,8 +50,6 @@ import javafx.stage.WindowEvent;
 public abstract class AbstractApplicationProvider implements IRcplApplicationProvider {
 
 	private boolean LOGIN_DEBUG = false;
-
-	private RcplApplicationWindow applicationWindow;
 
 	private double loginWindowX = -1;
 	private double loginWindowY = -1;
@@ -283,7 +278,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		Scene scene = getPrimaryStage().getScene();
 		scene.getStylesheets().addAll("/css/theme_login.css");
 
-		getApplicationWindow().fadeIn(0.5);
+//		getApplicationWindow().fadeIn(0.5);
 
 		double initialStageX = Rcpl.get(EnKeyValue.LOGIN_WINDOW_X, -1.0);
 		double initialStageY = Rcpl.get(EnKeyValue.LOGIN_WINDOW_Y, -1.0);
@@ -335,36 +330,36 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	private void startPc() {
 		Rcpl.get().progressMessage("Start Desktop Application");
 
-		applicationWindow = new RcplApplicationWindow(this, mainStackPane);
-		applicationWindow.resetStyles();
+//		applicationWindow = new RcplApplicationWindow(this, mainStackPane);
+//		applicationWindow.resetStyles();
 
-		Scene scene = new Scene(applicationWindow);
-		applicationWindow.installAccelerators(scene);
-		applicationWindow.fadeIn(0.5);
+		Scene scene = new Scene(mainStackPane);
+//		applicationWindow.installAccelerators(scene);
+//		applicationWindow.fadeIn(0.5);
 
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent we) {
 				we.consume(); // Do not hide
-				applicationWindow.fadeOut(3.0);
+//				applicationWindow.fadeOut(3.0);
 				if (Rcpl.UIC() != null) {
 					Rcpl.UIC().closeApplication();
 				}
 			}
 		});
 
-		scene.setFill(Color.TRANSPARENT);
-		try {
-			primaryStage.initStyle(StageStyle.TRANSPARENT);
-		} catch (Throwable ex) {
-			// ignore
-		}
+//		scene.setFill(Color.TRANSPARENT);
+//		try {
+//			primaryStage.initStyle(StageStyle.TRANSPARENT);
+//		} catch (Throwable ex) {
+//			// ignore
+//		}
 
 		primaryStage.setScene(scene);
 		setSimpleDialog();
 
-		applicationWindow.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 5;");
-		mainStackPane.setStyle("-fx-background-radius: 10;");
+//		applicationWindow.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 5;");
+//		mainStackPane.setStyle("-fx-background-radius: 10;");
 
 	}
 
@@ -398,34 +393,34 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		return mainStackPane;
 	}
 
-	public RcplApplicationWindow getUndecorator() {
-		return applicationWindow;
-	}
-
-	@Override
-	public IApplicationWindow getApplicationWindow() {
-		return applicationWindow;
-	}
+//	public RcplApplicationWindow getUndecorator() {
+//		return applicationWindow;
+//	}
+//
+//	@Override
+//	public IApplicationWindow getApplicationWindow() {
+//		return applicationWindow;
+//	}
 
 	@Override
 	public void setResizable(boolean resizable) {
 		primaryStage.setResizable(resizable);
-		applicationWindow.setResizable(resizable);
+//		applicationWindow.setResizable(resizable);
 	}
 
 	@Override
 	public void setMinimizable(boolean minimizable) {
-		applicationWindow.setMinimizable(minimizable);
+//		applicationWindow.setMinimizable(minimizable);
 	}
 
 	@Override
 	public void setMaximizable(boolean maximizable) {
-		applicationWindow.setMaximizable(maximizable);
+//		applicationWindow.setMaximizable(maximizable);
 	}
 
 	@Override
 	public void setFullscreenAble(boolean fullscreenAble) {
-		applicationWindow.setFullscreenAble(fullscreenAble);
+//		applicationWindow.setFullscreenAble(fullscreenAble);
 	}
 
 	@Override
@@ -446,7 +441,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 	@Override
 	public void setSize(double width, double height) {
-		applicationWindow.setPrefSize(width, height);
+//		applicationWindow.setPrefSize(width, height);
 		primaryStage.setWidth(width + 30);
 		primaryStage.setHeight(height + 76);
 	}

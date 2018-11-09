@@ -22,9 +22,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * @author ramin
@@ -96,15 +94,8 @@ public class RcplLogin implements ILogin {
 				if (stage.getScene() == null) {
 					Scene scene = new Scene(getNode());
 					stage.setScene(scene);
-					stage.getScene().setFill(Color.TRANSPARENT);
-					try {
-						stage.initStyle(StageStyle.TRANSPARENT);
-					} catch (Throwable ex) {
-						// ignore
-					}
 					stage.centerOnScreen();
 					stage.show();
-
 				}
 			}
 
