@@ -327,40 +327,68 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		primaryStage.show();
 	}
 
+	private Stage captionStage;
+
 	private void startPc() {
 		Rcpl.get().progressMessage("Start Desktop Application");
-
-//		applicationWindow = new RcplApplicationWindow(this, mainStackPane);
-//		applicationWindow.resetStyles();
-
 		Scene scene = new Scene(mainStackPane);
-//		applicationWindow.installAccelerators(scene);
-//		applicationWindow.fadeIn(0.5);
-
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent we) {
 				we.consume(); // Do not hide
-//				applicationWindow.fadeOut(3.0);
 				if (Rcpl.UIC() != null) {
 					Rcpl.UIC().closeApplication();
 				}
 			}
 		});
-
-//		scene.setFill(Color.TRANSPARENT);
-//		try {
-//			primaryStage.initStyle(StageStyle.TRANSPARENT);
-//		} catch (Throwable ex) {
-//			// ignore
-//		}
-
 		primaryStage.setScene(scene);
+
+//		captionStage = new Stage(StageStyle.TRANSPARENT);
+//		captionStage.setHeight(30);
+//		captionStage.initModality(Modality.WINDOW_MODAL);
+//		captionStage.initOwner(primaryStage);
+//
+//		Pane pane = new Pane();
+//		pane.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, null, null)));
+//		pane.setPickOnBounds(false);
+//		pane.setOpacity(0.5);
+//		pane.setFocusTraversable(false);
+//		Scene sc = new Scene(pane);
+//		captionStage.setScene(sc);
+//		sc.setFill(Color.TRANSPARENT);
+//		captionStage.show();
+//
+//
+//		primaryStage.xProperty().addListener(new ChangeListener<Number>() {
+//
+//			@Override
+//			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//				captionStage.setX(newValue.doubleValue() + 3);
+//			}
+//		});
+//		primaryStage.yProperty().addListener(new ChangeListener<Number>() {
+//
+//			@Override
+//			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//				captionStage.setY(newValue.doubleValue() + 3);
+//			}
+//		});
+//		primaryStage.widthProperty().addListener(new ChangeListener<Number>() {
+//
+//			@Override
+//			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//				captionStage.setWidth(newValue.doubleValue() - 200);
+//			}
+//		});
+//		primaryStage.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//
+//			@Override
+//			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//				captionStage.toFront();
+//			}
+//		});
+
 		setSimpleDialog();
-
-//		applicationWindow.setStyle("-fx-background-color: rgba(100, 100, 100, 0.0); -fx-background-radius: 5;");
-//		mainStackPane.setStyle("-fx-background-radius: 10;");
-
 	}
 
 	@Override
@@ -393,34 +421,21 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		return mainStackPane;
 	}
 
-//	public RcplApplicationWindow getUndecorator() {
-//		return applicationWindow;
-//	}
-//
-//	@Override
-//	public IApplicationWindow getApplicationWindow() {
-//		return applicationWindow;
-//	}
-
 	@Override
 	public void setResizable(boolean resizable) {
 		primaryStage.setResizable(resizable);
-//		applicationWindow.setResizable(resizable);
 	}
 
 	@Override
 	public void setMinimizable(boolean minimizable) {
-//		applicationWindow.setMinimizable(minimizable);
 	}
 
 	@Override
 	public void setMaximizable(boolean maximizable) {
-//		applicationWindow.setMaximizable(maximizable);
 	}
 
 	@Override
 	public void setFullscreenAble(boolean fullscreenAble) {
-//		applicationWindow.setFullscreenAble(fullscreenAble);
 	}
 
 	@Override
@@ -441,7 +456,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 
 	@Override
 	public void setSize(double width, double height) {
-//		applicationWindow.setPrefSize(width, height);
 		primaryStage.setWidth(width + 30);
 		primaryStage.setHeight(height + 76);
 	}

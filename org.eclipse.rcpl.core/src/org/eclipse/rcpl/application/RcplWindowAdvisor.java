@@ -129,20 +129,6 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 		applicationProvider.getPrimaryStage().getScene().setOnKeyPressed(keyhandler);
 	}
 
-	// private void applyStyle(final Stage stage, final String style) {
-	// final Scene scene = stage.getScene();
-	// removeAllStyles(stage);
-	// scene.getStylesheets().add(style);
-	// }
-
-//	private void removeAllStyles(Stage stage) {
-//		if (Rcpl.UIC.getStylesRegistry() != null) {
-//			for (String style : Rcpl.UIC.getStylesRegistry()) {
-//				stage.getScene().getStylesheets().remove(style);
-//			}
-//		}
-//	}
-
 	protected void handleOk() {
 
 	}
