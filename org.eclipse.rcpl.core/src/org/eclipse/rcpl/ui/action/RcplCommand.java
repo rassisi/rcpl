@@ -338,8 +338,7 @@ public class RcplCommand implements ICommand {
 
 	@Override
 	public IService getService() {
-		// TODO Auto-generated method stub
-		return null;
+		return service;
 	}
 
 	@Override

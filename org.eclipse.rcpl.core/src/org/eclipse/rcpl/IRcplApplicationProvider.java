@@ -12,6 +12,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplApplicationProvider {
 
+	void setPrimaryStage(Stage stage);
+
 	double getLoginWindowX();
 
 	public double getLoginWindowY();

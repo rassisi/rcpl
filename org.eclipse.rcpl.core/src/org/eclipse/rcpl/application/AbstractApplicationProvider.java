@@ -41,6 +41,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 /**
@@ -127,6 +128,11 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		return primaryStage;
 	}
 
+	@Override
+	public void setPrimaryStage(Stage stage) {
+		primaryStage = stage;
+	}
+
 	private IApplicationStarter getRcplApplicationStarter() {
 		return rcplApplication.getApplicationStarter();
 	}
@@ -145,8 +151,16 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		joLogin.getNode().setVisible(false);
 		if (!Rcpl.get().isMobile()) {
 			primaryStage.hide();
+
+			Scene scene = primaryStage.getScene();
+
+			primaryStage = new Stage(StageStyle.DECORATED);
+			primaryStage.setScene(scene);
+
 		}
+
 		mainContent.getChildren().remove(joLogin.getNode());
+
 		Rcpl.get().createProgress(progressGroup);
 		Rcpl.get().startProgress(3.0, true);
 
@@ -235,12 +249,13 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 	}
 
 	@Override
-	public void start(final Stage primaryStage) {
-		primaryStage.hide();
-		this.primaryStage = primaryStage;
+	public void start(final Stage stage) {
+		stage.hide();
+		mainStackPane = new StackPane();
+		this.primaryStage = new Stage(StageStyle.UNDECORATED); // primaryStage;
+		this.primaryStage.setScene(new Scene(mainStackPane));
 		Rcpl.get().setRcplApplicationProvider(this);
 		calculateMonitors();
-		mainStackPane = new StackPane();
 		mainContent = new StackPane();
 		StackPane.setMargin(mainContent, new Insets(5, 0, 0, 0));
 		progressGroup = new StackPane();
@@ -249,7 +264,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		mainStackPane.setId("loginPage");
 
 		if (!started) {
-			this.primaryStage = primaryStage;
 			Map<String, String> map = rcplApplication.getParameters().getNamed();
 			for (String key : map.keySet()) {
 				if ("cdo".equals(key)) {
@@ -290,16 +304,16 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 			initialStageY = Rcpl.get().getActualMonitor().getHeight() - 101;
 		}
 
-		if (primaryStage != null) {
+		if (getPrimaryStage() != null) {
 			if (initialStageX == -1) {
-				primaryStage.centerOnScreen();
+				getPrimaryStage().centerOnScreen();
 			} else {
-				primaryStage.setX(initialStageX);
-				primaryStage.setY(initialStageY);
+				getPrimaryStage().setX(initialStageX);
+				getPrimaryStage().setY(initialStageY);
 			}
 		}
 
-		primaryStage.show();
+		getPrimaryStage().show();
 		started = true;
 		mainStackPane.layout();
 	}
@@ -318,7 +332,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		Rcpl.get().progressMessage("Start Mobile Application");
 		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
 		RcplModel.log(this, "Screen bounds: " + bounds.getWidth() + "/" + bounds.getHeight());
-		primaryStage.setScene(new Scene(mainStackPane));
 		primaryStage.setWidth(bounds.getWidth());
 		primaryStage.setHeight(bounds.getHeight());
 		primaryStage.setX(0);
@@ -327,11 +340,8 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		primaryStage.show();
 	}
 
-	private Stage captionStage;
-
 	private void startPc() {
 		Rcpl.get().progressMessage("Start Desktop Application");
-		Scene scene = new Scene(mainStackPane);
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent we) {
@@ -341,53 +351,6 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 				}
 			}
 		});
-		primaryStage.setScene(scene);
-
-//		captionStage = new Stage(StageStyle.TRANSPARENT);
-//		captionStage.setHeight(30);
-//		captionStage.initModality(Modality.WINDOW_MODAL);
-//		captionStage.initOwner(primaryStage);
-//
-//		Pane pane = new Pane();
-//		pane.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, null, null)));
-//		pane.setPickOnBounds(false);
-//		pane.setOpacity(0.5);
-//		pane.setFocusTraversable(false);
-//		Scene sc = new Scene(pane);
-//		captionStage.setScene(sc);
-//		sc.setFill(Color.TRANSPARENT);
-//		captionStage.show();
-//
-//
-//		primaryStage.xProperty().addListener(new ChangeListener<Number>() {
-//
-//			@Override
-//			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-//				captionStage.setX(newValue.doubleValue() + 3);
-//			}
-//		});
-//		primaryStage.yProperty().addListener(new ChangeListener<Number>() {
-//
-//			@Override
-//			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-//				captionStage.setY(newValue.doubleValue() + 3);
-//			}
-//		});
-//		primaryStage.widthProperty().addListener(new ChangeListener<Number>() {
-//
-//			@Override
-//			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-//				captionStage.setWidth(newValue.doubleValue() - 200);
-//			}
-//		});
-//		primaryStage.focusedProperty().addListener(new ChangeListener<Boolean>() {
-//
-//			@Override
-//			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-//				captionStage.toFront();
-//			}
-//		});
-
 		setSimpleDialog();
 	}
 

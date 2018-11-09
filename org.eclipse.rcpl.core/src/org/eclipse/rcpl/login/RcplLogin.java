@@ -65,7 +65,16 @@ public class RcplLogin implements ILogin {
 	 */
 	private RcplLogin(IRcplApplicationProvider applicationProvider, Stage stage) {
 		this.applicationProvider = applicationProvider;
-		this.stage = stage;
+
+//		if (applicationProvider != null) {
+//			applicationProvider.getPrimaryStage().close();
+//			applicationProvider.setPrimaryStage(new Stage(StageStyle.UNDECORATED));
+//			this.stage = applicationProvider.getPrimaryStage();
+//		} else 
+
+		{
+			this.stage = stage;
+		}
 		URL location = getClass().getResource("/org/eclipse/rcpl/login/login.fxml");
 		FXMLLoader fxmlLoader = new FXMLLoader(location);
 		controller = new RcplLoginController(this);

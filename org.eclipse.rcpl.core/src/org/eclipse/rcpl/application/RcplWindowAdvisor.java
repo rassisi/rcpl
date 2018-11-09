@@ -24,6 +24,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * @author Ramin Assisi
@@ -64,6 +66,9 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 				if (Rcpl.get(EnKeyValue.WINDOW_WIDTH) == null) {
 					List<Screen> screens = Screen.getScreensForRectangle(100, 100, 100, 100);
 					Rectangle2D bounds = screens.get(0).getVisualBounds();
+
+					applicationProvider.getPrimaryStage().close();
+					applicationProvider.setPrimaryStage(new Stage(StageStyle.DECORATED));
 					applicationProvider.getPrimaryStage().setWidth(bounds.getWidth() * 0.75);
 					applicationProvider.getPrimaryStage().setHeight(bounds.getHeight() * 0.75);
 					applicationProvider.getPrimaryStage().centerOnScreen();
