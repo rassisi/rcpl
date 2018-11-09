@@ -711,6 +711,14 @@ public class RcplUic implements IRcplUic {
 		TabInfo tabInfo = getTabInfo(tab);
 		if (tabInfo != null && tabInfo.getEditor() != null) {
 			final IEditor editor = tabInfo.getEditor();
+			tabInfo.node = null;
+			tabInfo.perspective = null;
+			tabInfo.addon = null;
+			tabInfo.editor = null;
+			if (editor.getDocument() != null) {
+				editor.getDocument().dispose();
+				editor.setDocument(null);
+			}
 			if (editor.dispose()) {
 				tab.setUserData(null);
 				if (tabPane.getTabs().size() == 1) {
@@ -718,8 +726,6 @@ public class RcplUic implements IRcplUic {
 					editorWindowTools.setVisible(false);
 				}
 				RcplSession.getDefault().commit();
-			} else {
-//				event.consume();
 			}
 		}
 	}
