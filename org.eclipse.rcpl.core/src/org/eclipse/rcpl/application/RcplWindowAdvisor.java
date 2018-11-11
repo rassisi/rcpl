@@ -26,6 +26,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 /**
  * @author Ramin Assisi
@@ -107,6 +108,15 @@ public class RcplWindowAdvisor implements IWindowAdvisor {
 				Rcpl.UIC().addtoApplicationStack(applicationProvider.getMainContent());
 				Rcpl.get().progressMessage("RcplWindowAdviser.start()#end");
 				Rcpl.get().showProgress(false);
+
+				applicationProvider.getPrimaryStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+					@Override
+					public void handle(WindowEvent event) {
+						Rcpl.UIC().closeApplication();
+					}
+				});
+
 			}
 		});
 
