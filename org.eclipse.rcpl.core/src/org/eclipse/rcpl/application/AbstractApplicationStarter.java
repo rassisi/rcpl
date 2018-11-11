@@ -26,8 +26,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Service;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 
 import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -86,7 +84,7 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 			}
 		});
 
-		StackPane.setMargin(applicationProvider.getMainContent(), new Insets(0, 0, 0, 0));
+//		StackPane.setMargin(applicationProvider.getMainContent(), new Insets(0, 0, 0, 0));
 		applicationProvider.setNormalWindow();
 
 		return true;
@@ -107,14 +105,6 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 
 	private void initApplicationWithModel() {
 		doInitApplicationWithModel();
-
-//		List<String> recentDocuments = new ArrayList<String>();
-//		RcplSession.getDefault().loadKeys(recentDocuments, KeyValueKey.KEY_VALUE_KEY_RECENT_DOCUMENT.name());
-//		for (String string : recentDocuments) {
-//			String filePath = RcplSession.getDefault().getValue(string);
-//			Rcpl.UIC.addRecentDocument(new File(filePath), false);
-//		}
-
 		for (String url : RcplSession.getDefault().getRcpl().getImageUrls()) {
 			RcplSession.getDefault().addAdditionalImageCodebases(url);
 

@@ -6,4 +6,6 @@ public interface ITextBox extends ILayoutObject {
 
 	List<ILayoutObject> getChildList();
 
+	IPict getPict();
+
 }

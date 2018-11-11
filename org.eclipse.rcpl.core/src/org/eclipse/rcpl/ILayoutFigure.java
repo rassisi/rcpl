@@ -19,6 +19,10 @@ import javafx.scene.shape.Rectangle;
  */
 public interface ILayoutFigure extends IPane {
 
+	void setStroke(Color color);
+
+	void setStrokeWidth(double width);
+
 	void changeBounds(double layoutX, double layoutY, double width, double height);
 
 	void addKeyHandler(Pane pane);
