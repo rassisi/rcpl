@@ -5,7 +5,11 @@ import java.util.List;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 
-public interface IParagraph extends ILayoutObject {
+/**
+ * @author Ramin
+ *
+ */
+public interface IParagraph extends ILayoutObject, ICellable {
 
 	void createBorder();
 

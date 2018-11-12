@@ -1,11 +1,12 @@
 package org.eclipse.rcpl.laborytory;
 
+import org.eclipse.rcpl.IParagraph;
+
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -34,7 +35,12 @@ public class TableViewTest extends Application {
 
 		table = new RcplTable(true);
 		table.setEditable(true);
-		table.setItems(getData());
+		RcplTableData data = new RcplTableData();
+
+		IParagraph paragraph = new SimpleParagraph("test");
+
+		data.setParagraph(paragraph, 1, 2);
+		table.setItems(data.getData());
 		for (int col = 0; col < 3; col++) {
 			table.setColumnWidth(col, 200);
 		}
@@ -44,28 +50,11 @@ public class TableViewTest extends Application {
 		final VBox vbox = new VBox();
 		vbox.setSpacing(5);
 		vbox.setPadding(new Insets(10, 0, 0, 10));
+		VBox.setVgrow(table.getNode(), Priority.ALWAYS);
 		vbox.getChildren().addAll(label, table.getNode());
 		Scene scene = new Scene(vbox);
 		stage.setScene(scene);
 		stage.show();
-	}
-
-	private ObservableList<RcplParagraphRow> getData() {
-		ObservableList<RcplParagraphRow> data = FXCollections.observableArrayList();
-		for (int row = 0; row < 10; row++) {
-			RcplParagraphRow rowData = getRowData(table, row);
-			data.add(rowData);
-		}
-		return data;
-	}
-
-	private RcplParagraphRow getRowData(RcplTable table, int row) {
-		RcplParagraphRow rowData = new RcplParagraphRow(table);
-		for (int col = 0; col < 10; col++) {
-			SimpleParagraph p = new SimpleParagraph(row + " " + col);
-			rowData.add(p);
-		}
-		return rowData;
 	}
 
 }

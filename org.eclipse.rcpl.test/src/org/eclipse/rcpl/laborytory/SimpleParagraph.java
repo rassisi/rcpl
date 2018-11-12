@@ -39,6 +39,10 @@ public class SimpleParagraph implements IParagraph {
 
 	private String text;
 
+	private int column = -1;
+
+	private int row = -1;
+
 	public SimpleParagraph(String text) {
 		this.text = text;
 	}
@@ -950,6 +954,22 @@ public class SimpleParagraph implements IParagraph {
 	@Override
 	public String getText() {
 		return text;
+	}
+
+	public int getColumn() {
+		return column;
+	}
+
+	public void setColumn(int column) {
+		this.column = column;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
 	}
 
 }

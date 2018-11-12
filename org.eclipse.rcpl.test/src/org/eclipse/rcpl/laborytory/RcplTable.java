@@ -9,18 +9,22 @@ import javafx.scene.control.ScrollPane;
  */
 public class RcplTable {
 
+	public final static int MAX_COLUMNS = 1000;
+
+	public final static int MAX_ROWS = 1000;
+
 	private boolean spreadsheet;
 
 	private RcplTableView tableView;
 
 	private ScrollPane node;
 
-	private int numberOfColumns = 10;
-
 	public RcplTable(boolean spreadsheet) {
 		this.spreadsheet = spreadsheet;
 		node = new ScrollPane();
 		tableView = new RcplTableView(this, this.spreadsheet);
+		node.setFitToHeight(true);
+		node.setFitToWidth(true);
 		node.setContent(tableView);
 	}
 
@@ -32,16 +36,8 @@ public class RcplTable {
 		tableView.setEditable(editable);
 	}
 
-	void setItems(ObservableList<RcplParagraphRow> items) {
+	void setItems(ObservableList<RcplCellRow> items) {
 		tableView.setItems(items);
-	}
-
-	public int getNumberOfColumns() {
-		return numberOfColumns;
-	}
-
-	public void setNumberOfColumns(int numberOfColumns) {
-		this.numberOfColumns = numberOfColumns;
 	}
 
 	public void setColumnWidth(int col, double width) {
