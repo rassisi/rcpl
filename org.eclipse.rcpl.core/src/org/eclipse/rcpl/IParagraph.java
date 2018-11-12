@@ -151,4 +151,7 @@ public interface IParagraph extends ILayoutObject {
 	void applyFontName(int start, int length, String fontName);
 
 	void setFontName(String fontName);
+
+	String getText();
+
 }

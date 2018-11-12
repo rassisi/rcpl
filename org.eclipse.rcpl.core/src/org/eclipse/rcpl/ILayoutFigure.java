@@ -19,6 +19,8 @@ import javafx.scene.shape.Rectangle;
  */
 public interface ILayoutFigure extends IPane {
 
+	double updateVAnchor();
+
 	void setStroke(Color color);
 
 	void setStrokeWidth(double width);

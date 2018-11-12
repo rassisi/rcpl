@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Test
 Bundle-SymbolicName: org.eclipse.rcpl.test
 Bundle-Version: 1.0.0.qualifier
-Export-Package: org.eclipse.rcpl.application
+Export-Package: org.eclipse.rcpl.laborytory
 Require-Bundle: org.eclipse.emf.cdo.net4j;bundle-version="4.1.600",
  org.eclipse.emf.cdo.security;bundle-version="4.3.300",
  org.eclipse.rcpl.core;bundle-version="1.0.0",

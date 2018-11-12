@@ -13,6 +13,8 @@ import javafx.geometry.Rectangle2D;
  */
 public interface ILayoutObject {
 
+	boolean isStartNewSection();
+
 	IColorProperty getLineColorProperty();
 
 	void boundsChanged2(Rectangle2D newBounds);

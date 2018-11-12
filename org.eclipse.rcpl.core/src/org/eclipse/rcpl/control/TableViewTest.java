@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.application;
+package org.eclipse.rcpl.control;
 
 import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.model.client.RcplSession;
@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class FXTest extends Application {
+public class TableViewTest extends Application {
 
 	RcplImage img;
 	Node imageView = null;
