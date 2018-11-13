@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  * @author Ramin
  *
  */
-public class TableViewTest extends Application {
+public class SpreadsheetTableTest extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
@@ -40,7 +40,7 @@ public class TableViewTest extends Application {
 
 		// ----------- table ---------------------
 
-		RcplTable table = new RcplTable(false);
+		RcplTable table = new RcplTable(true);
 		table.setEditable(true);
 		RcplTableData data = new RcplTableData();
 		IParagraph paragraph = new SimpleParagraph("test");

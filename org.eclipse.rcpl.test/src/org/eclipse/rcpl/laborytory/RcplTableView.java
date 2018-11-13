@@ -7,10 +7,14 @@ import org.eclipse.rcpl.ICellable;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableColumn.SortType;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
@@ -82,6 +86,19 @@ public class RcplTableView extends TableView<RcplCellRow> {
 							return new RcplTableCell(RcplTableView.this);
 						}
 					});
+
+			column.setOnEditStart(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event event) {
+
+					CellEditEvent ce = (CellEditEvent) event;
+					TablePosition pos = ce.getTablePosition();
+
+					System.out.println("row = " + pos.getRow() + "  column = " + pos.getColumn());
+
+				}
+			});
 		}
 
 	}

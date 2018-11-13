@@ -31,7 +31,7 @@ public class RcplTable {
 		node.setFitToWidth(true);
 		node.setContent(tableView);
 		tableView.getColumns().get(0).setPrefWidth(40);
-		tableView.setEditable(false);
+		tableView.setEditable(true);
 
 	}
 
