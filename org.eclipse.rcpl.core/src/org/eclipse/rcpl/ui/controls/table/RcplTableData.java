@@ -17,9 +17,9 @@ public class RcplTableData {
 
 	public static int MAX_ROWS = 100;
 
-	public static int MAX_SPREADSHEET_COLUMNS = 1000;
+	public static int MAX_SPREADSHEET_COLUMNS = 100;
 
-	public static int MAX_SPREADSHEET_ROWS = 1000;
+	public static int MAX_SPREADSHEET_ROWS = 100;
 
 	private int columnCount;
 
