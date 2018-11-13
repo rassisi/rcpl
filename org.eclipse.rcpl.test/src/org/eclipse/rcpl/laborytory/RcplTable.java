@@ -2,6 +2,7 @@ package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.ICellable;
 
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 
 /**
@@ -30,7 +31,16 @@ public class RcplTable {
 		node.setFitToWidth(true);
 		node.setContent(tableView);
 		tableView.getColumns().get(0).setPrefWidth(40);
-		tableView.setEditable(true);
+		tableView.setEditable(false);
+
+	}
+
+	public void updateCss(Scene scene) {
+		if (spreadsheet) {
+			scene.getStylesheets().add(getClass().getResource("rcpltableview_spreadsheet.css").toExternalForm());
+		} else {
+			scene.getStylesheets().add(getClass().getResource("rcpltableview.css").toExternalForm());
+		}
 	}
 
 	public ScrollPane getNode() {
@@ -47,7 +57,7 @@ public class RcplTable {
 	}
 
 	public void setColumnWidth(int col, double width) {
-		tableView.getColumns().get(col + 1).setPrefWidth(width);
+		tableView.getColumns().get(col).setPrefWidth(width);
 	}
 
 	public void setRowHeight(int row, double height) {

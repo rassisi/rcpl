@@ -36,15 +36,10 @@ public class TableViewTest extends Application {
 		table = new RcplTable(true);
 		table.setEditable(true);
 		RcplTableData data = new RcplTableData();
-
 		IParagraph paragraph = new SimpleParagraph("test");
-
 		data.setParagraph(paragraph, 1, 2);
 		table.setData(data);
-		for (int col = 0; col < 10; col++) {
-			table.setColumnWidth(col, 100);
-		}
-
+		table.setColumnWidth(2, 100);
 		table.setRowHeight(5, 100);
 
 		// ---------------------------------------
@@ -54,10 +49,10 @@ public class TableViewTest extends Application {
 		vbox.setPadding(new Insets(10, 0, 0, 10));
 		VBox.setVgrow(table.getNode(), Priority.ALWAYS);
 		vbox.getChildren().addAll(label, table.getNode());
-
 		Scene scene = new Scene(vbox);
-		scene.getStylesheets().add(getClass().getResource("rcpltableview.css").toExternalForm());
+		table.updateCss(scene);
 		stage.setScene(scene);
+
 		stage.show();
 	}
 
