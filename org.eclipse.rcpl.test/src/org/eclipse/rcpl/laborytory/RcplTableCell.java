@@ -55,9 +55,7 @@ public class RcplTableCell extends TableCell<RcplCellRow, ICellable> {
 				excelBox.setAlignment(Pos.CENTER);
 				excelBox.setStyle("-fx-background-color: lightgray;");
 				setGraphic(excelBox);
-
 				setGraphicTextGap(0);
-
 			}
 		}
 
