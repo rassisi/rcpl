@@ -25,15 +25,19 @@ public class RcplTable {
 
 	private double width;
 
-	private double[] rowHeight = new double[RcplTableData.MAX_ROWS];
+	private double[] rowHeight = new double[RcplTableData.MAX_SPREADSHEET_ROWS];
 
 	public RcplTable(boolean spreadsheet) {
 		this.spreadsheet = spreadsheet;
-		tableView = new RcplTableView(this);
-		for (int row = 0; row < RcplTableData.MAX_ROWS; row++) {
+		for (int row = 0; row < RcplTableData.MAX_SPREADSHEET_ROWS; row++) {
 			rowHeight[row] = DEFAULT_ROW_HEIGHT;
 		}
+		tableView = new RcplTableView(this);
 		if (spreadsheet) {
+			setData(new RcplTableData(this));
+			tableView.createColumns();
+			tableView.getColumns().get(0).setPrefWidth(40);
+
 			StackPane st = new StackPane();
 			ScrollPane sp = new ScrollPane();
 			st.getChildren().add(sp);
@@ -87,6 +91,10 @@ public class RcplTable {
 		ICellable cell = data.getCell(row, 0);
 		cell.setHeight(height);
 		rowHeight[row] = height;
+	}
+
+	public double[] getRowHeightArray() {
+		return rowHeight;
 	}
 
 	public RcplTableData getData() {

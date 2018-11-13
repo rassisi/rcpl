@@ -1,6 +1,7 @@
 package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.ICellable;
+import org.eclipse.rcpl.IParagraph;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -27,10 +28,6 @@ public class RcplTableView extends TableView<RcplCellRow> {
 
 	public RcplTableView(RcplTable table) {
 		this.table = table;
-		if (table.isSpreadsheet()) {
-			createColumns();
-			getColumns().get(0).setPrefWidth(40);
-		}
 		setEditable(true);
 
 	}
@@ -93,12 +90,11 @@ public class RcplTableView extends TableView<RcplCellRow> {
 
 				@Override
 				public void handle(Event event) {
-
 					CellEditEvent ce = (CellEditEvent) event;
 					TablePosition pos = ce.getTablePosition();
-
-					System.out.println("row = " + pos.getRow() + "  column = " + pos.getColumn());
-
+					IParagraph paragraph = new SimpleParagraph("");
+					table.getData().setParagraph(paragraph, pos.getRow(), pos.getColumn());
+					paragraph.activate();
 				}
 			});
 		}

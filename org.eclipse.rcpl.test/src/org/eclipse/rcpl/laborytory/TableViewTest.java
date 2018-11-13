@@ -47,7 +47,6 @@ public class TableViewTest extends Application {
 				RcplTableData data = new RcplTableData(table);
 				IParagraph paragraph = new SimpleParagraph("test");
 				data.setParagraph(paragraph, 10, 20);
-				table.setData(data);
 			}
 		});
 		vbox.getChildren().add(button);
@@ -58,7 +57,6 @@ public class TableViewTest extends Application {
 		RcplTableData data = new RcplTableData(table);
 		IParagraph paragraph = new SimpleParagraph("test");
 		data.setParagraph(paragraph, 1, 2);
-		table.setData(data);
 		table.setColumnWidth(2, 100);
 		table.setRowHeight(5, 100);
 		VBox.setVgrow(table.getNode(), Priority.ALWAYS);

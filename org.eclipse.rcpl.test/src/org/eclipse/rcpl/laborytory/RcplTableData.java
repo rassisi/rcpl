@@ -35,8 +35,8 @@ public class RcplTableData {
 	 */
 	public RcplTableData(RcplTable table) {
 		this.table = table;
-		for (int row = 0; row < 1000; row++) {
-			for (int col = 0; col < 1000; col++) {
+		for (int row = 0; row < MAX_SPREADSHEET_ROWS; row++) {
+			for (int col = 0; col < MAX_SPREADSHEET_COLUMNS; col++) {
 				cellArray[row][col] = new RcplEmptyCell(row, col);
 			}
 		}
@@ -69,6 +69,7 @@ public class RcplTableData {
 		cellArray[row][column] = paragraph;
 		paragraph.setRow(row);
 		paragraph.setColumn(column);
+		table.setData(this);
 	}
 
 	public ICellable getCell(int row, int column) {

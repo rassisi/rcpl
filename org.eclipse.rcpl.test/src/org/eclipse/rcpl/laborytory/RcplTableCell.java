@@ -36,6 +36,12 @@ public class RcplTableCell extends TableCell<RcplCellRow, ICellable> {
 			excelBox.setPrefHeight(h);
 			Node n = p.getLayoutFigure().getNode();
 			excelBox.getChildren().add(n);
+
+			double rowHeight = tableView.getTable().getRowHeight(item.getRow());
+			if (h > rowHeight) {
+				tableView.getTable().setRowHeight(item.getRow(), h);
+			}
+
 			setGraphic(excelBox);
 		} else if (item instanceof ICellable) {
 			ICellable cell = (ICellable) item;

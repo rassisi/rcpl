@@ -1,5 +1,6 @@
 package org.eclipse.rcpl.laborytory;
 
+import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IColorProperty;
 import org.eclipse.rcpl.IParagraphFigure;
 
@@ -62,6 +63,17 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 			layoutFigure = createLayoutFigure();
 		}
 		return layoutFigure;
+	}
+
+	@Override
+	public void activate() {
+		new DelayedExecution(30) {
+
+			@Override
+			protected void execute() {
+				getLayoutFigure().activate();
+			}
+		};
 	}
 
 	@Override

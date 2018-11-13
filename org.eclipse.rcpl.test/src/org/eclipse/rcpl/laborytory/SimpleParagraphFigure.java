@@ -17,10 +17,13 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 
 	private StackPane node;
 
+	private TextField textField;
+
 	public SimpleParagraphFigure(SimpleParagraph paragraph) {
 		this.paragraph = paragraph;
 		this.node = new StackPane();
-		this.node.getChildren().add(new TextField(paragraph.getText()));
+		textField = new TextField(paragraph.getText());
+		this.node.getChildren().add(textField);
 	}
 
 	@Override
@@ -48,4 +51,8 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 		return node;
 	}
 
+	@Override
+	public void activate() {
+		textField.requestFocus();
+	}
 }
