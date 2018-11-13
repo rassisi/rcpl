@@ -1,6 +1,8 @@
 package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.IParagraph;
+import org.eclipse.rcpl.ui.controls.table.RcplTable;
+import org.eclipse.rcpl.ui.controls.table.RcplTableData;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -40,7 +42,13 @@ public class SpreadsheetTableTest extends Application {
 
 		// ----------- table ---------------------
 
-		RcplTable table = new RcplTable(true);
+		RcplTable table = new RcplTable(true) {
+			@Override
+			protected IParagraph createParagraph() {
+				return new SimpleParagraph("");
+			}
+		};
+
 		table.setEditable(true);
 		RcplTableData data = new RcplTableData(table);
 		IParagraph paragraph = new SimpleParagraph("test");

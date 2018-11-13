@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.laborytory;
+package org.eclipse.rcpl.ui.controls.table;
 
 import org.eclipse.rcpl.ICellable;
 import org.eclipse.rcpl.IParagraph;
@@ -92,7 +92,7 @@ public class RcplTableView extends TableView<RcplCellRow> {
 				public void handle(Event event) {
 					CellEditEvent ce = (CellEditEvent) event;
 					TablePosition pos = ce.getTablePosition();
-					IParagraph paragraph = new SimpleParagraph("");
+					IParagraph paragraph = table.createParagraph();
 					table.getData().setParagraph(paragraph, pos.getRow(), pos.getColumn());
 					paragraph.activate();
 				}

@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.laborytory;
+package org.eclipse.rcpl.ui.controls.table;
 
 import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.ICellable;

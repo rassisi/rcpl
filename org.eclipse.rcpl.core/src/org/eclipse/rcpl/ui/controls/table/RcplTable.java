@@ -1,6 +1,7 @@
-package org.eclipse.rcpl.laborytory;
+package org.eclipse.rcpl.ui.controls.table;
 
 import org.eclipse.rcpl.ICellable;
+import org.eclipse.rcpl.IParagraph;
 
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -11,7 +12,7 @@ import javafx.scene.layout.StackPane;
  * @author Ramin
  *
  */
-public class RcplTable {
+public abstract class RcplTable {
 
 	public final static double DEFAULT_ROW_HEIGHT = 20;
 
@@ -55,9 +56,9 @@ public class RcplTable {
 
 	public void updateCss(Scene scene) {
 		if (spreadsheet) {
-			scene.getStylesheets().add(getClass().getResource("rcpltableview_spreadsheet.css").toExternalForm());
+			scene.getStylesheets().add(RcplTable.class.getResource("rcpltableview_spreadsheet.css").toExternalForm());
 		} else {
-			scene.getStylesheets().add(getClass().getResource("rcpltableview.css").toExternalForm());
+			scene.getStylesheets().add(RcplTable.class.getResource("rcpltableview.css").toExternalForm());
 		}
 	}
 
@@ -131,5 +132,7 @@ public class RcplTable {
 			tableView.setMaxHeight(height);
 		}
 	}
+
+	protected abstract IParagraph createParagraph();
 
 }

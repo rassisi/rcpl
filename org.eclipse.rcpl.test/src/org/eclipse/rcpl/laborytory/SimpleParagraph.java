@@ -99,12 +99,12 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 
 	@Override
 	public double getHeight() {
-		return 0;
+		return 20;
 	}
 
 	@Override
 	public double getWidth() {
-		return 0;
+		return 60;
 	}
 
 	@Override
