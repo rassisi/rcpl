@@ -151,12 +151,6 @@ public class SimpleParagraph implements IParagraph {
 	}
 
 	@Override
-	public IProperty2 getHeight() {
-
-		return null;
-	}
-
-	@Override
 	public double getHeightOverflow() {
 
 		return 0;
@@ -341,12 +335,6 @@ public class SimpleParagraph implements IParagraph {
 
 	@Override
 	public ILayoutObject getVAnchorObject() {
-
-		return null;
-	}
-
-	@Override
-	public IProperty2 getWidth() {
 
 		return null;
 	}
@@ -970,6 +958,30 @@ public class SimpleParagraph implements IParagraph {
 
 	public void setRow(int row) {
 		this.row = row;
+	}
+
+	@Override
+	public void setWidth(double width) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setHeight(double height) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public double getHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getWidth() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

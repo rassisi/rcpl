@@ -10,4 +10,12 @@ public interface ICellable {
 
 	int getRow();
 
+	void setWidth(double width);
+
+	void setHeight(double height);
+
+	double getHeight();
+
+	double getWidth();
+
 }

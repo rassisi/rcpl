@@ -49,8 +49,6 @@ public interface ILayoutObject {
 
 	ILayoutObject getHAnchorObject();
 
-	IProperty2 getHeight();
-
 	double getHeightOverflow();
 
 	double getHeightPixel();
@@ -112,8 +110,6 @@ public interface ILayoutObject {
 	ILayoutAnchor getVAnchor();
 
 	ILayoutObject getVAnchorObject();
-
-	IProperty2 getWidth();
 
 	double getWidthPixel();
 

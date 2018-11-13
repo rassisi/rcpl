@@ -1,6 +1,7 @@
 package org.eclipse.rcpl.laborytory;
 
-import javafx.collections.ObservableList;
+import org.eclipse.rcpl.ICellable;
+
 import javafx.scene.control.ScrollPane;
 
 /**
@@ -19,6 +20,8 @@ public class RcplTable {
 
 	private ScrollPane node;
 
+	private RcplTableData data;
+
 	public RcplTable(boolean spreadsheet) {
 		this.spreadsheet = spreadsheet;
 		node = new ScrollPane();
@@ -26,6 +29,8 @@ public class RcplTable {
 		node.setFitToHeight(true);
 		node.setFitToWidth(true);
 		node.setContent(tableView);
+		tableView.getColumns().get(0).setPrefWidth(40);
+		tableView.setEditable(true);
 	}
 
 	public ScrollPane getNode() {
@@ -36,12 +41,22 @@ public class RcplTable {
 		tableView.setEditable(editable);
 	}
 
-	void setItems(ObservableList<RcplCellRow> items) {
-		tableView.setItems(items);
+	public void setData(RcplTableData data) {
+		this.data = data;
+		tableView.setItems(data.getData());
 	}
 
 	public void setColumnWidth(int col, double width) {
-		tableView.getColumns().get(col).setPrefWidth(width);
+		tableView.getColumns().get(col + 1).setPrefWidth(width);
+	}
+
+	public void setRowHeight(int row, double height) {
+		ICellable cell = data.getCell(row, 0);
+		cell.setHeight(height);
+	}
+
+	public RcplTableData getData() {
+		return data;
 	}
 
 }

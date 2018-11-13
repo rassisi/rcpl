@@ -12,6 +12,10 @@ public class RcplEmptyCell implements ICellable {
 
 	private int row;
 
+	double width;
+
+	double height;
+
 	public RcplEmptyCell(int row, int column) {
 		this.row = row;
 		this.column = column;
@@ -35,6 +39,22 @@ public class RcplEmptyCell implements ICellable {
 	@Override
 	public int getRow() {
 		return row;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
 	}
 
 }

@@ -12,12 +12,12 @@ import javafx.collections.ObservableList;
  */
 public class RcplTableData {
 
-	private ICellable[][] paragraphArray = new ICellable[RcplTable.MAX_ROWS][RcplTable.MAX_COLUMNS];
+	private ICellable[][] cellArray = new ICellable[RcplTable.MAX_ROWS][RcplTable.MAX_COLUMNS];
 
 	public RcplTableData() {
 		for (int row = 0; row < RcplTable.MAX_ROWS; row++) {
 			for (int col = 0; col < RcplTable.MAX_COLUMNS; col++) {
-				paragraphArray[row][col] = new RcplEmptyCell(row, col);
+				cellArray[row][col] = new RcplEmptyCell(row, col);
 			}
 		}
 	}
@@ -34,15 +34,19 @@ public class RcplTableData {
 	private RcplCellRow getRowData(int row) {
 		RcplCellRow rowData = new RcplCellRow();
 		for (int col = 0; col < RcplTable.MAX_COLUMNS; col++) {
-			rowData.add(paragraphArray[row][col]);
+			rowData.add(cellArray[row][col]);
 		}
 		return rowData;
 	}
 
 	public void setParagraph(IParagraph paragraph, int row, int column) {
-		paragraphArray[row][column] = paragraph;
+		cellArray[row][column] = paragraph;
 		paragraph.setRow(row);
 		paragraph.setColumn(column);
+	}
+
+	public ICellable getCell(int row, int column) {
+		return cellArray[row][column];
 	}
 
 }

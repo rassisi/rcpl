@@ -1,0 +1,46 @@
+
+
+/* 
+.table-view {
+    -fx-base: gray;
+    -fx-control-inner-background: yellow;
+    -fx-background-color: lightgray;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 12;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color: 
+        transparent
+        transparent
+        derive(-fx-base, 80%) 
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: black;
+    -fx-alignment: center;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: transparent;
+}
+
+.table-view:focused .table-column-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+*/
+
