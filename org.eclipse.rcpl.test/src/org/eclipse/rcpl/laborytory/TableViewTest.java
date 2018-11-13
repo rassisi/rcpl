@@ -3,9 +3,11 @@ package org.eclipse.rcpl.laborytory;
 import org.eclipse.rcpl.IParagraph;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -34,15 +36,26 @@ public class TableViewTest extends Application {
 		vbox.setPadding(new Insets(10, 0, 0, 10));
 		Scene scene = new Scene(vbox);
 
-		final Label label = new Label("Address Book");
-		label.setFont(new Font("Arial", 20));
-		vbox.getChildren().add(label);
+		RcplTable table = new RcplTable(false);
+
+		final Button button = new Button("Test");
+		button.setFont(new Font("Arial", 20));
+		button.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				RcplTableData data = new RcplTableData(table);
+				IParagraph paragraph = new SimpleParagraph("test");
+				data.setParagraph(paragraph, 10, 20);
+				table.setData(data);
+			}
+		});
+		vbox.getChildren().add(button);
 
 		// ----------- table ---------------------
 
-		RcplTable table = new RcplTable(false);
 		table.setEditable(true);
-		RcplTableData data = new RcplTableData();
+		RcplTableData data = new RcplTableData(table);
 		IParagraph paragraph = new SimpleParagraph("test");
 		data.setParagraph(paragraph, 1, 2);
 		table.setData(data);

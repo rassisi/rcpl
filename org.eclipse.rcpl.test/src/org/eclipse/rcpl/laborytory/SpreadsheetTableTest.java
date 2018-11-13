@@ -42,7 +42,7 @@ public class SpreadsheetTableTest extends Application {
 
 		RcplTable table = new RcplTable(true);
 		table.setEditable(true);
-		RcplTableData data = new RcplTableData();
+		RcplTableData data = new RcplTableData(table);
 		IParagraph paragraph = new SimpleParagraph("test");
 		data.setParagraph(paragraph, 1, 2);
 		table.setData(data);

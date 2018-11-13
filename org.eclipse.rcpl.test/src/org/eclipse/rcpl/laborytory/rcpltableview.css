@@ -45,6 +45,6 @@
 */
 
 .table-view .column-header {
-    -fx-size: 0.1pt;
+    -fx-size: 3pt;
     -fx-font: 0.1pt "Segoe UI";
 }

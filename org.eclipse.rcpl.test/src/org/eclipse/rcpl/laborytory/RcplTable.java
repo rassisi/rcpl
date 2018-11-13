@@ -4,6 +4,8 @@ import org.eclipse.rcpl.ICellable;
 
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * @author Ramin
@@ -11,28 +13,40 @@ import javafx.scene.control.ScrollPane;
  */
 public class RcplTable {
 
-	public final static int MAX_COLUMNS = 1000;
+	public final static double DEFAULT_ROW_HEIGHT = 20;
 
-	public final static int MAX_ROWS = 1000;
-
-	private boolean spreadsheet;
+	private final boolean spreadsheet;
 
 	private RcplTableView tableView;
 
-	private ScrollPane node;
+	private Pane node;
 
 	private RcplTableData data;
 
+	private double width;
+
+	private double[] rowHeight = new double[RcplTableData.MAX_ROWS];
+
 	public RcplTable(boolean spreadsheet) {
 		this.spreadsheet = spreadsheet;
-		node = new ScrollPane();
-		tableView = new RcplTableView(this, this.spreadsheet);
-		node.setFitToHeight(true);
-		node.setFitToWidth(true);
-		node.setContent(tableView);
-		tableView.getColumns().get(0).setPrefWidth(40);
-		tableView.setEditable(true);
-
+		tableView = new RcplTableView(this);
+		for (int row = 0; row < RcplTableData.MAX_ROWS; row++) {
+			rowHeight[row] = DEFAULT_ROW_HEIGHT;
+		}
+		if (spreadsheet) {
+			StackPane st = new StackPane();
+			ScrollPane sp = new ScrollPane();
+			st.getChildren().add(sp);
+			sp.setFitToHeight(true);
+			sp.setFitToWidth(true);
+			sp.setContent(tableView);
+			node = st;
+		} else {
+			Pane sp = new Pane();
+			sp.getChildren().add(tableView);
+			node = sp;
+		}
+		setWidth(300);
 	}
 
 	public void updateCss(Scene scene) {
@@ -43,7 +57,7 @@ public class RcplTable {
 		}
 	}
 
-	public ScrollPane getNode() {
+	public Pane getNode() {
 		return node;
 	}
 
@@ -54,6 +68,15 @@ public class RcplTable {
 	public void setData(RcplTableData data) {
 		this.data = data;
 		tableView.setItems(data.getData());
+		tableView.createColumns();
+		updateHeight();
+	}
+
+	public void removeLastColumn() {
+		if (!isSpreadsheet()) {
+			int size = tableView.getColumns().size();
+			tableView.getColumns().remove(size - 1);
+		}
 	}
 
 	public void setColumnWidth(int col, double width) {
@@ -63,10 +86,42 @@ public class RcplTable {
 	public void setRowHeight(int row, double height) {
 		ICellable cell = data.getCell(row, 0);
 		cell.setHeight(height);
+		rowHeight[row] = height;
 	}
 
 	public RcplTableData getData() {
 		return data;
+	}
+
+	public boolean isSpreadsheet() {
+		return spreadsheet;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public double getRowHeight(int row) {
+		return rowHeight[row];
+	}
+
+	private void updateHeight() {
+		if (!isSpreadsheet()) {
+			double height = 0;
+			for (int row = 0; row < data.getRowCount(); row++) {
+				height += getRowHeight(row);
+			}
+
+			height += DEFAULT_ROW_HEIGHT + 6; // HEADER
+			node.setPrefHeight(height);
+			node.setMaxHeight(height);
+			tableView.setPrefHeight(height);
+			tableView.setMaxHeight(height);
+		}
 	}
 
 }

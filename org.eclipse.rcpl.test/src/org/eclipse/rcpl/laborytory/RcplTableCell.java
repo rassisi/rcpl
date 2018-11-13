@@ -40,25 +40,29 @@ public class RcplTableCell extends TableCell<RcplCellRow, ICellable> {
 		} else if (item instanceof ICellable) {
 			ICellable cell = (ICellable) item;
 			if (cell.getColumn() == 0) {
-				Label l = new Label("" + (cell.getRow() + 1));
-				l.setPrefWidth(40);
-				l.setTextAlignment(TextAlignment.CENTER);
-				l.setAlignment(Pos.CENTER);
-				setAlignment(Pos.CENTER);
-				excelBox.getChildren().add(l);
-				if (item.getHeight() > 0) {
-					excelBox.setPrefHeight(item.getHeight());
+				if (tableView.getTable().isSpreadsheet()) {
+
+					Label l = new Label("" + (cell.getRow() + 1));
+					l.setPrefWidth(40);
+					l.setTextAlignment(TextAlignment.CENTER);
+					l.setAlignment(Pos.CENTER);
+					setAlignment(Pos.CENTER);
+					excelBox.getChildren().add(l);
+					if (item.getHeight() > 0) {
+						excelBox.setPrefHeight(item.getHeight());
+					} else {
+						excelBox.setPrefHeight(20);
+					}
+					VBox.setVgrow(l, Priority.ALWAYS);
+					excelBox.setAlignment(Pos.CENTER);
+					excelBox.setStyle("-fx-background-color: lightgray;");
+					setGraphic(excelBox);
+					setGraphicTextGap(0);
 				} else {
-					excelBox.setPrefHeight(20);
+					setGraphic(excelBox);
 				}
-				VBox.setVgrow(l, Priority.ALWAYS);
-				excelBox.setAlignment(Pos.CENTER);
-				excelBox.setStyle("-fx-background-color: lightgray;");
-				setGraphic(excelBox);
-				setGraphicTextGap(0);
 			}
 		}
-
 	}
 
 }

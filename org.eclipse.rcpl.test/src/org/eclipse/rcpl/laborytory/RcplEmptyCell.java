@@ -14,7 +14,7 @@ public class RcplEmptyCell implements ICellable {
 
 	double width;
 
-	double height;
+	double height = RcplTable.DEFAULT_ROW_HEIGHT;
 
 	public RcplEmptyCell(int row, int column) {
 		this.row = row;
@@ -55,6 +55,11 @@ public class RcplEmptyCell implements ICellable {
 
 	public void setHeight(double height) {
 		this.height = height;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return true;
 	}
 
 }

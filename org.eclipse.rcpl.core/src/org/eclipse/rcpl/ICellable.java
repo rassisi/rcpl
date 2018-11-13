@@ -18,4 +18,6 @@ public interface ICellable {
 
 	double getWidth();
 
+	boolean isEmpty();
+
 }
