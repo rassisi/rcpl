@@ -1,5 +1,6 @@
 package org.eclipse.rcpl.laborytory;
 
+import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.ICellable;
 import org.eclipse.rcpl.IParagraph;
 
@@ -69,7 +70,19 @@ public class RcplTableData {
 		cellArray[row][column] = paragraph;
 		paragraph.setRow(row);
 		paragraph.setColumn(column);
-		table.setData(this);
+
+		if (row < rowCount && column < columnCount) {
+			data.get(row).getRowData().set(column, paragraph);
+			new DelayedExecution(30) {
+
+				@Override
+				protected void execute() {
+					paragraph.activate();
+				}
+			};
+		} else {
+			table.setData(this);
+		}
 	}
 
 	public ICellable getCell(int row, int column) {
