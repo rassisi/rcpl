@@ -26,6 +26,8 @@ public abstract class RcplTable {
 
 	private double width;
 
+	private double height;
+
 	private double[] rowHeight = new double[RcplTableData.MAX_SPREADSHEET_ROWS];
 
 	public RcplTable(boolean spreadsheet) {
@@ -47,11 +49,11 @@ public abstract class RcplTable {
 			sp.setContent(tableView);
 			node = st;
 		} else {
-			Pane sp = new Pane();
+			StackPane sp = new StackPane();
+//			sp.setId("redBorder");
 			sp.getChildren().add(tableView);
 			node = sp;
 		}
-		setWidth(300);
 	}
 
 	public void updateCss(Scene scene) {
@@ -99,6 +101,9 @@ public abstract class RcplTable {
 	}
 
 	public RcplTableData getData() {
+		if (data == null) {
+			data = new RcplTableData(this);
+		}
 		return data;
 	}
 
@@ -108,6 +113,14 @@ public abstract class RcplTable {
 
 	public void setWidth(double width) {
 		this.width = width;
+		getNode().setPrefWidth(width);
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+		getNode().setPrefHeight(height);
+		tableView.setMinHeight(height);
+		tableView.setPrefHeight(height);
 	}
 
 	public double getWidth() {

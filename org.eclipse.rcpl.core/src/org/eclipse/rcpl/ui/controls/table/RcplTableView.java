@@ -29,7 +29,6 @@ public class RcplTableView extends TableView<RcplCellRow> {
 	public RcplTableView(RcplTable table) {
 		this.table = table;
 		setEditable(true);
-
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

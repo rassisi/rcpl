@@ -2,7 +2,6 @@ package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.ui.controls.table.RcplTable;
-import org.eclipse.rcpl.ui.controls.table.RcplTableData;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -50,10 +49,8 @@ public class SpreadsheetTableTest extends Application {
 		};
 
 		table.setEditable(true);
-		RcplTableData data = new RcplTableData(table);
 		IParagraph paragraph = new SimpleParagraph("test");
-		data.setParagraph(paragraph, 1, 2);
-		table.setData(data);
+		table.getData().setParagraph(paragraph, 1, 2);
 		table.setColumnWidth(2, 100);
 		table.setRowHeight(5, 100);
 		VBox.setVgrow(table.getNode(), Priority.ALWAYS);
