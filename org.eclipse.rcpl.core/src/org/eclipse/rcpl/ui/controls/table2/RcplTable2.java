@@ -149,4 +149,12 @@ public class RcplTable2 {
 		backGroundPane.setStyle(style);
 	}
 
+	public void setWidth(double width) {
+		getNode().setPrefWidth(width);
+	}
+
+	public void setHeight(double height) {
+		getNode().setPrefHeight(height);
+	}
+
 }
