@@ -1,10 +1,7 @@
 package org.eclipse.rcpl.laborytory;
 
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 
 /**
  * @author Ramin
@@ -16,30 +13,28 @@ public class RcplTableView2 extends BorderPane {
 
 	private GridPane headerPane;
 
-	private GridPane cellPane;
+	private RcplCellTable cellTable;
+
+	private RcplTableHeader tableHeader;
+
+	private RcplRowRuler rowRuler;
 
 	public RcplTableView2(RcplTable2 table) {
 		this.table = table;
-		if (this.table.hasHeader()) {
-			headerPane = new GridPane();
-			headerPane.setGridLinesVisible(true);
-			setTop(headerPane);
+
+		cellTable = new RcplCellTable(table);
+		setCenter(cellTable.getNode());
+
+		if (this.table.isSpreadsheet()) {
+			tableHeader = new RcplTableHeader(table);
+			tableHeader.getNode().hvalueProperty().bind(cellTable.getScrollPane().hvalueProperty());
+			setTop(tableHeader.getNode());
 		}
-		cellPane = new GridPane();
-		cellPane.setGridLinesVisible(true);
 
 		if (table.isSpreadsheet()) {
-			StackPane st = new StackPane();
-			ScrollPane sp = new ScrollPane();
-			st.getChildren().add(sp);
-			sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-			sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
-			sp.setFitToHeight(true);
-			sp.setFitToWidth(true);
-			sp.setContent(cellPane);
-			setCenter(st);
-		} else {
-			setCenter(cellPane);
+			rowRuler = new RcplRowRuler(table);
+			rowRuler.getNode().vvalueProperty().bind(cellTable.getScrollPane().vvalueProperty());
+			setLeft(rowRuler.getNode());
 		}
 
 	}
@@ -48,8 +43,16 @@ public class RcplTableView2 extends BorderPane {
 		return headerPane;
 	}
 
-	public GridPane getCellPane() {
-		return cellPane;
+	public RcplCellTable getCellTable() {
+		return cellTable;
+	}
+
+	public RcplTableHeader getTableHeader() {
+		return tableHeader;
+	}
+
+	public RcplRowRuler getRowRuler() {
+		return rowRuler;
 	}
 
 }

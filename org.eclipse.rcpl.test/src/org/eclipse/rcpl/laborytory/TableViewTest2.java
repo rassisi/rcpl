@@ -26,8 +26,8 @@ public class TableViewTest2 extends Application {
 	@Override
 	public void start(Stage stage) {
 		stage.setTitle("Table View Sample");
-		stage.setWidth(800);
-		stage.setHeight(500);
+		stage.setWidth(1200);
+		stage.setHeight(700);
 
 		// ---------- vbox -----------------------
 
@@ -71,7 +71,7 @@ public class TableViewTest2 extends Application {
 		// ---------------------------------------
 
 		stage.setScene(scene);
-
+		stage.centerOnScreen();
 		stage.show();
 	}
 
