@@ -1,8 +1,8 @@
 package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.IParagraph;
-import org.eclipse.rcpl.ui.controls.table.RcplTable;
-import org.eclipse.rcpl.ui.controls.table.RcplTableData;
+import org.eclipse.rcpl.laborytory.simpleparagraph.SimpleParagraph;
+import org.eclipse.rcpl.ui.controls.table2.RcplTable2;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  * @author Ramin
  *
  */
-public class TableViewTest extends Application {
+public class TableWidthHeaderDemo extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
@@ -28,8 +28,8 @@ public class TableViewTest extends Application {
 	@Override
 	public void start(Stage stage) {
 		stage.setTitle("Table View Sample");
-		stage.setWidth(800);
-		stage.setHeight(500);
+		stage.setWidth(1200);
+		stage.setHeight(700);
 
 		// ---------- vbox -----------------------
 
@@ -38,7 +38,7 @@ public class TableViewTest extends Application {
 		vbox.setPadding(new Insets(10, 0, 0, 10));
 		Scene scene = new Scene(vbox);
 
-		RcplTable table = new RcplTable(false) {
+		RcplTable2 table = new RcplTable2(true, true) {
 			@Override
 			protected IParagraph createParagraph() {
 				return new SimpleParagraph("");
@@ -51,28 +51,35 @@ public class TableViewTest extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-				RcplTableData data = new RcplTableData(table);
-				IParagraph paragraph = new SimpleParagraph("test");
-				data.setParagraph(paragraph, 10, 20);
+//				RcplTableData data = new RcplTableData(table);
+//				IParagraph paragraph = new SimpleParagraph("test");
+//				data.setParagraph(paragraph, 10, 20);
 			}
 		});
 		vbox.getChildren().add(button);
 
 		// ----------- table ---------------------
 
-		table.setEditable(true);
 		IParagraph paragraph = new SimpleParagraph("test");
-		table.getData().setParagraph(paragraph, 1, 2);
-		table.setColumnWidth(2, 100);
-		table.setRowHeight(5, 100);
+
+		table.addParagraph(paragraph, 10, 10);
+
+		table.setColumnWidth(3, 200);
+		table.setRowHeight(10, 50);
+		table.setColumnSpan(20, 5, 3);
+
+		table.setRowSpan(25, 10, 2);
+//		table.getData().setParagraph(paragraph, 1, 2);
+//		table.setColumnWidth(2, 100);
+//		table.setRowHeight(5, 100);
 		VBox.setVgrow(table.getNode(), Priority.ALWAYS);
 		vbox.getChildren().add(table.getNode());
-		table.updateCss(scene);
+//		table.updateCss(scene);
 
 		// ---------------------------------------
 
 		stage.setScene(scene);
-
+		stage.centerOnScreen();
 		stage.show();
 	}
 

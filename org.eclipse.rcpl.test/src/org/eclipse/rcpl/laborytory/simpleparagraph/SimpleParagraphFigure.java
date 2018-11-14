@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.laborytory;
+package org.eclipse.rcpl.laborytory.simpleparagraph;
 
 import org.eclipse.rcpl.IParagraph;
 

@@ -1,6 +1,8 @@
 package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.IParagraph;
+import org.eclipse.rcpl.laborytory.simpleparagraph.SimpleParagraph;
+import org.eclipse.rcpl.ui.controls.table2.RcplTable2;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -17,7 +19,7 @@ import javafx.stage.Stage;
  * @author Ramin
  *
  */
-public class TableViewTest2 extends Application {
+public class TableDemo extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
@@ -70,6 +72,7 @@ public class TableViewTest2 extends Application {
 //		table.getData().setParagraph(paragraph, 1, 2);
 //		table.setColumnWidth(2, 100);
 //		table.setRowHeight(5, 100);
+
 		VBox.setVgrow(table.getNode(), Priority.ALWAYS);
 		vbox.getChildren().add(table.getNode());
 //		table.updateCss(scene);

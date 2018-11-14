@@ -23,16 +23,38 @@ public class RcplTableUtil {
 
 	public static Node getNode(final int row, final int column, GridPane gridPane) {
 		Node result = null;
-		try {
-			ObservableList<Node> childrens = gridPane.getChildren();
-			for (Node node : childrens) {
+		ObservableList<Node> childrens = gridPane.getChildren();
+		for (Node node : childrens) {
+			try {
+
 				if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
 					result = node;
 					break;
 				}
+			} catch (Exception ex) {
 			}
-		} catch (Exception ex) {
 		}
 		return result;
 	}
+
+	public static int getColumnSpan(Node n) {
+		int spanX = 1;
+		try {
+			spanX = GridPane.getColumnSpan(n);
+		} catch (Exception ex) {
+			// ignore
+		}
+		return spanX;
+	}
+
+	public static int getRowSpan(Node n) {
+		int spanY = 1;
+		try {
+			spanY = GridPane.getRowSpan(n);
+		} catch (Exception ex) {
+			// ignore
+		}
+		return spanY;
+	}
+
 }

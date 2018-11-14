@@ -86,11 +86,9 @@ public class RcplTable2 {
 	}
 
 	public void addNode(Node n, int row, int column) {
-		Node oldN = RcplTableUtil.getNode(row, column, tableView.getCellTable().getGrid());
-		if (oldN != null) {
-			tableView.getCellTable().getGrid().getChildren().remove(oldN);
-		}
-		tableView.getCellTable().getGrid().add(n, column, row);
+		StackPane backGroundPane = createBackgroundPane(row, column);
+		backGroundPane.getChildren().clear();
+		backGroundPane.getChildren().add(n);
 	}
 
 	public void addParagraph(IParagraph paragraph, int row, int column) {
@@ -119,33 +117,36 @@ public class RcplTable2 {
 		}
 	}
 
-	public void setColumnSpan(int row, int column, int spanX) {
+	private StackPane createBackgroundPane(int row, int column) {
 		Node n = RcplTableUtil.getNode(row, column, tableView.getCellTable().getGrid());
 		if (n == null) {
 			n = new StackPane();
 			n.setStyle("-fx-background-color: white;");
-			addNode(n, row, column);
+			tableView.getCellTable().getGrid().add(n, column, row);
 		}
+		return (StackPane) n;
+	}
+
+	public void setColumnSpan(int row, int column, int spanX) {
+		Node n = createBackgroundPane(row, column);
 		GridPane.setColumnSpan(n, spanX);
 	}
 
 	public void setRowSpan(int row, int column, int spanY) {
-		Node n = RcplTableUtil.getNode(row, column, tableView.getCellTable().getGrid());
-		if (n == null) {
-			n = new StackPane();
-			n.setStyle("-fx-background-color: white;");
-			addNode(n, row, column);
-		}
+		Node n = createBackgroundPane(row, column);
 		GridPane.setRowSpan(n, spanY);
 	}
 
 	public void setCellAlignment(int row, int column, Pos pos) {
-		Node n = RcplTableUtil.getNode(row, column, tableView.getCellTable().getGrid());
-		if (n != null) {
-			if (n instanceof Labeled) {
-				((Labeled) n).setAlignment(pos);
-			}
+		Node n = createBackgroundPane(row, column);
+		if (n instanceof Labeled) {
+			((Labeled) n).setAlignment(pos);
 		}
+	}
+
+	public void setStyle(int row, int column, String style) {
+		StackPane backGroundPane = createBackgroundPane(row, column);
+		backGroundPane.setStyle(style);
 	}
 
 }
