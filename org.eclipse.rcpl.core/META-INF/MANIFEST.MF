@@ -202,6 +202,7 @@ Export-Package: org.eclipse.rcpl;
    org.eclipse.rcpl.model_2_0_0.rcpl",
  org.eclipse.rcpl.ui.controls,
  org.eclipse.rcpl.ui.controls.table,
+ org.eclipse.rcpl.ui.controls.table2,
  org.eclipse.rcpl.ui.font;uses:="javafx.scene.text,org.eclipse.rcpl",
  org.eclipse.rcpl.ui.listener;uses:="javafx.geometry,org.eclipse.rcpl",
  org.eclipse.rcpl.upload,

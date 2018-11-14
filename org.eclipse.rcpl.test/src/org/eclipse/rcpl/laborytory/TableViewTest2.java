@@ -64,6 +64,9 @@ public class TableViewTest2 extends Application {
 
 		table.setColumnWidth(3, 200);
 		table.setRowHeight(10, 50);
+		table.setColumnSpan(20, 5, 3);
+
+		table.setRowSpan(25, 10, 2);
 //		table.getData().setParagraph(paragraph, 1, 2);
 //		table.setColumnWidth(2, 100);
 //		table.setRowHeight(5, 100);

@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.laborytory;
+package org.eclipse.rcpl.ui.controls.table2;
 
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.ui.controls.table.RcplTableUtil;
