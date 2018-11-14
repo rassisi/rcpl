@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -24,23 +25,40 @@ public class RcplTableHeader {
 
 	private GridPane grid;
 
-	private ScrollPane node;
+	private Pane node;
 
 	private RcplTable2 table;
 
+	private ScrollPane scrollPane;
+
+	private StackPane topLeftPane;
+
 	public RcplTableHeader(RcplTable2 table) {
 		this.table = table;
-		node = new ScrollPane();
-		if (table.isSpreadsheet()) {
-			node.setPadding(new Insets(0, 16, 0, IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH));
-		}
-		node.setHbarPolicy(ScrollBarPolicy.NEVER);
-		node.setVbarPolicy(ScrollBarPolicy.NEVER);
-		grid = new GridPane();
-		node.setContent(grid);
+		node = new HBox();
 		node.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
 		node.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
 		node.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+
+		scrollPane = new ScrollPane();
+		scrollPane.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		scrollPane.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		scrollPane.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		if (table.isSpreadsheet()) {
+			node.setPadding(new Insets(0, 16, 0, 0));
+		}
+		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+		scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
+		grid = new GridPane();
+		scrollPane.setContent(grid);
+
+		topLeftPane = new StackPane();
+		topLeftPane.setMinWidth(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH);
+		topLeftPane.setPrefWidth(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH);
+		topLeftPane.setMaxWidth(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH);
+		topLeftPane.setStyle("-fx-background-color: lightgray");
+		node.getChildren().addAll(topLeftPane, scrollPane);
+
 		createCells();
 	}
 
@@ -69,21 +87,40 @@ public class RcplTableHeader {
 					node.setCursor(Cursor.DEFAULT);
 				}
 			});
-
-			sizer.setStyle("-fx-border-width: 1;-fx-border-color: gray");
-			sizer.setPrefWidth(2);
-			sizer.setMinWidth(2);
-			sizer.setMaxWidth(2);
+			sizer.setPrefWidth(5);
+			sizer.setMinWidth(5);
+			sizer.setMaxWidth(5);
 			hbox.getChildren().add(sizer);
 			if (table.isSpreadsheet()) {
 				l.setText(RcplTableUtil.calculateColumnName(column));
 			}
 			grid.add(sp, column, 0);
+
+			ColumnConstraints cc = new ColumnConstraints();
+			cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+			cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+			cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+			grid.getColumnConstraints().add(cc);
+
 		}
 	}
 
-	public ScrollPane getNode() {
+	void setColumnWidth(int column, double width) {
+		grid.getColumnConstraints().get(column).setPrefWidth(width);
+		grid.getColumnConstraints().get(column).setMinWidth(width);
+		grid.getColumnConstraints().get(column).setMaxWidth(width);
+	}
+
+	Pane getNode() {
 		return node;
+	}
+
+	ScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	GridPane getGrid() {
+		return grid;
 	}
 
 }

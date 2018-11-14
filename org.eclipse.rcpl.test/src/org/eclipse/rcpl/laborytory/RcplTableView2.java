@@ -11,7 +11,7 @@ public class RcplTableView2 extends BorderPane {
 
 	private RcplTable2 table;
 
-	private GridPane headerPane;
+	private GridPane grid;
 
 	private RcplCellTable cellTable;
 
@@ -27,7 +27,7 @@ public class RcplTableView2 extends BorderPane {
 
 		if (this.table.isSpreadsheet()) {
 			tableHeader = new RcplTableHeader(table);
-			tableHeader.getNode().hvalueProperty().bind(cellTable.getScrollPane().hvalueProperty());
+			tableHeader.getScrollPane().hvalueProperty().bind(cellTable.getScrollPane().hvalueProperty());
 			setTop(tableHeader.getNode());
 		}
 
@@ -39,19 +39,19 @@ public class RcplTableView2 extends BorderPane {
 
 	}
 
-	public GridPane getHeaderPane() {
-		return headerPane;
+	GridPane getGrid() {
+		return grid;
 	}
 
-	public RcplCellTable getCellTable() {
+	RcplCellTable getCellTable() {
 		return cellTable;
 	}
 
-	public RcplTableHeader getTableHeader() {
+	RcplTableHeader getTableHeader() {
 		return tableHeader;
 	}
 
-	public RcplRowRuler getRowRuler() {
+	RcplRowRuler getRowRuler() {
 		return rowRuler;
 	}
 

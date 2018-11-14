@@ -2,7 +2,7 @@ package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.IParagraph;
 
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 /**
@@ -11,9 +11,9 @@ import javafx.scene.layout.Pane;
  */
 public class RcplTable2 {
 
-	private int rowCount = 100;
+	private int rowCount;
 
-	private int columnCount = 100;
+	private int columnCount;
 
 	private final boolean spreadsheet;
 
@@ -23,16 +23,23 @@ public class RcplTable2 {
 
 	private boolean header = false;
 
-	private Scene scene;
-
 	public RcplTable2(boolean spreadsheet, boolean header) {
 		this.spreadsheet = spreadsheet;
 		this.header = header;
+		if (spreadsheet) {
+			rowCount = IRcplTableConstants.DEFAULT_SPREADSHEET_ROW_COUNT;
+			columnCount = IRcplTableConstants.DEFAULT_SPREADSHEET_COLUMN_COUNT;
+		} else {
+			rowCount = IRcplTableConstants.DEFAULT_ROW_COUNT;
+			columnCount = IRcplTableConstants.DEFAULT_COLUMN_COUNT;
+		}
+
 		if (spreadsheet) {
 			header = true;
 		}
 		tableView = new RcplTableView2(this);
 		node = tableView;
+		updateCss();
 	}
 
 	protected IParagraph createParagraph() {
@@ -43,12 +50,11 @@ public class RcplTable2 {
 		return spreadsheet;
 	}
 
-	public void updateCss(Scene scene) {
-		this.scene = scene;
+	public void updateCss() {
 		if (spreadsheet) {
-			scene.getStylesheets().add(RcplTable2.class.getResource("rcpltableview_spreadsheet.css").toExternalForm());
+			node.getStylesheets().add(RcplTable2.class.getResource("rcpltableview_spreadsheet.css").toExternalForm());
 		} else {
-			scene.getStylesheets().add(RcplTable2.class.getResource("rcpltableview.css").toExternalForm());
+			node.getStylesheets().add(RcplTable2.class.getResource("rcpltableview.css").toExternalForm());
 		}
 
 		tableView.getStyleClass().add("gridStyle_normal");
@@ -72,6 +78,36 @@ public class RcplTable2 {
 
 	public RcplTableView2 getTableView() {
 		return tableView;
+	}
+
+	public void addNode(Node n, int row, int column) {
+		tableView.getCellTable().getGrid().add(n, column, row);
+	}
+
+	public void addParagraph(IParagraph paragraph, int row, int column) {
+		addNode(paragraph.getLayoutFigure().getNode(), row, column);
+	}
+
+	public void setRowHeight(int row, double height) {
+		tableView.getCellTable().getGrid().getRowConstraints().get(row).setPrefHeight(height);
+		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMinHeight(height);
+		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMaxHeight(height);
+
+		if (tableView.getRowRuler() != null) {
+			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setPrefHeight(height);
+			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setMinHeight(height);
+			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setMaxHeight(height);
+		}
+	}
+
+	public void setColumnWidth(int column, double width) {
+		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setPrefWidth(width);
+		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMinWidth(width);
+		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMaxWidth(width);
+
+		if (tableView.getTableHeader() != null) {
+			tableView.getTableHeader().setColumnWidth(column, width);
+		}
 	}
 
 }

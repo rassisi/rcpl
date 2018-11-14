@@ -1,11 +1,10 @@
 package org.eclipse.rcpl.laborytory;
 
-import org.eclipse.rcpl.IParagraph;
-
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.RowConstraints;
 
 /**
  * @author Ramin
@@ -34,38 +33,48 @@ public class RcplCellTable {
 			node = grid;
 		}
 
-		node.setStyle("-fx-border-color: blue;-fx-border-width: 1;");
 		for (int row = 0; row < this.table.getRowCount(); row++) {
-			StackPane sp = new StackPane();
-			sp.setPrefSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			sp.setMinSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			sp.setMaxSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			grid.add(sp, 0, row);
+			RowConstraints rc = new RowConstraints();
+			rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+			rc.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+			rc.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+			grid.getRowConstraints().add(rc);
 		}
 
 		for (int column = 0; column < table.getColumnCount(); column++) {
-			StackPane sp = new StackPane();
-			sp.setPrefSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			sp.setMinSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			sp.setMaxSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			grid.add(sp, column, 0);
+			ColumnConstraints rc = new ColumnConstraints();
+			rc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+			rc.setMinWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+			rc.setMaxWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+			grid.getColumnConstraints().add(rc);
 		}
-
 	}
 
-	protected IParagraph createParagraph() {
-		return null;
-	}
-
-	public Node getNode() {
+	Node getNode() {
 		return node;
 	}
 
-	public ScrollPane getScrollPane() {
+	ScrollPane getScrollPane() {
 		if (table.isSpreadsheet()) {
 			return (ScrollPane) node;
 		}
 		return null;
+	}
+
+	GridPane getGrid() {
+		return grid;
+	}
+
+	void setColumnWidth(int column, double width) {
+		grid.getColumnConstraints().get(column).setPrefWidth(width);
+		grid.getColumnConstraints().get(column).setMinWidth(width);
+		grid.getColumnConstraints().get(column).setMaxWidth(width);
+	}
+
+	void setRowheight(int row, double height) {
+		grid.getRowConstraints().get(row).setPrefHeight(height);
+		grid.getRowConstraints().get(row).setMinHeight(height);
+		grid.getRowConstraints().get(row).setMaxHeight(height);
 	}
 
 }
