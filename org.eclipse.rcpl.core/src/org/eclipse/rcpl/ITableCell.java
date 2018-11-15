@@ -10,6 +10,8 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTc;
  */
 public interface ITableCell {
 
+	double getWidth();
+
 	boolean hasBorders();
 
 	double getLeftBorderWidthPixel();

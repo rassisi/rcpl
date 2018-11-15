@@ -34,20 +34,28 @@ public class RcplCellTable {
 		}
 
 		for (int row = 0; row < this.table.getRowCount(); row++) {
-			RowConstraints rc = new RowConstraints();
-			rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			rc.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			rc.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			grid.getRowConstraints().add(rc);
+			insertRow();
 		}
 
 		for (int column = 0; column < table.getColumnCount(); column++) {
-			ColumnConstraints rc = new ColumnConstraints();
-			rc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
-			rc.setMinWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
-			rc.setMaxWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
-			grid.getColumnConstraints().add(rc);
+			insertColumn();
 		}
+	}
+
+	void insertRow() {
+		RowConstraints rc = new RowConstraints();
+		rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		rc.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		rc.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		grid.getRowConstraints().add(rc);
+	}
+
+	void insertColumn() {
+		ColumnConstraints rc = new ColumnConstraints();
+		rc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+		rc.setMinWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+		rc.setMaxWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+		grid.getColumnConstraints().add(rc);
 	}
 
 	Node getNode() {

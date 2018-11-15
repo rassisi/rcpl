@@ -46,8 +46,16 @@ public class RcplTable {
 		updateCss();
 	}
 
+	private double getTotalHeight() {
+		double totalHeight = 0;
+		for (int i = 0; i < rowCount; i++) {
+			totalHeight += tableView.getCellTable().getGrid().getRowConstraints().get(i).getPrefHeight();
+		}
+		return totalHeight;
+	}
+
 	protected IParagraph createParagraph() {
-		return null;
+		return new SimpleParagraph("");
 	}
 
 	public boolean isSpreadsheet() {
@@ -85,8 +93,10 @@ public class RcplTable {
 	}
 
 	public void addNode(Node n, int row, int column) {
+		updateRowAndColumnCount(row, column);
 		StackPane backGroundPane = createBackgroundPane(row, column);
 		backGroundPane.getChildren().clear();
+		StackPane.setAlignment(n, Pos.TOP_LEFT);
 		backGroundPane.getChildren().add(n);
 	}
 
@@ -95,6 +105,7 @@ public class RcplTable {
 	}
 
 	public void setRowHeight(int row, double height) {
+		updateRowAndColumnCount(row, -1);
 		tableView.getCellTable().getGrid().getRowConstraints().get(row).setPrefHeight(height);
 		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMinHeight(height);
 		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMaxHeight(height);
@@ -107,6 +118,7 @@ public class RcplTable {
 	}
 
 	public void setColumnWidth(int column, double width) {
+		updateRowAndColumnCount(-1, column);
 		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setPrefWidth(width);
 		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMinWidth(width);
 		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMaxWidth(width);
@@ -117,26 +129,32 @@ public class RcplTable {
 	}
 
 	private StackPane createBackgroundPane(int row, int column) {
+		updateRowAndColumnCount(row, column);
 		Node n = RcplTableUtil.getNode(row, column, tableView.getCellTable().getGrid());
 		if (n == null) {
-			n = new StackPane();
-			n.setStyle("-fx-background-color: white;");
+			StackPane st = new StackPane();
+			st.setAlignment(Pos.TOP_LEFT);
+			n = st;
+//			n.setStyle("-fx-border-color: blue;");
 			tableView.getCellTable().getGrid().add(n, column, row);
 		}
 		return (StackPane) n;
 	}
 
 	public void setColumnSpan(int row, int column, int spanX) {
+		updateRowAndColumnCount(row, column);
 		Node n = createBackgroundPane(row, column);
 		GridPane.setColumnSpan(n, spanX);
 	}
 
 	public void setRowSpan(int row, int column, int spanY) {
+		updateRowAndColumnCount(row, column);
 		Node n = createBackgroundPane(row, column);
 		GridPane.setRowSpan(n, spanY);
 	}
 
 	public void setCellAlignment(int row, int column, Pos pos) {
+		updateRowAndColumnCount(row, column);
 		Node n = createBackgroundPane(row, column);
 		if (n instanceof Labeled) {
 			((Labeled) n).setAlignment(pos);
@@ -144,16 +162,76 @@ public class RcplTable {
 	}
 
 	public void setStyle(int row, int column, String style) {
+		updateRowAndColumnCount(row, column);
 		StackPane backGroundPane = createBackgroundPane(row, column);
 		backGroundPane.setStyle(style);
 	}
 
 	public void setWidth(double width) {
 		getNode().setPrefWidth(width);
+		getNode().setMinWidth(width);
+		getNode().setMaxWidth(width);
 	}
 
 	public void setHeight(double height) {
 		getNode().setPrefHeight(height);
+		getNode().setMinHeight(height);
+		getNode().setMaxHeight(height);
+	}
+
+	private void updateRowAndColumnCount(int row, int column) {
+		if (column != -1 && column >= columnCount) {
+			int extraColumns = column - columnCount + 1;
+			for (int i = 0; i < extraColumns; i++) {
+				insertColumn();
+			}
+		}
+		if (row != -1 && row >= rowCount) {
+			int extraRows = row - rowCount + 1;
+			for (int i = 0; i < extraRows; i++) {
+				insertRow();
+			}
+
+			double height = getTotalHeight();
+			getNode().setPrefHeight(height);
+			getNode().setMinHeight(height);
+			getNode().setMaxHeight(height);
+
+		}
+	}
+
+	public void insertColumn() {
+		columnCount++;
+		tableView.insertColumn();
+	}
+
+	public void insertRow() {
+		rowCount++;
+		tableView.insertRow();
+	}
+
+	public void setCellWidth(int row, int column, double width) {
+		updateRowAndColumnCount(-1, column);
+		StackPane st = createBackgroundPane(row, column);
+		st.setPrefWidth(width);
+		st.setMinWidth(width);
+		st.setMaxWidth(width);
+		double columnWidth = tableView.getCellTable().getGrid().getColumnConstraints().get(column).getPrefWidth();
+		if (width > columnWidth) {
+			setColumnWidth(column, width);
+		}
+	}
+
+	public void setCellHeight(int row, int column, double height) {
+		updateRowAndColumnCount(row, -1);
+		StackPane st = createBackgroundPane(row, column);
+		st.setPrefHeight(height);
+		st.setMinHeight(height);
+		st.setMaxHeight(height);
+		double rowHeight = tableView.getCellTable().getGrid().getRowConstraints().get(row).getPrefHeight();
+		if (height > rowHeight) {
+			setRowHeight(row, height);
+		}
 	}
 
 }

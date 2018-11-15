@@ -62,45 +62,52 @@ public class RcplTableHeader {
 
 	private void createCells() {
 		for (int column = 0; column < table.getColumnCount(); column++) {
-			StackPane sp = new StackPane();
-			sp.setPrefSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			sp.setMinSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			HBox hbox = new HBox();
-			sp.getChildren().add(hbox);
-			Label l = new Label();
-			l.setTextAlignment(TextAlignment.CENTER);
-			l.setAlignment(Pos.CENTER);
-			l.setPrefWidth(100);
-			hbox.getChildren().add(l);
-			Pane sizer = new Pane();
-			sizer.setOnMouseEntered(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					node.setCursor(Cursor.E_RESIZE);
-				}
-			});
-			sizer.setOnMouseExited(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					node.setCursor(Cursor.DEFAULT);
-				}
-			});
-			sizer.setPrefWidth(5);
-			sizer.setMinWidth(5);
-			sizer.setMaxWidth(5);
-			hbox.getChildren().add(sizer);
-			if (table.isSpreadsheet()) {
-				l.setText(RcplTableUtil.calculateColumnName(column));
-			}
-			grid.add(sp, column, 0);
-
-			ColumnConstraints cc = new ColumnConstraints();
-			cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
-			cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
-			cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
-			grid.getColumnConstraints().add(cc);
-
+			insertColumn(column);
 		}
+	}
+
+	void insertColumn() {
+		insertColumn(table.getColumnCount() - 1);
+	}
+
+	void insertColumn(int column) {
+		StackPane sp = new StackPane();
+		sp.setPrefSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		sp.setMinSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		HBox hbox = new HBox();
+		sp.getChildren().add(hbox);
+		Label l = new Label();
+		l.setTextAlignment(TextAlignment.CENTER);
+		l.setAlignment(Pos.CENTER);
+		l.setPrefWidth(100);
+		hbox.getChildren().add(l);
+		Pane sizer = new Pane();
+		sizer.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				node.setCursor(Cursor.E_RESIZE);
+			}
+		});
+		sizer.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				node.setCursor(Cursor.DEFAULT);
+			}
+		});
+		sizer.setPrefWidth(5);
+		sizer.setMinWidth(5);
+		sizer.setMaxWidth(5);
+		hbox.getChildren().add(sizer);
+		if (table.isSpreadsheet()) {
+			l.setText(RcplTableUtil.calculateColumnName(column));
+		}
+		grid.add(sp, column, 0);
+
+		ColumnConstraints cc = new ColumnConstraints();
+		cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+		cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+		cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
+		grid.getColumnConstraints().add(cc);
 	}
 
 	void setColumnWidth(int column, double width) {

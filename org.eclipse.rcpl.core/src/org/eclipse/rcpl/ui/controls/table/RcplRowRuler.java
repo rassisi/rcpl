@@ -39,32 +39,40 @@ public class RcplRowRuler {
 		node.setMaxWidth(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH);
 
 		for (int row = 0; row < this.table.getRowCount(); row++) {
-			StackPane sp = new StackPane();
-			sp.setPrefSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			sp.setMinSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			sp.setMaxSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			VBox vbox = new VBox();
-			sp.getChildren().add(vbox);
-			StackPane.setAlignment(vbox, Pos.BOTTOM_CENTER);
-			Label l = new Label();
-			l.setPrefSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			l.setMinSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			l.setMaxSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			l.setTextAlignment(TextAlignment.CENTER);
-			l.setAlignment(Pos.CENTER);
-			if (table.isSpreadsheet()) {
-				l.setText("" + (row + 1));
-			}
-			createSizer(vbox);
-			vbox.getChildren().add(l);
-			grid.add(sp, 0, row);
-
-			RowConstraints rc = new RowConstraints();
-			rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			rc.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			rc.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-			grid.getRowConstraints().add(rc);
+			insertRow(row);
 		}
+	}
+
+	void insertRow() {
+		insertRow(table.getRowCount() - 1);
+	}
+
+	void insertRow(int row) {
+		StackPane sp = new StackPane();
+		sp.setPrefSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		sp.setMinSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		sp.setMaxSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		VBox vbox = new VBox();
+		sp.getChildren().add(vbox);
+		StackPane.setAlignment(vbox, Pos.BOTTOM_CENTER);
+		Label l = new Label();
+		l.setPrefSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		l.setMinSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		l.setMaxSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		l.setTextAlignment(TextAlignment.CENTER);
+		l.setAlignment(Pos.CENTER);
+		if (table.isSpreadsheet()) {
+			l.setText("" + (row + 1));
+		}
+		createSizer(vbox);
+		vbox.getChildren().add(l);
+		grid.add(sp, 0, row);
+
+		RowConstraints rc = new RowConstraints();
+		rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		rc.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		rc.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		grid.getRowConstraints().add(rc);
 	}
 
 	private void createSizer(VBox vbox) {

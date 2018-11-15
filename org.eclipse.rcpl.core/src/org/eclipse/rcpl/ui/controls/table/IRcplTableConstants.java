@@ -8,7 +8,7 @@ public interface IRcplTableConstants {
 
 	int DEFAULT_ROW_COUNT = 2;
 
-	int DEFAULT_COLUMN_COUNT = 10;
+	int DEFAULT_COLUMN_COUNT = 1;
 
 	int DEFAULT_SPREADSHEET_ROW_COUNT = 1000;
 

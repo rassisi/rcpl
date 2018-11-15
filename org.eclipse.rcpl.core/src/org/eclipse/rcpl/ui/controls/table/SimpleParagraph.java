@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.laborytory.simpleparagraph;
+package org.eclipse.rcpl.ui.controls.table;
 
 import org.eclipse.rcpl.DelayedExecution;
 import org.eclipse.rcpl.IColorProperty;

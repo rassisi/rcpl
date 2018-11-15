@@ -1,5 +1,6 @@
 package org.eclipse.rcpl.ui.controls.table;
 
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -23,6 +24,7 @@ public class RcplTableView extends BorderPane {
 		this.table = table;
 
 		cellTable = new RcplCellTable(table);
+		BorderPane.setAlignment(cellTable.getNode(), Pos.TOP_LEFT);
 		setCenter(cellTable.getNode());
 
 		if (this.table.isSpreadsheet()) {
@@ -55,4 +57,21 @@ public class RcplTableView extends BorderPane {
 		return rowRuler;
 	}
 
+	void insertColumn() {
+		cellTable.insertColumn();
+		if (tableHeader != null) {
+			tableHeader.insertColumn();
+		}
+	}
+
+	void insertRow() {
+		cellTable.insertRow();
+		if (rowRuler != null) {
+			rowRuler.insertRow();
+		}
+	}
+
+	void updateColumnNumber() {
+
+	}
 }

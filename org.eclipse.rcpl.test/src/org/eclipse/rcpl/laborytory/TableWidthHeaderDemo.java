@@ -1,8 +1,8 @@
 package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.IParagraph;
-import org.eclipse.rcpl.laborytory.simpleparagraph.SimpleParagraph;
 import org.eclipse.rcpl.ui.controls.table.RcplTable;
+import org.eclipse.rcpl.ui.controls.table.SimpleParagraph;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -38,12 +38,7 @@ public class TableWidthHeaderDemo extends Application {
 		vbox.setPadding(new Insets(10, 0, 0, 10));
 		Scene scene = new Scene(vbox);
 
-		RcplTable table = new RcplTable(true, true) {
-			@Override
-			protected IParagraph createParagraph() {
-				return new SimpleParagraph("");
-			}
-		};
+		RcplTable table = new RcplTable(true, true);
 
 		final Button button = new Button("Test");
 		button.setFont(new Font("Arial", 20));

@@ -1,8 +1,8 @@
 package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.IParagraph;
-import org.eclipse.rcpl.laborytory.simpleparagraph.SimpleParagraph;
 import org.eclipse.rcpl.ui.controls.table.RcplTable;
+import org.eclipse.rcpl.ui.controls.table.SimpleParagraph;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -38,12 +38,7 @@ public class TableDemo extends Application {
 		vbox.setPadding(new Insets(10, 0, 0, 10));
 		Scene scene = new Scene(vbox);
 
-		RcplTable table = new RcplTable(true, true) {
-			@Override
-			protected IParagraph createParagraph() {
-				return new SimpleParagraph("");
-			}
-		};
+		RcplTable table = new RcplTable(false, false);
 
 		final Button button = new Button("Test");
 		button.setFont(new Font("Arial", 20));
@@ -51,9 +46,8 @@ public class TableDemo extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-//				RcplTableData data = new RcplTableData(table);
-//				IParagraph paragraph = new SimpleParagraph("test");
-//				data.setParagraph(paragraph, 10, 20);
+				IParagraph paragraph = new SimpleParagraph("test paragraph");
+				table.addParagraph(paragraph, 1, 1);
 			}
 		});
 		vbox.getChildren().add(button);
@@ -62,20 +56,17 @@ public class TableDemo extends Application {
 
 		IParagraph paragraph = new SimpleParagraph("test");
 
-		table.addParagraph(paragraph, 10, 10);
+		table.setColumnWidth(1, 100);
+		table.setRowHeight(1, 50);
+		table.setColumnSpan(1, 1, 3);
+//		table.setRowSpan(1, 1, 2);
 
-		table.setColumnWidth(3, 200);
-		table.setRowHeight(10, 50);
-		table.setColumnSpan(20, 5, 3);
+		table.addParagraph(paragraph, 1, 1);
 
-		table.setRowSpan(25, 10, 2);
-//		table.getData().setParagraph(paragraph, 1, 2);
-//		table.setColumnWidth(2, 100);
-//		table.setRowHeight(5, 100);
+		table.setStyle(1, 1, "-fx-border-color: red;-fx-border-width: 1;");
 
 		VBox.setVgrow(table.getNode(), Priority.ALWAYS);
 		vbox.getChildren().add(table.getNode());
-//		table.updateCss(scene);
 
 		// ---------------------------------------
 
