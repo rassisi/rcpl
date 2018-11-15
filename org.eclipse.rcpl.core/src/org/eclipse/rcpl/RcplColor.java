@@ -40,11 +40,6 @@ public class RcplColor implements IColor {
 	public RcplColor(Color fxColor) {
 
 		this(fxColor.getRed() * 255.0, fxColor.getGreen() * 255.0, fxColor.getBlue() * 255.0, fxColor.getOpacity());
-
-		if (Color.WHITE.equals(fxColor)) {
-
-		}
-
 		this.fxColor = fxColor;
 	}
 
@@ -132,6 +127,16 @@ public class RcplColor implements IColor {
 	public IColor copy() {
 		IColor c = new RcplColor(rgb.red, rgb.green, rgb.blue, opacity);
 		return c;
+	}
+
+	@Override
+	public boolean isBlack() {
+		return IColor.BLACK.getFx().equals(getFx());
+	}
+
+	@Override
+	public boolean isWhite() {
+		return IColor.WHITE.getFx().equals(getFx());
 	}
 
 }

@@ -18,6 +18,10 @@ public interface IColor {
 	public final static IColor ORANGE = new RcplColor(Color.ORANGE);
 	public final static IColor LIGHT_GRAY = new RcplColor(Color.LIGHTGREY);
 
+	boolean isBlack();
+
+	boolean isWhite();
+
 	double getRed();
 
 	double getGreen();
