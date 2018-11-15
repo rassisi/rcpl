@@ -1,6 +1,4 @@
-package org.eclipse.rcpl.ui.controls.table2;
-
-import org.eclipse.rcpl.ui.controls.table.RcplTableUtil;
+package org.eclipse.rcpl.ui.controls.table;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -27,13 +25,13 @@ public class RcplTableHeader {
 
 	private Pane node;
 
-	private RcplTable2 table;
+	private RcplTable table;
 
 	private ScrollPane scrollPane;
 
 	private StackPane topLeftPane;
 
-	public RcplTableHeader(RcplTable2 table) {
+	public RcplTableHeader(RcplTable table) {
 		this.table = table;
 		node = new HBox();
 		node.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);

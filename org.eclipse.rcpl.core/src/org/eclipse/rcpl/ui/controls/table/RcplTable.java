@@ -1,10 +1,11 @@
 package org.eclipse.rcpl.ui.controls.table;
 
-import org.eclipse.rcpl.ICellable;
 import org.eclipse.rcpl.IParagraph;
 
-import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Labeled;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -12,140 +13,147 @@ import javafx.scene.layout.StackPane;
  * @author Ramin
  *
  */
-public abstract class RcplTable {
+public class RcplTable {
 
-	public final static double DEFAULT_ROW_HEIGHT = 20;
+	private int rowCount;
+
+	private int columnCount;
 
 	private final boolean spreadsheet;
 
-	private RcplTableView tableView;
+	private RcplTableView2 tableView;
 
 	private Pane node;
 
-	private RcplTableData data;
+	private boolean header = false;
 
-	private double width;
-
-	private double height;
-
-	private double[] rowHeight = new double[RcplTableData.MAX_SPREADSHEET_ROWS];
-
-	public RcplTable(boolean spreadsheet) {
+	public RcplTable(boolean spreadsheet, boolean header) {
 		this.spreadsheet = spreadsheet;
-		for (int row = 0; row < RcplTableData.MAX_SPREADSHEET_ROWS; row++) {
-			rowHeight[row] = DEFAULT_ROW_HEIGHT;
-		}
-		tableView = new RcplTableView(this);
+		this.header = header;
 		if (spreadsheet) {
-			setData(new RcplTableData(this));
-			tableView.createColumns();
-			tableView.getColumns().get(0).setPrefWidth(40);
-
-			StackPane st = new StackPane();
-			ScrollPane sp = new ScrollPane();
-			st.getChildren().add(sp);
-			sp.setFitToHeight(true);
-			sp.setFitToWidth(true);
-			sp.setContent(tableView);
-			node = st;
+			rowCount = IRcplTableConstants.DEFAULT_SPREADSHEET_ROW_COUNT;
+			columnCount = IRcplTableConstants.DEFAULT_SPREADSHEET_COLUMN_COUNT;
 		} else {
-			StackPane sp = new StackPane();
-//			sp.setId("redBorder");
-			sp.getChildren().add(tableView);
-			node = sp;
+			rowCount = IRcplTableConstants.DEFAULT_ROW_COUNT;
+			columnCount = IRcplTableConstants.DEFAULT_COLUMN_COUNT;
 		}
-	}
 
-	public void updateCss(Scene scene) {
 		if (spreadsheet) {
-			scene.getStylesheets().add(RcplTable.class.getResource("rcpltableview_spreadsheet.css").toExternalForm());
-		} else {
-			scene.getStylesheets().add(RcplTable.class.getResource("rcpltableview.css").toExternalForm());
+			header = true;
 		}
+		tableView = new RcplTableView2(this);
+		node = tableView;
+		updateCss();
 	}
 
-	public Pane getNode() {
-		return node;
-	}
-
-	public void setEditable(boolean editable) {
-		tableView.setEditable(editable);
-	}
-
-	public void setData(RcplTableData data) {
-		this.data = data;
-		tableView.setItems(data.getData());
-		tableView.createColumns();
-		updateHeight();
-	}
-
-	public void removeLastColumn() {
-		if (!isSpreadsheet()) {
-			int size = tableView.getColumns().size();
-			tableView.getColumns().remove(size - 1);
-		}
-	}
-
-	public void setColumnWidth(int col, double width) {
-		tableView.getColumns().get(col).setPrefWidth(width);
-	}
-
-	public void setRowHeight(int row, double height) {
-		ICellable cell = data.getCell(row, 0);
-		cell.setHeight(height);
-		rowHeight[row] = height;
-	}
-
-	public double[] getRowHeightArray() {
-		return rowHeight;
-	}
-
-	public RcplTableData getData() {
-		if (data == null) {
-			data = new RcplTableData(this);
-		}
-		return data;
+	protected IParagraph createParagraph() {
+		return null;
 	}
 
 	public boolean isSpreadsheet() {
 		return spreadsheet;
 	}
 
+	public void updateCss() {
+		if (spreadsheet) {
+			node.getStylesheets().add(RcplTable.class.getResource("rcpltableview_spreadsheet.css").toExternalForm());
+		} else {
+			node.getStylesheets().add(RcplTable.class.getResource("rcpltableview.css").toExternalForm());
+		}
+
+		tableView.getStyleClass().add("gridStyle_normal");
+	}
+
+	public Pane getNode() {
+		return node;
+	}
+
+	public boolean hasHeader() {
+		return header;
+	}
+
+	public int getRowCount() {
+		return rowCount;
+	}
+
+	public int getColumnCount() {
+		return columnCount;
+	}
+
+	public RcplTableView2 getTableView() {
+		return tableView;
+	}
+
+	public void addNode(Node n, int row, int column) {
+		StackPane backGroundPane = createBackgroundPane(row, column);
+		backGroundPane.getChildren().clear();
+		backGroundPane.getChildren().add(n);
+	}
+
+	public void addParagraph(IParagraph paragraph, int row, int column) {
+		addNode(paragraph.getLayoutFigure().getNode(), row, column);
+	}
+
+	public void setRowHeight(int row, double height) {
+		tableView.getCellTable().getGrid().getRowConstraints().get(row).setPrefHeight(height);
+		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMinHeight(height);
+		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMaxHeight(height);
+
+		if (tableView.getRowRuler() != null) {
+			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setPrefHeight(height);
+			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setMinHeight(height);
+			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setMaxHeight(height);
+		}
+	}
+
+	public void setColumnWidth(int column, double width) {
+		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setPrefWidth(width);
+		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMinWidth(width);
+		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMaxWidth(width);
+
+		if (tableView.getTableHeader() != null) {
+			tableView.getTableHeader().setColumnWidth(column, width);
+		}
+	}
+
+	private StackPane createBackgroundPane(int row, int column) {
+		Node n = RcplTableUtil.getNode(row, column, tableView.getCellTable().getGrid());
+		if (n == null) {
+			n = new StackPane();
+			n.setStyle("-fx-background-color: white;");
+			tableView.getCellTable().getGrid().add(n, column, row);
+		}
+		return (StackPane) n;
+	}
+
+	public void setColumnSpan(int row, int column, int spanX) {
+		Node n = createBackgroundPane(row, column);
+		GridPane.setColumnSpan(n, spanX);
+	}
+
+	public void setRowSpan(int row, int column, int spanY) {
+		Node n = createBackgroundPane(row, column);
+		GridPane.setRowSpan(n, spanY);
+	}
+
+	public void setCellAlignment(int row, int column, Pos pos) {
+		Node n = createBackgroundPane(row, column);
+		if (n instanceof Labeled) {
+			((Labeled) n).setAlignment(pos);
+		}
+	}
+
+	public void setStyle(int row, int column, String style) {
+		StackPane backGroundPane = createBackgroundPane(row, column);
+		backGroundPane.setStyle(style);
+	}
+
 	public void setWidth(double width) {
-		this.width = width;
 		getNode().setPrefWidth(width);
 	}
 
 	public void setHeight(double height) {
-		this.height = height;
 		getNode().setPrefHeight(height);
-		tableView.setMinHeight(height);
-		tableView.setPrefHeight(height);
 	}
-
-	public double getWidth() {
-		return width;
-	}
-
-	public double getRowHeight(int row) {
-		return rowHeight[row];
-	}
-
-	private void updateHeight() {
-		if (!isSpreadsheet()) {
-			double height = 0;
-			for (int row = 0; row < data.getRowCount(); row++) {
-				height += getRowHeight(row);
-			}
-
-			height += DEFAULT_ROW_HEIGHT + 6; // HEADER
-			node.setPrefHeight(height);
-			node.setMaxHeight(height);
-			tableView.setPrefHeight(height);
-			tableView.setMaxHeight(height);
-		}
-	}
-
-	protected abstract IParagraph createParagraph();
 
 }

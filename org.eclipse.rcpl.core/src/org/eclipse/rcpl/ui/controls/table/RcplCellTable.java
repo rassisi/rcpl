@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.ui.controls.table2;
+package org.eclipse.rcpl.ui.controls.table;
 
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -12,7 +12,7 @@ import javafx.scene.layout.RowConstraints;
  */
 public class RcplCellTable {
 
-	private RcplTable2 table;
+	private RcplTable table;
 
 	private GridPane grid;
 
@@ -20,7 +20,7 @@ public class RcplCellTable {
 
 	private ScrollPane scrollPane;
 
-	public RcplCellTable(RcplTable2 table) {
+	public RcplCellTable(RcplTable table) {
 		this.table = table;
 		this.grid = new GridPane();
 		grid.setGridLinesVisible(true);

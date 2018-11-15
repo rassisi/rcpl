@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.ui.controls.table2;
+package org.eclipse.rcpl.ui.controls.table;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -21,9 +21,9 @@ public class RcplRowRuler {
 
 	private final ScrollPane node;
 
-	private RcplTable2 table;
+	private RcplTable table;
 
-	public RcplRowRuler(RcplTable2 table) {
+	public RcplRowRuler(RcplTable table) {
 		this.table = table;
 
 		node = new ScrollPane();

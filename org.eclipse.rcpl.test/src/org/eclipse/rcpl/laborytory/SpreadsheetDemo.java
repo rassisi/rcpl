@@ -2,7 +2,7 @@ package org.eclipse.rcpl.laborytory;
 
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.laborytory.simpleparagraph.SimpleParagraph;
-import org.eclipse.rcpl.ui.controls.table2.RcplTable2;
+import org.eclipse.rcpl.ui.controls.table.RcplTable;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -38,7 +38,7 @@ public class SpreadsheetDemo extends Application {
 		vbox.setPadding(new Insets(10, 0, 0, 10));
 		Scene scene = new Scene(vbox);
 
-		RcplTable2 table = new RcplTable2(true, true) {
+		RcplTable table = new RcplTable(true, true) {
 			@Override
 			protected IParagraph createParagraph() {
 				return new SimpleParagraph("");

@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.ui.controls.table2;
+package org.eclipse.rcpl.ui.controls.table;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
  */
 public class RcplTableView2 extends BorderPane {
 
-	private RcplTable2 table;
+	private RcplTable table;
 
 	private GridPane grid;
 
@@ -19,7 +19,7 @@ public class RcplTableView2 extends BorderPane {
 
 	private RcplRowRuler rowRuler;
 
-	public RcplTableView2(RcplTable2 table) {
+	public RcplTableView2(RcplTable table) {
 		this.table = table;
 
 		cellTable = new RcplCellTable(table);
