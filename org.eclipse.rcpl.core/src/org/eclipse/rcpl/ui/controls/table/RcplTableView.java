@@ -7,7 +7,7 @@ import javafx.scene.layout.GridPane;
  * @author Ramin
  *
  */
-public class RcplTableView2 extends BorderPane {
+public class RcplTableView extends BorderPane {
 
 	private RcplTable table;
 
@@ -19,7 +19,7 @@ public class RcplTableView2 extends BorderPane {
 
 	private RcplRowRuler rowRuler;
 
-	public RcplTableView2(RcplTable table) {
+	public RcplTableView(RcplTable table) {
 		this.table = table;
 
 		cellTable = new RcplCellTable(table);

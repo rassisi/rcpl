@@ -21,7 +21,7 @@ public class RcplTable {
 
 	private final boolean spreadsheet;
 
-	private RcplTableView2 tableView;
+	private RcplTableView tableView;
 
 	private Pane node;
 
@@ -41,7 +41,7 @@ public class RcplTable {
 		if (spreadsheet) {
 			header = true;
 		}
-		tableView = new RcplTableView2(this);
+		tableView = new RcplTableView(this);
 		node = tableView;
 		updateCss();
 	}
@@ -80,7 +80,7 @@ public class RcplTable {
 		return columnCount;
 	}
 
-	public RcplTableView2 getTableView() {
+	public RcplTableView getTableView() {
 		return tableView;
 	}
 
