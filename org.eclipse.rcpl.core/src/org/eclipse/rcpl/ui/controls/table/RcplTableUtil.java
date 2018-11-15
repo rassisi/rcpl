@@ -1,6 +1,7 @@
 package org.eclipse.rcpl.ui.controls.table;
 
 import javafx.collections.ObservableList;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -26,6 +27,9 @@ public class RcplTableUtil {
 		ObservableList<Node> childrens = gridPane.getChildren();
 		for (Node node : childrens) {
 			try {
+				if (node instanceof Group) {
+					continue;
+				}
 
 				if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
 					result = node;
