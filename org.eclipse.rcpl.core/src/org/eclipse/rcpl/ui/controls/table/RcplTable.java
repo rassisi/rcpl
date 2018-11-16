@@ -315,4 +315,13 @@ public class RcplTable {
 		return null;
 	}
 
+	public double calculateHeight(int row) {
+		double height = 0;
+		for (int i = 0; i <= row; i++) {
+			height += tableView.getCellTable().getGrid().getRowConstraints().get(row).getPrefHeight();
+		}
+		return height;
+
+	}
+
 }
