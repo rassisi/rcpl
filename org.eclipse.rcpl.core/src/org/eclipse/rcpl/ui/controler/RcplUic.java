@@ -2147,6 +2147,11 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void showHomePage(HomePageType type, String id) {
 
+		if (homepages.isEmpty()) {
+			setContent(null);
+			return;
+		}
+
 		showStartMenuButton(type == null || !HomePageType.OVERVIEW.equals(type));
 		IHomePage homePage = findHomePage(type, id);
 		activeHomePage = homePage;
@@ -2562,4 +2567,9 @@ public class RcplUic implements IRcplUic {
 		}
 
 	}
+
+	public BorderPane getNode() {
+		return borderPane;
+	}
+
 }

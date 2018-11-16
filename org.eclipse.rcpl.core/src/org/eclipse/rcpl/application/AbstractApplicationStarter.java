@@ -84,7 +84,6 @@ public abstract class AbstractApplicationStarter implements IApplicationStarter 
 			}
 		});
 
-//		StackPane.setMargin(applicationProvider.getMainContent(), new Insets(0, 0, 0, 0));
 		applicationProvider.setNormalWindow();
 
 		return true;

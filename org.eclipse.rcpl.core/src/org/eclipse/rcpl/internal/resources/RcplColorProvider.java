@@ -842,6 +842,9 @@ public class RcplColorProvider implements IColorProvider {
 
 	@Override
 	public IColor get(XSSFColor xSSFColor) {
+		if (xSSFColor == null) {
+			return null;
+		}
 		return get(xSSFColor.getRGB());
 	}
 

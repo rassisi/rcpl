@@ -28,6 +28,7 @@ public class RcplTableView extends BorderPane {
 		setCenter(cellTable.getNode());
 
 		if (this.table.isSpreadsheet()) {
+			cellTable.getGrid().setStyle("-fx-background-color: lightgray;");
 			tableHeader = new RcplTableHeader(table);
 			tableHeader.getScrollPane().hvalueProperty().bind(cellTable.getScrollPane().hvalueProperty());
 			setTop(tableHeader.getNode());

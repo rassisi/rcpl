@@ -23,6 +23,10 @@ public class RcplCellTable {
 	public RcplCellTable(RcplTable table) {
 		this.table = table;
 		this.grid = new GridPane();
+
+		grid.setHgap(0);
+		grid.setVgap(0);
+
 //		grid.setGridLinesVisible(true);
 
 		if (table.isSpreadsheet()) {

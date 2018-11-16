@@ -427,4 +427,10 @@ public class RcplUicAdapter implements IRcplUic {
 
 	}
 
+	@Override
+	public BorderPane getNode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
