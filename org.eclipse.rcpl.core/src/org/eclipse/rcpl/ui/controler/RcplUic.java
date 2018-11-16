@@ -50,6 +50,7 @@ import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.control.RcplCompletionListener;
 import org.eclipse.rcpl.detailpages.WebBrowserDetailsPage;
+import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.ComboBoxTool;
 import org.eclipse.rcpl.internal.tools.SplitMenuTool;
@@ -404,9 +405,6 @@ public class RcplUic implements IRcplUic {
 	protected HBox titleArea;
 
 	@FXML
-	protected ToggleButton topBarCollapseButton;
-
-	@FXML
 	protected HBox collapseButtonHBox;
 
 	@FXML
@@ -447,6 +445,9 @@ public class RcplUic implements IRcplUic {
 
 	@FXML
 	private ColorPicker themeColorPicker;
+
+	@FXML
+	private ToggleButton topBarCollapseButton;
 
 	// ----------------------------------------------------------
 
@@ -935,6 +936,10 @@ public class RcplUic implements IRcplUic {
 		themeToggles.getToggles().addAll(themeDefaultButton, themeSilverButton, themeDarkButton, themeWindows7Button);
 
 		pageLayoutToggles.getToggles().addAll(onePageButton, twoPagesButton, multiPagesButton);
+
+		ImageView iv = new RcplImage("topToolbarCollapseButton", 16, 16).getNode();
+
+		topBarCollapseButton.setGraphic(iv);
 
 		Platform.runLater(new Runnable() {
 
