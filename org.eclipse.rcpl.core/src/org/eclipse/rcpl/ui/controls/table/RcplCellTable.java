@@ -23,7 +23,7 @@ public class RcplCellTable {
 	public RcplCellTable(RcplTable table) {
 		this.table = table;
 		this.grid = new GridPane();
-		grid.setGridLinesVisible(true);
+//		grid.setGridLinesVisible(true);
 
 		if (table.isSpreadsheet()) {
 			scrollPane = new ScrollPane();

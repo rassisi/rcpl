@@ -2,12 +2,13 @@ package org.eclipse.rcpl.ui.controls.table;
 
 import org.eclipse.rcpl.IParagraph;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 /**
  * @author Ramin
@@ -94,10 +95,11 @@ public class RcplTable {
 
 	public void addNode(Node n, int row, int column) {
 		updateRowAndColumnCount(row, column);
-		StackPane backGroundPane = createBackgroundPane(row, column);
-		backGroundPane.getChildren().clear();
-		StackPane.setAlignment(n, Pos.TOP_LEFT);
-		backGroundPane.getChildren().add(n);
+		VBox backGroundPane = createBackgroundPane(row, column);
+		backGroundPane.setAlignment(Pos.CENTER);
+		if (!backGroundPane.getChildren().contains(n)) {
+			backGroundPane.getChildren().add(n);
+		}
 	}
 
 	public void addParagraph(IParagraph paragraph, int row, int column) {
@@ -128,17 +130,17 @@ public class RcplTable {
 		}
 	}
 
-	private StackPane createBackgroundPane(int row, int column) {
+	private VBox createBackgroundPane(int row, int column) {
 		updateRowAndColumnCount(row, column);
 		Node n = RcplTableUtil.getNode(row, column, tableView.getCellTable().getGrid());
 		if (n == null) {
-			StackPane st = new StackPane();
+			VBox st = new VBox();
 			st.setAlignment(Pos.TOP_LEFT);
 			n = st;
 //			n.setStyle("-fx-border-color: blue;-fx-border-width: 0.1pt;");
 			tableView.getCellTable().getGrid().add(n, column, row);
 		}
-		return (StackPane) n;
+		return (VBox) n;
 	}
 
 	public void setColumnSpan(int row, int column, int spanX) {
@@ -163,7 +165,7 @@ public class RcplTable {
 
 	public void setStyle(int row, int column, String style) {
 		updateRowAndColumnCount(row, column);
-		StackPane backGroundPane = createBackgroundPane(row, column);
+		VBox backGroundPane = createBackgroundPane(row, column);
 		backGroundPane.setStyle(style);
 	}
 
@@ -215,7 +217,7 @@ public class RcplTable {
 		double columnWidth = getColumnWidth(column);
 		if (width > columnWidth) {
 			setColumnWidth(column, width);
-			StackPane st = createBackgroundPane(row, column);
+			VBox st = createBackgroundPane(row, column);
 			st.setPrefWidth(width);
 			st.setMinWidth(width);
 			st.setMaxWidth(width);
@@ -227,9 +229,8 @@ public class RcplTable {
 		double rowHeight = getRowHeight(row);
 		if (height > rowHeight) {
 			setRowHeight(row, height);
-
 			for (int c = 0; c < columnCount; c++) {
-				StackPane st = createBackgroundPane(row, c);
+				VBox st = createBackgroundPane(row, c);
 				st.setPrefHeight(height);
 				st.setMinHeight(height);
 				st.setMaxHeight(height);
@@ -237,7 +238,6 @@ public class RcplTable {
 				st.setLayoutY(0);
 			}
 		}
-
 	}
 
 	public double getColumnWidth(int column) {
@@ -246,6 +246,73 @@ public class RcplTable {
 
 	public double getRowHeight(int row) {
 		return tableView.getCellTable().getGrid().getRowConstraints().get(row).getPrefHeight();
+	}
+
+	public void setMarginTop(int row, int column, double margin) {
+		updateRowAndColumnCount(row, column);
+		VBox backGroundPane = createBackgroundPane(row, column);
+		Node n = getFirstChildInCell(backGroundPane);
+		if (n == null) {
+			return;
+		}
+		Insets ins = VBox.getMargin(n);
+		if (ins == null) {
+			ins = new Insets(0);
+		}
+		VBox.setMargin(backGroundPane.getChildren().get(0),
+				new Insets(margin, ins.getRight(), ins.getBottom(), ins.getLeft()));
+	}
+
+	public void setMarginBottom(int row, int column, double margin) {
+		updateRowAndColumnCount(row, column);
+		VBox backGroundPane = createBackgroundPane(row, column);
+		Node n = getLastChildInCell(backGroundPane);
+		if (n == null) {
+			return;
+		}
+		Insets ins = VBox.getMargin(n);
+		if (ins == null) {
+			ins = new Insets(0);
+		}
+		VBox.setMargin(n, new Insets(ins.getTop(), ins.getRight(), margin, ins.getLeft()));
+	}
+
+	public void setMarginLeft(int row, int column, double margin) {
+		updateRowAndColumnCount(row, column);
+		VBox backGroundPane = createBackgroundPane(row, column);
+		for (Node n : backGroundPane.getChildren()) {
+			Insets ins = VBox.getMargin(n);
+			if (ins == null) {
+				ins = new Insets(0);
+			}
+			VBox.setMargin(n, new Insets(ins.getTop(), ins.getRight(), ins.getBottom(), margin));
+		}
+	}
+
+	public void setMarginRight(int row, int column, double margin) {
+		updateRowAndColumnCount(row, column);
+		VBox backGroundPane = createBackgroundPane(row, column);
+		for (Node n : backGroundPane.getChildren()) {
+			Insets ins = VBox.getMargin(n);
+			if (ins == null) {
+				ins = new Insets(0);
+			}
+			VBox.setMargin(n, new Insets(ins.getTop(), margin, ins.getBottom(), ins.getLeft()));
+		}
+	}
+
+	private Node getFirstChildInCell(VBox vbox) {
+		if (vbox.getChildren().size() > 0) {
+			return vbox.getChildren().get(0);
+		}
+		return null;
+	}
+
+	private Node getLastChildInCell(VBox vbox) {
+		if (vbox.getChildren().size() > 0) {
+			return vbox.getChildren().get(vbox.getChildren().size() - 1);
+		}
+		return null;
 	}
 
 }
