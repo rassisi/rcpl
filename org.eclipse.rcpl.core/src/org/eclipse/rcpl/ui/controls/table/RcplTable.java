@@ -126,14 +126,16 @@ public class RcplTable {
 		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMinHeight(height);
 		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMaxHeight(height);
 
-		for (int c = 0; c < columnCount; c++) {
-			VBox st = getBackgroundPane(row, c);
-			if (st != null) {
-				st.setPrefHeight(height);
-				st.setMinHeight(height);
-				st.setMaxHeight(height);
-				st.setLayoutX(0);
-				st.setLayoutY(0);
+		if (!spreadsheet) {
+			for (int c = 0; c < columnCount; c++) {
+				VBox st = getBackgroundPane(row, c);
+				if (st != null) {
+					st.setPrefHeight(height);
+					st.setMinHeight(height);
+					st.setMaxHeight(height);
+					st.setLayoutX(0);
+					st.setLayoutY(0);
+				}
 			}
 		}
 
@@ -150,14 +152,16 @@ public class RcplTable {
 		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setPrefWidth(width);
 		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMinWidth(width);
 		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMaxWidth(width);
-		for (int r = 0; r < rowCount; r++) {
-			VBox st = getBackgroundPane(r, column);
-			if (st != null) {
-				st.setPrefWidth(width);
-				st.setMinWidth(width);
-				st.setMaxWidth(width);
-				st.setLayoutX(0);
-				st.setLayoutY(0);
+		if (!spreadsheet) {
+			for (int r = 0; r < rowCount; r++) {
+				VBox st = getBackgroundPane(r, column);
+				if (st != null) {
+					st.setPrefWidth(width);
+					st.setMinWidth(width);
+					st.setMaxWidth(width);
+					st.setLayoutX(0);
+					st.setLayoutY(0);
+				}
 			}
 		}
 
