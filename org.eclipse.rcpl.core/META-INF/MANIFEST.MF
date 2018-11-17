@@ -131,12 +131,6 @@ Export-Package: org.eclipse.rcpl;
    javafx.scene,
    org.eclipse.rcpl.internal.services,
    org.eclipse.rcpl.model_2_0_0.rcpl",
- org.eclipse.rcpl.internal.util;
-  uses:="javafx.scene.image,
-   org.w3c.dom,
-   javafx.scene,
-   org.eclipse.rcpl,
-   org.eclipse.rcpl.images",
  org.eclipse.rcpl.ip2location,
  org.eclipse.rcpl.login;
   uses:="javafx.scene.text,
