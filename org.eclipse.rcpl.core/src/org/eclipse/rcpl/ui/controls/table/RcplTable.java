@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Labeled;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 /**
@@ -28,9 +29,13 @@ public class RcplTable {
 
 	private boolean header = false;
 
+	private boolean DEBUG = true;
+
 	public RcplTable(boolean spreadsheet, boolean header) {
 		this.spreadsheet = spreadsheet;
 		this.header = header;
+
+		this.DEBUG = false;
 		if (spreadsheet) {
 			rowCount = IRcplTableConstants.DEFAULT_SPREADSHEET_ROW_COUNT;
 			columnCount = IRcplTableConstants.DEFAULT_SPREADSHEET_COLUMN_COUNT;
@@ -45,6 +50,15 @@ public class RcplTable {
 		tableView = new RcplTableView(this);
 		node = tableView;
 		updateCss();
+
+	}
+
+	public void showGrid(boolean show) {
+		tableView.getCellTable().getGrid().setGridLinesVisible(show);
+	}
+
+	public boolean isDEBUG() {
+		return DEBUG;
 	}
 
 	private double getTotalHeight() {
@@ -112,11 +126,23 @@ public class RcplTable {
 		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMinHeight(height);
 		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMaxHeight(height);
 
+		for (int c = 0; c < columnCount; c++) {
+			VBox st = getBackgroundPane(row, c);
+			if (st != null) {
+				st.setPrefHeight(height);
+				st.setMinHeight(height);
+				st.setMaxHeight(height);
+				st.setLayoutX(0);
+				st.setLayoutY(0);
+			}
+		}
+
 		if (tableView.getRowRuler() != null) {
 			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setPrefHeight(height);
 			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setMinHeight(height);
 			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setMaxHeight(height);
 		}
+
 	}
 
 	public void setColumnWidth(int column, double width) {
@@ -124,6 +150,16 @@ public class RcplTable {
 		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setPrefWidth(width);
 		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMinWidth(width);
 		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMaxWidth(width);
+		for (int r = 0; r < rowCount; r++) {
+			VBox st = getBackgroundPane(r, column);
+			if (st != null) {
+				st.setPrefWidth(width);
+				st.setMinWidth(width);
+				st.setMaxWidth(width);
+				st.setLayoutX(0);
+				st.setLayoutY(0);
+			}
+		}
 
 		if (tableView.getTableHeader() != null) {
 			tableView.getTableHeader().setColumnWidth(column, width);
@@ -136,11 +172,24 @@ public class RcplTable {
 		if (n == null) {
 			VBox st = new VBox();
 			st.setAlignment(Pos.TOP_LEFT);
-			n = st;
-//			n.setStyle("-fx-border-color: blue;-fx-border-width: 0.1pt;");
-			tableView.getCellTable().getGrid().add(n, column, row);
+			st.setStyle("-fx-background-color: lightyellow;-fx-border-color: blue;-fx-border-width: 1pt;");
+			GridPane.setVgrow(st, Priority.ALWAYS);
+			GridPane.setFillHeight(st, true);
+			GridPane.setFillWidth(st, true);
+			tableView.getCellTable().getGrid().add(st, column, row);
+			return st;
 		}
 		return (VBox) n;
+	}
+
+	private VBox getBackgroundPane(int row, int column) {
+		try {
+			Node n = RcplTableUtil.getNode(row, column, tableView.getCellTable().getGrid());
+			return (VBox) n;
+		} catch (Exception ex) {
+			// ignore
+		}
+		return null;
 	}
 
 	public void setColumnSpan(int row, int column, int spanX) {
@@ -164,6 +213,9 @@ public class RcplTable {
 	}
 
 	public void setStyle(int row, int column, String style) {
+		if (isDEBUG()) {
+			return;
+		}
 		updateRowAndColumnCount(row, column);
 		VBox backGroundPane = createBackgroundPane(row, column);
 		backGroundPane.setStyle(style);
@@ -217,6 +269,7 @@ public class RcplTable {
 		double columnWidth = getColumnWidth(column);
 		if (width > columnWidth) {
 			setColumnWidth(column, width);
+		} else if (width < columnWidth) {
 			VBox st = createBackgroundPane(row, column);
 			st.setPrefWidth(width);
 			st.setMinWidth(width);
@@ -229,14 +282,13 @@ public class RcplTable {
 		double rowHeight = getRowHeight(row);
 		if (height > rowHeight) {
 			setRowHeight(row, height);
-			for (int c = 0; c < columnCount; c++) {
-				VBox st = createBackgroundPane(row, c);
-				st.setPrefHeight(height);
-				st.setMinHeight(height);
-				st.setMaxHeight(height);
-				st.setLayoutX(0);
-				st.setLayoutY(0);
-			}
+		} else if (height < rowHeight) {
+			VBox st = createBackgroundPane(row, column);
+			st.setPrefHeight(rowHeight);
+			st.setMinHeight(rowHeight);
+			st.setMaxHeight(rowHeight);
+			st.setLayoutX(0);
+			st.setLayoutY(0);
 		}
 	}
 

@@ -27,7 +27,7 @@ public class RcplCellTable {
 		grid.setHgap(0);
 		grid.setVgap(0);
 
-//		grid.setGridLinesVisible(true);
+		grid.setGridLinesVisible(table.isDEBUG());
 
 		if (table.isSpreadsheet()) {
 			scrollPane = new ScrollPane();

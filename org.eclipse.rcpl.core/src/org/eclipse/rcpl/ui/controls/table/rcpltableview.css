@@ -1,6 +1,7 @@
 
 
 .gridStyle_normal Line {
-  -fx-stroke   : lightgray;
+  -fx-stroke   : black;
+  -fx-stroke-width   : 0.5pt;
 }
 
