@@ -53,6 +53,8 @@ public class RcplService extends RcplBaseService implements IService {
 
 	private IService tableService;
 
+	private IService pageService;
+
 	private HashMap<EnServiceId, IService> serviceRegistry;
 
 	public RcplService() {
@@ -325,6 +327,13 @@ public class RcplService extends RcplBaseService implements IService {
 				tableService = Rcpl.get().getServiceFactory().createService(serviceId);
 			}
 			return tableService;
+
+		case PAGE_SERVICE:
+			if (pageService == null) {
+				pageService = Rcpl.get().getServiceFactory().createService(serviceId);
+			}
+			return pageService;
+
 		default:
 			break;
 		}

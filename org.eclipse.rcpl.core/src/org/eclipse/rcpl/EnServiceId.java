@@ -24,6 +24,8 @@ public enum EnServiceId {
 
 	PARAGRAPH_SERVICE,
 
+	PAGE_SERVICE,
+
 	PICTURE_SERVICE,
 
 	SETUP_SERVICE,

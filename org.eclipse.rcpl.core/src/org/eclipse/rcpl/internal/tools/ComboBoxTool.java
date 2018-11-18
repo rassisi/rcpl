@@ -15,10 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.rcpl.AbstractRcplTool;
+import org.eclipse.rcpl.EnCommandId;
+import org.eclipse.rcpl.ICommand;
+import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.eclipse.rcpl.util.RcplUtil;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ComboBox;
 
 /**
@@ -38,6 +43,22 @@ public class ComboBoxTool extends AbstractRcplTool {
 		if (getModel().getFormat() != null) {
 
 			ComboBox<String> combo = getNode();
+
+			combo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+				@Override
+				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+					execute(newValue);
+				}
+			});
+//			combo.valueProperty().addListener(new ChangeListener<String>() {
+//				@Override
+//				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//					execute(newValue);
+//				}
+//
+//			});
+
 			try {
 				Class<?> clazz = Class.forName(getModel().getFormat());
 				if (clazz.isEnum()) {
@@ -76,10 +97,20 @@ public class ComboBoxTool extends AbstractRcplTool {
 						}
 						combo.getItems().addAll(items);
 						combo.getSelectionModel().select(getModel().getIntFormatValue("index"));
+
 					}
 				}
 			}
 
+		}
+	}
+
+	private void execute(String newValue) {
+		String id = getModel().getId();
+		EnCommandId cmd = EnCommandId.findCommandId(id);
+		if (cmd != null) {
+			ICommand command = Rcpl.get().getFactory().createCommand(cmd, newValue);
+			Rcpl.get().service().execute(command);
 		}
 	}
 

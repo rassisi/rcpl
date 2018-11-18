@@ -400,8 +400,8 @@ public class RcplBasicFactory implements IRcplFactory {
 	}
 
 	@Override
-	public ICommand createCommand(EnCommandId commandId) {
-		return createCommand((IService) null, commandId, (ILayoutObject) null, (Object[]) null);
+	public ICommand createCommand(EnCommandId commandId, Object... data) {
+		return createCommand((IService) null, commandId, (ILayoutObject) null, data);
 	}
 
 }
