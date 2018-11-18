@@ -1,10 +1,10 @@
 package org.eclipse.rcpl;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.scene.Parent;
 
@@ -24,9 +24,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	public static final int TASK_LOAD_FILE_DOCUMENT = 5;
 
-	void updateTools(ILayoutObject layoutObject, HashMap<String, Object> map);
-
-	void updateTools(String key, Object value);
+	void updateTools(RcplEvent event);
 
 	void addSelectedDraggable(ILayoutFigure f);
 

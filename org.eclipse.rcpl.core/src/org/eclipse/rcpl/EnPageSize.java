@@ -197,7 +197,7 @@ public enum EnPageSize {
 			double diffWidth = Math.abs(widthCm - ps.getCmWidth());
 			double diffHeight = Math.abs(heightCm - ps.getCmHeight());
 
-			if (diffWidth < 0.001 && diffHeight < 0.001) {
+			if (diffWidth < 0.01 && diffHeight < 0.01) {
 				return ps;
 			}
 		}

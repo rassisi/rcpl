@@ -11,8 +11,6 @@
 
 package org.eclipse.rcpl.internal.tools;
 
-import java.util.HashMap;
-
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -46,8 +44,6 @@ public class RadioButtonTool extends AbstractRcplTool {
 	@Override
 	public boolean update(RcplEvent event) {
 		if (getModel() != null) {
-
-			HashMap<String, Object> map = event.getData();
 
 			String id = getModel().getId();
 			if (id == null || "".equals(id)) {

@@ -1,9 +1,13 @@
 package org.eclipse.rcpl.ui.listener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IStyle;
+import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 
 /**
  * @author ramin
@@ -17,22 +21,26 @@ public class RcplEvent {
 
 	public final static String KEY_SELECTED = "KEY_SELECTED";
 
-	private final ILayoutObject layoutObject;
+	private ILayoutObject layoutObject;
 
-	private final HashMap<String, Object> dataMap;
+	private HashMap<String, Object> dataMap = new HashMap<String, Object>();
 
-	public RcplEvent(HashMap<String, Object> data) {
-		this.dataMap = data;
-		this.layoutObject = null;
+	private List<ToolType> types = new ArrayList<ToolType>();
+
+	private List<EnCommandId> cmds = new ArrayList<EnCommandId>();
+
+	public RcplEvent() {
 	}
 
-	public RcplEvent(ILayoutObject layoutObject, HashMap<String, Object> data) {
+	public RcplEvent(ILayoutObject layoutObject) {
 		this.layoutObject = layoutObject;
-		this.dataMap = data;
+	}
+
+	public void put(String key, Object value) {
+		dataMap.put(key, value);
 	}
 
 	public IStyle getStyle() {
-
 		IStyle style = (IStyle) dataMap.get(KEY_STYLE);
 		if (style != null) {
 			return style;
@@ -47,8 +55,8 @@ public class RcplEvent {
 		return layoutObject;
 	}
 
-	public HashMap<String, Object> getData() {
-		return dataMap;
+	public Object get(String key) {
+		return dataMap.get(key);
 	}
 
 	public boolean isSelected() {
@@ -57,6 +65,22 @@ public class RcplEvent {
 			return sel.booleanValue();
 		}
 		return false;
+	}
+
+	public void addType(ToolType type) {
+		types.add(type);
+	}
+
+	public void addCommand(EnCommandId cmd) {
+		cmds.add(cmd);
+	}
+
+	public List<ToolType> getTypes() {
+		return types;
+	}
+
+	public List<EnCommandId> getCmds() {
+		return cmds;
 	}
 
 }

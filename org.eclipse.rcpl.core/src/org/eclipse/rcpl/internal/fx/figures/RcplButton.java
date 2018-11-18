@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.rcpl.internal.fx.figures;
 
-import java.util.HashMap;
-
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnLatexMath;
@@ -254,12 +252,9 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	public boolean update(RcplEvent event) {
 		if (getModel() != null) {
 
-			HashMap<String, Object> map = event.getData();
 			TextAlignment alignment = null;
 
-			if (map != null) {
-				alignment = (TextAlignment) map.get(RcplEvent.KEY_TEXT_ALIGNMENT);
-			}
+			alignment = (TextAlignment) event.get(RcplEvent.KEY_TEXT_ALIGNMENT);
 
 			String id = getModel().getId();
 			if (id == null || "".equals(id)) {
