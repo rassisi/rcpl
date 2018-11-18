@@ -258,7 +258,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 			TextAlignment alignment = null;
 
 			if (map != null) {
-				alignment = (TextAlignment) map.get("textAlignment");
+				alignment = (TextAlignment) map.get(RcplEvent.KEY_TEXT_ALIGNMENT);
 			}
 
 			String id = getModel().getId();

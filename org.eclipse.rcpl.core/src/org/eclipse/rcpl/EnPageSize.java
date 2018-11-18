@@ -1,5 +1,6 @@
 package org.eclipse.rcpl;
 
+import org.eclipse.rcpl.util.RcplConversion;
 
 public enum EnPageSize {
 
@@ -76,8 +77,7 @@ public enum EnPageSize {
 	ART_A3_MARGIN_35("actions/page/page_size_art_a3_35", 29.7, 41.89, 0.0, 0.0, //$NON-NLS-1$
 			2.54, 0, ""),
 
-	ART_A3_PLUS(
-			"actions/page/page_size_art_a3_plus", 32.9, 48.19, 0.0, 0.0, 2.54, //$NON-NLS-1$
+	ART_A3_PLUS("actions/page/page_size_art_a3_plus", 32.9, 48.19, 0.0, 0.0, 2.54, //$NON-NLS-1$
 			0, ""),
 
 	CDR_TRAY_E("actions/page/page_size_cdr_tray_e", 17.2, 27.5, 0.0, 0.0, 0, 1, //$NON-NLS-1$
@@ -101,9 +101,8 @@ public enum EnPageSize {
 	 * @param inchHeight
 	 * @param displayName
 	 */
-	EnPageSize(String key, double cmWidth, double cmHeight, double inchWidth,
-			double inchHeight, double cmMargin, double inchMargin,
-			String displayName) {
+	EnPageSize(String key, double cmWidth, double cmHeight, double inchWidth, double inchHeight, double cmMargin,
+			double inchMargin, String displayName) {
 		this.cmWidth = cmWidth;
 		this.cmHeight = cmHeight;
 		this.inchWidth = inchWidth;
@@ -186,6 +185,21 @@ public enum EnPageSize {
 				return pz;
 			}
 			i++;
+		}
+		return null;
+	}
+
+	public static EnPageSize findPage(double width, double height) {
+		double widthCm = RcplConversion.pixelToCm(width);
+		double heightCm = RcplConversion.pixelToCm(height);
+
+		for (EnPageSize ps : values()) {
+			double diffWidth = Math.abs(widthCm - ps.getCmWidth());
+			double diffHeight = Math.abs(heightCm - ps.getCmHeight());
+
+			if (diffWidth < 0.001 && diffHeight < 0.001) {
+				return ps;
+			}
 		}
 		return null;
 	}

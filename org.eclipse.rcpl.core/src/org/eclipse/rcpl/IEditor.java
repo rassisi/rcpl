@@ -26,6 +26,8 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void updateTools(ILayoutObject layoutObject, HashMap<String, Object> map);
 
+	void updateTools(String key, Object value);
+
 	void addSelectedDraggable(ILayoutFigure f);
 
 	void removeSelectedDraggable(ILayoutFigure f);

@@ -15,6 +15,8 @@ public class RcplEvent {
 
 	public final static String KEY_TEXT_ALIGNMENT = "textAlignment";
 
+	public final static String KEY_SELECTED = "KEY_SELECTED";
+
 	private final ILayoutObject layoutObject;
 
 	private final HashMap<String, Object> dataMap;
@@ -47,6 +49,14 @@ public class RcplEvent {
 
 	public HashMap<String, Object> getData() {
 		return dataMap;
+	}
+
+	public boolean isSelected() {
+		Boolean sel = (Boolean) dataMap.get(KEY_SELECTED);
+		if (sel != null) {
+			return sel.booleanValue();
+		}
+		return false;
 	}
 
 }
