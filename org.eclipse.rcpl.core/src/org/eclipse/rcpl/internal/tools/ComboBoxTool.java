@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.eclipse.rcpl.util.RcplUtil;
 
 import javafx.scene.control.ComboBox;
@@ -26,7 +27,9 @@ import javafx.scene.control.ComboBox;
  */
 public class ComboBoxTool extends AbstractRcplTool {
 
-	List<String> datas;
+	private List<String> datas;
+
+	private Class<?> enumClass;
 
 	public ComboBoxTool(Tool tool) {
 		super(tool);
@@ -38,6 +41,7 @@ public class ComboBoxTool extends AbstractRcplTool {
 			try {
 				Class<?> clazz = Class.forName(getModel().getFormat());
 				if (clazz.isEnum()) {
+					enumClass = clazz;
 					Object[] values = clazz.getEnumConstants();
 					for (int i = 0; i < values.length; i++) {
 						combo.getItems().add(values[i].toString());
@@ -77,6 +81,28 @@ public class ComboBoxTool extends AbstractRcplTool {
 			}
 
 		}
+	}
+
+	@Override
+	public boolean update(RcplEvent event) {
+		if (getModel() != null) {
+			String className = getModel().getFormat();
+			if (className != null) {
+				if (enumClass != null) {
+					if (enumClass.getName().equals(className)) {
+						String id = getModel().getId();
+
+						if (id != null) {
+							Object o = event.get(id);
+							String v = o.toString();
+							getNode().getSelectionModel().select(v);
+						}
+					}
+				}
+			}
+		}
+
+		return true;
 	}
 
 	@Override
