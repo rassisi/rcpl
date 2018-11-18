@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.internal.dictionary.impl.RcplDictionary;
+import org.eclipse.rcpl.internal.dictionary.impl.Dict;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
@@ -43,6 +43,7 @@ class AccordionColorTitlePane extends TitledPane {
 	AccordionColorTitlePane(ISideToolBar sideToolBar, ToolGroup toolGroup, Node node, int hierarchy,
 			HashMap<String, AccordionColorTitlePane> titlePaneRegistry) {
 		super(toolGroup.getName(), node);
+		setText(getTitle(toolGroup));
 		this.toolGroup = toolGroup;
 		titlePaneRegistry.put(toolGroup.getId(), this);
 		setTextAlignment(TextAlignment.CENTER);
@@ -109,7 +110,7 @@ class AccordionColorTitlePane extends TitledPane {
 
 			if (hierarchy == 0) {
 				hBox.setMinHeight(50);
-				headerText = new Text(RcplDictionary.INSTANCE.get(toolGroup.getName()));
+				headerText = new Text(Dict.get(getTitle(toolGroup)));
 				InnerShadow is = new InnerShadow();
 				is.setOffsetX(2.0f);
 				is.setOffsetY(2.0f);
@@ -140,6 +141,15 @@ class AccordionColorTitlePane extends TitledPane {
 		} catch (Throwable ex) {
 			RcplModel.logError(ex);
 		}
+
+	}
+
+	private String getTitle(ToolGroup toolGroup) {
+		String s = toolGroup.getName();
+		if (toolGroup.isNotImplemented()) {
+			s += " (Not Implemented Yet)";
+		}
+		return s;
 
 	}
 
@@ -178,19 +188,15 @@ class AccordionColorTitlePane extends TitledPane {
 	}
 
 	public void updateLocale() {
-
 		String name = toolGroup.getName();
-		String id = toolGroup.getId();
-
-		if ("Foreground Color".equals(name)) {
-			System.out.println();
+		if (toolGroup.isNotImplemented()) {
+			name += " (Not Implemented Yet)";
 		}
-
 		if (name != null) {
 			if (headerText != null) {
-				headerText.setText(RcplDictionary.INSTANCE.get(name));
+				headerText.setText(Dict.get(name));
 			} else {
-				setText(RcplDictionary.INSTANCE.get(name));
+				setText(Dict.get(Dict.get(name)));
 			}
 		}
 	}

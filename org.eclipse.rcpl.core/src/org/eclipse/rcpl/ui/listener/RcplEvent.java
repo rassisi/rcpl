@@ -2,7 +2,6 @@ package org.eclipse.rcpl.ui.listener;
 
 import java.util.HashMap;
 
-import org.eclipse.rcpl.EnEditMode;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IStyle;
 
@@ -12,47 +11,27 @@ import org.eclipse.rcpl.IStyle;
  */
 public class RcplEvent {
 
-	private IStyle style;
+	public final static String KEY_STYLE = "KEY_STYLE";
 
-	private final EnEditMode editMode;
+	public final static String KEY_TEXT_ALIGNMENT = "textAlignment";
 
 	private final ILayoutObject layoutObject;
 
-	private final String message;
-
-	private final HashMap<String, Object> data;
+	private final HashMap<String, Object> dataMap;
 
 	public RcplEvent(HashMap<String, Object> data) {
-		this.data = data;
-		this.editMode = null;
-		this.layoutObject = null;
-		this.message = null;
-	}
-
-	public RcplEvent(EnEditMode editMode, HashMap<String, Object> data) {
-		this.editMode = editMode;
-		this.data = data;
-		this.layoutObject = null;
-		this.message = null;
-	}
-
-	public RcplEvent(String message, HashMap<String, Object> data) {
-		this.message = message;
-		this.data = data;
-		this.editMode = null;
+		this.dataMap = data;
 		this.layoutObject = null;
 	}
 
-	public RcplEvent(ILayoutObject layoutObject, IStyle style,
-			HashMap<String, Object> data) {
+	public RcplEvent(ILayoutObject layoutObject, HashMap<String, Object> data) {
 		this.layoutObject = layoutObject;
-		this.data = data;
-		this.style = style;
-		this.editMode = null;
-		this.message = null;
+		this.dataMap = data;
 	}
 
 	public IStyle getStyle() {
+
+		IStyle style = (IStyle) dataMap.get(KEY_STYLE);
 		if (style != null) {
 			return style;
 		}
@@ -66,16 +45,8 @@ public class RcplEvent {
 		return layoutObject;
 	}
 
-	public EnEditMode getEditMode() {
-		return editMode;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
 	public HashMap<String, Object> getData() {
-		return data;
+		return dataMap;
 	}
 
 }

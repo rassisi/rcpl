@@ -12,16 +12,15 @@ import org.eclipse.rcpl.model.client.RcplSession;
  * @author Ramin
  *
  */
-public class RcplDictionary implements IDictionary {
+public class Dict implements IDictionary {
 
 	private Locale locale = Locale.US;
 
-	public RcplDictionary() {
+	public Dict() {
 	}
 
-	@Override
-	public String get(String text) {
-		return translate(text);
+	public static String get(String text) {
+		return INSTANCE.translate(text);
 	}
 
 	@Override
@@ -47,6 +46,7 @@ public class RcplDictionary implements IDictionary {
 		RcplSession.getDefault().putValue(createFolder(us, loc), us, foreign);
 	}
 
+	@Override
 	public String translate(String us) {
 		if (locale == Locale.US) {
 			return us;

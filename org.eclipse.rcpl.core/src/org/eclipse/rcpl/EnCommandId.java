@@ -8,6 +8,8 @@ public enum EnCommandId {
 
 	NO_COMMAND(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
+	pageSize(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+
 	NEW_WORD_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
 
 	NEW_SPREADSHEET_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),

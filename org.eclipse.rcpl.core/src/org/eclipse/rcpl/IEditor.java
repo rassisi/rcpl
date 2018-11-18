@@ -1,6 +1,7 @@
 package org.eclipse.rcpl;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
@@ -22,6 +23,8 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 	public static final int TASK_ACTIVATE_FIRST_PARAGRAPH = 4;
 
 	public static final int TASK_LOAD_FILE_DOCUMENT = 5;
+
+	void updateTools(ILayoutObject layoutObject, HashMap<String, Object> map);
 
 	void addSelectedDraggable(ILayoutFigure f);
 

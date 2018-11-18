@@ -2,7 +2,7 @@ package org.eclipse.rcpl;
 
 import java.util.Locale;
 
-import org.eclipse.rcpl.internal.dictionary.impl.RcplDictionary;
+import org.eclipse.rcpl.internal.dictionary.impl.Dict;
 
 /**
  * @author Ramin
@@ -10,9 +10,9 @@ import org.eclipse.rcpl.internal.dictionary.impl.RcplDictionary;
  */
 public interface IDictionary {
 
-	static IDictionary INSTANCE = new RcplDictionary();
+	static IDictionary INSTANCE = new Dict();
 
-	String get(String text);
+	String translate(String text);
 
 	void setLocale(Locale locale);
 

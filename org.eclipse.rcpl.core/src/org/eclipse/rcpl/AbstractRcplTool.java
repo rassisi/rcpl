@@ -11,6 +11,7 @@
 package org.eclipse.rcpl;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.rcpl.internal.dictionary.impl.Dict;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
@@ -366,12 +367,12 @@ public abstract class AbstractRcplTool<T> implements ITool {
 		}
 
 		if (toolTip == null) {
-			toolTip = IDictionary.INSTANCE.get("error: No Tooltip defined!");
+			toolTip = Dict.get("error: No Tooltip defined!");
 		} else {
-			toolTip = IDictionary.INSTANCE.get(toolTip);
+			toolTip = Dict.get(toolTip);
 		}
 		if (getModel().isNotImplemented()) {
-			toolTip = IDictionary.INSTANCE.get("Not Implemented yet") + " " + toolTip;
+			toolTip = Dict.get("Not Implemented yet") + " " + toolTip;
 		}
 
 		final String tt = toolTip;
@@ -385,6 +386,7 @@ public abstract class AbstractRcplTool<T> implements ITool {
 		});
 	}
 
+	@Override
 	public void updateLocale() {
 		createToolTip();
 	}

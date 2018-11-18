@@ -50,8 +50,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
@@ -124,7 +127,99 @@ public class RcplSideToolBar implements ISideToolBar {
 
 					// ---------- create the accordions
 
-					processPerspectiveToolGroups(groupsToolBar, toolGroups, perspective, false);
+					if (!toolGroups.isEmpty()) {
+
+						final double screenHeight = Screen.getPrimary().getBounds().getHeight();
+
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+
+								for (ToolGroup toolGroup_0 : toolGroups) {
+
+									// ---------- create the main toolbar button
+
+									IButton b = new RcplButton(toolGroup_0) {
+										@Override
+										public void doAction() {
+											if (toolGroup_0 == activeGroup) {
+												collapseToolPane();
+											} else {
+												showSideTools(toolGroup_0);
+											}
+										}
+
+										@Override
+										protected boolean isImplemented() {
+											return true;
+										};
+									};
+									toolGroup_0.setData(b);
+
+									String url = toolGroup_0.getUrl();
+									String detailPaneClassName = toolGroup_0.getDetailPaneClassName();
+									if (ToolType.NAVIGATOR.equals(toolGroup_0.getType()) ||
+
+											((url == null || "".contentEquals(url)) && (detailPaneClassName == null
+													|| "".equals(detailPaneClassName)))) {
+
+										b.disableService();
+									}
+									if (!Rcpl.get().isBigDisplay()) {
+										b.setWidth(16);
+										b.setHeight(16);
+
+									} else {
+										b.setWidth(18);
+										b.setHeight(18);
+									}
+									Tooltip toolTip = new Tooltip(
+											toolGroup_0.getToolTip() != null ? toolGroup_0.getToolTip()
+													: toolGroup_0.getName());
+									toolTip.setId("joffice_tooltip");
+									groupsToolBar.getItems().add(b.getNode());
+
+									if (ToolType.NAVIGATOR.equals(toolGroup_0.getType())) {
+										// navigator type for tool group is allowed
+									} else if (toolGroup_0.getToolGroups().isEmpty()
+											&& toolGroup_0.getTools().isEmpty()) {
+										continue;
+									}
+
+									// ---------- create an accordion
+
+									try {
+										VBox sideToolsVbox = new VBox(2);
+										HBox.setHgrow(sideToolsVbox, Priority.ALWAYS);
+										sideToolsVbox.setPrefHeight(3000);
+										toolPaneStackRegistry.put(getKey(perspective.getId(), toolGroup_0),
+												sideToolsVbox);
+
+										sideToolsVbox.setPrefHeight(screenHeight);
+
+										// ---------- accordion -----------
+
+										Accordion accordion = new Accordion();
+										accordion.setUserData(toolGroup_0);
+										accordion.setId("sideBarAccordion");
+										accordion.setPrefHeight(screenHeight);
+										sideToolsVbox.getChildren().add(accordion);
+
+										processAccordion(toolGroup_0, accordion, null, 0);
+
+										toolGroup_0.setReady(true);
+									} catch (Exception ex) {
+										RcplModel.logError(ex);
+									}
+								}
+
+								Rcpl.UIC().sideBarLoaded(perspective);
+
+								// selectFirstGroup(perspective, useCase, toolGroups, false);
+							}
+						});
+					}
 
 					// ---------- new: sidebar main buttons can also be simple tool buttons
 					// the can be used to open detail panes
@@ -132,9 +227,19 @@ public class RcplSideToolBar implements ISideToolBar {
 					List<Tool> tools = getTools(perspective);
 
 					for (Tool tool : tools) {
-						m04_processMainToolGroupButtons(groupsToolBar, perspective, tool);
-					}
+						IButton b = Rcpl.get().getFactory().createButton(tool);
+						if (!Rcpl.get().isBigDisplay()) {
+							b.setWidth(16);
+							b.setHeight(16);
 
+						} else {
+							b.setWidth(18);
+							b.setHeight(18);
+						}
+						Tooltip toolTip = new Tooltip(tool.getToolTip() != null ? tool.getToolTip() : tool.getName());
+						toolTip.setId("joffice_tooltip");
+						groupsToolBar.getItems().add(b.getNode());
+					}
 				}
 
 				ToolBar n = toolbarRegistry.get(getKey(perspective.getId()));
@@ -156,110 +261,6 @@ public class RcplSideToolBar implements ISideToolBar {
 				RcplModel.logError(ex);
 			}
 		}
-	}
-
-	/**
-	 * 
-	 * 
-	 * @param toolGroups
-	 * @param perspective
-	 * @param startMenu
-	 */
-	private void processPerspectiveToolGroups(ToolBar groupsToolBar, final List<ToolGroup> toolGroups,
-			final Perspective perspective, boolean startMenu) {
-
-		if (toolGroups.isEmpty()) {
-			return;
-		}
-
-		final double screenHeight = Screen.getPrimary().getBounds().getHeight();
-
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-
-				for (ToolGroup toolGroup_0 : toolGroups) {
-
-					// ---------- create the main toolbar button
-
-					IButton b = new RcplButton(toolGroup_0) {
-						@Override
-						public void doAction() {
-							if (toolGroup_0 == activeGroup) {
-								collapseToolPane();
-							} else {
-								showSideTools(toolGroup_0);
-							}
-						}
-
-						@Override
-						protected boolean isImplemented() {
-							return true;
-						};
-					};
-					toolGroup_0.setData(b);
-
-					String url = toolGroup_0.getUrl();
-					String detailPaneClassName = toolGroup_0.getDetailPaneClassName();
-					if (ToolType.NAVIGATOR.equals(toolGroup_0.getType()) ||
-
-							((url == null || "".contentEquals(url))
-									&& (detailPaneClassName == null || "".equals(detailPaneClassName)))) {
-
-						b.disableService();
-					}
-					if (!Rcpl.get().isBigDisplay()) {
-						b.setWidth(16);
-						b.setHeight(16);
-
-					} else {
-						b.setWidth(18);
-						b.setHeight(18);
-					}
-					Tooltip toolTip = new Tooltip(
-							toolGroup_0.getToolTip() != null ? toolGroup_0.getToolTip() : toolGroup_0.getName());
-					toolTip.setId("joffice_tooltip");
-					groupsToolBar.getItems().add(b.getNode());
-
-					if (ToolType.NAVIGATOR.equals(toolGroup_0.getType())) {
-						// navigator type for tool group is allowed
-					} else if (toolGroup_0.getToolGroups().isEmpty() && toolGroup_0.getTools().isEmpty()) {
-						continue;
-					}
-
-					// ---------- create an accordion
-
-					try {
-						VBox sideToolsVbox = new VBox(2);
-						HBox.setHgrow(sideToolsVbox, Priority.ALWAYS);
-						sideToolsVbox.setPrefHeight(3000);
-						toolPaneStackRegistry.put(getKey(perspective.getId(), toolGroup_0), sideToolsVbox);
-
-						sideToolsVbox.setPrefHeight(screenHeight);
-
-						// ---------- accordion -----------
-
-						Accordion accordion = new Accordion();
-						accordion.setUserData(toolGroup_0);
-						accordion.setId("sideBarAccordion");
-						accordion.setPrefHeight(screenHeight);
-						sideToolsVbox.getChildren().add(accordion);
-
-						processAccordion(toolGroup_0, accordion, null, 0);
-
-						toolGroup_0.setReady(true);
-					} catch (Exception ex) {
-						RcplModel.logError(ex);
-					}
-				}
-
-				Rcpl.UIC().sideBarLoaded(perspective);
-
-				// selectFirstGroup(perspective, useCase, toolGroups, false);
-			}
-		});
-
 	}
 
 	/**
@@ -305,108 +306,15 @@ public class RcplSideToolBar implements ISideToolBar {
 
 		// ---------- process all groups ---------------------------------------
 
-		for (ToolGroup accordionGroup : toolGroup.getToolGroups()) {
-			if (accordionGroup.getGroupType() == null
-					|| GroupType.ACCORDIONITEM.equals(accordionGroup.getGroupType())) {
-				processAccordion(accordionGroup, accordion, titlePane, hierarchy + 1);
-			}
-		}
-
-	}
-
-	/**
-	 * @param toolGroupToolBar
-	 * @param perspectiveType
-	 * @param toolGroup
-	 */
-	private void m04_processMainToolGroupButtons(final ToolBar toolGroupToolBar, final Perspective perspectiveType,
-			final Tool tool) {
-		IButton b = Rcpl.get().getFactory().createButton(tool);
-		if (!Rcpl.get().isBigDisplay()) {
-			b.setWidth(16);
-			b.setHeight(16);
-
-		} else {
-			b.setWidth(18);
-			b.setHeight(18);
-		}
-		Tooltip toolTip = new Tooltip(tool.getToolTip() != null ? tool.getToolTip() : tool.getName());
-		toolTip.setId("joffice_tooltip");
-		toolGroupToolBar.getItems().add(b.getNode());
-	}
-
-	/**
-	 * @param model
-	 * @param pane
-	 */
-	private void processTool(final Tool model, Pane pane) {
-
-		try {
-			String image = model.getImage();
-			if (image == null || image.length() == 0) {
-				image = model.getId();
-			}
-
-			final ITool tool = Rcpl.get().getToolFactory().createTool(model);
-			final ITool nodeCreated = tool;
-
-			if (tool != null) {
-				if (pane instanceof GridPane) {
-					int x = model.getGridX();
-					int y = model.getGridY();
-					int spanX = model.getSpanX();
-					int spanY = model.getSpanY();
-					boolean hGrow = model.isHGrow();
-					boolean vGrow = model.isVGrow();
-					double width = model.getWidth();
-
-					if (model.isLabeled()) {
-						Label label = new Label(model.getName());
-						((GridPane) pane).add(label, x, y, 1, 1);
-						x++;
-					}
-
-					try {
-						Node n = tool.getNode();
-						if (hGrow) {
-							GridPane.setHgrow(n, Priority.ALWAYS);
-						}
-						if (vGrow) {
-							GridPane.setVgrow(n, Priority.ALWAYS);
-						}
-						if (width > 0) {
-							if (n instanceof Control) {
-								((Control) n).setPrefWidth(width);
-							}
-						}
-						((GridPane) pane).add(n, x, y, spanX, spanY);
-
-					} catch (Exception ex) {
-						RcplModel.logError(ex);
-					}
-					GridPane.setMargin(tool.getNode(), new Insets(5));
-				} else {
-					FlowPane.setMargin(tool.getNode(), new Insets(3));
-					try {
-						pane.getChildren().add(tool.getNode());
-					} catch (Exception ex) {
-						RcplModel.logError(ex);
-					}
+		if (!toolGroup.isNotImplemented()) {
+			for (ToolGroup accordionGroup : toolGroup.getToolGroups()) {
+				if (accordionGroup.getGroupType() == null
+						|| GroupType.ACCORDIONITEM.equals(accordionGroup.getGroupType())) {
+					processAccordion(accordionGroup, accordion, titlePane, hierarchy + 1);
 				}
-				tool.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent arg0) {
-						if (nodeCreated instanceof ListView<?>) {
-							if (arg0.getClickCount() == 2) {
-								Rcpl.get().service().execute(Rcpl.get().getFactory().createCommand(tool));
-							}
-						}
-					}
-				});
 			}
-		} catch (Exception ex) {
-			RcplModel.logError(ex);
 		}
+
 	}
 
 	/**
@@ -419,6 +327,9 @@ public class RcplSideToolBar implements ISideToolBar {
 
 		try {
 
+			if (toolGroup.isNotImplemented()) {
+				return;
+			}
 			final StackPane stackPane = new StackPane();
 
 			AccordionColorTitlePane titlePane = new AccordionColorTitlePane(this, toolGroup, stackPane, hierarchy,
@@ -522,8 +433,14 @@ public class RcplSideToolBar implements ISideToolBar {
 					} else {
 						pane.getChildren().add(gp);
 					}
+					ToggleGroup tg = null;
 					for (Tool t : g.getTools()) {
-						processTool(t, gp);
+						if (t.isToggleGroup()) {
+							if (tg == null) {
+								tg = new ToggleGroup();
+							}
+						}
+						processTool(t, gp, tg);
 					}
 				}
 
@@ -533,8 +450,99 @@ public class RcplSideToolBar implements ISideToolBar {
 				}
 			}
 
+			ToggleGroup tg = null;
 			for (Tool tool : toolGroup.getTools()) {
-				processTool(tool, pane);
+				if (tool.isToggleGroup()) {
+					if (tg == null) {
+						tg = new ToggleGroup();
+					}
+				}
+				processTool(tool, pane, tg);
+			}
+		} catch (Exception ex) {
+			RcplModel.logError(ex);
+		}
+	}
+
+	/**
+	 * @param model
+	 * @param pane
+	 */
+	private void processTool(final Tool model, Pane pane, ToggleGroup tg) {
+
+		try {
+			String image = model.getImage();
+			if (image == null || image.length() == 0) {
+				image = model.getId();
+			}
+
+			final ITool tool = Rcpl.get().getToolFactory().createTool(model);
+			final ITool nodeCreated = tool;
+
+			if (tool != null) {
+
+				if (tool.getModel().isToggleGroup()) {
+					Node n = tool.getNode();
+					if (n instanceof ToggleButton) {
+						((ToggleButton) n).setToggleGroup(tg);
+					}
+					if (n instanceof RadioButton) {
+						((RadioButton) n).setToggleGroup(tg);
+					}
+				}
+
+				if (pane instanceof GridPane) {
+					int x = model.getGridX();
+					int y = model.getGridY();
+					int spanX = model.getSpanX();
+					int spanY = model.getSpanY();
+					boolean hGrow = model.isHGrow();
+					boolean vGrow = model.isVGrow();
+					double width = model.getWidth();
+
+					if (model.isLabeled()) {
+						Label label = new Label(model.getName());
+						((GridPane) pane).add(label, x, y, 1, 1);
+						x++;
+					}
+
+					try {
+						Node n = tool.getNode();
+						if (hGrow) {
+							GridPane.setHgrow(n, Priority.ALWAYS);
+						}
+						if (vGrow) {
+							GridPane.setVgrow(n, Priority.ALWAYS);
+						}
+						if (width > 0) {
+							if (n instanceof Control) {
+								((Control) n).setPrefWidth(width);
+							}
+						}
+						((GridPane) pane).add(n, x, y, spanX, spanY);
+
+					} catch (Exception ex) {
+						RcplModel.logError(ex);
+					}
+					GridPane.setMargin(tool.getNode(), new Insets(5));
+				} else {
+					FlowPane.setMargin(tool.getNode(), new Insets(3));
+					try {
+						pane.getChildren().add(tool.getNode());
+					} catch (Exception ex) {
+						RcplModel.logError(ex);
+					}
+				}
+				tool.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent arg0) {
+						if (nodeCreated instanceof ListView<?>) {
+							if (arg0.getClickCount() == 2) {
+								Rcpl.get().service().execute(Rcpl.get().getFactory().createCommand(tool));
+							}
+						}
+					}
+				});
 			}
 		} catch (Exception ex) {
 			RcplModel.logError(ex);

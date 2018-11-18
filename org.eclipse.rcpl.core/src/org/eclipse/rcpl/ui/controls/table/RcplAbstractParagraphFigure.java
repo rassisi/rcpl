@@ -619,10 +619,4 @@ public class RcplAbstractParagraphFigure implements IParagraphFigure {
 
 	}
 
-	@Override
-	public void updateTools() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

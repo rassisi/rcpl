@@ -200,6 +200,7 @@ public class RcplUic implements IRcplUic {
 
 	private List<String> recentDocumentFiles = new ArrayList<String>();
 
+	@Override
 	public void dispose() {
 		if (caretTimeline != null) {
 			caretTimeline.stop();
@@ -2362,25 +2363,25 @@ public class RcplUic implements IRcplUic {
 		Rcpl.get().getEditorListeners().add(new RcplEditorListenerAdapter() {
 			@Override
 			public boolean update(final RcplEvent event) {
-				if (event.getEditMode() != null) {
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-							statusText.setText(event.getEditMode().name());
-						}
-					});
-
-				} else if (event.getMessage() != null) {
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-							statusText.setText(event.getMessage());
-						}
-					});
-
-				}
+//				if (event.getEditMode() != null) {
+//					Platform.runLater(new Runnable() {
+//
+//						@Override
+//						public void run() {
+//							statusText.setText(event.getEditMode().name());
+//						}
+//					});
+//
+//				} else if (event.getMessage() != null) {
+//					Platform.runLater(new Runnable() {
+//
+//						@Override
+//						public void run() {
+//							statusText.setText(event.getMessage());
+//						}
+//					});
+//
+//				}
 				return true;
 
 			}
@@ -2399,6 +2400,7 @@ public class RcplUic implements IRcplUic {
 		return null;
 	}
 
+	@Override
 	public ITool findTool(ToolType type) {
 		for (IEditorListener l : Rcpl.get().getEditorListeners()) {
 
@@ -2412,6 +2414,7 @@ public class RcplUic implements IRcplUic {
 		return null;
 	}
 
+	@Override
 	public ITool findTool(ToolType type, String id) {
 		for (IEditorListener l : Rcpl.get().getEditorListeners()) {
 			if (l instanceof ITool) {
@@ -2548,6 +2551,7 @@ public class RcplUic implements IRcplUic {
 		return false;
 	}
 
+	@Override
 	public void updateTabText() {
 		if (getEditor() != null && getEditor().getDocument() != null) {
 			updateTabText(getEditor().getDocument().getFile().getName(), getEditor().getDocument().isDirty());
@@ -2573,6 +2577,7 @@ public class RcplUic implements IRcplUic {
 
 	}
 
+	@Override
 	public BorderPane getNode() {
 		return borderPane;
 	}

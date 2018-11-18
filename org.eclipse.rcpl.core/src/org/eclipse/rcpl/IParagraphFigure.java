@@ -99,6 +99,4 @@ public interface IParagraphFigure extends ILayoutFigure {
 
 	void updateSelection();
 
-	void updateTools();
-
 }
