@@ -2433,10 +2433,15 @@ public class RcplUic implements IRcplUic {
 				return;
 			}
 			TabInfo tabInfo = getTabInfo(tab);
-			if (tabInfo.getPerspective() == null) {
+			Perspective persp = null;
+			tabInfo.getPerspective();
+			if (persp == null && tabInfo.getEditor() != null) {
+				persp = tabInfo.getEditor().getDocument().getDefaultPerspective();
+			}
+			if (persp == null) {
 				return;
 			}
-			showPerspective(tabInfo.getPerspective());
+			showPerspective(persp);
 
 //			if (getBrowser() != null) {
 //				urlAddressTool.setText(getBrowser().getEngine().getLocation());
