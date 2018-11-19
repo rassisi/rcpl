@@ -203,4 +203,15 @@ public enum EnPageSize {
 		}
 		return null;
 	}
+
+	public double getWidthPixel() {
+		double cmw = getCmWidth();
+		return RcplConversion.millimeterToPixel(cmw * 10);
+	}
+
+	public double getHeightPixel() {
+		double cmw = getCmHeight();
+		return RcplConversion.millimeterToPixel(cmw * 10);
+	}
+
 }

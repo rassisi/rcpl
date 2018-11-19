@@ -538,7 +538,7 @@ public class RcplSideToolBar implements ISideToolBar {
 					public void handle(MouseEvent arg0) {
 						if (nodeCreated instanceof ListView<?>) {
 							if (arg0.getClickCount() == 2) {
-								Rcpl.get().service().execute(Rcpl.get().getFactory().createCommand(tool));
+								Rcpl.get().service().execute(Rcpl.get().getFactory().createCommand(tool, null));
 							}
 						}
 					}

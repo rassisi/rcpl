@@ -193,7 +193,7 @@ public class RcplService extends RcplBaseService implements IService {
 //	}
 
 	public Object execute(ITool tool) {
-		ICommand command = Rcpl.get().getFactory().createCommand(tool);
+		ICommand command = Rcpl.get().getFactory().createCommand(tool, null);
 		IService service = getService(command);
 		try {
 			return service.doExecute(command);

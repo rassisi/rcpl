@@ -11,6 +11,15 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
  */
 public interface IStyle {
 
+	// ---------- new property2 --- see JOStyle for implementation
+	// TODO: change all properties to this concept
+
+	IColor getHighlightColor();
+
+	void setHighlightColor(IColor color);
+
+	// ------------------------------------------------------
+
 	IEmuProperty2 getCellMarginLeft();
 
 	void setCellMarginLeft(IEmuProperty2 cellMarginLeft);;

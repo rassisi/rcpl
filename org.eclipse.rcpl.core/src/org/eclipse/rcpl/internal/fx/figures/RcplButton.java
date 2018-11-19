@@ -87,7 +87,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 		if (executeService) {
 			try {
 				getModel().setData(RcplButton.this);
-				ICommand command = Rcpl.get().getFactory().createCommand(RcplButton.this);
+				ICommand command = Rcpl.get().getFactory().createCommand(RcplButton.this, null);
 				Rcpl.get().service().execute(command);
 			} catch (Throwable ex) {
 				RcplModel.logError(ex);
@@ -289,7 +289,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 				found = true;
 				select = TextAlignment.RIGHT == alignment;
 				break;
-			case backgroundColor:
+			case background_color:
 				break;
 			case bold:
 				found = true;

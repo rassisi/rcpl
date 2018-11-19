@@ -34,4 +34,6 @@ public interface IColor {
 
 	IColor copy();
 
+	String toCss();
+
 }

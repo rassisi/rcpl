@@ -1,6 +1,7 @@
 package org.eclipse.rcpl.ui.controls.table;
 
 import org.eclipse.rcpl.DelayedExecution;
+import org.eclipse.rcpl.IColor;
 import org.eclipse.rcpl.IColorProperty;
 import org.eclipse.rcpl.IParagraphFigure;
 
@@ -81,18 +82,22 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 		return text;
 	}
 
+	@Override
 	public int getColumn() {
 		return column;
 	}
 
+	@Override
 	public void setColumn(int column) {
 		this.column = column;
 	}
 
+	@Override
 	public int getRow() {
 		return row;
 	}
 
+	@Override
 	public void setRow(int row) {
 		this.row = row;
 	}
@@ -110,6 +115,12 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 	@Override
 	public boolean isEmpty() {
 		return false;
+	}
+
+	@Override
+	public void applyHighlight(int start, int length, IColor color) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

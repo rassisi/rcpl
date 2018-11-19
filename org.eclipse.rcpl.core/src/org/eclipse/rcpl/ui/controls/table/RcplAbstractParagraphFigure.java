@@ -619,4 +619,16 @@ public class RcplAbstractParagraphFigure implements IParagraphFigure {
 
 	}
 
+	@Override
+	public void replaceSelectedText(String replacment) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void changeCase() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

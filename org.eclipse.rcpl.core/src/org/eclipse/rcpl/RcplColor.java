@@ -139,4 +139,9 @@ public class RcplColor implements IColor {
 		return IColor.WHITE.getFx().equals(getFx());
 	}
 
+	@Override
+	public String toCss() {
+		return "rgb(" + rgb.red + ", " + rgb.green + ", " + rgb.blue + ")";
+	}
+
 }

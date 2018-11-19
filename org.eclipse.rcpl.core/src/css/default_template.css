@@ -1365,3 +1365,6 @@
  -fx-font: bold 24.0pt "Arial";
 }
 
+.highlight-text {
+	-fx-fill:red;
+}

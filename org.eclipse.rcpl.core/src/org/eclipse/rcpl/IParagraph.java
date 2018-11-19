@@ -50,6 +50,8 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	void applyForeground(int start, int length, IColor color);
 
+	void applyHighlight(int start, int length, IColor color);
+
 	void applyHeight(int start, int length, double height);
 
 	void applyItalic(int start, int length, boolean italic);
@@ -120,8 +122,10 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	boolean isAllSelected();
 
+	@Override
 	boolean isPageBreakBefore();
 
+	@Override
 	boolean isStartNewSection();
 
 	boolean selectAll();

@@ -13,6 +13,10 @@ import javafx.scene.text.TextFlow;
  */
 public interface IParagraphFigure extends ILayoutFigure {
 
+	public void replaceSelectedText(String replacment);
+
+	public void changeCase();
+
 	void updateLineSpacing();
 
 	void updateBorder();

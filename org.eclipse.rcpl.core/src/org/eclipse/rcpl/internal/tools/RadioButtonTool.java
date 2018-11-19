@@ -63,7 +63,7 @@ public class RadioButtonTool extends AbstractRcplTool {
 			boolean select = false;
 			boolean found = false;
 			switch (cmd) {
-			case backgroundColor:
+			case background_color:
 				break;
 
 			default:

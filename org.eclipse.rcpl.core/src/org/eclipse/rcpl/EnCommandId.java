@@ -48,9 +48,41 @@ public enum EnCommandId {
 
 	align_text_justified(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
 
+	align_horizontal_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Horizontal Center", null),
+
+	align_vertical_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	distribute_left(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	distribute_horizontal_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	distribute_right(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	distribute_horizontal_gaps(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	distribute_random(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	distribute_top(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	distribute_vertical_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	distribute_bottom(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	distribute_vertical_gaps(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	rotate_90_anticlockise(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	rotate_90_clockwise(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	flip_horozontal(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
+	flip_vertical(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+
 	increase_indent(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
 
 	decrease_indent(EnServiceId.PARAGRAPH_SERVICE, null, null, "Align Justified", null),
+
+	change_case(EnServiceId.PARAGRAPH_SERVICE, null, null, "Align Justified", null),
 
 	bullets(EnServiceId.PARAGRAPH_SERVICE, null, "", "Bullets", null),
 
@@ -80,7 +112,7 @@ public enum EnCommandId {
 
 	foregroundColor(EnServiceId.COLOR_SERVICE, "color", "", "Foreground Color", null),
 
-	backgroundColor(EnServiceId.COLOR_SERVICE, "color", "", "Background Color", null),
+	background_color(EnServiceId.COLOR_SERVICE, "color", "", "Background Color", null),
 
 	fontName(EnServiceId.PARAGRAPH_SERVICE, null, "", "Font Name", null),
 

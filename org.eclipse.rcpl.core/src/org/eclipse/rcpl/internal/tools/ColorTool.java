@@ -39,7 +39,7 @@ public class ColorTool extends AbstractRcplTool<Color> {
 			@Override
 			public void handle(ActionEvent event) {
 				getModel().setData(ColorTool.this);
-				Rcpl.get().getFactory().createCommand(ColorTool.this).execute();
+				Rcpl.get().getFactory().createCommand(ColorTool.this, null).execute();
 			}
 		});
 
@@ -54,9 +54,13 @@ public class ColorTool extends AbstractRcplTool<Color> {
 	public Node createNode() {
 		String f = getModel().getFormat();
 		if (f != null && f.length() > 0) {
-			Color c = Color.web(f);
-			if (c != null) {
-				return new ColorPicker(c);
+			try {
+				Color c = Color.web(f);
+				if (c != null) {
+					return new ColorPicker(c);
+				}
+			} catch (Exception ex) {
+				// ignore invalid color formats
 			}
 		}
 		return new ColorPicker();

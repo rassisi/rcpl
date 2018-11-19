@@ -114,7 +114,7 @@ public class SplitMenuTool extends AbstractRcplTool {
 		try {
 			Object o = getNode().getUserData();
 			getModel().setData(SplitMenuTool.this);
-			Rcpl.get().getFactory().createCommand(SplitMenuTool.this, o).execute();
+			Rcpl.get().getFactory().createCommand(SplitMenuTool.this, null, o).execute();
 		} catch (Throwable ex) {
 			RcplModel.logError(ex);
 		}
