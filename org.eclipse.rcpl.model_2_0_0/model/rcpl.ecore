@@ -40,6 +40,7 @@
     <eLiterals name="LINE_DASHES" value="35"/>
     <eLiterals name="LINE_ARROWS" value="36"/>
     <eLiterals name="PATTERN" value="37"/>
+    <eLiterals name="HIGHLIGHTCOLOR" value="38"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FontStyles">
     <eLiterals name="NORMAL" value="2"/>

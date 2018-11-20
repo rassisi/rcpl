@@ -114,6 +114,8 @@ public enum EnCommandId {
 
 	background_color(EnServiceId.COLOR_SERVICE, "color", "", "Background Color", null),
 
+	highlight_color(EnServiceId.COLOR_SERVICE, "color", "", "Background Color", null),
+
 	fontName(EnServiceId.PARAGRAPH_SERVICE, null, "", "Font Name", null),
 
 	fontSize(EnServiceId.PARAGRAPH_SERVICE, null, "", "Font Size", null),

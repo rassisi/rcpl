@@ -16,6 +16,8 @@ public interface IStyle {
 
 	IColor getHighlightColor();
 
+	void setHighlightColor(ILayoutObject layoutObject, CTR ctr);
+
 	void setHighlightColor(IColor color);
 
 	// ------------------------------------------------------

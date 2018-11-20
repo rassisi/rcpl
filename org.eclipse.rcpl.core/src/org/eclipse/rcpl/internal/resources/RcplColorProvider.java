@@ -13,6 +13,7 @@ package org.eclipse.rcpl.internal.resources;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.eclipse.rcpl.IColor;
@@ -50,6 +51,165 @@ import javafx.scene.paint.Color;
 public class RcplColorProvider implements IColorProvider {
 
 	public static IColorProvider INSTANCE = new RcplColorProvider();
+
+	private static Map<String, Color> colors = new HashMap<String, Color>(256);
+	private static Map<Color, String> colorNames = new HashMap<Color, String>(256);
+
+	static {
+		colors.put("aliceblue", Color.ALICEBLUE);
+		colors.put("antiquewhite", Color.ANTIQUEWHITE);
+		colors.put("aqua", Color.AQUA);
+		colors.put("aquamarine", Color.AQUAMARINE);
+		colors.put("azure", Color.AZURE);
+		colors.put("beige", Color.BEIGE);
+		colors.put("bisque", Color.BISQUE);
+		colors.put("black", Color.BLACK);
+		colors.put("blanchedalmond", Color.BLANCHEDALMOND);
+		colors.put("blue", Color.BLUE);
+		colors.put("blueviolet", Color.BLUEVIOLET);
+		colors.put("brown", Color.BROWN);
+		colors.put("burlywood", Color.BURLYWOOD);
+		colors.put("cadetblue", Color.CADETBLUE);
+		colors.put("chartreuse", Color.CHARTREUSE);
+		colors.put("chocolate", Color.CHOCOLATE);
+		colors.put("coral", Color.CORAL);
+		colors.put("cornflowerblue", Color.CORNFLOWERBLUE);
+		colors.put("cornsilk", Color.CORNSILK);
+		colors.put("crimson", Color.CRIMSON);
+		colors.put("cyan", Color.CYAN);
+		colors.put("darkblue", Color.DARKBLUE);
+		colors.put("darkcyan", Color.DARKCYAN);
+		colors.put("darkgoldenrod", Color.DARKGOLDENROD);
+		colors.put("darkgray", Color.DARKGRAY);
+		colors.put("darkgreen", Color.DARKGREEN);
+		colors.put("darkgrey", Color.DARKGREY);
+		colors.put("darkkhaki", Color.DARKKHAKI);
+		colors.put("darkmagenta", Color.DARKMAGENTA);
+		colors.put("darkolivegreen", Color.DARKOLIVEGREEN);
+		colors.put("darkorange", Color.DARKORANGE);
+		colors.put("darkorchid", Color.DARKORCHID);
+		colors.put("darkred", Color.DARKRED);
+		colors.put("darksalmon", Color.DARKSALMON);
+		colors.put("darkseagreen", Color.DARKSEAGREEN);
+		colors.put("darkslateblue", Color.DARKSLATEBLUE);
+		colors.put("darkslategray", Color.DARKSLATEGRAY);
+		colors.put("darkslategrey", Color.DARKSLATEGREY);
+		colors.put("darkturquoise", Color.DARKTURQUOISE);
+		colors.put("darkviolet", Color.DARKVIOLET);
+		colors.put("deeppink", Color.DEEPPINK);
+		colors.put("deepskyblue", Color.DEEPSKYBLUE);
+		colors.put("dimgray", Color.DIMGRAY);
+		colors.put("dimgrey", Color.DIMGREY);
+		colors.put("dodgerblue", Color.DODGERBLUE);
+		colors.put("firebrick", Color.FIREBRICK);
+		colors.put("floralwhite", Color.FLORALWHITE);
+		colors.put("forestgreen", Color.FORESTGREEN);
+		colors.put("fuchsia", Color.FUCHSIA);
+		colors.put("gainsboro", Color.GAINSBORO);
+		colors.put("ghostwhite", Color.GHOSTWHITE);
+		colors.put("gold", Color.GOLD);
+		colors.put("goldenrod", Color.GOLDENROD);
+		colors.put("gray", Color.GRAY);
+		colors.put("green", Color.GREEN);
+		colors.put("greenyellow", Color.GREENYELLOW);
+		colors.put("grey", Color.GREY);
+		colors.put("honeydew", Color.HONEYDEW);
+		colors.put("hotpink", Color.HOTPINK);
+		colors.put("indianred", Color.INDIANRED);
+		colors.put("indigo", Color.INDIGO);
+		colors.put("ivory", Color.IVORY);
+		colors.put("khaki", Color.KHAKI);
+		colors.put("lavender", Color.LAVENDER);
+		colors.put("lavenderblush", Color.LAVENDERBLUSH);
+		colors.put("lawngreen", Color.LAWNGREEN);
+		colors.put("lemonchiffon", Color.LEMONCHIFFON);
+		colors.put("lightblue", Color.LIGHTBLUE);
+		colors.put("lightcoral", Color.LIGHTCORAL);
+		colors.put("lightcyan", Color.LIGHTCYAN);
+		colors.put("lightgoldenrodyellow", Color.LIGHTGOLDENRODYELLOW);
+		colors.put("lightgray", Color.LIGHTGRAY);
+		colors.put("lightgreen", Color.LIGHTGREEN);
+		colors.put("lightgrey", Color.LIGHTGREY);
+		colors.put("lightpink", Color.LIGHTPINK);
+		colors.put("lightsalmon", Color.LIGHTSALMON);
+		colors.put("lightseagreen", Color.LIGHTSEAGREEN);
+		colors.put("lightskyblue", Color.LIGHTSKYBLUE);
+		colors.put("lightslategray", Color.LIGHTSLATEGRAY);
+		colors.put("lightslategrey", Color.LIGHTSLATEGREY);
+		colors.put("lightsteelblue", Color.LIGHTSTEELBLUE);
+		colors.put("lightyellow", Color.LIGHTYELLOW);
+		colors.put("lime", Color.LIME);
+		colors.put("limegreen", Color.LIMEGREEN);
+		colors.put("linen", Color.LINEN);
+		colors.put("magenta", Color.MAGENTA);
+		colors.put("maroon", Color.MAROON);
+		colors.put("mediumaquamarine", Color.MEDIUMAQUAMARINE);
+		colors.put("mediumblue", Color.MEDIUMBLUE);
+		colors.put("mediumorchid", Color.MEDIUMORCHID);
+		colors.put("mediumpurple", Color.MEDIUMPURPLE);
+		colors.put("mediumseagreen", Color.MEDIUMSEAGREEN);
+		colors.put("mediumslateblue", Color.MEDIUMSLATEBLUE);
+		colors.put("mediumspringgreen", Color.MEDIUMSPRINGGREEN);
+		colors.put("mediumturquoise", Color.MEDIUMTURQUOISE);
+		colors.put("mediumvioletred", Color.MEDIUMVIOLETRED);
+		colors.put("midnightblue", Color.MIDNIGHTBLUE);
+		colors.put("mintcream", Color.MINTCREAM);
+		colors.put("mistyrose", Color.MISTYROSE);
+		colors.put("moccasin", Color.MOCCASIN);
+		colors.put("navajowhite", Color.NAVAJOWHITE);
+		colors.put("navy", Color.NAVY);
+		colors.put("oldlace", Color.OLDLACE);
+		colors.put("olive", Color.OLIVE);
+		colors.put("olivedrab", Color.OLIVEDRAB);
+		colors.put("orange", Color.ORANGE);
+		colors.put("orangered", Color.ORANGERED);
+		colors.put("orchid", Color.ORCHID);
+		colors.put("palegoldenrod", Color.PALEGOLDENROD);
+		colors.put("palegreen", Color.PALEGREEN);
+		colors.put("paleturquoise", Color.PALETURQUOISE);
+		colors.put("palevioletred", Color.PALEVIOLETRED);
+		colors.put("papayawhip", Color.PAPAYAWHIP);
+		colors.put("peachpuff", Color.PEACHPUFF);
+		colors.put("peru", Color.PERU);
+		colors.put("pink", Color.PINK);
+		colors.put("plum", Color.PLUM);
+		colors.put("powderblue", Color.POWDERBLUE);
+		colors.put("purple", Color.PURPLE);
+		colors.put("red", Color.RED);
+		colors.put("rosybrown", Color.ROSYBROWN);
+		colors.put("royalblue", Color.ROYALBLUE);
+		colors.put("saddlebrown", Color.SADDLEBROWN);
+		colors.put("salmon", Color.SALMON);
+		colors.put("sandybrown", Color.SANDYBROWN);
+		colors.put("seagreen", Color.SEAGREEN);
+		colors.put("seashell", Color.SEASHELL);
+		colors.put("sienna", Color.SIENNA);
+		colors.put("silver", Color.SILVER);
+		colors.put("skyblue", Color.SKYBLUE);
+		colors.put("slateblue", Color.SLATEBLUE);
+		colors.put("slategray", Color.SLATEGRAY);
+		colors.put("slategrey", Color.SLATEGREY);
+		colors.put("snow", Color.SNOW);
+		colors.put("springgreen", Color.SPRINGGREEN);
+		colors.put("steelblue", Color.STEELBLUE);
+		colors.put("tan", Color.TAN);
+		colors.put("teal", Color.TEAL);
+		colors.put("thistle", Color.THISTLE);
+		colors.put("tomato", Color.TOMATO);
+		colors.put("transparent", Color.TRANSPARENT);
+		colors.put("turquoise", Color.TURQUOISE);
+		colors.put("violet", Color.VIOLET);
+		colors.put("wheat", Color.WHEAT);
+		colors.put("white", Color.WHITE);
+		colors.put("whitesmoke", Color.WHITESMOKE);
+		colors.put("yellow", Color.YELLOW);
+		colors.put("yellowgreen", Color.YELLOWGREEN);
+
+		for (String key : colors.keySet()) {
+			Color c = colors.get(key);
+			colorNames.put(c, key);
+		}
+	}
 
 	/**
 	 * @author ramin
@@ -1635,4 +1795,176 @@ public class RcplColorProvider implements IColorProvider {
 		return null;
 	}
 
+	public static Color getColor(STHighlightColor.Enum hc) {
+
+		if (hc == STHighlightColor.BLACK) {
+			return Color.BLACK;
+		}
+		if (hc == STHighlightColor.BLUE) {
+			return Color.BLUE;
+		}
+		if (hc == STHighlightColor.CYAN) {
+			return Color.CYAN;
+		}
+		if (hc == STHighlightColor.DARK_BLUE) {
+			return Color.DARKBLUE;
+		}
+		if (hc == STHighlightColor.DARK_CYAN) {
+			return Color.DARKCYAN;
+		}
+		if (hc == STHighlightColor.DARK_GRAY) {
+			return Color.DARKGREY;
+		}
+		if (hc == STHighlightColor.DARK_GREEN) {
+			return Color.DARKGREEN;
+		}
+		if (hc == STHighlightColor.DARK_MAGENTA) {
+			return Color.DARKMAGENTA;
+		}
+		if (hc == STHighlightColor.DARK_RED) {
+			return Color.DARKRED;
+		}
+		if (hc == STHighlightColor.DARK_YELLOW) {
+			return Color.GOLDENROD;
+		}
+		if (hc == STHighlightColor.GREEN) {
+			return Color.GREEN;
+		}
+		if (hc == STHighlightColor.LIGHT_GRAY) {
+			return Color.LIGHTGRAY;
+		}
+		if (hc == STHighlightColor.MAGENTA) {
+			return Color.MAGENTA;
+		}
+		if (hc == STHighlightColor.NONE) {
+			return Color.TRANSPARENT;
+		}
+		if (hc == STHighlightColor.RED) {
+			return Color.RED;
+		}
+		if (hc == STHighlightColor.WHITE) {
+			return Color.WHITE;
+		}
+		if (hc == STHighlightColor.YELLOW) {
+			return Color.YELLOW;
+		}
+
+		return Color.RED;
+
+	}
+
+	public static List<Color> getHighlightColors() {
+		List<Color> highlightColors = new ArrayList<Color>();
+		highlightColors.add(getColor(STHighlightColor.BLACK));
+		highlightColors.add(getColor(STHighlightColor.BLUE));
+		highlightColors.add(getColor(STHighlightColor.CYAN));
+		highlightColors.add(getColor(STHighlightColor.DARK_BLUE));
+		highlightColors.add(getColor(STHighlightColor.DARK_CYAN));
+		highlightColors.add(getColor(STHighlightColor.DARK_GRAY));
+		highlightColors.add(getColor(STHighlightColor.DARK_GREEN));
+		highlightColors.add(getColor(STHighlightColor.DARK_MAGENTA));
+		highlightColors.add(getColor(STHighlightColor.DARK_RED));
+		highlightColors.add(getColor(STHighlightColor.DARK_YELLOW));
+		highlightColors.add(getColor(STHighlightColor.GREEN));
+		highlightColors.add(getColor(STHighlightColor.LIGHT_GRAY));
+		highlightColors.add(getColor(STHighlightColor.MAGENTA));
+		highlightColors.add(getColor(STHighlightColor.NONE));
+		highlightColors.add(getColor(STHighlightColor.RED));
+		highlightColors.add(getColor(STHighlightColor.WHITE));
+		highlightColors.add(getColor(STHighlightColor.YELLOW));
+
+		return highlightColors;
+	}
+
+	public static STHighlightColor.Enum getColor(Color hc) {
+
+		if (hc == Color.BLACK) {
+			return STHighlightColor.BLACK;
+		}
+		if (hc == Color.BLUE) {
+			return STHighlightColor.BLUE;
+		}
+		if (hc == Color.CYAN) {
+			return STHighlightColor.CYAN;
+		}
+		if (hc == Color.DARKBLUE) {
+			return STHighlightColor.DARK_BLUE;
+		}
+		if (hc == Color.DARKCYAN) {
+			return STHighlightColor.DARK_CYAN;
+		}
+		if (hc == Color.DARKGREY) {
+			return STHighlightColor.DARK_GRAY;
+		}
+		if (hc == Color.DARKGREEN) {
+			return STHighlightColor.DARK_GREEN;
+		}
+		if (hc == Color.DARKMAGENTA) {
+			return STHighlightColor.DARK_MAGENTA;
+		}
+		if (hc == Color.DARKRED) {
+			return STHighlightColor.DARK_RED;
+		}
+		if (hc.equals(Color.GOLDENROD)) {
+			return STHighlightColor.DARK_YELLOW;
+		}
+		if (hc == Color.GREEN) {
+			return STHighlightColor.GREEN;
+		}
+		if (hc == Color.LIGHTGRAY) {
+			return STHighlightColor.LIGHT_GRAY;
+		}
+		if (hc == Color.MAGENTA) {
+			return STHighlightColor.MAGENTA;
+		}
+		if (hc == Color.TRANSPARENT) {
+			return STHighlightColor.NONE;
+		}
+		if (hc == Color.RED) {
+			return STHighlightColor.RED;
+		}
+		if (hc == Color.WHITE) {
+			return STHighlightColor.WHITE;
+		}
+		if (hc == Color.YELLOW) {
+			return STHighlightColor.YELLOW;
+		}
+
+		return null;
+
+	}
+
+	public static String[][] getHighlightColorPalette() {
+		return getColorToPalette(getHighlightColors());
+	}
+
+	public static String[][] getColorToPalette(List<Color> colorList) {
+		String[][] result = new String[colorList.size()][2];
+		int index = 0;
+		for (String[] strings : result) {
+			Color color = colorList.get(index);
+			strings[0] = colorNames.get(color);
+			strings[1] = getColorHex(color);
+
+			index++;
+		}
+		return result;
+	}
+
+	public static String getColorHex(Color color) {
+		String s = "#" + color.toString().substring(2, color.toString().length() - 2);
+		return s;
+	}
+
+	public static String getColorName(Color color) {
+		String s = color.toString();
+		return s;
+	}
+
+//	public static void main(String[] args) {
+//		List<Color> hl = getHighlightColors();
+//		String[][] result = getColorToPalette(hl);
+//
+//		System.out.println();
+//	}
 }

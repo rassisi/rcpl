@@ -52,6 +52,7 @@
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/LINE_DASHES"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/LINE_ARROWS"/>
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/PATTERN"/>
+      <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//ToolType/HIGHLIGHTCOLOR"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="rcpl.ecore#//FontStyles">
       <genEnumLiterals ecoreEnumLiteral="rcpl.ecore#//FontStyles/NORMAL"/>

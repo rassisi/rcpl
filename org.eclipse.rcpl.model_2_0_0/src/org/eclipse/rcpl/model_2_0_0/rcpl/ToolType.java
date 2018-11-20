@@ -382,7 +382,15 @@ public enum ToolType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PATTERN(37, "PATTERN", "PATTERN");
+	PATTERN(37, "PATTERN", "PATTERN"), /**
+	 * The '<em><b>HIGHLIGHTCOLOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #HIGHLIGHTCOLOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	HIGHLIGHTCOLOR(38, "HIGHLIGHTCOLOR", "HIGHLIGHTCOLOR");
 
 	/**
 	 * The '<em><b>BUTTON</b></em>' literal value.
@@ -955,6 +963,21 @@ public enum ToolType implements Enumerator {
 	public static final int PATTERN_VALUE = 37;
 
 	/**
+	 * The '<em><b>HIGHLIGHTCOLOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>HIGHLIGHTCOLOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #HIGHLIGHTCOLOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HIGHLIGHTCOLOR_VALUE = 38;
+
+	/**
 	 * An array of all the '<em><b>Tool Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1000,6 +1023,7 @@ public enum ToolType implements Enumerator {
 			LINE_DASHES,
 			LINE_ARROWS,
 			PATTERN,
+			HIGHLIGHTCOLOR,
 		};
 
 	/**
@@ -1094,6 +1118,7 @@ public enum ToolType implements Enumerator {
 			case LINE_DASHES_VALUE: return LINE_DASHES;
 			case LINE_ARROWS_VALUE: return LINE_ARROWS;
 			case PATTERN_VALUE: return PATTERN;
+			case HIGHLIGHTCOLOR_VALUE: return HIGHLIGHTCOLOR;
 		}
 		return null;
 	}

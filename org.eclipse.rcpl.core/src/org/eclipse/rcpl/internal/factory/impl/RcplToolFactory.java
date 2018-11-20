@@ -24,6 +24,7 @@ import org.eclipse.rcpl.internal.tools.FlowPaneTool;
 import org.eclipse.rcpl.internal.tools.FontNameTool;
 import org.eclipse.rcpl.internal.tools.FontSizeTool;
 import org.eclipse.rcpl.internal.tools.GridPaneTool;
+import org.eclipse.rcpl.internal.tools.HighlightColorTool;
 import org.eclipse.rcpl.internal.tools.HtmlTool;
 import org.eclipse.rcpl.internal.tools.HyperLinkTool;
 import org.eclipse.rcpl.internal.tools.ImageTool;
@@ -89,6 +90,9 @@ public class RcplToolFactory implements IToolFactory {
 
 		switch (model.getType()) {
 
+		case HIGHLIGHTCOLOR:
+			tool = new HighlightColorTool(model);
+			break;
 		case COLOR_CHOOSER:
 			tool = new ColorTool(model);
 			break;

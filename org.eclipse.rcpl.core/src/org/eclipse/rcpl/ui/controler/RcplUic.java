@@ -2435,7 +2435,7 @@ public class RcplUic implements IRcplUic {
 			TabInfo tabInfo = getTabInfo(tab);
 			Perspective persp = null;
 			tabInfo.getPerspective();
-			if (persp == null && tabInfo.getEditor() != null) {
+			if (persp == null && tabInfo.getEditor() != null && tabInfo.getEditor().getDocument() != null) {
 				persp = tabInfo.getEditor().getDocument().getDefaultPerspective();
 			}
 			if (persp == null) {

@@ -10,4 +10,6 @@ public interface IProperty2 {
 
 	boolean set(Object data);
 
+	boolean isTemporary();
+
 }
