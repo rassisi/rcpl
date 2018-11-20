@@ -12,6 +12,9 @@
 package org.eclipse.rcpl.internal.tools;
 
 import org.eclipse.rcpl.AbstractRcplTool;
+import org.eclipse.rcpl.EnCommandId;
+import org.eclipse.rcpl.IColor;
+import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
@@ -69,7 +72,17 @@ public class ColorTool extends AbstractRcplTool<Color> {
 
 	@Override
 	public boolean update(RcplEvent event) {
+		IStyle style = event.getStyle();
+		if (style != null) {
+			String id = getModel().getId();
 
+			if (EnCommandId.foregroundColor.name().equals(id)) {
+				IColor color = style.getForeGround();
+				if (color != null) {
+					getNode().setValue(color.getFx());
+				}
+			}
+		}
 		return true;
 	}
 }

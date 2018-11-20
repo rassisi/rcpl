@@ -132,8 +132,10 @@ public class ComboBoxTool extends AbstractRcplTool {
 
 						if (id != null) {
 							Object o = event.get(id);
-							String v = o.toString();
-							getNode().getSelectionModel().select(v);
+							if (o != null) {
+								String v = o.toString();
+								getNode().getSelectionModel().select(v);
+							}
 						}
 					}
 				}

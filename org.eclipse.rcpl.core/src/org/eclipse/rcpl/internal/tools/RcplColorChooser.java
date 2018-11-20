@@ -1,5 +1,7 @@
 package org.eclipse.rcpl.internal.tools;
 
+import org.eclipse.rcpl.internal.resources.RcplColorProvider;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -35,6 +37,8 @@ public class RcplColorChooser extends VBox {
 	private final double nColumns;
 	private final double nRows;
 
+	private String[][] colors;
+
 	private final ReadOnlyObjectWrapper<Color> valuePropertyWrapper = new ReadOnlyObjectWrapper<Color>();
 
 	public Color getChosenColor() {
@@ -43,6 +47,18 @@ public class RcplColorChooser extends VBox {
 
 	public ReadOnlyObjectProperty<Color> valueProperty() {
 		return valuePropertyWrapper.getReadOnlyProperty();
+	}
+
+	public void setValue(Color color) {
+		int index = 0;
+		for (Color c : RcplColorProvider.getHighlightColors()) {
+			if (color == c) {
+				break;
+			}
+			index++;
+		}
+		String colorName = colors[index][0];
+		chosenColorName.setValue(colorName);
 	}
 
 	private final ReadOnlyObjectWrapper<String> chosenColorName = new ReadOnlyObjectWrapper<String>();
@@ -103,7 +119,7 @@ public class RcplColorChooser extends VBox {
 
 	public RcplColorChooser(String[][] colors) {
 		super();
-
+		this.colors = colors;
 		// create a pane for showing info on the chosen color.
 		final HBox colorInfo = new HBox();
 		final Label selectedColorName = new Label();
