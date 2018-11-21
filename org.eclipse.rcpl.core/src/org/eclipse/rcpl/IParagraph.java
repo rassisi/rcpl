@@ -3,6 +3,7 @@ package org.eclipse.rcpl;
 import java.util.List;
 
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.eclipse.rcpl.internal.tools.IStyle;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 
 /**

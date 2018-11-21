@@ -20,9 +20,7 @@ import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
 
@@ -40,6 +38,12 @@ public abstract class AbstractRcplTool<T> implements ITool {
 
 	private Object[] data;
 
+	private boolean enableAction = true;
+
+	public void setEnableAction(boolean enableAction) {
+		this.enableAction = enableAction;
+	}
+
 	/**
 	 * This constructor is for conveniant reflection (e.g. creation of a Navigator)
 	 */
@@ -56,6 +60,7 @@ public abstract class AbstractRcplTool<T> implements ITool {
 		model.setData(this);
 		Rcpl.get().getEditorListeners().add(this);
 		Rcpl.get().getLocalables().add(this);
+		addListener();
 	}
 
 	private ChangeListener<T> changeListener;
@@ -63,35 +68,25 @@ public abstract class AbstractRcplTool<T> implements ITool {
 	/**
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
 	protected void addListener() {
-		changeListener = new ChangeListener<T>() {
-			@Override
-			public void changed(ObservableValue<? extends T> observable, T oldValue, T newValue) {
-				if (Rcpl.UIC().getEditor() != null) {
-					getModel().setData(AbstractRcplTool.this);
-					IParagraph paragraph = Rcpl.UIC().getEditor().getActiveParagraph();
-					ICommand command = Rcpl.get().getFactory().createCommand(AbstractRcplTool.this, paragraph,
-							new Object[] { oldValue }, newValue);
-					Rcpl.get().service().execute(command);
-				}
-			}
-		};
-		if (getNode() instanceof ComboBox) {
-			((ComboBox<T>) getNode()).valueProperty().addListener(changeListener);
-		}
-
+		changeListener = createChangeListener();
+		doAddListener(changeListener);
+		enableAction = true;
 	}
 
-	@SuppressWarnings("unchecked")
+	protected abstract ChangeListener<T> createChangeListener();
+
 	protected void removeListener() {
 		if (changeListener != null) {
-			if (getNode() instanceof ComboBox) {
-				((ComboBox<T>) getNode()).valueProperty().removeListener(changeListener);
-			}
+			doRemoveListener(changeListener);
 			changeListener = null;
 		}
+		enableAction = false;
 	}
+
+	protected abstract void doRemoveListener(ChangeListener<T> changeListener);
+
+	protected abstract void doAddListener(ChangeListener<T> changeListener);
 
 	@Override
 	public abstract Node createNode();
@@ -240,17 +235,6 @@ public abstract class AbstractRcplTool<T> implements ITool {
 		return null;
 	}
 
-//	public String getServiceClassName() {
-//		String srv = getTool().getService();
-//		if (srv == null) {
-//			EnCommandId ci = EnCommandId.findCommandId(getTool().getId());
-//			if (ci != null) {
-//				srv = null;
-//			}
-//		}
-//		return srv;
-//	}
-
 	@Override
 	public String getImageName() {
 		String imageName = getModel().getImage();
@@ -267,7 +251,8 @@ public abstract class AbstractRcplTool<T> implements ITool {
 		return imageName;
 	}
 
-	private String getId() {
+	@Override
+	public String getId() {
 		if (model != null) {
 			return model.getId();
 		}
@@ -295,7 +280,7 @@ public abstract class AbstractRcplTool<T> implements ITool {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractRcplTool other = (AbstractRcplTool) obj;
+		ITool other = (ITool) obj;
 		if (getId() == null) {
 			if (other.getId() != null)
 				return false;
@@ -305,10 +290,13 @@ public abstract class AbstractRcplTool<T> implements ITool {
 	}
 
 	@Override
-	public boolean update(RcplEvent event) {
-
-		return true;
+	public void update(RcplEvent event) {
+		removeListener();
+		doUpdate(event);
+		addListener();
 	}
+
+	protected abstract void doUpdate(RcplEvent event);
 
 	@Override
 	public Object[] getData() {
@@ -391,4 +379,24 @@ public abstract class AbstractRcplTool<T> implements ITool {
 	public void updateLocale() {
 		createToolTip();
 	}
+
+	protected void execute(Object data) {
+		if (!isImplemented()) {
+			return;
+		}
+		if (enableAction) {
+			try {
+				String id = getModel().getId();
+				EnCommandId cmd = EnCommandId.findCommandId(id);
+				if (cmd != null) {
+					ICommand command = Rcpl.get().getFactory().createCommand(this, null, cmd, null, data);
+					Rcpl.get().service().execute(command);
+				}
+			} catch (Exception ex) {
+				Rcpl.get().printErrorln("AbstractRcplTool.execute()", ex);
+			}
+		}
+
+	}
+
 }

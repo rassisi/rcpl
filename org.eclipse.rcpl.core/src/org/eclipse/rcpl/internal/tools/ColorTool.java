@@ -14,11 +14,11 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IColor;
-import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -43,7 +43,8 @@ public class ColorTool extends AbstractRcplTool<Color> {
 			@Override
 			public void handle(ActionEvent event) {
 				getModel().setData(ColorTool.this);
-				Rcpl.get().getFactory().createCommand(ColorTool.this, null).execute();
+				Rcpl.get().getFactory().createCommand(ColorTool.this, null, EnCommandId.foregroundColor, null)
+						.execute();
 			}
 		});
 
@@ -71,7 +72,20 @@ public class ColorTool extends AbstractRcplTool<Color> {
 	}
 
 	@Override
-	public boolean update(RcplEvent event) {
+	protected ChangeListener<Color> createChangeListener() {
+		return null;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener<Color> changeListener) {
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener<Color> changeListener) {
+	}
+
+	@Override
+	protected void doUpdate(RcplEvent event) {
 		IStyle style = event.getStyle();
 		if (style != null) {
 			String id = getModel().getId();
@@ -83,6 +97,6 @@ public class ColorTool extends AbstractRcplTool<Color> {
 				}
 			}
 		}
-		return true;
 	}
+
 }

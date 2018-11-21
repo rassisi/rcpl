@@ -13,7 +13,9 @@ package org.eclipse.rcpl.internal.tools;
 
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
+import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Slider;
 
 /**
@@ -34,5 +36,29 @@ public class SliderTool extends AbstractRcplTool {
 	@Override
 	public Slider getNode() {
 		return (Slider) super.getNode();
+	}
+
+	@Override
+	protected ChangeListener createChangeListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doUpdate(RcplEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 }

@@ -1,5 +1,7 @@
 package org.eclipse.rcpl;
 
+import org.eclipse.rcpl.internal.tools.IStyle;
+
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.input.KeyEvent;

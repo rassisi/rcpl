@@ -11,7 +11,6 @@
 package org.eclipse.rcpl.internal.factory.impl;
 
 import org.eclipse.rcpl.EnCommandId;
-import org.eclipse.rcpl.EnServiceId;
 import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.IColorProvider;
 import org.eclipse.rcpl.ICommand;
@@ -52,16 +51,15 @@ import org.eclipse.rcpl.homepages.DefaultTemplatesHomePage;
 import org.eclipse.rcpl.homepages.DefaultToolsEditorHomePage;
 import org.eclipse.rcpl.homepages.DefaultTutorialsHomePage;
 import org.eclipse.rcpl.homepages.DefaultWhatsNewHomePage;
-import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.resources.RcplColorProvider;
 import org.eclipse.rcpl.internal.resources.RcplResources;
 import org.eclipse.rcpl.internal.services.RcplService;
+import org.eclipse.rcpl.internal.tools.RcplButton;
 import org.eclipse.rcpl.internal.tools.RibbonGroup;
 import org.eclipse.rcpl.libs.db.H2DB;
 import org.eclipse.rcpl.login.RcplLogin;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.ISession;
-import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePage;
@@ -111,57 +109,9 @@ public class RcplBasicFactory implements IRcplFactory {
 	public final static int NO_MAINPAGE = 1 << 10;
 
 	@Override
-	public ICommand createCommand(IService service, EnCommandId commandId, ILayoutObject layoutObject, Object[] oldData,
+	public ICommand createCommand(ITool tool, IService service, EnCommandId commandId, ILayoutObject layoutObject,
 			Object... newData) {
-		return new RcplCommand(service, commandId, layoutObject, null, oldData, newData);
-	}
-
-	@Override
-	public ICommand createCommand(ITool tool, Object[] oldData, Object... newData) {
-		ILayoutObject l = null;
-		if (Rcpl.UIC().getEditor() != null) {
-			l = Rcpl.UIC().getEditor().getSelectedLayoutObject();
-		}
-		return createCommand(tool, l, oldData, newData);
-	}
-
-	@Override
-	public ICommand createCommand(ITool tool, ILayoutObject layoutObject, Object[] oldData, Object... newData) {
-
-		try {
-
-			if (tool.getModel() instanceof Tool) {
-				switch (((Tool) tool.getModel()).getType()) {
-				case TOGGLEBUTTON:
-					RcplButton b = (RcplButton) tool.getModel().getData();
-					newData = new Object[] { b.isSelected() };
-					oldData = new Object[] { !b.isSelected() };
-					break;
-				case WEBVIEW:
-					break;
-				default:
-					break;
-				}
-			}
-
-			EnServiceId serviceId = EnServiceId.DEFAULT_SERVICE;
-			String sId = tool.getModel().getService();
-
-			if (sId != null) {
-				serviceId = EnServiceId.valueOf(sId);
-			}
-			if (serviceId == null) {
-				serviceId = EnServiceId.DEFAULT_SERVICE;
-			}
-
-			String id = tool.getModel().getId();
-			EnCommandId commandId = EnCommandId.findCommandId(id);
-
-			return new RcplCommand(null, commandId, layoutObject, tool, oldData, newData);
-		} catch (Exception ex) {
-			RcplModel.logError(ex);
-			return null;
-		}
+		return new RcplCommand(tool, service, commandId, layoutObject, newData);
 	}
 
 	@Override
@@ -397,11 +347,6 @@ public class RcplBasicFactory implements IRcplFactory {
 			button.disableService();
 		}
 		return button;
-	}
-
-	@Override
-	public ICommand createCommand(EnCommandId commandId, Object[] oldData, Object... newData) {
-		return createCommand((IService) null, commandId, (ILayoutObject) null, oldData, newData);
 	}
 
 }

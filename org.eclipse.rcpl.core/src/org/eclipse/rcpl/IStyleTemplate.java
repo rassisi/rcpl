@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.xmlbeans.XmlObject;
+import org.eclipse.rcpl.internal.tools.IStyle;
 
 public interface IStyleTemplate {
 

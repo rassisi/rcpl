@@ -15,11 +15,11 @@ import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.IFont;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
-import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
+import javafx.beans.value.ChangeListener;
 import javafx.scene.control.ComboBox;
 
 public class FontSizeTool extends AbstractRcplTool<Double> {
@@ -77,7 +77,7 @@ public class FontSizeTool extends AbstractRcplTool<Double> {
 	}
 
 	@Override
-	public boolean update(RcplEvent event) {
+	public void doUpdate(RcplEvent event) {
 		ILayoutObject lo = event.getLayoutObject();
 		if (lo instanceof IParagraph) {
 			IParagraph p = (IParagraph) lo;
@@ -86,7 +86,24 @@ public class FontSizeTool extends AbstractRcplTool<Double> {
 			setFontSize(style.getFont().getHeight());
 			addListener();
 		}
-		return true;
+	}
+
+	@Override
+	protected ChangeListener<Double> createChangeListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener<Double> changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener<Double> changeListener) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

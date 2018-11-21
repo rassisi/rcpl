@@ -63,6 +63,7 @@ import org.eclipse.rcpl.navigator.handlers.DeleteOfficeDocumentHandler;
 import org.eclipse.rcpl.navigator.handlers.DeleteOfficeFolderHandler;
 import org.eclipse.rcpl.navigator.handlers.DeletePreferenceHandler;
 import org.eclipse.rcpl.navigator.handlers.DeletePreferencesHandler;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.eclipse.rcpl.upload.DownloadClient;
 
 import javafx.beans.value.ChangeListener;
@@ -609,6 +610,30 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 	@Override
 	public void setContainer(Pane pane) {
 		this.containerPane = pane;
+	}
+
+	@Override
+	protected ChangeListener<EObject> createChangeListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener<EObject> changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener<EObject> changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doUpdate(RcplEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -32,8 +32,6 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTbl;
  */
 public class RcplCommand implements ICommand {
 
-	private Object[] oldData;
-
 	private Object[] newData;
 
 	private boolean undo;
@@ -58,39 +56,53 @@ public class RcplCommand implements ICommand {
 
 	private IService service;
 
-	public RcplCommand(IService service, EnCommandId commandId, Object[] newData) {
-		this(service, commandId, null, null, newData);
-	}
+	private boolean valid;
 
 	/**
 	 * 
 	 */
-	public RcplCommand(IService service, EnCommandId commandId, ILayoutObject layoutObject, ITool tool,
-			Object[] oldData, Object... newData) {
-		this.oldData = oldData;
+	public RcplCommand(ITool tool, IService service, EnCommandId commandId, ILayoutObject layoutObject,
+			Object... newData) {
 		this.service = service;
 		this.newData = newData;
+		this.commandId = commandId;
 		this.layoutObject = layoutObject;
+		this.tool = tool;
 		IEditor editor = Rcpl.UIC().getEditor();
 		if (layoutObject == null && editor != null) {
 			this.layoutObject = editor.getSelectedLayoutObject();
 		}
-		this.newData = newData;
-		this.tool = tool;
-		this.commandId = commandId;
 
-		if (layoutObject == null || layoutObject.getDocument() == null
-				|| layoutObject.getDocument().getEditor() == null) {
-			return;
+		if (commandId == null) {
+			if (tool != null) {
+				String id = tool.getId();
+				if (id == null) {
+					return;
+				}
+				commandId = EnCommandId.findCommandId(id);
+				if (commandId == null) {
+					return;
+				}
+			}
 		}
 
-		if (layoutObject.getDocument().getEditor() != null) {
+//		else {
+//			if(service==null) {
+//				if(commandId.getServiceId()!=null) {
+//					service = commandId.getServiceId();
+//				}
+//			}
+//		}
+
+		this.valid = true;
+
+		if (getEditor() != null) {
 			if (!EnCommandId.undo.equals(commandId) // $NON-NLS-1$
 					&& !EnCommandId.redo.equals(commandId)) { // $NON-NLS-1$
 
 				try {
-					if (layoutObject.getDocument() instanceof IWordDocument) {
-						ILayoutObject rootObject = layoutObject.getRootObject();
+					if (getLayoutObject().getDocument() instanceof IWordDocument) {
+						ILayoutObject rootObject = getLayoutObject().getRootObject();
 						XmlObject oldXmlObject = rootObject.getXmlObject();
 						if (oldXmlObject instanceof CTP) {
 							// XmlObject oldXmlObjectCopy = CTP.Factory
@@ -122,7 +134,9 @@ public class RcplCommand implements ICommand {
 					// LOGGER.error("", ex);
 				}
 
-				layoutObject.getDocument().getEditor().push(this);
+				if (getEditor() != null) {
+					getEditor().push(this);
+				}
 
 				// TODO
 				// if(JOUtil.IS_IDE){
@@ -141,24 +155,6 @@ public class RcplCommand implements ICommand {
 		return newData;
 	}
 
-	public Object[] getData() {
-		if (undo) {
-			return getOldData();
-		}
-		return newData;
-	}
-
-	@Override
-	public Object[] getOldData() {
-		if (oldData == null || oldData.length == 0) {
-			if (newData.length == 1 && newData[0] instanceof Boolean) {
-				oldData = new Object[newData.length];
-				oldData[0] = new Boolean(!(Boolean) newData[0]);
-			}
-		}
-		return oldData;
-	}
-
 	public void setUndo(boolean undo) {
 		this.undo = undo;
 	}
@@ -173,15 +169,14 @@ public class RcplCommand implements ICommand {
 
 	@Override
 	public ILayoutObject getLayoutObject() {
+		if (layoutObject == null) {
+			layoutObject = getEditor().getActiveParagraph();
+		}
 		return layoutObject;
 	}
 
 	public int getOffset() {
 		return offset;
-	}
-
-	public void setOldData(Object[] oldData) {
-		this.oldData = oldData;
 	}
 
 	public boolean isRedo() {
@@ -270,7 +265,6 @@ public class RcplCommand implements ICommand {
 		result = prime * result + (menuButtonAction ? 1231 : 1237);
 		result = prime * result + Arrays.hashCode(newData);
 		result = prime * result + offset;
-		result = prime * result + Arrays.hashCode(oldData);
 		result = prime * result + ((oldXmlObject == null) ? 0 : oldXmlObject.hashCode());
 		result = prime * result + (redo ? 1231 : 1237);
 		result = prime * result + ((tool == null) ? 0 : tool.hashCode());
@@ -303,8 +297,6 @@ public class RcplCommand implements ICommand {
 		if (!Arrays.equals(newData, other.newData))
 			return false;
 		if (offset != other.offset)
-			return false;
-		if (!Arrays.equals(oldData, other.oldData))
 			return false;
 		if (oldXmlObject == null) {
 			if (other.oldXmlObject != null)
@@ -344,6 +336,15 @@ public class RcplCommand implements ICommand {
 	@Override
 	public void execute() {
 		Rcpl.get().service().execute(this);
+	}
+
+	@Override
+	public IEditor getEditor() {
+		return Rcpl.UIC().getEditor();
+	}
+
+	public boolean isValid() {
+		return valid;
 	}
 
 }

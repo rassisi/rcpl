@@ -6,8 +6,6 @@ package org.eclipse.rcpl;
  */
 public enum EnCommandId {
 
-	NO_COMMAND(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
-
 	pageSize(EnServiceId.PAGE_SERVICE, null, "", "", null),
 
 	NEW_WORD_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
@@ -316,7 +314,7 @@ public enum EnCommandId {
 				return e;
 			}
 		}
-		return EnCommandId.NO_COMMAND;
+		return null;
 	}
 
 	public Object getData() {

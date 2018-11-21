@@ -128,8 +128,9 @@ public class RcplEditorListenerAdapter implements IEditorListener {
 	}
 
 	@Override
-	public boolean update(RcplEvent event) {
-		return true;
+	public void update(RcplEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

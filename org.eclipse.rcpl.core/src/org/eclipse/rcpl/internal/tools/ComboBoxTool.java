@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.rcpl.AbstractRcplTool;
-import org.eclipse.rcpl.EnCommandId;
-import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.eclipse.rcpl.util.RcplUtil;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
@@ -30,7 +30,7 @@ import javafx.scene.control.ComboBox;
  * @author ramin
  *
  */
-public class ComboBoxTool extends AbstractRcplTool {
+public class ComboBoxTool extends AbstractRcplTool<String> {
 
 	private List<String> datas;
 
@@ -44,13 +44,6 @@ public class ComboBoxTool extends AbstractRcplTool {
 
 			ComboBox<String> combo = getNode();
 
-			combo.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					execute(combo.getSelectionModel().getSelectedItem());
-				}
-			});
 //			combo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 //
 //				@Override
@@ -112,17 +105,8 @@ public class ComboBoxTool extends AbstractRcplTool {
 		}
 	}
 
-	private void execute(String newValue) {
-		String id = getModel().getId();
-		EnCommandId cmd = EnCommandId.findCommandId(id);
-		if (cmd != null) {
-			ICommand command = Rcpl.get().getFactory().createCommand(cmd, null, newValue);
-			Rcpl.get().service().execute(command);
-		}
-	}
-
 	@Override
-	public boolean update(RcplEvent event) {
+	public void doUpdate(RcplEvent event) {
 		if (getModel() != null) {
 			String className = getModel().getFormat();
 			if (className != null) {
@@ -141,8 +125,6 @@ public class ComboBoxTool extends AbstractRcplTool {
 				}
 			}
 		}
-
-		return true;
 	}
 
 	@Override
@@ -152,7 +134,8 @@ public class ComboBoxTool extends AbstractRcplTool {
 
 	@Override
 	public ComboBox<String> createNode() {
-		return new ComboBox<String>();
+		ComboBox<String> combo = new ComboBox<String>();
+		return combo;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -163,6 +146,36 @@ public class ComboBoxTool extends AbstractRcplTool {
 
 	public List<String> getDatas() {
 		return datas;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener<String> changeListener) {
+		getNode().valueProperty().removeListener(changeListener);
+	}
+
+	@Override
+	protected ChangeListener<String> createChangeListener() {
+		ChangeListener<String> changeListener = new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if (Rcpl.UIC().getEditor() != null) {
+					execute(newValue);
+				}
+			}
+		};
+		return changeListener;
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener<String> changeListener) {
+		getNode().setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				execute(getNode().getSelectionModel().getSelectedItem());
+			}
+		});
+		getNode().valueProperty().addListener(changeListener);
 	}
 
 }

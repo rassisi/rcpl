@@ -15,7 +15,6 @@ import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.IToolFactory;
 import org.eclipse.rcpl.IURLAddressTool;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.CheckBoxTool;
 import org.eclipse.rcpl.internal.tools.ColorTool;
 import org.eclipse.rcpl.internal.tools.ComboBoxTool;
@@ -38,7 +37,7 @@ import org.eclipse.rcpl.internal.tools.PasswordTool;
 import org.eclipse.rcpl.internal.tools.PatternTool;
 import org.eclipse.rcpl.internal.tools.ProgressBarTool;
 import org.eclipse.rcpl.internal.tools.ProgressIndicatorTool;
-import org.eclipse.rcpl.internal.tools.RadioButtonTool;
+import org.eclipse.rcpl.internal.tools.RcplButton;
 import org.eclipse.rcpl.internal.tools.SeparatorTool;
 import org.eclipse.rcpl.internal.tools.SliderTool;
 import org.eclipse.rcpl.internal.tools.SplitMenuTool;
@@ -150,7 +149,7 @@ public class RcplToolFactory implements IToolFactory {
 			tool = new PasswordTool(model);
 			break;
 		case RADIOBUTTON:
-			tool = new RadioButtonTool(model);
+			tool = new RcplButton(model);
 			break;
 		case SPLITMENUBUTTON:
 			SplitMenuTool b = new SplitMenuTool(model);

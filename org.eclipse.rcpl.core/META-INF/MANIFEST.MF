@@ -4,7 +4,8 @@ Bundle-Name: Common
 Bundle-SymbolicName: org.eclipse.rcpl.core
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: org.eclipse.rcpl;
+Export-Package: com.huguesjohnson.javafxfilebrowsedemo,
+ org.eclipse.rcpl;
   uses:="javafx.scene.layout,
    javafx.scene.control,
    javafx.event,
@@ -95,15 +96,6 @@ Export-Package: org.eclipse.rcpl;
    javafx.stage",
  org.eclipse.rcpl.internal.config;uses:="org.eclipse.rcpl.model",
  org.eclipse.rcpl.internal.factory.impl;uses:="org.eclipse.rcpl,org.eclipse.rcpl.model_2_0_0.rcpl",
- org.eclipse.rcpl.internal.fx.figures;
-  uses:="javafx.scene.control,
-   javafx.scene,
-   org.eclipse.rcpl,
-   org.eclipse.rcpl.model,
-   javafx.application,
-   org.eclipse.rcpl.model_2_0_0.rcpl,
-   org.eclipse.rcpl.ui.listener,
-   javafx.stage",
  org.eclipse.rcpl.internal.resources;
   uses:="org.apache.poi.openxml4j.opc,
    org.openxmlformats.schemas.drawingml.x2006.main,

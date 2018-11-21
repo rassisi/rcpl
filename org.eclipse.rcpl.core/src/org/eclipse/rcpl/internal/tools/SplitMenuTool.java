@@ -18,8 +18,10 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.eclipse.rcpl.util.RcplUtil;
 
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.MenuItem;
@@ -114,7 +116,7 @@ public class SplitMenuTool extends AbstractRcplTool {
 		try {
 			Object o = getNode().getUserData();
 			getModel().setData(SplitMenuTool.this);
-			Rcpl.get().getFactory().createCommand(SplitMenuTool.this, null, o).execute();
+			Rcpl.get().getFactory().createCommand(SplitMenuTool.this, null, null, null, o).execute();
 		} catch (Throwable ex) {
 			RcplModel.logError(ex);
 		}
@@ -145,5 +147,27 @@ public class SplitMenuTool extends AbstractRcplTool {
 				updateButton(menuItem);
 			}
 		});
+	}
+
+	@Override
+	protected ChangeListener createChangeListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doUpdate(RcplEvent event) {
 	}
 }

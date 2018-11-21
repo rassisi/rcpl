@@ -16,10 +16,11 @@ import java.util.List;
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.EStyleType;
 import org.eclipse.rcpl.IFont;
-import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -133,6 +134,30 @@ public class CharacterStyleListTool extends AbstractRcplTool {
 	@Override
 	public ListTool createNode() {
 		return new ListTool();
+	}
+
+	@Override
+	protected ChangeListener createChangeListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doUpdate(RcplEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

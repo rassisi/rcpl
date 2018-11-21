@@ -26,7 +26,7 @@ import org.eclipse.rcpl.ISideToolBar;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.ITreePart;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.internal.fx.figures.RcplButton;
+import org.eclipse.rcpl.internal.tools.RcplButton;
 import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
@@ -49,7 +49,6 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
@@ -57,7 +56,6 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -477,7 +475,6 @@ public class RcplSideToolBar implements ISideToolBar {
 			}
 
 			final ITool tool = Rcpl.get().getToolFactory().createTool(model);
-			final ITool nodeCreated = tool;
 
 			if (tool != null) {
 
@@ -533,16 +530,7 @@ public class RcplSideToolBar implements ISideToolBar {
 						RcplModel.logError(ex);
 					}
 				}
-				tool.getNode().setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent arg0) {
-						if (nodeCreated instanceof ListView<?>) {
-							if (arg0.getClickCount() == 2) {
-								Rcpl.get().service().execute(Rcpl.get().getFactory().createCommand(tool, null));
-							}
-						}
-					}
-				});
+
 			}
 		} catch (Exception ex) {
 			RcplModel.logError(ex);

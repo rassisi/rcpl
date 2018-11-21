@@ -3,6 +3,7 @@ package org.eclipse.rcpl;
 import java.util.List;
 
 import org.apache.xmlbeans.XmlObject;
+import org.eclipse.rcpl.internal.tools.IStyle;
 import org.eclipse.rcpl.model.IImage;
 
 import javafx.geometry.Rectangle2D;

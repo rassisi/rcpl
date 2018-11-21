@@ -51,8 +51,8 @@ import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.control.RcplCompletionListener;
 import org.eclipse.rcpl.detailpages.WebBrowserDetailsPage;
 import org.eclipse.rcpl.images.RcplImage;
-import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.tools.ComboBoxTool;
+import org.eclipse.rcpl.internal.tools.RcplButton;
 import org.eclipse.rcpl.internal.tools.SplitMenuTool;
 import org.eclipse.rcpl.internal.tools.TextFieldTool;
 import org.eclipse.rcpl.internal.tools.URLAddressTool;
@@ -68,8 +68,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Perspective;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RCPL;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
-import org.eclipse.rcpl.ui.listener.RcplEditorListenerAdapter;
-import org.eclipse.rcpl.ui.listener.RcplEvent;
 import org.eclipse.rcpl.util.RcplUtil;
 import org.eclipse.rcpl.util.RcplUtil.ColorName;
 import org.eclipse.rcpl.util.WaitThread;
@@ -1205,7 +1203,6 @@ public class RcplUic implements IRcplUic {
 		try {
 			createTitelArea();
 			createBorderDragger();
-			updateEditorListener();
 			statusText.setText(getApplicationStarter().getVersionString());
 		} catch (Exception ex) {
 			RcplModel.logError(ex);
@@ -2357,35 +2354,6 @@ public class RcplUic implements IRcplUic {
 
 	protected void testMemoryConsumption() {
 
-	}
-
-	private void updateEditorListener() {
-		Rcpl.get().getEditorListeners().add(new RcplEditorListenerAdapter() {
-			@Override
-			public boolean update(final RcplEvent event) {
-//				if (event.getEditMode() != null) {
-//					Platform.runLater(new Runnable() {
-//
-//						@Override
-//						public void run() {
-//							statusText.setText(event.getEditMode().name());
-//						}
-//					});
-//
-//				} else if (event.getMessage() != null) {
-//					Platform.runLater(new Runnable() {
-//
-//						@Override
-//						public void run() {
-//							statusText.setText(event.getMessage());
-//						}
-//					});
-//
-//				}
-				return true;
-
-			}
-		});
 	}
 
 	public ITool findTool(EnCommandId id) {

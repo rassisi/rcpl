@@ -6,6 +6,8 @@ import javafx.scene.Node;
 
 public interface ITool extends IEditorListener, ILocalable {
 
+	String getId();
+
 	void fire();
 
 	void setSelected(boolean selected);

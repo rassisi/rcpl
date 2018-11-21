@@ -8,24 +8,20 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl.internal.fx.figures;
+package org.eclipse.rcpl.internal.tools;
 
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnLatexMath;
 import org.eclipse.rcpl.IButton;
-import org.eclipse.rcpl.ICommand;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IResourceEntry;
-import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.IToolComponent;
 import org.eclipse.rcpl.IToolGroup;
 import org.eclipse.rcpl.IToolRegistry;
-import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.images.RcplImage;
 import org.eclipse.rcpl.model.IImage;
-import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
@@ -33,11 +29,14 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.text.TextAlignment;
 
@@ -58,7 +57,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	private boolean executeService = true;
 
 	public boolean isToggle() {
-		return ToolType.TOGGLEBUTTON.equals(getModel().getType());
+		return ToolType.TOGGLEBUTTON.equals(getModel().getType()) || ToolType.RADIOBUTTON.equals(getModel().getType());
 	}
 
 	public RcplButton(String id) {
@@ -77,21 +76,13 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 	@Override
 	public void fire() {
-		performAction();
+		execute(isSelected());
 	}
 
-	private void performAction() {
-		if (!isImplemented()) {
-			return;
-		}
+	@Override
+	protected void execute(Object data) {
 		if (executeService) {
-			try {
-				getModel().setData(RcplButton.this);
-				ICommand command = Rcpl.get().getFactory().createCommand(RcplButton.this, null);
-				Rcpl.get().service().execute(command);
-			} catch (Throwable ex) {
-				RcplModel.logError(ex);
-			}
+			super.execute(data);
 		} else {
 			doAction();
 		}
@@ -108,7 +99,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	@Override
 	public boolean isSelected() {
 		if (isToggle()) {
-			return ((ToggleButton) getNode()).isSelected();
+			return ((Toggle) getNode()).isSelected();
 		}
 		return selected;
 	}
@@ -116,7 +107,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	@Override
 	public void setSelected(boolean selected) {
 		if (isToggle()) {
-			((ToggleButton) getNode()).setSelected(selected);
+			((Toggle) getNode()).setSelected(selected);
 		}
 		this.selected = selected;
 	}
@@ -128,9 +119,13 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	@Override
 	public ButtonBase createNode() {
 
-		if (isToggle()) {
+		if (ToolType.TOGGLEBUTTON.equals(getModel().getType())) {
 			node = new ToggleButton();
 			((ToggleButton) node).setMinWidth(2);
+
+		} else if (ToolType.RADIOBUTTON.equals(getModel().getType())) {
+			node = new RadioButton();
+			((RadioButton) node).setMinWidth(2);
 
 		} else {
 			node = new Button();
@@ -140,7 +135,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 			@Override
 			public void handle(ActionEvent event) {
-				performAction();
+				execute(isSelected());
 			}
 		});
 
@@ -173,7 +168,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 	@Override
 	public void reset() {
-		if (node instanceof ToggleButton) {
+		if (isToggle()) {
 			setSelected(false);
 		}
 	}
@@ -249,7 +244,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	}
 
 	@Override
-	public boolean update(RcplEvent event) {
+	public void doUpdate(RcplEvent event) {
 		if (getModel() != null) {
 
 			TextAlignment alignment = null;
@@ -258,10 +253,11 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 			String id = getModel().getId();
 			if (id == null || "".equals(id)) {
-				return false;
+				return;
 			}
-			if (!ToolType.TOGGLEBUTTON.equals(getModel().getType())) {
-				return false;
+			if (!ToolType.TOGGLEBUTTON.equals(getModel().getType())
+					&& !ToolType.RADIOBUTTON.equals(getModel().getType())) {
+				return;
 			}
 
 			EnCommandId cmd;
@@ -269,7 +265,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 				cmd = EnCommandId.valueOf(id);
 			} catch (IllegalArgumentException ex) {
 				// There is no value for this id
-				return false;
+				return;
 			}
 			boolean select = false;
 			boolean found = false;
@@ -348,8 +344,6 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 			}
 
 		}
-
-		return true;
 
 	}
 
@@ -502,7 +496,18 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	}
 
 	@Override
-	public void updateLocale() {
-		super.updateLocale();
+	protected ChangeListener<Boolean> createChangeListener() {
+		return null;
 	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener<Boolean> changeListener) {
+		setEnableAction(false);
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener<Boolean> changeListener) {
+		setEnableAction(true);
+	}
+
 }

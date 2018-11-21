@@ -19,10 +19,8 @@ import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.Rcpl;
-import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.internal.services.RcplCommandService;
 import org.eclipse.rcpl.internal.services.RcplObjectService;
-import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
@@ -37,6 +35,7 @@ public class RcplBaseService implements IService {
 
 	public static boolean enableUnimplementedMessage = true;
 
+	@Override
 	public Object doExecute(ICommand event) throws Exception {
 		return null;
 	}
@@ -46,12 +45,13 @@ public class RcplBaseService implements IService {
 	public RcplBaseService() {
 	}
 
+	@Override
 	public void registerService(Class<? extends IService> serviceClass) {
 		if (services == null) {
 			services = new Hashtable<Class<?>, IService>();
 		}
 		try {
-			services.put(serviceClass, (IService) serviceClass.newInstance());
+			services.put(serviceClass, serviceClass.newInstance());
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,11 +96,9 @@ public class RcplBaseService implements IService {
 	// return false;
 	// }
 
-	public boolean getBoolean(AbstractTool tool) {
-		if (tool.getData() instanceof Boolean) {
-			return ((Boolean) tool.getData()).booleanValue();
-		} else if (tool.getData() instanceof RcplButton) {
-			return ((RcplButton) tool.getData()).isSelected();
+	public boolean getBoolean(ICommand cmd) {
+		if (cmd.getNewData().length > 0 && cmd.getNewData()[0] instanceof Boolean) {
+			return ((Boolean) cmd.getNewData()[0]).booleanValue();
 		}
 		return false;
 	}
@@ -256,6 +254,7 @@ public class RcplBaseService implements IService {
 		return service;
 	}
 
+	@Override
 	public void selectGroup(String id, int shelfIndex, boolean b) {
 		// TODO Auto-generated method stub
 

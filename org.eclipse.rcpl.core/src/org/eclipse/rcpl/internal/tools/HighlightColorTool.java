@@ -14,7 +14,6 @@ package org.eclipse.rcpl.internal.tools;
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.IColor;
-import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.resources.RcplColorProvider;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
@@ -38,15 +37,7 @@ public class HighlightColorTool extends AbstractRcplTool<Color> {
 
 	public HighlightColorTool(Tool model) {
 		super(model);
-
-		getNode().valueProperty().addListener(new ChangeListener<Color>() {
-			@Override
-			public void changed(ObservableValue<? extends Color> observableValue, Color oldColor, Color newColor) {
-//				System.out.println("Chose: " + colorChooser.getChosenColorName() + " " + colorChooser.getChosenColor());
-				getModel().setData(HighlightColorTool.this);
-				Rcpl.get().getFactory().createCommand(HighlightColorTool.this, null).execute();
-			}
-		});
+		addListener();
 
 	}
 
@@ -65,8 +56,32 @@ public class HighlightColorTool extends AbstractRcplTool<Color> {
 		return colorChooser;
 	}
 
+	// ========== Methods to implement for listening and updating ===========
+
 	@Override
-	public boolean update(RcplEvent event) {
+	protected ChangeListener<Color> createChangeListener() {
+		return new ChangeListener<Color>() {
+			@Override
+			public void changed(ObservableValue<? extends Color> observableValue, Color oldColor, Color newColor) {
+				getModel().setData(HighlightColorTool.this);
+				Rcpl.get().getFactory().createCommand(HighlightColorTool.this, null, EnCommandId.highlight_color, null)
+						.execute();
+			}
+		};
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener<Color> changeListener) {
+		getNode().valueProperty().addListener(changeListener);
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener<Color> changeListener) {
+		getNode().valueProperty().removeListener(changeListener);
+	}
+
+	@Override
+	public void doUpdate(RcplEvent event) {
 		IStyle style = event.getStyle();
 		if (style != null) {
 			String id = getModel().getId();
@@ -80,6 +95,6 @@ public class HighlightColorTool extends AbstractRcplTool<Color> {
 				}
 			}
 		}
-		return true;
 	}
+
 }

@@ -1,5 +1,17 @@
-package org.eclipse.rcpl;
+package org.eclipse.rcpl.internal.tools;
 
+import org.eclipse.rcpl.EStyleType;
+import org.eclipse.rcpl.EnShading;
+import org.eclipse.rcpl.IBoolean;
+import org.eclipse.rcpl.IBorder;
+import org.eclipse.rcpl.IColor;
+import org.eclipse.rcpl.IDrawing;
+import org.eclipse.rcpl.IEmuProperty2;
+import org.eclipse.rcpl.IFont;
+import org.eclipse.rcpl.IJOProperty;
+import org.eclipse.rcpl.ILayoutObject;
+import org.eclipse.rcpl.IProperty2;
+import org.eclipse.rcpl.IShadow;
 import org.eclipse.rcpl.model.IImage;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTFonts;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTOnOff;

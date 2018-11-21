@@ -24,8 +24,8 @@ import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IParagraphFigure;
 import org.eclipse.rcpl.IProperty2;
 import org.eclipse.rcpl.ISection;
-import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.ITableCell;
+import org.eclipse.rcpl.internal.tools.IStyle;
 import org.eclipse.rcpl.model.IImage;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.ILayoutObject;
-import org.eclipse.rcpl.IStyle;
+import org.eclipse.rcpl.internal.tools.IStyle;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 
 /**

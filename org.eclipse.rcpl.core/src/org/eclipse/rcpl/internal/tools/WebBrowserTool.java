@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.IWebViewListener;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -45,6 +46,7 @@ public class WebBrowserTool extends AbstractRcplTool {
 		wvd = new WebViewWithFileDragEvents(wv);
 
 		wv.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
+			@Override
 			public void changed(ObservableValue ov, State oldState, State newState) {
 				if (newState == Worker.State.SUCCEEDED) {
 
@@ -132,6 +134,30 @@ public class WebBrowserTool extends AbstractRcplTool {
 
 	public void removeListener(IWebViewListener listener) {
 		webViewListeners.remove(listener);
+	}
+
+	@Override
+	protected ChangeListener createChangeListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doUpdate(RcplEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

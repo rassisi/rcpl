@@ -1,4 +1,4 @@
-package org.eclipse.rcpl.internal.fx.figures;
+package org.eclipse.rcpl.internal.tools;
 
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplFactory;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;

@@ -14,8 +14,6 @@ public interface ICommand {
 
 	Object[] getNewData();
 
-	Object[] getOldData();
-
 	ILayoutObject getLayoutObject();
 
 	void setCommandId(EnCommandId id);
@@ -23,4 +21,6 @@ public interface ICommand {
 	String getNewStringValue();
 
 	IService getService();
+
+	IEditor getEditor();
 }

@@ -1,5 +1,7 @@
 package org.eclipse.rcpl;
 
+import org.eclipse.rcpl.internal.tools.IStyle;
+
 /**
  * @author Ramin
  *

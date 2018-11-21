@@ -13,7 +13,9 @@ package org.eclipse.rcpl.internal.tools;
 
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
+import org.eclipse.rcpl.ui.listener.RcplEvent;
 
+import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 
@@ -31,6 +33,23 @@ public class CheckBoxTool extends AbstractRcplTool {
 	@Override
 	public Node createNode() {
 		return new CheckBox();
+	}
+
+	@Override
+	protected ChangeListener createChangeListener() {
+		return null;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener changeListener) {
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener changeListener) {
+	}
+
+	@Override
+	protected void doUpdate(RcplEvent event) {
 	}
 
 }

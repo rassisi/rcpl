@@ -8,8 +8,8 @@ import org.eclipse.rcpl.IPage;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.IParagraphFigure;
 import org.eclipse.rcpl.IPict;
-import org.eclipse.rcpl.IStyle;
 import org.eclipse.rcpl.LayoutData;
+import org.eclipse.rcpl.internal.tools.IStyle;
 import org.eclipse.rcpl.ui.action.RcplAction;
 
 import javafx.geometry.Point2D;

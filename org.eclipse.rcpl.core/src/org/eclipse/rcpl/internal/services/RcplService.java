@@ -61,13 +61,12 @@ public class RcplService extends RcplBaseService implements IService {
 	}
 
 	@Override
-	public Object doExecute(ICommand command0) throws Exception {
+	public Object doExecute(ICommand command) throws Exception {
 
-		if (executeHomePages(command0)) {
+		if (executeHomePages(command)) {
 			return true;
 		}
 
-		ICommand command = getCommand(command0);
 		try {
 			ITool iTool = command.getTool();
 			if (iTool != null) {
@@ -134,22 +133,8 @@ public class RcplService extends RcplBaseService implements IService {
 	}
 
 	@Override
-	public Object execute(ICommand command0) {
-		if (executeHomePages(command0)) {
-			return null;
-		}
-
-		ICommand command = getCommand(command0);
+	public Object execute(ICommand command) {
 		if (executeHomePages(command)) {
-			return null;
-		}
-
-		if (EnCommandId.NO_COMMAND.equals(command0.getCommandId())) {
-			try {
-				doExecute(command);
-			} catch (Exception e) {
-				RcplModel.logError(e);
-			}
 			return null;
 		}
 
@@ -165,45 +150,6 @@ public class RcplService extends RcplBaseService implements IService {
 		}
 
 		return null;
-	}
-
-	private ICommand getCommand(ICommand command) {
-		if (EnCommandId.NO_COMMAND.equals(command.getCommandId())) {
-			if (command.getTool() != null && command.getTool().getModel().getId() != null) {
-				String id = command.getTool().getModel().getId();
-				for (EnCommandId e : EnCommandId.values()) {
-					if (id == e.getId()) {
-						return new RcplCommand(command.getService(), e, command.getNewData());
-					}
-				}
-			}
-		}
-		return command;
-	}
-
-//	private String getId(ICommand command) {
-//		String id;
-//		if (EnCommandId.NO_COMMAND.equals(command.getCommandId())) {
-//			if (command.getTool() != null && command.getTool().getModel().getId() != null) {
-//				id = command.getTool().getModel().getId();
-//			}
-//		}
-//		return getCommand(command).getCommandId().getId();
-//
-//	}
-
-	public Object execute(ITool tool) {
-		ICommand command = Rcpl.get().getFactory().createCommand(tool, null);
-		IService service = getService(command);
-		try {
-			return service.doExecute(command);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return null;
-
 	}
 
 	protected void finalizeCommand(RcplCommand command) {

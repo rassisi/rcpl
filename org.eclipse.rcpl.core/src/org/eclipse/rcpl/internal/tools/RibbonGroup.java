@@ -20,7 +20,6 @@ import org.eclipse.rcpl.IButton;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.factory.impl.RcplToolFactory;
-import org.eclipse.rcpl.internal.fx.figures.RcplButton;
 import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
@@ -30,6 +29,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -155,7 +155,7 @@ public class RibbonGroup extends AbstractRcplTool {
 						}
 					}
 					if (isSelected()) {
-						ToolGroup tg = (ToolGroup) RibbonGroup.this.getModel();
+						ToolGroup tg = RibbonGroup.this.getModel();
 						Rcpl.UIC().getSideToolBarControl().expand(tg.getExpandToolGroup()); // toolGroup.getSideToolbarPath());
 					} else {
 						Rcpl.UIC().getSideToolBarControl().collapseToolPane();
@@ -401,6 +401,30 @@ public class RibbonGroup extends AbstractRcplTool {
 	@Override
 	public Node createNode() {
 		return new VBox();
+	}
+
+	@Override
+	protected ChangeListener createChangeListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void doRemoveListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doAddListener(ChangeListener changeListener) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void doUpdate(RcplEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
