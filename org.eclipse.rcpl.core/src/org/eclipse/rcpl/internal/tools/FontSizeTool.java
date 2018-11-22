@@ -20,8 +20,14 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ComboBox;
+import javafx.util.StringConverter;
 
+/**
+ * @author Ramin
+ *
+ */
 public class FontSizeTool extends AbstractRcplTool<Double> {
 
 	Double[] items = new Double[] { 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 11.0, 12.0, 14.0, 16.0, 18.0, 20.0, 22.0,
@@ -34,7 +40,6 @@ public class FontSizeTool extends AbstractRcplTool<Double> {
 		getNode().getItems().addAll(items);
 		getNode().setPrefWidth(65);
 		initSelection();
-		addListener();
 	}
 
 	private void initSelection() {
@@ -46,20 +51,17 @@ public class FontSizeTool extends AbstractRcplTool<Double> {
 	}
 
 	public void setFontSize(double h) {
-		removeListener();
-		enableEvents = false;
 		for (Double d : items) {
 			if (d.doubleValue() >= h) {
 				getNode().getSelectionModel().select(d);
 				return;
 			}
 		}
-		enableEvents = true;
 	}
 
 	public double getSize() {
 		try {
-			return getNode().getSelectionModel().getSelectedItem();
+			return getNode().getSelectionModel().getSelectedItem().doubleValue();
 		} catch (Exception ex) {
 			return 12;
 		}
@@ -73,7 +75,24 @@ public class FontSizeTool extends AbstractRcplTool<Double> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public ComboBox<Double> getNode() {
-		return (ComboBox<Double>) super.getNode();
+		ComboBox<Double> combo = (ComboBox<Double>) super.getNode();
+		combo.setEditable(true);
+		combo.setConverter(new StringConverter<Double>() {
+			@Override
+			public String toString(Double obj) {
+				return obj.toString();
+			}
+
+			@Override
+			public Double fromString(String obj) {
+				try {
+					return Double.valueOf(obj);
+				} catch (Exception ex) {
+					return 11.0;
+				}
+			}
+		});
+		return combo;
 	}
 
 	@Override
@@ -84,26 +103,42 @@ public class FontSizeTool extends AbstractRcplTool<Double> {
 			IStyle style = p.findCharacterStyleAtOffset();
 			removeListener();
 			setFontSize(style.getFont().getHeight());
-			addListener();
 		}
 	}
 
 	@Override
-	protected ChangeListener<Double> createChangeListener() {
-		// TODO Auto-generated method stub
-		return null;
+	protected void doRemoveListener(ChangeListener<Double> changeListener) {
+//		setEnableAction(false);
+		getNode().valueProperty().removeListener(changeListener);
 	}
 
 	@Override
-	protected void doRemoveListener(ChangeListener<Double> changeListener) {
-		// TODO Auto-generated method stub
-
+	protected ChangeListener<Double> createChangeListener() {
+		ChangeListener<Double> changeListener = new ChangeListener<Double>() {
+			@Override
+			public void changed(ObservableValue<? extends Double> observable, Double oldValue, Double newValue) {
+				if (Rcpl.UIC().getEditor() != null) {
+					System.out.println("**** size " + newValue);
+					execute(newValue);
+				}
+			}
+		};
+		return changeListener;
 	}
 
 	@Override
 	protected void doAddListener(ChangeListener<Double> changeListener) {
-		// TODO Auto-generated method stub
 
+		getNode().valueProperty().addListener(changeListener);
+
+//		getNode().setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				Double newValue = getNode().getSelectionModel().getSelectedItem();
+//				execute(newValue);
+//			}
+//		});
+//		setEnableAction(true);
 	}
 
 }

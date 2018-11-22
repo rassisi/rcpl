@@ -423,14 +423,15 @@ public class RcplUicAdapter implements IRcplUic {
 
 	@Override
 	public void updateTabText() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public BorderPane getNode() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void updateTopCollapsing() {
 	}
 
 }

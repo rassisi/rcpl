@@ -63,10 +63,6 @@ public class RcplService extends RcplBaseService implements IService {
 	@Override
 	public Object doExecute(ICommand command) throws Exception {
 
-		if (executeHomePages(command)) {
-			return true;
-		}
-
 		try {
 			ITool iTool = command.getTool();
 			if (iTool != null) {
@@ -115,8 +111,10 @@ public class RcplService extends RcplBaseService implements IService {
 		}
 	}
 
-	private boolean executeHomePages(ICommand command) {
-		if (command.getCommandId().equals(EnCommandId.showStartMenu)) {
+	@Override
+	public Object execute(ICommand command) {
+
+		if (command.getCommandId() != null && command.getCommandId().equals(EnCommandId.showStartMenu)) {
 			Rcpl.UIC().showHomePage(HomePageType.OVERVIEW, null);
 			return true;
 		}
@@ -128,14 +126,6 @@ public class RcplService extends RcplBaseService implements IService {
 				Rcpl.UIC().showHomePage(homePage.getType(), homePage.getId());
 				return true;
 			}
-		}
-		return false;
-	}
-
-	@Override
-	public Object execute(ICommand command) {
-		if (executeHomePages(command)) {
-			return null;
 		}
 
 		IService service = getService(command);

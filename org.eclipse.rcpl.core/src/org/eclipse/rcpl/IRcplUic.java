@@ -30,6 +30,8 @@ import javafx.stage.Stage;
  */
 public interface IRcplUic {
 
+	void updateTopCollapsing();
+
 	BorderPane getNode();
 
 	void updateTabText();

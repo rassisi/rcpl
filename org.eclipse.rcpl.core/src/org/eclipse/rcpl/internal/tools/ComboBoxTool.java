@@ -106,6 +106,11 @@ public class ComboBoxTool extends AbstractRcplTool<String> {
 	}
 
 	@Override
+	public ComboBox<String> getNode() {
+		return (ComboBox<String>) super.getNode();
+	}
+
+	@Override
 	public void doUpdate(RcplEvent event) {
 		if (getModel() != null) {
 			String className = getModel().getFormat();
@@ -138,12 +143,6 @@ public class ComboBoxTool extends AbstractRcplTool<String> {
 		return combo;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public ComboBox<String> getNode() {
-		return (ComboBox<String>) super.getNode();
-	}
-
 	public List<String> getDatas() {
 		return datas;
 	}
@@ -169,7 +168,6 @@ public class ComboBoxTool extends AbstractRcplTool<String> {
 	@Override
 	protected void doAddListener(ChangeListener<String> changeListener) {
 		getNode().setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				execute(getNode().getSelectionModel().getSelectedItem());

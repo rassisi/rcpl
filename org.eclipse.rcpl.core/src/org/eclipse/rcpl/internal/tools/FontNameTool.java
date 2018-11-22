@@ -24,7 +24,10 @@ import org.eclipse.rcpl.ui.font.RcplFont;
 import org.eclipse.rcpl.ui.listener.RcplEvent;
 
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
@@ -85,8 +88,6 @@ public class FontNameTool extends AbstractRcplTool<String> {
 				};
 			}
 		});
-
-		addListener();
 
 		node.setMinHeight(26);
 		node.setPrefWidth(150);
@@ -150,21 +151,32 @@ public class FontNameTool extends AbstractRcplTool<String> {
 	}
 
 	@Override
-	protected ChangeListener<String> createChangeListener() {
-		// TODO Auto-generated method stub
-		return null;
+	protected void doRemoveListener(ChangeListener<String> changeListener) {
+		getNode().valueProperty().removeListener(changeListener);
 	}
 
 	@Override
-	protected void doRemoveListener(ChangeListener<String> changeListener) {
-		// TODO Auto-generated method stub
-
+	protected ChangeListener<String> createChangeListener() {
+		ChangeListener<String> changeListener = new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if (Rcpl.UIC().getEditor() != null) {
+					execute(newValue);
+				}
+			}
+		};
+		return changeListener;
 	}
 
 	@Override
 	protected void doAddListener(ChangeListener<String> changeListener) {
-		// TODO Auto-generated method stub
-
+		getNode().setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				execute(getNode().getSelectionModel().getSelectedItem());
+			}
+		});
+		getNode().valueProperty().addListener(changeListener);
 	}
 
 }

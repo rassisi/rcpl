@@ -60,7 +60,6 @@ public abstract class AbstractRcplTool<T> implements ITool {
 		model.setData(this);
 		Rcpl.get().getEditorListeners().add(this);
 		Rcpl.get().getLocalables().add(this);
-		addListener();
 	}
 
 	private ChangeListener<T> changeListener;
@@ -386,12 +385,10 @@ public abstract class AbstractRcplTool<T> implements ITool {
 		}
 		if (enableAction) {
 			try {
-				String id = getModel().getId();
-				EnCommandId cmd = EnCommandId.findCommandId(id);
-				if (cmd != null) {
-					ICommand command = Rcpl.get().getFactory().createCommand(this, null, cmd, null, data);
-					Rcpl.get().service().execute(command);
-				}
+				ICommand command = Rcpl.get().getFactory().createCommand(this, null, EnCommandId.findCommandId(getId()),
+						null, data);
+				Rcpl.get().service().execute(command);
+
 			} catch (Exception ex) {
 				Rcpl.get().printErrorln("AbstractRcplTool.execute()", ex);
 			}

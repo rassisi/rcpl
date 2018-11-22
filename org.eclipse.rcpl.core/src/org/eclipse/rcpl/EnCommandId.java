@@ -253,6 +253,10 @@ public enum EnCommandId {
 
 	arrangeAlignHorizontalCenter(EnServiceId.EDITOR_SERVICE, null, null, null, null),
 
+	// ---------- RCPL Commands --------------------------------
+
+	show_homepage(EnServiceId.DEFAULT_SERVICE, null, null, null, null),
+
 	;
 
 	private final String image;

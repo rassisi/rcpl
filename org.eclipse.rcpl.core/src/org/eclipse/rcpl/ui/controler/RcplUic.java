@@ -650,7 +650,7 @@ public class RcplUic implements IRcplUic {
 	@Override
 	public void addRecentDocument(File file) {
 		if (file != null) {
-			if (!recentDocumentFiles.contains(file.getAbsoluteFile())) {
+			if (!recentDocumentFiles.contains(file.getAbsolutePath())) {
 				recentDocumentFiles.add(0, file.getAbsolutePath());
 				if (recentDocumentFiles.size() > 10) {
 					recentDocumentFiles.remove(recentDocumentFiles.size() - 1);
@@ -880,36 +880,6 @@ public class RcplUic implements IRcplUic {
 			}
 		});
 
-		String lastOpenedDocument = Rcpl.get(EnKeyValue.LAST_OPENED_DOCUMENT, null);
-		if (lastOpenedDocument != null && lastOpenedDocument.length() > 0) {
-			File file = new File(lastOpenedDocument);
-			if (file.exists()) {
-				new Thread() {
-					@Override
-					public void run() {
-
-						topBarCollapseButton.setSelected(Rcpl.get(EnKeyValue.TOP_TOOLBAR_COLLAPSED, false));
-
-						final boolean[] done = new boolean[1];
-						completionListener = new RcplCompletionListener() {
-							@Override
-							public void onCompleted() {
-								done[0] = true;
-							}
-						};
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								openDocument(file);
-							}
-						});
-						RcplUtil.waitForDone(done);
-						completionListener = null;
-					}
-				}.start();
-			}
-		}
-
 		getStage().widthProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -986,6 +956,20 @@ public class RcplUic implements IRcplUic {
 			}
 		});
 
+		String lastOpenedDocument = Rcpl.get(EnKeyValue.LAST_OPENED_DOCUMENT, null);
+		if (lastOpenedDocument != null && lastOpenedDocument.length() > 0) {
+			File file = new File(lastOpenedDocument);
+			if (file.exists()) {
+
+				new DelayedExecution(100) {
+
+					@Override
+					protected void execute() {
+						openDocument(file);
+					}
+				};
+			}
+		}
 	}
 
 	private double computeScale(double scale) {
@@ -2555,4 +2539,15 @@ public class RcplUic implements IRcplUic {
 		return borderPane;
 	}
 
+	@Override
+	public void updateTopCollapsing() {
+		new DelayedExecution(100) {
+
+			@Override
+			protected void execute() {
+				boolean collapse = Rcpl.get(EnKeyValue.TOP_TOOLBAR_COLLAPSED, false);
+				topBarCollapseButton.setSelected(collapse);
+			}
+		};
+	}
 }
