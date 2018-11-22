@@ -77,7 +77,7 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	ICell getCell();
 
-	IStyle[] getCharaterStyles(int fromIndex, int toIndex);
+	List<IStyle> getCharaterStyles(int fromIndex, int toIndex);
 
 	double getCellMarginBottom();
 
@@ -85,7 +85,7 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	double getCellMarginTop();
 
-	IStyle[] getCharaterStyles();
+	List<IStyle> getCharaterStyles();
 
 	int getCharCount();
 

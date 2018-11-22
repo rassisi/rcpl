@@ -578,12 +578,6 @@ public class RcplAbstractParagraphFigure implements IParagraphFigure {
 	}
 
 	@Override
-	public void setText(String text, IStyle style, IStyle[] styles) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void setVisible(boolean visible) {
 		// TODO Auto-generated method stub
 
@@ -627,6 +621,12 @@ public class RcplAbstractParagraphFigure implements IParagraphFigure {
 
 	@Override
 	public void changeCase() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setText(String text, IStyle style, List<IStyle> styles) {
 		// TODO Auto-generated method stub
 
 	}

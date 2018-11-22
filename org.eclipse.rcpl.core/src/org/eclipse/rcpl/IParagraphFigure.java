@@ -1,5 +1,7 @@
 package org.eclipse.rcpl;
 
+import java.util.List;
+
 import org.eclipse.rcpl.internal.tools.IStyle;
 
 import javafx.geometry.Rectangle2D;
@@ -88,7 +90,7 @@ public interface IParagraphFigure extends ILayoutFigure {
 	@Override
 	void setParentFigure(ILayoutFigure node);
 
-	void setText(String text, IStyle style, IStyle[] styles);
+	void setText(String text, IStyle style, List<IStyle> styles);
 
 	@Override
 	void setVisible(boolean visible);

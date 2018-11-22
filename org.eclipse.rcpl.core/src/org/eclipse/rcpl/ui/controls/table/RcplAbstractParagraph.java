@@ -746,7 +746,7 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
-	public IStyle[] getCharaterStyles(int fromIndex, int toIndex) {
+	public List<IStyle> getCharaterStyles(int fromIndex, int toIndex) {
 
 		return null;
 	}
@@ -770,7 +770,7 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
-	public IStyle[] getCharaterStyles() {
+	public List<IStyle> getCharaterStyles() {
 
 		return null;
 	}
