@@ -729,8 +729,7 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
-	public List<IStyle> findCharacterStyleAtOffset(int offset) {
-
+	public IStyle findCharacterStyleAtOffset(int offset) {
 		return null;
 	}
 

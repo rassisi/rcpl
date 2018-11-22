@@ -218,10 +218,11 @@ public class RcplUic implements IRcplUic {
 		if (caretPane == null) {
 			caretPane = new Pane();
 			caret = new Rectangle(3, 0, 1.0, 18);
+			caret.setOpacity(0.7);
 			caretPane.getChildren().add(caret);
 
 			caret.setX(80);
-			caret.setFill(Color.BLACK);
+			caret.setFill(CARET_COLOR);
 			caretTimeline = new Timeline();
 			caretTimeline.setCycleCount(Timeline.INDEFINITE);
 			caretTimeline.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
@@ -231,13 +232,7 @@ public class RcplUic implements IRcplUic {
 						caret.setFill(Color.LIGHTGRAY);
 						return;
 					}
-					caret.setFill(Color.BLACK);
-					if (Rcpl.UIC() != null) {
-						IEditor editor = Rcpl.UIC().getEditor();
-						if (editor != null) {
-							// editor.updateScrollTargetForCaret();
-						}
-					}
+					caret.setFill(CARET_COLOR);
 				}
 			}), new KeyFrame(Duration.seconds(.5), new EventHandler<ActionEvent>() {
 				@Override

@@ -71,7 +71,7 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	IStyle findCharacterStyleAtOffset();
 
-	List<IStyle> findCharacterStyleAtOffset(int offset);
+	IStyle findCharacterStyleAtOffset(int offset);
 
 	IAlignment getAlignment();
 
