@@ -26,6 +26,8 @@ public interface IStyle {
 	// ---------- new property2 --- see JOStyle for implementation
 	// TODO: change all properties to this concept
 
+	void clear();
+
 	IColor getHighlightColor();
 
 	void setHighlightColor(ILayoutObject layoutObject, CTR ctr);

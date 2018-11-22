@@ -141,6 +141,9 @@ public class FontNameTool extends AbstractRcplTool<String> {
 			if (lo instanceof IParagraph) {
 				IParagraph p = (IParagraph) lo;
 				IStyle style = p.findCharacterStyleAtOffset();
+				if (style == null) {
+					style = p.getStyle();
+				}
 				removeListener();
 				selectFont(style.getFont());
 				addListener();

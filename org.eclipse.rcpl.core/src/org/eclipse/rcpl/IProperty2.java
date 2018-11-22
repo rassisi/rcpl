@@ -12,4 +12,9 @@ public interface IProperty2 {
 
 	boolean isTemporary();
 
+	/**
+	 * set all XmlObjects to null (make it temporary)
+	 */
+	void clear();
+
 }

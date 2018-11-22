@@ -101,6 +101,9 @@ public class FontSizeTool extends AbstractRcplTool<Double> {
 		if (lo instanceof IParagraph) {
 			IParagraph p = (IParagraph) lo;
 			IStyle style = p.findCharacterStyleAtOffset();
+			if (style == null) {
+				style = p.getStyle();
+			}
 			removeListener();
 			setFontSize(style.getFont().getHeight());
 		}
