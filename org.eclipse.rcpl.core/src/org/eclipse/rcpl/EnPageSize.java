@@ -201,7 +201,17 @@ public enum EnPageSize {
 				return ps;
 			}
 		}
-		return null;
+
+		for (EnPageSize ps : values()) {
+			double diffWidth = Math.abs(widthCm - ps.getCmHeight());
+			double diffHeight = Math.abs(heightCm - ps.getCmWidth());
+
+			if (diffWidth < 0.01 && diffHeight < 0.01) {
+				return ps;
+			}
+		}
+
+		return EnPageSize.CUSTOM;
 	}
 
 	public double getWidthPixel() {
@@ -212,6 +222,32 @@ public enum EnPageSize {
 	public double getHeightPixel() {
 		double cmw = getCmHeight();
 		return RcplConversion.millimeterToPixel(cmw * 10);
+	}
+
+	public void setCmWidth(double cmWidth) {
+		this.cmWidth = cmWidth;
+	}
+
+	public void setCmHeight(double cmHeight) {
+		this.cmHeight = cmHeight;
+	}
+
+	public void setInchWidth(double inchWidth) {
+		this.inchWidth = inchWidth;
+		cmWidth = RcplConversion.inch2Cm(inchWidth);
+	}
+
+	public void setInchHeight(double inchHeight) {
+		this.inchHeight = inchHeight;
+		cmHeight = RcplConversion.inch2Cm(inchHeight);
+	}
+
+	public void setCmMargin(double cmMargin) {
+		this.cmMargin = cmMargin;
+	}
+
+	public void setInchMargin(double inchMargin) {
+		this.inchMargin = inchMargin;
 	}
 
 }

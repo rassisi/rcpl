@@ -141,8 +141,10 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 		node.setId(getNodeId());
 
-		if (model.getId() != null && !model.getId().equals(EnCommandId.insertLatex.name())) {
-			createImage();
+		if (!ToolType.RADIOBUTTON.equals(getModel().getType())) {
+			if (model.getId() != null && !model.getId().equals(EnCommandId.insertLatex.name())) {
+				createImage();
+			}
 		}
 
 		((ButtonBase) node).setCenterShape(true);
@@ -270,6 +272,14 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 			boolean select = false;
 			boolean found = false;
 			switch (cmd) {
+			case page_landscape:
+				found = true;
+				select = event.getLayoutObject().getPage().getSection().isLandscape();
+				break;
+			case page_portrait:
+				found = true;
+				select = !event.getLayoutObject().getPage().getSection().isLandscape();
+				break;
 			case align_text_center:
 				found = true;
 				select = TextAlignment.CENTER == alignment;

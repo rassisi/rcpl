@@ -24,73 +24,21 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	public static final int TASK_LOAD_FILE_DOCUMENT = 5;
 
-	boolean dispose();
-
-	void save();
-
-	void updateTools(RcplEvent event);
-
-	void addSelectedDraggable(ILayoutFigure f);
-
-	void removeSelectedDraggable(ILayoutFigure f);
-
-	void clearSelectedDraggables();
-
-	List<ILayoutFigure> getSelectedDraggables();
-
-	IParagraph getFirstSelectionParagraph();
-
-	IParagraph getLastSelectionParagraph();
-
-	void layout();
-
-	void setLayoutReason(EnLayoutReason reason);
-
 	void addDirtyLayoutObject(ILayoutObject layoutObject);
-
-	ILayoutObject nextDirtyLayoutObject();
-
-	ILayoutService getLayoutService();
-
-	boolean isLayouted();
-
-	void updateOutline();
-
-	boolean isDisposed();
-
-	void showPageGroup(boolean show);
-
-	void updateDocumentInfo();
-
-	void finishAddPages();
-
-	void setActualPage(IPage actualPage);
-
-	void stopScroll();
-
-	boolean updateScrollTargetForCaret();
-
-	void scrollPageDown();
-
-	void scrollPageUp();
-
-	boolean isDirty();
-
-	IPage getLastPage();
-
-	IPage getFirstPage();
-
-	List<IPage> getPages();
-
-	void removeEmptyPages();
 
 	void addPage(IPage page);
 
 	void addPage(final IPage page, int index);
 
+	void addSelectedDraggable(ILayoutFigure f);
+
 	void centerHorizontally();
 
+	void clearSelectedDraggables();
+
 	void collapseHorizontalRuler();
+
+	boolean dispose();
 
 	void expandHorizontalRuler();
 
@@ -98,11 +46,27 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	IPage findFirstPageOfSection();
 
+	void finishAddPages();
+
+	ILayoutObject getActiveLayoutObject();
+
+	IParagraph getActiveParagraph();
+
 	ILayoutObject getAnchorObject();
 
 	IDocument getDocument();
 
 	EnDocumentType getDocumentType();
+
+	IPage getFirstPage();
+
+	IParagraph getFirstSelectionParagraph();
+
+	IPage getLastPage();
+
+	IParagraph getLastSelectionParagraph();
+
+	ILayoutService getLayoutService();
 
 	Parent getNode();
 
@@ -114,21 +78,37 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	int getPageIndex(IPage page);
 
+	List<IPage> getPages();
+
+	Perspective getPerspective();
+
 	double getScale();
 
-	ILayoutObject getActiveLayoutObject();
+	List<ILayoutFigure> getSelectedDraggables();
 
 	IPage getSelectedPage();
 
-	IParagraph getActiveParagraph();
-
 	Object getTabItem();
 
+	double getZoom();
+
 	boolean hasPages();
+
+	boolean hasSelection();
+
+	void hideAnchor();
+
+	boolean isDirty();
+
+	boolean isDisposed();
+
+	boolean isEditable();
 
 	boolean isEnableCommandStack();
 
 	boolean isLastPage(IPage page);
+
+	boolean isLayouted();
 
 	boolean isReadOnly();
 
@@ -144,13 +124,37 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	boolean isTwoPageLayout();
 
+	void layout();
+
+	void layoutPages();
+
+	void loadDocument(final String docName, String tabName, File file);
+
+	ILayoutObject nextDirtyLayoutObject();
+
 	void positionToLastEditParagraph();
 
 	void redo();
 
+	void removeEmptyPages();
+
 	void removePage(IPage page);
 
+	void removeSelectedDraggable(ILayoutFigure f);
+
 	void resetAll();
+
+	void save();
+
+	void scrollPageDown();
+
+	void scrollPageUp();
+
+	void setActiveLayoutObject(ILayoutObject layoutObject);
+
+	boolean setActivePage(IPage page);
+
+	void setActualPage(IPage actualPage);
 
 	void setAnchorObject(ILayoutObject lo);
 
@@ -159,6 +163,8 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 	void setDocument(IDocument document);
 
 	void setEnableCommandStack(boolean enable);
+
+	void setLayoutReason(EnLayoutReason reason);
 
 	void setPageColumns(int columns);
 
@@ -169,10 +175,6 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 	void setResizeAutomatic(boolean auto);
 
 	void setScale(double scale);
-
-	boolean setActivePage(IPage page);
-
-	void setActiveLayoutObject(ILayoutObject layoutObject);
 
 	void setShowGrid(boolean show);
 
@@ -186,36 +188,36 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void setSuppressClipChildren(boolean suppress);
 
+	void showAnchor(ILayoutFigure figure);
+
 	void showAspect();
 
 	void showAspect(EnDocumentType type, boolean fx);
 
+	void showEditorTools(boolean show);
+
 	void showOutline(boolean show);
 
-	void undo();
-
-	void updateCanvasSize();
-
-	void updatePageVisibility(boolean isScrollBarEvent);
-
-	void unselectAllParagraphs();
-
-	boolean hasSelection();
-
-	double getZoom();
-
-	boolean isEditable();
+	void showPageGroup(boolean show);
 
 	void showTools(boolean show);
 
-	void hideAnchor();
+	void stopScroll();
 
-	void showAnchor(ILayoutFigure figure);
+	void undo();
 
-	Perspective getPerspective();
+	void unselectAllParagraphs();
 
-	void showEditorTools(boolean show);
+	void updateCanvasSize();
 
-	void loadDocument(final String docName, String tabName, File file);
+	void updateDocumentInfo();
+
+	void updateOutline();
+
+	void updatePageVisibility(boolean isScrollBarEvent);
+
+	boolean updateScrollTargetForCaret();
+
+	void updateTools(RcplEvent event);
 
 }

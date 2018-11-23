@@ -2,43 +2,47 @@ package org.eclipse.rcpl;
 
 public interface ISection extends ILayoutObject {
 
-	void setPageSize(EnPageSize pageSize);
-
-	void setPageSize(double width, double height);
+	IColor getBackgroundColor();
 
 	@Override
 	double getBottomMargin();
 
-	double getTopMarginPixel(int page);
-
 	double getBottomMarginPixel(int page);
+
+	double getClientPageWidth();
+
+	double getColumnSpace();
 
 	@Override
 	double getLeftMargin();
 
 	int getNumberOfcolumns();
 
-	double getColumnSpace();
+	double getPageHeight();
 
-	double getClientPageWidth();
+	EnPageSize getPageSize();
 
-	boolean isEven();
-
-	boolean isOdd();
+	double getPageWidth();
 
 	@Override
 	double getRightMargin();
 
-	EnPageSize getPageSize();
+	double getTopMarginPixel(int page);
+
+	IProperty2 getvAlignment();
+
+	boolean isEven();
+
+	boolean isLandscape();
 
 	boolean isNextPage();
 
-	double getPageWidth();
+	boolean isOdd();
 
-	double getPageHeight();
+	void setLandscape(boolean landscape);
 
-	IColor getBackgroundColor();
+	void setPageSize(double width, double height);
 
-	IProperty2 getvAlignment();
+	void setPageSize(EnPageSize pageSize);
 
 }

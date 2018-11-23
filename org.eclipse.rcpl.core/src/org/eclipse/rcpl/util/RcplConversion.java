@@ -116,7 +116,7 @@ public class RcplConversion {
 		return null;
 	}
 
-	public static double inchToCentimeter(double inch) {
+	public static double inch2Cm(double inch) {
 		return inch * 2.54;
 	}
 
@@ -205,6 +205,12 @@ public class RcplConversion {
 		return cm;
 	}
 
+	public static double pixelToInch(double pixel) {
+		double emu = pixelToEmu(pixel);
+		double inch = emu2Inch(emu);
+		return inch;
+	}
+
 	/**
 	 * @param from
 	 * @param to
@@ -253,4 +259,5 @@ public class RcplConversion {
 		return value;
 
 	}
+
 }

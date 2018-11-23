@@ -8,6 +8,14 @@ public enum EnCommandId {
 
 	pageSize(EnServiceId.PAGE_SERVICE, null, "", "", null),
 
+	page_landscape(EnServiceId.PAGE_SERVICE, null, "", "", null),
+
+	page_portrait(EnServiceId.PAGE_SERVICE, null, "", "", null),
+
+	page_width(EnServiceId.PAGE_SERVICE, null, "", "", null),
+
+	page_height(EnServiceId.PAGE_SERVICE, null, "", "", null),
+
 	NEW_WORD_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
 
 	NEW_SPREADSHEET_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
