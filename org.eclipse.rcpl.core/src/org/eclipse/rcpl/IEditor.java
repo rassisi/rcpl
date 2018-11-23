@@ -24,7 +24,9 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	public static final int TASK_LOAD_FILE_DOCUMENT = 5;
 
-	void save(boolean dispose);
+	boolean dispose();
+
+	void save();
 
 	void updateTools(RcplEvent event);
 

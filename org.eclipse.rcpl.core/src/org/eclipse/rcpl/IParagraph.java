@@ -12,60 +12,41 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
  */
 public interface IParagraph extends ILayoutObject, ICellable {
 
-	void createBorder();
-
-	void removeBullet();
-
-	void setBullet();
-
-	void setBulletNumber(int level, int number);
-
-	boolean hasBulletNumber();
-
-	boolean hasBullet();
-
-	boolean isSelected();
-
-	void setIndentation(double pixel);
-
-	void advanceCaretOffset();
-
-	void backCaretOffset();
-
-	int getCaretOffset();
-
-	void setCaretOffset(int offset);
-
-	boolean isLoaded();
-
-	@Override
-	IParagraphFigure getLayoutFigure();
-
 	void activate();
 
 	void addStyle(IStyle style);
 
-	void applyBackground(int start, int length, IColor color);
+	void advanceCaretOffset();
 
-	void applyBold(int start, int length, boolean bold);
+	void applyBackground(IColor color);
 
-	void applyForeground(int start, int length, IColor color);
+	void applyBold(boolean bold);
 
-	void applyHighlight(int start, int length, IColor color);
+	void applyFontName(String fontName);
 
-	void applyHeight(int start, int length, double height);
+	void applyFontSize(double height);
 
-	void applyItalic(int start, int length, boolean italic);
+	void applyForeground(IColor color);
 
-	void applyUnderline(int start, int length, boolean underline);
+	void applyHighlight(IColor color);
 
-	void applyStrikeThrough(int start, int length, boolean strikeThrough);
+	void applyItalic(boolean italic);
 
-	void applySubScript(int start, int length, boolean subScript);
+	void applyStrikeThrough(boolean strikeThrough);
 
-	void applySuperScript(int start, int length, boolean superScript);
+	void applySubScript(boolean subScript);
+
+	void applySuperScript(boolean superScript);
+
+	void applyUnderline(boolean underline);
+
+	void backCaretOffset();
 
 	void clearRunStyles();
+
+	void clearSelection();
+
+	void createBorder();
 
 	CTR createRun();
 
@@ -75,9 +56,9 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	IAlignment getAlignment();
 
-	ICell getCell();
+	int getCaretOffset();
 
-	List<IStyle> getCharaterStyles(int fromIndex, int toIndex);
+	ICell getCell();
 
 	double getCellMarginBottom();
 
@@ -87,11 +68,16 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	List<IStyle> getCharaterStyles();
 
+	List<IStyle> getCharaterStyles(int fromIndex, int toIndex);
+
 	int getCharCount();
 
 	List<IDrawing> getDrawings();
 
 	boolean getJustify();
+
+	@Override
+	IParagraphFigure getLayoutFigure();
 
 	int getLineAlignment(int line);
 
@@ -111,9 +97,15 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	IJOProperty getTabs();
 
+	String getText();
+
 	double getTextBoundsHeight();
 
 	StringBuilder getTextBuffer();
+
+	boolean hasBullet();
+
+	boolean hasBulletNumber();
 
 	boolean hasCell();
 
@@ -123,11 +115,17 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	boolean isAllSelected();
 
+	boolean isLoaded();
+
 	@Override
 	boolean isPageBreakBefore();
 
+	boolean isSelected();
+
 	@Override
 	boolean isStartNewSection();
+
+	void removeBullet();
 
 	boolean selectAll();
 
@@ -135,7 +133,17 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	void setBold(boolean bold);
 
+	void setBullet();
+
+	void setBulletNumber(int level, int number);
+
+	void setCaretOffset(int offset);
+
+	void setFontName(String fontName);
+
 	void setFontSize(double fontSize);
+
+	void setIndentation(double pixel);
 
 	void setItalic(boolean bold);
 
@@ -153,14 +161,6 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	void setUnderline(boolean underline);
 
-	void clearSelection();
-
 	void updateFromXml(boolean update);
-
-	void applyFontName(int start, int length, String fontName);
-
-	void setFontName(String fontName);
-
-	String getText();
 
 }

@@ -1065,7 +1065,8 @@ public class RcplUtil {
 		dlg.showAndWait();
 		ButtonType result = dlg.getResult();
 		dlg.close();
-		return ButtonType.OK.equals(result);
+		boolean res = ButtonType.OK.equals(result);
+		return res;
 	}
 
 	public static File openDocumentFileDialog(String workingDir, boolean word, boolean spreadsheet,

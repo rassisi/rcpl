@@ -718,6 +718,10 @@ public class RcplUic implements IRcplUic {
 							File f = RcplUtil.openSaveFileDialog(Rcpl.get(EnKeyValue.WORKING_DIR), doc.isWord(),
 									doc.isSpreadsheet(), doc.isPresentation(), false);
 
+							if (f == null) {
+								event.consume();
+								return;
+							}
 							File originalFile = doc.getFile();
 							doc.setFile(f);
 							doc.save();
@@ -732,8 +736,11 @@ public class RcplUic implements IRcplUic {
 						else {
 							doc.save();
 						}
+					} else {
+						editor.getDocument().setDirty(false);
 					}
 				}
+				editor.dispose();
 				tab.setUserData(null);
 				if (tabPane.getTabs().size() == 1) {
 					showHomePage(HomePageType.OVERVIEW, null);
@@ -2533,7 +2540,7 @@ public class RcplUic implements IRcplUic {
 
 	@Override
 	public void updateTabText() {
-		if (getEditor() != null && getEditor().getDocument() != null) {
+		if (getEditor() != null && getEditor().getDocument() != null && getEditor().getDocument().getFile() != null) {
 			updateTabText(getEditor().getDocument().getFile().getName(), getEditor().getDocument().isDirty());
 		}
 	}

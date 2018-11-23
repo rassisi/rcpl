@@ -38,9 +38,27 @@ import javafx.geometry.Rectangle2D;
 public abstract class RcplAbstractParagraph implements IParagraph {
 
 	@Override
-	public IColorProperty getLineColorProperty() {
+	public void activate() {
 
-		return null;
+	}
+
+	@Override
+	public void addStyle(IStyle style) {
+
+	}
+
+	@Override
+	public void advanceCaretOffset() {
+
+	}
+
+	@Override
+	public void applyFontSize(double height) {
+	}
+
+	@Override
+	public void backCaretOffset() {
+
 	}
 
 	@Override
@@ -49,9 +67,24 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public void clearRunStyles() {
+
+	}
+
+	@Override
+	public void clearSelection() {
+
+	}
+
+	@Override
 	public boolean commit() {
 
 		return false;
+	}
+
+	@Override
+	public void createBorder() {
+
 	}
 
 	@Override
@@ -63,6 +96,12 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	@Override
 	public void createOverflowFigure(double remaining) {
 
+	}
+
+	@Override
+	public CTR createRun() {
+
+		return null;
 	}
 
 	@Override
@@ -82,6 +121,23 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public IStyle findCharacterStyleAtOffset() {
+
+		return null;
+	}
+
+	@Override
+	public IStyle findCharacterStyleAtOffset(int offset) {
+		return null;
+	}
+
+	@Override
+	public IAlignment getAlignment() {
+
+		return null;
+	}
+
+	@Override
 	public IBorder getBorder() {
 
 		return null;
@@ -89,6 +145,54 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 
 	@Override
 	public double getBottomMargin() {
+
+		return 0;
+	}
+
+	@Override
+	public int getCaretOffset() {
+
+		return 0;
+	}
+
+	@Override
+	public ICell getCell() {
+
+		return null;
+	}
+
+	@Override
+	public double getCellMarginBottom() {
+
+		return 0;
+	}
+
+	@Override
+	public double getCellMarginLeft() {
+
+		return 0;
+	}
+
+	@Override
+	public double getCellMarginTop() {
+
+		return 0;
+	}
+
+	@Override
+	public List<IStyle> getCharaterStyles() {
+
+		return null;
+	}
+
+	@Override
+	public List<IStyle> getCharaterStyles(int fromIndex, int toIndex) {
+
+		return null;
+	}
+
+	@Override
+	public int getCharCount() {
 
 		return 0;
 	}
@@ -106,6 +210,12 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public int getColumn() {
+
+		return 0;
+	}
+
+	@Override
 	public String getDisplayName() {
 
 		return null;
@@ -113,6 +223,12 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 
 	@Override
 	public IDocument getDocument() {
+
+		return null;
+	}
+
+	@Override
+	public List<IDrawing> getDrawings() {
 
 		return null;
 	}
@@ -133,6 +249,12 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	public ILayoutObject getHAnchorObject() {
 
 		return null;
+	}
+
+	@Override
+	public double getHeight() {
+
+		return 0;
 	}
 
 	@Override
@@ -172,7 +294,19 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public boolean getJustify() {
+
+		return false;
+	}
+
+	@Override
 	public Rectangle2D getLayoutBounds() {
+
+		return null;
+	}
+
+	@Override
+	public IParagraphFigure getLayoutFigure() {
 
 		return null;
 	}
@@ -187,6 +321,30 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	public double getLeftMargin() {
 
 		return 0;
+	}
+
+	@Override
+	public int getLineAlignment(int line) {
+
+		return 0;
+	}
+
+	@Override
+	public IColorProperty getLineColorProperty() {
+
+		return null;
+	}
+
+	@Override
+	public IProperty2 getMarginLeft() {
+
+		return null;
+	}
+
+	@Override
+	public IParagraph getNextParagraph() {
+
+		return null;
 	}
 
 	@Override
@@ -262,6 +420,12 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public int getRow() {
+
+		return 0;
+	}
+
+	@Override
 	public double getSavedZOrder() {
 
 		return 0;
@@ -274,7 +438,31 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public int getSelectionEnd() {
+
+		return 0;
+	}
+
+	@Override
+	public int getSelectionLength() {
+
+		return 0;
+	}
+
+	@Override
+	public int getSelectionStart() {
+
+		return 0;
+	}
+
+	@Override
 	public IProperty2 getSize() {
+
+		return null;
+	}
+
+	@Override
+	public IProperty2 getSpacingAfter() {
 
 		return null;
 	}
@@ -298,6 +486,36 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public ITableCell getTableCell() {
+
+		return null;
+	}
+
+	@Override
+	public IJOProperty getTabs() {
+
+		return null;
+	}
+
+	@Override
+	public String getText() {
+
+		return null;
+	}
+
+	@Override
+	public double getTextBoundsHeight() {
+
+		return 0;
+	}
+
+	@Override
+	public StringBuilder getTextBuffer() {
+
+		return null;
+	}
+
+	@Override
 	public double getTopMargin() {
 
 		return 0;
@@ -313,6 +531,12 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	public ILayoutObject getVAnchorObject() {
 
 		return null;
+	}
+
+	@Override
+	public double getWidth() {
+
+		return 0;
 	}
 
 	@Override
@@ -358,6 +582,42 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public boolean hasBullet() {
+
+		return false;
+	}
+
+	@Override
+	public boolean hasBulletNumber() {
+
+		return false;
+	}
+
+	@Override
+	public boolean hasCell() {
+
+		return false;
+	}
+
+	@Override
+	public boolean hasDrawing() {
+
+		return false;
+	}
+
+	@Override
+	public boolean hasSelection() {
+
+		return false;
+	}
+
+	@Override
+	public boolean isAllSelected() {
+
+		return false;
+	}
+
+	@Override
 	public boolean isBehindDoc() {
 
 		return false;
@@ -365,6 +625,18 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 
 	@Override
 	public boolean isDirtyContent() {
+
+		return false;
+	}
+
+	@Override
+	public boolean isEmpty() {
+
+		return false;
+	}
+
+	@Override
+	public boolean isLoaded() {
 
 		return false;
 	}
@@ -382,6 +654,12 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public boolean isPageBreakBefore() {
+
+		return false;
+	}
+
+	@Override
 	public boolean isRealPageBreakAfterAndNoSectionBreak() {
 
 		return false;
@@ -389,6 +667,18 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 
 	@Override
 	public boolean isRootObject() {
+
+		return false;
+	}
+
+	@Override
+	public boolean isSelected() {
+
+		return false;
+	}
+
+	@Override
+	public boolean isStartNewSection() {
 
 		return false;
 	}
@@ -416,7 +706,28 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public void removeBullet() {
+
+	}
+
+	@Override
 	public void removeChildren() {
+
+	}
+
+	@Override
+	public boolean selectAll() {
+
+		return false;
+	}
+
+	@Override
+	public void setAlignment(ParagraphAlignment align) {
+
+	}
+
+	@Override
+	public void setBold(boolean bold) {
 
 	}
 
@@ -426,12 +737,47 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public void setBullet() {
+
+	}
+
+	@Override
+	public void setBulletNumber(int level, int number) {
+
+	}
+
+	@Override
+	public void setCaretOffset(int offset) {
+
+	}
+
+	@Override
+	public void setColumn(int column) {
+
+	}
+
+	@Override
 	public void setDirtyContent(boolean dirty) {
 
 	}
 
 	@Override
+	public void setFontName(String fontName) {
+
+	}
+
+	@Override
+	public void setFontSize(double fontSize) {
+
+	}
+
+	@Override
 	public void setHAnchorObject(ILayoutObject anchorObject) {
+
+	}
+
+	@Override
+	public void setHeight(double height) {
 
 	}
 
@@ -442,6 +788,16 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 
 	@Override
 	public void setHeightPixel(double height) {
+
+	}
+
+	@Override
+	public void setIndentation(double pixel) {
+
+	}
+
+	@Override
+	public void setItalic(boolean bold) {
 
 	}
 
@@ -486,12 +842,57 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
+	public void setRow(int row) {
+
+	}
+
+	@Override
+	public void setSelectionEnd(int selectionEnd) {
+
+	}
+
+	@Override
+	public void setSelectionStart(int selectionStart) {
+
+	}
+
+	@Override
+	public void setStyle(IStyle style) {
+
+	}
+
+	@Override
+	public void setTableCell(ITableCell cell) {
+
+	}
+
+	@Override
 	public void setTestLayout(boolean testlayout) {
 
 	}
 
 	@Override
+	public void setText(String text) {
+
+	}
+
+	@Override
+	public void setTextBoundsHeight(double textBoundsHeight) {
+
+	}
+
+	@Override
+	public void setUnderline(boolean underline) {
+
+	}
+
+	@Override
 	public void setVAnchorObject(ILayoutObject anchorObject) {
+
+	}
+
+	@Override
+	public void setWidth(double width) {
 
 	}
 
@@ -526,460 +927,60 @@ public abstract class RcplAbstractParagraph implements IParagraph {
 	}
 
 	@Override
-	public void updateOverflowClipping() {
-
-	}
-
-	@Override
-	public void setColumn(int column) {
-
-	}
-
-	@Override
-	public int getColumn() {
-
-		return 0;
-	}
-
-	@Override
-	public void setRow(int row) {
-
-	}
-
-	@Override
-	public int getRow() {
-
-		return 0;
-	}
-
-	@Override
-	public void setWidth(double width) {
-
-	}
-
-	@Override
-	public void setHeight(double height) {
-
-	}
-
-	@Override
-	public double getHeight() {
-
-		return 0;
-	}
-
-	@Override
-	public double getWidth() {
-
-		return 0;
-	}
-
-	@Override
-	public boolean isEmpty() {
-
-		return false;
-	}
-
-	@Override
-	public void createBorder() {
-
-	}
-
-	@Override
-	public void removeBullet() {
-
-	}
-
-	@Override
-	public void setBullet() {
-
-	}
-
-	@Override
-	public void setBulletNumber(int level, int number) {
-
-	}
-
-	@Override
-	public boolean hasBulletNumber() {
-
-		return false;
-	}
-
-	@Override
-	public boolean hasBullet() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isSelected() {
-
-		return false;
-	}
-
-	@Override
-	public void setIndentation(double pixel) {
-
-	}
-
-	@Override
-	public void advanceCaretOffset() {
-
-	}
-
-	@Override
-	public void backCaretOffset() {
-
-	}
-
-	@Override
-	public int getCaretOffset() {
-
-		return 0;
-	}
-
-	@Override
-	public void setCaretOffset(int offset) {
-
-	}
-
-	@Override
-	public boolean isLoaded() {
-
-		return false;
-	}
-
-	@Override
-	public IParagraphFigure getLayoutFigure() {
-
-		return null;
-	}
-
-	@Override
-	public void activate() {
-
-	}
-
-	@Override
-	public void addStyle(IStyle style) {
-
-	}
-
-	@Override
-	public void applyBackground(int start, int length, IColor color) {
-
-	}
-
-	@Override
-	public void applyBold(int start, int length, boolean bold) {
-
-	}
-
-	@Override
-	public void applyForeground(int start, int length, IColor color) {
-
-	}
-
-	@Override
-	public void applyHeight(int start, int length, double height) {
-
-	}
-
-	@Override
-	public void applyItalic(int start, int length, boolean italic) {
-
-	}
-
-	@Override
-	public void applyUnderline(int start, int length, boolean underline) {
-
-	}
-
-	@Override
-	public void applyStrikeThrough(int start, int length, boolean strikeThrough) {
-
-	}
-
-	@Override
-	public void applySubScript(int start, int length, boolean subScript) {
-
-	}
-
-	@Override
-	public void applySuperScript(int start, int length, boolean superScript) {
-
-	}
-
-	@Override
-	public void clearRunStyles() {
-
-	}
-
-	@Override
-	public CTR createRun() {
-
-		return null;
-	}
-
-	@Override
-	public IStyle findCharacterStyleAtOffset() {
-
-		return null;
-	}
-
-	@Override
-	public IStyle findCharacterStyleAtOffset(int offset) {
-		return null;
-	}
-
-	@Override
-	public IAlignment getAlignment() {
-
-		return null;
-	}
-
-	@Override
-	public ICell getCell() {
-
-		return null;
-	}
-
-	@Override
-	public List<IStyle> getCharaterStyles(int fromIndex, int toIndex) {
-
-		return null;
-	}
-
-	@Override
-	public double getCellMarginBottom() {
-
-		return 0;
-	}
-
-	@Override
-	public double getCellMarginLeft() {
-
-		return 0;
-	}
-
-	@Override
-	public double getCellMarginTop() {
-
-		return 0;
-	}
-
-	@Override
-	public List<IStyle> getCharaterStyles() {
-
-		return null;
-	}
-
-	@Override
-	public int getCharCount() {
-
-		return 0;
-	}
-
-	@Override
-	public List<IDrawing> getDrawings() {
-
-		return null;
-	}
-
-	@Override
-	public boolean getJustify() {
-
-		return false;
-	}
-
-	@Override
-	public int getLineAlignment(int line) {
-
-		return 0;
-	}
-
-	@Override
-	public IProperty2 getMarginLeft() {
-
-		return null;
-	}
-
-	@Override
-	public IParagraph getNextParagraph() {
-
-		return null;
-	}
-
-	@Override
-	public int getSelectionEnd() {
-
-		return 0;
-	}
-
-	@Override
-	public int getSelectionLength() {
-
-		return 0;
-	}
-
-	@Override
-	public int getSelectionStart() {
-
-		return 0;
-	}
-
-	@Override
-	public IProperty2 getSpacingAfter() {
-
-		return null;
-	}
-
-	@Override
-	public ITableCell getTableCell() {
-
-		return null;
-	}
-
-	@Override
-	public IJOProperty getTabs() {
-
-		return null;
-	}
-
-	@Override
-	public double getTextBoundsHeight() {
-
-		return 0;
-	}
-
-	@Override
-	public StringBuilder getTextBuffer() {
-
-		return null;
-	}
-
-	@Override
-	public boolean hasCell() {
-
-		return false;
-	}
-
-	@Override
-	public boolean hasDrawing() {
-
-		return false;
-	}
-
-	@Override
-	public boolean hasSelection() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isAllSelected() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isPageBreakBefore() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isStartNewSection() {
-
-		return false;
-	}
-
-	@Override
-	public boolean selectAll() {
-
-		return false;
-	}
-
-	@Override
-	public void setAlignment(ParagraphAlignment align) {
-
-	}
-
-	@Override
-	public void setBold(boolean bold) {
-
-	}
-
-	@Override
-	public void setFontSize(double fontSize) {
-
-	}
-
-	@Override
-	public void setItalic(boolean bold) {
-
-	}
-
-	@Override
-	public void setSelectionEnd(int selectionEnd) {
-
-	}
-
-	@Override
-	public void setSelectionStart(int selectionStart) {
-
-	}
-
-	@Override
-	public void setStyle(IStyle style) {
-
-	}
-
-	@Override
-	public void setTableCell(ITableCell cell) {
-
-	}
-
-	@Override
-	public void setText(String text) {
-
-	}
-
-	@Override
-	public void setTextBoundsHeight(double textBoundsHeight) {
-
-	}
-
-	@Override
-	public void setUnderline(boolean underline) {
-
-	}
-
-	@Override
-	public void clearSelection() {
-
-	}
-
-	@Override
 	public void updateFromXml(boolean update) {
 
 	}
 
 	@Override
-	public void applyFontName(int start, int length, String fontName) {
+	public void updateOverflowClipping() {
 
 	}
 
 	@Override
-	public void setFontName(String fontName) {
+	public void applyBackground(IColor color) {
+	}
+
+	@Override
+	public void applyBold(boolean bold) {
+	}
+
+	@Override
+	public void applyFontName(String fontName) {
 
 	}
 
 	@Override
-	public String getText() {
+	public void applyForeground(IColor color) {
 
-		return null;
 	}
 
+	@Override
+	public void applyHighlight(IColor color) {
+
+	}
+
+	@Override
+	public void applyItalic(boolean italic) {
+
+	}
+
+	@Override
+	public void applyStrikeThrough(boolean strikeThrough) {
+
+	}
+
+	@Override
+	public void applySubScript(boolean subScript) {
+
+	}
+
+	@Override
+	public void applySuperScript(boolean superScript) {
+
+	}
+
+	@Override
+	public void applyUnderline(boolean underline) {
+
+	}
 }
