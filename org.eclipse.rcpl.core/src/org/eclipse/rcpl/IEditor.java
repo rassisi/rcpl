@@ -24,6 +24,8 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	public static final int TASK_LOAD_FILE_DOCUMENT = 5;
 
+	void save(boolean dispose);
+
 	void updateTools(RcplEvent event);
 
 	void addSelectedDraggable(ILayoutFigure f);
@@ -88,8 +90,6 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void collapseHorizontalRuler();
 
-	boolean dispose();
-
 	void expandHorizontalRuler();
 
 	void expandVerticalArea();
@@ -114,7 +114,7 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	double getScale();
 
-	ILayoutObject getSelectedLayoutObject();
+	ILayoutObject getActiveLayoutObject();
 
 	IPage getSelectedPage();
 
@@ -168,9 +168,9 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void setScale(double scale);
 
-	boolean setSelectedPage(IPage page);
+	boolean setActivePage(IPage page);
 
-	void setSelectedParagraph(IParagraph paragraph);
+	void setActiveLayoutObject(ILayoutObject layoutObject);
 
 	void setShowGrid(boolean show);
 

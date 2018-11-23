@@ -255,7 +255,7 @@ public class RcplUic implements IRcplUic {
 
 	public static void activateCaret() {
 		if (Rcpl.UIC().getEditor() != null) {
-			ILayoutObject lo = Rcpl.UIC().getEditor().getSelectedLayoutObject();
+			ILayoutObject lo = Rcpl.UIC().getEditor().getActiveLayoutObject();
 			if (lo instanceof IParagraph) {
 				caretPane.setUserData(lo.getLayoutFigure());
 				caret.requestFocus();
@@ -706,7 +706,34 @@ public class RcplUic implements IRcplUic {
 		TabInfo tabInfo = getTabInfo(tab);
 		if (tabInfo != null && tabInfo.getEditor() != null) {
 			final IEditor editor = tabInfo.getEditor();
-			if (editor.dispose()) {
+			IDocument doc = editor.getDocument();
+
+			if (doc != null) {
+				if (editor.getDocument().isDirty()) {
+					if (RcplUtil.showQuestion("Do you want to save the changes?", "")) {
+
+						// ---------- new document ---------------------------------
+
+						if (doc.isNewDocument()) {
+							File f = RcplUtil.openSaveFileDialog(Rcpl.get(EnKeyValue.WORKING_DIR), doc.isWord(),
+									doc.isSpreadsheet(), doc.isPresentation(), false);
+
+							File originalFile = doc.getFile();
+							doc.setFile(f);
+							doc.save();
+							if (originalFile != null) {
+								RcplUtil.copyFromFileToFile(originalFile, f);
+							}
+							addRecentDocument(f);
+						}
+
+						// ---------- not new document -----------------------------
+
+						else {
+							doc.save();
+						}
+					}
+				}
 				tab.setUserData(null);
 				if (tabPane.getTabs().size() == 1) {
 					showHomePage(HomePageType.OVERVIEW, null);
@@ -714,6 +741,7 @@ public class RcplUic implements IRcplUic {
 				}
 				RcplSession.getDefault().commit();
 			}
+
 			tabInfo.node = null;
 			tabInfo.perspective = null;
 			tabInfo.addon = null;

@@ -70,7 +70,7 @@ public class RcplCommand implements ICommand {
 		this.tool = tool;
 		IEditor editor = Rcpl.UIC().getEditor();
 		if (layoutObject == null && editor != null) {
-			this.layoutObject = editor.getSelectedLayoutObject();
+			this.layoutObject = editor.getActiveLayoutObject();
 		}
 
 		if (commandId == null) {
