@@ -2,6 +2,8 @@ package org.eclipse.rcpl.ui.controls.table;
 
 import org.eclipse.rcpl.IParagraph;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -31,17 +33,51 @@ public class RcplTable {
 
 	private boolean DEBUG = true;
 
+	private boolean autoColumnSize = true;
+
+	public boolean equalColumns = false;
+
+	private double width;
+
+	private double height;
+
+	public RcplTable(int rowNumber, int columnNumber) {
+		this(true, true, rowNumber, columnNumber);
+	}
+
+	public RcplTable() {
+		this(true, true);
+	}
+
 	public RcplTable(boolean spreadsheet, boolean header) {
+		this(spreadsheet, header, 0, 0);
+	}
+
+	public RcplTable(boolean spreadsheet, boolean header, int rowNumber, int columnNumber) {
 		this.spreadsheet = spreadsheet;
 		this.header = header;
 
 		this.DEBUG = false;
-		if (spreadsheet) {
-			rowCount = IRcplTableConstants.DEFAULT_SPREADSHEET_ROW_COUNT;
-			columnCount = IRcplTableConstants.DEFAULT_SPREADSHEET_COLUMN_COUNT;
+
+		if (rowNumber > 0) {
+			rowCount = rowNumber;
 		} else {
-			rowCount = IRcplTableConstants.DEFAULT_ROW_COUNT;
-			columnCount = IRcplTableConstants.DEFAULT_COLUMN_COUNT;
+			if (spreadsheet) {
+				rowCount = IRcplTableConstants.DEFAULT_SPREADSHEET_ROW_COUNT;
+			} else {
+				rowCount = IRcplTableConstants.DEFAULT_ROW_COUNT;
+			}
+
+		}
+
+		if (columnNumber > 0) {
+			columnCount = columnNumber;
+		} else {
+			if (spreadsheet) {
+				columnCount = IRcplTableConstants.DEFAULT_SPREADSHEET_COLUMN_COUNT;
+			} else {
+				columnCount = IRcplTableConstants.DEFAULT_COLUMN_COUNT;
+			}
 		}
 
 		if (spreadsheet) {
@@ -50,6 +86,23 @@ public class RcplTable {
 		tableView = new RcplTableView(this);
 		node = tableView;
 		updateCss();
+
+		getNode().widthProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				width = newValue.doubleValue();
+				update();
+			}
+		});
+
+		getNode().heightProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				height = newValue.doubleValue();
+			}
+		});
 
 	}
 
@@ -79,12 +132,12 @@ public class RcplTable {
 
 	public void updateCss() {
 		if (spreadsheet) {
-			node.getStylesheets().add(RcplTable.class.getResource("rcpltableview_spreadsheet.css").toExternalForm());
+//			node.getStylesheets().add(RcplTable.class.getResource("rcpltableview_spreadsheet.css").toExternalForm());
 		} else {
 			node.getStylesheets().add(RcplTable.class.getResource("rcpltableview.css").toExternalForm());
+			tableView.getStyleClass().add("gridStyle_normal");
 		}
 
-		tableView.getStyleClass().add("gridStyle_normal");
 	}
 
 	public Pane getNode() {
@@ -113,7 +166,20 @@ public class RcplTable {
 		backGroundPane.setAlignment(Pos.CENTER);
 		if (!backGroundPane.getChildren().contains(n)) {
 			backGroundPane.getChildren().add(n);
+			backGroundPane.layout();
 		}
+
+		double newHeight = 0;
+		for (Node n2 : backGroundPane.getChildren()) {
+			double h = n2.getLayoutBounds().getHeight();
+			if (h == 0) {
+				h = ((Pane) n2).getPrefHeight();
+			}
+			newHeight += h + 2;
+		}
+		newHeight += n.getLayoutBounds().getHeight();
+		backGroundPane.setPrefHeight(newHeight);
+		update();
 	}
 
 	public void addParagraph(IParagraph paragraph, int row, int column) {
@@ -140,11 +206,8 @@ public class RcplTable {
 		}
 
 		if (tableView.getRowRuler() != null) {
-			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setPrefHeight(height);
-			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setMinHeight(height);
-			tableView.getRowRuler().getGrid().getRowConstraints().get(row).setMaxHeight(height);
+			tableView.getRowRuler().setRowheight(row, height);
 		}
-
 	}
 
 	public void setColumnWidth(int column, double width) {
@@ -156,8 +219,8 @@ public class RcplTable {
 			for (int r = 0; r < rowCount; r++) {
 				VBox st = getBackgroundPane(r, column);
 				if (st != null) {
-					st.setPrefWidth(width);
 					st.setMinWidth(width);
+					st.setPrefWidth(width);
 					st.setMaxWidth(width);
 					st.setLayoutX(0);
 					st.setLayoutY(0);
@@ -176,7 +239,7 @@ public class RcplTable {
 		if (n == null) {
 			VBox st = new VBox();
 			st.setAlignment(Pos.TOP_LEFT);
-			st.setStyle("-fx-background-color: lightyellow;-fx-border-color: blue;-fx-border-width: 1pt;");
+//			st.setStyle("-fx-background-color: lightyellow;-fx-border-color: blue;-fx-border-width: 1pt;");
 			GridPane.setVgrow(st, Priority.ALWAYS);
 			GridPane.setFillHeight(st, true);
 			GridPane.setFillWidth(st, true);
@@ -227,14 +290,14 @@ public class RcplTable {
 
 	public void setWidth(double width) {
 		getNode().setPrefWidth(width);
-		getNode().setMinWidth(width);
-		getNode().setMaxWidth(width);
+//		getNode().setMinWidth(width);
+//		getNode().setMaxWidth(width);
 	}
 
 	public void setHeight(double height) {
 		getNode().setPrefHeight(height);
-		getNode().setMinHeight(height);
-		getNode().setMaxHeight(height);
+//		getNode().setMinHeight(height);
+//		getNode().setMaxHeight(height);
 	}
 
 	private void updateRowAndColumnCount(int row, int column) {
@@ -252,8 +315,8 @@ public class RcplTable {
 
 			double height = getTotalHeight();
 			getNode().setPrefHeight(height);
-			getNode().setMinHeight(height);
-			getNode().setMaxHeight(height);
+//			getNode().setMinHeight(height);
+//			getNode().setMaxHeight(height);
 
 		}
 	}
@@ -276,8 +339,8 @@ public class RcplTable {
 		} else if (width < columnWidth) {
 			VBox st = createBackgroundPane(row, column);
 			st.setPrefWidth(width);
-			st.setMinWidth(width);
-			st.setMaxWidth(width);
+//			st.setMinWidth(width);
+//			st.setMaxWidth(width);
 		}
 	}
 
@@ -289,8 +352,8 @@ public class RcplTable {
 		} else if (height < rowHeight) {
 			VBox st = createBackgroundPane(row, column);
 			st.setPrefHeight(rowHeight);
-			st.setMinHeight(rowHeight);
-			st.setMaxHeight(rowHeight);
+//			st.setMinHeight(rowHeight);
+//			st.setMaxHeight(rowHeight);
 			st.setLayoutX(0);
 			st.setLayoutY(0);
 		}
@@ -357,6 +420,17 @@ public class RcplTable {
 		}
 	}
 
+	public void clearAll() {
+		for (int row = 0; row < rowCount; row++) {
+			for (int col = 0; col < columnCount; col++) {
+				VBox v = getBackgroundPane(row, col);
+				if (v != null) {
+					tableView.getCellTable().getGrid().getChildren().remove(v);
+				}
+			}
+		}
+	}
+
 	private Node getFirstChildInCell(VBox vbox) {
 		if (vbox.getChildren().size() > 0) {
 			return vbox.getChildren().get(0);
@@ -378,6 +452,75 @@ public class RcplTable {
 		}
 		return height;
 
+	}
+
+	public double calculateTotalHeight() {
+		return calculateHeight(rowCount - 1);
+	}
+
+	public double calculateTotalWidth() {
+		return calculateWidth(getColumnCount() - 1);
+	}
+
+	public double calculateWidth(int column) {
+		double width = 0;
+		for (int col = 0; col <= column; col++) {
+			width += tableView.getCellTable().getGrid().getColumnConstraints().get(col).getPrefWidth();
+		}
+		return width;
+
+	}
+
+	private double getWidthOfLastColumn() {
+		return getColumnWidth(columnCount - 1);
+	}
+
+	public void update() {
+		if (autoColumnSize) {
+			double totalWidth = calculateTotalWidth();
+			double diff = width - totalWidth;
+			double lastW = getWidthOfLastColumn();
+			setColumnWidth(columnCount - 1, lastW + diff);
+		}
+
+		if (equalColumns) {
+			double totalWidth = Math.min(width, calculateTotalWidth());
+			double w = totalWidth / columnCount;
+
+			for (int col = 0; col < columnCount; col++) {
+				setColumnWidth(col, w);
+			}
+		}
+
+		for (int row = 0; row < rowCount; row++) {
+			for (int col = 0; col < columnCount; col++) {
+				VBox v = getBackgroundPane(row, col);
+				if (v != null) {
+					double h = v.getPrefHeight();
+					if (h > getRowHeight(row)) {
+						setRowHeight(row, h);
+					}
+				}
+			}
+		}
+	}
+
+	public void setEqualColumns(boolean equalColumns) {
+		this.equalColumns = equalColumns;
+		update();
+	}
+
+	public void setAutoColumnSize(boolean auto) {
+		this.autoColumnSize = auto;
+		update();
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public double getHeight() {
+		return height;
 	}
 
 }

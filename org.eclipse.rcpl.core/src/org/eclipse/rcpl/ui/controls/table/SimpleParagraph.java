@@ -103,7 +103,7 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 
 	@Override
 	public double getHeight() {
-		return 20;
+		return getLayoutFigure().getHeight();
 	}
 
 	@Override
@@ -116,4 +116,9 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 		return false;
 	}
 
+	@Override
+	public double getHeightPixel() {
+		double h = getLayoutFigure().getHeight();
+		return h;
+	}
 }

@@ -22,7 +22,10 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 	public SimpleParagraphFigure(SimpleParagraph paragraph) {
 		this.paragraph = paragraph;
 		this.node = new StackPane();
+
 		textField = new TextField(paragraph.getText());
+		textField.setPrefHeight(25);
+		this.node.setPrefHeight(textField.getPrefHeight());
 		this.node.getChildren().add(textField);
 	}
 
@@ -33,7 +36,11 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 
 	@Override
 	public double getHeight() {
-		return node.getHeight();
+		double h = node.getLayoutBounds().getHeight();
+		if (h == 0) {
+			h = node.getPrefHeight();
+		}
+		return h;
 	}
 
 	@Override

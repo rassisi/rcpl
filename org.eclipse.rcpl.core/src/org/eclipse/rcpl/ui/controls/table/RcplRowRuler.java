@@ -2,8 +2,10 @@ package org.eclipse.rcpl.ui.controls.table;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -22,6 +24,8 @@ public class RcplRowRuler {
 	private final ScrollPane node;
 
 	private RcplTable table;
+
+	private boolean mouseDown;
 
 	public RcplRowRuler(RcplTable table) {
 		this.table = table;
@@ -48,34 +52,20 @@ public class RcplRowRuler {
 	}
 
 	void insertRow(int row) {
-		StackPane sp = new StackPane();
+		final StackPane sp = new StackPane();
+		DragAnchor da = new DragAnchor();
+		sp.setUserData(da);
 		sp.setPrefSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		sp.setMinSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		sp.setMaxSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
 		VBox vbox = new VBox();
 		sp.getChildren().add(vbox);
 		StackPane.setAlignment(vbox, Pos.BOTTOM_CENTER);
 		Label l = new Label();
-		l.setPrefSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		l.setMinSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		l.setMaxSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		l.setPrefSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, 10000);
 		l.setTextAlignment(TextAlignment.CENTER);
 		l.setAlignment(Pos.CENTER);
 		if (table.isSpreadsheet()) {
 			l.setText("" + (row + 1));
 		}
-		createSizer(vbox);
-		vbox.getChildren().add(l);
-		grid.add(sp, 0, row);
-
-		RowConstraints rc = new RowConstraints();
-		rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		rc.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		rc.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		grid.getRowConstraints().add(rc);
-	}
-
-	private void createSizer(VBox vbox) {
 		Pane sizer = new Pane();
 		sizer.setOnMouseEntered(new EventHandler<MouseEvent>() {
 
@@ -88,15 +78,62 @@ public class RcplRowRuler {
 		sizer.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+				if (!mouseDown) {
+					node.setCursor(Cursor.DEFAULT);
+				}
+			}
+		});
+
+		sizer.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent me) {
+				mouseDown = false;
 				node.setCursor(Cursor.DEFAULT);
+			}
+		});
+
+		sizer.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent me) {
+				mouseDown = true;
+				da.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
+				int row = ((DragAnchor) sp.getUserData()).index;
+				da.startSize = getRowHeight(row);
+				me.consume();
+			}
+		});
+
+		sizer.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent me) {
+				handleMouseDragged(me, sp);
 			}
 		});
 
 		sizer.setPrefHeight(5);
 		sizer.setMinHeight(5);
 		sizer.setMaxHeight(5);
-		vbox.getChildren().add(sizer);
+		vbox.getChildren().addAll(l, sizer);
+		grid.add(sp, 0, row);
 
+		RowConstraints rc = new RowConstraints();
+		rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		grid.getRowConstraints().add(rc);
+		updateRowNumbers();
+	}
+
+	public void handleMouseDragged(MouseEvent me, Pane sp) {
+		DragAnchor da = (DragAnchor) sp.getUserData();
+		if (da != null) {
+			double diffY = me.getSceneY() - da.dragAnchor.getY();
+			double newHeight = Math.max(10, da.startSize + diffY);
+//			setRowheight(da.index, newHeight);
+//			sp.setPrefHeight(newHeight);
+
+			int row = da.index;
+
+			table.setRowHeight(row, newHeight);
+		}
 	}
 
 	ScrollPane getNode() {
@@ -105,5 +142,30 @@ public class RcplRowRuler {
 
 	GridPane getGrid() {
 		return grid;
+	}
+
+	double getRowHeight(int row) {
+		return grid.getRowConstraints().get(row).getPrefHeight();
+	}
+
+	void setRowheight(int row, double height) {
+		grid.getRowConstraints().get(row).setPrefHeight(height);
+	}
+
+	private void updateRowNumbers() {
+		for (int row = 0; row < table.getRowCount(); row++) {
+			DragAnchor da = getDragAnchor(row);
+			if (da != null) {
+				da.index = row;
+			}
+		}
+	}
+
+	private DragAnchor getDragAnchor(int row) {
+		Node n = RcplTableUtil.getNode(row, 0, grid);
+		if (n != null) {
+			return (DragAnchor) n.getUserData();
+		}
+		return null;
 	}
 }
