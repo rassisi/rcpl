@@ -61,7 +61,6 @@ public class TableDemo extends Application {
 				table.setColumnWidth(0, 60);
 				table.setColumnWidth(1, 100);
 				table.setRowHeight(1, 50);
-				table.setColumnSpan(1, 1, 3);
 				table.update();
 			}
 		});
@@ -74,7 +73,7 @@ public class TableDemo extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-				IParagraph paragraph = new SimpleParagraph("test");
+				IParagraph paragraph = new SimpleParagraph("test asd a sd asd a sd a sd asd  asd a sd a sd asd a sd ");
 				table.addParagraph(paragraph, 1, 1);
 				table.update();
 			}
@@ -105,12 +104,11 @@ public class TableDemo extends Application {
 			}
 		});
 		table.showGrid(true);
-		tb1.setSelected(true);
 		buttonbox.getChildren().add(tb1);
 
 		// ---------------------------------------------------------
 
-		final ToggleButton tb2 = new ToggleButton("Auto Columns");
+		final ToggleButton tb2 = new ToggleButton("Auto Column");
 		tb2.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -118,8 +116,19 @@ public class TableDemo extends Application {
 				table.setAutoColumnSize(tb2.isSelected());
 			}
 		});
-		tb2.setSelected(true);
 		buttonbox.getChildren().add(tb2);
+
+		// ---------------------------------------------------------
+
+		final ToggleButton tb22 = new ToggleButton("Auto Row");
+		tb22.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				table.setAutoRowSize(tb22.isSelected());
+			}
+		});
+		buttonbox.getChildren().add(tb22);
 
 		// ---------------------------------------------------------
 
@@ -133,6 +142,52 @@ public class TableDemo extends Application {
 		});
 		tb3.setSelected(false);
 		buttonbox.getChildren().add(tb3);
+
+		// ---------------------------------------------------------
+
+		final ToggleButton tb4 = new ToggleButton("Column span (1,1,3)");
+		tb4.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+
+				if (tb4.isSelected()) {
+					table.setColumnSpan(1, 1, 3);
+				} else {
+					table.setColumnSpan(1, 1, 1);
+				}
+			}
+		});
+		buttonbox.getChildren().add(tb4);
+
+		// ---------------------------------------------------------
+
+		final ToggleButton tb5 = new ToggleButton("Row span (1,1,2)");
+		tb5.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+
+				if (tb5.isSelected()) {
+					table.setRowSpan(1, 1, 2);
+				} else {
+					table.setRowSpan(1, 1, 1);
+				}
+			}
+		});
+		buttonbox.getChildren().add(tb5);
+
+		// ---------------------------------------------------------
+
+		final ToggleButton tb6 = new ToggleButton("wrap (1,1)");
+		tb6.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				table.setWrap(1, 1, tb6.isSelected());
+			}
+		});
+		buttonbox.getChildren().add(tb6);
 
 		// ----------- table ---------------------
 

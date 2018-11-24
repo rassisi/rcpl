@@ -29,7 +29,7 @@ import javafx.scene.text.TextFlow;
  * @author Ramin
  *
  */
-public class RcplAbstractParagraphFigure implements IParagraphFigure {
+public abstract class RcplAbstractParagraphFigure implements IParagraphFigure {
 
 	@Override
 	public double updateVAnchor() {

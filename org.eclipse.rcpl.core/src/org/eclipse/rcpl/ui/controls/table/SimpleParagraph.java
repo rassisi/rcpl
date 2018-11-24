@@ -121,4 +121,5 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 		double h = getLayoutFigure().getHeight();
 		return h;
 	}
+
 }

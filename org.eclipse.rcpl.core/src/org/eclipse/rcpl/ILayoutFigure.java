@@ -3,6 +3,7 @@ package org.eclipse.rcpl;
 import java.util.List;
 
 import org.eclipse.rcpl.ui.action.RcplAction;
+import org.eclipse.rcpl.ui.controls.table.RcplTable;
 
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -18,6 +19,12 @@ import javafx.scene.shape.Rectangle;
  *
  */
 public interface ILayoutFigure extends IPane {
+
+	public void setTable(RcplTable table);
+
+	public RcplTable getTable();
+
+	public void setWrap(boolean wrap);
 
 	double updateVAnchor();
 

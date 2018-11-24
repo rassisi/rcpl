@@ -84,7 +84,7 @@ public class RcplTableHeader {
 		sp.setUserData(da);
 		sp.setPrefSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
 		HBox hbox = new HBox();
-		hbox.setStyle("-fx-border-color: blue;");
+//		hbox.setStyle("-fx-border-color: blue;");
 		sp.getChildren().add(hbox);
 		Label l = new Label();
 		l.setTextAlignment(TextAlignment.CENTER);
