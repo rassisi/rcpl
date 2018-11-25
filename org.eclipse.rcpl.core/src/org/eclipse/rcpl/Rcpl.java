@@ -437,7 +437,7 @@ public class Rcpl implements RcplConstants {
 	}
 
 	public void printErrorln(String msg, Throwable ex) {
-		printErrorln(msg + ": " + ex.getMessage());
+		printErrorln(msg + ": " + ex.getStackTrace() + ex.getMessage());
 	}
 
 	// ---------- set

@@ -15,4 +15,6 @@ public interface ITable extends ILayoutObject {
 
 	IStyle getTableStyle();
 
+	void setOverflow(int row);
+
 }
