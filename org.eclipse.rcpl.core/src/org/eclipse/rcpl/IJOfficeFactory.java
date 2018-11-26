@@ -14,7 +14,7 @@ public interface IJOfficeFactory extends IRcplFactory {
 
 	ILayoutFigure createTextBoxFigure(ITextBox lo);
 
-	ILayoutFigure createTableFigure(ITable ipict, double width);
+	ILayoutFigure createTableFigure(ITable ipict, double width, boolean overflow);
 
 	IParagraphFigure createParagraphFigure(IParagraph paragraph);
 

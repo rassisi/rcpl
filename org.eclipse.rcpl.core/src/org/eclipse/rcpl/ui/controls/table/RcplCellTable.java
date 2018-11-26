@@ -92,15 +92,16 @@ public class RcplCellTable {
 	}
 
 	public void setOverflow(int row) {
-		table.setOverflowTable(new RcplCellTable(table));
+
+		RcplCellTable ot = new RcplCellTable(table);
+		ot.showGridLines(true);
+		ot.getGrid().setPrefSize(grid.getPrefWidth(), grid.getPrefHeight());
+		table.setOverflowTable(ot);
 		for (int newR = 0, r = row; r < table.getRowCount(); r++, newR++) {
 			for (int col = 0; col < table.getColumnCount(); col++) {
 				Pane p = table.getBackgroundPane(r, col);
 				if (p != null) {
 					table.addNode(table.getOverflowTable().getGrid(), p, newR, col);
-					if (p != null) {
-						p.setStyle("-fx-border-color: red;");
-					}
 				}
 			}
 		}
@@ -110,6 +111,10 @@ public class RcplCellTable {
 			rc.remove(rc.size() - 1);
 			System.out.println();
 		}
+	}
+
+	void showGridLines(boolean show) {
+		grid.setGridLinesVisible(show);
 	}
 
 }
