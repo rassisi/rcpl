@@ -15,6 +15,10 @@ public interface ITable extends ILayoutObject {
 
 	IStyle getTableStyle();
 
-	void setOverflow(int row);
+	void setOverflowRow(int row);
+
+	int getOverflowRow();
+
+	boolean isTblLoookAllBorders();
 
 }

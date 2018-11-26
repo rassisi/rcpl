@@ -1,11 +1,9 @@
 package org.eclipse.rcpl.ui.controls.table;
 
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 
 /**
@@ -91,25 +89,19 @@ public class RcplCellTable {
 		grid.getRowConstraints().get(row).setMaxHeight(height);
 	}
 
-	public void setOverflow(int row) {
-
-		RcplCellTable ot = new RcplCellTable(table);
-		ot.showGridLines(true);
-		ot.getGrid().setPrefSize(grid.getPrefWidth(), grid.getPrefHeight());
-		table.setOverflowTable(ot);
-		for (int newR = 0, r = row; r < table.getRowCount(); r++, newR++) {
-			for (int col = 0; col < table.getColumnCount(); col++) {
-				Pane p = table.getBackgroundPane(r, col);
-				if (p != null) {
-					table.addNode(table.getOverflowTable().getGrid(), p, newR, col);
+	public void setOverflow(int row, boolean overflowFigure) {
+		if (!overflowFigure) {
+			if (row > 0) {
+				while (table.getRowCount() > row) {
+					table.removeLastRow();
 				}
 			}
 		}
 
-		ObservableList<RowConstraints> rc = table.getTableView().getCellTable().getGrid().getRowConstraints();
-		while (rc.size() > row) {
-			rc.remove(rc.size() - 1);
-			System.out.println();
+		else {
+			for (int i = 0; i < row; i++) {
+				table.removeLastRow();
+			}
 		}
 	}
 

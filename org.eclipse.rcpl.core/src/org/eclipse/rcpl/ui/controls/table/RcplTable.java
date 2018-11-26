@@ -45,8 +45,6 @@ public class RcplTable {
 
 	private boolean[][] wrap = new boolean[1000][1000];
 
-	private RcplCellTable overflowTable;
-
 	private int overflowRow = -1;
 
 	public RcplTable(int rowNumber, int columnNumber) {
@@ -174,13 +172,7 @@ public class RcplTable {
 
 	public void addNode(GridPane grid, Node n, int row, int column) {
 		if (grid == null) {
-			if (overflowRow != -1) {
-				grid = overflowTable.getGrid();
-				row -= row - overflowRow;
-			} else {
-				grid = tableView.getCellTable().getGrid();
-			}
-
+			grid = tableView.getCellTable().getGrid();
 		}
 		updateRowAndColumnCount(row, column);
 		VBox backGroundPane = createBackgroundPane(grid, row, column);
@@ -212,20 +204,7 @@ public class RcplTable {
 
 	public void setRowHeight(int row, double height) {
 		updateRowAndColumnCount(row, -1);
-
-		GridPane grid;
-		int rcs = tableView.getCellTable().getGrid().getRowConstraints().size();
-		if (row > rcs - 1) {
-			if (overflowTable != null) {
-				grid = overflowTable.getGrid();
-				row -= rcs;
-			} else {
-				// TODO: Error, should not happen
-				return;
-			}
-		} else {
-			grid = tableView.getCellTable().getGrid();
-		}
+		GridPane grid = tableView.getCellTable().getGrid();
 		grid.getRowConstraints().get(row).setPrefHeight(height);
 		grid.getRowConstraints().get(row).setMinHeight(height);
 		grid.getRowConstraints().get(row).setMaxHeight(height);
@@ -259,7 +238,7 @@ public class RcplTable {
 			VBox st = new VBox();
 			st.setUserData(new int[] { row, column });
 			st.setAlignment(Pos.TOP_LEFT);
-			st.setStyle("-fx-border-color: blue;");
+//			st.setStyle("-fx-border-color: blue;");
 			GridPane.setVgrow(st, Priority.ALWAYS);
 			GridPane.setFillHeight(st, true);
 			GridPane.setFillWidth(st, true);
@@ -485,17 +464,7 @@ public class RcplTable {
 
 	public double calculateHeight(GridPane grid, int row) {
 		if (grid == null) {
-			int rcs = tableView.getCellTable().getGrid().getRowConstraints().size();
-			if (row > rcs - 1) {
-				if (overflowTable != null) {
-					grid = overflowTable.getGrid();
-					row -= rcs;
-				} else {
-					return 0;
-				}
-			} else {
-				grid = tableView.getCellTable().getGrid();
-			}
+			grid = tableView.getCellTable().getGrid();
 		}
 
 		double height = 0;
@@ -611,24 +580,32 @@ public class RcplTable {
 		return this.wrap[row][column];
 	}
 
-	public void setOverflow(int row) {
+	public void setOverflow(int row, boolean overflowFigure) {
 		this.overflowRow = row;
-		tableView.getCellTable().setOverflow(row);
-	}
-
-	public RcplCellTable getOverflowTable() {
-		return overflowTable;
-	}
-
-	void setOverflowTable(RcplCellTable overflowTable) {
-		this.overflowTable = overflowTable;
-		if (overflowTable == null) {
-			this.overflowRow = -1;
-		}
+		tableView.getCellTable().setOverflow(row, overflowFigure);
 	}
 
 	public int getOverflowRow() {
 		return overflowRow;
+	}
+
+	public void hideRow(int row) {
+		tableView.getCellTable().getGrid().getRowConstraints().get(row).setMaxHeight(0);
+	}
+
+	public void removeRow(int row) {
+		for (int col = 0; col < columnCount; col++) {
+			VBox vbox = getBackgroundPane(row, col);
+			if (vbox != null) {
+				tableView.getCellTable().getGrid().getChildren().remove(vbox);
+			}
+		}
+		tableView.getCellTable().getGrid().getRowConstraints().remove(row);
+		rowCount--;
+	}
+
+	public void removeLastRow() {
+		removeRow(getRowCount() - 1);
 	}
 
 }
