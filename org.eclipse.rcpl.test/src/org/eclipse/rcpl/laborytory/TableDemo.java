@@ -40,11 +40,11 @@ public class TableDemo extends Application {
 
 		// ---------- spreadsheet
 
-		RcplTable table = new RcplTable(100, 100);
+//		RcplTable table = new RcplTable(100, 100);
 
 		// ---------- normal table without header
 
-//		RcplTable table = new RcplTable(true, false);
+		RcplTable table = new RcplTable(false, false);
 
 		HBox buttonbox = new HBox();
 		buttonbox.setSpacing(10);
@@ -58,10 +58,6 @@ public class TableDemo extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				table.clearAll();
-				table.setColumnWidth(0, 60);
-				table.setColumnWidth(1, 100);
-				table.setRowHeight(1, 50);
-				table.update();
 			}
 		});
 		buttonbox.getChildren().add(tb0);
@@ -88,7 +84,11 @@ public class TableDemo extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				IParagraph paragraph = new SimpleParagraph("test paragraph");
-				table.addParagraph(paragraph, 1, 1);
+				int row = (int) (Math.random() * 10);
+				int col = (int) (Math.random() * 10);
+
+				table.setWrap(row, col, true);
+				table.addParagraph(paragraph, row, col);
 			}
 		});
 		buttonbox.getChildren().add(button);

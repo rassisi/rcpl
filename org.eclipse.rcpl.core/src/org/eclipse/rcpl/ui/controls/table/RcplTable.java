@@ -4,13 +4,17 @@ import org.eclipse.rcpl.IParagraph;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Labeled;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
 /**
@@ -120,8 +124,13 @@ public class RcplTable {
 
 	private double getTotalHeight() {
 		double totalHeight = 0;
-		for (int i = 0; i < rowCount; i++) {
-			totalHeight += tableView.getCellTable().getGrid().getRowConstraints().get(i).getPrefHeight();
+		ObservableList<RowConstraints> rc = tableView.getCellTable().getGrid().getRowConstraints();
+		try {
+			for (int i = 0; i < rowCount; i++) {
+				totalHeight += rc.get(i).getPrefHeight();
+			}
+		} catch (Exception ex) {
+			System.out.println();
 		}
 		return totalHeight;
 	}
@@ -222,28 +231,52 @@ public class RcplTable {
 	}
 
 	VBox createBackgroundPane(int row, int column) {
-		return createBackgroundPane(null, row, column);
+		return createBackgroundPane(row, column, false);
+	}
+
+	VBox createBackgroundPane(int row, int column, boolean withRuler) {
+		return createBackgroundPane(null, row, column, withRuler);
 	}
 
 	VBox createBackgroundPane(GridPane grid, int row, int column) {
-		updateRowAndColumnCount(row, column);
+		return createBackgroundPane(grid, row, column, false);
+	}
+
+	VBox createBackgroundPane(GridPane grid, int row, int column, boolean withRuler) {
 		if (grid == null) {
 			grid = tableView.getCellTable().getGrid();
 		}
-
 		Node n = RcplTableUtil.getNode(row, column, grid);
 		if (n == null) {
-			VBox st = new VBox();
-			st.setUserData(new int[] { row, column });
-			st.setAlignment(Pos.TOP_LEFT);
-//			st.setStyle("-fx-border-color: blue;");
-			GridPane.setVgrow(st, Priority.ALWAYS);
-			GridPane.setFillHeight(st, true);
-			GridPane.setFillWidth(st, true);
-			grid.add(st, column, row);
-			return st;
+			VBox vbox = new VBox();
+			vbox.setUserData(new int[] { row, column });
+			vbox.setAlignment(Pos.BOTTOM_CENTER);
+			GridPane.setVgrow(vbox, Priority.ALWAYS);
+			GridPane.setFillHeight(vbox, true);
+			GridPane.setFillWidth(vbox, true);
+			if (withRuler) {
+				HBox st = new HBox();
+				st.setAlignment(Pos.CENTER_RIGHT);
+				st.getChildren().add(vbox);
+				if (column == 0 && row == 0) {
+					BorderPane bp = new BorderPane();
+					bp.setCenter(st);
+					grid.add(bp, column, row);
+				} else {
+					grid.add(st, column, row);
+				}
+			} else {
+				if (column == 0 && row == 0) {
+					BorderPane bp = new BorderPane();
+					bp.setBottom(vbox);
+					grid.add(bp, column, row);
+				} else {
+					grid.add(vbox, column, row);
+				}
+			}
+			return vbox;
 		}
-		return (VBox) n;
+		return getBackgroundPane(grid, row, column);
 	}
 
 	VBox getBackgroundPane(int row, int column) {
@@ -254,14 +287,34 @@ public class RcplTable {
 		if (grid == null) {
 			grid = tableView.getCellTable().getGrid();
 		}
-
 		try {
 			Node n = RcplTableUtil.getNode(row, column, grid);
-			return (VBox) n;
+			if (n instanceof VBox) {
+				return (VBox) n;
+			} else if (n instanceof HBox) {
+				return (VBox) ((HBox) n).getChildren().get(0);
+			} else if (n instanceof BorderPane) {
+				HBox hbox = (HBox) ((BorderPane) n).getCenter();
+				return (VBox) hbox.getChildren().get(0);
+			}
 		} catch (Exception ex) {
 			// ignore
 		}
 		return null;
+	}
+
+	BorderPane getTopLeftCellPane() {
+		GridPane grid = tableView.getCellTable().getGrid();
+		try {
+			Node n = RcplTableUtil.getNode(0, 0, grid);
+			if (n instanceof BorderPane) {
+				return (BorderPane) n;
+			}
+		} catch (Exception ex) {
+			// ignore
+		}
+		return null;
+
 	}
 
 	public int getColumnSpan(int row, int column) {
@@ -445,6 +498,7 @@ public class RcplTable {
 		tableView.getCellTable().getGrid().getRowConstraints().clear();
 		columnCount = 0;
 		tableView.getCellTable().getGrid().getColumnConstraints().clear();
+		getTableView().getCellTable().getGrid().getChildren().clear();
 	}
 
 	private Node getFirstChildInCell(VBox vbox) {

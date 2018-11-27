@@ -122,8 +122,8 @@ public class RcplTableHeader {
 			public void handle(MouseEvent me) {
 				mouseDown = true;
 				da.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-				int col = ((DragAnchor) sp.getUserData()).index;
-				da.startSize = getColumnWidth(col);
+				((DragAnchor) sp.getUserData()).index = column;
+				da.startSize = getColumnWidth(column);
 				me.consume();
 			}
 		});

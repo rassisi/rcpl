@@ -6,9 +6,9 @@ package org.eclipse.rcpl.ui.controls.table;
  */
 public interface IRcplTableConstants {
 
-	int DEFAULT_ROW_COUNT = 2;
+	int DEFAULT_ROW_COUNT = 0;
 
-	int DEFAULT_COLUMN_COUNT = 1;
+	int DEFAULT_COLUMN_COUNT = 0;
 
 	int DEFAULT_SPREADSHEET_ROW_COUNT = 100;
 

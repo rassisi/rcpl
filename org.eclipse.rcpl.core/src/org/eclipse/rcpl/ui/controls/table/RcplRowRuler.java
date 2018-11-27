@@ -97,7 +97,7 @@ public class RcplRowRuler {
 			public void handle(MouseEvent me) {
 				mouseDown = true;
 				da.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-				int row = ((DragAnchor) sp.getUserData()).index;
+				((DragAnchor) sp.getUserData()).index = row;
 				da.startSize = getRowHeight(row);
 				me.consume();
 			}
@@ -127,11 +127,7 @@ public class RcplRowRuler {
 		if (da != null) {
 			double diffY = me.getSceneY() - da.dragAnchor.getY();
 			double newHeight = Math.max(10, da.startSize + diffY);
-//			setRowheight(da.index, newHeight);
-//			sp.setPrefHeight(newHeight);
-
 			int row = da.index;
-
 			table.setRowHeight(row, newHeight);
 		}
 	}
