@@ -51,14 +51,6 @@ public class RcplCellTable {
 			node = grid;
 		}
 
-//		for (int row = 0; row < this.table.getRowCount(); row++) {
-//			insertRow();
-//		}
-//
-//		for (int column = 0; column < table.getColumnCount(); column++) {
-//			insertColumn();
-//		}
-
 	}
 
 	void insertRow() {
@@ -66,6 +58,7 @@ public class RcplCellTable {
 	}
 
 	void insertRow(int row) {
+
 		RowConstraints rc = new RowConstraints();
 		rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
 		rc.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
@@ -119,9 +112,12 @@ public class RcplCellTable {
 		} else {
 			column = col;
 		}
+
 		VBox vbox = table.createBackgroundPane(grid, 0, column, true);
 		HBox hbox = (HBox) vbox.getParent();
 		Pane sizer = new Pane();
+//		sizer.setStyle("-fx-border-color:red");
+
 		DragAnchor da = new DragAnchor();
 		sizer.setUserData(da);
 
@@ -196,6 +192,7 @@ public class RcplCellTable {
 
 		if (row == 0) {
 			BorderPane bp = table.getTopLeftCellPane();
+			bp.setPickOnBounds(false);
 			bp.setBottom(createverticalSizer(row));
 		} else {
 			VBox vbox = table.createBackgroundPane(grid, row, 0);

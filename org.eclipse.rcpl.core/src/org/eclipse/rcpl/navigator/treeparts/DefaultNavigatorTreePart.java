@@ -516,7 +516,7 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 	@Override
 	public Node createNode() {
 		treeView = new TreeView<Object>();
-		treeView.getStyleClass().add("emfTreeView");
+//		treeView.getStyleClass().add("emfTreeView");
 		treeView.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override

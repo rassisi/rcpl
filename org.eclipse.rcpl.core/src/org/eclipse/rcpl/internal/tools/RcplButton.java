@@ -274,11 +274,15 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 			switch (cmd) {
 			case page_landscape:
 				found = true;
-				select = event.getLayoutObject().getPage().getSection().isLandscape();
+				if (event.getLayoutObject().getPage() != null) {
+					select = event.getLayoutObject().getPage().getSection().isLandscape();
+				}
 				break;
 			case page_portrait:
 				found = true;
-				select = !event.getLayoutObject().getPage().getSection().isLandscape();
+				if (event.getLayoutObject().getPage() != null) {
+					select = !event.getLayoutObject().getPage().getSection().isLandscape();
+				}
 				break;
 			case align_text_center:
 				found = true;
