@@ -89,22 +89,6 @@ public class RcplCellTable {
 		grid.getRowConstraints().get(row).setMaxHeight(height);
 	}
 
-	public void setOverflow(int row, boolean overflowFigure) {
-		if (!overflowFigure) {
-			if (row > 0) {
-				while (table.getRowCount() > row) {
-					table.removeLastRow();
-				}
-			}
-		}
-
-		else {
-			for (int i = 0; i < row; i++) {
-				table.removeLastRow();
-			}
-		}
-	}
-
 	void showGridLines(boolean show) {
 		grid.setGridLinesVisible(show);
 	}

@@ -45,8 +45,6 @@ public class RcplTable {
 
 	private boolean[][] wrap = new boolean[1000][1000];
 
-	private int overflowRow = -1;
-
 	public RcplTable(int rowNumber, int columnNumber) {
 		this(true, true, rowNumber, columnNumber);
 	}
@@ -442,6 +440,11 @@ public class RcplTable {
 				}
 			}
 		}
+
+		rowCount = 0;
+		tableView.getCellTable().getGrid().getRowConstraints().clear();
+		columnCount = 0;
+		tableView.getCellTable().getGrid().getColumnConstraints().clear();
 	}
 
 	private Node getFirstChildInCell(VBox vbox) {
@@ -578,15 +581,6 @@ public class RcplTable {
 
 	public boolean isWrap(int row, int column) {
 		return this.wrap[row][column];
-	}
-
-	public void setOverflow(int row, boolean overflowFigure) {
-		this.overflowRow = row;
-		tableView.getCellTable().setOverflow(row, overflowFigure);
-	}
-
-	public int getOverflowRow() {
-		return overflowRow;
 	}
 
 	public void hideRow(int row) {
