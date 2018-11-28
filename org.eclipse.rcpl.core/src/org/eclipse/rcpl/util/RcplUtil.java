@@ -1088,7 +1088,8 @@ public class RcplUtil {
 		}
 
 		if (word) {
-			FileChooser.ExtensionFilter wordExtFilter = new FileChooser.ExtensionFilter("Word Documents", "*.docx");
+			FileChooser.ExtensionFilter wordExtFilter = new FileChooser.ExtensionFilter("Word Documents", "*.docx",
+					"*.dotx");
 			fileChooser.getExtensionFilters().add(wordExtFilter);
 			fileChooser.setSelectedExtensionFilter(wordExtFilter);
 		}
@@ -1106,7 +1107,7 @@ public class RcplUtil {
 		}
 		if (word && spreadsheet && presentation) {
 			FileChooser.ExtensionFilter officeExtFilter = new FileChooser.ExtensionFilter("Office Documents", "*.docx",
-					"*.xlsx", "*.pptx");
+					"*.dotx", "*.xlsx", "*.pptx");
 			fileChooser.getExtensionFilters().add(officeExtFilter);
 			fileChooser.setSelectedExtensionFilter(officeExtFilter);
 		}

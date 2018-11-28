@@ -40,11 +40,11 @@ public class TableDemo extends Application {
 
 		// ---------- spreadsheet
 
-		RcplTable table = new RcplTable(100, 100);
+//		RcplTable table = new RcplTable(100, 100);
 
 		// ---------- normal table without header
 
-//		RcplTable table = new RcplTable(false, false);
+		RcplTable table = new RcplTable(false, false);
 
 		HBox buttonbox = new HBox();
 		buttonbox.setSpacing(10);
