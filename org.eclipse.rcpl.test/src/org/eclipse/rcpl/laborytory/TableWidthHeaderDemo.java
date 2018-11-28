@@ -57,7 +57,7 @@ public class TableWidthHeaderDemo extends Application {
 
 		IParagraph paragraph = new SimpleParagraph("test");
 
-		table.addParagraph(paragraph, 10, 10);
+		table.addLayoutObject(paragraph, 10, 10);
 
 		table.setColumnWidth(3, 200);
 		table.setRowHeight(10, 50);

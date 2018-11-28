@@ -70,7 +70,7 @@ public class TableDemo extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				IParagraph paragraph = new SimpleParagraph("test asd a sd asd a sd a sd asd  asd a sd a sd asd a sd ");
-				table.addParagraph(paragraph, 1, 1);
+				table.addLayoutObject(paragraph, 1, 1);
 				table.update();
 			}
 		});
@@ -88,7 +88,7 @@ public class TableDemo extends Application {
 				int col = (int) (Math.random() * 10);
 
 				table.setWrap(row, col, true);
-				table.addParagraph(paragraph, row, col);
+				table.addLayoutObject(paragraph, row, col);
 			}
 		});
 		buttonbox.getChildren().add(button);

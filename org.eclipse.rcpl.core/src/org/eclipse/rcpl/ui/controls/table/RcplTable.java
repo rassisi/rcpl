@@ -1,5 +1,6 @@
 package org.eclipse.rcpl.ui.controls.table;
 
+import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.Rcpl;
 
@@ -104,7 +105,7 @@ public class RcplTable {
 	}
 
 	public void showGrid(boolean show) {
-		tableView.getCellTable().getGrid().setGridLinesVisible(show);
+		tableView.getCellTable().showGridLines(show);
 	}
 
 	public boolean isDEBUG() {
@@ -202,10 +203,10 @@ public class RcplTable {
 		backGroundPane.setPrefHeight(newHeight);
 	}
 
-	public void addParagraph(IParagraph paragraph, int row, int column) {
-		paragraph.getLayoutFigure().setWrap(isWrap(row, column));
-		paragraph.getLayoutFigure().setTable(this);
-		addNode(paragraph.getLayoutFigure().getNode(), row, column);
+	public void addLayoutObject(ILayoutObject layoutObject, int row, int column) {
+		layoutObject.getLayoutFigure().setWrap(isWrap(row, column));
+		layoutObject.getLayoutFigure().setTable(this);
+		addNode(layoutObject.getLayoutFigure().getNode(), row, column);
 	}
 
 	public void setRowHeight(int row, double height) {
