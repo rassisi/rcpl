@@ -9,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
@@ -110,8 +109,8 @@ public class RcplCellTable {
 			column = col;
 		}
 
-		VBox vbox = table.createBackgroundPane(grid, 0, column, true);
-		HBox hbox = (HBox) vbox.getParent();
+		BorderPane vbox = table.getSizerPane(0, column);
+
 		Pane sizer = new Pane();
 //		sizer.setStyle("-fx-border-color:red");
 
@@ -163,7 +162,7 @@ public class RcplCellTable {
 		sizer.setMinWidth(5);
 		sizer.setMaxWidth(5);
 
-		hbox.getChildren().add(sizer);
+		vbox.setRight(sizer);
 	}
 
 	public void handleMouseDragged(MouseEvent me, Pane sp) {
@@ -187,18 +186,14 @@ public class RcplCellTable {
 			row = row0;
 		}
 
-		if (row == 0) {
-			BorderPane bp = table.getTopLeftCellPane();
-			bp.setPickOnBounds(false);
-			bp.setBottom(createverticalSizer(row));
-		} else {
-			VBox vbox = table.createBackgroundPane(grid, row, 0);
-			vbox.getChildren().add(createverticalSizer(row));
-		}
+		BorderPane bp = table.getSizerPane(row, 0);
+		bp.setBottom(createverticalSizer(row));
+
 	}
 
 	private Pane createverticalSizer(int row) {
 		Pane sizer = new Pane();
+//		sizer.setStyle("-fx-border-color:red");
 		DragAnchor da = new DragAnchor();
 		sizer.setUserData(da);
 		sizer.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -239,6 +234,7 @@ public class RcplCellTable {
 			@Override
 			public void handle(MouseEvent me) {
 				handleVerticalMouseDragged(me, sizer);
+				me.consume();
 			}
 		});
 
@@ -252,7 +248,8 @@ public class RcplCellTable {
 		DragAnchor da = (DragAnchor) sp.getUserData();
 		if (da != null) {
 			double diffY = me.getSceneY() - da.dragAnchor.getY();
-			double newHeight = Math.max(10, da.startSize + diffY);
+			VBox vbox = table.getCellContentPane(da.index, 0);
+			double newHeight = Math.max(vbox.getMinHeight(), da.startSize + diffY);
 			sp.setPrefHeight(newHeight);
 			table.setRowHeight(da.index, newHeight);
 		}

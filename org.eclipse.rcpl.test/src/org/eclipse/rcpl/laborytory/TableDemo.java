@@ -93,11 +93,8 @@ public class TableDemo extends Application {
 				int row = (int) (Math.random() * 3);
 				int col = (int) (Math.random() * 3);
 
-				VBox vbox = table.getBackgroundPane(row, col);
-				if (vbox == null || vbox.getChildren().isEmpty()
-
-						|| col == 0 && row != 0 && vbox.getChildren().size() == 1) {
-
+				VBox vbox = table.getCellContentPane(row, col);
+				if (vbox.getChildren().isEmpty()) {
 					table.setWrap(row, col, true);
 					table.addLayoutObject(paragraph, row, col);
 				}
