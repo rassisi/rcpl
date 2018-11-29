@@ -172,12 +172,21 @@ public class RcplTable {
 			grid = tableView.getCellTable().getGrid();
 		}
 
-		if (column == 0) {
-			System.out.println();
-		}
 		updateRowAndColumnCount(row, column);
 
 		VBox backGroundPane = createBackgroundPane(grid, row, column);
+
+		if (column == 0 && row > 0) {
+			for (Node n2 : backGroundPane.getChildren()) {
+				Object o = n2.getUserData();
+
+				if (o instanceof DragAnchor) {
+					n2.toFront();
+					break;
+				}
+
+			}
+		}
 
 		backGroundPane.setAlignment(Pos.CENTER);
 		if (!backGroundPane.getChildren().contains(n)) {
@@ -263,11 +272,14 @@ public class RcplTable {
 
 				if (column == 0 && row == 0) {
 					bp = new BorderPane();
+					GridPane.setFillWidth(bp, true);
+					GridPane.setFillHeight(bp, true);
 					grid.add(bp, column, row);
 					if (withRuler) {
 						HBox st = new HBox();
 						st.setPickOnBounds(false);
 						st.setAlignment(Pos.CENTER_RIGHT);
+						vbox.setPadding(new Insets(0, -5, -5, 0));
 						st.getChildren().add(vbox);
 						bp.setCenter(st);
 					} else {
@@ -279,11 +291,21 @@ public class RcplTable {
 				// ---------- FIRST ROW COLUMN RULER -----------
 
 				if (withRuler) {
-					HBox st = new HBox();
-					st.setPickOnBounds(false);
-					st.setAlignment(Pos.CENTER_RIGHT);
-					st.getChildren().add(vbox);
-					grid.add(st, column, row);
+					HBox hbox = new HBox();
+					hbox.setPickOnBounds(false);
+					hbox.setAlignment(Pos.CENTER_RIGHT);
+					vbox.setPadding(new Insets(0, -5, 0, 0));
+					hbox.getChildren().add(vbox);
+					GridPane.setFillWidth(hbox, true);
+					GridPane.setFillHeight(hbox, true);
+
+					grid.add(hbox, column, row);
+					return vbox;
+				}
+
+				if (column == 0) {
+					vbox.setPadding(new Insets(0, 0, -5, 0));
+					grid.add(vbox, column, row);
 					return vbox;
 				}
 			}
@@ -299,7 +321,7 @@ public class RcplTable {
 		return v;
 	}
 
-	VBox getBackgroundPane(int row, int column) {
+	public VBox getBackgroundPane(int row, int column) {
 		return getBackgroundPane(null, row, column);
 	}
 
@@ -381,6 +403,17 @@ public class RcplTable {
 		}
 		updateRowAndColumnCount(row, column);
 		VBox backGroundPane = createBackgroundPane(row, column);
+
+		if (backGroundPane.getParent() instanceof BorderPane) {
+			backGroundPane.getParent().setStyle(style);
+			return;
+		}
+
+		if (backGroundPane.getParent() instanceof HBox) {
+			backGroundPane.getParent().setStyle(style);
+			return;
+		}
+
 		backGroundPane.setStyle(style);
 	}
 

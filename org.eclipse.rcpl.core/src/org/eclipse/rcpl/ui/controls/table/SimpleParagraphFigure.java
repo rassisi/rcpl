@@ -32,6 +32,7 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 		this.paragraph = paragraph;
 		this.node = new StackPane();
 		textField = new TextArea(paragraph.getText());
+		textField.setPrefWidth(10000);
 		textField.widthProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -117,6 +118,7 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 		textField.requestFocus();
 	}
 
+	@Override
 	public void setWrap(boolean wrap) {
 		textField.setWrapText(wrap);
 	}

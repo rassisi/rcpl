@@ -83,12 +83,24 @@ public class TableDemo extends Application {
 
 			@Override
 			public void handle(ActionEvent event) {
-				IParagraph paragraph = new SimpleParagraph("test paragraph");
-				int row = (int) (Math.random() * 10);
-				int col = (int) (Math.random() * 10);
+				IParagraph paragraph = new SimpleParagraph("test");
+//				int row = 3; // (int) (Math.random() * 10);
+//				int col = 0; // (int) (Math.random() * 10);
+//
+//				table.setWrap(row, col, true);
+//				table.addLayoutObject(paragraph, row, col);
 
-				table.setWrap(row, col, true);
-				table.addLayoutObject(paragraph, row, col);
+				int row = (int) (Math.random() * 3);
+				int col = (int) (Math.random() * 3);
+
+				VBox vbox = table.getBackgroundPane(row, col);
+				if (vbox == null || vbox.getChildren().isEmpty()
+
+						|| col == 0 && row != 0 && vbox.getChildren().size() == 1) {
+
+					table.setWrap(row, col, true);
+					table.addLayoutObject(paragraph, row, col);
+				}
 			}
 		});
 		buttonbox.getChildren().add(button);

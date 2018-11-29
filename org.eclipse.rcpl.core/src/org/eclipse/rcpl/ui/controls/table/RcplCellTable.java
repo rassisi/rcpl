@@ -48,7 +48,6 @@ public class RcplCellTable {
 		} else {
 			node = grid;
 		}
-
 	}
 
 	void insertRow() {
@@ -194,7 +193,6 @@ public class RcplCellTable {
 			bp.setBottom(createverticalSizer(row));
 		} else {
 			VBox vbox = table.createBackgroundPane(grid, row, 0);
-			vbox.setStyle("-fx-border-color: blue");
 			vbox.getChildren().add(createverticalSizer(row));
 		}
 	}

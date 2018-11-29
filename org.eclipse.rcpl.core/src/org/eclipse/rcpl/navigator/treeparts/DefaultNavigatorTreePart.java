@@ -591,20 +591,23 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 
 	@Override
 	public void setRoot(EObject root) {
-		this.root = root;
-		adapterFactoryTreeItem2 = null;
-		if (detailPane != null) {
+		if (this.root != root) {
+			this.root = root;
+
+			adapterFactoryTreeItem2 = null;
 			if (detailPane != null) {
-				try {
-					detailPane.getControler().unbindAll();
-				} catch (Exception ex) {
-					Rcpl.get().printErrorln("", ex);
+				if (detailPane != null) {
+					try {
+						detailPane.getControler().unbindAll();
+					} catch (Exception ex) {
+						Rcpl.get().printErrorln("", ex);
+					}
 				}
 			}
-		}
 
-		detailPane = null;
-		refresh();
+			detailPane = null;
+			refresh();
+		}
 	}
 
 	@Override
