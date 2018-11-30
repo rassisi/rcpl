@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
  */
 public interface IImage {
 
+	boolean isError();
+
 	Image getImage();
 
 	ImageView getNode();

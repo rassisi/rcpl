@@ -72,6 +72,8 @@ public class RcplImage implements IImage {
 
 	private File pngFile;
 
+	private boolean error;
+
 //	private File errorImagePngFile;
 
 	private File errorPngFile;
@@ -135,6 +137,7 @@ public class RcplImage implements IImage {
 
 			} catch (MalformedURLException e) {
 				createErrorNode();
+				error = true;
 			}
 		} else {
 			this.id = id;
@@ -147,9 +150,9 @@ public class RcplImage implements IImage {
 
 		// ---------- check if already loaded
 
-		if (node != null) {
-			return node;
-		}
+//		if (node != null) {
+//			return node;
+//		}
 
 		// ---------- check if Images is already in the repository
 
@@ -174,7 +177,6 @@ public class RcplImage implements IImage {
 			// ---------- id==null !!! -> should never happen!!!
 
 			else if (id == null) {
-				Rcpl.get().printErrorln("Image could not be loeaded (id == null): ");
 				createErrorNode();
 				return node;
 			}
@@ -182,8 +184,8 @@ public class RcplImage implements IImage {
 			// ---------- image from cache
 
 			else if (getErrorImagePngFile().exists()) {
+				error = true;
 				URL url = getErrorImagePngFile().toURI().toURL();
-				Rcpl.get().println("Image loaded from cache: " + id);
 				InputStream is = url.openStream();
 				if (is != null) {
 					image = new Image(is);
@@ -195,7 +197,6 @@ public class RcplImage implements IImage {
 
 			else if (getPngFile().exists()) {
 				URL url = getPngFile().toURI().toURL();
-				Rcpl.get().println("Image loaded from cache: " + id);
 				InputStream is = url.openStream();
 				if (is != null) {
 					image = new Image(is);
@@ -206,7 +207,6 @@ public class RcplImage implements IImage {
 			// ---------- image from resource
 
 			else if (createImageFromResource() != null) {
-				Rcpl.get().println("Image loaded from resouce: " + id);
 			}
 
 			// ---------- load image from remote
@@ -214,14 +214,11 @@ public class RcplImage implements IImage {
 			else if (findPngRemoteImage()) {
 				try {
 					image = new Image(pngUrl.toString());
-					Rcpl.get().println("Image loaded from Remote: " + id);
 				} catch (Throwable ex) {
-					Rcpl.get().printErrorln("Image not loaded from Resource -> ERROR!: " + id, ex);
 					createErrorNode();
 					return node;
 				}
 				if (image.isError()) {
-					Rcpl.get().printErrorln("Image not loaded from Resource -> ERROR (image is error)!: " + id);
 					createErrorNode();
 					return node;
 				}
@@ -235,7 +232,6 @@ public class RcplImage implements IImage {
 			}
 
 		} catch (Throwable ex) {
-			Rcpl.get().printErrorln("Image not be loaded!: " + id, ex);
 			createErrorNode();
 			return node;
 
@@ -246,7 +242,6 @@ public class RcplImage implements IImage {
 			put(id, width, height);
 			saveToFile(image, getPngFile());
 		} else {
-			Rcpl.get().printErrorln("Image not be loaded (image==null!");
 			createErrorNode();
 			saveToFile(image, getErrorImagePngFile());
 		}
@@ -357,7 +352,7 @@ public class RcplImage implements IImage {
 			isImage.close();
 
 		} catch (Throwable ex) {
-			Rcpl.get().printErrorln("", ex);
+			error = true;
 			isImage.close();
 		}
 
@@ -401,6 +396,7 @@ public class RcplImage implements IImage {
 	private File getErrorImagePngFile() {
 		if (errorPngFile == null) {
 			errorPngFile = new File(RcplUtil.getUserLocalCacheDir(), "images/BROKEN_IMAGE_" + createPngPath());
+			error = true;
 		}
 		return errorPngFile;
 
@@ -500,7 +496,7 @@ public class RcplImage implements IImage {
 		try {
 			getErrorPngFile().getParentFile().mkdirs();
 			getErrorPngFile().createNewFile();
-			Rcpl.get().println("Image could not be created: " + getErrorPngFile().getName());
+			error = true;
 		} catch (IOException e) {
 		}
 	}
@@ -513,7 +509,6 @@ public class RcplImage implements IImage {
 	@Override
 	public Image getImage() {
 		if (image == null) {
-			Rcpl.get().printErrorln("Image could not be loeaded in getImage() ");
 			createErrorNode();
 		}
 		return image;
@@ -529,6 +524,7 @@ public class RcplImage implements IImage {
 		if (errorPngFile == null) {
 			errorPngFile = new File(RcplUtil.getUserLocalCacheDir(),
 					"images/___ERROR___/" + width + "_" + height + "/" + id + ".png");
+			error = true;
 		}
 		return errorPngFile;
 
@@ -550,7 +546,7 @@ public class RcplImage implements IImage {
 		} catch (IOException e) {
 			// ignore as all images wrong will be saved under the __ERROR__
 			// folder
-			Rcpl.get().println("Image could not be loaded from Resource: " + id);
+			error = true;
 		}
 	}
 
@@ -570,7 +566,7 @@ public class RcplImage implements IImage {
 					createSvgImage(is, width, height);
 					Rcpl.get().println("SVG Image loaded from Resource: " + id);
 				} catch (TranscoderException | IOException e) {
-					Rcpl.get().printErrorln("", e);
+					error = true;
 				}
 			}
 			try {
@@ -580,9 +576,8 @@ public class RcplImage implements IImage {
 			} catch (IOException e) {
 				// ignore as all images wrong will be saved under the __ERROR__
 				// folder
+				error = true;
 			}
-		} else {
-			Rcpl.get().println("Image loaded from Resource: " + id);
 		}
 		return image;
 	}
@@ -600,12 +595,14 @@ public class RcplImage implements IImage {
 		} catch (IOException e) {
 			// ignore as all images wrong will be saved under the __ERROR__
 			// folder
+			error = true;
 		}
 		return image;
 
 	}
 
 	private void createErrorNode() {
+		error = true;
 		createErrorImage();
 		node = new ImageView(image);
 		node.setFitHeight(height);
@@ -636,6 +633,11 @@ public class RcplImage implements IImage {
 
 	private Image get() {
 		return imageRepository.get(id + width + height);
+	}
+
+	@Override
+	public boolean isError() {
+		return error;
 	}
 
 	// @Override

@@ -6,8 +6,10 @@ package org.eclipse.rcpl;
  */
 public interface IShape extends ILayoutObject {
 
-	public IColor getFillColor();
+	IColor getFillColor();
 
-	public IColor getLineColor();
+	IColor getLineColor();
+
+	EnShapeType getType();
 
 }
