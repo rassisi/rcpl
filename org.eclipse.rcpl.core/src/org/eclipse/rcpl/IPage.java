@@ -24,8 +24,6 @@ public interface IPage extends ILayoutFigure {
 
 	boolean isFirst();
 
-	void updateOverflowParagraphLocation(final ILayoutFigure overflowParagraphFigure, final double x);
-
 	void clipFigures();
 
 	@Override
