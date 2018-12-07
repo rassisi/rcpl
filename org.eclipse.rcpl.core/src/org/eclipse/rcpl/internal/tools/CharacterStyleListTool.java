@@ -107,7 +107,7 @@ public class CharacterStyleListTool extends AbstractRcplTool {
 	}
 
 	public void initSelection() {
-		IFont font = Rcpl.get().globalStyleTemplate().getDefaultStyle().getFont();
+		IFont font = Rcpl.defaultStyle().getFont();
 		selectFont(font);
 		setFont(font);
 	}

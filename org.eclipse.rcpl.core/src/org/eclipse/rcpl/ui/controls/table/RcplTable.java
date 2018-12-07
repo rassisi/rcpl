@@ -105,7 +105,7 @@ public class RcplTable {
 	}
 
 	public void showGrid(boolean show) {
-		tableView.getCellTable().showGridLines(show);
+//		tableView.getCellTable().showGridLines(show);
 	}
 
 	public boolean isDEBUG() {

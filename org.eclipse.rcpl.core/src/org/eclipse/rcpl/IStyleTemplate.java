@@ -7,9 +7,11 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.xmlbeans.XmlObject;
 import org.eclipse.rcpl.internal.tools.IStyle;
 
+/**
+ * @author Ramin
+ *
+ */
 public interface IStyleTemplate {
-
-	IStyle getDefaultStyle();
 
 	IStyle findStyleByName(String id);
 

@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.rcpl.impl.RcplMonitor;
+import org.eclipse.rcpl.internal.tools.IStyle;
 import org.eclipse.rcpl.model.EnKeyValue;
 import org.eclipse.rcpl.model.IResources;
 import org.eclipse.rcpl.model.RcplModel;
@@ -81,6 +82,16 @@ public class Rcpl implements RcplConstants {
 	private Boolean bigDisplay;
 
 	private static Rcpl INSTANCE;
+
+	private IStyle defaultStyle;
+
+	public static IStyle defaultStyle() {
+		return get().defaultStyle;
+	}
+
+	public static IStyle defaultStyle(IStyle style) {
+		return get().defaultStyle = style;
+	}
 
 	private static String createKeyValuePath(EnKeyValue key) {
 		return key.getFolder().name();

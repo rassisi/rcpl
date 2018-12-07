@@ -182,6 +182,10 @@ public interface IStyle {
 
 	void setTemplateStyle();
 
+	void setStyleLess();
+
+	boolean isStyleLess();
+
 	void setTextAlignment(IJOProperty alignment);
 
 	void setUnderline(boolean underline);

@@ -158,6 +158,7 @@ public class RcplTableHeader {
 			setColumnWidth(da.index, newWidth);
 			sp.setPrefHeight(newWidth);
 			table.setColumnWidth(da.index, newWidth);
+			me.consume();
 		}
 	}
 

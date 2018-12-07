@@ -95,7 +95,7 @@ public class FontNameTool extends AbstractRcplTool<String> {
 
 	public void initSelection() {
 		if (Rcpl.get().globalStyleTemplate() != null) {
-			IFont font = Rcpl.get().globalStyleTemplate().getDefaultStyle().getFont();
+			IFont font = Rcpl.defaultStyle().getFont();
 			selectFont(font);
 		}
 	}

@@ -291,7 +291,7 @@ public class RcplCellTable {
 	}
 
 	void showGridLines(boolean show) {
-		grid.setGridLinesVisible(show);
+//		grid.setGridLinesVisible(show);
 	}
 
 }
