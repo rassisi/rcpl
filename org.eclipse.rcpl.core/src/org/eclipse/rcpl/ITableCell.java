@@ -14,6 +14,14 @@ public interface ITableCell {
 
 	boolean hasBorders();
 
+	public IProperty2 getTopBorderColor();
+
+	public IProperty2 getRightBorderColor();
+
+	public IProperty2 getBottomBorderColor();
+
+	public IProperty2 getLeftBorderColor();
+
 	double getLeftBorderWidthPixel();
 
 	double getRightBorderWidthPixel();

@@ -14,10 +14,6 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 
 	private String text;
 
-	private int column = -1;
-
-	private int row = -1;
-
 	public SimpleParagraph(String text) {
 		this.text = text;
 	}
@@ -82,26 +78,6 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 	}
 
 	@Override
-	public int getColumn() {
-		return column;
-	}
-
-	@Override
-	public void setColumn(int column) {
-		this.column = column;
-	}
-
-	@Override
-	public int getRow() {
-		return row;
-	}
-
-	@Override
-	public void setRow(int row) {
-		this.row = row;
-	}
-
-	@Override
 	public double getHeight() {
 		return getLayoutFigure().getHeight();
 	}
@@ -120,6 +96,18 @@ public class SimpleParagraph extends RcplAbstractParagraph {
 	public double getHeightPixel() {
 		double h = getLayoutFigure().getHeight();
 		return h;
+	}
+
+	@Override
+	public void setCellInfo(RcplCellInfo cellInfo) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public RcplCellInfo getCellInfo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

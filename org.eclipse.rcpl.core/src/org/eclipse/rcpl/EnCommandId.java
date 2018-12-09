@@ -6,6 +6,8 @@ package org.eclipse.rcpl;
  */
 public enum EnCommandId {
 
+	paragraphStyleList(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+
 	pageSize(EnServiceId.PAGE_SERVICE, null, "", "", null),
 
 	page_landscape(EnServiceId.PAGE_SERVICE, null, "", "", null),

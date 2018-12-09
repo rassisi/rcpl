@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.xmlbeans.XmlObject;
 import org.eclipse.rcpl.internal.tools.IStyle;
 import org.eclipse.rcpl.model.IImage;
+import org.eclipse.rcpl.ui.controls.table.RcplCellInfo;
 
 import javafx.geometry.Rectangle2D;
 
@@ -13,6 +14,14 @@ import javafx.geometry.Rectangle2D;
  *
  */
 public interface ILayoutObject {
+
+	int getRow();
+
+	int getColumn();
+
+	void setCellInfo(RcplCellInfo cellInfo);
+
+	RcplCellInfo getCellInfo();
 
 	boolean isStartNewSection();
 

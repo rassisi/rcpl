@@ -6,10 +6,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.control.Control;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.Skin;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -32,6 +34,25 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 		this.paragraph = paragraph;
 		this.node = new StackPane();
 		textField = new TextArea(paragraph.getText());
+
+		textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
+				if (t1 != null && t1.getNode() instanceof Region) {
+					Region r = (Region) t1.getNode();
+					r.setBackground(Background.EMPTY);
+
+					r.getChildrenUnmodifiable().stream().filter(n -> n instanceof Region).map(n -> (Region) n)
+							.forEach(n -> n.setBackground(Background.EMPTY));
+
+					r.getChildrenUnmodifiable().stream().filter(n -> n instanceof Control).map(n -> (Control) n)
+							.forEach(c -> c.skinProperty().addListener(this)); // *
+				}
+			}
+		});
+
+		textField.setBackground(Background.EMPTY);
 		textField.setPrefWidth(10000);
 		textField.widthProperty().addListener(new ChangeListener<Number>() {
 			@Override
@@ -47,8 +68,8 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 						node.setPrefHeight(h);
 						textField.setPrefHeight(h);
 						if (table != null) {
-							int row = getRow(node);
-							int column = getColumn(node);
+							int row = paragraph.getRow();
+							int column = paragraph.getColumn();
 							if (table.isAutoRowSize()) {
 								if (table.getRowHeight(row) < h) {
 									table.setRowHeight(row, h);
@@ -72,16 +93,6 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 		textField.setPrefHeight(25);
 		this.node.setPrefHeight(textField.getPrefHeight());
 		this.node.getChildren().add(textField);
-	}
-
-	int getRow(Node n) {
-		Parent p = node.getParent();
-		return ((int[]) p.getUserData())[0];
-	}
-
-	int getColumn(Node n) {
-		Parent p = node.getParent();
-		return ((int[]) p.getUserData())[1];
 	}
 
 	@Override
@@ -131,5 +142,10 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 	@Override
 	public RcplTable getTable() {
 		return table;
+	}
+
+	@Override
+	public double calculateHeight() {
+		return textField.getHeight();
 	}
 }

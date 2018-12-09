@@ -1,5 +1,6 @@
 package org.eclipse.rcpl.ui.controls.table;
 
+import org.eclipse.rcpl.IColor;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.Rcpl;
@@ -49,11 +50,15 @@ public class RcplTable {
 
 	private double height;
 
-	private boolean[][] wrap = new boolean[1000][1000];
-
 	private int initialRows;
 
 	private int initialColumns;
+
+	private boolean allBorders;
+
+	private IColor allBordersColor = IColor.BLACK;
+
+	private double allBordersWidth = 1.0;
 
 	public RcplTable(int rowNumber, int columnNumber) {
 		this(true, true, rowNumber, columnNumber);
@@ -200,6 +205,7 @@ public class RcplTable {
 	public void addLayoutObject(ILayoutObject layoutObject, int row, int column) {
 		layoutObject.getLayoutFigure().setWrap(isWrap(row, column));
 		layoutObject.getLayoutFigure().setTable(this);
+
 		addNode(layoutObject.getLayoutFigure().getNode(), row, column);
 	}
 
@@ -231,8 +237,8 @@ public class RcplTable {
 		Node n = RcplTableUtil.getNode(row, column, grid);
 		if (n == null) {
 			StackPane cellStack = new StackPane();
+			cellStack.setUserData(new RcplCellInfo(row, column));
 			VBox vbox = new VBox();
-			vbox.setUserData(new int[] { row, column });
 			vbox.setAlignment(Pos.BOTTOM_CENTER);
 			GridPane.setVgrow(vbox, Priority.ALWAYS);
 			GridPane.setFillHeight(vbox, true);
@@ -338,16 +344,6 @@ public class RcplTable {
 		if (n instanceof Labeled) {
 			((Labeled) n).setAlignment(pos);
 		}
-	}
-
-	public void setStyle(int row, int column, String style) {
-		if (isDEBUG()) {
-			return;
-		}
-		updateRowAndColumnCount(row, column);
-		StackPane backGroundPane = createBackgroundPane(row, column);
-		backGroundPane.getParent().setStyle(style);
-		backGroundPane.setStyle(style);
 	}
 
 	public void setWidth(double width) {
@@ -596,11 +592,20 @@ public class RcplTable {
 	}
 
 	public void setWrap(int row, int column, boolean wrap) {
-		this.wrap[row][column] = wrap;
+		RcplCellInfo info = getCellInfo(row, column);
+		if (info == null) {
+			createBackgroundPane(row, column);
+			info = getCellInfo(row, column);
+		}
+		info.wrap = wrap;
 	}
 
 	public boolean isWrap(int row, int column) {
-		return this.wrap[row][column];
+		RcplCellInfo info = getCellInfo(row, column);
+		if (info == null) {
+			return false;
+		}
+		return info.wrap;
 	}
 
 	public void hideRow(int row) {
@@ -620,6 +625,107 @@ public class RcplTable {
 
 	public void removeLastRow() {
 		removeRow(getRowCount() - 1);
+	}
+
+	public void setAllBorders(boolean allBorders) {
+		this.allBorders = allBorders;
+		setTopCellBorder(0, 0, IColor.BLACK, 0.5);
+		setRightCellBorder(0, 0, IColor.BLACK, 0.5);
+		setBottomCellBorder(0, 0, IColor.BLACK, 0.5);
+		setLeftCellBorder(0, 0, IColor.BLACK, 0.5);
+
+		for (int row = 1; row < rowCount; row++) {
+			setRightCellBorder(row, 0, IColor.BLACK, 0.5);
+			setBottomCellBorder(row, 0, IColor.BLACK, 0.5);
+			setLeftCellBorder(row, 0, IColor.BLACK, 0.5);
+		}
+		for (int col = 1; col < columnCount; col++) {
+			setTopCellBorder(0, col, IColor.BLACK, 0.5);
+			setRightCellBorder(0, col, IColor.BLACK, 0.5);
+			setBottomCellBorder(0, col, IColor.BLACK, 0.5);
+		}
+		for (int row = 1; row < rowCount; row++) {
+			for (int col = 1; col < columnCount; col++) {
+				setRightCellBorder(row, col, IColor.BLACK, 0.5);
+				setBottomCellBorder(row, col, IColor.BLACK, 0.5);
+			}
+		}
+	}
+
+	public void setAllBordersColor(IColor allBordersColor) {
+		this.allBordersColor = allBordersColor;
+	}
+
+	public void setAllBordersWidth(double allBordersWidth) {
+		this.allBordersWidth = allBordersWidth;
+	}
+
+	public void setCellBg(int row, int col, IColor color) {
+		StackPane v = createBackgroundPane(row, col);
+		RcplCellInfo info = (RcplCellInfo) v.getUserData();
+		info.bgColor = color;
+		v.setStyle(info.getStyle());
+	}
+
+	public void setCellBorder(int row, int col, IColor color, double width) {
+		StackPane v = getBackgroundPane(row, col);
+		RcplCellInfo info = (RcplCellInfo) v.getUserData();
+		info.borderColor = color;
+		info.borderWidth = width;
+		v.setStyle(info.getStyle());
+	}
+
+	public void setTopCellBorder(int row, int col, IColor color, double width) {
+
+		if (row > 0) {
+			RcplCellInfo i = getCellInfo(row - 1, col);
+			if (i.borderWidthBottom > 0) {
+				return;
+			}
+		}
+		StackPane v = createBackgroundPane(row, col);
+		RcplCellInfo info = (RcplCellInfo) v.getUserData();
+		info.borderColorTop = color;
+		info.borderWidthTop = width;
+		v.setStyle(info.getStyle());
+	}
+
+	public void setRightCellBorder(int row, int col, IColor color, double width) {
+		StackPane v = createBackgroundPane(row, col);
+		RcplCellInfo info = (RcplCellInfo) v.getUserData();
+		info.borderColorRight = color;
+		info.borderWidthRight = width;
+		v.setStyle(info.getStyle());
+	}
+
+	public void setBottomCellBorder(int row, int col, IColor color, double width) {
+		StackPane v = createBackgroundPane(row, col);
+		RcplCellInfo info = (RcplCellInfo) v.getUserData();
+		info.borderColorBottom = color;
+		info.borderWidthBottom = width;
+		v.setStyle(info.getStyle());
+	}
+
+	public void setLeftCellBorder(int row, int col, IColor color, double width) {
+		if (col > 0) {
+			RcplCellInfo i = getCellInfo(row, col - 1);
+			if (i.borderWidthRight > 0) {
+				return;
+			}
+		}
+		StackPane v = createBackgroundPane(row, col);
+		RcplCellInfo info = (RcplCellInfo) v.getUserData();
+		info.borderColorLeft = color;
+		info.borderWidthLeft = width;
+		v.setStyle(info.getStyle());
+	}
+
+	public RcplCellInfo getCellInfo(int row, int col) {
+		StackPane v = getBackgroundPane(row, col);
+		if (v != null) {
+			return (RcplCellInfo) v.getUserData();
+		}
+		return null;
 	}
 
 }

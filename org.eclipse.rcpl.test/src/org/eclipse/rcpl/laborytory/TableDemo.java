@@ -1,5 +1,6 @@
 package org.eclipse.rcpl.laborytory;
 
+import org.eclipse.rcpl.IColor;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.ui.controls.table.RcplTable;
 import org.eclipse.rcpl.ui.controls.table.SimpleParagraph;
@@ -10,7 +11,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -46,8 +47,9 @@ public class TableDemo extends Application {
 
 		RcplTable table = new RcplTable(false, false);
 
-		HBox buttonbox = new HBox();
-		buttonbox.setSpacing(10);
+		FlowPane buttonbox = new FlowPane();
+		buttonbox.setHgap(10);
+		buttonbox.setVgap(10);
 		vbox.getChildren().add(buttonbox);
 
 		// ---------------------------------------------------------
@@ -90,8 +92,8 @@ public class TableDemo extends Application {
 //				table.setWrap(row, col, true);
 //				table.addLayoutObject(paragraph, row, col);
 
-				int row = (int) (Math.random() * 3);
-				int col = (int) (Math.random() * 3);
+				int row = (int) (Math.random() * 10);
+				int col = (int) (Math.random() * 10);
 
 				VBox vbox = table.getCellContentPane(row, col);
 				if (vbox.getChildren().isEmpty()) {
@@ -114,6 +116,19 @@ public class TableDemo extends Application {
 		});
 		table.showGrid(true);
 		buttonbox.getChildren().add(tb1);
+
+		// ---------------------------------------------------------
+
+		final ToggleButton tb11 = new ToggleButton("All Borders");
+		tb11.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				table.setAllBorders(tb11.isSelected());
+			}
+		});
+		table.showGrid(true);
+		buttonbox.getChildren().add(tb11);
 
 		// ---------------------------------------------------------
 
@@ -197,6 +212,38 @@ public class TableDemo extends Application {
 			}
 		});
 		buttonbox.getChildren().add(tb6);
+
+		// ---------------------------------------------------------
+
+		final ToggleButton tb7 = new ToggleButton("border 1,1");
+		tb7.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (tb7.isSelected()) {
+					table.setCellBorder(1, 1, IColor.BLUE, 1.0);
+				} else {
+					table.setCellBorder(1, 1, null, 0);
+				}
+			}
+		});
+		buttonbox.getChildren().add(tb7);
+
+		// ---------------------------------------------------------
+
+		final ToggleButton tb8 = new ToggleButton("bg 1,1");
+		tb8.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (tb8.isSelected()) {
+					table.setCellBg(1, 1, IColor.GREEN);
+				} else {
+					table.setCellBg(1, 1, null);
+				}
+			}
+		});
+		buttonbox.getChildren().add(tb8);
 
 		// ----------- table ---------------------
 

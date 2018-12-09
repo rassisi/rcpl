@@ -10,6 +10,8 @@ import javafx.geometry.Point2D;
  */
 public class LayoutData {
 
+	public boolean keepNextHappend;
+
 	public boolean expanding;
 
 	public boolean overflowOccured;

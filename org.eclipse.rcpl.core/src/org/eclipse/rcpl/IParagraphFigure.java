@@ -17,6 +17,8 @@ import javafx.scene.text.TextFlow;
  */
 public interface IParagraphFigure extends ILayoutFigure {
 
+	double calculateHeight();
+
 	public void replaceSelectedText(String replacment);
 
 	public void changeCase();

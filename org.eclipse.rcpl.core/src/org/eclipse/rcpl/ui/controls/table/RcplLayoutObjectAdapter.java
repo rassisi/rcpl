@@ -3,17 +3,13 @@ package org.eclipse.rcpl.ui.controls.table;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.xmlbeans.XmlObject;
 import org.eclipse.rcpl.EnLayoutAlignment;
 import org.eclipse.rcpl.EnLayoutReason;
-import org.eclipse.rcpl.IAlignment;
 import org.eclipse.rcpl.IBorder;
-import org.eclipse.rcpl.ICell;
 import org.eclipse.rcpl.IColor;
 import org.eclipse.rcpl.IColorProperty;
 import org.eclipse.rcpl.IDocument;
-import org.eclipse.rcpl.IDrawing;
 import org.eclipse.rcpl.IEditor;
 import org.eclipse.rcpl.IJOProperty;
 import org.eclipse.rcpl.ILayoutAnchor;
@@ -21,70 +17,35 @@ import org.eclipse.rcpl.ILayoutFigure;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IPage;
 import org.eclipse.rcpl.IParagraph;
-import org.eclipse.rcpl.IParagraphFigure;
 import org.eclipse.rcpl.IProperty2;
 import org.eclipse.rcpl.ISection;
-import org.eclipse.rcpl.ITableCell;
 import org.eclipse.rcpl.internal.tools.IStyle;
 import org.eclipse.rcpl.model.IImage;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 
 import javafx.geometry.Rectangle2D;
 
-/**
- * @author Ramin
- *
- */
-public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter implements IParagraph {
+public class RcplLayoutObjectAdapter implements ILayoutObject {
+
+	private RcplCellInfo cellInfo;
 
 	@Override
-	public void activate() {
-
+	public boolean isStartNewSection() {
+		return false;
 	}
 
 	@Override
-	public void addStyle(IStyle style) {
-
-	}
-
-	@Override
-	public void advanceCaretOffset() {
-
-	}
-
-	@Override
-	public void applyFontSize(double height) {
-	}
-
-	@Override
-	public void backCaretOffset() {
-
+	public IColorProperty getLineColorProperty() {
+		return null;
 	}
 
 	@Override
 	public void boundsChanged2(Rectangle2D newBounds) {
-
-	}
-
-	@Override
-	public void clearRunStyles() {
-
-	}
-
-	@Override
-	public void clearSelection() {
-
 	}
 
 	@Override
 	public boolean commit() {
 
 		return false;
-	}
-
-	@Override
-	public void createBorder() {
-
 	}
 
 	@Override
@@ -96,12 +57,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	@Override
 	public void createOverflowFigure(double remaining) {
 
-	}
-
-	@Override
-	public CTR createRun() {
-
-		return null;
 	}
 
 	@Override
@@ -121,23 +76,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public IStyle findCharacterStyleAtOffset() {
-
-		return null;
-	}
-
-	@Override
-	public IStyle findCharacterStyleAtOffset(int offset) {
-		return null;
-	}
-
-	@Override
-	public IAlignment getAlignment() {
-
-		return null;
-	}
-
-	@Override
 	public IBorder getBorder() {
 
 		return null;
@@ -145,54 +83,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 
 	@Override
 	public double getBottomMargin() {
-
-		return 0;
-	}
-
-	@Override
-	public int getCaretOffset() {
-
-		return 0;
-	}
-
-	@Override
-	public ICell getCell() {
-
-		return null;
-	}
-
-	@Override
-	public double getCellMarginBottom() {
-
-		return 0;
-	}
-
-	@Override
-	public double getCellMarginLeft() {
-
-		return 0;
-	}
-
-	@Override
-	public double getCellMarginTop() {
-
-		return 0;
-	}
-
-	@Override
-	public List<IStyle> getCharaterStyles() {
-
-		return null;
-	}
-
-	@Override
-	public List<IStyle> getCharaterStyles(int fromIndex, int toIndex) {
-
-		return null;
-	}
-
-	@Override
-	public int getCharCount() {
 
 		return 0;
 	}
@@ -210,12 +100,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public int getColumn() {
-
-		return 0;
-	}
-
-	@Override
 	public String getDisplayName() {
 
 		return null;
@@ -223,12 +107,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 
 	@Override
 	public IDocument getDocument() {
-
-		return null;
-	}
-
-	@Override
-	public List<IDrawing> getDrawings() {
 
 		return null;
 	}
@@ -249,12 +127,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	public ILayoutObject getHAnchorObject() {
 
 		return null;
-	}
-
-	@Override
-	public double getHeight() {
-
-		return 0;
 	}
 
 	@Override
@@ -294,19 +166,13 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public boolean getJustify() {
-
-		return false;
-	}
-
-	@Override
 	public Rectangle2D getLayoutBounds() {
 
 		return null;
 	}
 
 	@Override
-	public IParagraphFigure getLayoutFigure() {
+	public ILayoutFigure getLayoutFigure() {
 
 		return null;
 	}
@@ -321,30 +187,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	public double getLeftMargin() {
 
 		return 0;
-	}
-
-	@Override
-	public int getLineAlignment(int line) {
-
-		return 0;
-	}
-
-	@Override
-	public IColorProperty getLineColorProperty() {
-
-		return null;
-	}
-
-	@Override
-	public IProperty2 getMarginLeft() {
-
-		return null;
-	}
-
-	@Override
-	public IParagraph getNextParagraph() {
-
-		return null;
 	}
 
 	@Override
@@ -420,12 +262,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public int getRow() {
-
-		return 0;
-	}
-
-	@Override
 	public double getSavedZOrder() {
 
 		return 0;
@@ -438,31 +274,7 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public int getSelectionEnd() {
-
-		return 0;
-	}
-
-	@Override
-	public int getSelectionLength() {
-
-		return 0;
-	}
-
-	@Override
-	public int getSelectionStart() {
-
-		return 0;
-	}
-
-	@Override
 	public IProperty2 getSize() {
-
-		return null;
-	}
-
-	@Override
-	public IProperty2 getSpacingAfter() {
 
 		return null;
 	}
@@ -486,36 +298,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public ITableCell getTableCell() {
-
-		return null;
-	}
-
-	@Override
-	public IJOProperty getTabs() {
-
-		return null;
-	}
-
-	@Override
-	public String getText() {
-
-		return null;
-	}
-
-	@Override
-	public double getTextBoundsHeight() {
-
-		return 0;
-	}
-
-	@Override
-	public StringBuilder getTextBuffer() {
-
-		return null;
-	}
-
-	@Override
 	public double getTopMargin() {
 
 		return 0;
@@ -531,12 +313,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	public ILayoutObject getVAnchorObject() {
 
 		return null;
-	}
-
-	@Override
-	public double getWidth() {
-
-		return 0;
 	}
 
 	@Override
@@ -582,42 +358,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public boolean hasBullet() {
-
-		return false;
-	}
-
-	@Override
-	public boolean hasBulletNumber() {
-
-		return false;
-	}
-
-	@Override
-	public boolean hasCell() {
-
-		return false;
-	}
-
-	@Override
-	public boolean hasDrawing() {
-
-		return false;
-	}
-
-	@Override
-	public boolean hasSelection() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isAllSelected() {
-
-		return false;
-	}
-
-	@Override
 	public boolean isBehindDoc() {
 
 		return false;
@@ -625,18 +365,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 
 	@Override
 	public boolean isDirtyContent() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isEmpty() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isLoaded() {
 
 		return false;
 	}
@@ -672,18 +400,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public boolean isSelected() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isStartNewSection() {
-
-		return false;
-	}
-
-	@Override
 	public boolean isTestLayout() {
 
 		return false;
@@ -706,28 +422,7 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public void removeBullet() {
-
-	}
-
-	@Override
 	public void removeChildren() {
-
-	}
-
-	@Override
-	public boolean selectAll() {
-
-		return false;
-	}
-
-	@Override
-	public void setAlignment(ParagraphAlignment align) {
-
-	}
-
-	@Override
-	public void setBold(boolean bold) {
 
 	}
 
@@ -737,47 +432,12 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public void setBullet() {
-
-	}
-
-	@Override
-	public void setBulletNumber(int level, int number) {
-
-	}
-
-	@Override
-	public void setCaretOffset(int offset) {
-
-	}
-
-	@Override
-	public void setColumn(int column) {
-
-	}
-
-	@Override
 	public void setDirtyContent(boolean dirty) {
 
 	}
 
 	@Override
-	public void setFontName(String fontName) {
-
-	}
-
-	@Override
-	public void setFontSize(double fontSize) {
-
-	}
-
-	@Override
 	public void setHAnchorObject(ILayoutObject anchorObject) {
-
-	}
-
-	@Override
-	public void setHeight(double height) {
 
 	}
 
@@ -788,16 +448,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 
 	@Override
 	public void setHeightPixel(double height) {
-
-	}
-
-	@Override
-	public void setIndentation(double pixel) {
-
-	}
-
-	@Override
-	public void setItalic(boolean bold) {
 
 	}
 
@@ -842,57 +492,12 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public void setRow(int row) {
-
-	}
-
-	@Override
-	public void setSelectionEnd(int selectionEnd) {
-
-	}
-
-	@Override
-	public void setSelectionStart(int selectionStart) {
-
-	}
-
-	@Override
-	public void setStyle(IStyle style) {
-
-	}
-
-	@Override
-	public void setTableCell(ITableCell cell) {
-
-	}
-
-	@Override
 	public void setTestLayout(boolean testlayout) {
 
 	}
 
 	@Override
-	public void setText(String text) {
-
-	}
-
-	@Override
-	public void setTextBoundsHeight(double textBoundsHeight) {
-
-	}
-
-	@Override
-	public void setUnderline(boolean underline) {
-
-	}
-
-	@Override
 	public void setVAnchorObject(ILayoutObject anchorObject) {
-
-	}
-
-	@Override
-	public void setWidth(double width) {
 
 	}
 
@@ -927,61 +532,32 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public void updateFromXml(boolean update) {
-
-	}
-
-	@Override
 	public void updateOverflowClipping() {
 
 	}
 
 	@Override
-	public void applyBackground(IColor color) {
+	public void setCellInfo(RcplCellInfo cellInfo) {
+		this.cellInfo = cellInfo;
 	}
 
 	@Override
-	public void applyBold(boolean bold) {
+	public RcplCellInfo getCellInfo() {
+		return cellInfo;
 	}
 
-	@Override
-	public void applyFontName(String fontName) {
-
+	public int getRow() {
+		if (cellInfo != null) {
+			return cellInfo.x;
+		}
+		return -1;
 	}
 
-	@Override
-	public void applyForeground(IColor color) {
-
-	}
-
-	@Override
-	public void applyHighlight(IColor color) {
-
-	}
-
-	@Override
-	public void applyItalic(boolean italic) {
-
-	}
-
-	@Override
-	public void applyStrikeThrough(boolean strikeThrough) {
-
-	}
-
-	@Override
-	public void applySubScript(boolean subScript) {
-
-	}
-
-	@Override
-	public void applySuperScript(boolean superScript) {
-
-	}
-
-	@Override
-	public void applyUnderline(boolean underline) {
-
+	public int getColumn() {
+		if (cellInfo != null) {
+			return cellInfo.x;
+		}
+		return -1;
 	}
 
 }
