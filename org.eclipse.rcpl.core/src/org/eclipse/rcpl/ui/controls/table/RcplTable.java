@@ -679,7 +679,7 @@ public class RcplTable {
 
 		if (row > 0) {
 			RcplCellInfo i = getCellInfo(row - 1, col);
-			if (i.borderWidthBottom > 0) {
+			if (i != null && i.borderWidthBottom > 0) {
 				return;
 			}
 		}
@@ -709,7 +709,7 @@ public class RcplTable {
 	public void setLeftCellBorder(int row, int col, IColor color, double width) {
 		if (col > 0) {
 			RcplCellInfo i = getCellInfo(row, col - 1);
-			if (i.borderWidthRight > 0) {
+			if (i != null && i.borderWidthRight > 0) {
 				return;
 			}
 		}
