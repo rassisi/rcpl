@@ -32,20 +32,23 @@ public class RcplConversion {
 	// 4K 3480 x 2160
 	//
 
-	public class Emu {
+	public static class Emu {
 		private BigInteger emu;
 		private double points = -1;
 		private double pixel = -1;
+		private double cm = -1;
 
 		public Emu(BigInteger emu) {
 			this.emu = emu;
 			this.points = emu2Points(emu);
+			this.cm = emu2Centimeter(emu.longValue());
 		}
 
 		public Emu(double points) {
 			this.points = points;
 			this.emu = Pt2Emu(points);
 			this.pixel = pointsToPixel(points);
+			this.cm = emu2Centimeter(emu.longValue());
 		}
 
 		public BigInteger getEmu() {
@@ -60,6 +63,10 @@ public class RcplConversion {
 			return pixel;
 		}
 
+		public double getCm() {
+			return cm;
+		}
+
 	}
 
 	public static double pointsToPixel(double points) {
@@ -72,6 +79,21 @@ public class RcplConversion {
 
 	public static double pixelToPoints(double pixel) {
 		return pixel / RcplUtil.getPoint2PixelFactor();
+	}
+
+	public static double pointsAndInchesToCm(String pointsAndInches) {
+		if (pointsAndInches.endsWith("pt")) { //$NON-NLS-1$
+			pointsAndInches = pointsAndInches.substring(0, pointsAndInches.length() - 2);
+			double points = Double.valueOf(pointsAndInches);
+			double cm = new Emu(points).getCm();
+			return cm;
+		} else if (pointsAndInches.endsWith("in")) { //$NON-NLS-1$
+			pointsAndInches = pointsAndInches.substring(0, pointsAndInches.length() - 2);
+			Emu emu = new Emu(inch2Emu(Double.valueOf(pointsAndInches)));
+			double cm = emu.getCm();
+			return cm;
+		}
+		return 0;
 	}
 
 	public static double pointsAndInchesToPixel(String pointsAndInches) {
