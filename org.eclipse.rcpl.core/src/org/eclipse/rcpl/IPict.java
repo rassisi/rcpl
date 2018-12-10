@@ -19,4 +19,7 @@ public interface IPict extends ILayoutObject {
 	boolean isFilled();
 
 	IColor getLineColor();
+
+	boolean isTextBox();
+
 }
