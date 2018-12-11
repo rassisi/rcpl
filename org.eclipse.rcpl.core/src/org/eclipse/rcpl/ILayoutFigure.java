@@ -7,8 +7,8 @@ import org.eclipse.rcpl.ui.controls.table.RcplTable;
 
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,6 +19,8 @@ import javafx.scene.shape.Rectangle;
  *
  */
 public interface ILayoutFigure extends IPane {
+
+	void setResizable(Group selectionLayer);
 
 	public void setTable(RcplTable table);
 
@@ -35,12 +37,6 @@ public interface ILayoutFigure extends IPane {
 	void changeBounds(double layoutX, double layoutY, double width, double height);
 
 	void addKeyHandler(Pane pane);
-
-	void handleMouseDragged(MouseEvent me);
-
-	void handleMousePressed(MouseEvent me);
-
-	void handleMouseReleased();
 
 	boolean isActivated();
 

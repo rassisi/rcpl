@@ -12,77 +12,45 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 
-public class RcplResizableAndDraggableStackPaneSelectionOverlay extends Region {
+public class RcplResizableSelectionPane extends Region {
 
-	/**
-	 * Selection rectangle visibility
-	 */
-	boolean selectionRectangleVisible = true;
-
-	/**
-	 * Drag handles visibility. In addition to this boolean the cell must implement
-	 * ResizableI
-	 */
-	boolean dragHandlesVisible = true;
-
-	/**
-	 * The shape (cell) to which the overlay has been assigned.
-	 */
-	final Node monitoredShape;
-
+	private boolean selectionRectangleVisible = true;
+	private boolean dragHandlesVisible = true;
+	private final Node monitoredShape;
 	private ChangeListener<Bounds> boundsChangeListener;
+	private double diameter = 6;
+	private double radius = diameter / 2.0;
+	private Rectangle selectionRectangle = new Rectangle();
+	private DragHandle dragHandleNW;
+	private DragHandle dragHandleNE;
+	private DragHandle dragHandleSE;
+	private DragHandle dragHandleSW;
+	private DragHandle dragHandleN;
+	private DragHandle dragHandleS;
+	private DragHandle dragHandleE;
+	private DragHandle dragHandleW;
+	private RcplResizablePane resizablePane;
+	private WindowRotateButton rotateButton;
 
-	/**
-	 * Drag handle size
-	 */
-	double diameter = 6;
+	private class Delta {
+		double x;
+		double y;
+		double minX;
+		double maxX;
+		double minY;
+		double maxY;
+	}
 
-	/**
-	 * Drag handle half size, just to avoid / 2.0 of radius everywhere
-	 */
-	double radius = diameter / 2.0;
+	RcplResizableSelectionPane(RcplResizablePane resizablePane) {
 
-	/**
-	 * Selection rectangle around the shape / cell
-	 */
-	Rectangle selectionRectangle = new Rectangle();
-
-	// Drag handles
-	DragHandle dragHandleNW;
-	DragHandle dragHandleNE;
-	DragHandle dragHandleSE;
-	DragHandle dragHandleSW;
-	DragHandle dragHandleN;
-	DragHandle dragHandleS;
-	DragHandle dragHandleE;
-	DragHandle dragHandleW;
-
-	Node cell;
-
-	public RcplResizableAndDraggableStackPaneSelectionOverlay(final Node shape) {
-
-		this.cell = shape;
-
-		// mouse events only on our drag objects, but not on this node itself
-		// note that the selection rectangle is only for visuals and is set to being
-		// mouse transparent
+		this.resizablePane = resizablePane;
 		setPickOnBounds(false);
-
-		// the rectangle is only for visuals, we don't want any mouse events on it
 		selectionRectangle.setMouseTransparent(true);
 
-		// drag handles: drag handles must be enabled AND the cell must implement
-		// ResizableI
-		dragHandlesVisible = dragHandlesVisible && (shape instanceof Node);
-
 		if (selectionRectangleVisible) {
-
-			// set style
 			selectionRectangle.getStyleClass().add("selection_rectangle");
-
 			selectionRectangle.setOpacity(0.5);
 			getChildren().add(selectionRectangle);
-
 		}
 
 		if (dragHandlesVisible) {
@@ -90,17 +58,16 @@ public class RcplResizableAndDraggableStackPaneSelectionOverlay extends Region {
 			dragHandleNE = new DragHandle(diameter, Cursor.NE_RESIZE);
 			dragHandleSE = new DragHandle(diameter, Cursor.SE_RESIZE);
 			dragHandleSW = new DragHandle(diameter, Cursor.SW_RESIZE);
-
 			dragHandleN = new DragHandle(diameter, Cursor.N_RESIZE);
 			dragHandleS = new DragHandle(diameter, Cursor.S_RESIZE);
 			dragHandleE = new DragHandle(diameter, Cursor.E_RESIZE);
 			dragHandleW = new DragHandle(diameter, Cursor.W_RESIZE);
-
+			rotateButton = new WindowRotateButton(resizablePane);
 			getChildren().addAll(dragHandleNW, dragHandleNE, dragHandleSE, dragHandleSW, dragHandleN, dragHandleS,
-					dragHandleE, dragHandleW);
+					dragHandleE, dragHandleW, rotateButton);
 		}
 
-		monitoredShape = shape;
+		monitoredShape = resizablePane;
 
 		monitorBounds();
 
@@ -110,30 +77,22 @@ public class RcplResizableAndDraggableStackPaneSelectionOverlay extends Region {
 	 * Set bounds listener for the overlay.
 	 */
 	private void monitorBounds() {
-
-		// determine the shape's
 		final ReadOnlyObjectProperty<Bounds> bounds = monitoredShape.boundsInParentProperty();
-
-		// set the overlay based upon the new bounds and keep it in sync
-		updateBoundsDisplay(bounds.get());
-
-		// keep the overlay based upon the new bounds in sync
+		updateBounds(bounds.get());
 		boundsChangeListener = new ChangeListener<Bounds>() {
 			@Override
 			public void changed(ObservableValue<? extends Bounds> observableValue, Bounds oldBounds, Bounds newBounds) {
-				updateBoundsDisplay(newBounds);
+				updateBounds(newBounds);
 			}
 		};
-
 		bounds.addListener(boundsChangeListener);
 	}
 
 	/**
-	 * Update this overlay to match a new set of bounds.
 	 * 
 	 * @param newBounds
 	 */
-	private void updateBoundsDisplay(Bounds newBounds) {
+	private void updateBounds(Bounds newBounds) {
 
 		if (selectionRectangleVisible) {
 			selectionRectangle.setX(newBounds.getMinX());
@@ -145,32 +104,26 @@ public class RcplResizableAndDraggableStackPaneSelectionOverlay extends Region {
 		if (dragHandlesVisible) {
 			dragHandleNW.setX(newBounds.getMinX() - radius);
 			dragHandleNW.setY(newBounds.getMinY() - radius);
-
 			dragHandleNE.setX(newBounds.getMaxX() - radius);
 			dragHandleNE.setY(newBounds.getMinY() - radius);
-
 			dragHandleSE.setX(newBounds.getMaxX() - radius);
 			dragHandleSE.setY(newBounds.getMaxY() - radius);
-
 			dragHandleSW.setX(newBounds.getMinX() - radius);
 			dragHandleSW.setY(newBounds.getMaxY() - radius);
-
 			dragHandleN.setX(newBounds.getMinX() + newBounds.getWidth() / 2.0 - radius);
 			dragHandleN.setY(newBounds.getMinY() - radius);
-
 			dragHandleS.setX(newBounds.getMinX() + newBounds.getWidth() / 2.0 - radius);
 			dragHandleS.setY(newBounds.getMaxY() - radius);
-
 			dragHandleE.setX(newBounds.getMaxX() - radius);
 			dragHandleE.setY(newBounds.getMinY() + newBounds.getHeight() / 2.0 - radius);
-
 			dragHandleW.setX(newBounds.getMinX() - radius);
 			dragHandleW.setY(newBounds.getMinY() + newBounds.getHeight() / 2.0 - radius);
-
+			double max = Math.max(newBounds.getWidth(), newBounds.getHeight());
+			rotateButton.setLayoutY(newBounds.getMinY() - max / 3);
+			rotateButton.setLayoutX(newBounds.getMinX() + newBounds.getWidth() / 2.0 - 11);
 		}
 	}
 
-	// make a node movable by dragging it around with the mouse.
 	private void enableDrag(final DragHandle dragHandle) {
 
 		final Delta dragDelta = new Delta();
@@ -178,18 +131,13 @@ public class RcplResizableAndDraggableStackPaneSelectionOverlay extends Region {
 		dragHandle.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-
-				// record a delta distance for the drag and drop operation.
 				dragDelta.x = dragHandle.getX() - mouseEvent.getX();
 				dragDelta.y = dragHandle.getY() - mouseEvent.getY();
-
-				dragDelta.minX = cell.getBoundsInParent().getMinX();
-				dragDelta.maxX = cell.getBoundsInParent().getMaxX();
-				dragDelta.minY = cell.getBoundsInParent().getMinY();
-				dragDelta.maxY = cell.getBoundsInParent().getMaxY();
-
+				dragDelta.minX = resizablePane.getBoundsInParent().getMinX();
+				dragDelta.maxX = resizablePane.getBoundsInParent().getMaxX();
+				dragDelta.minY = resizablePane.getBoundsInParent().getMinY();
+				dragDelta.maxY = resizablePane.getBoundsInParent().getMaxY();
 				getScene().setCursor(dragHandle.getDragCursor());
-
 				mouseEvent.consume();
 			}
 		});
@@ -197,15 +145,12 @@ public class RcplResizableAndDraggableStackPaneSelectionOverlay extends Region {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
 				getScene().setCursor(Cursor.DEFAULT);
-
 				mouseEvent.consume();
 			}
 		});
 		dragHandle.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-
-				Node rCell = (Node) cell;
 
 				double newX = mouseEvent.getX() + dragDelta.x;
 				double newY = mouseEvent.getY() + dragDelta.y;
@@ -215,45 +160,47 @@ public class RcplResizableAndDraggableStackPaneSelectionOverlay extends Region {
 
 				if (dragHandle == dragHandleN) {
 
-					setHeight(rCell, dragDelta.maxY - newY - radius);
-					rCell.relocate(dragDelta.minX, newY + radius);
+					setHeight(resizablePane, dragDelta.maxY - newY - radius);
+					resizablePane.relocate(dragDelta.minX, newY + radius);
 
 				} else if (dragHandle == dragHandleNE) {
 
-					setWidth(rCell, newX - dragDelta.minX + radius);
-					setHeight(rCell, dragDelta.maxY - newY - radius);
-					rCell.relocate(dragDelta.minX, newY + radius);
+					setWidth(resizablePane, newX - dragDelta.minX + radius);
+					setHeight(resizablePane, dragDelta.maxY - newY - radius);
+					resizablePane.relocate(dragDelta.minX, newY + radius);
 
 				} else if (dragHandle == dragHandleE) {
 
-					setWidth(rCell, newX - dragDelta.minX + radius);
+					setWidth(resizablePane, newX - dragDelta.minX + radius);
 
 				} else if (dragHandle == dragHandleSE) {
 
-					setWidth(rCell, newX - dragDelta.minX + radius);
-					setHeight(rCell, newY - dragDelta.minY + radius);
+					setWidth(resizablePane, newX - dragDelta.minX + radius);
+					setHeight(resizablePane, newY - dragDelta.minY + radius);
 
 				} else if (dragHandle == dragHandleS) {
 
-					setHeight(rCell, newY - dragDelta.minY + radius);
+					setHeight(resizablePane, newY - dragDelta.minY + radius);
 
 				} else if (dragHandle == dragHandleSW) {
 
-					setWidth(rCell, dragDelta.maxX - newX - radius);
-					setHeight(rCell, newY - dragDelta.minY + radius);
-					rCell.relocate(newX + radius, dragDelta.minY);
+					setWidth(resizablePane, dragDelta.maxX - newX - radius);
+					setHeight(resizablePane, newY - dragDelta.minY + radius);
+					resizablePane.relocate(newX + radius, dragDelta.minY);
 				} else if (dragHandle == dragHandleW) {
 
-					setWidth(rCell, dragDelta.maxX - newX - radius);
-					rCell.relocate(newX + radius, dragDelta.minY);
+					setWidth(resizablePane, dragDelta.maxX - newX - radius);
+					resizablePane.relocate(newX + radius, dragDelta.minY);
 
 				} else if (dragHandle == dragHandleNW) {
 
-					setWidth(rCell, dragDelta.maxX - newX - radius);
-					setHeight(rCell, dragDelta.maxY - newY - radius);
-					rCell.relocate(newX + radius, newY + radius);
+					setWidth(resizablePane, dragDelta.maxX - newX - radius);
+					setHeight(resizablePane, dragDelta.maxY - newY - radius);
+					resizablePane.relocate(newX + radius, newY + radius);
 
 				}
+
+				resizablePane.updateLayoutFigureBounds();
 
 				mouseEvent.consume();
 			}
@@ -280,64 +227,49 @@ public class RcplResizableAndDraggableStackPaneSelectionOverlay extends Region {
 
 	}
 
-	private void setWidth(Node node, double value) {
-
+	private void setWidth(Node node, double width) {
 		if (node instanceof Rectangle) {
-
 			Rectangle shape = (Rectangle) node;
-			shape.setWidth(value);
-
+			shape.setWidth(width);
 		} else if (node instanceof Control) {
-
 			Control control = (Control) node;
-			control.setPrefWidth(value);
-
+			control.setPrefWidth(width);
 		} else if (node instanceof Region) {
-
 			Region region = (Region) node;
-			region.setPrefWidth(value);
-
+			region.setPrefWidth(width);
 		}
 
+		setPrefWidth(width);
+		this.resizablePane.doSetWidth(width);
 	}
 
-	private void setHeight(Node node, double value) {
-
+	private void setHeight(Node node, double height) {
 		if (node instanceof Rectangle) {
-
 			Rectangle shape = (Rectangle) node;
-			shape.setHeight(value);
-
+			shape.setHeight(height);
 		} else if (node instanceof Control) {
-
 			Control control = (Control) node;
-			control.setPrefHeight(value);
-
+			control.setPrefHeight(height);
 		} else if (node instanceof Region) {
-
 			Region region = (Region) node;
-			region.setPrefHeight(value);
-
+			region.setPrefHeight(height);
 		}
 
+		setPrefHeight(height);
+		this.resizablePane.doSetHeight(height);
 	}
 
 	/**
 	 * Drag handle
 	 */
 	private class DragHandle extends Rectangle {
-
 		Cursor dragCursor;
 
 		public DragHandle(double size, Cursor dragCursor) {
-
 			this.dragCursor = dragCursor;
-
 			setWidth(size);
 			setHeight(size);
-
 			getStyleClass().add("selection_drag_handle");
-
 			enableDrag(this);
 		}
 
@@ -346,14 +278,9 @@ public class RcplResizableAndDraggableStackPaneSelectionOverlay extends Region {
 		}
 	}
 
-	// records relative x and y co-ordinates.
-	private class Delta {
-		double x;
-		double y;
-		double minX;
-		double maxX;
-		double minY;
-		double maxY;
+	void rotate(double angle) {
+		setRotate(angle);
+		selectionRectangle.setRotate(angle);
 	}
 
 }

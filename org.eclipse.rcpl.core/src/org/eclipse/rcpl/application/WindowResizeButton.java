@@ -184,7 +184,10 @@ public class WindowResizeButton extends Region {
 						if (e.isControlDown()) {
 							h = w / ratio;
 						}
-						update(w, h);
+
+						System.out.println("###### DIFFX = " + diffX);
+
+//						update(w, h);
 					}
 
 					e.consume();

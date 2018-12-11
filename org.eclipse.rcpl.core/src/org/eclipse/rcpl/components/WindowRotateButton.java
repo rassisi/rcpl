@@ -8,36 +8,39 @@
  * Contributors:
  *     Ramin Assisi - initial implementation
  *******************************************************************************/
-package org.eclipse.rcpl.application;
+package org.eclipse.rcpl.components;
 
 import org.eclipse.rcpl.ILayoutFigure;
-import org.eclipse.rcpl.IPane;
 import org.eclipse.rcpl.Rcpl;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 /**
  * Simple draggable area for rotation
  */
-public class WindowRotateButton extends ImageView {
+public class WindowRotateButton extends HBox {
 
-	private IPane stack;
+	public WindowRotateButton(final RcplResizablePane resizablePane) {
 
-	public WindowRotateButton(final IPane stack) {
+		setSpacing(10);
+		ImageView imageView = new ImageView();
+		imageView.setFitHeight(20);
+		imageView.setFitWidth(20);
 
-		this.stack = stack;
-
-		WindowRotateButton.this.setFitHeight(20);
-		WindowRotateButton.this.setFitWidth(20);
+		Label angleLabel = new Label();
+		angleLabel.setStyle("-fx-font: bold 16.0pt Arial;");
+		getChildren().addAll(imageView, angleLabel);
 
 		Image img = ((ImageView) Rcpl.get().resources().getImage("rotate", 20, 20).getNode()).getImage();
-		setImage(img);
+		imageView.setImage(img);
 
 		setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
@@ -64,7 +67,7 @@ public class WindowRotateButton extends ImageView {
 			@Override
 			public void handle(MouseEvent e) {
 				Point2D target = new Point2D(e.getSceneX(), e.getSceneY());
-				Point2D center = WindowRotateButton.this.stack.getCenter();
+				Point2D center = resizablePane.getCenter();
 				double angle = calcRotationAngleInDegrees(center, target);
 
 				if (e.isControlDown()) {
@@ -72,12 +75,14 @@ public class WindowRotateButton extends ImageView {
 					angle = a;
 				}
 
-				stack.getPane().setRotate(angle);
-
-				for (ILayoutFigure f : Rcpl.UIC().getEditor().getSelectedDraggables()) {
-					f.getLayoutObject().setRotation(angle);
+				angleLabel.setText(angle + " °");
+				resizablePane.setRotate(angle);
+				if (resizablePane.getLayoutFigure() != null) {
+					resizablePane.getLayoutFigure().getPane().setRotate(angle);
+					for (ILayoutFigure f : Rcpl.UIC().getEditor().getSelectedDraggables()) {
+						f.getLayoutObject().setRotation(angle);
+					}
 				}
-
 				e.consume();
 
 			}
@@ -87,7 +92,7 @@ public class WindowRotateButton extends ImageView {
 	private double calcRotationAngleInDegrees(Point2D centerPt, Point2D targetPt) {
 		double theta = Math.atan2(targetPt.getY() - centerPt.getY(), targetPt.getX() - centerPt.getX());
 		theta += Math.PI / 2.0;
-		double angle = Math.toDegrees(theta) - 342;
+		double angle = Math.toDegrees(theta); // - 360; // 342;
 		if (angle < 0) {
 			angle += 360;
 		}

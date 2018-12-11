@@ -62,24 +62,6 @@ public abstract class RcplAbstractParagraphFigure implements IParagraphFigure {
 	}
 
 	@Override
-	public void handleMouseDragged(MouseEvent me) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void handleMousePressed(MouseEvent me) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void handleMouseReleased() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public boolean isActivated() {
 		// TODO Auto-generated method stub
 		return false;

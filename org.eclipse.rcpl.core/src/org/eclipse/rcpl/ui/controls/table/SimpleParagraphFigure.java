@@ -5,6 +5,7 @@ import org.eclipse.rcpl.IParagraph;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
 import javafx.scene.control.ScrollPane;
@@ -147,5 +148,11 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 	@Override
 	public double calculateHeight() {
 		return textField.getHeight();
+	}
+
+	@Override
+	public void setResizable(Group selectionLayer) {
+		// TODO Auto-generated method stub
+
 	}
 }

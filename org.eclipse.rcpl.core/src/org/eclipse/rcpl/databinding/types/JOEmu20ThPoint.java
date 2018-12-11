@@ -18,6 +18,11 @@ import org.eclipse.rcpl.util.RcplConversion;
 public class JOEmu20ThPoint extends JOEmu {
 
 	public JOEmu20ThPoint(String value) {
+
+		if ("0".equals(value)) {
+			this.value = BigInteger.ZERO;
+			return;
+		}
 		this.value = RcplConversion.pointsAndInchesAndValuesToEmu(value).divide(BigInteger.valueOf(20));
 	}
 
