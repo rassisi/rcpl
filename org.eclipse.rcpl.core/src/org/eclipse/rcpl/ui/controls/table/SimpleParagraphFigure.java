@@ -151,8 +151,6 @@ public class SimpleParagraphFigure extends RcplAbstractParagraphFigure {
 	}
 
 	@Override
-	public void setResizable(Group selectionLayer) {
-		// TODO Auto-generated method stub
-
+	public void setResizable(Group bg, Group selectionLayer) {
 	}
 }

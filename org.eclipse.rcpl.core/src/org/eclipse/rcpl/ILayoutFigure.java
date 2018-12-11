@@ -20,7 +20,7 @@ import javafx.scene.shape.Rectangle;
  */
 public interface ILayoutFigure extends IPane {
 
-	void setResizable(Group selectionLayer);
+	void setResizable(Group freeFlowtingBgGroup, Group selectionLayer);
 
 	public void setTable(RcplTable table);
 

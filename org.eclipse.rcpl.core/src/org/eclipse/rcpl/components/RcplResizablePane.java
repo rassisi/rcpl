@@ -11,6 +11,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 /**
  * @author Ramin
@@ -22,30 +24,41 @@ public class RcplResizablePane extends StackPane {
 
 	private Group selectionLayer;
 
+	Group freeFlowtingBgGroup;
+
 	private Map<Node, RcplResizableSelectionPane> map = new HashMap<Node, RcplResizableSelectionPane>();
 
-	List<Node> selection = new ArrayList<>();
+	private List<Node> selection = new ArrayList<>();
 
-	RcplResizableSelectionPane selectionOverlay;
+	private RcplResizableSelectionPane selectionPane;
+
+	private Rectangle bg;
 
 	private class DragContext {
 		double x;
 		double y;
 	}
 
-	public RcplResizablePane(ILayoutFigure layoutFigure, Group selectionLayer) {
+	public RcplResizablePane(ILayoutFigure layoutFigure, Group freeFlowtingBgGroup, Group selectionLayer) {
 		super();
 		this.selectionLayer = selectionLayer;
 		this.layoutFigure = layoutFigure;
 		final DragContext dragDelta = new DragContext();
 
+		bg = new Rectangle();
+		bg.setFill(Color.TRANSPARENT);
+		bg.setVisible(true);
+		bg.setPickOnBounds(false);
+		bg.setMouseTransparent(true);
+		freeFlowtingBgGroup.getChildren().add(bg);
+
 		setOnMousePressed(mouseEvent -> {
 			clear();
 			if (selection.contains(this))
 				return;
-			selectionOverlay = new RcplResizableSelectionPane(this);
-			map.put(this, selectionOverlay);
-			selectionLayer.getChildren().add(selectionOverlay);
+			selectionPane = new RcplResizableSelectionPane(this);
+			map.put(this, selectionPane);
+			selectionLayer.getChildren().add(selectionPane);
 			selection.add(this);
 			dragDelta.x = getTranslateX() - mouseEvent.getSceneX();
 			dragDelta.y = getTranslateY() - mouseEvent.getSceneY();
@@ -72,14 +85,11 @@ public class RcplResizablePane extends StackPane {
 			setTranslateY(0);
 			updateLayoutFigureBounds();
 		});
+
 	}
 
 	public double computePrefHeight(double arg0) {
 		return super.computePrefHeight(arg0);
-	}
-
-	public void add(Node node) {
-
 	}
 
 	public void remove(Node node) {
@@ -99,6 +109,18 @@ public class RcplResizablePane extends StackPane {
 			removeOverlay(node);
 		}
 		selection.clear();
+	}
+
+	@Override
+	protected void setWidth(double value) {
+		super.setWidth(value);
+		bg.setWidth(value);
+	}
+
+	@Override
+	protected void setHeight(double value) {
+		super.setHeight(value);
+		bg.setHeight(value);
 	}
 
 	protected void doSetWidth(double width) {
@@ -139,4 +161,16 @@ public class RcplResizablePane extends StackPane {
 		return selectionLayer;
 	}
 
+	public Rectangle getBg() {
+		return bg;
+	}
+
+	public void setX(double x) {
+		setLayoutX(x);
+		bg.setX(x);
+	}
+
+	public void setBgColor(Color color) {
+		bg.setFill(color);
+	}
 }

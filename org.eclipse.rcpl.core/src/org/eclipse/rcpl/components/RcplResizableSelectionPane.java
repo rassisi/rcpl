@@ -29,6 +29,7 @@ public class RcplResizableSelectionPane extends Region {
 	private DragHandle dragHandleS;
 	private DragHandle dragHandleE;
 	private DragHandle dragHandleW;
+
 	private RcplResizablePane resizablePane;
 	private WindowRotateButton rotateButton;
 
@@ -44,12 +45,12 @@ public class RcplResizableSelectionPane extends Region {
 	RcplResizableSelectionPane(RcplResizablePane resizablePane) {
 
 		this.resizablePane = resizablePane;
+
 		setPickOnBounds(false);
 		selectionRectangle.setMouseTransparent(true);
 
 		if (selectionRectangleVisible) {
 			selectionRectangle.getStyleClass().add("selection_rectangle");
-			selectionRectangle.setOpacity(0.5);
 			getChildren().add(selectionRectangle);
 		}
 
@@ -93,6 +94,11 @@ public class RcplResizableSelectionPane extends Region {
 	 * @param newBounds
 	 */
 	private void updateBounds(Bounds newBounds) {
+
+		resizablePane.getBg().setX(newBounds.getMinX());
+		resizablePane.getBg().setY(newBounds.getMinY());
+		resizablePane.getBg().setWidth(newBounds.getWidth());
+		resizablePane.getBg().setHeight(newBounds.getHeight());
 
 		if (selectionRectangleVisible) {
 			selectionRectangle.setX(newBounds.getMinX());
@@ -158,48 +164,52 @@ public class RcplResizableSelectionPane extends Region {
 				dragHandle.setX(newX);
 				dragHandle.setY(newY);
 
+				double newWidth = -1;
+				double newHeight = -1;
+
 				if (dragHandle == dragHandleN) {
-
-					setHeight(resizablePane, dragDelta.maxY - newY - radius);
-					resizablePane.relocate(dragDelta.minX, newY + radius);
-
+					newHeight = dragDelta.maxY - newY - radius;
+					if (newHeight > 0) {
+						resizablePane.relocate(dragDelta.minX, newY + radius);
+					}
 				} else if (dragHandle == dragHandleNE) {
-
-					setWidth(resizablePane, newX - dragDelta.minX + radius);
-					setHeight(resizablePane, dragDelta.maxY - newY - radius);
-					resizablePane.relocate(dragDelta.minX, newY + radius);
-
+					newWidth = newX - dragDelta.minX + radius;
+					newHeight = dragDelta.maxY - newY - radius;
+					if (newWidth > 0 && newHeight > 0) {
+						resizablePane.relocate(dragDelta.minX, newY + radius);
+					}
 				} else if (dragHandle == dragHandleE) {
-
-					setWidth(resizablePane, newX - dragDelta.minX + radius);
-
+					newWidth = newX - dragDelta.minX + radius;
 				} else if (dragHandle == dragHandleSE) {
-
-					setWidth(resizablePane, newX - dragDelta.minX + radius);
-					setHeight(resizablePane, newY - dragDelta.minY + radius);
-
+					newWidth = newX - dragDelta.minX + radius;
+					newHeight = newY - dragDelta.minY + radius;
 				} else if (dragHandle == dragHandleS) {
-
-					setHeight(resizablePane, newY - dragDelta.minY + radius);
-
+					newHeight = newY - dragDelta.minY + radius;
 				} else if (dragHandle == dragHandleSW) {
-
-					setWidth(resizablePane, dragDelta.maxX - newX - radius);
-					setHeight(resizablePane, newY - dragDelta.minY + radius);
-					resizablePane.relocate(newX + radius, dragDelta.minY);
+					newWidth = dragDelta.maxX - newX - radius;
+					newHeight = newY - dragDelta.minY + radius;
+					if (newWidth > 0 && newHeight > 0) {
+						resizablePane.relocate(newX + radius, dragDelta.minY);
+					}
 				} else if (dragHandle == dragHandleW) {
-
-					setWidth(resizablePane, dragDelta.maxX - newX - radius);
-					resizablePane.relocate(newX + radius, dragDelta.minY);
-
+					newWidth = dragDelta.maxX - newX - radius;
+					if (newWidth > 0) {
+						resizablePane.relocate(newX + radius, dragDelta.minY);
+					}
 				} else if (dragHandle == dragHandleNW) {
-
-					setWidth(resizablePane, dragDelta.maxX - newX - radius);
-					setHeight(resizablePane, dragDelta.maxY - newY - radius);
-					resizablePane.relocate(newX + radius, newY + radius);
-
+					newWidth = dragDelta.maxX - newX - radius;
+					newHeight = dragDelta.maxY - newY - radius;
+					if (newWidth > 0 && newHeight > 0) {
+						resizablePane.relocate(newX + radius, newY + radius);
+					}
 				}
 
+				if (newWidth > 0) {
+					setWidth(resizablePane, newWidth);
+				}
+				if (newHeight > 0) {
+					setHeight(resizablePane, newHeight);
+				}
 				resizablePane.updateLayoutFigureBounds();
 
 				mouseEvent.consume();
@@ -228,6 +238,9 @@ public class RcplResizableSelectionPane extends Region {
 	}
 
 	private void setWidth(Node node, double width) {
+		if (width < 1) {
+			return;
+		}
 		if (node instanceof Rectangle) {
 			Rectangle shape = (Rectangle) node;
 			shape.setWidth(width);
@@ -244,6 +257,9 @@ public class RcplResizableSelectionPane extends Region {
 	}
 
 	private void setHeight(Node node, double height) {
+		if (height < 1) {
+			return;
+		}
 		if (node instanceof Rectangle) {
 			Rectangle shape = (Rectangle) node;
 			shape.setHeight(height);

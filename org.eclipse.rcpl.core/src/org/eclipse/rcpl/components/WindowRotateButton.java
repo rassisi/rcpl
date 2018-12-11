@@ -30,40 +30,51 @@ public class WindowRotateButton extends HBox {
 
 	public WindowRotateButton(final RcplResizablePane resizablePane) {
 
+		setPickOnBounds(false);
 		setSpacing(10);
 		ImageView imageView = new ImageView();
 		imageView.setFitHeight(20);
 		imageView.setFitWidth(20);
 
-		Label angleLabel = new Label();
-		angleLabel.setStyle("-fx-font: bold 16.0pt Arial;");
+		Label angleLabel = new Label("0 °");
+		angleLabel.setStyle("-fx-font: bold 16.0pt Arial;-fx-border-color:black;-fx-border-width:0.5;");
+		angleLabel.setVisible(false);
 		getChildren().addAll(imageView, angleLabel);
 
 		Image img = ((ImageView) Rcpl.get().resources().getImage("rotate", 20, 20).getNode()).getImage();
 		imageView.setImage(img);
 
-		setOnMousePressed(new EventHandler<MouseEvent>() {
+		imageView.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+				angleLabel.setVisible(true);
 				event.consume();
 			}
 		});
 
-		setOnMouseEntered(new EventHandler<MouseEvent>() {
+		imageView.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				angleLabel.setVisible(false);
+				event.consume();
+			}
+		});
+
+		imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				((Node) event.getSource()).setCursor(Cursor.OPEN_HAND);
 			}
 		});
 
-		setOnMouseExited(new EventHandler<MouseEvent>() {
+		imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				((Node) event.getSource()).setCursor(Cursor.DEFAULT);
 			}
 		});
 
-		setOnMouseDragged(new EventHandler<MouseEvent>() {
+		imageView.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
 				Point2D target = new Point2D(e.getSceneX(), e.getSceneY());

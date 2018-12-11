@@ -13,11 +13,13 @@ public class Main extends Application {
 
 		Group root = new Group();
 		Group objectLayer = new Group();
-		root.getChildren().add(objectLayer);
 		Group selectionLayer = new Group();
-		root.getChildren().add(selectionLayer);
 
-		RcplResizablePane sampleNode2 = new RcplResizablePane(null, selectionLayer);
+		Group bgLayer = new Group();
+
+		root.getChildren().addAll(bgLayer, objectLayer, selectionLayer);
+
+		RcplResizablePane sampleNode2 = new RcplResizablePane(null, bgLayer, selectionLayer);
 
 		sampleNode2.getChildren().add(new Label("I'm a StackPane"));
 		sampleNode2.setStyle("-fx-background-color: lightblue");
