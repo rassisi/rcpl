@@ -10,9 +10,10 @@ import org.eclipse.rcpl.ILayoutFigure;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 /**
  * @author Ramin
@@ -32,8 +33,6 @@ public class RcplResizablePane extends StackPane {
 
 	private RcplResizableSelectionPane selectionPane;
 
-	private Rectangle bg;
-
 	private class DragContext {
 		double x;
 		double y;
@@ -41,16 +40,12 @@ public class RcplResizablePane extends StackPane {
 
 	public RcplResizablePane(ILayoutFigure layoutFigure, Group freeFlowtingBgGroup, Group selectionLayer) {
 		super();
+
 		this.selectionLayer = selectionLayer;
 		this.layoutFigure = layoutFigure;
+		this.freeFlowtingBgGroup = freeFlowtingBgGroup;
 		final DragContext dragDelta = new DragContext();
-
-		bg = new Rectangle();
-		bg.setFill(Color.TRANSPARENT);
-		bg.setVisible(true);
-		bg.setPickOnBounds(false);
-		bg.setMouseTransparent(true);
-		freeFlowtingBgGroup.getChildren().add(bg);
+//		createBg();
 
 		setOnMousePressed(mouseEvent -> {
 			clear();
@@ -88,6 +83,34 @@ public class RcplResizablePane extends StackPane {
 
 	}
 
+//	private void createBg() {
+//		bg = new Rectangle();
+//		bg.setUserData(layoutFigure);
+//
+//		bg.setVisible(true);
+//		bg.setPickOnBounds(false);
+//		bg.setFill(Color.rgb(10, 10, 10, 0.01));
+//		bg.setMouseTransparent(true);
+//		bg.setWidth(layoutFigure.getWidth());
+//		bg.setHeight(layoutFigure.getHeight());
+//
+//		double z1 = layoutFigure.getLayoutObject().getZOrder();
+//		for (Node n : freeFlowtingBgGroup.getChildren()) {
+//			Object o = n.getUserData();
+//			if (o instanceof ILayoutFigure) {
+//				ILayoutObject lo = ((ILayoutFigure) o).getLayoutObject();
+//				double z2 = lo.getZOrder();
+//				if (z1 < z2) {
+//					int index = freeFlowtingBgGroup.getChildren().indexOf(n);
+//					freeFlowtingBgGroup.getChildren().add(index, bg);
+//					return;
+//				}
+//			}
+//		}
+//		freeFlowtingBgGroup.getChildren().add(bg);
+//
+//	}
+
 	public double computePrefHeight(double arg0) {
 		return super.computePrefHeight(arg0);
 	}
@@ -114,13 +137,11 @@ public class RcplResizablePane extends StackPane {
 	@Override
 	protected void setWidth(double value) {
 		super.setWidth(value);
-		bg.setWidth(value);
 	}
 
 	@Override
 	protected void setHeight(double value) {
 		super.setHeight(value);
-		bg.setHeight(value);
 	}
 
 	protected void doSetWidth(double width) {
@@ -161,16 +182,11 @@ public class RcplResizablePane extends StackPane {
 		return selectionLayer;
 	}
 
-	public Rectangle getBg() {
-		return bg;
-	}
-
-	public void setX(double x) {
-		setLayoutX(x);
-		bg.setX(x);
-	}
-
 	public void setBgColor(Color color) {
-		bg.setFill(color);
+//		if (color == null) {
+//			setBackground(null);
+//			return;
+//		}
+		setBackground(new Background(new BackgroundFill(color, null, null)));
 	}
 }

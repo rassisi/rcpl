@@ -37,7 +37,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.SceneAntialiasing;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
@@ -254,7 +253,7 @@ public abstract class AbstractApplicationProvider implements IRcplApplicationPro
 		stage.hide();
 		mainStackPane = new StackPane();
 		this.primaryStage = new Stage(StageStyle.UNDECORATED); // primaryStage;
-		this.primaryStage.setScene(new Scene(mainStackPane, 100, 100, false, SceneAntialiasing.DISABLED));
+		this.primaryStage.setScene(new Scene(mainStackPane)); // , 100, 100, false, SceneAntialiasing.DISABLED));
 		Rcpl.get().setRcplApplicationProvider(this);
 		calculateMonitors();
 		mainContent = new StackPane();

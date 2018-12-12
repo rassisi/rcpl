@@ -95,10 +95,10 @@ public class RcplResizableSelectionPane extends Region {
 	 */
 	private void updateBounds(Bounds newBounds) {
 
-		resizablePane.getBg().setX(newBounds.getMinX());
-		resizablePane.getBg().setY(newBounds.getMinY());
-		resizablePane.getBg().setWidth(newBounds.getWidth());
-		resizablePane.getBg().setHeight(newBounds.getHeight());
+//		resizablePane.getBg().setX(newBounds.getMinX());
+//		resizablePane.getBg().setY(newBounds.getMinY());
+//		resizablePane.getBg().setWidth(newBounds.getWidth());
+//		resizablePane.getBg().setHeight(newBounds.getHeight());
 
 		if (selectionRectangleVisible) {
 			selectionRectangle.setX(newBounds.getMinX());
@@ -206,9 +206,11 @@ public class RcplResizableSelectionPane extends Region {
 
 				if (newWidth > 0) {
 					setWidth(resizablePane, newWidth);
+//					resizablePane.getBg().setWidth(newWidth);
 				}
 				if (newHeight > 0) {
 					setHeight(resizablePane, newHeight);
+//					resizablePane.getBg().setWidth(newHeight);
 				}
 				resizablePane.updateLayoutFigureBounds();
 
@@ -253,7 +255,7 @@ public class RcplResizableSelectionPane extends Region {
 		}
 
 		setPrefWidth(width);
-		this.resizablePane.doSetWidth(width);
+		this.resizablePane.doSetWidth(width - 30);
 	}
 
 	private void setHeight(Node node, double height) {
