@@ -4,6 +4,7 @@ import org.eclipse.rcpl.IColor;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.util.RcplConversion;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -60,6 +61,12 @@ public class RcplTable {
 
 	private double allBordersWidth = 1.0;
 
+	private double minimumColumnWidth;
+
+	private double minimumRowHeight;
+
+	double DEFAULT_ROW_HEIGHT = 22;
+
 	public RcplTable(int rowNumber, int columnNumber) {
 		this(true, true, rowNumber, columnNumber);
 	}
@@ -75,9 +82,10 @@ public class RcplTable {
 	public RcplTable(boolean spreadsheet, boolean header, int rowNumber, int columnNumber) {
 		this.spreadsheet = spreadsheet;
 		this.header = header;
-
 		this.DEBUG = false;
-
+		DEFAULT_ROW_HEIGHT = RcplConversion.pointsToPixelDouble(13);
+		this.minimumColumnWidth = IRcplTableConstants.SIZER_WIDTH;
+		this.minimumRowHeight = DEFAULT_ROW_HEIGHT;
 		initialRows = Math.max(rowNumber, IRcplTableConstants.DEFAULT_SPREADSHEET_ROW_COUNT);
 		initialColumns = Math.max(columnNumber, IRcplTableConstants.DEFAULT_SPREADSHEET_COLUMN_COUNT);
 
@@ -110,7 +118,7 @@ public class RcplTable {
 	}
 
 	public void showGrid(boolean show) {
-//		tableView.getCellTable().showGridLines(show);
+		tableView.getCellTable().showGridLines(false); // show);
 	}
 
 	public boolean isDEBUG() {
@@ -211,22 +219,26 @@ public class RcplTable {
 
 	public void setRowHeight(int row, double height) {
 		updateRowAndColumnCount(row, -1);
-		GridPane grid = tableView.getCellTable().getGrid();
-		grid.getRowConstraints().get(row).setPrefHeight(height);
-		grid.getRowConstraints().get(row).setMinHeight(height);
-		grid.getRowConstraints().get(row).setMaxHeight(height);
-		if (spreadsheet && tableView.getRowRuler() != null) {
-			tableView.getRowRuler().setRowheight(row, height);
+		if (height >= getMinimumRowHeight()) {
+			GridPane grid = tableView.getCellTable().getGrid();
+			grid.getRowConstraints().get(row).setPrefHeight(height);
+			grid.getRowConstraints().get(row).setMinHeight(height);
+			grid.getRowConstraints().get(row).setMaxHeight(height);
+			if (spreadsheet && tableView.getRowRuler() != null) {
+				tableView.getRowRuler().setRowheight(row, height);
+			}
 		}
 	}
 
 	public void setColumnWidth(int column, double width) {
 		updateRowAndColumnCount(-1, column);
-		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setPrefWidth(width);
-		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMinWidth(width);
-		tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMaxWidth(width);
-		if (spreadsheet && tableView.getTableHeader() != null) {
-			tableView.getTableHeader().setColumnWidth(column, width);
+		if (width >= getMinimumColumnWidth()) {
+			tableView.getCellTable().getGrid().getColumnConstraints().get(column).setPrefWidth(width);
+			tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMinWidth(width);
+			tableView.getCellTable().getGrid().getColumnConstraints().get(column).setMaxWidth(width);
+			if (spreadsheet && tableView.getTableHeader() != null) {
+				tableView.getTableHeader().setColumnWidth(column, width);
+			}
 		}
 	}
 
@@ -237,8 +249,10 @@ public class RcplTable {
 		Node n = RcplTableUtil.getNode(row, column, grid);
 		if (n == null) {
 			StackPane cellStack = new StackPane();
+			cellStack.setPickOnBounds(false);
 			cellStack.setUserData(new RcplCellInfo(row, column));
 			VBox vbox = new VBox();
+			vbox.setPickOnBounds(false);
 			vbox.setAlignment(Pos.BOTTOM_CENTER);
 			GridPane.setVgrow(vbox, Priority.ALWAYS);
 			GridPane.setFillHeight(vbox, true);
@@ -254,6 +268,7 @@ public class RcplTable {
 
 				if (column == 0 || row == 0) {
 					bp = new BorderPane();
+					bp.setPickOnBounds(false);
 					cellStack.getChildren().add(bp);
 					return cellStack;
 				}
@@ -305,23 +320,58 @@ public class RcplTable {
 			// ignore
 		}
 		return null;
-
 	}
 
 	public int getColumnSpan(int row, int column) {
 		updateRowAndColumnCount(row, column);
 		Node n = createBackgroundPane(row, column);
 		if (n != null) {
-			return GridPane.getColumnSpan(n);
+			try {
+				return GridPane.getColumnSpan(n);
+			} catch (Exception ex) {
+				return 1;
+			}
 		}
 		return 1;
+	}
+
+	public boolean isColumnSpaned(int row, int column) {
+
+		if (getColumnSpan(row, column) > 1) {
+			return false;
+		}
+
+		if (row == 1 && column == 1) {
+
+			System.out.println();
+
+		}
+
+		if (column == 0) {
+			return false;
+		}
+		column--;
+		for (int count = 2; column >= 0; column--, count++) {
+			int span = getColumnSpan(row, column);
+			if (span > 1) {
+				if (span >= count) {
+					return true;
+				}
+				return false;
+			}
+		}
+		return false;
 	}
 
 	public int getRowSpan(int row, int column) {
 		updateRowAndColumnCount(row, column);
 		Node n = createBackgroundPane(row, column);
 		if (n != null) {
-			return GridPane.getRowSpan(n);
+			try {
+				return GridPane.getRowSpan(n);
+			} catch (Exception ex) {
+				return 1;
+			}
 		}
 		return 1;
 	}
@@ -384,29 +434,33 @@ public class RcplTable {
 
 	public void setCellWidth(int row, int column, double width) {
 		updateRowAndColumnCount(-1, column);
-		double columnWidth = getColumnWidth(column);
-		if (width > columnWidth) {
-			setColumnWidth(column, width);
-		} else if (width < columnWidth) {
-			StackPane st = createBackgroundPane(row, column);
-			st.setPrefWidth(width);
+		if (width >= getMinimumColumnWidth()) {
+			double columnWidth = getColumnWidth(column);
+			if (width > columnWidth) {
+				setColumnWidth(column, width);
+			} else if (width < columnWidth) {
+				StackPane st = createBackgroundPane(row, column);
+				st.setPrefWidth(width);
+			}
 		}
 	}
 
 	public void setCellHeight(int row, int column, double height) {
 		updateRowAndColumnCount(row, -1);
 		double rowHeight = getRowHeight(row);
-		if (height > rowHeight) {
-			setRowHeight(row, height);
-		} else if (height < rowHeight) {
-			StackPane st = createBackgroundPane(row, column);
-			if (st != null) {
-				st.setPrefHeight(rowHeight);
-				st.setLayoutX(0);
-				st.setLayoutY(0);
-			} else {
-				Rcpl.get().println(
-						"RcplTable.setCellheight(row:" + row + ", column:" + column + ", height:" + height + ")");
+		if (height >= getMinimumRowHeight()) {
+			if (height > rowHeight) {
+				setRowHeight(row, height);
+			} else if (height < rowHeight) {
+				StackPane st = createBackgroundPane(row, column);
+				if (st != null) {
+					st.setPrefHeight(rowHeight);
+					st.setLayoutX(0);
+					st.setLayoutY(0);
+				} else {
+					Rcpl.get().println(
+							"RcplTable.setCellheight(row:" + row + ", column:" + column + ", height:" + height + ")");
+				}
 			}
 		}
 	}
@@ -664,6 +718,7 @@ public class RcplTable {
 		StackPane v = createBackgroundPane(row, col);
 		RcplCellInfo info = (RcplCellInfo) v.getUserData();
 		info.bgColor = color;
+		correctSpanBorder(info, row, col);
 		v.setStyle(info.getStyle());
 	}
 
@@ -676,7 +731,6 @@ public class RcplTable {
 	}
 
 	public void setTopCellBorder(int row, int col, IColor color, double width) {
-
 		if (row > 0) {
 			RcplCellInfo i = getCellInfo(row - 1, col);
 			if (i != null && i.borderWidthBottom > 0) {
@@ -687,6 +741,7 @@ public class RcplTable {
 		RcplCellInfo info = (RcplCellInfo) v.getUserData();
 		info.borderColorTop = color;
 		info.borderWidthTop = width;
+		correctSpanBorder(info, row, col);
 		v.setStyle(info.getStyle());
 	}
 
@@ -695,7 +750,22 @@ public class RcplTable {
 		RcplCellInfo info = (RcplCellInfo) v.getUserData();
 		info.borderColorRight = color;
 		info.borderWidthRight = width;
+		correctSpanBorder(info, row, col);
 		v.setStyle(info.getStyle());
+	}
+
+	private void correctSpanBorder(RcplCellInfo info, int row, int col) {
+
+		if (getColumnSpan(row, col) > 1) {
+//			info.borderColorLeft = IColor.RED; // null;
+//			info.borderWidthLeft = 3;
+
+		} else if (isColumnSpaned(row, col)) {
+			info.borderColorRight = null;
+			info.borderWidthRight = 0;
+			info.borderColorLeft = null;
+			info.borderWidthLeft = 0;
+		}
 	}
 
 	public void setBottomCellBorder(int row, int col, IColor color, double width) {
@@ -703,6 +773,7 @@ public class RcplTable {
 		RcplCellInfo info = (RcplCellInfo) v.getUserData();
 		info.borderColorBottom = color;
 		info.borderWidthBottom = width;
+		correctSpanBorder(info, row, col);
 		v.setStyle(info.getStyle());
 	}
 
@@ -717,6 +788,7 @@ public class RcplTable {
 		RcplCellInfo info = (RcplCellInfo) v.getUserData();
 		info.borderColorLeft = color;
 		info.borderWidthLeft = width;
+		correctSpanBorder(info, row, col);
 		v.setStyle(info.getStyle());
 	}
 
@@ -726,6 +798,22 @@ public class RcplTable {
 			return (RcplCellInfo) v.getUserData();
 		}
 		return null;
+	}
+
+	public double getMinimumColumnWidth() {
+		return minimumColumnWidth;
+	}
+
+	public void setMinimumColumnWidth(double minimumColumnWidth) {
+		this.minimumColumnWidth = minimumColumnWidth;
+	}
+
+	public double getMinimumRowHeight() {
+		return minimumRowHeight;
+	}
+
+	public void setMinimumRowHeight(double minimumRowHeight) {
+		this.minimumRowHeight = minimumRowHeight;
 	}
 
 }

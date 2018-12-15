@@ -25,6 +25,8 @@ public interface IDocument {
 
 	boolean isTemplate();
 
+	void sortRootObjects();
+
 	ITaskViewProvider getTaskViewProvider();
 
 	int layoutObjectsSize();

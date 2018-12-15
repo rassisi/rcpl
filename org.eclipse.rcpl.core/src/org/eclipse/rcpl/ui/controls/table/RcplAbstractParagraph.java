@@ -312,12 +312,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public int getLayoutIndex() {
-
-		return 0;
-	}
-
-	@Override
 	public double getLeftMargin() {
 
 		return 0;

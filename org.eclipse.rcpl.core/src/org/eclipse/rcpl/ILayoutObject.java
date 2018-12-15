@@ -75,8 +75,6 @@ public interface ILayoutObject {
 
 	ILayoutFigure getLayoutFigure();
 
-	int getLayoutIndex();
-
 	double getLeftMargin();
 
 	ILayoutObject getNextRootObject();

@@ -49,7 +49,11 @@ public class RcplCellInfo {
 		StringBuilder sb = new StringBuilder();
 		if (borderColor != null && borderWidth > 0) {
 			sb.append("-fx-border-color: " + borderColor.toCss() + ";" + "-fx-border-width: " + borderWidth + ";");
-		} else {
+		}
+
+		else
+
+		{
 
 			// ----------- partial borders ------------------
 
@@ -57,39 +61,42 @@ public class RcplCellInfo {
 			if (borderColorTop != null) {
 				sb.append(borderColorTop.toCss());
 			} else {
-				sb.append("transparent");
+				sb.append("black");
 			}
-			sb.append(",");
+			sb.append(" ");
 			if (borderColorRight != null) {
 				sb.append(borderColorRight.toCss());
 			} else {
-				sb.append("transparent");
+				sb.append("black");
 			}
-			sb.append(",");
+			sb.append(" ");
 			if (borderColorBottom != null) {
 				sb.append(borderColorBottom.toCss());
 			} else {
-				sb.append("transparent");
+				sb.append("black");
 			}
-			sb.append(",");
+			sb.append(" ");
 			if (borderColorLeft != null) {
 				sb.append(borderColorLeft.toCss());
 			} else {
-				sb.append("transparent");
+				sb.append("black");
 			}
+
 			sb.append(";");
 
 			// --------- width
 
 			sb.append("-fx-border-width: ");
+
 			sb.append(borderWidthTop);
-			sb.append(",");
+			sb.append(" ");
 			sb.append(borderWidthRight);
-			sb.append(",");
+			sb.append(" ");
 			sb.append(borderWidthBottom);
-			sb.append(",");
+			sb.append(" ");
 			sb.append(borderWidthLeft);
 			sb.append(";");
+
 		}
 
 		if (bgColor != null) {

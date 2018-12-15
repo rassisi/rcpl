@@ -14,10 +14,10 @@ public interface IRcplTableConstants {
 
 	int DEFAULT_SPREADSHEET_COLUMN_COUNT = 100;
 
-	int DEFAULT_ROW_HEIGHT = 25;
-
 	int DEFAULT_ROW_RULER_WIDTH = 40;
 
 	int DEFAULT_CELL_WIDTH = 80;
+
+	double SIZER_WIDTH = 5;
 
 }

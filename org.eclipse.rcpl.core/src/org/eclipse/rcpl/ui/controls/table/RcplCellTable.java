@@ -1,5 +1,7 @@
 package org.eclipse.rcpl.ui.controls.table;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
@@ -36,6 +38,15 @@ public class RcplCellTable {
 
 		this.table = table;
 		this.grid = new GridPane();
+		grid.gridLinesVisibleProperty().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+
+				System.out.println();
+
+			}
+		});
 
 		grid.setHgap(0);
 		grid.setVgap(0);
@@ -56,9 +67,9 @@ public class RcplCellTable {
 	void insertRow(int row) {
 
 		RowConstraints rc = new RowConstraints();
-		rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		rc.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		rc.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		rc.setPrefHeight(table.DEFAULT_ROW_HEIGHT);
+		rc.setMinHeight(table.DEFAULT_ROW_HEIGHT);
+		rc.setMaxHeight(table.DEFAULT_ROW_HEIGHT);
 		if (row == -1) {
 			grid.getRowConstraints().add(rc);
 		} else {
@@ -238,9 +249,9 @@ public class RcplCellTable {
 			}
 		});
 
-		sizer.setPrefHeight(5);
-		sizer.setMinHeight(5);
-		sizer.setMaxHeight(5);
+		sizer.setPrefHeight(IRcplTableConstants.SIZER_WIDTH);
+		sizer.setMinHeight(IRcplTableConstants.SIZER_WIDTH);
+		sizer.setMaxHeight(IRcplTableConstants.SIZER_WIDTH);
 		return sizer;
 	}
 
@@ -291,7 +302,7 @@ public class RcplCellTable {
 	}
 
 	void showGridLines(boolean show) {
-//		grid.setGridLinesVisible(show);
+		grid.setGridLinesVisible(show);
 	}
 
 }

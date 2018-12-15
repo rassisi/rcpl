@@ -41,14 +41,14 @@ public class RcplTableHeader {
 	public RcplTableHeader(RcplTable table) {
 		this.table = table;
 		node = new HBox();
-		node.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		node.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		node.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		node.setPrefHeight(table.DEFAULT_ROW_HEIGHT);
+		node.setMinHeight(table.DEFAULT_ROW_HEIGHT);
+		node.setMaxHeight(table.DEFAULT_ROW_HEIGHT);
 
 		scrollPane = new ScrollPane();
-		scrollPane.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		scrollPane.setMinHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
-		scrollPane.setMaxHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		scrollPane.setPrefHeight(table.DEFAULT_ROW_HEIGHT);
+		scrollPane.setMinHeight(table.DEFAULT_ROW_HEIGHT);
+		scrollPane.setMaxHeight(table.DEFAULT_ROW_HEIGHT);
 		if (table.isSpreadsheet()) {
 			node.setPadding(new Insets(0, 16, 0, 0));
 		}
@@ -82,7 +82,7 @@ public class RcplTableHeader {
 		final StackPane sp = new StackPane();
 		DragAnchor da = new DragAnchor();
 		sp.setUserData(da);
-		sp.setPrefSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		sp.setPrefSize(IRcplTableConstants.DEFAULT_CELL_WIDTH, table.DEFAULT_ROW_HEIGHT);
 		HBox hbox = new HBox();
 //		hbox.setStyle("-fx-border-color: blue;");
 		sp.getChildren().add(hbox);
@@ -135,9 +135,9 @@ public class RcplTableHeader {
 			}
 		});
 
-		sizer.setPrefWidth(5);
-		sizer.setMinWidth(5);
-		sizer.setMaxWidth(5);
+		sizer.setPrefWidth(IRcplTableConstants.SIZER_WIDTH);
+		sizer.setMinWidth(IRcplTableConstants.SIZER_WIDTH);
+		sizer.setMaxWidth(IRcplTableConstants.SIZER_WIDTH);
 		hbox.getChildren().add(sizer);
 		if (table.isSpreadsheet()) {
 			l.setText(RcplTableUtil.calculateColumnName(column));
@@ -155,9 +155,11 @@ public class RcplTableHeader {
 		if (da != null) {
 			double diffX = me.getSceneX() - da.dragAnchor.getX();
 			double newWidth = Math.max(10, da.startSize + diffX);
-			setColumnWidth(da.index, newWidth);
-			sp.setPrefHeight(newWidth);
-			table.setColumnWidth(da.index, newWidth);
+			if (newWidth >= table.getMinimumColumnWidth()) {
+				setColumnWidth(da.index, newWidth);
+				sp.setPrefHeight(newWidth);
+				table.setColumnWidth(da.index, newWidth);
+			}
 			me.consume();
 		}
 	}

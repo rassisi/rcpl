@@ -178,12 +178,6 @@ public class RcplLayoutObjectAdapter implements ILayoutObject {
 	}
 
 	@Override
-	public int getLayoutIndex() {
-
-		return 0;
-	}
-
-	@Override
 	public double getLeftMargin() {
 
 		return 0;
@@ -546,6 +540,7 @@ public class RcplLayoutObjectAdapter implements ILayoutObject {
 		return cellInfo;
 	}
 
+	@Override
 	public int getRow() {
 		if (cellInfo != null) {
 			return cellInfo.x;
@@ -553,6 +548,7 @@ public class RcplLayoutObjectAdapter implements ILayoutObject {
 		return -1;
 	}
 
+	@Override
 	public int getColumn() {
 		if (cellInfo != null) {
 			return cellInfo.x;

@@ -55,7 +55,7 @@ public class RcplRowRuler {
 		final StackPane sp = new StackPane();
 		DragAnchor da = new DragAnchor();
 		sp.setUserData(da);
-		sp.setPrefSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		sp.setPrefSize(IRcplTableConstants.DEFAULT_ROW_RULER_WIDTH, table.DEFAULT_ROW_HEIGHT);
 		VBox vbox = new VBox();
 		sp.getChildren().add(vbox);
 		StackPane.setAlignment(vbox, Pos.BOTTOM_CENTER);
@@ -110,14 +110,14 @@ public class RcplRowRuler {
 			}
 		});
 
-		sizer.setPrefHeight(5);
-		sizer.setMinHeight(5);
-		sizer.setMaxHeight(5);
+		sizer.setPrefHeight(IRcplTableConstants.SIZER_WIDTH);
+		sizer.setMinHeight(IRcplTableConstants.SIZER_WIDTH);
+		sizer.setMaxHeight(IRcplTableConstants.SIZER_WIDTH);
 		vbox.getChildren().addAll(l, sizer);
 		grid.add(sp, 0, row);
 
 		RowConstraints rc = new RowConstraints();
-		rc.setPrefHeight(IRcplTableConstants.DEFAULT_ROW_HEIGHT);
+		rc.setPrefHeight(table.DEFAULT_ROW_HEIGHT);
 		grid.getRowConstraints().add(rc);
 		updateRowNumbers();
 	}
@@ -127,8 +127,13 @@ public class RcplRowRuler {
 		if (da != null) {
 			double diffY = me.getSceneY() - da.dragAnchor.getY();
 			double newHeight = Math.max(10, da.startSize + diffY);
-			int row = da.index;
-			table.setRowHeight(row, newHeight);
+			if (newHeight >= table.getMinimumRowHeight()) {
+
+				System.out.println("### newRowHeight: " + newHeight);
+
+				int row = da.index;
+				table.setRowHeight(row, newHeight);
+			}
 		}
 	}
 
