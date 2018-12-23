@@ -58,6 +58,8 @@ public class RcplCellTable {
 		} else {
 			node = grid;
 		}
+
+		grid.setGridLinesVisible(true);
 	}
 
 	void insertRow() {

@@ -1,8 +1,12 @@
 package org.eclipse.rcpl.ui.controls.table;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.rcpl.IColor;
 import org.eclipse.rcpl.ILayoutObject;
 import org.eclipse.rcpl.IParagraph;
+import org.eclipse.rcpl.IRcplTableListener;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.util.RcplConversion;
 
@@ -67,6 +71,8 @@ public class RcplTable {
 
 	double DEFAULT_ROW_HEIGHT = 22;
 
+	private List<IRcplTableListener> listeners = new ArrayList<IRcplTableListener>();
+
 	public RcplTable(int rowNumber, int columnNumber) {
 		this(true, true, rowNumber, columnNumber);
 	}
@@ -118,7 +124,7 @@ public class RcplTable {
 	}
 
 	public void showGrid(boolean show) {
-		tableView.getCellTable().showGridLines(false); // show);
+		tableView.getCellTable().showGridLines(true); // show);
 	}
 
 	public boolean isDEBUG() {
@@ -213,7 +219,6 @@ public class RcplTable {
 	public void addLayoutObject(ILayoutObject layoutObject, int row, int column) {
 		layoutObject.getLayoutFigure().setWrap(isWrap(row, column));
 		layoutObject.getLayoutFigure().setTable(this);
-
 		addNode(layoutObject.getLayoutFigure().getNode(), row, column);
 	}
 
@@ -239,7 +244,35 @@ public class RcplTable {
 			if (spreadsheet && tableView.getTableHeader() != null) {
 				tableView.getTableHeader().setColumnWidth(column, width);
 			}
+
+//			System.out.println("### col: " + column + "   w: " + width);
+//
+//			for (int row = 0; row < getRowCount(); row++) {
+//				StackPane st = getBackgroundPane(row, column);
+//				if (st != null) {
+//					if (isColumnSpaned(row, column)) {
+//						int colSt = column;
+//						while (isColumnSpaned(row, colSt)) {
+//							colSt--;
+//						}
+//						StackPane st2 = getBackgroundPane(row, colSt);
+//
+//						double diff = st.getPrefWidth() - width;
+////						st2.setPrefWidth(st2.getPrefWidth() + diff);
+//
+//					}
+////					st.setPrefWidth(width);
+////					st.setMaxWidth(width);
+//				}
+//			}
 		}
+
+		tableView.getCellTable().getGrid().layout();
+
+		for (IRcplTableListener l : listeners) {
+			l.columnWidthChanged(column, width);
+		}
+
 	}
 
 	StackPane createBackgroundPane(int row, int column) {
@@ -326,11 +359,11 @@ public class RcplTable {
 		updateRowAndColumnCount(row, column);
 		Node n = createBackgroundPane(row, column);
 		if (n != null) {
-			try {
-				return GridPane.getColumnSpan(n);
-			} catch (Exception ex) {
+			Integer span = GridPane.getColumnSpan(n);
+			if (span == null) {
 				return 1;
 			}
+			return span.intValue();
 		}
 		return 1;
 	}
@@ -340,13 +373,6 @@ public class RcplTable {
 		if (getColumnSpan(row, column) > 1) {
 			return false;
 		}
-
-		if (row == 1 && column == 1) {
-
-			System.out.println();
-
-		}
-
 		if (column == 0) {
 			return false;
 		}
@@ -439,8 +465,9 @@ public class RcplTable {
 			if (width > columnWidth) {
 				setColumnWidth(column, width);
 			} else if (width < columnWidth) {
+				setColumnWidth(column, width);
 				StackPane st = createBackgroundPane(row, column);
-				st.setPrefWidth(width);
+//				st.setPrefWidth(width);
 			}
 		}
 	}
@@ -816,4 +843,9 @@ public class RcplTable {
 		this.minimumRowHeight = minimumRowHeight;
 	}
 
+	public void addListener(IRcplTableListener listener) {
+		if (!listeners.contains(listener)) {
+			listeners.add(listener);
+		}
+	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.rcpl.ILayoutFigure;
+import org.eclipse.rcpl.Rcpl;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -64,8 +65,11 @@ public class RcplResizablePane extends StackPane {
 			if (!selection.contains(this)) {
 				return;
 			}
-			setTranslateX(mouseEvent.getSceneX() + dragDelta.x);
-			setTranslateY(mouseEvent.getSceneY() + dragDelta.y);
+
+			double scale = Rcpl.UIC().getEditor().getScale();
+
+			setTranslateX((mouseEvent.getSceneX() + dragDelta.x) / scale);
+			setTranslateY((mouseEvent.getSceneY() + dragDelta.y) / scale);
 			updateLayoutFigureBounds();
 		});
 
