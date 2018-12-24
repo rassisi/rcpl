@@ -1,5 +1,7 @@
 package org.eclipse.rcpl.components;
 
+import org.eclipse.rcpl.ITableFigure;
+
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -65,7 +67,10 @@ public class RcplResizableSelectionPane extends Region {
 			dragHandleW = new DragHandle(diameter, Cursor.W_RESIZE);
 			rotateButton = new WindowRotateButton(resizablePane);
 			getChildren().addAll(dragHandleNW, dragHandleNE, dragHandleSE, dragHandleSW, dragHandleN, dragHandleS,
-					dragHandleE, dragHandleW, rotateButton);
+					dragHandleE, dragHandleW);
+			if (!(resizablePane.getLayoutFigure() instanceof ITableFigure)) {
+				getChildren().add(rotateButton);
+			}
 		}
 
 		monitoredShape = resizablePane;

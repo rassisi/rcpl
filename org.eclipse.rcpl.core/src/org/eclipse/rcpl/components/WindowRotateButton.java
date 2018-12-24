@@ -11,6 +11,7 @@
 package org.eclipse.rcpl.components;
 
 import org.eclipse.rcpl.ILayoutFigure;
+import org.eclipse.rcpl.ITableFigure;
 import org.eclipse.rcpl.Rcpl;
 
 import javafx.event.EventHandler;
@@ -91,7 +92,9 @@ public class WindowRotateButton extends HBox {
 				if (resizablePane.getLayoutFigure() != null) {
 					resizablePane.getLayoutFigure().getPane().setRotate(angle);
 					for (ILayoutFigure f : Rcpl.UIC().getEditor().getSelectedDraggables()) {
-						f.getLayoutObject().setRotation(angle);
+						if (!(f instanceof ITableFigure)) {
+							f.getLayoutObject().setRotation(angle);
+						}
 					}
 				}
 				e.consume();
