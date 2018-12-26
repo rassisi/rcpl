@@ -300,7 +300,9 @@ public class RcplUic implements IRcplUic {
 	}
 
 	public static void hideCaret(IParagraphFigure figure) {
-		figure.getCaretPane().getChildren().clear();
+		if (figure.getCaretPane().getChildren().contains(RcplUic.getCaret())) {
+			figure.getCaretPane().getChildren().remove(RcplUic.getCaret());
+		}
 		RcplUic.getCaret().setUserData(null);
 	}
 
