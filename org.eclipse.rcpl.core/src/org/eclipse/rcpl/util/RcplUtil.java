@@ -468,10 +468,13 @@ public class RcplUtil {
 	 * @param templateResourceName
 	 * @return
 	 */
-	public static File loadTemplateDocumentToFile(String name, boolean escapeHtml) {
+	public static File loadTemplateDocumentToFile(Class clazz, String name, boolean escapeHtml) {
+
+		InputStream is = null;
 
 		String path = Rcpl.get().getDefaultTemplatesPath() + name;
-		InputStream is = AUtil.class.getResourceAsStream(path); // $NON-NLS-1$
+		is = clazz.getResourceAsStream(path); // $NON-NLS-1$
+
 		if (is == null) {
 			return null;
 		}

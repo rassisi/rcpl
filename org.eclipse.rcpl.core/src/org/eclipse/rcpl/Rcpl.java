@@ -85,6 +85,8 @@ public class Rcpl implements RcplConstants {
 
 	private IStyle defaultStyle;
 
+	private boolean osgi;
+
 	public static IStyle defaultStyle() {
 		return get().defaultStyle;
 	}
@@ -422,6 +424,11 @@ public class Rcpl implements RcplConstants {
 	public boolean isBigDisplay() {
 		if (bigDisplay == null) {
 			IMonitor m = monitors.get(Screen.getScreens().get(0));
+			if (m == null) {
+
+				Rcpl.get().printErrorln("isBigDisplay: monitor == null");
+				return false;
+			}
 			double w = m.getPhysicalWidthInCm();
 			boolean b = w > 15;
 			bigDisplay = Boolean.valueOf(b);
@@ -655,6 +662,14 @@ public class Rcpl implements RcplConstants {
 
 	public void setPhysicalWidth(double physicalWidth) {
 		this.physicalWidth = physicalWidth;
+	}
+
+	public boolean isOsgi() {
+		return osgi;
+	}
+
+	public void setOsgi(boolean osgi) {
+		this.osgi = osgi;
 	}
 
 }

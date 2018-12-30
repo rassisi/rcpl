@@ -38,7 +38,7 @@ public class DefaultHTMLReadOnlyHomePage extends AbstractHomePage {
 
 		HTMLEditor htmlEditor = new HTMLEditor();
 
-		File f = RcplUtil.loadTemplateDocumentToFile(documentTemplate, true);
+		File f = RcplUtil.loadTemplateDocumentToFile(getClass(), documentTemplate, true);
 
 		// WebView w = new WebView();
 		// w.getEngine().load("file://" + f.getAbsolutePath());

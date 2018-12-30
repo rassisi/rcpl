@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.rcpl.internal.tools;
 
+import org.apache.batik.transcoder.TranscoderException;
 import org.eclipse.rcpl.AbstractRcplTool;
 import org.eclipse.rcpl.EnCommandId;
 import org.eclipse.rcpl.EnLatexMath;
@@ -162,6 +163,9 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 	}
 
 	private void createImage() {
+		
+		TranscoderException ex = null;
+		
 		String imageName = getImageName();
 		image = new RcplImage(imageName, getWidth(), getHeight());
 		this.imageNode = image.getNode();
