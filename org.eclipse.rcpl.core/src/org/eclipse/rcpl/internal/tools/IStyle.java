@@ -146,8 +146,6 @@ public interface IStyle {
 
 	boolean isSuperScript();
 
-	boolean isTemplateStyle();
-
 	boolean isUnderline();
 
 	void setBackground(IColor color);
@@ -194,8 +192,6 @@ public interface IStyle {
 
 	void setTabs(Object tabs);
 
-	void setTemplateStyle();
-
 	void setStyleLess();
 
 	boolean isStyleLess();
@@ -212,4 +208,5 @@ public interface IStyle {
 
 	public void setShadow(IShadow shadow);
 
+	boolean isTemplateStyle();
 }
