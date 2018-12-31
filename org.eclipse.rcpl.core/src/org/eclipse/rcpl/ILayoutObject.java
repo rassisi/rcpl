@@ -107,10 +107,6 @@ public interface ILayoutObject {
 
 	IProperty2 getSize();
 
-	double getSpacingAfterPixel();
-
-	double getSpacingBefore();
-
 	IStyle getStyle();
 
 	double getTopMargin();
@@ -200,5 +196,13 @@ public interface ILayoutObject {
 	void updateFromXml();
 
 	void updateOverflowClipping();
+
+	double getSpacingAfter();
+
+	double getSpacingBefore();
+
+	void setSpacingAfter(double spacing);
+
+	void setSpacingBefore(double spacing);
 
 }

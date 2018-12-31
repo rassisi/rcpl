@@ -1,7 +1,5 @@
 package org.eclipse.rcpl.ui.controls.table;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
@@ -38,16 +36,6 @@ public class RcplCellTable {
 
 		this.table = table;
 		this.grid = new GridPane();
-		grid.gridLinesVisibleProperty().addListener(new ChangeListener<Boolean>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-
-				System.out.println();
-
-			}
-		});
-
 		grid.setHgap(0);
 		grid.setVgap(0);
 
@@ -167,7 +155,14 @@ public class RcplCellTable {
 		sizer.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent me) {
-				handleMouseDragged(me, sizer);
+				DragAnchor da = (DragAnchor) sizer.getUserData();
+				if (da != null) {
+					double diffX = me.getSceneX() - da.dragAnchor.getX();
+					double newWidth = Math.max(10, da.startSize + diffX);
+					setColumnWidth(da.index, newWidth);
+					sizer.setPrefHeight(newWidth);
+					table.setColumnWidth(da.index, newWidth);
+				}
 			}
 		});
 
@@ -176,17 +171,6 @@ public class RcplCellTable {
 		sizer.setMaxWidth(5);
 
 		vbox.setRight(sizer);
-	}
-
-	public void handleMouseDragged(MouseEvent me, Pane sp) {
-		DragAnchor da = (DragAnchor) sp.getUserData();
-		if (da != null) {
-			double diffX = me.getSceneX() - da.dragAnchor.getX();
-			double newWidth = Math.max(10, da.startSize + diffX);
-			setColumnWidth(da.index, newWidth);
-			sp.setPrefHeight(newWidth);
-			table.setColumnWidth(da.index, newWidth);
-		}
 	}
 
 	private void createVerticalRuler(int row0) {

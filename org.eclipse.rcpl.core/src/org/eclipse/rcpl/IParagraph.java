@@ -91,8 +91,6 @@ public interface IParagraph extends ILayoutObject, ICellable {
 
 	int getSelectionStart();
 
-	IProperty2 getSpacingAfter();
-
 	ITableCell getTableCell();
 
 	IJOProperty getTabs();

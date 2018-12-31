@@ -131,7 +131,17 @@ public class RcplTableHeader {
 		sizer.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent me) {
-				handleMouseDragged(me, sp);
+				DragAnchor da = (DragAnchor) sp.getUserData();
+				if (da != null) {
+					double diffX = me.getSceneX() - da.dragAnchor.getX();
+					double newWidth = Math.max(10, da.startSize + diffX);
+					if (newWidth >= table.getMinimumColumnWidth()) {
+						setColumnWidth(da.index, newWidth);
+						sp.setPrefWidth(newWidth);
+						table.setColumnWidth(da.index, newWidth);
+					}
+					me.consume();
+				}
 			}
 		});
 
@@ -148,20 +158,6 @@ public class RcplTableHeader {
 		cc.setPrefWidth(IRcplTableConstants.DEFAULT_CELL_WIDTH);
 		grid.getColumnConstraints().add(cc);
 		updateColumnNumbers();
-	}
-
-	public void handleMouseDragged(MouseEvent me, StackPane sp) {
-		DragAnchor da = (DragAnchor) sp.getUserData();
-		if (da != null) {
-			double diffX = me.getSceneX() - da.dragAnchor.getX();
-			double newWidth = Math.max(10, da.startSize + diffX);
-			if (newWidth >= table.getMinimumColumnWidth()) {
-				setColumnWidth(da.index, newWidth);
-				sp.setPrefHeight(newWidth);
-				table.setColumnWidth(da.index, newWidth);
-			}
-			me.consume();
-		}
 	}
 
 	void setColumnWidth(int column, double width) {

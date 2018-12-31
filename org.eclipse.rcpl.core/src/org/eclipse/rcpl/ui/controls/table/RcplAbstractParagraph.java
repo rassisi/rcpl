@@ -456,13 +456,7 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public IProperty2 getSpacingAfter() {
-
-		return null;
-	}
-
-	@Override
-	public double getSpacingAfterPixel() {
+	public double getSpacingAfter() {
 
 		return 0;
 	}

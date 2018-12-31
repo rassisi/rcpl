@@ -233,6 +233,9 @@ public class RcplTable {
 				tableView.getRowRuler().setRowheight(row, height);
 			}
 		}
+		for (IRcplTableListener l : listeners) {
+			l.rowHeightChanged(row, height);
+		}
 	}
 
 	public void setColumnWidth(int column, double width) {
@@ -244,31 +247,8 @@ public class RcplTable {
 			if (spreadsheet && tableView.getTableHeader() != null) {
 				tableView.getTableHeader().setColumnWidth(column, width);
 			}
-
-//			System.out.println("### col: " + column + "   w: " + width);
-//
-//			for (int row = 0; row < getRowCount(); row++) {
-//				StackPane st = getBackgroundPane(row, column);
-//				if (st != null) {
-//					if (isColumnSpaned(row, column)) {
-//						int colSt = column;
-//						while (isColumnSpaned(row, colSt)) {
-//							colSt--;
-//						}
-//						StackPane st2 = getBackgroundPane(row, colSt);
-//
-//						double diff = st.getPrefWidth() - width;
-////						st2.setPrefWidth(st2.getPrefWidth() + diff);
-//
-//					}
-////					st.setPrefWidth(width);
-////					st.setMaxWidth(width);
-//				}
-//			}
 		}
-
 		tableView.getCellTable().getGrid().layout();
-
 		for (IRcplTableListener l : listeners) {
 			l.columnWidthChanged(column, width);
 		}

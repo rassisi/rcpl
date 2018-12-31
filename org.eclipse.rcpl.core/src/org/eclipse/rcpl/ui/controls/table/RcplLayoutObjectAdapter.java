@@ -274,7 +274,7 @@ public class RcplLayoutObjectAdapter implements ILayoutObject {
 	}
 
 	@Override
-	public double getSpacingAfterPixel() {
+	public double getSpacingAfter() {
 
 		return 0;
 	}
@@ -554,6 +554,18 @@ public class RcplLayoutObjectAdapter implements ILayoutObject {
 	public double getSpacingBefore() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void setSpacingAfter(double spacing) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setSpacingBefore(double spacing) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

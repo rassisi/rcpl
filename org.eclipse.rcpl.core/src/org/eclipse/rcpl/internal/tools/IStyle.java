@@ -10,7 +10,7 @@ import org.eclipse.rcpl.IEmuProperty2;
 import org.eclipse.rcpl.IFont;
 import org.eclipse.rcpl.IJOProperty;
 import org.eclipse.rcpl.ILayoutObject;
-import org.eclipse.rcpl.IProperty2;
+import org.eclipse.rcpl.ILineSpacingProperty;
 import org.eclipse.rcpl.IShadow;
 import org.eclipse.rcpl.model.IImage;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTFonts;
@@ -31,6 +31,32 @@ public interface IStyle {
 	void setHighlightColor(ILayoutObject layoutObject, CTR ctr);
 
 	void setHighlightColor(IColor color);
+
+	// ---------- This is the new property design pattern
+
+	double getSpacingAfter();
+
+	double getSpacingBefore();
+
+	double getSpacingLine();
+
+	void setSpacingBefore(double spacingBefore);
+
+	void setSpacingAfter(double spacingAfter);
+
+	void setSpacingLine(double spacingLine);
+
+	void setSpacingAfterProperty(IEmuProperty2 spacingAfter);
+
+	void setSpacingLineProperty(ILineSpacingProperty spacingLine);
+
+	void setSpacingBeforeProperty(IEmuProperty2 spacingBefore);
+
+	IEmuProperty2 getSpacingAfterProperty();
+
+	ILineSpacingProperty getSpacingLineProperty();
+
+	IEmuProperty2 getSpacingBeforeProperty();
 
 	// ------------------------------------------------------
 
@@ -93,12 +119,6 @@ public interface IStyle {
 	IJOProperty getPageBreakBefore();
 
 	EnShading getShading();
-
-	IProperty2 getSpacingAfter();
-
-	double getSpacingBefore();
-
-	IProperty2 getSpacingLine();
 
 	int getStart();
 
@@ -169,14 +189,6 @@ public interface IStyle {
 	void setPageBreakBefore(IJOProperty pageBreakBefore);
 
 	void setShading(EnShading shading);
-
-	void setSpacingAfter(IProperty2 spacingAfter);
-
-	void setSpacingLine(IProperty2 spacingAfter);
-
-	void setSpacingBeforeProperty(IProperty2 spacingBefore);
-
-	void setSpacingBefore(double spacingBefore);
 
 	void setStart(int start);
 
