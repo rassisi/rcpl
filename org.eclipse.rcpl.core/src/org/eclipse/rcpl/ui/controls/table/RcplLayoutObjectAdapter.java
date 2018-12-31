@@ -280,12 +280,6 @@ public class RcplLayoutObjectAdapter implements ILayoutObject {
 	}
 
 	@Override
-	public double getSpacingBeforePixel() {
-
-		return 0;
-	}
-
-	@Override
 	public IStyle getStyle() {
 
 		return null;
@@ -554,6 +548,12 @@ public class RcplLayoutObjectAdapter implements ILayoutObject {
 			return cellInfo.x;
 		}
 		return -1;
+	}
+
+	@Override
+	public double getSpacingBefore() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

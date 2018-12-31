@@ -109,7 +109,7 @@ public interface ILayoutObject {
 
 	double getSpacingAfterPixel();
 
-	double getSpacingBeforePixel();
+	double getSpacingBefore();
 
 	IStyle getStyle();
 

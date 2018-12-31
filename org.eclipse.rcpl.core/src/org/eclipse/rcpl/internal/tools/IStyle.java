@@ -96,7 +96,7 @@ public interface IStyle {
 
 	IProperty2 getSpacingAfter();
 
-	IProperty2 getSpacingBefore();
+	double getSpacingBefore();
 
 	IProperty2 getSpacingLine();
 
@@ -174,7 +174,9 @@ public interface IStyle {
 
 	void setSpacingLine(IProperty2 spacingAfter);
 
-	void setSpacingBefore(IProperty2 spacingBefore);
+	void setSpacingBeforeProperty(IProperty2 spacingBefore);
+
+	void setSpacingBefore(double spacingBefore);
 
 	void setStart(int start);
 

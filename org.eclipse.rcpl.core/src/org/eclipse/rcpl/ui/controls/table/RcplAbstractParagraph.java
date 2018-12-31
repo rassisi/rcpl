@@ -468,12 +468,6 @@ public abstract class RcplAbstractParagraph extends RcplLayoutObjectAdapter impl
 	}
 
 	@Override
-	public double getSpacingBeforePixel() {
-
-		return 0;
-	}
-
-	@Override
 	public IStyle getStyle() {
 
 		return null;
