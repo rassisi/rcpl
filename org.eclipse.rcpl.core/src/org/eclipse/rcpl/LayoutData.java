@@ -2,8 +2,6 @@ package org.eclipse.rcpl;
 
 import java.util.List;
 
-import javafx.geometry.Point2D;
-
 /**
  * @author ramin
  * 
@@ -43,8 +41,6 @@ public class LayoutData {
 	public IPage page;
 
 	public ISection actualSection;
-
-	public Point2D layoutResult;
 
 	public List<ILayoutObject> rootObjects;
 
@@ -89,7 +85,6 @@ public class LayoutData {
 		y = 0;
 		page = null;
 		actualSection = null;
-		layoutResult = null;
 		pageBreakCounter = 0;
 		sameLocation = 0;
 		breakBefore = false;

@@ -26,8 +26,6 @@ public interface IEditor extends ICommandProvider, ITaskViewProvider {
 
 	void addDirtyLayoutObject(ILayoutObject layoutObject);
 
-	void addPage(IPage page);
-
 	void addPage(final IPage page, int index);
 
 	void addSelectedDraggable(ILayoutFigure f);
