@@ -6,8 +6,10 @@
 	<groupId>org.eclipse.rcpl</groupId>
 	<artifactId>org.eclipse.rcpl.maven.libs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<!-- 
 	<packaging>jar</packaging>
-
+    -->
 	<name>org.eclipse.rcpl.maven.libs</name>
 	<url>http://maven.apache.org</url>
 
