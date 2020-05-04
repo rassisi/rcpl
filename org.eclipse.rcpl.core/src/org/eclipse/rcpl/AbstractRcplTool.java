@@ -253,6 +253,10 @@ public abstract class AbstractRcplTool<T> implements ITool {
 	@Override
 	public String getId() {
 		if (model != null) {
+			if (model != null && model.getCommand() != null) {
+				String commandName = model.getCommand().getName();
+				return commandName;
+			}
 			return model.getId();
 		}
 		return "";

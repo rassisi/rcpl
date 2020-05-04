@@ -143,7 +143,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 		node.setId(getNodeId());
 
 		if (!ToolType.RADIOBUTTON.equals(getModel().getType())) {
-			if (model.getId() != null && !model.getId().equals(EnCommandId.insertLatex.name())) {
+			if (model.getId() != null && !model.getId().equals(EnCommandId.PARAGRAPH_INSERTLATEX.name())) {
 				createImage();
 			}
 		}
@@ -276,80 +276,80 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 			boolean select = false;
 			boolean found = false;
 			switch (cmd) {
-			case page_landscape:
+			case PAGE_LANDSCAPE:
 				found = true;
 				if (event.getLayoutObject().getPage() != null) {
 					select = event.getLayoutObject().getPage().getSection().isLandscape();
 				}
 				break;
-			case page_portrait:
+			case PAGE_PORTRAIT:
 				found = true;
 				if (event.getLayoutObject().getPage() != null) {
 					select = !event.getLayoutObject().getPage().getSection().isLandscape();
 				}
 				break;
-			case align_text_center:
+			case PARAGRAPH_ALIGNTEXTCENTER:
 				found = true;
 				select = TextAlignment.CENTER == alignment;
 				break;
-			case align_text_justified:
+			case PARAGRAPH_ALIGNTEXTJUSTIFIED:
 				select = TextAlignment.JUSTIFY == alignment;
 				break;
-			case align_text_left:
+			case PARAGRAPH_ALIGNTEXTLEFT:
 				found = true;
 				select = TextAlignment.LEFT == alignment;
 				break;
-			case align_text_right:
+			case PARAGRAPH_ALIGNTEXTRIGHT:
 				found = true;
 				select = TextAlignment.RIGHT == alignment;
 				break;
-			case background_color:
+			case COLOR_BACKGROUND:
 				break;
-			case bold:
+			case PARAGRAPH_BOLD:
 				found = true;
 				select = isBold(event);
 				break;
-			case italic:
+			case PARAGRAPH_ITALIC:
 				found = true;
 				select = isItalic(event);
 				break;
-			case underline:
+			case PARAGRAPH_UNDERLINE:
 				found = true;
 				select = isUnderline(event);
 				break;
-			case subscript:
+			case PARAGRAPH_SUBSCRIPT:
 				found = true;
 				select = isSubScript(event);
 				break;
-			case superscript:
+			case PARAGRAPH_SUPERSCRIPT:
 				found = true;
 				select = isSuperScript(event);
 				break;
-			case strikethrough:
+			case PARAGRAPH_STRIKETHROUGH:
 				found = true;
 				select = isStrikeThrough(event);
 				break;
-			case style_normal:
+			case PARAGRAPH_STYLENORMAL:
 				found = true;
 				select = isNormalStyle(event, cmd);
 				break;
-			case style_title:
+			case PARAGRAPH_STYLETITLE:
 				found = true;
 				select = isTitleStyle(event, cmd);
 				break;
-			case style_heading_1:
+			case PARAGRAPH_STYLEHEADING1:
 				found = true;
 				select = isHeading1Style(event, cmd);
 				break;
-			case style_heading_2:
+			case PARAGRAPH_STYLEHEADING2:
 				found = true;
 				select = isHeading2Style(event, cmd);
 				break;
-			case style_heading_3:
+			case PARAGRAPH_STYLEHEADING3:
 				found = true;
 				select = isHeading3Style(event, cmd);
 				break;
-			case style_heading_4:
+			case PARAGRAPH_STYLEHEADING4:
 				found = true;
 				select = isHeading4Style(event, cmd);
 				break;
@@ -504,7 +504,7 @@ public class RcplButton extends AbstractRcplTool<Boolean> implements IButton {
 
 	@Override
 	public IButton setData(Object... data) {
-		if (model != null && EnCommandId.insertLatex.name().equals(model.getId())) {
+		if (model != null && EnCommandId.PARAGRAPH_INSERTLATEX.name().equals(model.getId())) {
 			EnLatexMath math = (EnLatexMath) data[2];
 			getNode().setText(math.getText());
 			getModel().setToolTip("Insert a " + math.getToolTip());

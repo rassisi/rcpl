@@ -71,6 +71,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getLayoutX() {
 		return (Double)eGet(RcplPackage.Literals.LAYOUTABLE__LAYOUT_X, true);
 	}
@@ -80,6 +81,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLayoutX(double newLayoutX) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__LAYOUT_X, newLayoutX);
 	}
@@ -89,6 +91,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getLayoutY() {
 		return (Double)eGet(RcplPackage.Literals.LAYOUTABLE__LAYOUT_Y, true);
 	}
@@ -98,6 +101,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLayoutY(double newLayoutY) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__LAYOUT_Y, newLayoutY);
 	}
@@ -107,6 +111,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getLayoutWidth() {
 		return (Double)eGet(RcplPackage.Literals.LAYOUTABLE__LAYOUT_WIDTH, true);
 	}
@@ -116,6 +121,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLayoutWidth(double newLayoutWidth) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__LAYOUT_WIDTH, newLayoutWidth);
 	}
@@ -125,6 +131,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getLayoutHeight() {
 		return (Double)eGet(RcplPackage.Literals.LAYOUTABLE__LAYOUT_HEIGHT, true);
 	}
@@ -134,6 +141,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLayoutHeight(double newLayoutHeight) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__LAYOUT_HEIGHT, newLayoutHeight);
 	}
@@ -143,6 +151,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String)eGet(RcplPackage.Literals.LAYOUTABLE__NAME, true);
 	}
@@ -152,6 +161,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__NAME, newName);
 	}
@@ -161,6 +171,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String)eGet(RcplPackage.Literals.LAYOUTABLE__DESCRIPTION, true);
 	}
@@ -170,6 +181,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__DESCRIPTION, newDescription);
 	}
@@ -179,6 +191,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getId() {
 		return (String)eGet(RcplPackage.Literals.LAYOUTABLE__ID, true);
 	}
@@ -188,6 +201,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(String newId) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__ID, newId);
 	}
@@ -197,6 +211,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getImage() {
 		return (String)eGet(RcplPackage.Literals.LAYOUTABLE__IMAGE, true);
 	}
@@ -206,6 +221,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImage(String newImage) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__IMAGE, newImage);
 	}
@@ -215,6 +231,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getToolTip() {
 		return (String)eGet(RcplPackage.Literals.LAYOUTABLE__TOOL_TIP, true);
 	}
@@ -224,6 +241,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setToolTip(String newToolTip) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__TOOL_TIP, newToolTip);
 	}
@@ -233,6 +251,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getCreateDate() {
 		return (Date)eGet(RcplPackage.Literals.LAYOUTABLE__CREATE_DATE, true);
 	}
@@ -242,6 +261,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreateDate(Date newCreateDate) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__CREATE_DATE, newCreateDate);
 	}
@@ -251,6 +271,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getBeginDate() {
 		return (Date)eGet(RcplPackage.Literals.LAYOUTABLE__BEGIN_DATE, true);
 	}
@@ -260,6 +281,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBeginDate(Date newBeginDate) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__BEGIN_DATE, newBeginDate);
 	}
@@ -269,6 +291,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getEndDate() {
 		return (Date)eGet(RcplPackage.Literals.LAYOUTABLE__END_DATE, true);
 	}
@@ -278,6 +301,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEndDate(Date newEndDate) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__END_DATE, newEndDate);
 	}
@@ -287,6 +311,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isLeaf() {
 		return (Boolean)eGet(RcplPackage.Literals.LAYOUTABLE__LEAF, true);
 	}
@@ -296,6 +321,7 @@ public abstract class LayoutableImpl extends CDOObjectImpl implements Layoutable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeaf(boolean newLeaf) {
 		eSet(RcplPackage.Literals.LAYOUTABLE__LEAF, newLeaf);
 	}

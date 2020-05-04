@@ -89,7 +89,7 @@ public class RcplService extends RcplBaseService implements IService {
 			}
 
 			switch (command.getCommandId()) {
-			case collapse_all:
+			case PARAGRAPH_COLLAPSEALL:
 				Rcpl.UIC().collapseAll();
 				break;
 			default:
@@ -114,7 +114,7 @@ public class RcplService extends RcplBaseService implements IService {
 	@Override
 	public Object execute(ICommand command) {
 
-		if (command.getCommandId() != null && command.getCommandId().equals(EnCommandId.showStartMenu)) {
+		if (command.getCommandId() != null && command.getCommandId().equals(EnCommandId.PARAGRAPH_SHOWSTARTMENU)) {
 			Rcpl.UIC().showHomePage(HomePageType.OVERVIEW, null);
 			return true;
 		}

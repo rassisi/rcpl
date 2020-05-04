@@ -15,14 +15,10 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ResourceImpl#getUri
- * <em>Uri</em>}</li>
- * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ResourceImpl#isTemplate
- * <em>Template</em>}</li>
- * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ResourceImpl#getLinkedResources
- * <em>Linked Resources</em>}</li>
- * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ResourceImpl#getMainPerspective
- * <em>Main Perspective</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ResourceImpl#getUri <em>Uri</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ResourceImpl#isTemplate <em>Template</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ResourceImpl#getLinkedResources <em>Linked Resources</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.ResourceImpl#getMainPerspective <em>Main Perspective</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,7 +35,6 @@ public class ResourceImpl extends LayoutableImpl implements Resource {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,64 +44,64 @@ public class ResourceImpl extends LayoutableImpl implements Resource {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
+	@Override
 	public String getUri() {
-		return (String) eGet(RcplPackage.Literals.RESOURCE__URI, true);
+		return (String)eGet(RcplPackage.Literals.RESOURCE__URI, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
+	@Override
 	public void setUri(String newUri) {
 		eSet(RcplPackage.Literals.RESOURCE__URI, newUri);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
+	@Override
 	public boolean isTemplate() {
-		return (Boolean) eGet(RcplPackage.Literals.RESOURCE__TEMPLATE, true);
+		return (Boolean)eGet(RcplPackage.Literals.RESOURCE__TEMPLATE, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
+	@Override
 	public void setTemplate(boolean newTemplate) {
 		eSet(RcplPackage.Literals.RESOURCE__TEMPLATE, newTemplate);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Resource> getLinkedResources() {
-		return (EList<Resource>) eGet(RcplPackage.Literals.RESOURCE__LINKED_RESOURCES, true);
+		return (EList<Resource>)eGet(RcplPackage.Literals.RESOURCE__LINKED_RESOURCES, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
+	@Override
 	public Perspective getMainPerspective() {
-		return (Perspective) eGet(RcplPackage.Literals.RESOURCE__MAIN_PERSPECTIVE, true);
+		return (Perspective)eGet(RcplPackage.Literals.RESOURCE__MAIN_PERSPECTIVE, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
+	@Override
 	public void setMainPerspective(Perspective newMainPerspective) {
 		eSet(RcplPackage.Literals.RESOURCE__MAIN_PERSPECTIVE, newMainPerspective);
 	}

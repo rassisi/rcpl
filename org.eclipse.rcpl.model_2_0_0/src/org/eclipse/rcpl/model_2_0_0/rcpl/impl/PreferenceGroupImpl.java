@@ -51,6 +51,7 @@ public class PreferenceGroupImpl extends LayoutableImpl implements PreferenceGro
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Preference> getPreferences() {
 		return (EList<Preference>)eGet(RcplPackage.Literals.PREFERENCE_GROUP__PREFERENCES, true);
 	}
@@ -61,6 +62,7 @@ public class PreferenceGroupImpl extends LayoutableImpl implements PreferenceGro
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Preference> getLinkedPreferences() {
 		return (EList<Preference>)eGet(RcplPackage.Literals.PREFERENCE_GROUP__LINKED_PREFERENCES, true);
 	}
@@ -71,6 +73,7 @@ public class PreferenceGroupImpl extends LayoutableImpl implements PreferenceGro
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<PreferenceGroup> getPreferencegroups() {
 		return (EList<PreferenceGroup>)eGet(RcplPackage.Literals.PREFERENCE_GROUP__PREFERENCEGROUPS, true);
 	}

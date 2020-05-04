@@ -49,6 +49,7 @@ public class CityImpl extends LayoutableImpl implements City {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Street> getStreets() {
 		return (EList<Street>)eGet(RcplPackage.Literals.CITY__STREETS, true);
 	}

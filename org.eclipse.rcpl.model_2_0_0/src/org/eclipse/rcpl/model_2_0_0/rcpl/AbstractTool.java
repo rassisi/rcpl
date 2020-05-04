@@ -30,6 +30,7 @@ package org.eclipse.rcpl.model_2_0_0.rcpl;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isHGrow <em>HGrow</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#isVGrow <em>VGrow</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getWidthPercent <em>Width Percent</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getCommand <em>Command</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool()
@@ -567,6 +568,28 @@ public interface AbstractTool extends Layoutable {
 	 * @generated
 	 */
 	void setWidthPercent(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Command</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Command</em>' reference.
+	 * @see #setCommand(Command)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getAbstractTool_Command()
+	 * @model
+	 * @generated
+	 */
+	Command getCommand();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool#getCommand <em>Command</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Command</em>' reference.
+	 * @see #getCommand()
+	 * @generated
+	 */
+	void setCommand(Command value);
 
 	/**
 	 * @return

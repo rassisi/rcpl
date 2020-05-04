@@ -49,6 +49,7 @@ public class AddonsImpl extends LayoutableImpl implements Addons {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Addon> getChildren() {
 		return (EList<Addon>)eGet(RcplPackage.Literals.ADDONS__CHILDREN, true);
 	}

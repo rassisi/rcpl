@@ -418,7 +418,7 @@ public class RcplUtil {
 	/**
 	 * @param key
 	 * @param value
-	 * @param save
+	 * @param EDITOR_SAVE
 	 */
 	public static void set(String key, Object value) {
 		if (value instanceof Boolean) {
@@ -596,7 +596,7 @@ public class RcplUtil {
 	/**
 	 * @param key
 	 * @param value
-	 * @param save
+	 * @param EDITOR_SAVE
 	 */
 	public static void setIfNull(String key, Object value) {
 		if (AUtil.get(getInstanceProperties(), key) == null) {
@@ -620,7 +620,7 @@ public class RcplUtil {
 	/**
 	 * @param key
 	 * @param value
-	 * @param save
+	 * @param EDITOR_SAVE
 	 */
 	public static void setDefaultProperty(Properties properties, String key, Object value) {
 		if (value instanceof Boolean) {

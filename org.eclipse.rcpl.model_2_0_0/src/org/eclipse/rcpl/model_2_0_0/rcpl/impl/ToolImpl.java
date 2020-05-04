@@ -40,6 +40,7 @@ public class ToolImpl extends AbstractToolImpl implements Tool {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFormat() {
 		return (String)eGet(RcplPackage.Literals.TOOL__FORMAT, true);
 	}
@@ -48,6 +49,7 @@ public class ToolImpl extends AbstractToolImpl implements Tool {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFormat(String newFormat) {
 		eSet(RcplPackage.Literals.TOOL__FORMAT, newFormat);
 	}

@@ -58,6 +58,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Country getCountry() {
 		return (Country)eGet(RcplPackage.Literals.ADDRESS__COUNTRY, true);
 	}
@@ -67,6 +68,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCountry(Country newCountry) {
 		eSet(RcplPackage.Literals.ADDRESS__COUNTRY, newCountry);
 	}
@@ -76,6 +78,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public City getCity() {
 		return (City)eGet(RcplPackage.Literals.ADDRESS__CITY, true);
 	}
@@ -85,6 +88,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCity(City newCity) {
 		eSet(RcplPackage.Literals.ADDRESS__CITY, newCity);
 	}
@@ -94,6 +98,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Street getStreet() {
 		return (Street)eGet(RcplPackage.Literals.ADDRESS__STREET, true);
 	}
@@ -103,6 +108,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStreet(Street newStreet) {
 		eSet(RcplPackage.Literals.ADDRESS__STREET, newStreet);
 	}
@@ -113,6 +119,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<HouseNumber> getHousenumber() {
 		return (EList<HouseNumber>)eGet(RcplPackage.Literals.ADDRESS__HOUSENUMBER, true);
 	}
@@ -123,6 +130,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Building> getBuildings() {
 		return (EList<Building>)eGet(RcplPackage.Literals.ADDRESS__BUILDINGS, true);
 	}
@@ -132,6 +140,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AddressType getAddressType() {
 		return (AddressType)eGet(RcplPackage.Literals.ADDRESS__ADDRESS_TYPE, true);
 	}
@@ -141,6 +150,7 @@ public class AddressImpl extends LayoutableImpl implements Address {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAddressType(AddressType newAddressType) {
 		eSet(RcplPackage.Literals.ADDRESS__ADDRESS_TYPE, newAddressType);
 	}

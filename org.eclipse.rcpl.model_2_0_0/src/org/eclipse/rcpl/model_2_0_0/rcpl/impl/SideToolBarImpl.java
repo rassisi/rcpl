@@ -51,6 +51,7 @@ public class SideToolBarImpl extends LayoutableImpl implements SideToolBar {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ToolGroup> getToolGroups() {
 		return (EList<ToolGroup>)eGet(RcplPackage.Literals.SIDE_TOOL_BAR__TOOL_GROUPS, true);
 	}
@@ -61,6 +62,7 @@ public class SideToolBarImpl extends LayoutableImpl implements SideToolBar {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Tool> getTools() {
 		return (EList<Tool>)eGet(RcplPackage.Literals.SIDE_TOOL_BAR__TOOLS, true);
 	}

@@ -61,6 +61,7 @@ public class CommandsImpl extends CDOObjectImpl implements Commands {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Command> getChildren() {
 		return (EList<Command>)eGet(RcplPackage.Literals.COMMANDS__CHILDREN, true);
 	}

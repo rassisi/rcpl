@@ -52,6 +52,7 @@ public class PersonGroupImpl extends LayoutableImpl implements PersonGroup {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<PersonGroup> getPersongroups() {
 		return (EList<PersonGroup>)eGet(RcplPackage.Literals.PERSON_GROUP__PERSONGROUPS, true);
 	}
@@ -62,6 +63,7 @@ public class PersonGroupImpl extends LayoutableImpl implements PersonGroup {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Person> getPersons() {
 		return (EList<Person>)eGet(RcplPackage.Literals.PERSON_GROUP__PERSONS, true);
 	}
@@ -72,6 +74,7 @@ public class PersonGroupImpl extends LayoutableImpl implements PersonGroup {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Person> getLinkedPersons() {
 		return (EList<Person>)eGet(RcplPackage.Literals.PERSON_GROUP__LINKED_PERSONS, true);
 	}
@@ -82,6 +85,7 @@ public class PersonGroupImpl extends LayoutableImpl implements PersonGroup {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<PersonGroup> getLinkedPersongroups() {
 		return (EList<PersonGroup>)eGet(RcplPackage.Literals.PERSON_GROUP__LINKED_PERSONGROUPS, true);
 	}

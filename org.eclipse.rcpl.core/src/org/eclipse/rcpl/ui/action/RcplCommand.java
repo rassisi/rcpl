@@ -97,8 +97,8 @@ public class RcplCommand implements ICommand {
 		this.valid = true;
 
 		if (getEditor() != null && getLayoutObject() != null) {
-			if (!EnCommandId.undo.equals(commandId) // $NON-NLS-1$
-					&& !EnCommandId.redo.equals(commandId)) { // $NON-NLS-1$
+			if (!EnCommandId.COMMAND_UNDO.equals(commandId) // $NON-NLS-1$
+					&& !EnCommandId.COMMAND_REDO.equals(commandId)) { // $NON-NLS-1$
 
 				try {
 					if (getLayoutObject().getDocument() instanceof IWordDocument) {

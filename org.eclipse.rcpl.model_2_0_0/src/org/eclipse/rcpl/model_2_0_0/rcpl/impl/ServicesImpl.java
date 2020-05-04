@@ -61,6 +61,7 @@ public class ServicesImpl extends CDOObjectImpl implements Services {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Service> getChildren() {
 		return (EList<Service>)eGet(RcplPackage.Literals.SERVICES__CHILDREN, true);
 	}

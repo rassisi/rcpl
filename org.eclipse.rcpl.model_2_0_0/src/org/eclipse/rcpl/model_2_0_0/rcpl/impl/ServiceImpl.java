@@ -45,6 +45,7 @@ public class ServiceImpl extends LayoutableImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClassName() {
 		return (String)eGet(RcplPackage.Literals.SERVICE__CLASS_NAME, true);
 	}
@@ -54,6 +55,7 @@ public class ServiceImpl extends LayoutableImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		eSet(RcplPackage.Literals.SERVICE__CLASS_NAME, newClassName);
 	}

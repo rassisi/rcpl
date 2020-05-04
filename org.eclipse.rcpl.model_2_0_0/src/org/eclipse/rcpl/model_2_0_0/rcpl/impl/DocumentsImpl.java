@@ -49,6 +49,7 @@ public class DocumentsImpl extends LayoutableImpl implements Documents {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Document> getChildren() {
 		return (EList<Document>)eGet(RcplPackage.Literals.DOCUMENTS__CHILDREN, true);
 	}

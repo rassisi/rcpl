@@ -51,6 +51,7 @@ public class ToolsImpl extends LayoutableImpl implements Tools {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ToolGroup> getToolgroupChildren() {
 		return (EList<ToolGroup>)eGet(RcplPackage.Literals.TOOLS__TOOLGROUP_CHILDREN, true);
 	}
@@ -61,6 +62,7 @@ public class ToolsImpl extends LayoutableImpl implements Tools {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Tool> getToolChildren() {
 		return (EList<Tool>)eGet(RcplPackage.Literals.TOOLS__TOOL_CHILDREN, true);
 	}

@@ -43,7 +43,7 @@ public class ColorTool extends AbstractRcplTool<Color> {
 			@Override
 			public void handle(ActionEvent event) {
 				getModel().setData(ColorTool.this);
-				Rcpl.get().getFactory().createCommand(ColorTool.this, null, EnCommandId.foregroundColor, null)
+				Rcpl.get().getFactory().createCommand(ColorTool.this, null, EnCommandId.COLOR_FOREGROUND, null)
 						.execute();
 			}
 		});
@@ -90,7 +90,7 @@ public class ColorTool extends AbstractRcplTool<Color> {
 		if (style != null) {
 			String id = getModel().getId();
 
-			if (EnCommandId.foregroundColor.name().equals(id)) {
+			if (EnCommandId.COLOR_FOREGROUND.name().equals(id)) {
 				IColor color = style.getForeGround();
 				if (color != null) {
 					getNode().setValue(color.getFx());

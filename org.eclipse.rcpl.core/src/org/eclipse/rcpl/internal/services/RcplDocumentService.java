@@ -28,13 +28,13 @@ public class RcplDocumentService extends RcplService {
 	public Object doExecute(ICommand event) throws Exception {
 
 		switch (event.getCommandId()) {
-		case NEW_WORD_DOCUMENT:
+		case DOCUMENT_NEWWORD:
 			Rcpl.UIC().openTemplateDocument("blank_A4.docx", " New Document");
 			break;
-		case NEW_PRESENTATION_DOCUMENT:
+		case DOCUMENMT_NEWPRESENTATION:
 			Rcpl.UIC().openTemplateDocument("blank_presentation.pptx", " New Presentation");
 			break;
-		case NEW_SPREADSHEET_DOCUMENT:
+		case DOCUMENT_NEWSPREADSHEET:
 			Rcpl.UIC().openTemplateDocument("blank_workbook.xlsx", " New Spreadsheet");
 			break;
 		default:

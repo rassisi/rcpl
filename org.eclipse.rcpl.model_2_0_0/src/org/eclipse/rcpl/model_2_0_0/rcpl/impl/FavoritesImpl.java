@@ -50,6 +50,7 @@ public class FavoritesImpl extends LayoutableImpl implements Favorites {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FavoritesGroup> getChildren() {
 		return (EList<FavoritesGroup>)eGet(RcplPackage.Literals.FAVORITES__CHILDREN, true);
 	}
@@ -59,6 +60,7 @@ public class FavoritesImpl extends LayoutableImpl implements Favorites {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefaultSetId() {
 		return (String)eGet(RcplPackage.Literals.FAVORITES__DEFAULT_SET_ID, true);
 	}
@@ -68,6 +70,7 @@ public class FavoritesImpl extends LayoutableImpl implements Favorites {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultSetId(String newDefaultSetId) {
 		eSet(RcplPackage.Literals.FAVORITES__DEFAULT_SET_ID, newDefaultSetId);
 	}

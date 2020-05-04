@@ -6,266 +6,261 @@ package org.eclipse.rcpl;
  */
 public enum EnCommandId {
 
-	paragraphStyleList(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_STYLELIST(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	pageSize(EnServiceId.PAGE_SERVICE, null, "", "", null),
+	PAGE_SIZE(EnServiceId.PAGE_SERVICE, null, "", "", null),
 
-	page_landscape(EnServiceId.PAGE_SERVICE, null, "", "", null),
+	PAGE_LANDSCAPE(EnServiceId.PAGE_SERVICE, null, "", "", null),
 
-	page_portrait(EnServiceId.PAGE_SERVICE, null, "", "", null),
+	PAGE_PORTRAIT(EnServiceId.PAGE_SERVICE, null, "", "", null),
 
-	page_width(EnServiceId.PAGE_SERVICE, null, "", "", null),
+	PAGE_WIDTH(EnServiceId.PAGE_SERVICE, null, "", "", null),
 
-	page_height(EnServiceId.PAGE_SERVICE, null, "", "", null),
+	PAGE_HEIGHT(EnServiceId.PAGE_SERVICE, null, "", "", null),
 
-	NEW_WORD_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
+	DOCUMENT_NEWWORD(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
 
-	NEW_SPREADSHEET_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
+	DOCUMENT_NEWSPREADSHEET(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
 
-	NEW_PRESENTATION_DOCUMENT(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
+	DOCUMENMT_NEWPRESENTATION(EnServiceId.DOCUMENT_SERVICE, null, "", "", null),
 
-	delete(EnServiceId.PICTURE_SERVICE, "delete", "", "", null),
+	PICTURE_DELETE(EnServiceId.PICTURE_SERVICE, "delete", "", "", null),
 
-	toFront(EnServiceId.PICTURE_SERVICE, "to_front", "", "", null),
+	PICTURE_TOFRONT(EnServiceId.PICTURE_SERVICE, "to_front", "", "", null),
 
-	toBack(EnServiceId.PICTURE_SERVICE, "to_back", "", "", null),
+	PICTURE_TOBACK(EnServiceId.PICTURE_SERVICE, "to_back", "", "", null),
 
-	toFrontOneLevel(EnServiceId.PICTURE_SERVICE, "to_front_one_level", "", "", null),
+	PICTURE_TOFRONTONELEVEL(EnServiceId.PICTURE_SERVICE, "to_front_one_level", "", "", null),
 
-	toBackOneLevel(EnServiceId.PICTURE_SERVICE, "to_back_one_level", "", "", null),
+	PICTURE_TOBACKONELEVEL(EnServiceId.PICTURE_SERVICE, "to_back_one_level", "", "", null),
 
-	showHLineal(EnServiceId.EDITOR_SERVICE, "h_lineal", "H", "H", null),
+	EDITOR_SHOWHLINEAL(EnServiceId.EDITOR_SERVICE, "h_lineal", "H", "H", null),
 
-	showVLineal(EnServiceId.EDITOR_SERVICE, "v_lineal", "V", "V", null),
+	EDITOE_SHOWVLINEAL(EnServiceId.EDITOR_SERVICE, "v_lineal", "V", "V", null),
 
-	showTwoPages(EnServiceId.LAYOUT_SERVICE, "two_pages", "", "Show two Pages", null),
+	LAYOUT_SHOWTWOPAGES(EnServiceId.LAYOUT_SERVICE, "two_pages", "", "Show two Pages", null),
 
-	align_left(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Left", null),
+	PARAGRAPH_ALIGNLEFT(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Left", null),
 
-	align_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Center", null),
+	PARAGRAPH_ALIGNCENTER(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Center", null),
 
-	align_right(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Right", null),
+	PARAGRAPH_ALIGNRIGHT(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Right", null),
 
-	align_justify(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justify", null),
+	PARAGRAPH_ALIGNJUSTIFY(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justify", null),
 
-	align_text_left(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Left", null),
+	PARAGRAPH_ALIGNTEXTLEFT(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Left", null),
 
-	align_text_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Center", null),
+	PARAGRAPH_ALIGNTEXTCENTER(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Center", null),
 
-	align_text_right(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Right", null),
+	PARAGRAPH_ALIGNTEXTRIGHT(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Right", null),
 
-	align_text_justified(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
+	PARAGRAPH_ALIGNTEXTJUSTIFIED(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
 
-	align_horizontal_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Horizontal Center", null),
+	PARAGRAPH_ALIGNHORIZONTALCENTER(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Horizontal Center", null),
 
-	align_vertical_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_ALIGN_VERTICALCENTER(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	distribute_left(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_DISTRIBUTELEFT(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	distribute_horizontal_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_DISTRIBUTEHORIZONTALCENTER(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	distribute_right(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_DISTRIBUTERIGHT(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	distribute_horizontal_gaps(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_DISTRIBUTEHORIZONTALGAPS(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	distribute_random(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_DISTRIBUTERANDOM(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	distribute_top(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_DISTRIBUTETOP(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	distribute_vertical_center(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_DISTRIBUTEVERTICALCENTER(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	distribute_bottom(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_DISTRIBUTEBOTTOM(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	distribute_vertical_gaps(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_DISTRIBUTEVERTICALGAPS(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	rotate_90_anticlockise(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_ROTATE90ANTICLOCKWISE(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	rotate_90_clockwise(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_ROTATE90CLOCKWISE(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	flip_horozontal(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_FLIPHORIZONTAL(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	flip_vertical(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
+	PARAGRAPH_FLIPVERTICAL(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Vertical Center", null),
 
-	increase_indent(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
+	PARAGRAPH_INCREASEINDENT(EnServiceId.PARAGRAPH_SERVICE, null, "", "Align Justified", null),
 
-	decrease_indent(EnServiceId.PARAGRAPH_SERVICE, null, null, "Align Justified", null),
+	PARAGRAPH_DECREASEINDENT(EnServiceId.PARAGRAPH_SERVICE, null, null, "Align Justified", null),
 
-	change_case(EnServiceId.PARAGRAPH_SERVICE, null, null, "Align Justified", null),
+	PARAGRAPH_CHANGECASE(EnServiceId.PARAGRAPH_SERVICE, null, null, "Align Justified", null),
 
-	bullets(EnServiceId.PARAGRAPH_SERVICE, null, "", "Bullets", null),
+	PARAGRAPH_BULLETS(EnServiceId.PARAGRAPH_SERVICE, null, "", "Bullets", null),
 
-	border(EnServiceId.PARAGRAPH_SERVICE, null, "", "Border", null),
+	PARAGRAPH_BORDER(EnServiceId.PARAGRAPH_SERVICE, null, "", "Border", null),
 
-	lineWidth(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Width", null),
+	PARAGRAPH_LINEWIDTH(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Width", null),
 
-	lineArrows(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Arrows", null),
+	PARAGRAPH_LINEARROWS(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Arrows", null),
 
-	lineDashes(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Type", null),
+	PARAGRAPH_LINEDASHES(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Type", null),
 
-	pattern(EnServiceId.PARAGRAPH_SERVICE, null, "", "Pattern", null),
+	PARAGRAPH_PATTERN(EnServiceId.PARAGRAPH_SERVICE, null, "", "Pattern", null),
 
-	line_spacing(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Spacing", null),
+	PARAGRAPH_LINESPACING(EnServiceId.PARAGRAPH_SERVICE, null, "", "Line Spacing", null),
 
-	undo(EnServiceId.COMMAND_SERVICE, null, "Undo", "", null),
+	COMMAND_UNDO(EnServiceId.COMMAND_SERVICE, null, "Undo", "", null),
 
-	redo(EnServiceId.COMMAND_SERVICE, null, "Redo", "", null),
+	COMMAND_REDO(EnServiceId.COMMAND_SERVICE, null, "Redo", "", null),
 
-	insertDrawing(EnServiceId.PICTURE_SERVICE, "image", "", "", null),
+	PICTURE_INSERTDRAWING(EnServiceId.PICTURE_SERVICE, "image", "", "", null),
 
-	insertTable(EnServiceId.TABLE_SERVICE, "table", "Insert Table", "Insert Table", null),
+	TABLE_INSERTTABLE(EnServiceId.TABLE_SERVICE, "table", "Insert Table", "Insert Table", null),
 
-	insertTextbox(EnServiceId.INSERT_SERVICE, "textbox", "Insert Textbox", "Insert Textbox", null),
+	INSERT_TEXTBOX(EnServiceId.INSERT_SERVICE, "textbox", "Insert Textbox", "Insert Textbox", null),
 
-	textStyleListTool(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_TEXTSTYLETOOL(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	foregroundColor(EnServiceId.COLOR_SERVICE, "color", "", "Foreground Color", null),
+	COLOR_FOREGROUND(EnServiceId.COLOR_SERVICE, "color", "", "Foreground Color", null),
 
-	background_color(EnServiceId.COLOR_SERVICE, "color", "", "Background Color", null),
+	COLOR_BACKGROUND(EnServiceId.COLOR_SERVICE, "color", "", "Background Color", null),
 
-	highlight_color(EnServiceId.COLOR_SERVICE, "color", "", "Background Color", null),
+	COLOR_HIGHLIGHT(EnServiceId.COLOR_SERVICE, "color", "", "Background Color", null),
 
-	fontName(EnServiceId.PARAGRAPH_SERVICE, null, "", "Font Name", null),
+	PARAGRAPH_FONTNAME(EnServiceId.PARAGRAPH_SERVICE, null, "", "Font Name", null),
 
-	fontSize(EnServiceId.PARAGRAPH_SERVICE, null, "", "Font Size", null),
+	PARAGRAPH_FONTSIZE(EnServiceId.PARAGRAPH_SERVICE, null, "", "Font Size", null),
 
-	bold(EnServiceId.PARAGRAPH_SERVICE, null, "", "Bold", null),
+	PARAGRAPH_BOLD(EnServiceId.PARAGRAPH_SERVICE, null, "", "Bold", null),
 
-	italic(EnServiceId.PARAGRAPH_SERVICE, null, "", "Italic", null),
+	PARAGRAPH_ITALIC(EnServiceId.PARAGRAPH_SERVICE, null, "", "Italic", null),
 
-	underline(EnServiceId.PARAGRAPH_SERVICE, null, "", "Underline", null),
+	PARAGRAPH_UNDERLINE(EnServiceId.PARAGRAPH_SERVICE, null, "", "Underline", null),
 
-	strikethrough(EnServiceId.PARAGRAPH_SERVICE, null, "", "Strikethrough", null),
+	PARAGRAPH_STRIKETHROUGH(EnServiceId.PARAGRAPH_SERVICE, null, "", "Strikethrough", null),
 
-	subscript(EnServiceId.PARAGRAPH_SERVICE, null, "", "SubScript", null),
+	PARAGRAPH_SUBSCRIPT(EnServiceId.PARAGRAPH_SERVICE, null, "", "SubScript", null),
 
-	superscript(EnServiceId.PARAGRAPH_SERVICE, null, "", "SuperScript", null),
+	PARAGRAPH_SUPERSCRIPT(EnServiceId.PARAGRAPH_SERVICE, null, "", "SuperScript", null),
 
-	showStartMenu(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_SHOWSTARTMENU(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	layout(EnServiceId.LAYOUT_SERVICE, null, "", "", null),
+	LAYOUT_LAYOUT(EnServiceId.LAYOUT_SERVICE, null, "", "", null),
 
-	layoutPages(EnServiceId.LAYOUT_SERVICE, null, "", "", null),
+	LAYOUT_LAYOUTPAGES(EnServiceId.LAYOUT_SERVICE, null, "", "", null),
 
-	showRulers(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_SHOWRULERS(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	characterStyle(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_CHARACTERSTYLE(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	collapse_all(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_COLLAPSEALL(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	USE_CASE(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_USECASE(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	showOutline(EnServiceId.PARAGRAPH_SERVICE, "paragraph", "", "Show Outline", null),
+	PARAGRAPH_SHOWOUTLINE(EnServiceId.PARAGRAPH_SERVICE, "paragraph", "", "Show Outline", null),
 
-	updateParagraph(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_UPDATEPARAGRAPH(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	expandAfter(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_EXPANDAFTER(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	expandBefore(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_EXPANDBEFORE(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	splitParagraph(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_SPLIT(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	setStyle(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_SETSTYLE(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	INSERT_PARAGRAPH(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_INSERTPARAGRAPH(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	insertText(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
+	PARAGRAPH_INSERTTEXT(EnServiceId.PARAGRAPH_SERVICE, null, "", "", null),
 
-	style_normal(EnServiceId.PARAGRAPH_SERVICE, null, "N", "Normal", null),
+	PARAGRAPH_STYLENORMAL(EnServiceId.PARAGRAPH_SERVICE, null, "N", "Normal", null),
 
-	style_title(EnServiceId.PARAGRAPH_SERVICE, null, "T", "Title", null),
+	PARAGRAPH_STYLETITLE(EnServiceId.PARAGRAPH_SERVICE, null, "T", "Title", null),
 
-	style_heading_1(EnServiceId.PARAGRAPH_SERVICE, null, "H1", "Header 1", null),
+	PARAGRAPH_STYLEHEADING1(EnServiceId.PARAGRAPH_SERVICE, null, "H1", "Header 1", null),
 
-	style_heading_2(EnServiceId.PARAGRAPH_SERVICE, null, "H2", "Header 2", null),
+	PARAGRAPH_STYLEHEADING2(EnServiceId.PARAGRAPH_SERVICE, null, "H2", "Header 2", null),
 
-	style_heading_3(EnServiceId.PARAGRAPH_SERVICE, null, "H3", "Header 3", null),
+	PARAGRAPH_STYLEHEADING3(EnServiceId.PARAGRAPH_SERVICE, null, "H3", "Header 3", null),
 
-	style_heading_4(EnServiceId.PARAGRAPH_SERVICE, null, "H4", "Header 4", null),
+	PARAGRAPH_STYLEHEADING4(EnServiceId.PARAGRAPH_SERVICE, null, "H4", "Header 4", null),
 
-	style_heading_5(EnServiceId.PARAGRAPH_SERVICE, null, "H5", "Header 5", null),
+	PARAGRAPH_STYLEHEADING5(EnServiceId.PARAGRAPH_SERVICE, null, "H5", "Header 5", null),
 
-	shadow(EnServiceId.PARAGRAPH_SERVICE, null, null, "Shadow", null),
+	PARAGRAPH_SHADOW(EnServiceId.PARAGRAPH_SERVICE, null, null, "Shadow", null),
 
-	// ---------- EDITOR -------------------------------------------------------
+	EDITOR_ZOOMIN(EnServiceId.EDITOR_SERVICE, null, "Zoom In", "Zoom In", null),
 
-	zoom_in(EnServiceId.EDITOR_SERVICE, null, "Zoom In", "Zoom In", null),
+	EDITOR_ZOOMOUT(EnServiceId.EDITOR_SERVICE, null, "Zoom out", "Zoom out", null),
 
-	zoom_out(EnServiceId.EDITOR_SERVICE, null, "Zoom out", "Zoom out", null),
+	EDITOR_SELECT(EnServiceId.EDITOR_SERVICE, null, "Select", "Select", null),
 
-	select(EnServiceId.EDITOR_SERVICE, null, "Select", "Select", null),
+	EDITOR_SHOWTOOLS(EnServiceId.EDITOR_SERVICE, "tools", "Show Tools", "Show Tools", null),
 
-	showTools(EnServiceId.EDITOR_SERVICE, "tools", "Show Tools", "Show Tools", null),
+	EDITOR_EDITMODE(EnServiceId.EDITOR_SERVICE, "edit", "Edit Mode", "Edit Mode", null),
 
-	editMode(EnServiceId.EDITOR_SERVICE, "edit", "Edit Mode", "Edit Mode", null),
+	EDITOR_SAVE(EnServiceId.EDITOR_SERVICE, null, "Save", "Save", null),
 
-	save(EnServiceId.EDITOR_SERVICE, null, "Save", "Save", null),
+	EDITOR_SAVEAS(EnServiceId.EDITOR_SERVICE, null, null, null, null),
 
-	save_as(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+	EDITOR_OPENDOCUMENT(EnServiceId.EDITOR_SERVICE, "open", "Open Document", "Open Document...", null),
 
-	OPEN_DOCUMENT(EnServiceId.EDITOR_SERVICE, "open", "Open Document", "Open Document...", null),
+	EDITOR_OPENLASTDOCUMENT(EnServiceId.EDITOR_SERVICE, null, "Open Last Document", "Open Last Document", null),
 
-	open_last_document(EnServiceId.EDITOR_SERVICE, null, "Open Last Document", "Open Last Document", null),
+	EDITOR_TESTLAYOUT(EnServiceId.EDITOR_SERVICE, "setup", "Test Layout", "Test Layout", null),
 
-	test_layout(EnServiceId.EDITOR_SERVICE, "setup", "Test Layout", "Test Layout", null),
+	EDITOR_TESTZORDER(EnServiceId.EDITOR_SERVICE, "setup", "Test Z-Order", "Test Z-Order", null),
 
-	test_z_order(EnServiceId.EDITOR_SERVICE, "setup", "Test Z-Order", "Test Z-Order", null),
+	TABLE_INSERTROWABOVE(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	// ---------- TABLES --------------------------------------
+	TABLE_INSERTROWBELOW(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	tableInsertRowsAbove(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_INSERTCOLUMNLEFT(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	tableInsertRowsBelow(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_INSERTCOLUMNRIGHT(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	tableInsertColumnsLeft(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_DELETECELLS(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	tableInsertColumnsRight(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_DELETECOLUMNS(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	tableDeleteCells(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_DELETEROWS(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	tableDeleteColumns(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_DELETETABLE(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	tableDeleteRows(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_MERGECELLS(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	tableDeleteTable(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_SPLITCELLS(EnServiceId.TABLE_SERVICE, null, "", "", null),
 
-	tableMergeCells(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_INSERTNEWEQUATION(EnServiceId.PARAGRAPH_SERVICE, "equations", "", "Insert A New Equation As Text", null),
 
-	tableSplitCells(EnServiceId.TABLE_SERVICE, null, "", "", null),
+	TABLE_INSERTNEWEQUATIONASIMAGE(EnServiceId.PARAGRAPH_SERVICE, "images", "", "Insert a New Equation As Image", null),
 
-	insertNewEquation(EnServiceId.PARAGRAPH_SERVICE, "equations", "", "Insert A New Equation As Text", null),
+	INSERT_INSERTNEWEQUATIONASTEXTBOX(EnServiceId.INSERT_SERVICE, "equations", "", "Insert a New Equation As Textbox",
+			null),
 
-	insertNewEquationAsImage(EnServiceId.PARAGRAPH_SERVICE, "images", "", "Insert a New Equation As Image", null),
-
-	insertNewEquationAsTextbox(EnServiceId.INSERT_SERVICE, "equations", "", "Insert a New Equation As Textbox", null),
-
-	insertNewEquationAsTextboxImage(EnServiceId.INSERT_SERVICE, "images", "Insert a New Equation As Textbox (Image)",
+	INSERT_NEWEQUATIONASTEXTBOXIMAGE(EnServiceId.INSERT_SERVICE, "images", "Insert a New Equation As Textbox (Image)",
 			"Insert a New Equation As Textbox (Image)", null),
 
-	resetEquation(EnServiceId.INSERT_SERVICE, "delete", "Reset", "Reset", null),
+	INSERT_DELETEEQUATION(EnServiceId.INSERT_SERVICE, "delete", "Reset", "Reset", null),
 
-	insertLatex(EnServiceId.PARAGRAPH_SERVICE, null, "", null, null),
+	PARAGRAPH_INSERTLATEX(EnServiceId.PARAGRAPH_SERVICE, null, "", null, null),
 
-	searchImageInWeb(EnServiceId.PICTURE_SERVICE, "search", "Search Image", "Search Image", null),
+	PICTURE_SEARCHIMAGEINWEB(EnServiceId.PICTURE_SERVICE, "search", "Search Image", "Search Image", null),
 
-	insertImageFromWeb(EnServiceId.PICTURE_SERVICE, "insert", "Insert Image", "Insert Image", null),
+	PICTURE_INSERTIMAGEFROMWEB(EnServiceId.PICTURE_SERVICE, "insert", "Insert Image", "Insert Image", null),
 
-	insertShape(EnServiceId.PICTURE_SERVICE, "insert", "Insert Shape", "Insert Shape", null),
+	PICTURE_INSERTSHAPE(EnServiceId.PICTURE_SERVICE, "insert", "Insert Shape", "Insert Shape", null),
 
-	arrangeAlignLeft(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+	EDITOR_ARRANGEALIGNLEFT(EnServiceId.EDITOR_SERVICE, null, null, null, null),
 
-	arrangeAlignRight(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+	EDITOR_ARRANGEALIGNRIGHT(EnServiceId.EDITOR_SERVICE, null, null, null, null),
 
-	arrangeAlignTop(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+	EDITOR_ARRANGEALIGNTOP(EnServiceId.EDITOR_SERVICE, null, null, null, null),
 
-	arrangeAlignBottom(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+	EDITOR_ARRANGEALIGNBOTTOM(EnServiceId.EDITOR_SERVICE, null, null, null, null),
 
-	arrangeAlignVerticalCenter(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+	EDITOR_ARRANGEVERTICALCENTER(EnServiceId.EDITOR_SERVICE, null, null, null, null),
 
-	arrangeAlignHorizontalCenter(EnServiceId.EDITOR_SERVICE, null, null, null, null),
+	EDITOR_ARRANGEALIGNHOROZONTALCENTER(EnServiceId.EDITOR_SERVICE, null, null, null, null),
 
-	// ---------- RCPL Commands --------------------------------
-
-	show_homepage(EnServiceId.DEFAULT_SERVICE, null, null, null, null),
+	DEFAULT_SHOWHOMEPAGE(EnServiceId.DEFAULT_SERVICE, null, null, null, null),
 
 	;
 

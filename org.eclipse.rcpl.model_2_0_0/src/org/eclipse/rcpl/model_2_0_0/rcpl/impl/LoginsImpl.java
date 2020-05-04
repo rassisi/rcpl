@@ -49,6 +49,7 @@ public class LoginsImpl extends LayoutableImpl implements Logins {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Login> getChildren() {
 		return (EList<Login>)eGet(RcplPackage.Literals.LOGINS__CHILDREN, true);
 	}

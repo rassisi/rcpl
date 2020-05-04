@@ -49,6 +49,7 @@ public class HomePagesImpl extends LayoutableImpl implements HomePages {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<HomePage> getChildren() {
 		return (EList<HomePage>)eGet(RcplPackage.Literals.HOME_PAGES__CHILDREN, true);
 	}

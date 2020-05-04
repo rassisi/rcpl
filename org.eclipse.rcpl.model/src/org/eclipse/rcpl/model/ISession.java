@@ -52,7 +52,7 @@ public interface ISession {
 
 	Resource getRcplEmfResource();
 
-	Resource getApplicationEmfResource();
+//	Resource getApplicationEmfResource();
 
 	String getUserId();
 

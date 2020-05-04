@@ -50,6 +50,7 @@ public class PreferencesImpl extends LayoutableImpl implements Preferences {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<PreferenceGroup> getChildren() {
 		return (EList<PreferenceGroup>)eGet(RcplPackage.Literals.PREFERENCES__CHILDREN, true);
 	}
@@ -59,6 +60,7 @@ public class PreferencesImpl extends LayoutableImpl implements Preferences {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSystem() {
 		return (Boolean)eGet(RcplPackage.Literals.PREFERENCES__SYSTEM, true);
 	}
@@ -68,6 +70,7 @@ public class PreferencesImpl extends LayoutableImpl implements Preferences {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSystem(boolean newSystem) {
 		eSet(RcplPackage.Literals.PREFERENCES__SYSTEM, newSystem);
 	}

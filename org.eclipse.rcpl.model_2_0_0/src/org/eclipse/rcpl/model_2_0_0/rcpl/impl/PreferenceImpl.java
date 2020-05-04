@@ -47,6 +47,7 @@ public class PreferenceImpl extends LayoutableImpl implements Preference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getKey() {
 		return (String)eGet(RcplPackage.Literals.PREFERENCE__KEY, true);
 	}
@@ -56,6 +57,7 @@ public class PreferenceImpl extends LayoutableImpl implements Preference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKey(String newKey) {
 		eSet(RcplPackage.Literals.PREFERENCE__KEY, newKey);
 	}
@@ -65,6 +67,7 @@ public class PreferenceImpl extends LayoutableImpl implements Preference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return (String)eGet(RcplPackage.Literals.PREFERENCE__VALUE, true);
 	}
@@ -74,6 +77,7 @@ public class PreferenceImpl extends LayoutableImpl implements Preference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue) {
 		eSet(RcplPackage.Literals.PREFERENCE__VALUE, newValue);
 	}
@@ -83,6 +87,7 @@ public class PreferenceImpl extends LayoutableImpl implements Preference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getType() {
 		return (String)eGet(RcplPackage.Literals.PREFERENCE__TYPE, true);
 	}
@@ -92,6 +97,7 @@ public class PreferenceImpl extends LayoutableImpl implements Preference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(String newType) {
 		eSet(RcplPackage.Literals.PREFERENCE__TYPE, newType);
 	}

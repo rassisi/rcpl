@@ -64,7 +64,7 @@ public class HighlightColorTool extends AbstractRcplTool<Color> {
 			@Override
 			public void changed(ObservableValue<? extends Color> observableValue, Color oldColor, Color newColor) {
 				getModel().setData(HighlightColorTool.this);
-				Rcpl.get().getFactory().createCommand(HighlightColorTool.this, null, EnCommandId.highlight_color, null)
+				Rcpl.get().getFactory().createCommand(HighlightColorTool.this, null, EnCommandId.COLOR_HIGHLIGHT, null)
 						.execute();
 			}
 		};
@@ -86,7 +86,7 @@ public class HighlightColorTool extends AbstractRcplTool<Color> {
 		if (style != null) {
 			String id = getModel().getId();
 
-			if (EnCommandId.highlight_color.name().equals(id)) {
+			if (EnCommandId.COLOR_HIGHLIGHT.name().equals(id)) {
 				IColor color = style.getHighlightColor();
 				if (color != null) {
 					getNode().setValue(color.getFx());

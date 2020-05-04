@@ -51,6 +51,7 @@ public class GeoImpl extends LayoutableImpl implements Geo {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Country> getCountries() {
 		return (EList<Country>)eGet(RcplPackage.Literals.GEO__COUNTRIES, true);
 	}
@@ -61,6 +62,7 @@ public class GeoImpl extends LayoutableImpl implements Geo {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<WorldRegion> getWorldregions() {
 		return (EList<WorldRegion>)eGet(RcplPackage.Literals.GEO__WORLDREGIONS, true);
 	}

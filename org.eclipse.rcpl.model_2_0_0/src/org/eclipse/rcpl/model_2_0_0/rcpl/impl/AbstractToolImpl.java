@@ -4,6 +4,7 @@ package org.eclipse.rcpl.model_2_0_0.rcpl.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.rcpl.model_2_0_0.rcpl.AbstractTool;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Command;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
@@ -35,6 +36,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.ToolType;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isHGrow <em>HGrow</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#isVGrow <em>VGrow</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getWidthPercent <em>Width Percent</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.AbstractToolImpl#getCommand <em>Command</em>}</li>
  * </ul>
  *
  * @generated
@@ -277,6 +279,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ToolType getType() {
 		return (ToolType)eGet(RcplPackage.Literals.ABSTRACT_TOOL__TYPE, true);
 	}
@@ -285,6 +288,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(ToolType newType) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__TYPE, newType);
 	}
@@ -293,6 +297,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSystem() {
 		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__SYSTEM, true);
 	}
@@ -301,6 +306,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSystem(boolean newSystem) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__SYSTEM, newSystem);
 	}
@@ -309,6 +315,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUrl() {
 		return (String)eGet(RcplPackage.Literals.ABSTRACT_TOOL__URL, true);
 	}
@@ -317,6 +324,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUrl(String newUrl) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__URL, newUrl);
 	}
@@ -325,6 +333,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isToggleGroup() {
 		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__TOGGLE_GROUP, true);
 	}
@@ -333,6 +342,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setToggleGroup(boolean newToggleGroup) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__TOGGLE_GROUP, newToggleGroup);
 	}
@@ -341,6 +351,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ToolGroup getExpandToolGroup() {
 		return (ToolGroup)eGet(RcplPackage.Literals.ABSTRACT_TOOL__EXPAND_TOOL_GROUP, true);
 	}
@@ -349,6 +360,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpandToolGroup(ToolGroup newExpandToolGroup) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__EXPAND_TOOL_GROUP, newExpandToolGroup);
 	}
@@ -357,6 +369,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isHGrow() {
 		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__HGROW, true);
 	}
@@ -365,6 +378,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHGrow(boolean newHGrow) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__HGROW, newHGrow);
 	}
@@ -373,6 +387,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isVGrow() {
 		return (Boolean)eGet(RcplPackage.Literals.ABSTRACT_TOOL__VGROW, true);
 	}
@@ -381,6 +396,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVGrow(boolean newVGrow) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__VGROW, newVGrow);
 	}
@@ -389,6 +405,7 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getWidthPercent() {
 		return (Double)eGet(RcplPackage.Literals.ABSTRACT_TOOL__WIDTH_PERCENT, true);
 	}
@@ -397,8 +414,29 @@ public abstract class AbstractToolImpl extends LayoutableImpl implements Abstrac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWidthPercent(double newWidthPercent) {
 		eSet(RcplPackage.Literals.ABSTRACT_TOOL__WIDTH_PERCENT, newWidthPercent);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Command getCommand() {
+		return (Command)eGet(RcplPackage.Literals.ABSTRACT_TOOL__COMMAND, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCommand(Command newCommand) {
+		eSet(RcplPackage.Literals.ABSTRACT_TOOL__COMMAND, newCommand);
 	}
 
 	private Object data;

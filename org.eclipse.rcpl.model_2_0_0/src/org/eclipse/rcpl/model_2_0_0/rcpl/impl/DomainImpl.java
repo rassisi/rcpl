@@ -59,6 +59,7 @@ public class DomainImpl extends CDOObjectImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getHost() {
 		return (String)eGet(RcplPackage.Literals.DOMAIN__HOST, true);
 	}
@@ -68,6 +69,7 @@ public class DomainImpl extends CDOObjectImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHost(String newHost) {
 		eSet(RcplPackage.Literals.DOMAIN__HOST, newHost);
 	}
@@ -77,6 +79,7 @@ public class DomainImpl extends CDOObjectImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getPort() {
 		return (Integer)eGet(RcplPackage.Literals.DOMAIN__PORT, true);
 	}
@@ -86,6 +89,7 @@ public class DomainImpl extends CDOObjectImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPort(int newPort) {
 		eSet(RcplPackage.Literals.DOMAIN__PORT, newPort);
 	}
@@ -95,6 +99,7 @@ public class DomainImpl extends CDOObjectImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getResource() {
 		return (String)eGet(RcplPackage.Literals.DOMAIN__RESOURCE, true);
 	}
@@ -104,6 +109,7 @@ public class DomainImpl extends CDOObjectImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResource(String newResource) {
 		eSet(RcplPackage.Literals.DOMAIN__RESOURCE, newResource);
 	}

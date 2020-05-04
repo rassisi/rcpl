@@ -49,6 +49,7 @@ public class PersonsImpl extends LayoutableImpl implements Persons {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<PersonGroup> getChildren() {
 		return (EList<PersonGroup>)eGet(RcplPackage.Literals.PERSONS__CHILDREN, true);
 	}

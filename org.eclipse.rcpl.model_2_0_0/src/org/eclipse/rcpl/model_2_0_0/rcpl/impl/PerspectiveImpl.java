@@ -52,6 +52,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SideToolBar getSideToolBar() {
 		return (SideToolBar)eGet(RcplPackage.Literals.PERSPECTIVE__SIDE_TOOL_BAR, true);
 	}
@@ -61,6 +62,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSideToolBar(SideToolBar newSideToolBar) {
 		eSet(RcplPackage.Literals.PERSPECTIVE__SIDE_TOOL_BAR, newSideToolBar);
 	}
@@ -70,6 +72,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TopToolBar getTopToolBar() {
 		return (TopToolBar)eGet(RcplPackage.Literals.PERSPECTIVE__TOP_TOOL_BAR, true);
 	}
@@ -79,6 +82,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTopToolBar(TopToolBar newTopToolBar) {
 		eSet(RcplPackage.Literals.PERSPECTIVE__TOP_TOOL_BAR, newTopToolBar);
 	}
@@ -88,6 +92,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public QuickToolBar getQuickToolBar() {
 		return (QuickToolBar)eGet(RcplPackage.Literals.PERSPECTIVE__QUICK_TOOL_BAR, true);
 	}
@@ -97,6 +102,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQuickToolBar(QuickToolBar newQuickToolBar) {
 		eSet(RcplPackage.Literals.PERSPECTIVE__QUICK_TOOL_BAR, newQuickToolBar);
 	}
@@ -106,6 +112,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RibbonToolBar getRibbonToolBar() {
 		return (RibbonToolBar)eGet(RcplPackage.Literals.PERSPECTIVE__RIBBON_TOOL_BAR, true);
 	}
@@ -115,6 +122,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRibbonToolBar(RibbonToolBar newRibbonToolBar) {
 		eSet(RcplPackage.Literals.PERSPECTIVE__RIBBON_TOOL_BAR, newRibbonToolBar);
 	}
@@ -124,6 +132,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOverview() {
 		return (Boolean)eGet(RcplPackage.Literals.PERSPECTIVE__OVERVIEW, true);
 	}
@@ -133,6 +142,7 @@ public class PerspectiveImpl extends LayoutableImpl implements Perspective {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOverview(boolean newOverview) {
 		eSet(RcplPackage.Literals.PERSPECTIVE__OVERVIEW, newOverview);
 	}

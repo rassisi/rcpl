@@ -57,6 +57,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLink() {
 		return (String)eGet(RcplPackage.Literals.FAVORITE__LINK, true);
 	}
@@ -66,6 +67,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLink(String newLink) {
 		eSet(RcplPackage.Literals.FAVORITE__LINK, newLink);
 	}
@@ -75,6 +77,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getURI() {
 		return (String)eGet(RcplPackage.Literals.FAVORITE__URI, true);
 	}
@@ -84,6 +87,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setURI(String newURI) {
 		eSet(RcplPackage.Literals.FAVORITE__URI, newURI);
 	}
@@ -93,6 +97,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getURL() {
 		return (String)eGet(RcplPackage.Literals.FAVORITE__URL, true);
 	}
@@ -102,6 +107,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setURL(String newURL) {
 		eSet(RcplPackage.Literals.FAVORITE__URL, newURL);
 	}
@@ -111,6 +117,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getCreationDate() {
 		return (Date)eGet(RcplPackage.Literals.FAVORITE__CREATION_DATE, true);
 	}
@@ -120,6 +127,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationDate(Date newCreationDate) {
 		eSet(RcplPackage.Literals.FAVORITE__CREATION_DATE, newCreationDate);
 	}
@@ -129,6 +137,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getDocumentCreationDate() {
 		return (Date)eGet(RcplPackage.Literals.FAVORITE__DOCUMENT_CREATION_DATE, true);
 	}
@@ -138,6 +147,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDocumentCreationDate(Date newDocumentCreationDate) {
 		eSet(RcplPackage.Literals.FAVORITE__DOCUMENT_CREATION_DATE, newDocumentCreationDate);
 	}
@@ -147,6 +157,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getRating() {
 		return (Double)eGet(RcplPackage.Literals.FAVORITE__RATING, true);
 	}
@@ -156,6 +167,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRating(double newRating) {
 		eSet(RcplPackage.Literals.FAVORITE__RATING, newRating);
 	}
@@ -165,6 +177,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getLastUsedDate() {
 		return (Date)eGet(RcplPackage.Literals.FAVORITE__LAST_USED_DATE, true);
 	}
@@ -174,6 +187,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLastUsedDate(Date newLastUsedDate) {
 		eSet(RcplPackage.Literals.FAVORITE__LAST_USED_DATE, newLastUsedDate);
 	}
@@ -183,6 +197,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getFrequency() {
 		return (Double)eGet(RcplPackage.Literals.FAVORITE__FREQUENCY, true);
 	}
@@ -192,6 +207,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFrequency(double newFrequency) {
 		eSet(RcplPackage.Literals.FAVORITE__FREQUENCY, newFrequency);
 	}
@@ -201,6 +217,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPassword() {
 		return (String)eGet(RcplPackage.Literals.FAVORITE__PASSWORD, true);
 	}
@@ -210,6 +227,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPassword(String newPassword) {
 		eSet(RcplPackage.Literals.FAVORITE__PASSWORD, newPassword);
 	}
@@ -219,6 +237,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFormat() {
 		return (String)eGet(RcplPackage.Literals.FAVORITE__FORMAT, true);
 	}
@@ -228,6 +247,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFormat(String newFormat) {
 		eSet(RcplPackage.Literals.FAVORITE__FORMAT, newFormat);
 	}
@@ -237,6 +257,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isShowOnToolBar() {
 		return (Boolean)eGet(RcplPackage.Literals.FAVORITE__SHOW_ON_TOOL_BAR, true);
 	}
@@ -246,6 +267,7 @@ public class FavoriteImpl extends LayoutableImpl implements Favorite {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShowOnToolBar(boolean newShowOnToolBar) {
 		eSet(RcplPackage.Literals.FAVORITE__SHOW_ON_TOOL_BAR, newShowOnToolBar);
 	}

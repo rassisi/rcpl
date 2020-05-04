@@ -47,6 +47,7 @@ public class DocumentImpl extends LayoutableImpl implements Document {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPath() {
 		return (String)eGet(RcplPackage.Literals.DOCUMENT__PATH, true);
 	}
@@ -56,6 +57,7 @@ public class DocumentImpl extends LayoutableImpl implements Document {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPath(String newPath) {
 		eSet(RcplPackage.Literals.DOCUMENT__PATH, newPath);
 	}
@@ -65,6 +67,7 @@ public class DocumentImpl extends LayoutableImpl implements Document {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DocumentType getType() {
 		return (DocumentType)eGet(RcplPackage.Literals.DOCUMENT__TYPE, true);
 	}
@@ -74,6 +77,7 @@ public class DocumentImpl extends LayoutableImpl implements Document {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(DocumentType newType) {
 		eSet(RcplPackage.Literals.DOCUMENT__TYPE, newType);
 	}

@@ -31,19 +31,19 @@ public class RcplEditorService extends RcplService {
 	public Object doExecute(ICommand command) throws Exception {
 
 		switch (command.getCommandId()) {
-		case OPEN_DOCUMENT:
+		case EDITOR_OPENDOCUMENT:
 			Rcpl.UIC().openDocumentWithFileDialog();
 			break;
-		case open_last_document:
+		case EDITOR_OPENLASTDOCUMENT:
 			Rcpl.UIC().openLastDocument();
 			break;
-		case save:
+		case EDITOR_SAVE:
 			Rcpl.UIC().save();
 			break;
-		case save_as:
+		case EDITOR_SAVEAS:
 			Rcpl.UIC().saveAs();
 			break;
-		case test_layout:
+		case EDITOR_TESTLAYOUT:
 			IParagraph sel = Rcpl.UIC().getEditor().getActiveParagraph();
 			if (sel != null) {
 				if (sel.getPreviousRootObject() != null) {
@@ -55,18 +55,18 @@ public class RcplEditorService extends RcplService {
 				}
 			}
 			break;
-		case test_z_order:
+		case EDITOR_TESTZORDER:
 			Rcpl.UIC().getEditor().getPage(1).zOrder();
 			break;
 
-		case showHLineal:
+		case EDITOR_SHOWHLINEAL:
 			boolean selected = command.getTool().isSelected();
 			for (IPage page : Rcpl.UIC().getEditor().getPages()) {
 				page.getHLineal().show(selected);
 			}
 			Rcpl.set(Rcpl.UIC().getEditor(), EnKeyValue.SHOW_H_LINEAL, selected);
 			return true;
-		case showVLineal:
+		case EDITOE_SHOWVLINEAL:
 			selected = command.getTool().isSelected();
 			for (IPage page : Rcpl.UIC().getEditor().getPages()) {
 				page.getVLineal().show(selected);

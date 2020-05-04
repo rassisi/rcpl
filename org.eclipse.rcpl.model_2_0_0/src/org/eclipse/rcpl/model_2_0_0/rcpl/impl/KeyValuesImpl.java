@@ -44,6 +44,7 @@ public class KeyValuesImpl extends LayoutableImpl implements KeyValues {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<KeyValue> getKeyvalues() {
 		return (EList<KeyValue>)eGet(RcplPackage.Literals.KEY_VALUES__KEYVALUES, true);
 	}
@@ -53,6 +54,7 @@ public class KeyValuesImpl extends LayoutableImpl implements KeyValues {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<KeyValues> getKeyvaluesFolder() {
 		return (EList<KeyValues>)eGet(RcplPackage.Literals.KEY_VALUES__KEYVALUES_FOLDER, true);
 	}

@@ -51,6 +51,7 @@ public class FavoritesGroupImpl extends LayoutableImpl implements FavoritesGroup
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<FavoritesGroup> getGroups() {
 		return (EList<FavoritesGroup>)eGet(RcplPackage.Literals.FAVORITES_GROUP__GROUPS, true);
 	}
@@ -61,6 +62,7 @@ public class FavoritesGroupImpl extends LayoutableImpl implements FavoritesGroup
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Favorite> getFavorites() {
 		return (EList<Favorite>)eGet(RcplPackage.Literals.FAVORITES_GROUP__FAVORITES, true);
 	}
@@ -71,6 +73,7 @@ public class FavoritesGroupImpl extends LayoutableImpl implements FavoritesGroup
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Favorite> getLinkedFavorites() {
 		return (EList<Favorite>)eGet(RcplPackage.Literals.FAVORITES_GROUP__LINKED_FAVORITES, true);
 	}

@@ -84,14 +84,14 @@ public class TextFieldTool extends AbstractRcplTool<String> {
 			String text = "";
 			boolean found = false;
 			switch (cmd) {
-			case page_width:
+			case PAGE_WIDTH:
 				found = true;
 				if (event.getLayoutObject().getPage() != null) {
 					double w = event.getLayoutObject().getPage().getSection().getPageWidth();
 					text = createMeasureText(country, language, w);
 				}
 				break;
-			case page_height:
+			case PAGE_HEIGHT:
 				found = true;
 				if (event.getLayoutObject().getPage() != null) {
 					double h = event.getLayoutObject().getPage().getSection().getPageHeight();

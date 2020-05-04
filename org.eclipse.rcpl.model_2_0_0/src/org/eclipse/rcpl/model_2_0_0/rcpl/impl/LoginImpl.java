@@ -55,6 +55,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCountry() {
 		return (String)eGet(RcplPackage.Literals.LOGIN__COUNTRY, true);
 	}
@@ -64,6 +65,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCountry(String newCountry) {
 		eSet(RcplPackage.Literals.LOGIN__COUNTRY, newCountry);
 	}
@@ -73,6 +75,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPassword() {
 		return (String)eGet(RcplPackage.Literals.LOGIN__PASSWORD, true);
 	}
@@ -82,6 +85,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPassword(String newPassword) {
 		eSet(RcplPackage.Literals.LOGIN__PASSWORD, newPassword);
 	}
@@ -91,6 +95,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RCPL getRcpl() {
 		return (RCPL)eGet(RcplPackage.Literals.LOGIN__RCPL, true);
 	}
@@ -100,6 +105,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRcpl(RCPL newRcpl) {
 		eSet(RcplPackage.Literals.LOGIN__RCPL, newRcpl);
 	}
@@ -109,6 +115,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUserId() {
 		return (String)eGet(RcplPackage.Literals.LOGIN__USER_ID, true);
 	}
@@ -118,6 +125,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserId(String newUserId) {
 		eSet(RcplPackage.Literals.LOGIN__USER_ID, newUserId);
 	}
@@ -127,6 +135,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Person getPerson() {
 		return (Person)eGet(RcplPackage.Literals.LOGIN__PERSON, true);
 	}
@@ -136,6 +145,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPerson(Person newPerson) {
 		eSet(RcplPackage.Literals.LOGIN__PERSON, newPerson);
 	}
@@ -146,6 +156,7 @@ public class LoginImpl extends LayoutableImpl implements Login {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Domain> getDomains() {
 		return (EList<Domain>)eGet(RcplPackage.Literals.LOGIN__DOMAINS, true);
 	}

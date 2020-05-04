@@ -68,6 +68,7 @@ public class ToolGroupImpl extends AbstractToolImpl implements ToolGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GroupType getGroupType() {
 		return (GroupType)eGet(RcplPackage.Literals.TOOL_GROUP__GROUP_TYPE, true);
 	}
@@ -77,6 +78,7 @@ public class ToolGroupImpl extends AbstractToolImpl implements ToolGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGroupType(GroupType newGroupType) {
 		eSet(RcplPackage.Literals.TOOL_GROUP__GROUP_TYPE, newGroupType);
 	}

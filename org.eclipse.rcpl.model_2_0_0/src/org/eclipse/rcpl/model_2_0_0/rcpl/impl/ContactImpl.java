@@ -49,6 +49,7 @@ public class ContactImpl extends LayoutableImpl implements Contact {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Phone> getPhones() {
 		return (EList<Phone>)eGet(RcplPackage.Literals.CONTACT__PHONES, true);
 	}

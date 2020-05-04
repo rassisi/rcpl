@@ -27,10 +27,10 @@ public class RcplCommandService extends RcplService {
 	public Object doExecute(ICommand command) throws Exception {
 
 		switch (command.getCommandId()) {
-		case undo:
+		case COMMAND_UNDO:
 			Rcpl.UIC().getEditor().undo();
 			return true;
-		case redo:
+		case COMMAND_REDO:
 			Rcpl.UIC().getEditor().redo();
 			return true;
 		default:

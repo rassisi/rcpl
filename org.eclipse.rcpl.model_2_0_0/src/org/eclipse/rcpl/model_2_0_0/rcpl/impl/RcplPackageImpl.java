@@ -502,6 +502,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLayoutable() {
 		return layoutableEClass;
 	}
@@ -510,6 +511,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_LayoutX() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(0);
 	}
@@ -518,6 +520,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_LayoutY() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(1);
 	}
@@ -526,6 +529,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_LayoutWidth() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(2);
 	}
@@ -534,6 +538,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_LayoutHeight() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(3);
 	}
@@ -542,6 +547,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_Name() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(4);
 	}
@@ -550,6 +556,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_Description() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(5);
 	}
@@ -558,6 +565,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_Id() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(6);
 	}
@@ -566,6 +574,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_Image() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(7);
 	}
@@ -574,6 +583,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_ToolTip() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(8);
 	}
@@ -582,6 +592,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_CreateDate() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(9);
 	}
@@ -590,6 +601,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_BeginDate() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(10);
 	}
@@ -598,6 +610,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_EndDate() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(11);
 	}
@@ -606,6 +619,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLayoutable_Leaf() {
 		return (EAttribute)layoutableEClass.getEStructuralFeatures().get(12);
 	}
@@ -614,6 +628,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRCPL() {
 		return rcplEClass;
 	}
@@ -622,6 +637,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_AllAddons() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(0);
 	}
@@ -630,6 +646,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_AllPerspectives() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(1);
 	}
@@ -638,6 +655,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_Preferences() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(2);
 	}
@@ -646,6 +664,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_AllTools() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(3);
 	}
@@ -654,6 +673,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_AllFavorites() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(4);
 	}
@@ -662,6 +682,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRCPL_VersionMajor() {
 		return (EAttribute)rcplEClass.getEStructuralFeatures().get(5);
 	}
@@ -670,6 +691,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRCPL_VersionMinor() {
 		return (EAttribute)rcplEClass.getEStructuralFeatures().get(6);
 	}
@@ -678,6 +700,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRCPL_VersionMaintenance() {
 		return (EAttribute)rcplEClass.getEStructuralFeatures().get(7);
 	}
@@ -686,6 +709,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRCPL_BuildNumber() {
 		return (EAttribute)rcplEClass.getEStructuralFeatures().get(8);
 	}
@@ -694,6 +718,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRCPL_VersionDescription() {
 		return (EAttribute)rcplEClass.getEStructuralFeatures().get(9);
 	}
@@ -702,6 +727,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_AllResources() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(10);
 	}
@@ -710,6 +736,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_AllPersons() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(11);
 	}
@@ -718,6 +745,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_LinkedRcpls() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(12);
 	}
@@ -726,6 +754,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_Homepages() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(13);
 	}
@@ -734,6 +763,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_Documents() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(14);
 	}
@@ -742,6 +772,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_Keyvalues() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(15);
 	}
@@ -750,6 +781,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRCPL_ImageUrls() {
 		return (EAttribute)rcplEClass.getEStructuralFeatures().get(16);
 	}
@@ -758,6 +790,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRCPL_ServiceClasses() {
 		return (EAttribute)rcplEClass.getEStructuralFeatures().get(17);
 	}
@@ -766,6 +799,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRCPL_HomeURL() {
 		return (EAttribute)rcplEClass.getEStructuralFeatures().get(18);
 	}
@@ -774,6 +808,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_Commands() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(19);
 	}
@@ -782,6 +817,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPL_Services() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(20);
 	}
@@ -790,6 +826,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPerspectives() {
 		return perspectivesEClass;
 	}
@@ -798,6 +835,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPerspectives_Children() {
 		return (EReference)perspectivesEClass.getEStructuralFeatures().get(0);
 	}
@@ -806,6 +844,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPerspective() {
 		return perspectiveEClass;
 	}
@@ -814,6 +853,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPerspective_SideToolBar() {
 		return (EReference)perspectiveEClass.getEStructuralFeatures().get(0);
 	}
@@ -822,6 +862,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPerspective_TopToolBar() {
 		return (EReference)perspectiveEClass.getEStructuralFeatures().get(1);
 	}
@@ -830,6 +871,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPerspective_QuickToolBar() {
 		return (EReference)perspectiveEClass.getEStructuralFeatures().get(2);
 	}
@@ -838,6 +880,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPerspective_RibbonToolBar() {
 		return (EReference)perspectiveEClass.getEStructuralFeatures().get(3);
 	}
@@ -846,6 +889,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPerspective_Overview() {
 		return (EAttribute)perspectiveEClass.getEStructuralFeatures().get(4);
 	}
@@ -854,6 +898,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPreference() {
 		return preferenceEClass;
 	}
@@ -862,6 +907,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPreference_Key() {
 		return (EAttribute)preferenceEClass.getEStructuralFeatures().get(0);
 	}
@@ -870,6 +916,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPreference_Value() {
 		return (EAttribute)preferenceEClass.getEStructuralFeatures().get(1);
 	}
@@ -878,6 +925,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPreference_Type() {
 		return (EAttribute)preferenceEClass.getEStructuralFeatures().get(2);
 	}
@@ -886,6 +934,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLogins() {
 		return loginsEClass;
 	}
@@ -894,6 +943,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLogins_Children() {
 		return (EReference)loginsEClass.getEStructuralFeatures().get(0);
 	}
@@ -902,6 +952,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLogin() {
 		return loginEClass;
 	}
@@ -910,6 +961,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLogin_Country() {
 		return (EAttribute)loginEClass.getEStructuralFeatures().get(0);
 	}
@@ -918,6 +970,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLogin_Password() {
 		return (EAttribute)loginEClass.getEStructuralFeatures().get(1);
 	}
@@ -926,6 +979,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLogin_Rcpl() {
 		return (EReference)loginEClass.getEStructuralFeatures().get(2);
 	}
@@ -934,6 +988,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLogin_UserId() {
 		return (EAttribute)loginEClass.getEStructuralFeatures().get(3);
 	}
@@ -942,6 +997,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLogin_Person() {
 		return (EReference)loginEClass.getEStructuralFeatures().get(4);
 	}
@@ -950,6 +1006,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLogin_Domains() {
 		return (EReference)loginEClass.getEStructuralFeatures().get(5);
 	}
@@ -958,6 +1015,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFavorites() {
 		return favoritesEClass;
 	}
@@ -966,6 +1024,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFavorites_Children() {
 		return (EReference)favoritesEClass.getEStructuralFeatures().get(0);
 	}
@@ -974,6 +1033,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorites_DefaultSetId() {
 		return (EAttribute)favoritesEClass.getEStructuralFeatures().get(1);
 	}
@@ -982,6 +1042,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFavorite() {
 		return favoriteEClass;
 	}
@@ -990,6 +1051,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_Link() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(0);
 	}
@@ -998,6 +1060,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_URI() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(1);
 	}
@@ -1006,6 +1069,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_URL() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(2);
 	}
@@ -1014,6 +1078,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_CreationDate() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(3);
 	}
@@ -1022,6 +1087,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_DocumentCreationDate() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(4);
 	}
@@ -1030,6 +1096,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_Rating() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(5);
 	}
@@ -1038,6 +1105,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_LastUsedDate() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(6);
 	}
@@ -1046,6 +1114,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_Frequency() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(7);
 	}
@@ -1054,6 +1123,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_Password() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(8);
 	}
@@ -1062,6 +1132,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_Format() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(9);
 	}
@@ -1070,6 +1141,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getFavorite_ShowOnToolBar() {
 		return (EAttribute)favoriteEClass.getEStructuralFeatures().get(10);
 	}
@@ -1078,6 +1150,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFavoritesGroup() {
 		return favoritesGroupEClass;
 	}
@@ -1086,6 +1159,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFavoritesGroup_Groups() {
 		return (EReference)favoritesGroupEClass.getEStructuralFeatures().get(0);
 	}
@@ -1094,6 +1168,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFavoritesGroup_Favorites() {
 		return (EReference)favoritesGroupEClass.getEStructuralFeatures().get(1);
 	}
@@ -1102,6 +1177,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFavoritesGroup_LinkedFavorites() {
 		return (EReference)favoritesGroupEClass.getEStructuralFeatures().get(2);
 	}
@@ -1110,6 +1186,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPreferences() {
 		return preferencesEClass;
 	}
@@ -1118,6 +1195,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPreferences_Children() {
 		return (EReference)preferencesEClass.getEStructuralFeatures().get(0);
 	}
@@ -1126,6 +1204,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPreferences_System() {
 		return (EAttribute)preferencesEClass.getEStructuralFeatures().get(1);
 	}
@@ -1134,6 +1213,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAddons() {
 		return addonsEClass;
 	}
@@ -1142,6 +1222,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAddons_Children() {
 		return (EReference)addonsEClass.getEStructuralFeatures().get(0);
 	}
@@ -1150,6 +1231,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAddon() {
 		return addonEClass;
 	}
@@ -1158,6 +1240,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAddon_BundleId() {
 		return (EAttribute)addonEClass.getEStructuralFeatures().get(0);
 	}
@@ -1166,6 +1249,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAddon_ClassName() {
 		return (EAttribute)addonEClass.getEStructuralFeatures().get(1);
 	}
@@ -1174,6 +1258,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAddon_Roles() {
 		return (EAttribute)addonEClass.getEStructuralFeatures().get(2);
 	}
@@ -1182,6 +1267,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAddon_Users() {
 		return (EAttribute)addonEClass.getEStructuralFeatures().get(3);
 	}
@@ -1190,6 +1276,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAddon_Groups() {
 		return (EAttribute)addonEClass.getEStructuralFeatures().get(4);
 	}
@@ -1198,6 +1285,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAddon_IsPerspective() {
 		return (EAttribute)addonEClass.getEStructuralFeatures().get(5);
 	}
@@ -1206,6 +1294,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAddon_ReadOnly() {
 		return (EAttribute)addonEClass.getEStructuralFeatures().get(6);
 	}
@@ -1214,6 +1303,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAddon_DefaultPerspective() {
 		return (EReference)addonEClass.getEStructuralFeatures().get(7);
 	}
@@ -1222,6 +1312,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAddon_Perspectives() {
 		return (EReference)addonEClass.getEStructuralFeatures().get(8);
 	}
@@ -1230,6 +1321,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAddon_RootClassName() {
 		return (EAttribute)addonEClass.getEStructuralFeatures().get(9);
 	}
@@ -1238,6 +1330,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAbstractTool() {
 		return abstractToolEClass;
 	}
@@ -1246,6 +1339,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_X() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(0);
 	}
@@ -1254,6 +1348,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_Y() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(1);
 	}
@@ -1262,6 +1357,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_Width() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(2);
 	}
@@ -1270,6 +1366,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_Height() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(3);
 	}
@@ -1278,6 +1375,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_GridX() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(4);
 	}
@@ -1286,6 +1384,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_GridY() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(5);
 	}
@@ -1294,6 +1393,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_SpanX() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(6);
 	}
@@ -1302,6 +1402,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_SpanY() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(7);
 	}
@@ -1310,6 +1411,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_Labeled() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(8);
 	}
@@ -1318,6 +1420,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_NotImplemented() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(9);
 	}
@@ -1326,6 +1429,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_Service() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(10);
 	}
@@ -1334,6 +1438,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_DetailPaneClassName() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(11);
 	}
@@ -1342,6 +1447,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_Type() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(12);
 	}
@@ -1350,6 +1456,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_System() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(13);
 	}
@@ -1358,6 +1465,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_Url() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(14);
 	}
@@ -1366,6 +1474,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_ToggleGroup() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(15);
 	}
@@ -1374,6 +1483,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractTool_ExpandToolGroup() {
 		return (EReference)abstractToolEClass.getEStructuralFeatures().get(16);
 	}
@@ -1382,6 +1492,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_HGrow() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(17);
 	}
@@ -1390,6 +1501,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_VGrow() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(18);
 	}
@@ -1398,14 +1510,26 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAbstractTool_WidthPercent() {
 		return (EAttribute)abstractToolEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractTool_Command() {
+		return (EReference)abstractToolEClass.getEStructuralFeatures().get(20);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTool() {
 		return toolEClass;
 	}
@@ -1414,6 +1538,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTool_Format() {
 		return (EAttribute)toolEClass.getEStructuralFeatures().get(0);
 	}
@@ -1422,6 +1547,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getToolGroup() {
 		return toolGroupEClass;
 	}
@@ -1430,6 +1556,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getToolGroup_ToolGroups() {
 		return (EReference)toolGroupEClass.getEStructuralFeatures().get(0);
 	}
@@ -1438,6 +1565,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getToolGroup_Grid() {
 		return (EAttribute)toolGroupEClass.getEStructuralFeatures().get(1);
 	}
@@ -1446,6 +1574,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getToolGroup_Format() {
 		return (EAttribute)toolGroupEClass.getEStructuralFeatures().get(2);
 	}
@@ -1454,6 +1583,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getToolGroup_Tools() {
 		return (EReference)toolGroupEClass.getEStructuralFeatures().get(3);
 	}
@@ -1462,6 +1592,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getToolGroup_GroupType() {
 		return (EAttribute)toolGroupEClass.getEStructuralFeatures().get(4);
 	}
@@ -1470,6 +1601,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTools() {
 		return toolsEClass;
 	}
@@ -1478,6 +1610,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTools_ToolgroupChildren() {
 		return (EReference)toolsEClass.getEStructuralFeatures().get(0);
 	}
@@ -1486,6 +1619,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTools_ToolChildren() {
 		return (EReference)toolsEClass.getEStructuralFeatures().get(1);
 	}
@@ -1494,6 +1628,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRibbonToolBar() {
 		return ribbonToolBarEClass;
 	}
@@ -1502,6 +1637,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRibbonToolBar_ToolGroups() {
 		return (EReference)ribbonToolBarEClass.getEStructuralFeatures().get(0);
 	}
@@ -1510,6 +1646,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRibbonToolBar_Tools() {
 		return (EReference)ribbonToolBarEClass.getEStructuralFeatures().get(1);
 	}
@@ -1518,6 +1655,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTopToolBar() {
 		return topToolBarEClass;
 	}
@@ -1526,6 +1664,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopToolBar_ToolGroups() {
 		return (EReference)topToolBarEClass.getEStructuralFeatures().get(0);
 	}
@@ -1534,6 +1673,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTopToolBar_Tools() {
 		return (EReference)topToolBarEClass.getEStructuralFeatures().get(1);
 	}
@@ -1542,6 +1682,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSideToolBar() {
 		return sideToolBarEClass;
 	}
@@ -1550,6 +1691,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSideToolBar_ToolGroups() {
 		return (EReference)sideToolBarEClass.getEStructuralFeatures().get(0);
 	}
@@ -1558,6 +1700,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSideToolBar_Tools() {
 		return (EReference)sideToolBarEClass.getEStructuralFeatures().get(1);
 	}
@@ -1566,6 +1709,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getQuickToolBar() {
 		return quickToolBarEClass;
 	}
@@ -1574,6 +1718,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getQuickToolBar_ToolGroups() {
 		return (EReference)quickToolBarEClass.getEStructuralFeatures().get(0);
 	}
@@ -1582,6 +1727,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getQuickToolBar_Tools() {
 		return (EReference)quickToolBarEClass.getEStructuralFeatures().get(1);
 	}
@@ -1590,6 +1736,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getFolder() {
 		return folderEClass;
 	}
@@ -1598,6 +1745,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFolder_Folders() {
 		return (EReference)folderEClass.getEStructuralFeatures().get(0);
 	}
@@ -1606,6 +1754,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFolder_Resources() {
 		return (EReference)folderEClass.getEStructuralFeatures().get(1);
 	}
@@ -1614,6 +1763,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFolder_LinkedResources() {
 		return (EReference)folderEClass.getEStructuralFeatures().get(2);
 	}
@@ -1622,6 +1772,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getResource() {
 		return resourceEClass;
 	}
@@ -1630,6 +1781,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getResource_Uri() {
 		return (EAttribute)resourceEClass.getEStructuralFeatures().get(0);
 	}
@@ -1638,6 +1790,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getResource_Template() {
 		return (EAttribute)resourceEClass.getEStructuralFeatures().get(1);
 	}
@@ -1646,6 +1799,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getResource_LinkedResources() {
 		return (EReference)resourceEClass.getEStructuralFeatures().get(2);
 	}
@@ -1654,6 +1808,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getResource_MainPerspective() {
 		return (EReference)resourceEClass.getEStructuralFeatures().get(3);
 	}
@@ -1662,6 +1817,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPerson() {
 		return personEClass;
 	}
@@ -1670,6 +1826,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPerson_LastName() {
 		return (EAttribute)personEClass.getEStructuralFeatures().get(0);
 	}
@@ -1678,6 +1835,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPerson_MiddleName() {
 		return (EAttribute)personEClass.getEStructuralFeatures().get(1);
 	}
@@ -1686,6 +1844,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPerson_FirstName() {
 		return (EAttribute)personEClass.getEStructuralFeatures().get(2);
 	}
@@ -1694,6 +1853,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPerson_Addresses() {
 		return (EReference)personEClass.getEStructuralFeatures().get(3);
 	}
@@ -1702,6 +1862,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPersonGroup() {
 		return personGroupEClass;
 	}
@@ -1710,6 +1871,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPersonGroup_Persongroups() {
 		return (EReference)personGroupEClass.getEStructuralFeatures().get(0);
 	}
@@ -1718,6 +1880,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPersonGroup_Persons() {
 		return (EReference)personGroupEClass.getEStructuralFeatures().get(1);
 	}
@@ -1726,6 +1889,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPersonGroup_LinkedPersons() {
 		return (EReference)personGroupEClass.getEStructuralFeatures().get(2);
 	}
@@ -1734,6 +1898,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPersonGroup_LinkedPersongroups() {
 		return (EReference)personGroupEClass.getEStructuralFeatures().get(3);
 	}
@@ -1742,6 +1907,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getResources() {
 		return resourcesEClass;
 	}
@@ -1750,6 +1916,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getResources_Children() {
 		return (EReference)resourcesEClass.getEStructuralFeatures().get(0);
 	}
@@ -1758,6 +1925,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPreferenceGroup() {
 		return preferenceGroupEClass;
 	}
@@ -1766,6 +1934,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPreferenceGroup_Preferences() {
 		return (EReference)preferenceGroupEClass.getEStructuralFeatures().get(0);
 	}
@@ -1774,6 +1943,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPreferenceGroup_LinkedPreferences() {
 		return (EReference)preferenceGroupEClass.getEStructuralFeatures().get(1);
 	}
@@ -1782,6 +1952,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPreferenceGroup_Preferencegroups() {
 		return (EReference)preferenceGroupEClass.getEStructuralFeatures().get(2);
 	}
@@ -1790,6 +1961,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPersons() {
 		return personsEClass;
 	}
@@ -1798,6 +1970,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPersons_Children() {
 		return (EReference)personsEClass.getEStructuralFeatures().get(0);
 	}
@@ -1806,6 +1979,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRCPLTemplates() {
 		return rcplTemplatesEClass;
 	}
@@ -1814,6 +1988,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRCPLTemplates_Children() {
 		return (EReference)rcplTemplatesEClass.getEStructuralFeatures().get(0);
 	}
@@ -1822,6 +1997,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getJPerson() {
 		return jPersonEClass;
 	}
@@ -1830,6 +2006,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNPerson() {
 		return nPersonEClass;
 	}
@@ -1838,6 +2015,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAddress() {
 		return addressEClass;
 	}
@@ -1846,6 +2024,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAddress_Country() {
 		return (EReference)addressEClass.getEStructuralFeatures().get(0);
 	}
@@ -1854,6 +2033,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAddress_City() {
 		return (EReference)addressEClass.getEStructuralFeatures().get(1);
 	}
@@ -1862,6 +2042,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAddress_Street() {
 		return (EReference)addressEClass.getEStructuralFeatures().get(2);
 	}
@@ -1870,6 +2051,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAddress_Housenumber() {
 		return (EReference)addressEClass.getEStructuralFeatures().get(3);
 	}
@@ -1878,6 +2060,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAddress_Buildings() {
 		return (EReference)addressEClass.getEStructuralFeatures().get(4);
 	}
@@ -1886,6 +2069,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAddress_AddressType() {
 		return (EAttribute)addressEClass.getEStructuralFeatures().get(5);
 	}
@@ -1894,6 +2078,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCountry() {
 		return countryEClass;
 	}
@@ -1902,6 +2087,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCountry_Cities() {
 		return (EReference)countryEClass.getEStructuralFeatures().get(0);
 	}
@@ -1910,6 +2096,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCountry_Worldregions() {
 		return (EReference)countryEClass.getEStructuralFeatures().get(1);
 	}
@@ -1918,6 +2105,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCity() {
 		return cityEClass;
 	}
@@ -1926,6 +2114,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCity_Streets() {
 		return (EReference)cityEClass.getEStructuralFeatures().get(0);
 	}
@@ -1934,6 +2123,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGeo() {
 		return geoEClass;
 	}
@@ -1942,6 +2132,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeo_Countries() {
 		return (EReference)geoEClass.getEStructuralFeatures().get(0);
 	}
@@ -1950,6 +2141,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeo_Worldregions() {
 		return (EReference)geoEClass.getEStructuralFeatures().get(1);
 	}
@@ -1958,6 +2150,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getWorldRegion() {
 		return worldRegionEClass;
 	}
@@ -1966,6 +2159,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStreet() {
 		return streetEClass;
 	}
@@ -1974,6 +2168,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStreet_Housenumbers() {
 		return (EReference)streetEClass.getEStructuralFeatures().get(0);
 	}
@@ -1982,6 +2177,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStreet_Buildings() {
 		return (EReference)streetEClass.getEStructuralFeatures().get(1);
 	}
@@ -1990,6 +2186,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getHouseNumber() {
 		return houseNumberEClass;
 	}
@@ -1998,6 +2195,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBuilding() {
 		return buildingEClass;
 	}
@@ -2006,6 +2204,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getContact() {
 		return contactEClass;
 	}
@@ -2014,6 +2213,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getContact_Phones() {
 		return (EReference)contactEClass.getEStructuralFeatures().get(0);
 	}
@@ -2022,6 +2222,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPhone() {
 		return phoneEClass;
 	}
@@ -2030,6 +2231,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPhone_Number() {
 		return (EAttribute)phoneEClass.getEStructuralFeatures().get(0);
 	}
@@ -2038,6 +2240,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDomains() {
 		return domainsEClass;
 	}
@@ -2046,6 +2249,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDomains_Children() {
 		return (EReference)domainsEClass.getEStructuralFeatures().get(0);
 	}
@@ -2054,6 +2258,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDomain() {
 		return domainEClass;
 	}
@@ -2062,6 +2267,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDomain_Host() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(0);
 	}
@@ -2070,6 +2276,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDomain_Port() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(1);
 	}
@@ -2078,6 +2285,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDomain_Resource() {
 		return (EAttribute)domainEClass.getEStructuralFeatures().get(2);
 	}
@@ -2086,6 +2294,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getHomePages() {
 		return homePagesEClass;
 	}
@@ -2094,6 +2303,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getHomePages_Children() {
 		return (EReference)homePagesEClass.getEStructuralFeatures().get(0);
 	}
@@ -2102,6 +2312,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getHomePage() {
 		return homePageEClass;
 	}
@@ -2110,6 +2321,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getHomePage_Type() {
 		return (EAttribute)homePageEClass.getEStructuralFeatures().get(0);
 	}
@@ -2118,6 +2330,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getHomePage_Perspective() {
 		return (EReference)homePageEClass.getEStructuralFeatures().get(1);
 	}
@@ -2126,6 +2339,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getHomePage_Documents() {
 		return (EReference)homePageEClass.getEStructuralFeatures().get(2);
 	}
@@ -2134,6 +2348,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getHomePage_TextReplacements() {
 		return (EReference)homePageEClass.getEStructuralFeatures().get(3);
 	}
@@ -2142,6 +2357,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getHomePage_Navigator() {
 		return (EAttribute)homePageEClass.getEStructuralFeatures().get(4);
 	}
@@ -2150,6 +2366,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getHomePage_ShowHomePageButtons() {
 		return (EAttribute)homePageEClass.getEStructuralFeatures().get(5);
 	}
@@ -2158,6 +2375,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getHomePage_RootClassName() {
 		return (EAttribute)homePageEClass.getEStructuralFeatures().get(6);
 	}
@@ -2166,6 +2384,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDocuments() {
 		return documentsEClass;
 	}
@@ -2174,6 +2393,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDocuments_Children() {
 		return (EReference)documentsEClass.getEStructuralFeatures().get(0);
 	}
@@ -2182,6 +2402,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDocument() {
 		return documentEClass;
 	}
@@ -2190,6 +2411,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDocument_Path() {
 		return (EAttribute)documentEClass.getEStructuralFeatures().get(0);
 	}
@@ -2198,6 +2420,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDocument_Type() {
 		return (EAttribute)documentEClass.getEStructuralFeatures().get(1);
 	}
@@ -2206,6 +2429,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getKeyValue() {
 		return keyValueEClass;
 	}
@@ -2214,6 +2438,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getKeyValue_Key() {
 		return (EAttribute)keyValueEClass.getEStructuralFeatures().get(0);
 	}
@@ -2222,6 +2447,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getKeyValue_Value() {
 		return (EAttribute)keyValueEClass.getEStructuralFeatures().get(1);
 	}
@@ -2230,6 +2456,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getKeyValues() {
 		return keyValuesEClass;
 	}
@@ -2238,6 +2465,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getKeyValues_Keyvalues() {
 		return (EReference)keyValuesEClass.getEStructuralFeatures().get(0);
 	}
@@ -2246,6 +2474,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getKeyValues_KeyvaluesFolder() {
 		return (EReference)keyValuesEClass.getEStructuralFeatures().get(1);
 	}
@@ -2254,6 +2483,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCommand() {
 		return commandEClass;
 	}
@@ -2262,6 +2492,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCommand_Service() {
 		return (EReference)commandEClass.getEStructuralFeatures().get(0);
 	}
@@ -2270,6 +2501,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCommands() {
 		return commandsEClass;
 	}
@@ -2278,6 +2510,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCommands_Children() {
 		return (EReference)commandsEClass.getEStructuralFeatures().get(0);
 	}
@@ -2286,6 +2519,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getServices() {
 		return servicesEClass;
 	}
@@ -2294,6 +2528,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getServices_Children() {
 		return (EReference)servicesEClass.getEStructuralFeatures().get(0);
 	}
@@ -2302,6 +2537,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getService() {
 		return serviceEClass;
 	}
@@ -2310,6 +2546,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getService_ClassName() {
 		return (EAttribute)serviceEClass.getEStructuralFeatures().get(0);
 	}
@@ -2318,6 +2555,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getToolType() {
 		return toolTypeEEnum;
 	}
@@ -2326,6 +2564,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getFontStyles() {
 		return fontStylesEEnum;
 	}
@@ -2334,6 +2573,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getToolBarReplacementPolicy() {
 		return toolBarReplacementPolicyEEnum;
 	}
@@ -2342,6 +2582,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getGroupType() {
 		return groupTypeEEnum;
 	}
@@ -2350,6 +2591,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getAddressType() {
 		return addressTypeEEnum;
 	}
@@ -2358,6 +2600,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getHomePageType() {
 		return homePageTypeEEnum;
 	}
@@ -2366,6 +2609,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getDocumentType() {
 		return documentTypeEEnum;
 	}
@@ -2374,6 +2618,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RcplFactory getRcplFactory() {
 		return (RcplFactory)getEFactoryInstance();
 	}
@@ -2522,6 +2767,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__HGROW);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__VGROW);
 		createEAttribute(abstractToolEClass, ABSTRACT_TOOL__WIDTH_PERCENT);
+		createEReference(abstractToolEClass, ABSTRACT_TOOL__COMMAND);
 
 		toolEClass = createEClass(TOOL);
 		createEAttribute(toolEClass, TOOL__FORMAT);
@@ -2889,6 +3135,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEAttribute(getAbstractTool_HGrow(), ecorePackage.getEBoolean(), "hGrow", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTool_VGrow(), ecorePackage.getEBoolean(), "vGrow", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTool_WidthPercent(), ecorePackage.getEDouble(), "widthPercent", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractTool_Command(), this.getCommand(), null, "command", null, 0, 1, AbstractTool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(toolEClass, Tool.class, "Tool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTool_Format(), ecorePackage.getEString(), "format", null, 0, 1, Tool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -49,6 +49,7 @@ public class PerspectivesImpl extends LayoutableImpl implements Perspectives {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Perspective> getChildren() {
 		return (EList<Perspective>)eGet(RcplPackage.Literals.PERSPECTIVES__CHILDREN, true);
 	}

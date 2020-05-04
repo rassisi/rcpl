@@ -251,6 +251,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/hGrow"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/vGrow"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//AbstractTool/widthPercent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//AbstractTool/command"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Tool">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Tool/format"/>

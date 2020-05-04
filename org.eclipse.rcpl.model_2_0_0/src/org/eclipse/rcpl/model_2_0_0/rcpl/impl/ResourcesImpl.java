@@ -49,6 +49,7 @@ public class ResourcesImpl extends LayoutableImpl implements Resources {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Folder> getChildren() {
 		return (EList<Folder>)eGet(RcplPackage.Literals.RESOURCES__CHILDREN, true);
 	}

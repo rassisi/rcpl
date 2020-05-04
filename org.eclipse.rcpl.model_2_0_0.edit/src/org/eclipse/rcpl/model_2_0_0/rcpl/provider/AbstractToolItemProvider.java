@@ -63,6 +63,7 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 			addHGrowPropertyDescriptor(object);
 			addVGrowPropertyDescriptor(object);
 			addWidthPercentPropertyDescriptor(object);
+			addCommandPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -503,6 +504,28 @@ public class AbstractToolItemProvider extends LayoutableItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Command feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommandPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractTool_command_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractTool_command_feature", "_UI_AbstractTool_type"),
+				 RcplPackage.Literals.ABSTRACT_TOOL__COMMAND,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

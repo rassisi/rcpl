@@ -51,6 +51,7 @@ public class StreetImpl extends LayoutableImpl implements Street {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<HouseNumber> getHousenumbers() {
 		return (EList<HouseNumber>)eGet(RcplPackage.Literals.STREET__HOUSENUMBERS, true);
 	}
@@ -61,6 +62,7 @@ public class StreetImpl extends LayoutableImpl implements Street {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Building> getBuildings() {
 		return (EList<Building>)eGet(RcplPackage.Literals.STREET__BUILDINGS, true);
 	}

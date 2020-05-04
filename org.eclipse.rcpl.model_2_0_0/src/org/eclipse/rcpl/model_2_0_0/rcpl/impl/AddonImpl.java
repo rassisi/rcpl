@@ -57,6 +57,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBundleId() {
 		return (String)eGet(RcplPackage.Literals.ADDON__BUNDLE_ID, true);
 	}
@@ -66,6 +67,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBundleId(String newBundleId) {
 		eSet(RcplPackage.Literals.ADDON__BUNDLE_ID, newBundleId);
 	}
@@ -75,6 +77,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClassName() {
 		return (String)eGet(RcplPackage.Literals.ADDON__CLASS_NAME, true);
 	}
@@ -84,6 +87,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		eSet(RcplPackage.Literals.ADDON__CLASS_NAME, newClassName);
 	}
@@ -94,6 +98,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getRoles() {
 		return (EList<String>)eGet(RcplPackage.Literals.ADDON__ROLES, true);
 	}
@@ -104,6 +109,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getUsers() {
 		return (EList<String>)eGet(RcplPackage.Literals.ADDON__USERS, true);
 	}
@@ -114,6 +120,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getGroups() {
 		return (EList<String>)eGet(RcplPackage.Literals.ADDON__GROUPS, true);
 	}
@@ -123,6 +130,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsPerspective() {
 		return (Boolean)eGet(RcplPackage.Literals.ADDON__IS_PERSPECTIVE, true);
 	}
@@ -132,6 +140,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsPerspective(boolean newIsPerspective) {
 		eSet(RcplPackage.Literals.ADDON__IS_PERSPECTIVE, newIsPerspective);
 	}
@@ -141,6 +150,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReadOnly() {
 		return (Boolean)eGet(RcplPackage.Literals.ADDON__READ_ONLY, true);
 	}
@@ -150,6 +160,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReadOnly(boolean newReadOnly) {
 		eSet(RcplPackage.Literals.ADDON__READ_ONLY, newReadOnly);
 	}
@@ -159,6 +170,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Perspective getDefaultPerspective() {
 		return (Perspective)eGet(RcplPackage.Literals.ADDON__DEFAULT_PERSPECTIVE, true);
 	}
@@ -168,6 +180,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultPerspective(Perspective newDefaultPerspective) {
 		eSet(RcplPackage.Literals.ADDON__DEFAULT_PERSPECTIVE, newDefaultPerspective);
 	}
@@ -178,6 +191,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Perspective> getPerspectives() {
 		return (EList<Perspective>)eGet(RcplPackage.Literals.ADDON__PERSPECTIVES, true);
 	}
@@ -187,6 +201,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRootClassName() {
 		return (String)eGet(RcplPackage.Literals.ADDON__ROOT_CLASS_NAME, true);
 	}
@@ -196,6 +211,7 @@ public class AddonImpl extends LayoutableImpl implements Addon {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRootClassName(String newRootClassName) {
 		eSet(RcplPackage.Literals.ADDON__ROOT_CLASS_NAME, newRootClassName);
 	}

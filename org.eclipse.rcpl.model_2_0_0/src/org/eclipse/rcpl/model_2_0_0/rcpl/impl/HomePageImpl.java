@@ -56,6 +56,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public HomePageType getType() {
 		return (HomePageType)eGet(RcplPackage.Literals.HOME_PAGE__TYPE, true);
 	}
@@ -65,6 +66,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(HomePageType newType) {
 		eSet(RcplPackage.Literals.HOME_PAGE__TYPE, newType);
 	}
@@ -74,6 +76,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Perspective getPerspective() {
 		return (Perspective)eGet(RcplPackage.Literals.HOME_PAGE__PERSPECTIVE, true);
 	}
@@ -83,6 +86,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPerspective(Perspective newPerspective) {
 		eSet(RcplPackage.Literals.HOME_PAGE__PERSPECTIVE, newPerspective);
 	}
@@ -93,6 +97,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Document> getDocuments() {
 		return (EList<Document>)eGet(RcplPackage.Literals.HOME_PAGE__DOCUMENTS, true);
 	}
@@ -103,6 +108,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<KeyValue> getTextReplacements() {
 		return (EList<KeyValue>)eGet(RcplPackage.Literals.HOME_PAGE__TEXT_REPLACEMENTS, true);
 	}
@@ -112,6 +118,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNavigator() {
 		return (Boolean)eGet(RcplPackage.Literals.HOME_PAGE__NAVIGATOR, true);
 	}
@@ -121,6 +128,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNavigator(boolean newNavigator) {
 		eSet(RcplPackage.Literals.HOME_PAGE__NAVIGATOR, newNavigator);
 	}
@@ -130,6 +138,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isShowHomePageButtons() {
 		return (Boolean)eGet(RcplPackage.Literals.HOME_PAGE__SHOW_HOME_PAGE_BUTTONS, true);
 	}
@@ -139,6 +148,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShowHomePageButtons(boolean newShowHomePageButtons) {
 		eSet(RcplPackage.Literals.HOME_PAGE__SHOW_HOME_PAGE_BUTTONS, newShowHomePageButtons);
 	}
@@ -148,6 +158,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRootClassName() {
 		return (String)eGet(RcplPackage.Literals.HOME_PAGE__ROOT_CLASS_NAME, true);
 	}
@@ -157,6 +168,7 @@ public class HomePageImpl extends LayoutableImpl implements HomePage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRootClassName(String newRootClassName) {
 		eSet(RcplPackage.Literals.HOME_PAGE__ROOT_CLASS_NAME, newRootClassName);
 	}

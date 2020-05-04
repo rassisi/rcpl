@@ -79,6 +79,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Addons getAllAddons() {
 		return (Addons)eGet(RcplPackage.Literals.RCPL__ALL_ADDONS, true);
 	}
@@ -88,6 +89,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllAddons(Addons newAllAddons) {
 		eSet(RcplPackage.Literals.RCPL__ALL_ADDONS, newAllAddons);
 	}
@@ -97,6 +99,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Perspectives getAllPerspectives() {
 		return (Perspectives)eGet(RcplPackage.Literals.RCPL__ALL_PERSPECTIVES, true);
 	}
@@ -106,6 +109,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllPerspectives(Perspectives newAllPerspectives) {
 		eSet(RcplPackage.Literals.RCPL__ALL_PERSPECTIVES, newAllPerspectives);
 	}
@@ -115,6 +119,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Preferences getPreferences() {
 		return (Preferences)eGet(RcplPackage.Literals.RCPL__PREFERENCES, true);
 	}
@@ -124,6 +129,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPreferences(Preferences newPreferences) {
 		eSet(RcplPackage.Literals.RCPL__PREFERENCES, newPreferences);
 	}
@@ -133,6 +139,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tools getAllTools() {
 		return (Tools)eGet(RcplPackage.Literals.RCPL__ALL_TOOLS, true);
 	}
@@ -142,6 +149,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllTools(Tools newAllTools) {
 		eSet(RcplPackage.Literals.RCPL__ALL_TOOLS, newAllTools);
 	}
@@ -151,6 +159,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Favorites getAllFavorites() {
 		return (Favorites)eGet(RcplPackage.Literals.RCPL__ALL_FAVORITES, true);
 	}
@@ -160,6 +169,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllFavorites(Favorites newAllFavorites) {
 		eSet(RcplPackage.Literals.RCPL__ALL_FAVORITES, newAllFavorites);
 	}
@@ -169,6 +179,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getVersionMajor() {
 		return (Integer)eGet(RcplPackage.Literals.RCPL__VERSION_MAJOR, true);
 	}
@@ -178,6 +189,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersionMajor(int newVersionMajor) {
 		eSet(RcplPackage.Literals.RCPL__VERSION_MAJOR, newVersionMajor);
 	}
@@ -187,6 +199,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getVersionMinor() {
 		return (Integer)eGet(RcplPackage.Literals.RCPL__VERSION_MINOR, true);
 	}
@@ -196,6 +209,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersionMinor(int newVersionMinor) {
 		eSet(RcplPackage.Literals.RCPL__VERSION_MINOR, newVersionMinor);
 	}
@@ -205,6 +219,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getVersionMaintenance() {
 		return (Integer)eGet(RcplPackage.Literals.RCPL__VERSION_MAINTENANCE, true);
 	}
@@ -214,6 +229,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersionMaintenance(int newVersionMaintenance) {
 		eSet(RcplPackage.Literals.RCPL__VERSION_MAINTENANCE, newVersionMaintenance);
 	}
@@ -223,6 +239,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBuildNumber() {
 		return (String)eGet(RcplPackage.Literals.RCPL__BUILD_NUMBER, true);
 	}
@@ -232,6 +249,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBuildNumber(String newBuildNumber) {
 		eSet(RcplPackage.Literals.RCPL__BUILD_NUMBER, newBuildNumber);
 	}
@@ -241,6 +259,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersionDescription() {
 		return (String)eGet(RcplPackage.Literals.RCPL__VERSION_DESCRIPTION, true);
 	}
@@ -250,6 +269,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersionDescription(String newVersionDescription) {
 		eSet(RcplPackage.Literals.RCPL__VERSION_DESCRIPTION, newVersionDescription);
 	}
@@ -259,6 +279,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Resources getAllResources() {
 		return (Resources)eGet(RcplPackage.Literals.RCPL__ALL_RESOURCES, true);
 	}
@@ -268,6 +289,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllResources(Resources newAllResources) {
 		eSet(RcplPackage.Literals.RCPL__ALL_RESOURCES, newAllResources);
 	}
@@ -277,6 +299,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Persons getAllPersons() {
 		return (Persons)eGet(RcplPackage.Literals.RCPL__ALL_PERSONS, true);
 	}
@@ -286,6 +309,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllPersons(Persons newAllPersons) {
 		eSet(RcplPackage.Literals.RCPL__ALL_PERSONS, newAllPersons);
 	}
@@ -296,6 +320,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<RCPL> getLinkedRcpls() {
 		return (EList<RCPL>)eGet(RcplPackage.Literals.RCPL__LINKED_RCPLS, true);
 	}
@@ -305,6 +330,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public HomePages getHomepages() {
 		return (HomePages)eGet(RcplPackage.Literals.RCPL__HOMEPAGES, true);
 	}
@@ -314,6 +340,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHomepages(HomePages newHomepages) {
 		eSet(RcplPackage.Literals.RCPL__HOMEPAGES, newHomepages);
 	}
@@ -323,6 +350,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Documents getDocuments() {
 		return (Documents)eGet(RcplPackage.Literals.RCPL__DOCUMENTS, true);
 	}
@@ -332,6 +360,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDocuments(Documents newDocuments) {
 		eSet(RcplPackage.Literals.RCPL__DOCUMENTS, newDocuments);
 	}
@@ -341,6 +370,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public KeyValues getKeyvalues() {
 		return (KeyValues)eGet(RcplPackage.Literals.RCPL__KEYVALUES, true);
 	}
@@ -350,6 +380,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKeyvalues(KeyValues newKeyvalues) {
 		eSet(RcplPackage.Literals.RCPL__KEYVALUES, newKeyvalues);
 	}
@@ -360,6 +391,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getImageUrls() {
 		return (EList<String>)eGet(RcplPackage.Literals.RCPL__IMAGE_URLS, true);
 	}
@@ -370,6 +402,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getServiceClasses() {
 		return (EList<String>)eGet(RcplPackage.Literals.RCPL__SERVICE_CLASSES, true);
 	}
@@ -379,6 +412,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getHomeURL() {
 		return (String)eGet(RcplPackage.Literals.RCPL__HOME_URL, true);
 	}
@@ -388,6 +422,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHomeURL(String newHomeURL) {
 		eSet(RcplPackage.Literals.RCPL__HOME_URL, newHomeURL);
 	}
@@ -397,6 +432,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Commands getCommands() {
 		return (Commands)eGet(RcplPackage.Literals.RCPL__COMMANDS, true);
 	}
@@ -406,6 +442,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCommands(Commands newCommands) {
 		eSet(RcplPackage.Literals.RCPL__COMMANDS, newCommands);
 	}
@@ -415,6 +452,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Services getServices() {
 		return (Services)eGet(RcplPackage.Literals.RCPL__SERVICES, true);
 	}
@@ -424,6 +462,7 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setServices(Services newServices) {
 		eSet(RcplPackage.Literals.RCPL__SERVICES, newServices);
 	}

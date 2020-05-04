@@ -45,6 +45,7 @@ public class KeyValueImpl extends LayoutableImpl implements KeyValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getKey() {
 		return (String)eGet(RcplPackage.Literals.KEY_VALUE__KEY, true);
 	}
@@ -54,6 +55,7 @@ public class KeyValueImpl extends LayoutableImpl implements KeyValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKey(String newKey) {
 		eSet(RcplPackage.Literals.KEY_VALUE__KEY, newKey);
 	}
@@ -63,6 +65,7 @@ public class KeyValueImpl extends LayoutableImpl implements KeyValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return (String)eGet(RcplPackage.Literals.KEY_VALUE__VALUE, true);
 	}
@@ -72,6 +75,7 @@ public class KeyValueImpl extends LayoutableImpl implements KeyValue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue) {
 		eSet(RcplPackage.Literals.KEY_VALUE__VALUE, newValue);
 	}

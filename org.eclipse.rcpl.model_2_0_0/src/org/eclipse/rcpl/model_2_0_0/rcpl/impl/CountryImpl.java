@@ -51,6 +51,7 @@ public class CountryImpl extends LayoutableImpl implements Country {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<City> getCities() {
 		return (EList<City>)eGet(RcplPackage.Literals.COUNTRY__CITIES, true);
 	}
@@ -61,6 +62,7 @@ public class CountryImpl extends LayoutableImpl implements Country {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<WorldRegion> getWorldregions() {
 		return (EList<WorldRegion>)eGet(RcplPackage.Literals.COUNTRY__WORLDREGIONS, true);
 	}

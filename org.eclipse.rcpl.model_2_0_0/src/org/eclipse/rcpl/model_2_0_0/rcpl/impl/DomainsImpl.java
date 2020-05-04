@@ -61,6 +61,7 @@ public class DomainsImpl extends CDOObjectImpl implements Domains {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Domain> getChildren() {
 		return (EList<Domain>)eGet(RcplPackage.Literals.DOMAINS__CHILDREN, true);
 	}

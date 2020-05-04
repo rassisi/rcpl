@@ -45,6 +45,7 @@ public class PhoneImpl extends LayoutableImpl implements Phone {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNumber() {
 		return (String)eGet(RcplPackage.Literals.PHONE__NUMBER, true);
 	}
@@ -54,6 +55,7 @@ public class PhoneImpl extends LayoutableImpl implements Phone {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumber(String newNumber) {
 		eSet(RcplPackage.Literals.PHONE__NUMBER, newNumber);
 	}

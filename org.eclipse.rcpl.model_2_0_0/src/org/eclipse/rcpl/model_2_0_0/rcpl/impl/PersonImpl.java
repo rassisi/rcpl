@@ -51,6 +51,7 @@ public class PersonImpl extends LayoutableImpl implements Person {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLastName() {
 		return (String)eGet(RcplPackage.Literals.PERSON__LAST_NAME, true);
 	}
@@ -60,6 +61,7 @@ public class PersonImpl extends LayoutableImpl implements Person {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLastName(String newLastName) {
 		eSet(RcplPackage.Literals.PERSON__LAST_NAME, newLastName);
 	}
@@ -69,6 +71,7 @@ public class PersonImpl extends LayoutableImpl implements Person {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMiddleName() {
 		return (String)eGet(RcplPackage.Literals.PERSON__MIDDLE_NAME, true);
 	}
@@ -78,6 +81,7 @@ public class PersonImpl extends LayoutableImpl implements Person {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMiddleName(String newMiddleName) {
 		eSet(RcplPackage.Literals.PERSON__MIDDLE_NAME, newMiddleName);
 	}
@@ -87,6 +91,7 @@ public class PersonImpl extends LayoutableImpl implements Person {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFirstName() {
 		return (String)eGet(RcplPackage.Literals.PERSON__FIRST_NAME, true);
 	}
@@ -96,6 +101,7 @@ public class PersonImpl extends LayoutableImpl implements Person {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFirstName(String newFirstName) {
 		eSet(RcplPackage.Literals.PERSON__FIRST_NAME, newFirstName);
 	}
@@ -106,6 +112,7 @@ public class PersonImpl extends LayoutableImpl implements Person {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Address> getAddresses() {
 		return (EList<Address>)eGet(RcplPackage.Literals.PERSON__ADDRESSES, true);
 	}

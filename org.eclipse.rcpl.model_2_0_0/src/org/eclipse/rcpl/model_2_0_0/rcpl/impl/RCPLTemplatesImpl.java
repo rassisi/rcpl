@@ -49,6 +49,7 @@ public class RCPLTemplatesImpl extends LayoutableImpl implements RCPLTemplates {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<RCPL> getChildren() {
 		return (EList<RCPL>)eGet(RcplPackage.Literals.RCPL_TEMPLATES__CHILDREN, true);
 	}

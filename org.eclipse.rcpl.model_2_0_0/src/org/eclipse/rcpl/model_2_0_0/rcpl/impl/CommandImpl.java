@@ -46,6 +46,7 @@ public class CommandImpl extends LayoutableImpl implements Command {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Service getService() {
 		return (Service)eGet(RcplPackage.Literals.COMMAND__SERVICE, true);
 	}
@@ -55,6 +56,7 @@ public class CommandImpl extends LayoutableImpl implements Command {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setService(Service newService) {
 		eSet(RcplPackage.Literals.COMMAND__SERVICE, newService);
 	}
