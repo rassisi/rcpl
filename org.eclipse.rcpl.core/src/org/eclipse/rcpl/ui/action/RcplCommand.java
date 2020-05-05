@@ -22,6 +22,7 @@ import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.ITool;
 import org.eclipse.rcpl.IWordDocument;
 import org.eclipse.rcpl.Rcpl;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Command;
 import org.eclipse.rcpl.ui.controler.RcplUic;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTP;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTbl;
@@ -57,6 +58,8 @@ public class RcplCommand implements ICommand {
 	private IService service;
 
 	private boolean valid;
+
+	private Command model;
 
 	/**
 	 * 
@@ -345,6 +348,16 @@ public class RcplCommand implements ICommand {
 
 	public boolean isValid() {
 		return valid;
+	}
+
+	@Override
+	public Command getModel() {
+		return model;
+	}
+
+	@Override
+	public void setModel(Command model) {
+		this.model = model;
 	}
 
 }

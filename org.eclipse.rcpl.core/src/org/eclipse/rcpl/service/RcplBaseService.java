@@ -21,6 +21,7 @@ import org.eclipse.rcpl.IService;
 import org.eclipse.rcpl.Rcpl;
 import org.eclipse.rcpl.internal.services.RcplCommandService;
 import org.eclipse.rcpl.internal.services.RcplObjectService;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Command;
 import org.eclipse.rcpl.ui.action.RcplCommand;
 
 /**
@@ -35,8 +36,14 @@ public class RcplBaseService implements IService {
 
 	public static boolean enableUnimplementedMessage = true;
 
+	@Deprecated
 	@Override
 	public Object doExecute(ICommand event) throws Exception {
+		return null;
+	}
+
+	@Override
+	public Object doExecute(Command event) throws Exception {
 		return null;
 	}
 
@@ -96,11 +103,26 @@ public class RcplBaseService implements IService {
 	// return false;
 	// }
 
+	@Deprecated
 	public boolean getBoolean(ICommand cmd) {
 		if (cmd.getNewData().length > 0 && cmd.getNewData()[0] instanceof Boolean) {
 			return ((Boolean) cmd.getNewData()[0]).booleanValue();
 		}
 		return false;
+	}
+
+	public boolean getBoolean(Command cmd) {
+		if (cmd.getNewData().length > 0 && cmd.getNewData()[0] instanceof Boolean) {
+			return ((Boolean) cmd.getNewData()[0]).booleanValue();
+		}
+		return false;
+	}
+
+	public String getString(Command cmd) {
+		if (cmd.getNewData().length > 0 && cmd.getNewData()[0] instanceof String) {
+			return (String) cmd.getNewData()[0];
+		}
+		return null;
 	}
 
 	protected String getId(RcplCommand command) {
@@ -219,7 +241,7 @@ public class RcplBaseService implements IService {
 	// }
 
 	/**
-	 * @param              <T>
+	 * @param <T>
 	 * @param serviceClass
 	 * @return
 	 */
@@ -235,7 +257,7 @@ public class RcplBaseService implements IService {
 	}
 
 	/**
-	 * @param              <T>
+	 * @param <T>
 	 * @param serviceClass
 	 * @return
 	 */

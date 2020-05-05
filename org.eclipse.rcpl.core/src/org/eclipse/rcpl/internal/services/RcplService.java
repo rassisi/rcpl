@@ -134,7 +134,14 @@ public class RcplService extends RcplBaseService implements IService {
 		}
 
 		try {
+			if (command.getModel() != null) {
+				return service.doExecute(command.getModel());
+			}
+
+			// ---------- LEGACY SUPPORT
+
 			return service.doExecute(command);
+
 		} catch (Exception e) {
 			RcplModel.logError(e);
 		}

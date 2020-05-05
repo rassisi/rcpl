@@ -391,6 +391,11 @@ public abstract class AbstractRcplTool<T> implements ITool {
 			try {
 				ICommand command = Rcpl.get().getFactory().createCommand(this, null, EnCommandId.findCommandId(getId()),
 						null, data);
+				command.setModel(model.getCommand());
+				if (model.getCommand() != null) {
+					model.getCommand().setTool(model);
+					model.getCommand().setNewData(command.getNewData());
+				}
 				Rcpl.get().service().execute(command);
 
 			} catch (Exception ex) {
