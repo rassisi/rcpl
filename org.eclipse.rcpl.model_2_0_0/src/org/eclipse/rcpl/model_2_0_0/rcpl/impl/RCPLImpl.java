@@ -12,6 +12,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Documents;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Favorites;
 import org.eclipse.rcpl.model_2_0_0.rcpl.HomePages;
 import org.eclipse.rcpl.model_2_0_0.rcpl.KeyValues;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Navigators;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Persons;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Perspectives;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
@@ -50,6 +51,7 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Tools;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getHomeURL <em>Home URL</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getCommands <em>Commands</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getServices <em>Services</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.RCPLImpl#getNavigators <em>Navigators</em>}</li>
  * </ul>
  *
  * @generated
@@ -465,6 +467,26 @@ public class RCPLImpl extends LayoutableImpl implements RCPL {
 	@Override
 	public void setServices(Services newServices) {
 		eSet(RcplPackage.Literals.RCPL__SERVICES, newServices);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Navigators getNavigators() {
+		return (Navigators)eGet(RcplPackage.Literals.RCPL__NAVIGATORS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setNavigators(Navigators newNavigators) {
+		eSet(RcplPackage.Literals.RCPL__NAVIGATORS, newNavigators);
 	}
 
 } //RCPLImpl

@@ -503,13 +503,22 @@ public interface RcplPackage extends EPackage {
 	int RCPL__SERVICES = LAYOUTABLE_FEATURE_COUNT + 20;
 
 	/**
+	 * The feature id for the '<em><b>Navigators</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RCPL__NAVIGATORS = LAYOUTABLE_FEATURE_COUNT + 21;
+
+	/**
 	 * The number of structural features of the '<em>RCPL</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 21;
+	int RCPL_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 22;
 
 	/**
 	 * The number of operations of the '<em>RCPL</em>' class.
@@ -8828,13 +8837,22 @@ public interface RcplPackage extends EPackage {
 	int COMMAND__SERVICE = LAYOUTABLE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Dialog Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMAND__DIALOG_CLASS_NAME = LAYOUTABLE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Command</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int COMMAND_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 1;
+	int COMMAND_FEATURE_COUNT = LAYOUTABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Command</em>' class.
@@ -9069,13 +9087,142 @@ public interface RcplPackage extends EPackage {
 	int SERVICE_OPERATION_COUNT = LAYOUTABLE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorImpl <em>Navigator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getNavigator()
+	 * @generated
+	 */
+	int NAVIGATOR = 53;
+
+	/**
+	 * The feature id for the '<em><b>Navigatoritems</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATOR__NAVIGATORITEMS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATOR__CONTEXT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Navigator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATOR_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Navigator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorItemImpl <em>Navigator Item</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorItemImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getNavigatorItem()
+	 * @generated
+	 */
+	int NAVIGATOR_ITEM = 54;
+
+	/**
+	 * The feature id for the '<em><b>Adapt From</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATOR_ITEM__ADAPT_FROM = 0;
+
+	/**
+	 * The feature id for the '<em><b>Adapt To</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATOR_ITEM__ADAPT_TO = 1;
+
+	/**
+	 * The number of structural features of the '<em>Navigator Item</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATOR_ITEM_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Navigator Item</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATOR_ITEM_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorsImpl <em>Navigators</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorsImpl
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getNavigators()
+	 * @generated
+	 */
+	int NAVIGATORS = 55;
+
+	/**
+	 * The feature id for the '<em><b>Navigators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATORS__NAVIGATORS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Navigators</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATORS_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Navigators</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATORS_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.ToolType
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolType()
 	 * @generated
 	 */
-	int TOOL_TYPE = 53;
+	int TOOL_TYPE = 56;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.FontStyles <em>Font Styles</em>}' enum.
@@ -9084,7 +9231,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getFontStyles()
 	 * @generated
 	 */
-	int FONT_STYLES = 54;
+	int FONT_STYLES = 57;
 
 	/**
 	 * The meta object id for the
@@ -9096,7 +9243,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getToolBarReplacementPolicy()
 	 * @generated
 	 */
-	int TOOL_BAR_REPLACEMENT_POLICY = 55;
+	int TOOL_BAR_REPLACEMENT_POLICY = 58;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.GroupType <em>Group Type</em>}' enum.
@@ -9105,7 +9252,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getGroupType()
 	 * @generated
 	 */
-	int GROUP_TYPE = 56;
+	int GROUP_TYPE = 59;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.AddressType <em>Address Type</em>}' enum.
@@ -9114,7 +9261,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getAddressType()
 	 * @generated
 	 */
-	int ADDRESS_TYPE = 57;
+	int ADDRESS_TYPE = 60;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.HomePageType <em>Home Page Type</em>}' enum.
@@ -9123,7 +9270,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getHomePageType()
 	 * @generated
 	 */
-	int HOME_PAGE_TYPE = 58;
+	int HOME_PAGE_TYPE = 61;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.DocumentType <em>Document Type</em>}' enum.
@@ -9132,7 +9279,7 @@ public interface RcplPackage extends EPackage {
 	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getDocumentType()
 	 * @generated
 	 */
-	int DOCUMENT_TYPE = 59;
+	int DOCUMENT_TYPE = 62;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Layoutable <em>Layoutable</em>}'.
@@ -9493,6 +9640,17 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRCPL_Services();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getNavigators <em>Navigators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Navigators</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getNavigators()
+	 * @see #getRCPL()
+	 * @generated
+	 */
+	EReference getRCPL_Navigators();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Perspectives <em>Perspectives</em>}'.
@@ -11373,6 +11531,17 @@ public interface RcplPackage extends EPackage {
 	EReference getCommand_Service();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Command#getDialogClassName <em>Dialog Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dialog Class Name</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Command#getDialogClassName()
+	 * @see #getCommand()
+	 * @generated
+	 */
+	EAttribute getCommand_DialogClassName();
+
+	/**
 	 * Returns the meta object for class
 	 * '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Commands <em>Commands</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -11434,6 +11603,91 @@ public interface RcplPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getService_ClassName();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigator <em>Navigator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Navigator</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Navigator
+	 * @generated
+	 */
+	EClass getNavigator();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigator#getNavigatoritems <em>Navigatoritems</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Navigatoritems</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Navigator#getNavigatoritems()
+	 * @see #getNavigator()
+	 * @generated
+	 */
+	EReference getNavigator_Navigatoritems();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigator#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Context</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Navigator#getContext()
+	 * @see #getNavigator()
+	 * @generated
+	 */
+	EAttribute getNavigator_Context();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem <em>Navigator Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Navigator Item</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem
+	 * @generated
+	 */
+	EClass getNavigatorItem();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem#getAdaptFrom <em>Adapt From</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Adapt From</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem#getAdaptFrom()
+	 * @see #getNavigatorItem()
+	 * @generated
+	 */
+	EAttribute getNavigatorItem_AdaptFrom();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem#getAdaptTo <em>Adapt To</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Adapt To</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem#getAdaptTo()
+	 * @see #getNavigatorItem()
+	 * @generated
+	 */
+	EAttribute getNavigatorItem_AdaptTo();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigators <em>Navigators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Navigators</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Navigators
+	 * @generated
+	 */
+	EClass getNavigators();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigators#getNavigators <em>Navigators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Navigators</em>'.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Navigators#getNavigators()
+	 * @see #getNavigators()
+	 * @generated
+	 */
+	EReference getNavigators_Navigators();
 
 	/**
 	 * Returns the meta object for enum
@@ -11778,6 +12032,14 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RCPL__SERVICES = eINSTANCE.getRCPL_Services();
+
+		/**
+		 * The meta object literal for the '<em><b>Navigators</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RCPL__NAVIGATORS = eINSTANCE.getRCPL_Navigators();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.PerspectivesImpl <em>Perspectives</em>}' class.
@@ -13199,6 +13461,14 @@ public interface RcplPackage extends EPackage {
 		EReference COMMAND__SERVICE = eINSTANCE.getCommand_Service();
 
 		/**
+		 * The meta object literal for the '<em><b>Dialog Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMMAND__DIALOG_CLASS_NAME = eINSTANCE.getCommand_DialogClassName();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl <em>Commands</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandsImpl
@@ -13245,6 +13515,76 @@ public interface RcplPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVICE__CLASS_NAME = eINSTANCE.getService_ClassName();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorImpl <em>Navigator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getNavigator()
+		 * @generated
+		 */
+		EClass NAVIGATOR = eINSTANCE.getNavigator();
+
+		/**
+		 * The meta object literal for the '<em><b>Navigatoritems</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAVIGATOR__NAVIGATORITEMS = eINSTANCE.getNavigator_Navigatoritems();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAVIGATOR__CONTEXT = eINSTANCE.getNavigator_Context();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorItemImpl <em>Navigator Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorItemImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getNavigatorItem()
+		 * @generated
+		 */
+		EClass NAVIGATOR_ITEM = eINSTANCE.getNavigatorItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Adapt From</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAVIGATOR_ITEM__ADAPT_FROM = eINSTANCE.getNavigatorItem_AdaptFrom();
+
+		/**
+		 * The meta object literal for the '<em><b>Adapt To</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAVIGATOR_ITEM__ADAPT_TO = eINSTANCE.getNavigatorItem_AdaptTo();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorsImpl <em>Navigators</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.NavigatorsImpl
+		 * @see org.eclipse.rcpl.model_2_0_0.rcpl.impl.RcplPackageImpl#getNavigators()
+		 * @generated
+		 */
+		EClass NAVIGATORS = eINSTANCE.getNavigators();
+
+		/**
+		 * The meta object literal for the '<em><b>Navigators</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAVIGATORS__NAVIGATORS = eINSTANCE.getNavigators_Navigators();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.ToolType <em>Tool Type</em>}' enum.

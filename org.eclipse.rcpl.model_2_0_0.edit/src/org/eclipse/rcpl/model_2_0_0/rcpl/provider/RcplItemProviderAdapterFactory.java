@@ -1245,6 +1245,75 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigator} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NavigatorItemProvider navigatorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNavigatorAdapter() {
+		if (navigatorItemProvider == null) {
+			navigatorItemProvider = new NavigatorItemProvider(this);
+		}
+
+		return navigatorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NavigatorItemItemProvider navigatorItemItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNavigatorItemAdapter() {
+		if (navigatorItemItemProvider == null) {
+			navigatorItemItemProvider = new NavigatorItemItemProvider(this);
+		}
+
+		return navigatorItemItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigators} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NavigatorsItemProvider navigatorsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigators}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNavigatorsAdapter() {
+		if (navigatorsItemProvider == null) {
+			navigatorsItemProvider = new NavigatorsItemProvider(this);
+		}
+
+		return navigatorsItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1400,6 +1469,9 @@ public class RcplItemProviderAdapterFactory extends RcplAdapterFactory implement
 		if (commandsItemProvider != null) commandsItemProvider.dispose();
 		if (servicesItemProvider != null) servicesItemProvider.dispose();
 		if (serviceItemProvider != null) serviceItemProvider.dispose();
+		if (navigatorItemProvider != null) navigatorItemProvider.dispose();
+		if (navigatorItemItemProvider != null) navigatorItemItemProvider.dispose();
+		if (navigatorsItemProvider != null) navigatorsItemProvider.dispose();
 	}
 
 }

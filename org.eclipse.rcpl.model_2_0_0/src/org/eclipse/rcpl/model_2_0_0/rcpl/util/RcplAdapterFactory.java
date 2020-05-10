@@ -277,6 +277,18 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 				return createServiceAdapter();
 			}
 			@Override
+			public Adapter caseNavigator(Navigator object) {
+				return createNavigatorAdapter();
+			}
+			@Override
+			public Adapter caseNavigatorItem(NavigatorItem object) {
+				return createNavigatorItemAdapter();
+			}
+			@Override
+			public Adapter caseNavigators(Navigators object) {
+				return createNavigatorsAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -1035,6 +1047,48 @@ public class RcplAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createServiceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigator <em>Navigator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Navigator
+	 * @generated
+	 */
+	public Adapter createNavigatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem <em>Navigator Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem
+	 * @generated
+	 */
+	public Adapter createNavigatorItemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.rcpl.model_2_0_0.rcpl.Navigators <em>Navigators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.Navigators
+	 * @generated
+	 */
+	public Adapter createNavigatorsAdapter() {
 		return null;
 	}
 

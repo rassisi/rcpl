@@ -162,6 +162,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//RCPL/homeURL"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/commands"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/services"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//RCPL/navigators"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Perspectives">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Perspectives/children"/>
@@ -391,6 +392,7 @@
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Command">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Command/service"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Command/dialogClassName"/>
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Commands">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Commands/children"/>
@@ -400,6 +402,17 @@
     </genClasses>
     <genClasses ecoreClass="rcpl.ecore#//Service">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Service/className"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Navigator">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rcpl.ecore#//Navigator/navigatoritems"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//Navigator/context"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//NavigatorItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//NavigatorItem/adaptFrom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rcpl.ecore#//NavigatorItem/adaptTo"/>
+    </genClasses>
+    <genClasses ecoreClass="rcpl.ecore#//Navigators">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rcpl.ecore#//Navigators/navigators"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

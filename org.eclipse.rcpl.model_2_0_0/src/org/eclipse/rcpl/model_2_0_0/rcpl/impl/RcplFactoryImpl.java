@@ -108,6 +108,9 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 			case RcplPackage.COMMANDS: return (EObject)createCommands();
 			case RcplPackage.SERVICES: return (EObject)createServices();
 			case RcplPackage.SERVICE: return (EObject)createService();
+			case RcplPackage.NAVIGATOR: return (EObject)createNavigator();
+			case RcplPackage.NAVIGATOR_ITEM: return (EObject)createNavigatorItem();
+			case RcplPackage.NAVIGATORS: return (EObject)createNavigators();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -726,6 +729,39 @@ public class RcplFactoryImpl extends EFactoryImpl implements RcplFactory {
 	public Service createService() {
 		ServiceImpl service = new ServiceImpl();
 		return service;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Navigator createNavigator() {
+		NavigatorImpl navigator = new NavigatorImpl();
+		return navigator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NavigatorItem createNavigatorItem() {
+		NavigatorItemImpl navigatorItem = new NavigatorItemImpl();
+		return navigatorItem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Navigators createNavigators() {
+		NavigatorsImpl navigators = new NavigatorsImpl();
+		return navigators;
 	}
 
 	/**

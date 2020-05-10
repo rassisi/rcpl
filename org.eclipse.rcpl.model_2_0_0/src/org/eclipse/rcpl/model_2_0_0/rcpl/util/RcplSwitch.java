@@ -434,6 +434,24 @@ public class RcplSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case RcplPackage.NAVIGATOR: {
+				Navigator navigator = (Navigator)theEObject;
+				T result = caseNavigator(navigator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RcplPackage.NAVIGATOR_ITEM: {
+				NavigatorItem navigatorItem = (NavigatorItem)theEObject;
+				T result = caseNavigatorItem(navigatorItem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RcplPackage.NAVIGATORS: {
+				Navigators navigators = (Navigators)theEObject;
+				T result = caseNavigators(navigators);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1230,6 +1248,51 @@ public class RcplSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseService(Service object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNavigator(Navigator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigator Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigator Item</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNavigatorItem(NavigatorItem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Navigators</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Navigators</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNavigators(Navigators object) {
 		return null;
 	}
 

@@ -50,9 +50,9 @@ public interface ISession {
 
 	void setCDOServer(String host);
 
-	Resource getRcplEmfResource();
+	Resource getRcplResource();
 
-//	Resource getApplicationEmfResource();
+	Resource getApplicationResource();
 
 	String getUserId();
 

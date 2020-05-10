@@ -279,6 +279,7 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			childrenFeatures.add(RcplPackage.Literals.RCPL__KEYVALUES);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__COMMANDS);
 			childrenFeatures.add(RcplPackage.Literals.RCPL__SERVICES);
+			childrenFeatures.add(RcplPackage.Literals.RCPL__NAVIGATORS);
 		}
 		return childrenFeatures;
 	}
@@ -350,6 +351,7 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			case RcplPackage.RCPL__KEYVALUES:
 			case RcplPackage.RCPL__COMMANDS:
 			case RcplPackage.RCPL__SERVICES:
+			case RcplPackage.RCPL__NAVIGATORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -426,6 +428,11 @@ public class RCPLItemProvider extends LayoutableItemProvider {
 			(createChildParameter
 				(RcplPackage.Literals.RCPL__SERVICES,
 				 RcplFactory.eINSTANCE.createServices()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RcplPackage.Literals.RCPL__NAVIGATORS,
+				 RcplFactory.eINSTANCE.createNavigators()));
 	}
 
 }

@@ -114,6 +114,25 @@ public class RcplService extends RcplBaseService implements IService {
 	@Override
 	public Object execute(ICommand command) {
 
+		IService service = getService(command);
+
+		if (command.getModel() != null) {
+			if (service == null) {
+				switch (command.getModel().getName()) {
+				case "SHOW_NODES_PAGE":
+					try {
+						IDetailPage page = (IDetailPage) Class.forName(command.getModel().getDialogClassName())
+								.newInstance();
+						Rcpl.UIC().setContent(page.getNode());
+					} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return null;
+				}
+			}
+		}
+
 		if (command.getCommandId() != null && command.getCommandId().equals(EnCommandId.PARAGRAPH_SHOWSTARTMENU)) {
 			Rcpl.UIC().showHomePage(HomePageType.OVERVIEW, null);
 			return true;
@@ -128,7 +147,6 @@ public class RcplService extends RcplBaseService implements IService {
 			}
 		}
 
-		IService service = getService(command);
 		if (service == null) {
 			return null;
 		}

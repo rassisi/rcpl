@@ -15,8 +15,8 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Service;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl#getService
- * <em>Service</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl#getService <em>Service</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.impl.CommandImpl#getDialogClassName <em>Dialog Class Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -24,7 +24,6 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Service;
 public class CommandImpl extends LayoutableImpl implements Command {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CommandImpl() {
@@ -33,7 +32,6 @@ public class CommandImpl extends LayoutableImpl implements Command {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -43,22 +41,40 @@ public class CommandImpl extends LayoutableImpl implements Command {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Service getService() {
-		return (Service) eGet(RcplPackage.Literals.COMMAND__SERVICE, true);
+		return (Service)eGet(RcplPackage.Literals.COMMAND__SERVICE, true);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setService(Service newService) {
 		eSet(RcplPackage.Literals.COMMAND__SERVICE, newService);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getDialogClassName() {
+		return (String)eGet(RcplPackage.Literals.COMMAND__DIALOG_CLASS_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDialogClassName(String newDialogClassName) {
+		eSet(RcplPackage.Literals.COMMAND__DIALOG_CLASS_NAME, newDialogClassName);
 	}
 
 	/**

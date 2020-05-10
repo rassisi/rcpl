@@ -207,7 +207,7 @@ public class RcplBaseService implements IService {
 		if (command.getService() != null) {
 			return command.getService();
 		}
-		if (command.getCommandId().getServiceId() != null) {
+		if (command.getCommandId() != null && command.getCommandId().getServiceId() != null) {
 			EnServiceId servId = command.getCommandId().getServiceId();
 			if (servId != null) {
 				IService customService = getService(servId);
@@ -227,9 +227,11 @@ public class RcplBaseService implements IService {
 				}
 			}
 		}
-
-		IService service = getService(command.getCommandId().getServiceId());
-		return service;
+		if (command.getCommandId() != null) {
+			IService service = getService(command.getCommandId().getServiceId());
+			return service;
+		}
+		return null;
 	}
 
 	public IService getService(EnServiceId serviceId) {

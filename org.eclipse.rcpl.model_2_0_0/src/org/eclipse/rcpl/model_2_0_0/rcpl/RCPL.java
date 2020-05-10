@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getHomeURL <em>Home URL</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getCommands <em>Commands</em>}</li>
  *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getServices <em>Services</em>}</li>
+ *   <li>{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getNavigators <em>Navigators</em>}</li>
  * </ul>
  *
  * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL()
@@ -558,5 +559,27 @@ public interface RCPL extends Layoutable {
 	 * @generated
 	 */
 	void setServices(Services value);
+
+	/**
+	 * Returns the value of the '<em><b>Navigators</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Navigators</em>' containment reference.
+	 * @see #setNavigators(Navigators)
+	 * @see org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage#getRCPL_Navigators()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Navigators getNavigators();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.rcpl.model_2_0_0.rcpl.RCPL#getNavigators <em>Navigators</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Navigators</em>' containment reference.
+	 * @see #getNavigators()
+	 * @generated
+	 */
+	void setNavigators(Navigators value);
 
 } // RCPL

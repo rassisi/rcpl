@@ -481,6 +481,33 @@ public interface RcplFactory extends EFactory {
 	Service createService();
 
 	/**
+	 * Returns a new object of class '<em>Navigator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Navigator</em>'.
+	 * @generated
+	 */
+	Navigator createNavigator();
+
+	/**
+	 * Returns a new object of class '<em>Navigator Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Navigator Item</em>'.
+	 * @generated
+	 */
+	NavigatorItem createNavigatorItem();
+
+	/**
+	 * Returns a new object of class '<em>Navigators</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Navigators</em>'.
+	 * @generated
+	 */
+	Navigators createNavigators();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

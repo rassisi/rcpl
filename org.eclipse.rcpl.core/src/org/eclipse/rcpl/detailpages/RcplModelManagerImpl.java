@@ -34,7 +34,7 @@ public class RcplModelManagerImpl extends AbstractModelManagerImpl implements IM
 
 	@Override
 	public Resource getResource() {
-		return RcplSession.getDefault().getRcplEmfResource();
+		return RcplSession.getDefault().getRcplResource();
 	}
 
 	@Override

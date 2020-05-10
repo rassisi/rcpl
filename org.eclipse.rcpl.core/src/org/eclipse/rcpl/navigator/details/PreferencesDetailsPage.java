@@ -71,11 +71,6 @@ public class PreferencesDetailsPage extends AbstractModelDetailPage {
 	}
 
 	@Override
-	public IModelDetailPageControler getControler() {
-		return null;
-	}
-
-	@Override
 	protected IModelDetailPageControler createControler() {
 		return new PreferenceDetailsControler();
 	}

@@ -127,6 +127,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" eType="#//Services"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigators" eType="#//Navigators"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Perspectives" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
@@ -459,6 +461,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Command" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#//Service"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dialogClassName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Commands">
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
@@ -470,5 +473,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//Layoutable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Navigator">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigatoritems" upperBound="-1"
+        eType="#//NavigatorItem" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NavigatorItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adaptFrom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adaptTo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Navigators">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigators" upperBound="-1"
+        eType="#//Navigator" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

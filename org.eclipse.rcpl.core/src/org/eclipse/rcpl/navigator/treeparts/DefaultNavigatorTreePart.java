@@ -46,15 +46,13 @@ import org.eclipse.rcpl.emf.edit.ui.dnd.EditingDomainCellDropAdapter;
 import org.eclipse.rcpl.model.RcplModel;
 import org.eclipse.rcpl.model.client.RcplSession;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Folder;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Navigator;
+import org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preference;
-import org.eclipse.rcpl.model_2_0_0.rcpl.PreferenceGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Preferences;
 import org.eclipse.rcpl.model_2_0_0.rcpl.RcplPackage;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Resource;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Tool;
-import org.eclipse.rcpl.model_2_0_0.rcpl.ToolGroup;
-import org.eclipse.rcpl.navigator.details.PreferencesDetailsPage;
-import org.eclipse.rcpl.navigator.details.ToolsDetailPage;
 import org.eclipse.rcpl.navigator.handlers.AbstractEmfHandler;
 import org.eclipse.rcpl.navigator.handlers.AddOfficeFolderHandler;
 import org.eclipse.rcpl.navigator.handlers.AddPreferenceHandler;
@@ -150,7 +148,9 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 							l.selected(selectedObject);
 						}
 
-						adaptDetailPane((EObject) value);
+						if (!adaptDetailPane((EObject) value)) {
+							detailPane = null;
+						}
 					}
 				}
 				updateDetailPane();
@@ -175,34 +175,71 @@ public class DefaultNavigatorTreePart extends AbstractRcplTool<EObject> implemen
 
 	}
 
-	protected void adaptDetailPane(EObject eObject) {
+	protected boolean adaptDetailPane(EObject eObject) {
 
 		IDetailPage detailPage = Rcpl.UIC().getDetailPage(eObject.getClass().getName());
 
-		if (detailPage == null) {
+		if (!(detailPage instanceof IModelDetailPage)) {
 
-			// ========== Tool
+			for (Navigator nav : Rcpl.getRcpl().getNavigators().getNavigators()) {
+				for (NavigatorItem navi : nav.getNavigatoritems()) {
 
-			if (eObject instanceof Tool || eObject instanceof ToolGroup) {
-				this.detailPane = new ToolsDetailPage();
-				Rcpl.UIC().putDetailPage(eObject.getClass().getName(), detailPage);
-				this.detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
+					boolean adapt = false;
+					if (eObject.getClass().getName().equals(navi.getAdaptFrom())) {
+						adapt = true;
+					} else {
+						Class[] ifs = eObject.getClass().getInterfaces();
+						for (Class<?> class1 : ifs) {
+							String interfaceName = class1.getName();
+							if (interfaceName.equals(navi.getAdaptFrom())) {
+								adapt = true;
+								break;
+							}
+						}
+					}
 
-				// ========== Preference Group
+					if (adapt) {
+						try {
+							this.detailPane = (IModelDetailPage) Class.forName(navi.getAdaptTo()).newInstance();
+						} catch (InstantiationException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IllegalAccessException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
-			} else if (eObject instanceof PreferenceGroup) {
-				this.detailPane = new PreferencesDetailsPage();
-				Rcpl.UIC().putDetailPage(eObject.getClass().getName(), detailPage);
+						if (detailPane != null) {
+							Rcpl.UIC().putDetailPage(eObject.getClass().getName(), detailPane);
+							try {
+								this.detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
+								return true;
+							} catch (Exception ex) {
+								System.out.println();
+								this.detailPane = null;
+								return false;
+							}
+						}
+					}
+				}
 			}
-
 		} else if (detailPage instanceof IModelDetailPage) {
 			this.detailPane = (IModelDetailPage) detailPage;
-			this.detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
+			try {
+				this.detailPane.getControler().updateBindings(selectedObject, getEditingDomain());
+			} catch (Exception ex) {
+				this.detailPane = null;
+				return false;
+			}
+			return true;
 
 		} else {
 			this.detailPane = null;
 		}
-
+		return false;
 	}
 
 	@Override

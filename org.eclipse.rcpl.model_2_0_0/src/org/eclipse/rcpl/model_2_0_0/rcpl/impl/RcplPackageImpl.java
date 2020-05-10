@@ -44,6 +44,9 @@ import org.eclipse.rcpl.model_2_0_0.rcpl.Layoutable;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Login;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Logins;
 import org.eclipse.rcpl.model_2_0_0.rcpl.NPerson;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Navigator;
+import org.eclipse.rcpl.model_2_0_0.rcpl.NavigatorItem;
+import org.eclipse.rcpl.model_2_0_0.rcpl.Navigators;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Person;
 import org.eclipse.rcpl.model_2_0_0.rcpl.PersonGroup;
 import org.eclipse.rcpl.model_2_0_0.rcpl.Persons;
@@ -395,6 +398,27 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	 * @generated
 	 */
 	private EClass serviceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass navigatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass navigatorItemEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass navigatorsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -820,6 +844,16 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	@Override
 	public EReference getRCPL_Services() {
 		return (EReference)rcplEClass.getEStructuralFeatures().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getRCPL_Navigators() {
+		return (EReference)rcplEClass.getEStructuralFeatures().get(21);
 	}
 
 	/**
@@ -2498,6 +2532,16 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCommand_DialogClassName() {
+		return (EAttribute)commandEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -2549,6 +2593,86 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 	@Override
 	public EAttribute getService_ClassName() {
 		return (EAttribute)serviceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getNavigator() {
+		return navigatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNavigator_Navigatoritems() {
+		return (EReference)navigatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getNavigator_Context() {
+		return (EAttribute)navigatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getNavigatorItem() {
+		return navigatorItemEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getNavigatorItem_AdaptFrom() {
+		return (EAttribute)navigatorItemEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getNavigatorItem_AdaptTo() {
+		return (EAttribute)navigatorItemEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getNavigators() {
+		return navigatorsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getNavigators_Navigators() {
+		return (EReference)navigatorsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2678,6 +2802,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		createEAttribute(rcplEClass, RCPL__HOME_URL);
 		createEReference(rcplEClass, RCPL__COMMANDS);
 		createEReference(rcplEClass, RCPL__SERVICES);
+		createEReference(rcplEClass, RCPL__NAVIGATORS);
 
 		perspectivesEClass = createEClass(PERSPECTIVES);
 		createEReference(perspectivesEClass, PERSPECTIVES__CHILDREN);
@@ -2912,6 +3037,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		commandEClass = createEClass(COMMAND);
 		createEReference(commandEClass, COMMAND__SERVICE);
+		createEAttribute(commandEClass, COMMAND__DIALOG_CLASS_NAME);
 
 		commandsEClass = createEClass(COMMANDS);
 		createEReference(commandsEClass, COMMANDS__CHILDREN);
@@ -2921,6 +3047,17 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		serviceEClass = createEClass(SERVICE);
 		createEAttribute(serviceEClass, SERVICE__CLASS_NAME);
+
+		navigatorEClass = createEClass(NAVIGATOR);
+		createEReference(navigatorEClass, NAVIGATOR__NAVIGATORITEMS);
+		createEAttribute(navigatorEClass, NAVIGATOR__CONTEXT);
+
+		navigatorItemEClass = createEClass(NAVIGATOR_ITEM);
+		createEAttribute(navigatorItemEClass, NAVIGATOR_ITEM__ADAPT_FROM);
+		createEAttribute(navigatorItemEClass, NAVIGATOR_ITEM__ADAPT_TO);
+
+		navigatorsEClass = createEClass(NAVIGATORS);
+		createEReference(navigatorsEClass, NAVIGATORS__NAVIGATORS);
 
 		// Create enums
 		toolTypeEEnum = createEEnum(TOOL_TYPE);
@@ -3046,6 +3183,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 		initEAttribute(getRCPL_HomeURL(), ecorePackage.getEString(), "homeURL", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_Commands(), this.getCommands(), null, "commands", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRCPL_Services(), this.getServices(), null, "services", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRCPL_Navigators(), this.getNavigators(), null, "navigators", null, 0, 1, org.eclipse.rcpl.model_2_0_0.rcpl.RCPL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(perspectivesEClass, Perspectives.class, "Perspectives", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPerspectives_Children(), this.getPerspective(), null, "children", null, 0, -1, Perspectives.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3280,6 +3418,7 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCommand_Service(), this.getService(), null, "service", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCommand_DialogClassName(), ecorePackage.getEString(), "dialogClassName", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(commandsEClass, Commands.class, "Commands", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCommands_Children(), this.getCommand(), null, "children", null, 0, -1, Commands.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3289,6 +3428,17 @@ public class RcplPackageImpl extends EPackageImpl implements RcplPackage {
 
 		initEClass(serviceEClass, Service.class, "Service", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getService_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, Service.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(navigatorEClass, Navigator.class, "Navigator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNavigator_Navigatoritems(), this.getNavigatorItem(), null, "navigatoritems", null, 0, -1, Navigator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNavigator_Context(), ecorePackage.getEString(), "context", null, 0, 1, Navigator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(navigatorItemEClass, NavigatorItem.class, "NavigatorItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNavigatorItem_AdaptFrom(), ecorePackage.getEString(), "adaptFrom", null, 0, 1, NavigatorItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNavigatorItem_AdaptTo(), ecorePackage.getEString(), "adaptTo", null, 0, 1, NavigatorItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(navigatorsEClass, Navigators.class, "Navigators", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNavigators_Navigators(), this.getNavigator(), null, "navigators", null, 0, -1, Navigators.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(toolTypeEEnum, ToolType.class, "ToolType");
